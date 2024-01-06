@@ -28,8 +28,89 @@ import { Head, Link } from "@inertiajs/vue3";
 <template>
     <Head title="Welcome" />
 
+    <!-- component -->
+    <header class="bg-snow dark:bg-oynx">
+        <div
+            class="container mx-auto px-4 py-8 flex justify-between items-center"
+        >
+            <!-- logo -->
+            <div class="md:w-48 flex-shrink-0">
+                <img
+                    class="h-8 md:h-10"
+                    src="https://i.ibb.co/98pHdFq/2021-10-27-15h51-15.png"
+                    alt=""
+                />
+            </div>
+
+            <!-- search -->
+            <div
+                class="w-full max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
+            >
+                <select
+                    class="bg-transparent uppercase font-bold text-sm p-4 mr-4 w-3/10"
+                    name=""
+                    id=""
+                >
+                    <option>all categories</option>
+                </select>
+                <div class="divcontainer relative w-70/100">
+                    <input
+                        required=""
+                        type="text"
+                        name="text"
+                        class="input w-full h-full p-4"
+                    />
+                    <svg
+                        class="ml-auto h-5 px-4 absolute right-0 top-3 text-gray-500 svg-inline--fa fa-search fa-w-16 fa-9x"
+                        aria-hidden="true"
+                        focusable="false"
+                        data-prefix="far"
+                        data-icon="search"
+                        role="img"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                    >
+                        <path
+                            fill="currentColor"
+                            d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"
+                        ></path>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- buttons -->
+            <nav class="contents">
+                <ul class="ml-4 xl:w-48 flex items-center justify-end">
+                    <li
+                        class="ml-2 lg:ml-4 relative inline-block bg-oynx rounded-full p-1 profile"
+                    >
+                        <a class="" href="">
+                            <svg
+                                class="h-9 lg:h-10 p-2 text-snow svg-inline--fa fa-user fa-w-14 fa-9x"
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="far"
+                                data-icon="user"
+                                role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z"
+                                ></path>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <hr />
+    </header>
+    <!-- 
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen  bg-center bg-snow  dark:bg-oynx selection:bg-red-500 selection:text-white"
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
         <div
             v-if="canLogin"
@@ -60,13 +141,13 @@ import { Head, Link } from "@inertiajs/vue3";
 
         <div class="relative mx-auto overflow-hidden h-screen w-screen">
             <div
-                class="absolute right-0 bottom-0 h-16 w-40  bg-center bg-snow  dark:bg-oynx z-50"
+                class="absolute right-0 bottom-0 h-16 w-40 bg-center bg-snow dark:bg-oynx z-50"
             ></div>
 
-            <!-- <iframe
+            <iframe
                 src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
                 class="absolute w-full h-full"
-            ></iframe> -->
+            ></iframe> 
 
             <div class="m-auto flex items-center h-full px-6 lg:p-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -85,12 +166,16 @@ import { Head, Link } from "@inertiajs/vue3";
                             or have prior experience with Laravel, we recommend
                             reading our documentation from beginning to end.
                         </p>
-                        <button class="button2 bg-snow dark:button2 mt-5  transition-all duration-300 delay-75">Hover me</button>
+                        <button
+                            class="button2 bg-snow dark:button2 mt-5 transition-all duration-300 delay-75"
+                        >
+                            Hover me
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style scoped>
@@ -103,86 +188,43 @@ import { Head, Link } from "@inertiajs/vue3";
     }
 }
 
-
-@media (prefers-color-scheme: dark) {
-    .dark\:button2 {
-        color: #ffe9f3;
-        background: #303633;
-        border: 1px solid #303633;
-        box-shadow: 6px 6px 12px #303633, -6px -6px 12px rgb(0, 0, 0);
-    }
-
-    .dark\.button2:active {
-        color: #303633;
-        box-shadow: inset 4px 4px 12px  #303633, inset -4px -4px 12px rgb(0, 0, 0);
-    }
-    
-}
-.button2 {
-  display: inline-block;
-  transition: all 0.2s ease-in;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  color: #090909;
-  padding: 0.7em 1.7em;
-  cursor: pointer;
-  font-size: 18px;
-  border-radius: 0.5em;
-  border: 1px solid #e8e8e8;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+.profile {
+    /* border-radius: 53px; */
+    background: linear-gradient(145deg, #2b312e, #333a37);
+    box-shadow: 18px 18px 36px #1f2321, -18px -18px 36px #414945;
 }
 
-.button2:active {
-  color: #666;
-  box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+.input {
+    /* width: 200px; */
+    height: 45px;
+    border: none;
+    outline: none;
+
+    border-radius: 6px;
+    color: #fff;
+    font-size: 15px;
+    background-color: transparent;
+    border-radius: 53px;
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+    box-shadow: 25px 25px 50px #727272, -25px -25px 50px #ffffff;
+    /* box-shadow: 3px 3px 10px rgba(0,0,0,1),
+  -1px -1px 6px rgba(255, 255, 255, 0.4); */
 }
 
-.button2:before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) scaleY(1) scaleX(1.25);
-  top: 100%;
-  width: 140%;
-  height: 180%;
-  background-color: rgba(0, 0, 0, 0.05);
-  border-radius: 50%;
-  display: block;
-  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-  z-index: -1;
+.input:focus {
+    border: 2px solid transparent;
+    color: #fff;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4),
+        inset 3px 3px 10px rgba(0, 0, 0, 1),
+        inset -1px -1px 6px rgba(255, 255, 255, 0.4);
 }
 
-.button2:after {
-  content: "";
-  position: absolute;
-  left: 55%;
-  transform: translateX(-50%) scaleY(1) scaleX(1.45);
-  top: 180%;
-  width: 160%;
-  height: 190%;
-  background-color: #009087;
-  border-radius: 50%;
-  display: block;
-  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
-  z-index: -1;
+.divcontainer .input:valid,
+.divcontainer .input:focus {
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 1),
+        -1px -1px 6px rgba(255, 255, 255, 0.4),
+        inset 3px 3px 10px rgba(0, 0, 0, 1),
+        inset -1px -1px 6px rgba(255, 255, 255, 0.4);
 }
-
-.button2:hover {
-  color: #ffffff;
-  border: 1px solid #009087;
-}
-
-.button2:hover:before {
-  top: -35%;
-  background-color: #009087;
-  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-}
-
-.button2:hover:after {
-  top: -45%;
-  background-color: #009087;
-  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
-}
-
 </style>
