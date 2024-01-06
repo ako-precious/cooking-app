@@ -42,6 +42,7 @@ export default {
       transparent: colors.transparent,
       black: colors.black,
       white: colors.white,
+      snow: '#FCF7F8',
       lavender: '#FFE9F3',
       persian: '#1B998B',
       oynx: '#303633',
