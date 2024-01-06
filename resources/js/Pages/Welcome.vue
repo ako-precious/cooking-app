@@ -85,6 +85,7 @@ import { Head, Link } from "@inertiajs/vue3";
                         class="ml-2 lg:ml-4 relative inline-block bg-oynx rounded-full p-1 profile"
                     >
                         <a class="" href="">
+                            <!-- <font-awesome-icon icon="fa-regular fa-user" /> -->
                             <svg
                                 class="h-9 lg:h-10 p-2 text-snow svg-inline--fa fa-user fa-w-14 fa-9x"
                                 aria-hidden="true"
