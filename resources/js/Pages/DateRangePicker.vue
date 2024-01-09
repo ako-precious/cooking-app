@@ -12,7 +12,7 @@
       <div v-show="showDatepicker.startDate" @click="showPicker(false, 'startDate')" class="fixed inset-0 z-10"></div>
       <div v-show="showDatepicker.startDate" class="absolute top-12 left-0 z-20">
         <div class="bg-white border rounded shadow p-4">
-          <datepicker :date.sync="startDate" />
+          <vue-datepicker v-model="startDate" />
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
       <div v-show="showDatepicker.endDate" @click="showPicker(false, 'endDate')" class="fixed inset-0 z-10"></div>
       <div v-show="showDatepicker.endDate" class="absolute top-12 left-0 z-20">
         <div class="bg-white border rounded shadow p-4">
-          <datepicker :date.sync="endDate" />
+          <vue-datepicker v-model="endDate" />
         </div>
       </div>
     </div>
@@ -42,13 +42,11 @@
 <script>
 import { ref } from 'vue';
 import { format, addDays } from 'date-fns';
-// import { Datepicker } from '@headlessui/vue';
-// Update this import statement to use the correct path for Datepicker
-import { Datepicker } from '@headlessui/vue/datepicker';
+import VueDatepicker from 'vue3-datepicker';
 
 export default {
   components: {
-    Datepicker,
+    VueDatepicker,
   },
   data() {
     return {
