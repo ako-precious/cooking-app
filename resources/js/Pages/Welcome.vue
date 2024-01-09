@@ -30,9 +30,7 @@ import { Head, Link } from "@inertiajs/vue3";
 
     <!-- component -->
     <header class="bg-snow dark:bg-oynx">
-        <div
-            class="container mx-auto px-4 py-8 flex justify-between items-center"
-        >
+        <div class="container mx-auto px-4 py-1 flex justify-between items-center">
             <!-- logo -->
             <div class="md:w-48 flex-shrink-0">
                 <img
@@ -46,14 +44,22 @@ import { Head, Link } from "@inertiajs/vue3";
             <div
                 class="w-full max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
             >
-                <select
-                    class="bg-transparent uppercase font-bold text-sm p-4 mr-4 w-3/10"
+                <div
+                    class="bg-transparent uppercase font-bold text-sm p-4 mr-4 flex justify-around w-full"
                     name=""
                     id=""
                 >
-                    <option>all categories</option>
-                </select>
-                <div class="divcontainer relative w-70/100">
+                    <a class="text-oynx rounded-full dark:text-snow font-bold cook dark:cook py-2 px-3" href="">
+                        <p>Be a Cook</p>
+                    </a>
+                    <a class="text-oynx rounded-full dark:text-snow font-bold cook dark:cook py-2 px-3" href="">
+                        <p>Be a Cook</p>
+                    </a>
+                    <a class="text-oynx rounded-full dark:text-snow font-bold cook dark:cook py-2 px-3" href="">
+                        <p>Be a Cook</p>
+                    </a>
+                </div>
+                <!-- <div class="divcontainer relative w-70/100">
                     <input
                         required=""
                         type="text"
@@ -75,32 +81,37 @@ import { Head, Link } from "@inertiajs/vue3";
                             d="M508.5 468.9L387.1 347.5c-2.3-2.3-5.3-3.5-8.5-3.5h-13.2c31.5-36.5 50.6-84 50.6-136C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c52 0 99.5-19.1 136-50.6v13.2c0 3.2 1.3 6.2 3.5 8.5l121.4 121.4c4.7 4.7 12.3 4.7 17 0l22.6-22.6c4.7-4.7 4.7-12.3 0-17zM208 368c-88.4 0-160-71.6-160-160S119.6 48 208 48s160 71.6 160 160-71.6 160-160 160z"
                         ></path>
                     </svg>
-                </div>
+                </div> -->
             </div>
 
             <!-- buttons -->
             <nav class="contents">
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
                     <li
-                        class="ml-2 lg:ml-4 relative inline-block bg-oynx rounded-full p-1 profile"
+                        class="ml-2 text-nowrap lg:mr-4 relative inline-block dark:bg-oynx rounded-full py-2 px-4 cook dark:cook"
+                    >
+                        <a class="text-oynx dark:text-snow font-bold" href="">
+                            <p>Be a Cook</p>
+                        </a>
+                    </li>
+                    <li
+                        class="ml-2 lg:mx-4 relative inline-block bg-oynx rounded-full p-1 profile dark:profile"
                     >
                         <a class="" href="">
-                            <!-- <font-awesome-icon icon="fa-regular fa-user" /> -->
-                            <svg
-                                class="h-9 lg:h-10 p-2 text-snow svg-inline--fa fa-user fa-w-14 fa-9x"
-                                aria-hidden="true"
-                                focusable="false"
-                                data-prefix="far"
-                                data-icon="user"
-                                role="img"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 448 512"
-                            >
-                                <path
-                                    fill="currentColor"
-                                    d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z"
-                                ></path>
-                            </svg>
+                            <font-awesome-icon
+                                icon="user"
+                                class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
+                            />
+                        </a>
+                    </li>
+                    <li
+                        class="ml-2 lg:mr-4 relative inline-block bg-oynx rounded-full p-1 profile dark:profile"
+                    >
+                        <a class="" href="">
+                            <font-awesome-icon
+                                icon="globe"
+                                class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
+                            />
                         </a>
                     </li>
                 </ul>
@@ -183,16 +194,34 @@ import { Head, Link } from "@inertiajs/vue3";
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
+.profile {
+    background: linear-gradient(145deg, #e3dedf, #ffffff);
+    box-shadow: 25px 25px 53px #a19e9f, -25px -25px 53px #ffffff;
+}
+.profile:hover {
+    background: linear-gradient(315deg, #e3dedf, #ffffff);
+    box-shadow: -25px -25px 53px #a19e9f, 25px 25px 53px #ffffff;
+}
+.cook:hover {
+    background: linear-gradient(315deg, #e3dedf, #ffffff);
+    box-shadow: -25px -25px 53px #a19e9f, 25px 25px 53px #ffffff;
+}
 @media (prefers-color-scheme: dark) {
     .dark\:bg-dots-lighter {
         background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
     }
-}
-
-.profile {
-    /* border-radius: 53px; */
-    background: linear-gradient(145deg, #2b312e, #333a37);
-    box-shadow: 18px 18px 36px #1f2321, -18px -18px 36px #414945;
+    .dark\:profile {
+        background: linear-gradient(145deg, #2b312e, #333a37);
+        box-shadow: 18px 18px 36px #1f2321, -18px -18px 36px #414945;
+    }
+    .dark\:profile:hover {
+        background: linear-gradient(315deg, #2b312e, #333a37);
+        box-shadow: -18px -18px 36px #1f2321, 18px 18px 36px #414945;
+    }
+    .dark\:cook:hover {
+        background: linear-gradient(315deg, #2b312e, #333a37);
+        box-shadow: -18px -18px 36px #1f2321, 18px 18px 36px #414945;
+    }
 }
 
 .input {

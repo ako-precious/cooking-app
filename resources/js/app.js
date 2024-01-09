@@ -16,10 +16,10 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faGlobe, faUser, } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add( faUser  );
+library.add( faUser, faGlobe  );
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -28,6 +28,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .component("font-awesome-icon", FontAwesomeIcon)
             .mount(el);
     },
     progress: {
