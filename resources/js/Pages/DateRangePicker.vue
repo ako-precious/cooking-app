@@ -12,7 +12,7 @@
       <div v-show="showDatepicker.startDate" @click="showPicker(false, 'startDate')" class="fixed inset-0 z-10"></div>
       <div v-show="showDatepicker.startDate" class="absolute top-12 left-0 z-20">
         <div class="bg-white border rounded shadow p-4">
-          <vue-datepicker v-model="startDate" />
+          <vue-datepicker v-model="startDate" :minDate="new Date()" :maxDate="endDate" />
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
       <div v-show="showDatepicker.endDate" @click="showPicker(false, 'endDate')" class="fixed inset-0 z-10"></div>
       <div v-show="showDatepicker.endDate" class="absolute top-12 left-0 z-20">
         <div class="bg-white border rounded shadow p-4">
-          <vue-datepicker v-model="endDate" />
+          <vue-datepicker v-model="endDate" :minDate="startDate" />
         </div>
       </div>
     </div>
