@@ -1,27 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-// import { Application } from '@splinetool/runtime';
 
-// import { Application } from '@splinetool/runtime';
-
-// template ref
-// const canvas = ref(null)
-
-// // spline state
-// const state = reactive({
-//     spline: {
-//         scene: "https://prod.spline.design/<your-spline-scene-url>/scene.splinecode",
-//         app: null,
-//         isLoaded: false,
-//     },
-// });
-
-// onMounted(async () =>{
-//     const app = new Application(canvas.value);
-//     await app.load(state.spline.scene)
-//     state.spline.app = app;
-//     state.spline.isLoaded = true;
-// })
+import DateRangePicker from './DateRangePicker.vue';
 </script>
 <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.17/build/spline-viewer.js"></script> -->
 <!-- <spline-viewer url="https://prod.spline.design/uP3F5wChqGJeEgEG/scene.splinecode"></spline-viewer> -->
@@ -59,36 +39,37 @@ import { Head, Link } from "@inertiajs/vue3";
                         <p>Be a Cook</p>
                     </a>
                 </div>
-              
-            </div>
 
+            </div>
+            
+            
             <!-- buttons -->
             <nav class="contents">
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
                     <li
                         class="ml-2 text-nowrap lg:mr-4 relative inline-block dark:bg-oynx rounded-full py-2 px-4 cook dark:cook"
-                    >
+                        >
                         <a class="text-oynx dark:text-snow font-bold" href="">
                             <p>Be a Cook</p>
                         </a>
                     </li>
                     <li
-                        class="ml-2 lg:mx-4 relative inline-block bg-oynx rounded-full p-1 profile dark:profile"
+                    class="ml-2 lg:mx-4 relative inline-block bg-oynx rounded-full p-1 profile dark:profile"
                     >
-                        <a class="" href="">
-                            <font-awesome-icon
-                                icon="user"
-                                class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
-                            />
-                        </a>
-                    </li>
-                    <li
+                    <a class="" href="">
+                        <font-awesome-icon
+                        icon="user"
+                        class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
+                        />
+                    </a>
+                </li>
+                <li
                         class="ml-2 lg:mr-4 relative inline-block bg-oynx rounded-full p-1 profile dark:profile"
-                    >
+                        >
                         <a class="" href="">
                             <font-awesome-icon
-                                icon="globe"
-                                class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
+                            icon="globe"
+                            class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
                             />
                         </a>
                     </li>
@@ -98,16 +79,17 @@ import { Head, Link } from "@inertiajs/vue3";
 
         <hr />
     </header>
+    <DateRangePicker></DateRangePicker>
     <!-- 
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
-    >
         <div
-            v-if="canLogin"
-            class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10"
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
         >
-            <Link
-                v-if="$page.props.auth.user"
+        <div
+        v-if="canLogin"
+        class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10"
+        >
+        <Link
+        v-if="$page.props.auth.user"
                 :href="route('dashboard')"
                 class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
                 >Dashboard</Link
