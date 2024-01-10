@@ -8,24 +8,9 @@ defineProps({
     laravelVersion: String,
     phpVersion: String,
 });
-
-</script>
-<script>
-export default {
-    data() {
-        return {
-            // Define the props you want to send
-            canLogin: Boolean,
-            canRegister: Boolean,
-            laravelVersion: String,
-            phpVersion: String,
-        };
-    },
-};
 </script>
 
-<!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.17/build/spline-viewer.js"></script> -->
-<!-- <spline-viewer url="https://prod.spline.design/uP3F5wChqGJeEgEG/scene.splinecode"></spline-viewer> -->
+
 <template>
     <Head title="Welcome" />
 
@@ -97,9 +82,9 @@ export default {
                         </a>
                     </li>
                     <DropBarNav
-                    :canLogin="computedCanLoginValue"
-      :canRegister="computedCanRegisterValue"
-      :laravelVersion="laravelVersionValue"
+                        :canLogin="canLogin"
+                        :canRegister="canRegister"
+                        :laravelVersion="laravelVersion"
                         :phpVersion="phpVersion"
                     />
                 </ul>
