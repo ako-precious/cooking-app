@@ -1,8 +1,29 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
+import { Head } from "@inertiajs/vue3";
+import DropBarNav from "./Header/DropBarNav.vue";
+import DateRangePicker from "./Header/DateRangePicker.vue";
+defineProps({
+    canLogin: Boolean,
+    canRegister: Boolean,
+    laravelVersion: String,
+    phpVersion: String,
+});
 
-import DateRangePicker from './DateRangePicker.vue';
 </script>
+<script>
+export default {
+    data() {
+        return {
+            // Define the props you want to send
+            canLogin: Boolean,
+            canRegister: Boolean,
+            laravelVersion: String,
+            phpVersion: String,
+        };
+    },
+};
+</script>
+
 <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@1.0.17/build/spline-viewer.js"></script> -->
 <!-- <spline-viewer url="https://prod.spline.design/uP3F5wChqGJeEgEG/scene.splinecode"></spline-viewer> -->
 <template>
@@ -10,7 +31,9 @@ import DateRangePicker from './DateRangePicker.vue';
 
     <!-- component -->
     <header class="bg-snow dark:bg-oynx">
-        <div class="container mx-auto px-4 py-1 flex justify-between items-center">
+        <div
+            class="container mx-auto px-4 py-1 flex justify-between items-center"
+        >
             <!-- logo -->
             <div class="md:w-48 flex-shrink-0">
                 <img
@@ -29,60 +52,61 @@ import DateRangePicker from './DateRangePicker.vue';
                     name=""
                     id=""
                 >
-                    <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full  cook dark:cook py-2 px-3" href="">
+                    <a
+                        class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full cook dark:cook py-2 px-3"
+                        href=""
+                    >
                         <p>Meal Schedule</p>
                     </a>
-                    <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full   cook dark:cook py-2 px-3" href="">
+                    <a
+                        class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full cook dark:cook py-2 px-3"
+                        href=""
+                    >
                         <p>Special Meal</p>
                     </a>
-                    <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full  cook dark:cook py-2 px-3" href="">
+                    <a
+                        class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full cook dark:cook py-2 px-3"
+                        href=""
+                    >
                         <p>Be a Cook</p>
                     </a>
                 </div>
-
             </div>
-            
-            
+
             <!-- buttons -->
             <nav class="contents">
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
                     <li
-                        class="ml-2 text-nowrap  relative inline-block dark:bg-oynx rounded-full py-2 px-4 cook dark:cook"
+                        class="ml-2 text-nowrap relative inline-block dark:bg-oynx rounded-full py-2 px-4 cook dark:cook"
+                    >
+                        <a
+                            class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred"
+                            href=""
                         >
-                        <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred " href="">
                             <p>Be a Cook</p>
                         </a>
                     </li>
                     <li
-                            class="ml-2  relative inline-block text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 cook dark:cook"
-                            >
-                            <a class="" href="">
-                                <font-awesome-icon
-                                icon="globe"
-                                class="h-3 lg:h-4 p-2  svg-inline--fa fa-user fa-w-14 fa-9x"
-                                />
-                            </a>
-                        </li>
-                    <li
-                    class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile "
+                        class="ml-2 relative inline-block text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 cook dark:cook"
                     >
-                    <a class="flex" href="">
-                        <font-awesome-icon
-                        icon="user"
-                        class="h-3 lg:h-4 p-2  svg-inline--fa fa-user fa-w-14 fa-9x"
-                        />
-                        <font-awesome-icon icon="caret-down"
-                        class="h-3 lg:h-4 p-2  svg-inline--fa fa-user fa-w-14 fa-9x"/>
-                    </a>
-                </li>
+                        <a class="" href="">
+                            <font-awesome-icon
+                                icon="globe"
+                                class="h-3 lg:h-4 p-2 svg-inline--fa fa-user fa-w-14 fa-9x"
+                            />
+                        </a>
+                    </li>
+                    <DropBarNav
+                    :canLogin="computedCanLoginValue"
+      :canRegister="computedCanRegisterValue"
+      :laravelVersion="laravelVersionValue"
+                        :phpVersion="phpVersion"
+                    />
                 </ul>
             </nav>
         </div>
         <DateRangePicker></DateRangePicker>
-        <div
-            v-if="canLogin"
-            class="sm:absolute sm:top-100 sm:end-0 p-6 text-end z-10"
-        >
+        <!-- <div v-if="canLogin" class="sm:end-0 p-6 text-end z-10">
             <Link
                 v-if="$page.props.auth.user"
                 :href="route('dashboard')"
@@ -104,15 +128,14 @@ import DateRangePicker from './DateRangePicker.vue';
                     >Register</Link
                 >
             </div>
-        </div>
-
+        </div> -->
 
         <hr />
     </header>
-    
-        <div
+
+    <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
-        >
+    >
         <!-- <div
         v-if="canLogin"
         class=" p-6 text-end z-10"
