@@ -76,10 +76,10 @@ import DateRangePicker from './DateRangePicker.vue';
                 </ul>
             </nav>
         </div>
+        <DateRangePicker></DateRangePicker>
 
         <hr />
     </header>
-    <DateRangePicker></DateRangePicker>
     <!-- 
         <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
