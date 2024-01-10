@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center justify-center rounded-full">
         <!-- Start Date Input -->
-        <div class="relative inline-block">
+        <div class="relative ">
             <input
                 placeholder="Username"
                 class="input1"
@@ -10,7 +10,7 @@
             />
         </div>
         <!-- End Date Input -->
-        <div class="relative inline-block">
+        <div class="relative ">
             <input
                 placeholder="Username"
                 class="input1"
@@ -40,9 +40,9 @@
     color: #fff;
     box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
-.input1.hover,
+/* .input1.hover,
 .input1.active {
-}
+} */
 
 .button {
   width: 50px;

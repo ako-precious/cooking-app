@@ -16,10 +16,10 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faArrowRight, faGlobe, faUser, } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faCaretDown, faGlobe, faUser, } from "@fortawesome/free-solid-svg-icons";
 
 /* add icons to the library */
-library.add( faUser, faGlobe, faArrowRight  );
+library.add( faUser, faGlobe, faArrowRight, faCaretDown  );
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

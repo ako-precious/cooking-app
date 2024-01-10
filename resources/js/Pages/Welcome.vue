@@ -29,13 +29,13 @@ import DateRangePicker from './DateRangePicker.vue';
                     name=""
                     id=""
                 >
-                    <a class="text-oynx rounded-full dark:text-snow font-bold cook dark:cook py-2 px-3" href="">
+                    <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full  cook dark:cook py-2 px-3" href="">
                         <p>Meal Schedule</p>
                     </a>
-                    <a class="text-oynx rounded-full dark:text-snow font-bold cook dark:cook py-2 px-3" href="">
+                    <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full   cook dark:cook py-2 px-3" href="">
                         <p>Special Meal</p>
                     </a>
-                    <a class="text-oynx rounded-full dark:text-snow font-bold cook dark:cook py-2 px-3" href="">
+                    <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full  cook dark:cook py-2 px-3" href="">
                         <p>Be a Cook</p>
                     </a>
                 </div>
@@ -47,46 +47,75 @@ import DateRangePicker from './DateRangePicker.vue';
             <nav class="contents">
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
                     <li
-                        class="ml-2 text-nowrap lg:mr-4 relative inline-block dark:bg-oynx rounded-full py-2 px-4 cook dark:cook"
+                        class="ml-2 text-nowrap  relative inline-block dark:bg-oynx rounded-full py-2 px-4 cook dark:cook"
                         >
-                        <a class="text-oynx dark:text-snow font-bold" href="">
+                        <a class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred " href="">
                             <p>Be a Cook</p>
                         </a>
                     </li>
                     <li
-                    class="ml-2 lg:mx-4 relative inline-block bg-oynx rounded-full p-1 profile dark:profile"
+                            class="ml-2  relative inline-block text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 cook dark:cook"
+                            >
+                            <a class="" href="">
+                                <font-awesome-icon
+                                icon="globe"
+                                class="h-3 lg:h-4 p-2  svg-inline--fa fa-user fa-w-14 fa-9x"
+                                />
+                            </a>
+                        </li>
+                    <li
+                    class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile "
                     >
-                    <a class="" href="">
+                    <a class="flex" href="">
                         <font-awesome-icon
                         icon="user"
-                        class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
+                        class="h-3 lg:h-4 p-2  svg-inline--fa fa-user fa-w-14 fa-9x"
                         />
+                        <font-awesome-icon icon="caret-down"
+                        class="h-3 lg:h-4 p-2  svg-inline--fa fa-user fa-w-14 fa-9x"/>
                     </a>
                 </li>
-                <li
-                        class="ml-2 lg:mr-4 relative inline-block bg-oynx rounded-full p-1 profile dark:profile"
-                        >
-                        <a class="" href="">
-                            <font-awesome-icon
-                            icon="globe"
-                            class="h-3 lg:h-4 p-2 text-polynesian dark:text-lighred svg-inline--fa fa-user fa-w-14 fa-9x"
-                            />
-                        </a>
-                    </li>
                 </ul>
             </nav>
         </div>
         <DateRangePicker></DateRangePicker>
+        <div
+            v-if="canLogin"
+            class="sm:absolute sm:top-100 sm:end-0 p-6 text-end z-10"
+        >
+            <Link
+                v-if="$page.props.auth.user"
+                :href="route('dashboard')"
+                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                >Dashboard</Link
+            >
+
+            <div v-else>
+                <Link
+                    :href="route('login')"
+                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    >Log in</Link
+                >
+
+                <Link
+                    v-if="canRegister"
+                    :href="route('register')"
+                    class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                    >Register</Link
+                >
+            </div>
+        </div>
+
 
         <hr />
     </header>
-    <!-- 
+    
         <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
         >
-        <div
+        <!-- <div
         v-if="canLogin"
-        class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10"
+        class=" p-6 text-end z-10"
         >
         <Link
         v-if="$page.props.auth.user"
@@ -109,17 +138,17 @@ import DateRangePicker from './DateRangePicker.vue';
                     >Register</Link
                 >
             </template>
-        </div>
+        </div> -->
 
         <div class="relative mx-auto overflow-hidden h-screen w-screen">
             <div
                 class="absolute right-0 bottom-0 h-16 w-40 bg-center bg-snow dark:bg-oynx z-50"
             ></div>
 
-            <iframe
+            <!-- <iframe
                 src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
                 class="absolute w-full h-full"
-            ></iframe> 
+            ></iframe>  -->
 
             <div class="m-auto flex items-center h-full px-6 lg:p-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -147,7 +176,7 @@ import DateRangePicker from './DateRangePicker.vue';
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </template>
 
 <style scoped>
