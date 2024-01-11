@@ -20,9 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->string('means_of_id')->nullable();
-            $table->string('means_of_alt')->nullable();
-            $table->longText('other_info')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
