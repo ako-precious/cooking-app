@@ -7,7 +7,6 @@ defineProps({
     phpVersion: String,
 });
 </script>
-<script></script>
 <template>
     <li
         class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20"
@@ -97,7 +96,7 @@ defineProps({
                         </a>
                         <a
                             @click="selectTheme('system')"
-                            class="flex block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
+                            class="flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
                             role="menuitem"
                         >
                             <svg
