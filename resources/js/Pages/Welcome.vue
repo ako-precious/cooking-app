@@ -35,12 +35,10 @@ defineProps({
                 <div
                     class="bg-transparent capitalize font-bold text-sm p-4 mr-4 flex justify-around w-full"
                     name=""
-                    id=""
-                >
+                    id="">
                     <a
                         class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full cook dark:cook py-2 px-3"
-                        href=""
-                    >
+                        href="">
                         <p>Meal Schedule</p>
                     </a>
                     <a
@@ -66,8 +64,7 @@ defineProps({
                     >
                         <a
                             class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred"
-                            href=""
-                        >
+                            href="" >
                             <p>Be a Cook</p>
                         </a>
                     </li>
@@ -91,63 +88,12 @@ defineProps({
             </nav>
         </div>
         <DateRangePicker></DateRangePicker>
-        <!-- <div v-if="canLogin" class="sm:end-0 p-6 text-end z-10">
-            <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                >Dashboard</Link
-            >
-
-            <div v-else>
-                <Link
-                    :href="route('login')"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Log in</Link
-                >
-
-                <Link
-                    v-if="canRegister"
-                    :href="route('register')"
-                    class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Register</Link
-                >
-            </div>
-        </div> -->
-
-        <hr />
+          <hr />
     </header>
 
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <!-- <div
-        v-if="canLogin"
-        class=" p-6 text-end z-10"
-        >
-        <Link
-        v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                >Dashboard</Link
-            >
-
-            <template v-else>
-                <Link
-                    :href="route('login')"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Log in</Link
-                >
-
-                <Link
-                    v-if="canRegister"
-                    :href="route('register')"
-                    class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Register</Link
-                >
-            </template>
-        </div> -->
-
         <div class="relative mx-auto overflow-hidden h-screen w-screen">
             <div
                 class="absolute right-0 bottom-0 h-16 w-40 bg-center bg-snow dark:bg-oynx z-50"

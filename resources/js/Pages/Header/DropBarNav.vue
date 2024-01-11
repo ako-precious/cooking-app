@@ -42,20 +42,20 @@ defineProps({
                                 v-if="$page.props.auth.user"
                                 :href="route('dashboard')"
                                 class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian  dark:text-snow dark:hover:text-lighred  cursor-pointer"
-                                > <font-awesome-icon icon="door-open" class="mr-2"/> Dashboard</Link>
+                                >  Dashboard<font-awesome-icon icon="door-open" class="ml-2"/></Link>
 
                             <div v-else class="fle">
                                 <Link
                                     :href="route('login')"
                                     class="flex items-center rounded-md px-4 py-2 text-sm  text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer"
-                                >
-                                <font-awesome-icon icon="right-to-bracket" class="mr-2"/>Sign in</Link>
+                                >Sign in
+                                <font-awesome-icon icon="right-to-bracket" class="ml-2"/></Link>
 
                                 <Link
                                     v-if="canRegister"
                                     :href="route('register')"
                                     class="flex items-center rounded-md px-4 py-2 text-sm  text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred  cursor-pointer"
-                                    ><font-awesome-icon icon="user-plus" class="mr-2"/>Sign up</Link>
+                                    >Sign up<font-awesome-icon icon="user-plus" class="ml-2"/></Link>
                                 
                             </div>
                         </div>
