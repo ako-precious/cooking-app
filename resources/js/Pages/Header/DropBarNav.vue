@@ -40,13 +40,13 @@ defineProps({
                             <Link
                                 v-if="$page.props.auth.user"
                                 :href="route('dashboard')"
-                                class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian  dark:text-snow dark:hover:text-lighred  cursor-pointer"
+                                class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian  dark:text-snow dark:hover:text-lighred  cursor-pointer transition-all duration-200 ease-in-out"
                                 >  Dashboard<font-awesome-icon icon="door-open" class="ml-2"/></Link>
 
                             <div v-else class="fle">
                                 <Link
                                     :href="route('login')"
-                                    class="flex items-center rounded-md px-4 py-2 text-sm  text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer"
+                                    class="flex items-center rounded-md px-4 py-2 text-sm  text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                 >Sign in
                                 <font-awesome-icon icon="right-to-bracket" class="ml-2"/></Link>
 

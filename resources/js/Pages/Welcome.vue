@@ -61,16 +61,16 @@ defineProps({
             <nav class="contents">
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
                     <li
-                        class="ml-2 text-nowrap relative inline-block dark:bg-oynx rounded-full py-2 px-4 cook dark:cook"
+                        class="ml-2 text-nowrap relative inline-block bg-snow dark:bg-oynx rounded-full py-2 px-4 text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred cook dark:cook"
                     >
                         <a
-                            class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred"
+                            class=""
                             href="" >
                             <p>Be a Cook</p>
                         </a>
                     </li>
                     <li
-                        class="ml-2 relative inline-block text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 cook dark:cook"
+                        class="ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1 cook dark:cook"
                     >
                         <a class="" href="">
                             <font-awesome-icon
@@ -95,6 +95,10 @@ defineProps({
     <div
         class="container  px-4 lg:p-10  mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:items-center min-h-screen selection:bg-red-500 selection:text-white"
     >
+    <FoodCard ></FoodCard>
+    <FoodCard></FoodCard>
+    <FoodCard></FoodCard>
+    <FoodCard></FoodCard>
     <FoodCard></FoodCard>
     <FoodCard></FoodCard>
     <FoodCard></FoodCard>
