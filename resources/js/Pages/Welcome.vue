@@ -1,6 +1,7 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
 import DropBarNav from "./Header/DropBarNav.vue";
+import FoodCard from "./FoodCard.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 defineProps({
     canLogin: Boolean,
@@ -15,9 +16,9 @@ defineProps({
     <Head title="Welcome" />
 
     <!-- component -->
-    <header class="bg-snow dark:bg-oynx">
+    <header class="bg-snow dark:bg-oynx ">
         <div
-            class="container mx-auto px-4 py-1 flex justify-between items-center"
+            class="container mx-auto px-4 lg:px-10 py-1 flex justify-between items-center"
         >
             <!-- logo -->
             <div class="md:w-48 flex-shrink-0">
@@ -92,44 +93,12 @@ defineProps({
     </header>
 
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
+        class="container  px-4 lg:p-10  mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:items-center min-h-screen selection:bg-red-500 selection:text-white"
     >
-        <div class="relative mx-auto overflow-hidden h-screen w-screen">
-            <div
-                class="absolute right-0 bottom-0 h-16 w-40 bg-center bg-snow dark:bg-oynx z-50"
-            ></div>
-
-            <!-- <iframe
-                src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
-                class="absolute w-full h-full"
-            ></iframe>  -->
-
-            <div class="m-auto flex items-center h-full px-6 lg:p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                    <div>
-                        <h2
-                            class="mt-6 text-xl font-semibold text-gray-900 dark:text-white"
-                        >
-                            Documentation
-                        </h2>
-
-                        <p
-                            class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed"
-                        >
-                            Laravel has wonderful documentation covering every
-                            aspect of the framework. Whether you are a newcomer
-                            or have prior experience with Laravel, we recommend
-                            reading our documentation from beginning to end.
-                        </p>
-                        <button
-                            class="button2 bg-snow dark:button2 mt-5 transition-all duration-300 delay-75"
-                        >
-                            Hover me
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <FoodCard></FoodCard>
+    <FoodCard></FoodCard>
+    <FoodCard></FoodCard>
+    <FoodCard></FoodCard>
     </div>
 </template>
 

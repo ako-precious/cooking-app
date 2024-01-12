@@ -9,11 +9,11 @@ defineProps({
 </script>
 <template>
     <li
-        class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20"
+        class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20 transition-all duration-200 ease-in-out"
     >
         <div class="flex items-center justify-center">
             <div class="relative inline-block text-left">
-                <button @click="toggleDropdown" class="flex">
+                <button @click="toggleDropdown" class="flex transition-all duration-200 ease-in-out">
                     <font-awesome-icon
                         icon="user"
                         class="h-3 lg:h-4 p-2 svg-inline--fa fa-user fa-w-14 fa-9x"
@@ -28,7 +28,7 @@ defineProps({
                     v-show="isDropdownOpen"
                     @click="toggleDropdown"
                     id="dropdown-menu"
-                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-snow dark:bg-oynx ring-1 dropdown dark:dropdown border-oynx"
+                    class="origin-top-right absolute right-0 mt-2 w-48 transition-all duration-200 delay-75 ease-in-out rounded-md shadow-lg bg-snow dark:bg-oynx ring-1 dropdown dark:dropdown border-oynx"
                 >
                     <div
                         class="py-2 p-2"
@@ -36,7 +36,7 @@ defineProps({
                         aria-orientation="vertical"
                         aria-labelledby="dropdown-button"
                     >
-                        <div v-if="canLogin" class="sm:end-0 text-end z-10">
+                        <div v-if="canLogin" class="sm:end-0 text-end z-10 transition-all duration-200 ease-in-out">
                             <Link
                                 v-if="$page.props.auth.user"
                                 :href="route('dashboard')"
