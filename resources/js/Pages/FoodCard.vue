@@ -20,10 +20,10 @@
                 </h5>
             </a>
             <div class="mt-2 mb-2 flex items-center justify-between">
-                <p>
+                <a href="#">
                     <span class="text-sm text-oynx dark:text-snow">Sam</span>
                    
-                </p>
+                </a>
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class=" text-persian"/>
                     <span
