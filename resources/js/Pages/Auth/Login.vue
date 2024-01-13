@@ -1,12 +1,13 @@
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-import Checkbox from '@/Components/Checkbox.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import AuthenticationCard from "@/Components/AuthenticationCard.vue";
+import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
+import Checkbox from "@/Components/Checkbox.vue";
+import InputError from "@/Components/InputError.vue";
+import GoogleLogo from "@/Components/GoogleLogo.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 defineProps({
     canResetPassword: Boolean,
@@ -14,17 +15,17 @@ defineProps({
 });
 
 const form = useForm({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     remember: false,
 });
 
 const submit = () => {
-    form.transform(data => ({
+    form.transform((data) => ({
         ...data,
-        remember: form.remember ? 'on' : '',
-    })).post(route('login'), {
-        onFinish: () => form.reset('password'),
+        remember: form.remember ? "on" : "",
+    })).post(route("login"), {
+        onFinish: () => form.reset("password"),
     });
 };
 </script>
@@ -32,12 +33,15 @@ const submit = () => {
 <template>
     <Head title="Log in" />
 
-    <AuthenticationCard>
+    <AuthenticationCard >
         <template #logo>
             <AuthenticationCardLogo />
         </template>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+        <div
+            v-if="status"
+            class="mb-4 font-medium text-sm text-green-600 dark:text-green-400"
+        >
             {{ status }}
         </div>
 
@@ -69,21 +73,71 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+            <div class="flex items-center justify-between mt-2 py-2">
+                <Link
+                    v-if="canResetPassword"
+                    :href="route('password.request')"
+                    class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-md"
+                >
                     Forgot your password?
                 </Link>
-
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                <label class="flex items-center">
+                    <Checkbox v-model:checked="form.remember" name="remember" />
+                    <span
+                        class="ms-2 text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred"
+                        >Remember me</span
+                    >
+                </label>
+            </div>
+            <div class="block">
+                <PrimaryButton
+                    class="w-full mb-4"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                >
+                    Sign in
                 </PrimaryButton>
+            </div>
+            <div class="my-4">
+                <div class="flex items-center py-2">
+                    <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
+                    <p class="text-oynx dark:text-snow w-full px-2 text-nowrap">
+                        Or continue with
+                    </p>
+                    <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
+                </div>
+                <div class="flex justify-between">
+                    <div class="block">
+                        <a href="#"
+                            ><PrimaryButton disabled class="w-full flex">
+                                <p class="flex items-center text-sm">
+                                    <GoogleLogo />
+                                    Google
+                                </p>
+                            </PrimaryButton></a
+                        >
+                    </div>
+                    <div class="block">
+                        <a href="#"
+                            ><PrimaryButton disabled class="w-full flex">
+                                <p class="flex items-center text-sm">
+                                    <GoogleLogo />
+                                    Google
+                                </p>
+                            </PrimaryButton></a
+                        >
+                    </div>
+                    <div class="block">
+                        <a href="#"
+                            ><PrimaryButton disabled class="w-full flex">
+                                <p class="flex items-center text-sm">
+                                    <GoogleLogo />
+                                    Google
+                                </p>
+                            </PrimaryButton></a
+                        >
+                    </div>
+                </div>
             </div>
         </form>
     </AuthenticationCard>
