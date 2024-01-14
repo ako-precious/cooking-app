@@ -91,14 +91,14 @@ const submit = () => {
             </div>
             <div class="block">
                 <PrimaryButton
-                    class="w-full mb-4"
+                    class="w-full mb-2"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
                     Sign in
                 </PrimaryButton>
             </div>
-            <div class="my-4">
+            <div class="mt-4">
                 <div class="flex items-center py-2">
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                     <p class="text-oynx dark:text-snow w-full px-2 text-nowrap">
