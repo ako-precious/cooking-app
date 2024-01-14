@@ -1,4 +1,5 @@
 <script setup>
+import GoogleLogo from "@/Components/GoogleLogo.vue";
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
@@ -32,7 +33,7 @@ const submit = () => {
         </template>
 
         <form @submit.prevent="submit">
-            <div>
+            <div  class="mt-4 group">
                 <InputLabel for="name" value="Name" />
                 <TextInput
                     id="name"
@@ -46,7 +47,7 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 group">
                 <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
@@ -59,7 +60,7 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 group">
                 <InputLabel for="password" value="Password" />
                 <TextInput
                     id="password"
@@ -72,7 +73,7 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 group">
                 <InputLabel for="password_confirmation" value="Confirm Password" />
                 <TextInput
                     id="password_confirmation"
@@ -91,21 +92,62 @@ const submit = () => {
                         <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
 
                         <div class="ms-2">
-                            I agree to the <a target="_blank" :href="route('terms.show')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Privacy Policy</a>
+                            I agree to the <a target="_blank" :href="route('terms.show')" class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">Privacy Policy</a>
                         </div>
                     </div>
                     <InputError class="mt-2" :message="form.errors.terms" />
                 </InputLabel>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+            <div class="flex items-center justify-between mt-4">
+                <Link :href="route('login')" class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">
                     Already registered?
                 </Link>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
                 </PrimaryButton>
+            </div>
+            <div class="mt-4">
+                <div class="flex items-center py-2">
+                    <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
+                    <p class="text-oynx dark:text-snow w-full px-2 text-nowrap">
+                        Or continue with
+                    </p>
+                    <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
+                </div>
+                <div class="flex justify-between">
+                    <div class="block">
+                        <a href="#"
+                            ><PrimaryButton disabled class="w-full flex">
+                                <p class="flex items-center text-sm">
+                                    <GoogleLogo />
+                                    Google
+                                </p>
+                            </PrimaryButton></a
+                        >
+                    </div>
+                    <div class="block">
+                        <a href="#"
+                            ><PrimaryButton disabled class="w-full flex">
+                                <p class="flex items-center text-sm">
+                                    <GoogleLogo />
+                                    Google
+                                </p>
+                            </PrimaryButton></a
+                        >
+                    </div>
+                    <div class="block">
+                        <a href="#"
+                            ><PrimaryButton disabled class="w-full flex">
+                                <p class="flex items-center text-sm">
+                                    <GoogleLogo />
+                                    Google
+                                </p>
+                            </PrimaryButton></a
+                        >
+                    </div>
+                </div>
             </div>
         </form>
     </AuthenticationCard>

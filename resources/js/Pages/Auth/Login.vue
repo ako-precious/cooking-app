@@ -46,7 +46,7 @@ const submit = () => {
         </div>
 
         <form @submit.prevent="submit">
-            <div>
+            <div  class="mt-4 group">
                 <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
@@ -60,7 +60,7 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div class="mt-4 group">
                 <InputLabel for="password" value="Password" />
                 <TextInput
                     id="password"
