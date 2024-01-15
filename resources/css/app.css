@@ -5,3 +5,41 @@
 [x-cloak] {
     display: none;
 }
+
+@layer components {
+    .notfixeddiv {
+        @apply relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start;
+    }
+    .fixeddiv {
+        @apply flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in duration-250 rounded-2xl lg:flex-nowrap lg:justify-start sticky top-[1%] backdrop-saturate-200 backdrop-blur-2xl dark:bg-slate-850/80 dark:shadow-dark-blur bg-[hsla(0,0%,100%,0.3)] shadow-blur z-110;
+    }
+    .blackbtn {
+        @apply inline-block w-full px-4 py-2.5 mb-2 ml-2 font-bold leading-normal text-center text-gray-900 capitalize align-middle transition-all bg-transparent border border-emerald-500 border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-green-500 xl-max:to-emerald-500 xl-max:text-white xl-max:border-0 hover:-translate-y-px dark:cursor-not-allowed dark:opacity-65 dark:pointer-events-none dark:bg-gradient-to-tl dark:from-green-500 dark:to-emerald-500 dark:text-white dark:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-none hover:border-emerald-500;
+    }
+    .whitebtn {
+        @apply inline-block w-full px-3 py-2.5 mb-2 font-bold leading-normal text-center text-white capitalize align-middle transition-all bg-emerald-500 border border-transparent border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-green-500 xl-max:to-emerald-500 xl-max:text-white xl-max:border-0 hover:-translate-y-px dark:cursor-not-allowed dark:opacity-65 dark:pointer-events-none dark:bg-gradient-to-tl dark:from-green-500 dark:to-emerald-500 dark:text-white dark:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-green-500 to-emerald-500 hover:border-emerald-500;
+    }
+    .sidelink {
+        @apply ease-in-out text-sm leading-default py-2.7  after:ease-in-out my-0 mx-2 flex items-center whitespace-nowrap px-4 font-medium text-slate-500 shadow-none transition-colors after:ml-auto after:inline-block after:font-bold after:text-slate-800/50 after:antialiased after:transition-all after:duration-200 dark:text-white dark:opacity-80 dark:after:text-white/50 dark:after:text-white;
+    }
+    .activesidelink {
+        @apply after:ease-in-out  ease-in-out text-sm leading-default py-2.7 my-0 mx-2 flex items-center whitespace-nowrap rounded-lg bg-blue-500/30 px-4 font-semibold text-slate-700 transition-all after:ml-auto after:inline-block after:font-bold dark:after:text-white after:antialiased after:transition-all after:duration-200 dark:text-white dark:opacity-80 after:text-slate-800/50;
+    }
+    .minisidebar {
+        @apply fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 transition-all duration-200 ease-in-out -translate-x-full bg-white border-0 shadow-xl dark:shadow-none xl:ml-6 dark:bg-slate-850 z-990 rounded-2xl xl:translate-x-0  max-w-24 overflow-hidden;
+    }
+    .sidebar {
+        @apply fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 transition-all duration-200 ease-in-out -translate-x-full bg-white border-0 shadow-xl dark:shadow-none xl:ml-6 dark:bg-slate-850 z-990 rounded-2xl xl:translate-x-0  max-w-64 overflow-y-auto;
+    }
+    /* .input-filter-l {
+        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-gray-200 dark:border-gray-700 rounded-t-md rounded-l-md rounded-b-md rounded-r-none text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800;
+    }
+
+    .input-filter-r {
+        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-l-0 border-gray-200 dark:border-gray-700 rounded-t-md rounded-l-none rounded-b-md rounded-r-md text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800;
+    } */
+
+    .btn-normal {
+        @apply hover:bg-green-500 bg-green-400 text-white font-medium py-2 px-4 rounded-md;
+    }
+}

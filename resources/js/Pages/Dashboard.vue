@@ -10,9 +10,7 @@ import Welcome from '@/Components/Welcome.vue';
 </template> -->
 
 <template>
-    <div
-        class="absolute h-screen w-full bg-[linear-gradient(to_right_bottom,rgba(5,150,105,1),rgba(74,223,128,0.8))] dark:hidden min-h-75"
-    ></div>
+   
     <!-- sidenav  -->
 
     <SideNav
