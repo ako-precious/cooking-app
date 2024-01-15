@@ -80,7 +80,7 @@
 
 // import { Link } from "@inertiajs/vue3";
 import { useAttrs } from "vue";
-import fixedPluginCard from "@/Layout/Component/FixedPluginCard.vue";
+import fixedPluginCard from "@/Layouts/FixedPluginCard.vue";
 
 import { useDark, useToggle } from "@vueuse/core";
 
