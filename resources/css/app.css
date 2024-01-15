@@ -31,15 +31,4 @@
     .sidebar {
         @apply fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 transition-all duration-200 ease-in-out -translate-x-full bg-white border-0 shadow-xl dark:shadow-none xl:ml-6 dark:bg-slate-850 z-990 rounded-2xl xl:translate-x-0  max-w-64 overflow-y-auto;
     }
-    /* .input-filter-l {
-        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-gray-200 dark:border-gray-700 rounded-t-md rounded-l-md rounded-b-md rounded-r-none text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800;
-    }
-
-    .input-filter-r {
-        @apply placeholder:text-gray-400 dark:placeholder:text-gray-600 border border-l-0 border-gray-200 dark:border-gray-700 rounded-t-md rounded-l-none rounded-b-md rounded-r-md text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800;
-    } */
-
-    .btn-normal {
-        @apply hover:bg-green-500 bg-green-400 text-white font-medium py-2 px-4 rounded-md;
-    }
 }
