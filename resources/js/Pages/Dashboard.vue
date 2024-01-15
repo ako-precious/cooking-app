@@ -1,206 +1,196 @@
-<script setup>
+<!-- <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
-</script>
+</script> -->
+
+<!-- <template>
+    <AppLayout title="Dashboard">
+   <-- sidenav  --
+    </AppLayout>
+</template> -->
 
 <template>
-    <AppLayout title="Dashboard">
-    
- <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
-   <!-- sidenav  -->
-    <aside
-        class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0"
-        aria-expanded="false"
+    <div
+        class="absolute h-screen w-full bg-[linear-gradient(to_right_bottom,rgba(5,150,105,1),rgba(74,223,128,0.8))] dark:hidden min-h-75"
+    ></div>
+    <!-- sidenav  -->
+
+    <SideNav
+        @mouseover="hoverSidebar()"
+        @mouseout="hoverOutSidebar()"
+        :class="
+            (sidebarReduced,
+            {
+                'bg-slate-850': isClassWhite,
+                'translate-x-0': isClassTranslated,
+            })
+        "
     >
-        <div class="h-19">
-            <i
-                class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times dark:text-white text-slate-400 xl:hidden"
-                sidenav-close
-            ></i>
-            <a
-                class="block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700"
-                href="https://demos.creative-tim.com/argon-dashboard-tailwind/pages/dashboard.html"
-                target="_blank"
+        <SideBarHeader>
+            <span
+                :class="{ 'opacity-0': isLinkHidden }"
+                class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase"
             >
-                <!-- <img src="../../../assets/img/cricket_logo.png" class="inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8" alt="main_logo" />
-          <img src="../../../assets/img/cricket_logo.png" class="hidden h-full max-w-full transition-all duration-200 dark:inline ease-nav-brand max-h-8" alt="main_logo" /> -->
-                <span
-                    class="ml-1 font-semibold transition-all duration-200 ease-nav-brand"
-                    >Cricket Stats</span
-                >
-            </a>
-        </div>
+                Cricket
+            </span>
+        </SideBarHeader>
 
-        <hr
-            class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent"
-        />
+        <SideBarCollapse>
+            <li class="mt-0.5 w-full group">
+                <SideBarLink :class="getRouteClass('default')">
+                    <SideBarIcon class="group-hover:animate-bounce">
+                        </SideBarIcon>
+                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }">
+                        Dashboard
+                    </SideBarSpan>
+                </SideBarLink>
+            </li>
+            <li class="mt-0.5 w-full group">
+                <SideBarLink :class="getRouteClass('players')">
+                    <SideBarIcon class="group-hover:animate-pulse">
+                       
+                    </SideBarIcon>
+                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }">
+                        Players
+                    </SideBarSpan>
+                </SideBarLink>
+            </li>
+            <li class="mt-0.5 w-full group">
+                <SideBarLink :class="getRouteClass('teams')">
+                    <SideBarIcon class="group-hover:animate-spin">
+                        
+                    </SideBarIcon>
+                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }">
+                        Teams
+                    </SideBarSpan>
+                </SideBarLink>
+            </li>
+            <li class="mt-0.5 w-full group">
+                <SideBarLink :class="getRouteClass('batting')">
+                    <SideBarIcon class="group-hover:animate-spin">
+                       
+                    </SideBarIcon>
+                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }">
+                        Batting
+                    </SideBarSpan>
+                </SideBarLink>
+            </li>
+            <li class="mt-0.5 w-full group">
+                <SideBarLink :class="getRouteClass('bowling')">
+                    <SideBarIcon class="group-hover:animate-spin">
+                        
+                    </SideBarIcon>
+                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }">
+                        Bowling
+                    </SideBarSpan>
+                </SideBarLink>
+            </li>
+        </SideBarCollapse>
+    </SideNav>
+    <!-- sidenav  -->
 
-        <div
-            class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full"
-        >
-            <ul class="flex flex-col pl-0 mb-0">
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
-                        href="../pages/dashboard.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-blue-500 ni ni-tv-2"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >Dashboard</span
-                        >
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="../pages/tables.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >Tables</span
-                        >
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="../pages/billing.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >Billing</span
-                        >
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="../pages/virtual-reality.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >Virtual Reality</span
-                        >
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="../pages/rtl.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-red-600 ni ni-world-2"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >RTL</span
-                        >
-                    </a>
-                </li>
-
-                <li class="w-full mt-4">
-                    <h6
-                        class="pl-6 ml-2 text-xs font-bold leading-tight uppercase dark:text-white opacity-60"
-                    >
-                        Account pages
-                    </h6>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="../pages/profile.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-slate-700 ni ni-single-02"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >Profile</span
-                        >
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="../pages/sign-in.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-orange-500 ni ni-single-copy-04"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >Sign In</span
-                        >
-                    </a>
-                </li>
-
-                <li class="mt-0.5 w-full">
-                    <a
-                        class="dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                        href="../pages/sign-up.html"
-                    >
-                        <div
-                            class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5"
-                        >
-                            <i
-                                class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-collection"
-                            ></i>
-                        </div>
-                        <span
-                            class="ml-1 duration-300 opacity-100 pointer-events-none ease"
-                            >Sign Up</span
-                        >
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
-
-    </AppLayout>
+    
+    <!-- fixed plugin  -->
+    
+    <!-- end fixed plugin  -->
 </template>
+<script setup>
+// import { Link } from "@inertiajs/vue3";
+
+import SideBarLink from "@/Components/Sidebar/SideBarLink.vue";
+import SideBarSpan from "@/Components/Sidebar/SideBarSpan.vue";
+import SideBarIcon from "@/Components/Sidebar/SideBarIcon.vue";
+import SideBarHeader from "@/Components/Sidebar/SideBarHeader.vue";
+// import SideBarColour from "@/Layout/Component/Sidebar/SideBarColour.vue";
+import SideBarCollapse from "@/Components/Sidebar/SideBarCollapse.vue";
+import SideNav from "@/Layouts/SideNav.vue";
+
+// defineProps(["message"]);
+</script>
+<script>
+export default {
+    computed: {
+        currentRoute() {
+            return window.location.pathname;
+        },
+    },
+    data() {
+        return {
+            classChanged: "notfixeddiv",
+            isClassWhite: false,
+            isLinkHidden: false,
+            hover: false,
+            marginReduced: "xl:ml-68",
+            sidebarReduced: "sidebar",
+            isClassTranslated: false,
+            isNavClassTranslated: false,
+            isClassTranslated2: true,
+        };
+    },
+    methods: {
+        toggleNavClass() {
+            // Toggle the value when the button is clicked
+
+            this.classChanged =
+                this.classChanged === "notfixeddiv"
+                    ? "fixeddiv"
+                    : "notfixeddiv";
+        },
+        changeBgBlack() {
+            this.isClassWhite = true;
+        },
+        changeBgWhite() {
+            this.isClassWhite = false;
+        },
+        openSidebar() {
+            this.isNavClassTranslated = !this.isNavClassTranslated;
+            this.isClassTranslated = !this.isClassTranslated;
+        },
+        minSidebar() {
+            this.isLinkHidden = !this.isLinkHidden;
+            this.marginReduced =
+                this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
+            this.sidebarReduced =
+                this.sidebarReduced === "sidebar" ? "minisidebar" : "sidebar";
+            this.isClassTranslated2 = !this.isClassTranslated2;
+        },
+        hoverSidebar() {
+            if (this.sidebarReduced === "minisidebar") {
+                this.isLinkHidden = !this.isLinkHidden;
+                this.marginReduced =
+                    this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
+                this.sidebarReduced =
+                    this.sidebarReduced === "sidebar"
+                        ? "minisidebar"
+                        : "sidebar";
+                this.isClassTranslated2 = !this.isClassTranslated2;
+                this.hover = true;
+            }
+        },
+        hoverOutSidebar() {
+            if (this.hover === true) {
+                this.isLinkHidden = !this.isLinkHidden;
+                this.marginReduced =
+                    this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
+                this.sidebarReduced =
+                    this.sidebarReduced === "sidebar"
+                        ? "minisidebar"
+                        : "sidebar";
+                this.isClassTranslated2 = !this.isClassTranslated2;
+                this.hover = false;
+            }
+        },
+        // isPlayersRoute() {
+        //     // Check if the route name contains the word "players"
+        //     return currentRoute.includes("players");
+        // },
+        getRouteClass() {
+            return (routeName) => {
+                return {
+                    activateclass: this.currentRoute.includes(routeName),
+                };
+            };
+        },
+    },
+};
+</script>
