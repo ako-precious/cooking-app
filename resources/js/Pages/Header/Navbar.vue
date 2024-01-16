@@ -34,7 +34,7 @@
                         class="text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-full cook dark:cook py-2 px-3"
                         href=""
                     >
-                        <p>Be a Cook</p>
+                        <p>Explore</p>
                     </a>
                 </div>
             </div>

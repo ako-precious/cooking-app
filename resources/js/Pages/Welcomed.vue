@@ -43,7 +43,7 @@ defineProps({
 
         <div class="relative mx-auto overflow-hidden h-screen w-screen">
           
-         
+            <iframe src='https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/' frameborder='0' width='100%' height='100%' class="absolute "></iframe>
 
             <div class="m-auto flex items-center h-full px-6 lg:p-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
