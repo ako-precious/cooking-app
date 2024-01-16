@@ -2,7 +2,7 @@
     <div
                 class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto"
             >
-                <div class="flex items-center md:ml-auto md:pr-4">
+                <!-- <div class="flex items-center md:ml-auto md:pr-4">
                     <div
                         class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease"
                     >
@@ -17,7 +17,7 @@
                             placeholder="Type here..."
                         />
                     </div>
-                </div>
+                </div> -->
                 <ul
                     class="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full"
                 >
