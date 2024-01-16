@@ -4,6 +4,7 @@ import { Head, Link, router } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
+import TextInput from '@/Components/TextInput.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
@@ -13,7 +14,7 @@ import SideBarLink from "@/Components/Sidebar/SideBarLink.vue";
 import SideBarSpan from "@/Components/Sidebar/SideBarSpan.vue";
 import SideBarIcon from "@/Components/Sidebar/SideBarIcon.vue";
 import SideBarHeader from "@/Components/Sidebar/SideBarHeader.vue";
-// import SideBarCollapse from "@/Components/Sidebar/SideBarCollapse.vue";
+import SideBarCollapse from "@/Components/Sidebar/SideBarCollapse.vue";
 import NavBar from "@/Layouts/NavBar.vue";
 import SubNavBar from "@/Components/Navbar/SubNavBar.vue";
 import NavSideBar from "@/Components/Navbar/NavSideBar.vue";
@@ -152,11 +153,15 @@ const logout = () => {
                             >
                                 <i class="fas fa-search"></i>
                             </span>
-                            <input
+                            <TextInput>
+
+                            </TextInput>
+
+                            <!-- <input
                                 type="text"
-                                class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-gray-300 dark:bg-slate-850 dark:text-white bg-white bg-clip-padding py-2 pr-3 text-gray-700 transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:transition-shadow"
+                                class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-snow dark:bg-oynx  text-oynx  dark:text-snow bg-snow bg-clip-padding py-2 pr-3  transition-all placeholder:text-gray-500 focus:border-persian focus:outline-none focus:transition-shadow"
                                 placeholder="Type here..."
-                            />
+                            /> -->
                         </div>
                     </div>
 
@@ -310,7 +315,7 @@ const logout = () => {
     </main>
     <!-- fixed plugin  -->
     <FixLayout @click="toggleNavClass()">
-        <div>
+        <!-- <div>
             <h6 class="mb-0 dark:text-white">Sidebar Colors</h6>
         </div>
         <a href="javascript:void(0)">
@@ -347,10 +352,7 @@ const logout = () => {
                     onclick="sidebarColor(this)"
                 ></span>
             </div>
-        </a>
-        <hr
-            class="h-px mx-0 my-1 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent"
-        />
+        </a> -->
 
         <!-- Sidenav Type -->
         <div class="mt-4">
@@ -360,12 +362,21 @@ const logout = () => {
             </p>
         </div>
         <div class="flex">
-            <WhiteBgBtn class="whitebtn" @click="changeBgWhite()"
-                >Light</WhiteBgBtn
-            >
-            <WhiteBgBtn class="blackbtn" @click="changeBgBlack()"
-                >Dark</WhiteBgBtn
-            >
+            <button
+                    class="whitebtn"
+                    @click="changeBgWhite()"
+                    transparent-style-btn
+                    data-class="bg-transparent"
+                    active-style
+                > Light
+                </button>
+                <button
+                    class="blackbtn" @click="changeBgBlack()"
+                    transparent-style-btn
+                    data-class="bg-transparent"
+                    active-style
+                > Dark                    
+                </button>
         </div>
     </FixLayout>
         
