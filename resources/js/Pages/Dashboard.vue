@@ -15,7 +15,7 @@ import Welcome from '@/Components/Welcome.vue';
     ></div>
     <!-- sidenav  -->
 
-    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar()"
+    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" scroll-m-0 scroll "
         :class=" sidebarReduced, {
             'bg-slate-850': isClassWhite,
             'translate-x-0':isClassTranslated,
@@ -48,54 +48,16 @@ import Welcome from '@/Components/Welcome.vue';
              
             <li class="mt-0.5 w-full group">
                 <Link :href="`/teams`">
-                <SideBarLink :class="getRouteClass('teams')">
-                    <SideBarIcon class="group-hover:animate-pulse">
-                        <font-awesome-icon icon="fa-solid fa-people-group" style="color: #2a744a"/>
+                <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
+                    <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
                        
+                        <font-awesome-icon icon="calendar" />
                     </SideBarIcon>
-                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Teams </SideBarSpan>
+                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Calendar </SideBarSpan>
                 </SideBarLink>
             </Link>
             </li>
-            <li class="mt-0.5 w-full group">
-                <Link :href="`/players`">
-                <SideBarLink :class="getRouteClass('players')">
-                    <SideBarIcon class="group-hover:animate-bounce">
-   
-   <div class="`"></div>                     <font-awesome-icon icon="fa-solid fa-person"  style="color: #2a744a"/> 
-                            
-                    </SideBarIcon>
-                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Players </SideBarSpan>
-                </SideBarLink>
-            </Link>
-            </li>
-            
-            <li class="mt-0.5 w-full group">
-                <Link :href="`/battings`">
-                <SideBarLink :class="getRouteClass('batting')">
-                    <SideBarIcon class="group-hover:animate-pulse">
-                        <font-awesome-icon
-                            icon="fas-solid fa-baseball-bat-ball"
-                            style="color: #2a744a"
-                        />
-                    </SideBarIcon>
-                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Batting Stats </SideBarSpan>
-                </SideBarLink>
-            </Link>
-            </li>
-            <li class="mt-0.5 w-full group">
-                <Link :href="`/bowlings`">
-                <SideBarLink :class="getRouteClass('bowlings')">
-                    <SideBarIcon class="group-hover:animate-spin">
-                        <font-awesome-icon
-                            icon="fa-solid fa-baseball"
-                            style="color: #2a744a"
-                        />
-                    </SideBarIcon>
-                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Bowling Stats </SideBarSpan>
-                </SideBarLink>
-            </Link>
-            </li>
+           
         </SideBarCollapse>
     </SideNav>
     <!-- sidenav  -->
@@ -352,3 +314,17 @@ export default {
 };
 </script>
 
+<style>
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+</style>
