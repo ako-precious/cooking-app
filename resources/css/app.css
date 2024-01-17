@@ -8,10 +8,10 @@
 
 @layer components {
     .notfixeddiv {
-        @apply relative flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start;
+        @apply relative flex flex-wrap items-center justify-between px-0 py-1 mx-6 mt-5 transition-all ease-in shadow-none duration-250 rounded-2xl lg:flex-nowrap lg:justify-start;
     }
     .fixeddiv {
-        @apply flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in duration-250 rounded-2xl lg:flex-nowrap lg:justify-start sticky top-[1%] ;
+        @apply flex flex-wrap items-center justify-between px-0 py-2 mx-6 transition-all ease-in duration-250 rounded-2xl lg:flex-nowrap lg:justify-start sticky ;
     }
     .blackbtn {
         @apply inline-block w-full px-4 py-2.5 mb-2 ml-2 font-bold leading-normal text-center text-gray-900 capitalize align-middle transition-all bg-transparent border border-emerald-500 border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-green-500 xl-max:to-emerald-500 xl-max:text-white xl-max:border-0 hover:-translate-y-px dark:cursor-not-allowed dark:opacity-65 dark:pointer-events-none dark:bg-gradient-to-tl dark:from-green-500 dark:to-emerald-500 dark:text-white dark:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-none hover:border-emerald-500;
