@@ -5,5 +5,3 @@
         <slot>Default</slot>
     </span>
 </template>
-<script setup></script>
-<script></script>

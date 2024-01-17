@@ -143,15 +143,15 @@ const logout = () => {
 
             </div>
 
-            <div class="hidden md:block ">
-                <div class="flex items-center px-4  md:ml-auto md:pr-4">
+            <div class="hidden md:block  ">
+                <div class="flex items-center w-full">
                         <div
                             class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease"
                         >
                             <span
                                 class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all"
                             >
-                                <i class="fas fa-search"></i>
+                                
                             </span>
                             <TextInput>
 
@@ -231,7 +231,7 @@ const logout = () => {
                                    </div>
         
                                    <!-- Settings Dropdown -->
-                                   <div class="ms-3 relative">
+                                   <div  class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20 transition-all duration-200 ease-in-out">
                                        <Dropdown align="right" width="48">
                                            <template #trigger>
                                                <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -239,7 +239,7 @@ const logout = () => {
                                                </button>
         
                                                <span v-else class="inline-flex rounded-md">
-                                                   <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
+                                                   <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md  transition ease-in-out duration-150">
                                                        {{ $page.props.auth.user.name }}
         
                                                        <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -491,3 +491,17 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.dropdown {
+    background: #fcf7f8;
+    box-shadow: 15px 15px 30px #d6d2d3, -15px -15px 30px #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark\:dropdown {
+        background: #303633;
+        box-shadow: 15px 15px 30px #292e2b, -15px -15px 30px #373e3b;
+    }
+}
+</style>
