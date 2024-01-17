@@ -46,9 +46,7 @@ const logout = () => {
 
         <Banner />
 
-        <div
-        class="absolute h-screen w-full bg-[linear-gradient(to_right_bottom,rgba(5,150,105,1),rgba(74,223,128,0.8))] dark:hidden min-h-75"
-    ></div>
+         
     <!-- sidenav  -->
 
     <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" scroll-m-0 scroll "
@@ -69,7 +67,7 @@ const logout = () => {
             <span :class="{ 'opacity-0': isLinkHidden }"
                 class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase"
             >
-                Cricket
+                FoodMart
             </span>
         </SideBarHeader>
 
