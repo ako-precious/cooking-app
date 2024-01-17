@@ -15,12 +15,12 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faArrowRight, faCalendar, faCaretDown, faCirclePlus, faClose, faDoorOpen, faGear, faGlobe, faHouse, faRightToBracket, faShare, faStar, faUser, faUserPlus, } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faCalendar, faCaretDown, faCirclePlus, faClose, faDoorOpen, faGear, faGlobe, faHouse, faMagnifyingGlass, faRightToBracket, faShare, faStar, faUser, faUserPlus, } from "@fortawesome/free-solid-svg-icons";
 import {  faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 /* add icons to the library */
-library.add( faUser, faGlobe, faArrowRight, faCaretDown, faUserPlus, faRightToBracket, faDoorOpen, faCirclePlus, faHeart, faShare, faStar, faGoogle, faCalendar, faGear, faClose, faHouse  );
+library.add( faUser, faGlobe, faArrowRight, faCaretDown, faUserPlus, faRightToBracket, faDoorOpen, faCirclePlus, faHeart, faShare, faStar, faGoogle, faCalendar, faGear, faClose, faHouse, faMagnifyingGlass  );
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

@@ -110,58 +110,36 @@ const logout = () => {
     >
         <!-- Navbar -->
         <NavBar :class="classChanged">
-            <div class="flex ">
+            <div class="flex items-center ">
                 <nav>
-                    <ol
-                        class="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16"
-                    >
-                        <li class="text-sm leading-normal">
-                            <a class="text-white opacity-50" href="javascript:;"
-                                >Pages</a
-                            >
-                        </li>
-                        <li id="resultDiv"
-                            class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']"
-                            aria-current="page"
-                        >
-                        {{ resultText }}
-                        </li>
-                    </ol>
-                    <h6 class="mb-0 font-bold text-white capitalize"> <div id="resultDiv">{{ resultText }}</div> </h6>
+                    
+                    <h6 class="mb-0 lex flex pt-1 mr-12 bg-transparent rounded-lg sm:mr-16 font-bold text-persian capitalize text-xl"> <div id="resultDiv">{{ resultText }}</div> </h6>
                 </nav>
-                <SubNavBar @click="minSidebar()">
+                <SubNavBar @click="minSidebar()" class="group">
                     <i  :class="{ 'translate-x-[5px]': isClassTranslated2 }"
-                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all " 
+                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred  transition-all " 
                     ></i>
                     <i
-                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"
+                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
                     ></i>
                     <i  :class="{ 'translate-x-[5px]': isClassTranslated2 }"
-                        class="ease relative block h-0.5 rounded-sm bg-white transition-all "
+                        class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all "
                     ></i>
                 </SubNavBar>
 
             </div>
 
-            <div class="hidden md:block  ">
+            <div class="hidden md:block w-4/12  ">
                 <div class="flex items-center w-full">
                         <div
-                            class="relative flex flex-wrap items-stretch w-full transition-all rounded-lg ease"
+                            class="relative flex w-full transition-all rounded-lg ease group "
                         >
-                            <span
-                                class="text-sm ease leading-5.6 absolute z-50 -ml-px flex h-full items-center whitespace-nowrap rounded-lg rounded-tr-none rounded-br-none border border-r-0 border-transparent bg-transparent py-2 px-2.5 text-center font-normal text-slate-500 transition-all"
-                            >
-                                
-                            </span>
-                            <TextInput>
+                           
+                            <TextInput class="w-full relative pl-8" />
+                           
+                            <font-awesome-icon icon="magnifying-glass" class=" group-focus:text-polynesian dark:group-focus:text-lighred group-hover:text-polynesian dark:group-hover:text-lighred group-active:text-polynesian dark:group-active:text-lighred absolute top-1/4 ml-2 text-persian" />
 
-                            </TextInput>
-
-                            <!-- <input
-                                type="text"
-                                class="pl-9 text-sm focus:shadow-primary-outline ease w-1/100 leading-5.6 relative -ml-px block min-w-0 flex-auto rounded-lg border border-solid border-snow dark:bg-oynx  text-oynx  dark:text-snow bg-snow bg-clip-padding py-2 pr-3  transition-all placeholder:text-gray-500 focus:border-persian focus:outline-none focus:transition-shadow"
-                                placeholder="Type here..."
-                            /> -->
+                            
                         </div>
                     </div>
 
@@ -231,7 +209,7 @@ const logout = () => {
                                    </div>
         
                                    <!-- Settings Dropdown -->
-                                   <div  class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20 transition-all duration-200 ease-in-out">
+                                   <div  class="ml-2 lg:mr-4 relative text-persian active:text-polynesian hover:text-polynesian  dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20 transition-all duration-200 ease-in-out">
                                        <Dropdown align="right" width="48">
                                            <template #trigger>
                                                <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -281,17 +259,17 @@ const logout = () => {
                        </div>
                     <NavSideBar>
                         
-                        <div class="w-4.5 overflow-hidden" @click="openSidebar()">
+                        <div class="w-4.5 overflow-hidden group" @click="openSidebar()" >
         
                             <i
-                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"
+                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred  transition-all"
                                 :class="{ 'translate-x-[5px]': isClassTranslated }"
                             ></i>
                             <i
-                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-white transition-all"
+                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
                             ></i>
                             <i
-                                class="ease relative block h-0.5 rounded-sm bg-white transition-all"
+                                class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred  transition-all"
                                 :class="{ 'translate-x-[5px]': isClassTranslated }"
                             ></i>
                         </div>

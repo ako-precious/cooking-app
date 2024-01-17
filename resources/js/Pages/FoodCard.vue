@@ -18,7 +18,7 @@
                 <h5
                     class="text-lg font-bold tracking-tight text-oynx dark:text-snow"
                 >
-                    Nike Air MX Super 2500 - Red
+                    Nike Air MX Super 2150 - Red
                 </h5>
             </a>
             <div class="mt-2 mb-2 flex items-center justify-between">
@@ -62,21 +62,21 @@
 <style scoped>
 .foodcard {
     background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: 25px 25px 50px #cac6c6, -25px -25px 50px #ffffff;
+    box-shadow: 10px 10px 15px #cac6c6, -10px -10px 15px #ffffff;
 }
 .foodcard:hover {
     background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: -25px -25px 50px #a19e9f, 25px 25px 50px #ffffff;
+    box-shadow: -10px -10px 15px #a19e9f, 10px 10px 15px #ffffff;
 }
 @media (prefers-color-scheme: dark) {
     .dark\:foodcard {
         background: linear-gradient(145deg, #2b312e, #333a37);
-        box-shadow: 25px 25px 50px #262b29, -25px -25px 50px #3a413d;
+        box-shadow: 10px 10px 15px #262b29, -10px -10px 15px #3a413d;
     }
     .dark\:foodcard:hover {
-        /* border-radius: 50px; */
+        /* border-radius: 15px; */
         background: linear-gradient(145deg, #2b312e, #333a37);
-        box-shadow: -25px -25px 50px #262b29, 25px 25px 50px #3a413d;
+        box-shadow: -10px -10px 15px #262b29, 10px 10px 15px #3a413d;
     }
 }
 </style>

@@ -30,7 +30,7 @@ defineProps({
     </header>
 
     <div
-        class="container px-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:items-center min-h-screen selection:bg-red-500 selection:text-white"
+        class="container px-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx  "
     >
         <FoodCard></FoodCard>
         <FoodCard></FoodCard>
