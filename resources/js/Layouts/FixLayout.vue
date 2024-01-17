@@ -2,9 +2,9 @@
     <div>
         <a
             @click="toggleClass"
-            class="fixed px-4 py-2 text-xl bg-white shadow-lg cursor-pointer bottom-8 right-8 z-990 rounded-circle text-slate-700 dark:bg-slate-850"
+            class="fixed px-4 py-2 text-xl card dark:card cursor-pointer bottom-8 right-8 z-990 rounded-circle group"
         >
-            <font-awesome-icon icon="fa-solid fa-gear" style="color: #2a744a" />
+            <font-awesome-icon icon="fa-solid fa-gear" class="text-persian group-hover:text-polynesian dark:group-hover:text-lighred " />
         </a>
        
         <fixedPluginCard :class="isClassAdded">
@@ -13,7 +13,7 @@
                     <h5 class="mt-4 mb-0 dark:text-white">
                         Dashboard Configurator
                     </h5>
-                    <p class="dark:text-white dark:opacity-80">
+                    <p class="dark:text-white dark:opacity-80 py-2">
                         See dashboard options.
                     </p>
                 </div>
@@ -25,7 +25,7 @@
                     >
                         <font-awesome-icon
                             icon="fa-solid fa-close"
-                            style="color: #291515"
+                           class=" text-persian text-lg"
                         />
                     </button>
                 </div>
@@ -108,4 +108,31 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+.card {
+    background: linear-gradient(145deg, #e3dedf, #ffffff);
+    box-shadow: 10px 10px 15px #cac6c6, -10px -10px 15px #ffffff;
+}
+.card:hover {
+    background: linear-gradient(145deg, #e3dedf, #ffffff);
+    box-shadow: -10px -10px 15px #a19e9f, 10px 10px 15px #ffffff;
+}
+.card:active {
+    box-shadow: none;
+}
+@media (prefers-color-scheme: dark) {
+    .dark\:card {
+        background: linear-gradient(145deg, #2b312e, #333a37);
+        box-shadow: 10px 10px 15px #262b29, -10px -10px 15px #3a413d;
+    }
+    .dark\:card:hover {
+        background: linear-gradient(145deg, #2b312e, #333a37);
+        box-shadow: -10px -10px 15px #262b29, 10px 10px 15px #3a413d;
+    }
+    .dark\:card:active {
+        background: linear-gradient(145deg, #2b312e, #333a37);
+        box-shadow: none;
+    }
+}
+</style>

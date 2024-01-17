@@ -49,7 +49,7 @@ const logout = () => {
          
     <!-- sidenav  -->
 
-    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" scroll-m-0 scroll "
+    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" scroll-m-0 scroll card dark:card" 
         :class=" sidebarReduced, {
             'bg-slate-850': isClassWhite,
             'translate-x-0':isClassTranslated,
@@ -207,7 +207,7 @@ const logout = () => {
                                    </div>
         
                                    <!-- Settings Dropdown -->
-                                   <div  class="ml-2 lg:mr-4 relative text-persian active:text-polynesian hover:text-polynesian  dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20 transition-all duration-200 ease-in-out">
+                                   <div  class="ml-2 relative text-persian active:text-polynesian hover:text-polynesian  dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 dropdown dark:dropdown z-20 transition-all duration-200 ease-in-out">
                                        <Dropdown align="right" width="48">
                                            <template #trigger>
                                                <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -291,7 +291,7 @@ const logout = () => {
     </main>
     <!-- fixed plugin  -->
     <FixLayout @click="toggleNavClass()">
-        <!-- <div>
+        <div>
             <h6 class="mb-0 dark:text-white">Sidebar Colors</h6>
         </div>
         <a href="javascript:void(0)">
@@ -328,12 +328,12 @@ const logout = () => {
                     onclick="sidebarColor(this)"
                 ></span>
             </div>
-        </a> -->
+        </a>
 
         <!-- Sidenav Type -->
         <div class="mt-4">
             <h6 class="mb-0 dark:text-white">Sidenav Type</h6>
-            <p class="text-sm leading-normal dark:text-white dark:opacity-80">
+            <p class="text-sm leading-normal dark:text-white dark:opacity-80 py-2">
                 Choose between 2 different sidenav types.
             </p>
         </div>
@@ -470,7 +470,7 @@ export default {
 
 <style scoped>
 .dropdown {
-    background: #fcf7f8;
+    background: linear-gradient(145deg, #e3dedf, #ffffff);
     box-shadow: 15px 15px 30px #d6d2d3, -15px -15px 30px #ffffff;
 }
 
@@ -488,7 +488,6 @@ export default {
         box-shadow: 10px 10px 15px #262b29, -10px -10px 15px #3a413d;
     }
     .dark\:card:hover {
-        /* border-radius: 15px; */
         background: linear-gradient(145deg, #2b312e, #333a37);
         box-shadow: -10px -10px 15px #262b29, 10px 10px 15px #3a413d;
     }

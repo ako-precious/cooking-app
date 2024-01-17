@@ -11,7 +11,7 @@ defineProps({
 </script>
 <template>
     <li
-    class="ml-2 lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 profile dark:profile z-20 transition-all duration-200 ease-in-out"
+    class="ml-2  lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 dropdown dark:dropdown z-20 transition-all duration-200 ease-in-out"
     >
     <Dropdown>
         <template #trigger>
@@ -166,7 +166,7 @@ export default {
 </script>
 <style scoped>
 .dropdown {
-    background: #fcf7f8;
+    background: linear-gradient(145deg, #e3dedf, #ffffff);
     box-shadow: 15px 15px 30px #d6d2d3, -15px -15px 30px #ffffff;
 }
 

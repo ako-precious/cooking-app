@@ -30,14 +30,14 @@ defineExpose({ focus: () => input.value.focus() });
 <style>
 .input {
     background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: 7px 7px 16px #656363, -7px -7px 16px #ffffff;
+    box-shadow: 7px 7px 10px #656363, -7px -7px 10px #ffffff;
 }
 
 
 @media (prefers-color-scheme: dark) {
     .dark\:input {
     background: linear-gradient(145deg, #2b312e, #333a37);
-    box-shadow: 7px 7px 14px #131614, -7px -7px 14px #4d5652;
+    box-shadow: 7px 7px 10px #131614, -7px -7px 10px #3b413e;
 }
     /* .dark\:foodcard:hover {
         
