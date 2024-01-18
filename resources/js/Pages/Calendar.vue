@@ -1,11 +1,7 @@
 <template>
     <div>
         <div class="antialiased sans-serif bg-gray-100 h-screen">
-            <div
-            x-data="calendar()" 
-                @created="onCreated"
-                x-cloak
-            >
+            <div x-data="Calendar()" @created="onCreated" x-cloak>
                 <div class="container mx-auto px-4 py-2 md:py-24">
                     <div class="bg-white rounded-lg shadow overflow-hidden">
                         <div
@@ -304,35 +300,28 @@
 
 <script>
 export default {
-    // data() {
-
-    //     return {
-    //         month: "",
-    //         year: "",
-    //         no_of_days: [],
-    //         blankdays: [],
-    //         days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    //         events: [
-    //             // ... your events data
-    //         ],
-    //         event_title: "",
-    //         event_date: "",
-    //         event_theme: "blue",
-    //         themes: [
-    //             // ... your themes data
-    //         ],
-    //         openEventModal: false,
-    //     };
-    // },
-    methods: {
-      Calendar(){
-        
+    data() {
         return {
+            MONTH_NAMES: [
+                "January",
+                "February",
+                "March",
+                "April",
+                "May",
+                "June",
+                "July",
+                "August",
+                "September",
+                "October",
+                "November",
+                "December",
+            ],
             month: "",
             year: "",
             no_of_days: [],
             blankdays: [],
-            days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            DAYS: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            // days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
             events: [
                 // ... your events data
             ],
@@ -343,8 +332,10 @@ export default {
                 // ... your themes data
             ],
             openEventModal: false,
-        
-        
+        };
+    },
+
+    methods: {
         initDate() {
             let today = new Date();
             this.month = today.getMonth();
@@ -401,7 +392,11 @@ export default {
         },
 
         getNoOfDays() {
-            let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+            let daysInMonth = new Date(
+                this.year,
+                this.month + 1,
+                0
+            ).getDate();
 
             // find where to start calendar day of the week
             let dayOfWeek = new Date(this.year, this.month).getDay();
@@ -418,16 +413,279 @@ export default {
             this.blankdays = blankdaysArray;
             this.no_of_days = daysArray;
         },
+
         onCreated() {
             this.initDate();
             this.getNoOfDays();
         },
-    }
-  }
-    // created() {
-    //     this.onCreated();
-    // },
-}};
+    },
+
+    created() {
+        this.onCreated();
+    },
+};
+
+// export default {
+//     data() {
+//         return {
+//             MONTH_NAMES: [
+//                 "January",
+//                 "February",
+//                 "March",
+//                 "April",
+//                 "May",
+//                 "June",
+//                 "July",
+//                 "August",
+//                 "September",
+//                 "October",
+//                 "November",
+//                 "December",
+//             ],
+//             month: "",
+//             year: "",
+//             no_of_days: [],
+//             blankdays: [],
+//             days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+//             events: [
+//                 // ... your events data
+//             ],
+//             event_title: "",
+//             event_date: "",
+//             event_theme: "blue",
+//             themes: [
+//                 // ... your themes data
+//             ],
+//             openEventModal: false,
+//         };
+//     },
+   
+//     methods: {
+//         Calendar() {
+//             return {
+//                 MONTH_NAMES: [
+//                     "January",
+//                     "February",
+//                     "March",
+//                     "April",
+//                     "May",
+//                     "June",
+//                     "July",
+//                     "August",
+//                     "September",
+//                     "October",
+//                     "November",
+//                     "December",
+//                 ],
+//                 month: "",
+//                 year: "",
+//                 no_of_days: [],
+//                 blankdays: [],
+//                 days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+//                 events: [
+//                     // ... your events data
+//                 ],
+//                 event_title: "",
+//                 event_date: "",
+//                 event_theme: "blue",
+//                 themes: [
+//                     // ... your themes data
+//                 ],
+//                 openEventModal: false,
+
+//                 initDate() {
+//                     let today = new Date();
+//                     this.month = today.getMonth();
+//                     this.year = today.getFullYear();
+//                     this.datepickerValue = new Date(
+//                         this.year,
+//                         this.month,
+//                         today.getDate()
+//                     ).toDateString();
+//                 },
+//                 isToday(date) {
+//                     const today = new Date();
+//                     const d = new Date(this.year, this.month, date);
+
+//                     return today.toDateString() === d.toDateString()
+//                         ? true
+//                         : false;
+//                 },
+//                 showEventModal(date) {
+//                     // Open the modal
+//                     this.openEventModal = true;
+
+//                     // Set the event date in the modal
+//                     this.event_date = new Date(
+//                         this.year,
+//                         this.month,
+//                         date
+//                     ).toDateString();
+
+//                     // You can add additional logic if needed
+//                 },
+
+//                 addEvent() {
+//                     // Check if the event title is not empty
+//                     if (!this.event_title.trim()) {
+//                         // Show an alert or handle the error
+//                         return;
+//                     }
+
+//                     // Add the event to the events array
+//                     this.events.push({
+//                         event_date: this.event_date,
+//                         event_title: this.event_title,
+//                         event_theme: this.event_theme,
+//                     });
+
+//                     // Clear the form data
+//                     this.event_title = "";
+//                     this.event_date = "";
+//                     this.event_theme = "blue";
+
+//                     // Close the modal
+//                     this.openEventModal = false;
+
+//                     // You can add additional logic or perform API calls if needed
+//                 },
+
+//                 getNoOfDays() {
+//                     let daysInMonth = new Date(
+//                         this.year,
+//                         this.month + 1,
+//                         0
+//                     ).getDate();
+
+//                     // find where to start calendar day of the week
+//                     let dayOfWeek = new Date(this.year, this.month).getDay();
+//                     let blankdaysArray = [];
+//                     for (var i = 1; i <= dayOfWeek; i++) {
+//                         blankdaysArray.push(i);
+//                     }
+
+//                     let daysArray = [];
+//                     for (var i = 1; i <= daysInMonth; i++) {
+//                         daysArray.push(i);
+//                     }
+
+//                     this.blankdays = blankdaysArray;
+//                     this.no_of_days = daysArray;
+//                 },
+
+//                 onCreated() {
+//                     this.initDate();
+//                     this.getNoOfDays();
+//                 },
+//             };
+//         },
+//     },
+// };
+
+ //     methods: {
+    //       Calendar(){
+
+    //         return {
+    //           MONTH_NAMES: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    //             month: "",
+    //             year: "",
+    //             no_of_days: [],
+    //             blankdays: [],
+    //             days: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    //             events: [
+    //                 // ... your events data
+    //             ],
+    //             event_title: "",
+    //             event_date: "",
+    //             event_theme: "blue",
+    //             themes: [
+    //                 // ... your themes data
+    //             ],
+    //             openEventModal: false,
+
+    //         initDate() {
+    //             let today = new Date();
+    //             this.month = today.getMonth();
+    //             this.year = today.getFullYear();
+    //             this.datepickerValue = new Date(
+    //                 this.year,
+    //                 this.month,
+    //                 today.getDate()
+    //             ).toDateString();
+    //         },
+    //         isToday(date) {
+    //             const today = new Date();
+    //             const d = new Date(this.year, this.month, date);
+
+    //             return today.toDateString() === d.toDateString() ? true : false;
+    //         },
+    //         showEventModal(date) {
+    //             // Open the modal
+    //             this.openEventModal = true;
+
+    //             // Set the event date in the modal
+    //             this.event_date = new Date(
+    //                 this.year,
+    //                 this.month,
+    //                 date
+    //             ).toDateString();
+
+    //             // You can add additional logic if needed
+    //         },
+
+    //         addEvent() {
+    //             // Check if the event title is not empty
+    //             if (!this.event_title.trim()) {
+    //                 // Show an alert or handle the error
+    //                 return;
+    //             }
+
+    //             // Add the event to the events array
+    //             this.events.push({
+    //                 event_date: this.event_date,
+    //                 event_title: this.event_title,
+    //                 event_theme: this.event_theme,
+    //             });
+
+    //             // Clear the form data
+    //             this.event_title = "";
+    //             this.event_date = "";
+    //             this.event_theme = "blue";
+
+    //             // Close the modal
+    //             this.openEventModal = false;
+
+    //             // You can add additional logic or perform API calls if needed
+    //         },
+
+    //         getNoOfDays() {
+    //             let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+
+    //             // find where to start calendar day of the week
+    //             let dayOfWeek = new Date(this.year, this.month).getDay();
+    //             let blankdaysArray = [];
+    //             for (var i = 1; i <= dayOfWeek; i++) {
+    //                 blankdaysArray.push(i);
+    //             }
+
+    //             let daysArray = [];
+    //             for (var i = 1; i <= daysInMonth; i++) {
+    //                 daysArray.push(i);
+    //             }
+
+    //             this.blankdays = blankdaysArray;
+    //             this.no_of_days = daysArray;
+    //         },
+    //         onCreated() {
+    //             this.initDate();
+    //             this.getNoOfDays();
+    //         },
+    //     }
+    //   }
+    //     // created() {
+    //     //     this.onCreated();
+    //     // },
+    // }
 </script>
 
 <style scoped>
