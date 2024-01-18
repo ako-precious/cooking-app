@@ -419,6 +419,47 @@ export default {
             this.getNoOfDays();
         },
     },
+    computed: {
+    calendar() {
+      return {
+        MONTH_NAMES: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ],
+        month: "",
+        year: "",
+        no_of_days: [],
+        blankdays: [],
+        DAYS: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        events: [
+          // ... your events data
+        ],
+        event_title: "",
+        event_date: "",
+        event_theme: "blue",
+        themes: [
+          // ... your themes data
+        ],
+        openEventModal: false,
+        initDate: this.initDate,
+        isToday: this.isToday,
+        showEventModal: this.showEventModal,
+        addEvent: this.addEvent,
+        getNoOfDays: this.getNoOfDays,
+        onCreated: this.onCreated,
+      };
+    },
+  },
 
     created() {
         this.onCreated();
