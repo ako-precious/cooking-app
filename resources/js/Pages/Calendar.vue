@@ -334,8 +334,8 @@ export default {
             openEventModal: false,
         };
     },
-
     methods: {
+      
         initDate() {
             let today = new Date();
             this.month = today.getMonth();
@@ -351,7 +351,8 @@ export default {
             const d = new Date(this.year, this.month, date);
 
             return today.toDateString() === d.toDateString() ? true : false;
-        },
+          },
+          
         showEventModal(date) {
             // Open the modal
             this.openEventModal = true;
@@ -462,6 +463,7 @@ export default {
   },
 
     created() {
+      console.log(this.onCreated());
         this.onCreated();
     },
 };
