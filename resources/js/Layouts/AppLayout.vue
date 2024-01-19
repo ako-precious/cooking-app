@@ -93,7 +93,7 @@ const logout = () => {
                 <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
                     <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
                        
-                        <font-awesome-icon icon="calendar" />
+                        <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
                     </SideBarIcon>
                     <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Calendar </SideBarSpan>
                 </SideBarLink>
@@ -165,9 +165,9 @@ const logout = () => {
                                            </template>
         
                                            <template #content>
-                                               <div class="w-60">
+                                               <div class="w-60 bg-snow dark:bg-oynx">
                                                    <!-- Team Management -->
-                                                   <div class="block px-4 py-2 text-xs text-gray-400">
+                                                   <div class="block px-4 py-2 text-xs text-gray-500">
                                                        Manage Team
                                                    </div>
         
@@ -226,7 +226,7 @@ const logout = () => {
                                                </span>
                                            </template>
         
-                                           <template #content>
+                                           <template #content class=" bg-snow dark:bg-oynx">
                                                <!-- Account Management -->
                                                <div class="block px-4 py-2 text-xs text-gray-400">
                                                    Manage Account
