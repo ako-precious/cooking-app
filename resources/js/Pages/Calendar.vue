@@ -40,10 +40,10 @@
 
         <!-- OPen Model  -->
         <div
-            class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-sm"
+            class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-sm w-full h-full"
             v-show="newEventModalVisible || deleteEventModalVisible"
         >
-            <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative p-4 w-full max-w-lg max-h-full">
                 <div class="relative card rounded-lg shadow dark:card">
                     <button
                         @click="closeModal"
@@ -68,28 +68,21 @@
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
-                    <div class="p-4 md:p-5 text-center">
-                        <h2>
-                            {{ newEventModalVisible ? "New Event" : "Event" }}
+                    <div class="p-4 md:py-8 text-center">
+                        <h2 class="text-oynx dark:text-snow">
+                            {{ newEventModalVisible ? "New Meal" : "Meal" }}
                         </h2>
-                        <div class="py-3">
-                            <TextInput
+                        <div class="py-4">
+                            <TextInput class="my-2"
                                 v-model="eventTitle"
-                                placeholder="Event Title"
+                                placeholder="Meal Name"
                                 :class="{ error: !eventTitle }"
                             />
                         </div>
-                        <div class="py-3">
-                            <label
-                                for="countries_disabled"
-                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                                >Select Meal TIme</label
-                            >
-
-                           <Selection />
-
+                        <div class="py-4">
+                            <Selection></Selection>
                            
-                            
+                           
                         </div>
                         <div class="flex justify-center item-center">
                             <PrimaryButton
@@ -190,7 +183,16 @@ export default {
                 (e) => e.date === this.clicked
             );
             if (eventForDay) {
-                this.deleteEventModalVisible = true;
+                // this.deleteEventModalVisible = true;
+                this.newEventModalVisible = true;
+                if (this.eventTitle) {
+                this.events.push({
+                    date: this.clicked,
+                    title: this.eventTitle,
+                });
+                localStorage.setItem("events", JSON.stringify(this.events));
+                this.closeModal();
+            }
             } else {
                 this.newEventModalVisible = true;
             }
@@ -229,7 +231,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 
 
 .weekdays div {

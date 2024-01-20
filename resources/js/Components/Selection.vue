@@ -1,26 +1,25 @@
 <script setup>
-import { onMounted, ref } from "vue";
+// import { onMounted, ref } from "vue";
 
-defineProps({
-    modelValue: String,
-});
+// defineProps({
+//     modelValue: String,
+// });
 
-defineEmits(["update:modelValue"]);
+// defineEmits(["update:modelValue"]);
 
-const input = ref(null);
+// const select = ref(null);
 
-onMounted(() => {
-    if (input.value.hasAttribute("autofocus")) {
-        input.value.focus();
-    }
-});
+// // onMounted(() => {
+// //     if (select.value.hasAttribute("autofocus")) {
+// //         select.value.focus();
+// //     }
+// // });
 
-defineExpose({ focus: () => input.value.focus() });
+// defineExpose({ focus: () => select.value.focus() });
 </script>
 
 <template>
-    <select
-        
+    <select        
         class="input dark:input border-persian focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
     >
         <option selected>Choose a Meal Time</option>
