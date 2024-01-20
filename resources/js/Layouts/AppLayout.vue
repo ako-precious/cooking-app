@@ -14,7 +14,7 @@ import SideBarLink from "@/Components/Sidebar/SideBarLink.vue";
 import SideBarSpan from "@/Components/Sidebar/SideBarSpan.vue";
 import SideBarIcon from "@/Components/Sidebar/SideBarIcon.vue";
 import SideBarHeader from "@/Components/Sidebar/SideBarHeader.vue";
-import Calendar from '@/Pages/Calendar.vue';
+import FullCalendar from '@/Pages/FullCalendar.vue';
 import SideBarCollapse from "@/Components/Sidebar/SideBarCollapse.vue";
 import NavBar from "@/Layouts/NavBar.vue";
 import SubNavBar from "@/Components/Navbar/SubNavBar.vue";
@@ -283,7 +283,7 @@ const logout = () => {
         <!-- cards -->
         <div class="w-full px-6 py-6 mx-auto">
             <!-- <slot>Default</slot> -->
- <Calendar></Calendar>
+ <FullCalendar></FullCalendar>
             <!-- footer -->
             <!-- <Footer /> -->
             <!-- end footer -->
