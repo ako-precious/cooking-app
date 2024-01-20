@@ -1,45 +1,3 @@
-<!-- <script>
-import FullCalendar from '@fullcalendar/vue3'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import timeGridPlugin from '@fullcalendar/timegrid'
-import listPlugin from '@fullcalendar/list'
-import interactionPlugin from '@fullcalendar/interaction'
-
-export default {
-  components: {
-    FullCalendar // make the <FullCalendar> tag available
-  },
-  data() {
-    return {
-      calendarOptions: {
-        plugins: [ dayGridPlugin, interactionPlugin, timeGridPlugin, listPlugin ],
-        initialView: 'dayGridMonth',
-        dateClick: this.handleDateClick,
-        events: [
-          { title: 'event 1', date: '2024-04-01' },
-          { title: 'event 2', date: '2024-04-02' }
-        ]
-      }
-    }
-  },
-  methods: {
-    handleDateClick: function(arg) {
-      alert('date click! ' + arg.dateStr)
-    }
-  }
-}
-</script>
-<template>
-  <FullCalendar class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow "
-  :options="calendarOptions"
-  :header="{
-    left: 'title', 
-    center: 'dayGridMonth, timeGridWeek, timeGridDay, listWeek',
-    right: 'prev today next'
-  }" 
-  :selectable="true"
-  />
-</template> -->
 
 <script>
 import { defineComponent } from 'vue'
@@ -47,7 +5,12 @@ import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
-import { INITIAL_EVENTS, createEventId } from '@/Pages/event-utils'
+import { INITIAL_EVENTS, createEventId } from '@/event-utils'
+
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import Selection from "@/Components/Selection.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 export default defineComponent({
   components: {
@@ -55,6 +18,7 @@ export default defineComponent({
   },
   data() {
     return {
+     newEventModalVisible: false,
       calendarOptions: {
         plugins: [
           dayGridPlugin,
@@ -62,9 +26,9 @@ export default defineComponent({
           interactionPlugin // needed for dateClick
         ],
         headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: 'today prev,next',
+         left:   'title',
+        //   center: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
         initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
@@ -90,7 +54,8 @@ export default defineComponent({
       this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
     },
     handleDateSelect(selectInfo) {
-      let title = prompt('Please enter a new title for your event')
+     this.newEventModalVisible = true;
+      let title = 'Please enter the name of your meal'
       let calendarApi = selectInfo.view.calendar
 
       calendarApi.unselect() // clear date selection
@@ -110,111 +75,92 @@ export default defineComponent({
         clickInfo.event.remove()
       }
     },
+    closeModal() {
+        let title = ''
+        this.newEventModalVisible = false;
+        let calendarApi = selectInfo.view.calendar
+        calendarApi.unselect() 
+            
+        },
     handleEvents(events) {
       this.currentEvents = events
     },
-  }
+  },
+//   components: { PrimaryButton, SecondaryButton, TextInput, Selection },
 })
 
 </script>
 
 <template>
-  <div class='demo-app'>
-    <div class='demo-app-sidebar'>
-      <div class='demo-app-sidebar-section'>
-        <h2>Instructions</h2>
-        <ul>
-          <li>Select dates and you will be prompted to create a new event</li>
-          <li>Drag, drop, and resize events</li>
-          <li>Click an event to delete it</li>
-        </ul>
-      </div>
-      <div class='demo-app-sidebar-section'>
-        <label>
-          <input
-            type='checkbox'
-            :checked='calendarOptions.weekends'
-            @change='handleWeekendsToggle'
-          />
-          toggle weekends
-        </label>
-      </div>
-      <div class='demo-app-sidebar-section'>
-        <h2>All Events ({{ currentEvents.length }})</h2>
-        <ul>
-          <li v-for='event in currentEvents' :key='event.id'>
-            <b>{{ event.startStr }}</b>
-            <i>{{ event.title }}</i>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class='demo-app-main'>
+     <div class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow ">
       <FullCalendar
         class='demo-app-calendar'
-        :options='calendarOptions'
+        :options='calendarOptions' 
       >
         <template v-slot:eventContent='arg'>
           <b>{{ arg.timeText }}</b>
+          <b>{{ arg.mealtime }}</b>
           <i>{{ arg.event.title }}</i>
         </template>
       </FullCalendar>
+
+      <div
+            class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-sm w-full h-full"
+            v-show="newEventModalVisible "
+        >
+            <div class="relative p-4 w-full max-w-lg max-h-full">
+                <div class="relative card rounded-lg shadow dark:card">
+                    <button
+                        @click="closeModal"
+                        type="button"
+                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="popup-modal"
+                    >
+                    <font-awesome-icon
+                            icon="fa-solid fa-close"
+                           class=" text-persian text-lg"
+                        />
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                   <div class="p-4 md:py-8 text-center">
+                        <h2 class="text-oynx dark:text-snow">
+                            {{ newEventModalVisible ? "New Meal" : "Meal" }}
+                        </h2>
+                        <div class="py-4">
+                            <TextInput class="my-2"
+                                v-model="title"
+                                placeholder="Meal Name"
+                                :class="{ error: !eventTitle }"
+                            />
+                        </div>
+                        <div class="py-4">
+                            <Selection></Selection>
+                           
+                           
+                        </div>
+                        <div class="flex justify-center item-center">
+                            <PrimaryButton
+                                class="mr-3"
+                                @click="handleDateSelect(selectInfo)"
+                                v-if="newEventModalVisible"
+                                >Save
+                            </PrimaryButton>
+                            <!-- <SecondaryButton
+                                @click="deleteEvent"
+                                v-if="deleteEventModalVisible"
+                                class="mr-4"
+                            >
+                                Delete</SecondaryButton
+                            > -->
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
-<style lang='css'>
-
-h2 {
-  margin: 0;
-  font-size: 16px;
-}
-
-ul {
-  margin: 0;
-  padding: 0 0 0 1.5em;
-}
-
-li {
-  margin: 1.5em 0;
-  padding: 0;
-}
-
-b { /* used for event dates/times */
-  margin-right: 3px;
-}
-
-.demo-app {
-  display: flex;
-  min-height: 100%;
-  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-  font-size: 14px;
-}
-
-.demo-app-sidebar {
-  width: 300px;
-  line-height: 1.5;
-  background: #eaf9ff;
-  border-right: 1px solid #d3e2e8;
-}
-
-.demo-app-sidebar-section {
-  padding: 2em;
-}
-
-.demo-app-main {
-  flex-grow: 1;
-  padding: 3em;
-}
-
-.fc { /* the calendar root */
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-</style>
-
-<!-- <style>
+<style>
 .card {
     background: linear-gradient(145deg, #e3dedf, #ffffff);
     box-shadow: 10px 10px 15px #cac6c6, -10px -10px 15px #ffffff;
@@ -233,4 +179,4 @@ b { /* used for event dates/times */
         box-shadow: -10px -10px 15px #262b29, 10px 10px 15px #3a413d;
     }
 }
-</style> -->
+</style>

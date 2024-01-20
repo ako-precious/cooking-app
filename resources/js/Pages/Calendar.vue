@@ -183,16 +183,8 @@ export default {
                 (e) => e.date === this.clicked
             );
             if (eventForDay) {
-                // this.deleteEventModalVisible = true;
-                this.newEventModalVisible = true;
-                if (this.eventTitle) {
-                this.events.push({
-                    date: this.clicked,
-                    title: this.eventTitle,
-                });
-                localStorage.setItem("events", JSON.stringify(this.events));
-                this.closeModal();
-            }
+                this.deleteEventModalVisible = true;
+                    
             } else {
                 this.newEventModalVisible = true;
             }
