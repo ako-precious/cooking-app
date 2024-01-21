@@ -72,12 +72,14 @@ export default defineComponent({
              end: selectInfo.endStr,
              allDay: selectInfo.allDay
             })
+            // this.newEventModalVisible = false; 
             
-      }
+        }
     },
-    closeDiv(){
-        // this.handleDateSelect(selectInfo);
-        // this.newEventModalVisible = false; 
+    closeDiv(selectInfo){
+        this.mealName = ''
+        this.newEventModalVisible = false; 
+        this.handleDateSelect(selectInfo);
     },
     handleEventClick(clickInfo) {
       if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
@@ -148,7 +150,7 @@ export default defineComponent({
                         <div class="flex justify-center item-center">
                             <PrimaryButton
                                 class="mr-3"
-                                @click="closeDiv"
+                                @click="closeDiv(selectInfo)"
                                 v-if="newEventModalVisible"
                                 >Save
                             </PrimaryButton>
