@@ -1,5 +1,4 @@
-
-<script>
+<script setup>
 import { defineComponent } from 'vue'
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
@@ -11,6 +10,8 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
+</script>
+<script>
 
 export default defineComponent({
   components: {
@@ -19,6 +20,7 @@ export default defineComponent({
   data() {
     return {
      newEventModalVisible: false,
+     mealName: "",
       calendarOptions: {
         plugins: [
           dayGridPlugin,
@@ -54,21 +56,28 @@ export default defineComponent({
       this.calendarOptions.weekends = !this.calendarOptions.weekends // update a property
     },
     handleDateSelect(selectInfo) {
+     console.log(selectInfo);
      this.newEventModalVisible = true;
-      let title = 'Please enter the name of your meal'
-      let calendarApi = selectInfo.view.calendar
-
-      calendarApi.unselect() // clear date selection
-
-      if (title) {
-        calendarApi.addEvent({
-          id: createEventId(),
-          title,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          allDay: selectInfo.allDay
-        })
+     let title = this.mealName
+     let calendarApi = selectInfo.view.calendar
+     console.log(calendarApi);
+     
+    calendarApi.unselect() // clear date selection
+     
+     if (title) {
+         calendarApi.addEvent({
+             id: createEventId(),
+             title,
+             start: selectInfo.startStr,
+             end: selectInfo.endStr,
+             allDay: selectInfo.allDay
+            })
+            
       }
+    },
+    closeDiv(){
+        // this.handleDateSelect(selectInfo);
+        // this.newEventModalVisible = false; 
     },
     handleEventClick(clickInfo) {
       if (confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`)) {
@@ -76,10 +85,8 @@ export default defineComponent({
       }
     },
     closeModal() {
-        let title = ''
-        this.newEventModalVisible = false;
-        let calendarApi = selectInfo.view.calendar
-        calendarApi.unselect() 
+        this.mealName = ''
+        this.newEventModalVisible = false;     
             
         },
     handleEvents(events) {
@@ -108,7 +115,7 @@ export default defineComponent({
             class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-sm w-full h-full"
             v-show="newEventModalVisible "
         >
-            <div class="relative p-4 w-full max-w-lg max-h-full">
+            <div class="relative p-4 w-full max-w-md max-h-full">
                 <div class="relative card rounded-lg shadow dark:card">
                     <button
                         @click="closeModal"
@@ -128,9 +135,9 @@ export default defineComponent({
                         </h2>
                         <div class="py-4">
                             <TextInput class="my-2"
-                                v-model="title"
+                                v-model="mealName"
                                 placeholder="Meal Name"
-                                :class="{ error: !eventTitle }"
+                                :class="{ error: !mealName }"
                             />
                         </div>
                         <div class="py-4">
@@ -141,7 +148,7 @@ export default defineComponent({
                         <div class="flex justify-center item-center">
                             <PrimaryButton
                                 class="mr-3"
-                                @click="handleDateSelect(selectInfo)"
+                                @click="closeDiv"
                                 v-if="newEventModalVisible"
                                 >Save
                             </PrimaryButton>

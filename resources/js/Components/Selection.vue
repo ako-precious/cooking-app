@@ -22,10 +22,10 @@
     <select        
         class="input dark:input border-persian focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
     >
-        <option selected>Choose a Meal Time</option>
-        <option value="breakfast">Breakfast</option>
-        <option value="launch">Launch</option>
-        <option value="dinner">Dinner</option>
+        <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" selected>Choose a Meal Time</option>
+        <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" value="breakfast">Breakfast</option>
+        <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" value="launch">Launch</option>
+        <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" value="dinner">Dinner</option>
     </select>
 </template>
 
