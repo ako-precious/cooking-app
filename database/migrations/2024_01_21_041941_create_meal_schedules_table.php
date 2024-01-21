@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('meal_schedules', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('meal_id');
-            $table->foreign('meal_id', 'foreign_meal_cooks')->references('id')->on('meal');
+            $table->foreign('meal_id', 'meal_schedule')->references('id')->on('meals');
             $table->string('meal_time');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->timestamps();
         });
     }
