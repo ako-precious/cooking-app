@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\MealScheduleController;
+use App\Models\MealSchedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,6 +27,7 @@ Route::get('/welcomed', function () {
     ]);
 });
 
+Route::resource('/meal-schedule', MealScheduleController::class);
 
 Route::middleware([
     'auth:sanctum',

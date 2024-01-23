@@ -11,7 +11,7 @@ defineProps({
 </script>
 <template>
     <li
-    class="ml-2  lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 dropdown dark:dropdown z-20 transition-all duration-200 ease-in-out"
+    class="ml-2  lg:mr-4 relative text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 dropdown dark:dropdown z-20 transition-all duration-200 ease-in"
     >
     <Dropdown>
         <template #trigger>
