@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('meal_id');
             $table->foreign('meal_id', 'meal_schedule')->references('id')->on('meals');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id', 'user_meal_schedule')->references('id')->on('users');
             $table->string('meal_time');
             $table->date('start_date');
             $table->date('end_date');

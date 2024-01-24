@@ -40,18 +40,20 @@ class MealScheduleFactory extends Factory
         }
         $startDate = $this->faker->randomElement($datesThisMonth);
 
-// Generate end_date randomly, ensuring it's after start_date
-do {
-  $endDate = $this->faker->randomElement($datesThisMonth);
-} while ($endDate <= $startDate);  // Keep generating until end_date is after start_date
+        // Generate end_date randomly, ensuring it's after start_date
+        do {
+            $endDate = $this->faker->randomElement($datesThisMonth);
+        } while ($endDate <= $startDate);  // Keep generating until end_date is after start_date
 
+        $userIds = User::pluck('id')->all();
+        
         return [
             'meal_id' => $this->faker->randomElement($mealIds),
+            'user_id' => $this->faker->randomElement($userIds),
             'meal_time' => $this->faker->randomElement($meal_time),
-            'start_date' =>$startDate,
+            'start_date' => $startDate,
             'end_date' => $endDate,
 
         ];
     }
 }
-
