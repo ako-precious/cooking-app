@@ -13,7 +13,7 @@ class MealScheduleController extends Controller
         // dd((MealSchedule::with('meal')->get()->toArray() ));
         
         // return Inertia::render('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::all()]);
-        // return inertia('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::with('meal')->get()->toArray()]);
+        return inertia('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::with('meal')->get()->toArray()]);
 
     }
 }
