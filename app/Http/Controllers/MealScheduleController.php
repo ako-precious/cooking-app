@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Resources\MealScheduleResource;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\MealSchedule;
@@ -10,10 +12,9 @@ class MealScheduleController extends Controller
     public function index()
     {
         // dd(Players::all());
-        // dd((MealSchedule::with('meal')->get()->toArray() ));
+        dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
         
-        // return Inertia::render('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::all()]);
-        return inertia('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::with('meal')->get()->toArray()]);
+        return inertia('Meal-Schedule/Index', ['InitialEvent' => MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get())]);
 
     }
 }

@@ -29,7 +29,7 @@ export default defineComponent({
                     interactionPlugin, // needed for dateClick
                 ],
                 headerToolbar: {
-                    right: "today prev,next",
+                    right: "today prev next",
                     left: "title",
                     //   center: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
