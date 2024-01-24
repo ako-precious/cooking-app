@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\UserResource;
 use App\Http\Resources\CookResources;
 class MealResource extends JsonResource
 {
@@ -16,7 +17,7 @@ class MealResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'cook_id' => $this->cook_id,
+            'cook_id' => UserResource::collection($this->user),
             'title' => $this->name,
             'description' => $this->description,            
             'created_at' => $this->created_at,

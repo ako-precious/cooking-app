@@ -10,7 +10,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
-import axios from 'axios'
+import axios from "axios";
 </script>
 <script>
 export default defineComponent({
@@ -21,7 +21,13 @@ export default defineComponent({
     data() {
         return {
             newEventModalVisible: false,
-            mealName: "",
+            newSchedule: {
+                meal_name: "",
+                meal_time: "",
+                user_id: "",
+                start_date: "",
+                end_date: "",
+            },
             calendarOptions: {
                 plugins: [
                     dayGridPlugin,
@@ -34,15 +40,11 @@ export default defineComponent({
                     //   center: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 initialView: "dayGridMonth",
-                initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
+               
                 editable: true,
                 selectable: true,
                 selectMirror: true,
                 dayMaxEvents: true,
-                weekends: true,
-                select: this.handleDateSelect,
-                eventClick: this.handleEventClick,
-                eventsSet: this.handleEvents,
                 /* you can update a remote database when these fire:
                 console.log(InitialEvents),
         eventAdd:
@@ -53,10 +55,19 @@ export default defineComponent({
             currentEvents: [],
         };
     },
+    // created(){
+    //     this.getMealSchedule()
+    // },
     methods: {
         handleWeekendsToggle() {
             this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
         },
+        getEvents() {
+      axios
+        .get("/api/calendar")
+        .then(resp => (this.events = resp.data.data))
+        .catch(err => console.log(err.response.data));
+    },
         handleDateSelect(selectInfo) {
             console.log(selectInfo);
             this.newEventModalVisible = true;

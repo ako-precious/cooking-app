@@ -16,10 +16,12 @@ class MealScheduleResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        // dd($this->meal);
+
         return [
             'id' => $this->id,
-            'meals' => MealResource::collection($this->meals),
-            'users' => UserResource::collection($this->users),
+            'meal' => $this->meal,
+            'user' => UserResource::collection($this->user),
             'meal_time' => $this->meal_time,
             'start' => $this->start_date,
             'end' => $this->end_date,
