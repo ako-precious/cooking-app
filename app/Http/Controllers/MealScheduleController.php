@@ -12,7 +12,8 @@ class MealScheduleController extends Controller
         // dd(Players::all());
         // dd((MealSchedule::all() ));
         
-        return Inertia::render('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::all()]);
+        // return Inertia::render('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::all()]);
+        return inertia('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::with('meal')->get()]);
 
     }
 }
