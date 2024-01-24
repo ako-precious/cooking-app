@@ -10,6 +10,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
+import axios from 'axios'
 </script>
 <script>
 export default defineComponent({
@@ -43,6 +44,7 @@ export default defineComponent({
                 eventClick: this.handleEventClick,
                 eventsSet: this.handleEvents,
                 /* you can update a remote database when these fire:
+                console.log(InitialEvents),
         eventAdd:
         eventChange:
         eventRemove:
@@ -133,7 +135,7 @@ export default defineComponent({
                         />
                         <span class="sr-only">Close modal</span>
                     </button>
-                    <div class="p-4 md:py-8 text-center">
+                    <form @submit.prevent class="p-4 md:py-8 text-center">
                         <h2 class="text-oynx dark:text-snow">
                             {{ newEventModalVisible ? "New Meal" : "Meal" }}
                         </h2>
@@ -163,7 +165,7 @@ export default defineComponent({
                                 Delete</SecondaryButton
                             > -->
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

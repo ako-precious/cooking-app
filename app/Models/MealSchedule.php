@@ -10,6 +10,8 @@ class MealSchedule extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function meal(): BelongsTo
     {
         return $this->belongsTo(Meal::class, 'meal_id', 'id');
