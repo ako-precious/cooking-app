@@ -12,6 +12,6 @@ class MealSchedule extends Model
 
     public function meal(): BelongsTo
     {
-        return $this->belongsTo(Meal::class, 'player_id', 'id');
+        return $this->belongsTo(Meal::class, 'meal_id', 'id');
     }
 }

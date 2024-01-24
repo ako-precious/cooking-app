@@ -10,10 +10,10 @@ class MealScheduleController extends Controller
     public function index()
     {
         // dd(Players::all());
-        dd((MealSchedule::with('meal')->get() ));
+        // dd((MealSchedule::with('meal')->get()->toArray() ));
         
         // return Inertia::render('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::all()]);
-        return inertia('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::with('meal')->get()]);
+        return inertia('Meal-Schedule/Index', ['InitialEvent' => MealSchedule::with('meal')->get()->toArray()]);
 
     }
 }

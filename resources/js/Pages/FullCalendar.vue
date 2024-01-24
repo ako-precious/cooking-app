@@ -33,7 +33,7 @@ export default defineComponent({
                     //   center: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 initialView: "dayGridMonth",
-                initialEvents: InitialEvent, // alternatively, use the `events` setting to fetch from a feed
+                initialEvents: INITIAL_EVENTS, // alternatively, use the `events` setting to fetch from a feed
                 editable: true,
                 selectable: true,
                 selectMirror: true,
