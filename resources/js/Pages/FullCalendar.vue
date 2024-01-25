@@ -15,13 +15,14 @@ import axios from "axios";
 </script>
 <script>
 export default defineComponent({
-    components: {
-        FullCalendar,
-    },
-    props: ["InitialEvent"],
-    data() {
-        return {
-            newEventModalVisible: false,
+  components: {
+    FullCalendar,
+  },
+  data() {
+    return {
+      schedules: [],
+      formattedEvents: [],
+      newEventModalVisible: false,
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
@@ -29,62 +30,54 @@ export default defineComponent({
                 start_date: "",
                 end_date: "",
             },
-            schedules: [],
-            formattedEvents: "",
-            calendarOptions: {
-                plugins: [
-                    dayGridPlugin,
-                    timeGridPlugin,
-                    interactionPlugin, // needed for dateClick
-                ],
-                headerToolbar: {
-                    right: "today prev next",
-                    left: "title",
-                },
-
-                editable: true,
-                selectable: true,
-                selectMirror: true,
-                dayMaxEvents: true,
-                events: this.formattedEvents,
+      calendarOptions: {
+          plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+          headerToolbar: {
+              right: 'today prev next',
+              left: 'title',
             },
-            currentEvents: [],
+            editable: true,
+            selectable: true,
+            selectMirror: true,
+            dayMaxEvents: true,
+            
+      },
+    };
+  },
+  created() {
+    this.getMealSchedule()
+  },
+  methods: {
+    getMealSchedule() {
+      axios
+        .get("/schedule")
+        .then((response) => {
+          this.schedules = response.data;
+          this.formatSchedules();
+          this.updateCalendarOptions()
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+    },
+    formatSchedules() {
+      this.formattedEvents = this.schedules.map((schedule) => {
+        return {
+          id: schedule.id,
+          title: schedule.meal.title,
+          start: schedule.start,
+          end: schedule.end,
+          // Add other event properties as needed
+        };
+      });
+    },
+    updateCalendarOptions() {
+        this.calendarOptions = {
+            ...this.calendarOptions,
+            events: this.formattedEvents,
         };
     },
-    created() {
-        this.getMealSchedule(), this.formatSchedules();
-    },
-    methods: {
-        getMealSchedule() {
-            axios
-                .get("/schedule")
-                .then((resp) => (console.log(typeof(this.schedules = resp.data))))
-                .catch((err) => console.log(err.response.data));
-        },
-        formatSchedules() {
-            // this.formattedEvents = this.schedules.map((schedule) => {
-            //     return {
-            //         title: schedule.meal.title,
-            //         start: schedule.start, // Use start and end dates from your data
-            //         end: schedule.end,
-            //         // Add other event properties as needed
-            //     };
-            // });
-            if (Array.isArray(this.schedules)) {
-                this.formattedEvents = this.schedules.value.map((schedule) => {
-                    return {
-                        title: schedule.meal.title,
-                        start: schedule.start, // Use start and end dates from your data
-                        end: schedule.end,
-                        // Add other event properties as needed
-                    };
-                });
-            } else {
-                console.error("schedules is not an array:", typeof(this.schedules));
-            }
-        },
-    },
-    //   components: { PrimaryButton, SecondaryButton, TextInput, Selection },
+  },
 });
 </script>
 <!-- handleDateSelect(selectInfo) {
@@ -128,11 +121,7 @@ handleEvents(events) {
     <div
         class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
     >
-        <li v-for="schedule in formattedEvents" :key="schedule.id">
-            <p>User's Name: {{ schedule.title }}</p>
-            <p>Meal Time: {{ schedule.end }}</p>
-            <!-- Add other fields as needed -->
-        </li>
+        
         <FullCalendar class="demo-app-calendar" :options="calendarOptions">
             <template v-slot:eventContent="arg">
                 <b>{{ arg.timeText }}</b>
