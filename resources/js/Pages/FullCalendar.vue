@@ -41,88 +41,86 @@ export default defineComponent({
                 headerToolbar: {
                     right: "today prev next",
                     left: "title",
-                    //   center: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                initialView: "dayGridMonth",
-
+                
                 editable: true,
                 selectable: true,
                 selectMirror: true,
                 dayMaxEvents: true,
-                /* you can update a remote database when these fire:
-        eventAdd:
-        eventChange:
-        eventRemove:
-        */
+                events:this.events
             },
             currentEvents: [],
         };
     },
     created(){
-        console.log(this.getMealSchedule()) 
+        this.getMealSchedule()
     },
     methods: {
       
         getMealSchedule() {
             axios
                 .get("/schedule")
-                .then((resp) => (this.events = resp.data))
+                .then((resp) => this.events = resp.data)
                 .catch((err) => console.log(err.response.data));
         },
-        handleDateSelect(selectInfo) {
-            console.log(selectInfo);
-            this.newEventModalVisible = true;
-            let title = 0;
-            let calendarApi = selectInfo.view.calendar;
-            console.log(calendarApi);
-
-            calendarApi.unselect(); // clear date selection
-
-            if (title) {
-                calendarApi.addEvent({
-                    id: createEventId(),
-                    title,
-                    start: selectInfo.startStr,
-                    end: selectInfo.endStr,
-                    allDay: selectInfo.allDay,
-                });
-                
-                this.newEventModalVisible = false;
-            }
-        },
-        handleEventClick(clickInfo) {
-            if (
-                confirm(
-                    `Are you sure you want to delete the event '${clickInfo.event.title}'`
-                )
-            ) {
-                clickInfo.event.remove();
-            }
-        },
-        closeModal() {
-            // this.mealName = "";
-            this.newEventModalVisible = false;
-        },
-        handleEvents(events) {
-            this.currentEvents = events;
-        },
+      
     },
     //   components: { PrimaryButton, SecondaryButton, TextInput, Selection },
 });
 </script>
+<!-- handleDateSelect(selectInfo) {
+    console.log(selectInfo);
+    this.newEventModalVisible = true;
+    let title = 0;
+    let calendarApi = selectInfo.view.calendar;
+    console.log(calendarApi);
 
+    calendarApi.unselect(); // clear date selection
+
+    if (title) {
+        calendarApi.addEvent({
+            id: createEventId(),
+            title,
+            start: selectInfo.startStr,
+            end: selectInfo.endStr,
+            allDay: selectInfo.allDay,
+        });
+        
+        this.newEventModalVisible = false;
+    }
+},
+handleEventClick(clickInfo) {
+    if (
+        confirm(
+            `Are you sure you want to delete the event '${clickInfo.event.title}'`
+        )
+    ) {
+        clickInfo.event.remove();
+    }
+},
+closeModal() {
+    // this.mealName = "";
+    this.newEventModalVisible = false;
+},
+handleEvents(events) {
+    this.currentEvents = events;
+}, -->
 <template>
     <div
         class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
     >
-        <FullCalendar class="demo-app-calendar" :options="calendarOptions">
+    <li v-for="schedule in events" :key="schedule.id">
+        <p>User's Name: {{ schedule.title }}</p>
+        <p>Meal Time: {{ schedule.end }}</p>
+        <!-- Add other fields as needed -->
+      </li>
+        <FullCalendar class="demo-app-calendar" :options="calendarOptions"  >
             <template v-slot:eventContent="arg">
                 <b>{{ arg.timeText }}</b>
                 <b>{{ arg.mealtime }}</b>
                 <i>{{ arg.event.title }}</i>
             </template>
         </FullCalendar>
-
         <div
             class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-sm w-full h-full"
             v-show="newEventModalVisible"

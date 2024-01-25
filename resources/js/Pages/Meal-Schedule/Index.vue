@@ -1,10 +1,7 @@
 <template>
     <AppLayout title="Dashboard">
-        <FullCalendar :InitialEvent=" InitialEvent" ></FullCalendar>
-        <li v-for="event in InitialEvent" :key="event.id">
-        {{ event.meal }}
-      </li>
-    </AppLayout>
+        <FullCalendar ></FullCalendar>
+   </AppLayout>
 </template>
 
 <script setup>

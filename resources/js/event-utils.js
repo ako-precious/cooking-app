@@ -11,7 +11,7 @@ export const INITIAL_EVENTS = [
 },
 {
     id: createEventId(),
-    title : 'Timed event',
+    // title : 'Timed event',
     mealtime: 'launch',
     start: todayStr + 'T12:00:00'
   }
