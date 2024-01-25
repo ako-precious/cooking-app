@@ -31,6 +31,7 @@ class MealScheduleController extends Controller
     $mealSchedules = MealSchedule::with('meal')->with('user')->get();
     
     return response()->json(MealScheduleResource::collection($mealSchedules));
+    // return MealSchedule::with('meal','user')->get()->toArray();
 
 
     }

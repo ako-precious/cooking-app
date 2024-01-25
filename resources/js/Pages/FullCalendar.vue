@@ -12,8 +12,6 @@ import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
 import axios from "axios";
 
-
-
 </script>
 <script>
 export default defineComponent({
@@ -31,7 +29,8 @@ export default defineComponent({
                 start_date: "",
                 end_date: "",
             },
-            events: '',
+            schedules: [],
+            formattedEvents: "",
             calendarOptions: {
                 plugins: [
                     dayGridPlugin,
@@ -42,28 +41,48 @@ export default defineComponent({
                     right: "today prev next",
                     left: "title",
                 },
-                
+
                 editable: true,
                 selectable: true,
                 selectMirror: true,
                 dayMaxEvents: true,
-                events:this.events
+                events: this.formattedEvents,
             },
             currentEvents: [],
         };
     },
-    created(){
-        this.getMealSchedule()
+    created() {
+        this.getMealSchedule(), this.formatSchedules();
     },
     methods: {
-      
         getMealSchedule() {
             axios
                 .get("/schedule")
-                .then((resp) => this.events = resp.data)
+                .then((resp) => (console.log(typeof(this.schedules = resp.data))))
                 .catch((err) => console.log(err.response.data));
         },
-      
+        formatSchedules() {
+            // this.formattedEvents = this.schedules.map((schedule) => {
+            //     return {
+            //         title: schedule.meal.title,
+            //         start: schedule.start, // Use start and end dates from your data
+            //         end: schedule.end,
+            //         // Add other event properties as needed
+            //     };
+            // });
+            if (Array.isArray(this.schedules)) {
+                this.formattedEvents = this.schedules.value.map((schedule) => {
+                    return {
+                        title: schedule.meal.title,
+                        start: schedule.start, // Use start and end dates from your data
+                        end: schedule.end,
+                        // Add other event properties as needed
+                    };
+                });
+            } else {
+                console.error("schedules is not an array:", typeof(this.schedules));
+            }
+        },
     },
     //   components: { PrimaryButton, SecondaryButton, TextInput, Selection },
 });
@@ -109,12 +128,12 @@ handleEvents(events) {
     <div
         class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
     >
-    <li v-for="schedule in events" :key="schedule.id">
-        <p>User's Name: {{ schedule.title }}</p>
-        <p>Meal Time: {{ schedule.end }}</p>
-        <!-- Add other fields as needed -->
-      </li>
-        <FullCalendar class="demo-app-calendar" :options="calendarOptions"  >
+        <li v-for="schedule in formattedEvents" :key="schedule.id">
+            <p>User's Name: {{ schedule.title }}</p>
+            <p>Meal Time: {{ schedule.end }}</p>
+            <!-- Add other fields as needed -->
+        </li>
+        <FullCalendar class="demo-app-calendar" :options="calendarOptions">
             <template v-slot:eventContent="arg">
                 <b>{{ arg.timeText }}</b>
                 <b>{{ arg.mealtime }}</b>
@@ -150,7 +169,6 @@ handleEvents(events) {
                                 class="my-2"
                                 v-model="newSchedule.meal_name"
                                 placeholder="Meal Name"
-                                
                             />
                         </div>
                         <div class="py-4">
