@@ -65,8 +65,8 @@ export default defineComponent({
       
         getMealSchedule() {
             axios
-                .get("/api/schedule")
-                .then((resp) => (this.events = resp.data.data))
+                .get("/schedule")
+                .then((resp) => (this.events = resp.data))
                 .catch((err) => console.log(err.response.data));
         },
         handleDateSelect(selectInfo) {

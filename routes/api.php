@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/api/schedule', MealScheduleController::class);
+// Route::apiResource('/schedule', MealScheduleController::class);

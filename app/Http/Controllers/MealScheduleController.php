@@ -23,10 +23,16 @@ class MealScheduleController extends Controller
     }
     public function index()
     {
-        // dd(Players::all());
-        dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
+    //     // dd(Players::all());
+    //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
         
-        return MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ;
+    //     return MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ;
+
+    $mealSchedules = MealSchedule::with('meal')->with('user')->get();
+    
+    return response()->json(MealScheduleResource::collection($mealSchedules));
+
 
     }
+    
 }
