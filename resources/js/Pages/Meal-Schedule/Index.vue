@@ -2,7 +2,7 @@
     <AppLayout title="Dashboard">
         <FullCalendar :InitialEvent=" InitialEvent" ></FullCalendar>
         <li v-for="event in InitialEvent" :key="event.id">
-        {{ event }}
+        {{ event.meal }}
       </li>
     </AppLayout>
 </template>

@@ -17,7 +17,7 @@ class MealResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'cook_id' => UserResource::collection($this->user),
+            'cook' => new UserResource($this->whenLoaded('user')), 
             'title' => $this->name,
             'description' => $this->description,            
             'created_at' => $this->created_at,

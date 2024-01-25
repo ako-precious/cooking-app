@@ -40,13 +40,12 @@ export default defineComponent({
                     //   center: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
                 initialView: "dayGridMonth",
-               
+
                 editable: true,
                 selectable: true,
                 selectMirror: true,
                 dayMaxEvents: true,
                 /* you can update a remote database when these fire:
-                console.log(InitialEvents),
         eventAdd:
         eventChange:
         eventRemove:
@@ -55,23 +54,22 @@ export default defineComponent({
             currentEvents: [],
         };
     },
-    // created(){
-    //     this.getMealSchedule()
-    // },
-    methods: {
-        handleWeekendsToggle() {
-            this.calendarOptions.weekends = !this.calendarOptions.weekends; // update a property
-        },
-        getEvents() {
-      axios
-        .get("/api/calendar")
-        .then(resp => (this.events = resp.data.data))
-        .catch(err => console.log(err.response.data));
+    created() {
+        console.log(this.fetchData());
     },
+    methods: {
+       
+
+        getMealSchedule() {
+            axios
+                .get("api/meal-schedule")
+                .then((resp) => (this.events = InitialEvent))
+                .catch((err) => console.log(err.response.data));
+        },
         handleDateSelect(selectInfo) {
             console.log(selectInfo);
             this.newEventModalVisible = true;
-            let title = this.mealName;
+            let title = 0;
             let calendarApi = selectInfo.view.calendar;
             console.log(calendarApi);
 
@@ -85,14 +83,10 @@ export default defineComponent({
                     end: selectInfo.endStr,
                     allDay: selectInfo.allDay,
                 });
-                this.mealName = "";
+
                 this.newEventModalVisible = false;
             }
         },
-        // closeDiv(selectInfo){
-        //     this.newEventModalVisible = false;
-        //     this.handleDateSelect(selectInfo);
-        // },
         handleEventClick(clickInfo) {
             if (
                 confirm(
@@ -103,7 +97,7 @@ export default defineComponent({
             }
         },
         closeModal() {
-            this.mealName = "";
+            // this.mealName = "";
             this.newEventModalVisible = false;
         },
         handleEvents(events) {
@@ -153,9 +147,8 @@ export default defineComponent({
                         <div class="py-4">
                             <TextInput
                                 class="my-2"
-                                v-model="mealName"
+                                v-model="newSchedule.meal_name"
                                 placeholder="Meal Name"
-                                :class="{ error: !mealName }"
                             />
                         </div>
                         <div class="py-4">

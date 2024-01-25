@@ -21,7 +21,7 @@ class MealScheduleController extends Controller
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'InitialEvent' => MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get())]);
+            'InitialEvent' => MealSchedule::with('meal','user')->get()->toArray()]);
 
     }
 }

@@ -20,8 +20,8 @@ class MealScheduleResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'meal' => $this->meal,
-            'user' => UserResource::collection($this->user),
+            'meal' => new MealResource($this->whenLoaded('meal')), // Use new MealResource instead of MealResource::collection
+            'user' => new UserResource($this->whenLoaded('user')),            
             'meal_time' => $this->meal_time,
             'start' => $this->start_date,
             'end' => $this->end_date,
