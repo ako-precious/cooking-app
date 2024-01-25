@@ -11,17 +11,22 @@ use App\Models\MealSchedule;
 
 class MealScheduleController extends Controller
 {
-    public function index()
+    public function schedule()
     {
-        // dd(Players::all());
-        // dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
-        
         return inertia('Meal-Schedule/Index', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
             'InitialEvent' => MealSchedule::with('meal','user')->get()->toArray()]);
+
+    }
+    public function index()
+    {
+        // dd(Players::all());
+        dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
+        
+        return MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ;
 
     }
 }

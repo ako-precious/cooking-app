@@ -27,7 +27,9 @@ Route::get('/welcomed', function () {
     ]);
 });
 
-Route::resource('/meal-schedule', MealScheduleController::class);
+Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
+
+Route::resource('/api/schedule', MealScheduleController::class);
 
 Route::middleware([
     'auth:sanctum',

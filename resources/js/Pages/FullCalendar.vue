@@ -11,6 +11,9 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
 import axios from "axios";
+
+
+
 </script>
 <script>
 export default defineComponent({
@@ -28,6 +31,7 @@ export default defineComponent({
                 start_date: "",
                 end_date: "",
             },
+            events: '',
             calendarOptions: {
                 plugins: [
                     dayGridPlugin,
@@ -54,16 +58,15 @@ export default defineComponent({
             currentEvents: [],
         };
     },
-    created() {
-        console.log(this.fetchData());
+    created(){
+        console.log(this.getMealSchedule()) 
     },
     methods: {
-       
-
+      
         getMealSchedule() {
             axios
-                .get("api/meal-schedule")
-                .then((resp) => (this.events = InitialEvent))
+                .get("/api/schedule")
+                .then((resp) => (this.events = resp.data.data))
                 .catch((err) => console.log(err.response.data));
         },
         handleDateSelect(selectInfo) {
@@ -83,7 +86,7 @@ export default defineComponent({
                     end: selectInfo.endStr,
                     allDay: selectInfo.allDay,
                 });
-
+                
                 this.newEventModalVisible = false;
             }
         },
@@ -149,6 +152,7 @@ export default defineComponent({
                                 class="my-2"
                                 v-model="newSchedule.meal_name"
                                 placeholder="Meal Name"
+                                
                             />
                         </div>
                         <div class="py-4">
