@@ -40,12 +40,13 @@ export default defineComponent({
             selectable: true,
             selectMirror: true,
             dayMaxEvents: true,
-            
+            eventClick: this.handleEventClick,
       },
     };
   },
   created() {
-    this.getMealSchedule()
+    this.getMealSchedule(),
+    this.closeModal()
   },
   methods: {
     getMealSchedule() {
@@ -67,15 +68,41 @@ export default defineComponent({
           title: schedule.meal.title,
           start: schedule.start,
           end: schedule.end,
+          meal_time: schedule.meal_time,
+          meal_id: schedule.meal.id,
+          user_id: schedule.user.id,
           // Add other event properties as needed
         };
       });
     },
+
     updateCalendarOptions() {
         this.calendarOptions = {
             ...this.calendarOptions,
             events: this.formattedEvents,
         };
+    },
+    closeModal(){
+        this.newEventModalVisible = false;
+        this.newSchedule = {
+        meal_name: '',
+        start_date: '',
+        end_date: ''
+      };
+    },
+    handleEventClick(arg) {
+        // 'info' contains information about the clicked event
+        this.newEventModalVisible = true
+        const { id, title, start, end,  meal_time, meal_id,user_id } = this.formattedEvents.find(
+        event => event.id === +arg.event.id
+      );
+      console.log({ id, title, start, end,  meal_time , meal_id,user_id })
+      this.indexToUpdate = id;
+      this.newSchedule = {
+        meal_name: title,
+        start_date: start,
+        end_date: end
+      };
     },
   },
 });
@@ -121,6 +148,7 @@ handleEvents(events) {
     <div
         class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
     >
+   
         
         <FullCalendar class="demo-app-calendar" :options="calendarOptions">
             <template v-slot:eventContent="arg">
@@ -130,7 +158,7 @@ handleEvents(events) {
             </template>
         </FullCalendar>
         <div
-            class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-50 flex justify-center items-center backdrop-blur-sm w-full h-full"
+            class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
             v-show="newEventModalVisible"
         >
             <div
@@ -155,13 +183,27 @@ handleEvents(events) {
                         </h2>
                         <div class="py-4">
                             <TextInput
-                                class="my-2"
+                                class="my-2 w-full"
                                 v-model="newSchedule.meal_name"
                                 placeholder="Meal Name"
                             />
                         </div>
+                        <div class="py-4 flex gap-3">
+                            <TextInput
+                                class="my-2 w-full" 
+                                v-model="newSchedule.start_date" type="date"
+                                placeholder="Meal Name"
+                            />
+                            <TextInput
+                                class="my-2 w-full" 
+                                v-model="newSchedule.start_date" type="date"
+                                placeholder="Meal Name"
+                            />
+                        </div>
                         <div class="py-4">
-                            <Selection></Selection>
+                            <Selection v-model="newSchedule.meal_time">
+                            <option  value=""></option>
+                            </Selection>
                         </div>
                         <div class="flex justify-center item-center">
                             <PrimaryButton
