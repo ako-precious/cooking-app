@@ -81,9 +81,9 @@ export default defineComponent({
                 events: this.formattedEvents,
             };
         },
-        
+
         closeModal() {
-            // clear everything in the div and close it 
+            // clear everything in the div and close it
             this.newEventModalVisible = false;
             this.suggestedMeal = [];
             this.newSchedule = {
@@ -107,6 +107,8 @@ export default defineComponent({
                 start_date: start,
                 end_date: end,
                 meal_time: meal_time,
+                meal_id: meal_id,
+                user_id: user_id
             };
         },
         getSuggestions(field) {
@@ -122,11 +124,25 @@ export default defineComponent({
                     console.error("Error fetching suggestions:", error);
                 });
         },
-        selectSuggestion(field, suggestion) {
+        selectSuggestion(field, suggestion ) {
             // Set the selected suggestion to the corresponding input field
             this.newSchedule[field] = suggestion;
             // Clear suggestions for the selected field
             this.suggestedMeal = [];
+        },
+        updateEvent() {
+            axios
+                .put("/schedule" + this.indexToUpdate, {
+                    ...this.newEvent,
+                })
+                .then((resp) => {
+                    this.resetForm();
+                    this.getEvents();
+                    this.addingMode = !this.addingMode;
+                })
+                .catch((err) =>
+                    console.log("Unable to update event!", err.response.data)
+                );
         },
     },
 });
@@ -214,6 +230,16 @@ handleEvents(events) {
                                 @input="getSuggestions('meal_name')"
                                 placeholder="Meal Name"
                             />
+                            <TextInput
+                                class="my-2 w-full"
+                                v-model="newSchedule.meal_id"                                
+                                placeholder=""
+                            />
+                            <TextInput
+                                class="my-2 w-full" hidden
+                                v-model="newSchedule.user_id"
+                                placeholder=""
+                            />
                             <div
                                 v-if="suggestedMeal.length > 0"
                                 class="absolute bg-snow dark:bg-oynx w-full p-2 rounded-lg overflow-y-scroll disable-scrollbars max-h-[11rem]"
@@ -281,17 +307,17 @@ handleEvents(events) {
                         <div class="flex justify-center item-center">
                             <PrimaryButton
                                 class="mr-3"
-                                @click="handleDateSelect(selectInfo)"
+                                @click="updateEvent"
                                 v-if="newEventModalVisible"
                                 >Save
                             </PrimaryButton>
-                            <!-- <SecondaryButton
-                                @click="deleteEvent"
-                                v-if="deleteEventModalVisible"
+                            <SecondaryButton
+                                @click="deleteEvent"                                
                                 class="mr-4"
                             >
-                                Delete</SecondaryButton
-                            > -->
+                                Delete
+                                </SecondaryButton
+                            >
                         </div>
                     </form>
                 </div>

@@ -13,7 +13,7 @@ defineProps({
     </button> -->
     <button :type="type" class="button2 relative px-4 py-2 overflow-hidden dark:button2 mt-5 bg-snow transition-all duration-300 delay-75"><slot /></button>
 </template>
-<style>
+<style scoped>
 .button2 {
     display: inline-block;
     overflow: hidden;
