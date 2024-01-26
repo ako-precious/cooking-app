@@ -26,13 +26,13 @@ class MealScheduleController extends Controller
     {
         //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
 
-        $mealSchedules = MealSchedule::with('meal')->with('user')->get();
+        $mealSchedules = MealSchedule::with('meal','user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
     public function getSuggestions()
     {
         $query = request('query');
-        $suggestions = Meal::where('name', 'like', '%' . $query . '%')->take(6)->get();
+        $suggestions = Meal::where('name', 'like', '%' . $query . '%')->with('user')->take(6)->get();
         return response()->json($suggestions);
     }
 }

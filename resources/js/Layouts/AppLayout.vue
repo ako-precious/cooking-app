@@ -50,7 +50,7 @@ const logout = () => {
          
     <!-- sidenav  -->
 
-    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" scroll-m-0 scroll card dark:card" 
+    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" disable-scrollbars card dark:card" 
         :class=" sidebarReduced, {
             'bg-slate-850': isClassWhite,
             'translate-x-0':isClassTranslated,

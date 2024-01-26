@@ -47,7 +47,7 @@ export default defineComponent({
         };
     },
     created() {
-        this.getMealSchedule(), this.closeModal(), this.getSuggestions()
+        this.getMealSchedule(), this.closeModal(), this.getSuggestions();
     },
     methods: {
         getMealSchedule() {
@@ -109,19 +109,20 @@ export default defineComponent({
         },
         getSuggestions(field) {
             // Simulated asynchronous database request (replace with actual API call)
-    
-            axios.get(`/api/suggestions?query=${this.newSchedule[field]}`)
-            .then((response) => {
-                console.log(this.newSchedule[field]);
-                console.log(response.data);
 
-                // Assuming the response.data is an array of suggestions
-                // Filter suggestions based on user input
-                // this.suggestions[field] = response.data.slice(0, 10);
-            })
-            .catch((error) => {
-                console.error("Error fetching suggestions:", error);
-            });
+            axios
+                .get(`/api/suggestions?query=${this.newSchedule[field]}`)
+                .then((response) => {
+                    console.log(this.newSchedule[field]);
+                    console.log(response.data);
+
+                    // Assuming the response.data is an array of suggestions
+                    // Filter suggestions based on user input
+                    // this.suggestions[field] = response.data.slice(0, 10);
+                })
+                .catch((error) => {
+                    console.error("Error fetching suggestions:", error);
+                });
             //  axios.get(
             //     `/api/suggestions?query=${this.newSchedule[field]}`
             //     .then((response) => {
@@ -228,26 +229,40 @@ handleEvents(events) {
                                     : "Meal"
                             }}
                         </h2>
-                        <div class="py-4">
+                        <div class="py-4 relative">
                             <TextInput
                                 class="my-2 w-full"
                                 v-model="newSchedule.meal_name"
-                                @input="getSuggestions('meal')"
+                                @input="getSuggestions('meal_name')"
                                 placeholder="Meal Name"
                             />
+                            <div class="absolute bg-snow dark:bg-oynx w-full p-2 rounded-lg overflow-y-scroll disable-scrollbars h-[10rem]" >
+                                <div
+                                    class=" bg-oynx/10  border-oynx/10 text-sm text-oynx rounded-lg p-2  dark:bg-snow/10 dark:border-snow/20 dark:text-snow flex justify-between items-center w-full mb-1"> 
+                              <div class="flex items-center">
+                                  <img class="inline-block  h-[2.875rem] w-[2.875rem] rounded-lg mr-2" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80" alt="Image Description">
+                                  <span class="font-bold">Secondary</span> 
+                                </div> 
+                                <span class="font-bold">By</span> 
+                                    <div class="flex flex-col items-center">
+                                        <img class="inline-block h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80" alt="Image Description">
+                                        <span class="font-bold">Secondary</span> 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="py-4 flex justify-between">
                             <TextInput
                                 class="w-[47%]"
                                 v-model="newSchedule.start_date"
                                 type="date"
-                                placeholder="Meal Name"
+                                placeholder=""
                             />
                             <TextInput
                                 class="w-[47%]"
-                                v-model="newSchedule.start_date"
+                                v-model="newSchedule.end_date"
                                 type="date"
-                                placeholder="Meal Name"
+                                placeholder=""
                             />
                         </div>
                         <div class="py-4 flex justify-between">
