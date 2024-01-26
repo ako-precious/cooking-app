@@ -130,7 +130,27 @@ export default defineComponent({
             // Clear suggestions for the selected field
             this.suggestedMeal = [];
         },
-        updateEvent() {
+        // selectSuggestion(field, suggestion ) {
+        //     // Set the selected suggestion to the corresponding input field
+        //     this.newSchedule[field] = suggestion;
+        //     // Clear suggestions for the selected field
+        //     this.suggestedMeal = [];
+        // },
+        updateSchedule() {
+            axios
+                .put("/schedule" + this.indexToUpdate, {
+                    ...this.newEvent,
+                })
+                .then((resp) => {
+                    this.resetForm();
+                    this.getEvents();
+                    this.addingMode = !this.addingMode;
+                })
+                .catch((err) =>
+                    console.log("Unable to update event!", err.response.data)
+                );
+        },
+        deleteSchedule() {
             axios
                 .put("/schedule" + this.indexToUpdate, {
                     ...this.newEvent,
@@ -230,16 +250,12 @@ handleEvents(events) {
                                 @input="getSuggestions('meal_name')"
                                 placeholder="Meal Name"
                             />
-                            <TextInput
-                                class="my-2 w-full"
-                                v-model="newSchedule.meal_id"                                
+                            <TextInput hidden
+                                class="my-2 w-full" type="number"
+                                @input="getSuggestions('meal_id')"
+                                v-model= newSchedule.meal_id                               
                                 placeholder=""
-                            />
-                            <TextInput
-                                class="my-2 w-full" hidden
-                                v-model="newSchedule.user_id"
-                                placeholder=""
-                            />
+                            />                            
                             <div
                                 v-if="suggestedMeal.length > 0"
                                 class="absolute bg-snow dark:bg-oynx w-full p-2 rounded-lg overflow-y-scroll disable-scrollbars max-h-[11rem]"
@@ -249,7 +265,7 @@ handleEvents(events) {
                                     :key="suggestion"
                                 >
                                     <div
-                                        @click="selectSuggestion('meal_name',suggestion.name)"
+                                        @click="selectSuggestion('meal_name',suggestion.name),selectSuggestion('meal_id',suggestion.id) "
                                         class="bg-oynx/10 border-oynx/10 text-sm text-oynx rounded-lg p-2 dark:bg-snow/10 dark:border-snow/20 dark:text-snow flex justify-between items-center w-full mb-1"
                                     >
                                         <div class="flex items-center">
@@ -307,12 +323,12 @@ handleEvents(events) {
                         <div class="flex justify-center item-center">
                             <PrimaryButton
                                 class="mr-3"
-                                @click="updateEvent"
+                                @click="updateSchedule"
                                 v-if="newEventModalVisible"
                                 >Save
                             </PrimaryButton>
                             <SecondaryButton
-                                @click="deleteEvent"                                
+                                @click="deleteSchedule"                                
                                 class="mr-4"
                             >
                                 Delete

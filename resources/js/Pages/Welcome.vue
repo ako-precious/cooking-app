@@ -1,7 +1,7 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
 import DropBarNav from "./Header/DropBarNav.vue";
-import FoodCard from ".Layouts/FoodCard.vue";
+import FoodCard from "@/Layouts/FoodCard.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import Navbar from "./Header/Navbar.vue";
 defineProps({

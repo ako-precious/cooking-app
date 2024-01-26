@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
 use App\Models\MealSchedule;
@@ -27,16 +28,16 @@ Route::get('/welcomed', function () {
     ]);
 });
 
-Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
 
-Route::resource('/schedule', MealScheduleController::class);
-Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    ])->group(function () {
+        Route::get('/dashboard', function () {
+            return Inertia::render('Dashboard');
+        })->name('dashboard');
+        Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
+    Route::resource('/schedule', MealScheduleController::class);
+    Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
 });
