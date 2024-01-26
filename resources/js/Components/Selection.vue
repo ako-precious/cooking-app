@@ -20,7 +20,7 @@
 
 <template>
     <select        
-        class="input dark:input border-persian focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+        class="input dark:input border-oynx dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
     >
         <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" selected>Choose a Meal Time</option>
         <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" value="breakfast">Breakfast</option>

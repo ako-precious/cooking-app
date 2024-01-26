@@ -11,18 +11,20 @@ import SecondaryButton from "@/Components/SecondaryButton.vue";
 import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
 import axios from "axios";
-
 </script>
 <script>
 export default defineComponent({
-  components: {
-    FullCalendar,
-  },
-  data() {
-    return {
-      schedules: [],
-      formattedEvents: [],
-      newEventModalVisible: false,
+    components: {
+        FullCalendar,
+    },
+    data() {
+        return {
+            suggestions: {
+                meal: [],
+            },
+            schedules: [],
+            formattedEvents: [],
+            newEventModalVisible: false,
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
@@ -30,81 +32,124 @@ export default defineComponent({
                 start_date: "",
                 end_date: "",
             },
-      calendarOptions: {
-          plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-          headerToolbar: {
-              right: 'today prev next',
-              left: 'title',
+            calendarOptions: {
+                plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+                headerToolbar: {
+                    right: "today prev next",
+                    left: "title",
+                },
+                editable: true,
+                selectable: true,
+                selectMirror: true,
+                dayMaxEvents: true,
+                eventClick: this.handleEventClick,
             },
-            editable: true,
-            selectable: true,
-            selectMirror: true,
-            dayMaxEvents: true,
-            eventClick: this.handleEventClick,
-      },
-    };
-  },
-  created() {
-    this.getMealSchedule(),
-    this.closeModal()
-  },
-  methods: {
-    getMealSchedule() {
-      axios
-        .get("/schedule")
-        .then((response) => {
-          this.schedules = response.data;
-          this.formatSchedules();
-          this.updateCalendarOptions()
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        });
-    },
-    formatSchedules() {
-      this.formattedEvents = this.schedules.map((schedule) => {
-        return {
-          id: schedule.id,
-          title: schedule.meal.title,
-          start: schedule.start,
-          end: schedule.end,
-          meal_time: schedule.meal_time,
-          meal_id: schedule.meal.id,
-          user_id: schedule.user.id,
-          // Add other event properties as needed
         };
-      });
     },
+    created() {
+        this.getMealSchedule(), this.closeModal();
+    },
+    methods: {
+        getMealSchedule() {
+            axios
+                .get("/schedule")
+                .then((response) => {
+                    this.schedules = response.data;
+                    this.formatSchedules();
+                    this.updateCalendarOptions();
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
+        },
+        formatSchedules() {
+            this.formattedEvents = this.schedules.map((schedule) => {
+                return {
+                    id: schedule.id,
+                    title: schedule.meal.title,
+                    start: schedule.start,
+                    end: schedule.end,
+                    meal_time: schedule.meal_time,
+                    meal_id: schedule.meal.id,
+                    user_id: schedule.user.id,
+                    // Add other event properties as needed
+                };
+            });
+        },
 
-    updateCalendarOptions() {
-        this.calendarOptions = {
-            ...this.calendarOptions,
-            events: this.formattedEvents,
-        };
+        updateCalendarOptions() {
+            this.calendarOptions = {
+                ...this.calendarOptions,
+                events: this.formattedEvents,
+            };
+        },
+        closeModal() {
+            this.newEventModalVisible = false;
+            this.newSchedule = {
+                meal_name: "",
+                start_date: "",
+                end_date: "",
+            };
+        },
+        handleEventClick(arg) {
+            // 'info' contains information about the clicked event
+            this.newEventModalVisible = true;
+            const { id, title, start, end, meal_time, meal_id, user_id } =
+                this.formattedEvents.find(
+                    (event) => event.id === +arg.event.id
+                );
+            console.log({ id, title, start, end, meal_time, meal_id, user_id });
+            this.indexToUpdate = id;
+            this.newSchedule = {
+                meal_name: title,
+                start_date: start,
+                end_date: end,
+                meal_time: meal_time,
+            };
+        },
+        getSuggestions(field) {
+            // Simulated asynchronous database request (replace with actual API call)
+    
+            axios.get(`/api/suggestions?query=${this.newSchedule[field]}`)
+            .then((response) => {
+                console.log(this.newSchedule[field]);
+                console.log(response.data);
+
+                // Assuming the response.data is an array of suggestions
+                // Filter suggestions based on user input
+                // this.suggestions[field] = response.data.slice(0, 10);
+            })
+            .catch((error) => {
+                console.error("Error fetching suggestions:", error);
+            });
+            //  axios.get(
+            //     `/api/suggestions?query=${this.newSchedule[field]}`
+            //     .then((response) => {
+            //     console.log(response.data);
+
+            //     // Assuming the response.data is an array of suggestions
+            //     // Filter suggestions based on user input
+            //     suggestions[field].value = response.data.slice(0, 10);
+            // })
+            // .catch((error) => {
+            //     console.error("Error fetching suggestions:", error);
+            // })
+            // Assuming the response.data is an array of suggestions
+
+            // Simulate delay for the asynchronous request
+            // new Promise((resolve) => setTimeout(resolve, 0));
+
+            // // Filter suggestions based on user input
+            // suggestions[field].value = response.data.filter((name) =>
+            //     name
+            //         .toLowerCase()
+            //         .includes(filterForm[field].toLowerCase())
+            //         .slice(0, 10)
+            // );
+
+            // suggestions[field] = response.data.slice(0, 10);
+        },
     },
-    closeModal(){
-        this.newEventModalVisible = false;
-        this.newSchedule = {
-        meal_name: '',
-        start_date: '',
-        end_date: ''
-      };
-    },
-    handleEventClick(arg) {
-        // 'info' contains information about the clicked event
-        this.newEventModalVisible = true
-        const { id, title, start, end,  meal_time, meal_id,user_id } = this.formattedEvents.find(
-        event => event.id === +arg.event.id
-      );
-      console.log({ id, title, start, end,  meal_time , meal_id,user_id })
-      this.indexToUpdate = id;
-      this.newSchedule = {
-        meal_name: title,
-        start_date: start,
-        end_date: end
-      };
-    },
-  },
 });
 </script>
 <!-- handleDateSelect(selectInfo) {
@@ -148,8 +193,6 @@ handleEvents(events) {
     <div
         class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
     >
-   
-        
         <FullCalendar class="demo-app-calendar" :options="calendarOptions">
             <template v-slot:eventContent="arg">
                 <b>{{ arg.timeText }}</b>
@@ -178,31 +221,46 @@ handleEvents(events) {
                         <span class="sr-only">Close modal</span>
                     </button>
                     <form @submit.prevent class="p-4 md:py-8 text-center">
-                        <h2 class="text-oynx dark:text-snow">
-                            {{ newEventModalVisible ? "New Meal" : "Meal" }}
+                        <h2 class="text-oynx dark:text-snow font-bold text-xl">
+                            {{
+                                newSchedule.meal_name == ""
+                                    ? "New Meal"
+                                    : "Meal"
+                            }}
                         </h2>
                         <div class="py-4">
                             <TextInput
                                 class="my-2 w-full"
                                 v-model="newSchedule.meal_name"
+                                @input="getSuggestions('meal')"
                                 placeholder="Meal Name"
                             />
                         </div>
-                        <div class="py-4 flex gap-3">
+                        <div class="py-4 flex justify-between">
                             <TextInput
-                                class="my-2 w-full" 
-                                v-model="newSchedule.start_date" type="date"
+                                class="w-[47%]"
+                                v-model="newSchedule.start_date"
+                                type="date"
                                 placeholder="Meal Name"
                             />
                             <TextInput
-                                class="my-2 w-full" 
-                                v-model="newSchedule.start_date" type="date"
+                                class="w-[47%]"
+                                v-model="newSchedule.start_date"
+                                type="date"
                                 placeholder="Meal Name"
                             />
                         </div>
-                        <div class="py-4">
-                            <Selection v-model="newSchedule.meal_time">
-                            <option  value=""></option>
+                        <div class="py-4 flex justify-between">
+                            <TextInput
+                                class="w-[47%]"
+                                readonly
+                                v-model="newSchedule.meal_time"
+                            />
+
+                            <Selection
+                                class="w-[47%]"
+                                v-model="newSchedule.meal_time"
+                            >
                             </Selection>
                         </div>
                         <div class="flex justify-center item-center">

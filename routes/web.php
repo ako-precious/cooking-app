@@ -30,7 +30,7 @@ Route::get('/welcomed', function () {
 Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
 
 Route::resource('/schedule', MealScheduleController::class);
-
+Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

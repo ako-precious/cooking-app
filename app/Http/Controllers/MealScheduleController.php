@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Models\MealSchedule;
+use App\Models\Meal;
 
 class MealScheduleController extends Controller
 {
@@ -18,22 +19,20 @@ class MealScheduleController extends Controller
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
-            'InitialEvent' => MealSchedule::with('meal','user')->get()->toArray()]);
-
+            'InitialEvent' => MealSchedule::with('meal', 'user')->get()->toArray()
+        ]);
     }
     public function index()
     {
-    //     // dd(Players::all());
-    //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
-        
-    //     return MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ;
+        //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
 
-    $mealSchedules = MealSchedule::with('meal')->with('user')->get();
-    
-    return response()->json(MealScheduleResource::collection($mealSchedules));
-    // return MealSchedule::with('meal','user')->get()->toArray();
-
-
+        $mealSchedules = MealSchedule::with('meal')->with('user')->get();
+        return response()->json(MealScheduleResource::collection($mealSchedules));
     }
-    
+    public function getSuggestions()
+    {
+        $query = request('query');
+        $suggestions = Meal::where('name', 'like', '%' . $query . '%')->take(6)->get();
+        return response()->json($suggestions);
+    }
 }
