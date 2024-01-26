@@ -81,9 +81,11 @@ export default defineComponent({
                 events: this.formattedEvents,
             };
         },
+        
         closeModal() {
+            // clear everything in the div and close it 
             this.newEventModalVisible = false;
-            this.suggestedMeal =[];
+            this.suggestedMeal = [];
             this.newSchedule = {
                 meal_name: "",
                 start_date: "",
@@ -108,33 +110,23 @@ export default defineComponent({
             };
         },
         getSuggestions(field) {
-            // Simulated asynchronous database request (replace with actual API call)
+            // Simulated  database request (replace with actual API call)
 
             axios
                 .get(`/api/suggestions?query=${this.newSchedule[field]}`)
                 .then((response) => {
                     console.log(this.newSchedule[field]);
-                    console.log(this.suggestedMeal = response.data);
-
+                    console.log((this.suggestedMeal = response.data));
                 })
                 .catch((error) => {
                     console.error("Error fetching suggestions:", error);
                 });
-
-            // Assuming the response.data is an array of suggestions
-
-            // Simulate delay for the asynchronous request
-            // new Promise((resolve) => setTimeout(resolve, 0));
-
-            // // Filter suggestions based on user input
-            // suggestions[field].value = response.data.filter((name) =>
-            //     name
-            //         .toLowerCase()
-            //         .includes(filterForm[field].toLowerCase())
-            //         .slice(0, 10)
-            // );
-
-            // suggestions[field] = response.data.slice(0, 10);
+        },
+        selectSuggestion(field, suggestion) {
+            // Set the selected suggestion to the corresponding input field
+            this.newSchedule[field] = suggestion;
+            // Clear suggestions for the selected field
+            this.suggestedMeal = [];
         },
     },
 });
@@ -188,7 +180,7 @@ handleEvents(events) {
             </template>
         </FullCalendar>
         <div
-            class="modal overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+            class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
             v-show="newEventModalVisible"
         >
             <div
@@ -222,32 +214,41 @@ handleEvents(events) {
                                 @input="getSuggestions('meal_name')"
                                 placeholder="Meal Name"
                             />
-                            <div v-if="suggestedMeal.length > 0"
-                                class="absolute bg-snow dark:bg-oynx w-full p-2 rounded-lg overflow-y-scroll disable-scrollbars max-h-[10rem] " 
-                            >
-                            <div  v-for="suggestion in suggestedMeal"
-                            :key="suggestion">
                             <div
-                                class="bg-oynx/10 border-oynx/10 text-sm text-oynx rounded-lg p-2 dark:bg-snow/10 dark:border-snow/20 dark:text-snow flex justify-between items-center w-full mb-1"
+                                v-if="suggestedMeal.length > 0"
+                                class="absolute bg-snow dark:bg-oynx w-full p-2 rounded-lg overflow-y-scroll disable-scrollbars max-h-[11rem]"
                             >
-                                <div class="flex items-center">
-                                    <img
-                                        class="inline-block h-[2.875rem] w-[2.875rem] rounded-lg mr-2"
-                                        src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2R8ZW58MHx8MHx8fDA%3D" alt="Image Description"
-                                    />
-                                    <span class="font-bold">{{ suggestion.name }}</span>
+                                <div
+                                    v-for="suggestion in suggestedMeal"
+                                    :key="suggestion"
+                                >
+                                    <div
+                                        @click="selectSuggestion('meal_name',suggestion.name)"
+                                        class="bg-oynx/10 border-oynx/10 text-sm text-oynx rounded-lg p-2 dark:bg-snow/10 dark:border-snow/20 dark:text-snow flex justify-between items-center w-full mb-1"
+                                    >
+                                        <div class="flex items-center">
+                                            <img
+                                                class="inline-block h-[2.875rem] w-[2.875rem] rounded-lg mr-2"
+                                                src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+                                                alt="Image Description"
+                                            />
+                                            <span class="font-bold">{{
+                                                suggestion.name
+                                            }}</span>
+                                        </div>
+                                        <span class="font-bold">By</span>
+                                        <div class="flex flex-col items-center">
+                                            <img
+                                                class="inline-block h-8 w-8 rounded-full"
+                                                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
+                                                alt="Image Description"
+                                            />
+                                            <span class="font-bold">{{
+                                                suggestion.user.name
+                                            }}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <span class="font-bold">By</span>
-                                <div class="flex flex-col items-center">
-                                    <img
-                                        class="inline-block h-8 w-8 rounded-full"
-                                        src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-                                        alt="Image Description"
-                                    />
-                                    <span class="font-bold">{{ suggestion.user.name }}</span>
-                                </div>
-                            </div>
-                            </div>
                             </div>
                         </div>
                         <div class="py-4 flex justify-between">
