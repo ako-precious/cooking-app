@@ -6,7 +6,7 @@ use App\Http\Resources\MealScheduleResource;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
-
+use Exception;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Route;
 use App\Models\MealSchedule;
@@ -51,22 +51,35 @@ class MealScheduleController extends Controller
 
     public function update(Request $request, MealSchedule $MealSchedule)
     {
-        // dd($request->all());
-        $MealSchedule->update($request->all());
-        return response()->json([
-            'data' => new MealScheduleResource($MealSchedule),
-            'message' => 'Successfully updated Meal Schedule!',
-            'status' => Response::HTTP_ACCEPTED
-        ]);
+        
+        dd(new MealScheduleResource($MealSchedule));
+            $MealSchedule->update($request->all());
+            return response()->json([
+                'data' => new MealScheduleResource($MealSchedule),
+                'message' => 'Successfully updated Meal Schedule!',
+                'status' => Response::HTTP_ACCEPTED
+            ]);
+            // run your code here
+       
+        
         
     }
 
     public function destroy(MealSchedule $MealSchedule)
     {
-        $MealSchedule->delete();
+        try {
+            // run your code here
+             $MealSchedule->delete();
         return response()->json([
             'message' => 'Meal removed successfully!',
             'status' => Response::HTTP_NO_CONTENT
         ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e,
+                'status' => Response::HTTP_NO_CONTENT
+            ]);
+        }
+       
     }
 }

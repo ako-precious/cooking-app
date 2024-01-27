@@ -339,7 +339,7 @@ handleEvents(events) {
                             /> -->
                             <select v-model="newSchedule.meal_time" title="Meal Time"
                                 class="border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-[47%] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                            ><option v-if= 'newSchedule.meal_time != "" ' 
+                            ><option v-show= 'newSchedule.meal_time != "" ' 
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
                                     value="{{ newSchedule.meal_time  }}">{{ newSchedule.meal_time }}</option>
                                 <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" selected>Choose a Meal Time</option>
