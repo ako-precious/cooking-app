@@ -8,7 +8,6 @@ import { INITIAL_EVENTS, createEventId } from "@/event-utils";
 
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
 import axios from "axios";
 </script>
@@ -319,12 +318,23 @@ handleEvents(events) {
                                 readonly
                                 v-model="newSchedule.meal_time"
                             /> -->
-
-                            <Selection
-                                class="w-[47%]"
-                                v-model="newSchedule.meal_time"
-                            >
-                            </Selection>
+                            <select v-model="newSchedule.meal_time"
+                                class="border-oynx  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-[47%] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                            ><option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="{{ newSchedule.meal_time  }}">{{ newSchedule.meal_time }}</option>
+                                <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" >Choose a Meal Time</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="breakfast">Breakfast</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="launch">Launch</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="dinner">Dinner</option>
+                            </select>
+                           
                         </div>
                         <div class="py-4 flex justify-between">
                             <TextInput

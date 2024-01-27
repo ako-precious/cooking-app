@@ -46,7 +46,7 @@ export default {
       lavender: '#FFE9F3',
       persian: '#1B998B',
       oynx: '#303633',
-      lightRed: '#FE6D73',
+      lighred: '#FE6D73',
       polynesian: '#004E98',
 
       slate: {
@@ -601,6 +601,8 @@ export default {
       DEFAULT: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
       inner: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
       none: "none",
+      "oynx-sm": '7px 7px 10px #131614, -7px -7px 10px #3b413e',
+      "snow-sm": '7px 7px 10px #656363, -7px -7px 10px #ffffff',
     },
     boxShadowColor: ({ theme }) => theme("colors"),
     caretColor: ({ theme }) => theme("colors"),
