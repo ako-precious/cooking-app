@@ -30,6 +30,7 @@ export default defineComponent({
                 start_date: "",
                 end_date: "",
             },
+            addingMode: true,
             calendarOptions: {
                 plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
                 headerToolbar: {
@@ -94,6 +95,7 @@ export default defineComponent({
             };
         },
         handleEventClick(arg) {
+            this.addingMode = false;
             // 'info' contains information about the clicked event
             this.newEventModalVisible = true;
             const { id, title, start, end, meal_time, meal_id, user_id } =
@@ -101,14 +103,15 @@ export default defineComponent({
                     (event) => event.id === +arg.event.id
                 );
             // console.log({ id, title, start, end, meal_time, meal_id, user_id });
-            this.indexToUpdate = id;
+
             this.newSchedule = {
+                id: id,
                 meal_name: title,
+                meal_id: meal_id,
+                user_id: user_id,
+                meal_time: meal_time,
                 start_date: start,
                 end_date: end,
-                meal_time: meal_time,
-                meal_id: meal_id,
-                user_id: user_id
             };
         },
         getSuggestions(field) {
@@ -124,36 +127,32 @@ export default defineComponent({
                     console.error("Error fetching suggestions:", error);
                 });
         },
-        selectSuggestion(field, suggestion ) {
+        selectSuggestion(field, suggestion) {
             // Set the selected suggestion to the corresponding input field
             this.newSchedule[field] = suggestion;
             // Clear suggestions for the selected field
             this.suggestedMeal = [];
         },
-        // selectSuggestion(field, suggestion ) {
-        //     // Set the selected suggestion to the corresponding input field
-        //     this.newSchedule[field] = suggestion;
-        //     // Clear suggestions for the selected field
-        //     this.suggestedMeal = [];
-        // },
-        updateSchedule() {
+
+        updateSchedule(id) {
             axios
-                .put("/schedule" + this.indexToUpdate, {
-                    ...this.newEvent,
+                .put("/schedule/" + id, {
+                    ...this.newSchedule,
+                    //   console.log()
                 })
                 .then((resp) => {
-                    this.resetForm();
+                    this.closeModal();
                     this.getEvents();
                     this.addingMode = !this.addingMode;
                 })
                 .catch((err) =>
-                    console.log("Unable to update event!", err.response.data)
+                    console.log("Unable to update event!", err.response)
                 );
         },
-        deleteSchedule() {
+        deleteSchedule(id) {
             axios
-                .put("/schedule" + this.indexToUpdate, {
-                    ...this.newEvent,
+                .put("/schedule/" + id, {
+                    ...this.newSchedule,
                 })
                 .then((resp) => {
                     this.resetForm();
@@ -250,12 +249,14 @@ handleEvents(events) {
                                 @input="getSuggestions('meal_name')"
                                 placeholder="Meal Name"
                             />
-                            <TextInput hidden
-                                class="my-2 w-full" type="number"
+                            <TextInput
+                                hidden
+                                class="my-2 w-full"
+                                type="number"
                                 @input="getSuggestions('meal_id')"
-                                v-model= newSchedule.meal_id                               
+                                v-model="newSchedule.meal_id"
                                 placeholder=""
-                            />                            
+                            />
                             <div
                                 v-if="suggestedMeal.length > 0"
                                 class="absolute bg-snow dark:bg-oynx w-full p-2 rounded-lg overflow-y-scroll disable-scrollbars max-h-[11rem]"
@@ -265,7 +266,16 @@ handleEvents(events) {
                                     :key="suggestion"
                                 >
                                     <div
-                                        @click="selectSuggestion('meal_name',suggestion.name),selectSuggestion('meal_id',suggestion.id) "
+                                        @click="
+                                            selectSuggestion(
+                                                'meal_name',
+                                                suggestion.name
+                                            ),
+                                                selectSuggestion(
+                                                    'meal_id',
+                                                    suggestion.id
+                                                )
+                                        "
                                         class="bg-oynx/10 border-oynx/10 text-sm text-oynx rounded-lg p-2 dark:bg-snow/10 dark:border-snow/20 dark:text-snow flex justify-between items-center w-full mb-1"
                                     >
                                         <div class="flex items-center">
@@ -296,6 +306,19 @@ handleEvents(events) {
                         <div class="py-4 flex justify-between">
                             <TextInput
                                 class="w-[47%]"
+                                readonly
+                                v-model="newSchedule.meal_time"
+                            />
+
+                            <Selection
+                                class="w-[47%]"
+                                v-model="newSchedule.meal_time"
+                            >
+                            </Selection>
+                        </div>
+                        <div class="py-4 flex justify-between">
+                            <TextInput
+                                class="w-[47%]"
                                 v-model="newSchedule.start_date"
                                 type="date"
                                 placeholder=""
@@ -307,34 +330,30 @@ handleEvents(events) {
                                 placeholder=""
                             />
                         </div>
-                        <div class="py-4 flex justify-between">
-                            <TextInput
-                                class="w-[47%]"
-                                readonly
-                                v-model="newSchedule.meal_time"
-                            />
 
-                            <Selection
-                                class="w-[47%]"
-                                v-model="newSchedule.meal_time"
-                            >
-                            </Selection>
+                        <div
+                            class="flex justify-center item-center"
+                            v-if="addingMode"
+                        >
+                            <PrimaryButton class="w-full">Save</PrimaryButton>
                         </div>
-                        <div class="flex justify-center item-center">
-                            <PrimaryButton
-                                class="mr-3"
-                                @click="updateSchedule"
-                                v-if="newEventModalVisible"
-                                >Save
-                            </PrimaryButton>
-                            <SecondaryButton
-                                @click="deleteSchedule"                                
-                                class="mr-4"
-                            >
-                                Delete
-                                </SecondaryButton
-                            >
-                        </div>
+
+                        <template v-else>
+                            <div class="flex justify-center item-center">
+                                <PrimaryButton
+                                    class="mr-3"
+                                    @click="updateSchedule(newSchedule.id)"
+                                    v-if="newEventModalVisible"
+                                    >Save
+                                </PrimaryButton>
+                                <SecondaryButton
+                                    @click="deleteSchedule(newSchedule.id)"
+                                    class="mr-4"
+                                >
+                                    Delete
+                                </SecondaryButton>
+                            </div>
+                        </template>
                     </form>
                 </div>
             </div>

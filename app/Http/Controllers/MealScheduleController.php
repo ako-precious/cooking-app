@@ -31,7 +31,7 @@ class MealScheduleController extends Controller
         $mealSchedules = MealSchedule::with('meal','user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
-    
+
     public function getSuggestions()
     {
         $query = request('query');
@@ -51,12 +51,14 @@ class MealScheduleController extends Controller
 
     public function update(Request $request, MealSchedule $MealSchedule)
     {
+        dd($request->all());
         $MealSchedule->update($request->all());
         return response()->json([
             'data' => new MealScheduleResource($MealSchedule),
             'message' => 'Successfully updated event!',
             'status' => Response::HTTP_ACCEPTED
         ]);
+        
     }
 
     public function destroy(MealSchedule $MealSchedule)
