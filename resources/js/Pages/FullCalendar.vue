@@ -135,6 +135,7 @@ export default defineComponent({
         },
 
         updateSchedule(id) {
+            console.log(this.newSchedule);
             axios
                 .put("/schedule/" + id, {
                     ...this.newSchedule,
@@ -250,11 +251,20 @@ handleEvents(events) {
                                 placeholder="Meal Name"
                             />
                             <TextInput
+                                readonly
                                 hidden
                                 class="my-2 w-full"
                                 type="number"
                                 @input="getSuggestions('meal_id')"
                                 v-model="newSchedule.meal_id"
+                                placeholder=""
+                            />
+                            <TextInput
+                                readonly
+                                hidden
+                                class="my-2 w-full"
+                                type="number"
+                                v-model="newSchedule.user_id"
                                 placeholder=""
                             />
                             <div
@@ -304,11 +314,11 @@ handleEvents(events) {
                             </div>
                         </div>
                         <div class="py-4 flex justify-between">
-                            <TextInput
+                            <!-- <TextInput
                                 class="w-[47%]"
                                 readonly
                                 v-model="newSchedule.meal_time"
-                            />
+                            /> -->
 
                             <Selection
                                 class="w-[47%]"
@@ -344,7 +354,7 @@ handleEvents(events) {
                                     class="mr-3"
                                     @click="updateSchedule(newSchedule.id)"
                                     v-if="newEventModalVisible"
-                                    >Save
+                                    >Update
                                 </PrimaryButton>
                                 <SecondaryButton
                                     @click="deleteSchedule(newSchedule.id)"

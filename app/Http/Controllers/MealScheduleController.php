@@ -51,7 +51,7 @@ class MealScheduleController extends Controller
 
     public function update(Request $request, MealSchedule $MealSchedule)
     {
-        dd($request->all());
+        // dd($request->all());
         $MealSchedule->update($request->all());
         return response()->json([
             'data' => new MealScheduleResource($MealSchedule),
