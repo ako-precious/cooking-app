@@ -19,31 +19,14 @@ defineExpose({ focus: () => input.value.focus() });
 </script>
 
 <template>
+    <!-- class="input dark:input border-oynx dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md  text-oynx dark:text-snow" -->
     <input
         ref="input"
-        class="input dark:input border-oynx dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md  text-oynx dark:text-snow"
+        class="border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                           
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
     />
 </template>
 
-<style>
-.input {
-    background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: 7px 7px 10px #656363, -7px -7px 10px #ffffff;
-}
 
-
-@media (prefers-color-scheme: dark) {
-    .dark\:input {
-    background: linear-gradient(145deg, #2b312e, #333a37);
-    box-shadow: 7px 7px 10px #131614, -7px -7px 10px #3b413e;
-}
-    /* .dark\:foodcard:hover {
-        
-        background: linear-gradient(145deg, #2b312e, #333a37);
-        box-shadow: -25px -25px 50px #262b29, 25px 25px 50px #3a413d;
-    } */
-}
-
-</style>

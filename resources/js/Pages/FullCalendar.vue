@@ -119,8 +119,8 @@ export default defineComponent({
             axios
                 .get(`/api/suggestions?query=${this.newSchedule[field]}`)
                 .then((response) => {
-                    console.log(this.newSchedule[field]);
-                    console.log((this.suggestedMeal = response.data));
+                    
+                    (this.suggestedMeal = response.data);
                 })
                 .catch((error) => {
                     console.error("Error fetching suggestions:", error);
@@ -134,33 +134,52 @@ export default defineComponent({
         },
 
         updateSchedule(id) {
+
+            this.formattedEvents ={
+                id: id,
+                meal_id: this.newSchedule.meal_id,
+                user_id: this.newSchedule.user_id,
+                meal_time: this.newSchedule.meal_time,
+                start_date: this.newSchedule.start_date,
+                end_date: this.newSchedule.end_date,
+            }
             console.log(this.newSchedule);
+            console.log(this.formattedEvents);
             axios
                 .put("/schedule/" + id, {
-                    ...this.newSchedule,
-                    //   console.log()
+                    ...this.formattedEvents,
                 })
                 .then((resp) => {
                     this.closeModal();
-                    this.getEvents();
+                    this.getMealSchedule() 
                     this.addingMode = !this.addingMode;
+                    console.log(resp);
                 })
                 .catch((err) =>
-                    console.log("Unable to update event!", err.response)
+                    console.log("Unable to update event!", err)
                 );
         },
         deleteSchedule(id) {
+            this.formattedEvents ={
+                id: id,
+                meal_id: this.newSchedule.meal_id,
+                user_id: this.newSchedule.user_id,
+                meal_time: this.newSchedule.meal_time,
+                start_date: this.newSchedule.start_date,
+                end_date: this.newSchedule.end_date,
+            }
             axios
-                .put("/schedule/" + id, {
-                    ...this.newSchedule,
+                .delete("/schedule/" + id, {
+                    ...this.formattedEvents,
                 })
                 .then((resp) => {
-                    this.resetForm();
-                    this.getEvents();
+                    this.closeModal();
+                    this.getMealSchedule() 
                     this.addingMode = !this.addingMode;
+                    console.log(resp);
                 })
                 .catch((err) =>
-                    console.log("Unable to update event!", err.response.data)
+                    console.log("Unable to update event!", err)
                 );
         },
     },
@@ -318,12 +337,12 @@ handleEvents(events) {
                                 readonly
                                 v-model="newSchedule.meal_time"
                             /> -->
-                            <select v-model="newSchedule.meal_time"
-                                class="border-oynx  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-[47%] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                            ><option
+                            <select v-model="newSchedule.meal_time" title="Meal Time"
+                                class="border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-[47%] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                            ><option v-if= 'newSchedule.meal_time != "" ' 
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
                                     value="{{ newSchedule.meal_time  }}">{{ newSchedule.meal_time }}</option>
-                                <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" >Choose a Meal Time</option>
+                                <option class="bg-snow text-oynx dark:bg-oynx dark:text-snow" selected>Choose a Meal Time</option>
                                 <option
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
                                     value="breakfast">Breakfast</option>
@@ -362,7 +381,7 @@ handleEvents(events) {
                             <div class="flex justify-center item-center">
                                 <PrimaryButton
                                     class="mr-3"
-                                    @click="updateSchedule(newSchedule.id)"
+                                    @click="updateSchedule(newSchedule.id, )"
                                     v-if="newEventModalVisible"
                                     >Update
                                 </PrimaryButton>

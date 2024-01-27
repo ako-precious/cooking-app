@@ -55,7 +55,7 @@ class MealScheduleController extends Controller
         $MealSchedule->update($request->all());
         return response()->json([
             'data' => new MealScheduleResource($MealSchedule),
-            'message' => 'Successfully updated event!',
+            'message' => 'Successfully updated Meal Schedule!',
             'status' => Response::HTTP_ACCEPTED
         ]);
         
@@ -64,6 +64,9 @@ class MealScheduleController extends Controller
     public function destroy(MealSchedule $MealSchedule)
     {
         $MealSchedule->delete();
-        return response('Event removed successfully!', Response::HTTP_NO_CONTENT);
+        return response()->json([
+            'message' => 'Meal removed successfully!',
+            'status' => Response::HTTP_NO_CONTENT
+        ]);
     }
 }
