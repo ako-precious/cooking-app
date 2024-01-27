@@ -185,43 +185,6 @@ export default defineComponent({
     },
 });
 </script>
-<!-- handleDateSelect(selectInfo) {
-    console.log(selectInfo);
-    this.newEventModalVisible = true;
-    let title = 0;
-    let calendarApi = selectInfo.view.calendar;
-    console.log(calendarApi);
-
-    calendarApi.unselect(); // clear date selection
-
-    if (title) {
-        calendarApi.addEvent({
-            id: createEventId(),
-            title,
-            start: selectInfo.startStr,
-            end: selectInfo.endStr,
-            allDay: selectInfo.allDay,
-        });
-        
-        this.newEventModalVisible = false;
-    }
-},
-handleEventClick(clickInfo) {
-    if (
-        confirm(
-            `Are you sure you want to delete the event '${clickInfo.event.title}'`
-        )
-    ) {
-        clickInfo.event.remove();
-    }
-},
-closeModal() {
-    // this.mealName = "";
-    this.newEventModalVisible = false;
-},
-handleEvents(events) {
-    this.currentEvents = events;
-}, -->
 <template>
     <div
         class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
