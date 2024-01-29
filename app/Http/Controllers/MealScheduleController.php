@@ -43,29 +43,66 @@ class MealScheduleController extends Controller
     {
         $new_MealSchedule = MealSchedule::create($request->all());
         return response()->json([
+            'data12' => $new_MealSchedule,
             'data' => new MealScheduleResource($new_MealSchedule),
             'message' => 'Successfully added new event!',
             'status' => Response::HTTP_CREATED
         ]);
     }
 
+    // public function update(Request $request, MealSchedule $MealSchedule)
+    // { 
+    //     //  if (condition) {
+    //     //     # code...
+    //     //  }
+    //      $request->validate([
+    //         'meal_id' => 'required',
+    //         'user_id' => 'required',
+    //         'meal_time' => 'required',
+    //         'start_date' => 'required|date',
+    //         'end_date' => 'required|date',
+    //     ]);
+    //     $MealSchedule->update($request->all());
+
+    //         return response()->json([
+    //             'data' => new MealScheduleResource($MealSchedule),
+    //             'data2' => $request->all(),
+    //             'data3' => $MealSchedule,
+    //             'message' => 'Successfully updated Meal Schedule!',
+    //             'status' => Response::HTTP_ACCEPTED
+    //         ]);
+    // }
+
     public function update(Request $request, MealSchedule $MealSchedule)
-    {
-        
-        // dd($request->all());
-            // $MealSchedule->update($request->all());
-            return response()->json([
-                // 'data' => new MealScheduleResource($MealSchedule),
-                'data' => $request->all(),
-                'data2' =>  $MealSchedule,
-                'message' => 'Successfully updated Meal Schedule!',
-                'status' => Response::HTTP_ACCEPTED
-            ]);
-            // run your code here
+{
+    try {
+        $request->validate([
+            'meal_id' => 'required',
+            'user_id' => 'required',
+            'meal_time' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
+
+        $MealSchedule->update($request->all());
+
+        return response()->json([
+            'data' => new MealScheduleResource($MealSchedule),
+            'message' => 'Successfully updated Meal Schedule!',
+            'status' => Response::HTTP_ACCEPTED
+        ]);
+    } catch (\Exception $e) {
+        // Log the exception for debugging purposes
        
-        
-        
+
+        // Return a response indicating a server error
+        return response()->json([
+            'data' => $e,
+            'message' => 'Error updating Meal Schedule. Please try again later.',
+            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+        ]);
     }
+}
 
     public function destroy(MealSchedule $MealSchedule)
     {
