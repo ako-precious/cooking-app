@@ -16,7 +16,6 @@ class MealScheduleController extends Controller
 {
     public function schedule()
     {
-        $user = auth()->user();
         return inertia('Meal-Schedule/Index', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -40,16 +39,13 @@ class MealScheduleController extends Controller
         return response()->json($suggestions);
     }
 
-
-
-
     public function store(Request $request)
     {
         $new_MealSchedule = MealSchedule::create($request->all());
         return response()->json([
             'data12' => $new_MealSchedule,
             'data' => new MealScheduleResource($new_MealSchedule),
-            'message' => 'Successfully added new event!',
+            'message' => 'Successfully added a new Meal Schedule!',
             'status' => Response::HTTP_CREATED
         ]);
     }

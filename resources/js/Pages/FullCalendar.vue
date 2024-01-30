@@ -178,7 +178,7 @@ export default defineComponent({
                 .then((resp) => {
                     this.closeModal();
                     this.getMealSchedule();
-                    this.addingMode = !this.addingMode;
+                    // this.addingMode = !this.addingMode;
                     console.log(resp);
                 })
                 .catch((err) => console.log("Unable to update event!", err));
@@ -275,7 +275,7 @@ export default defineComponent({
                             />
                             <TextInput
                                 readonly
-                                
+                                hidden
                                 class="my-2 w-full"
                                 type="number"
                                 v-model= newSchedule.user_id
