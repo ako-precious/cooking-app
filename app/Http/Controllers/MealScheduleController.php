@@ -73,9 +73,12 @@ class MealScheduleController extends Controller
     //         ]);
     // }
 
-    public function update(Request $request, MealSchedule $MealSchedule)
+    public function update(Request $request, $id)
 {
     try {
+
+        $MealSchedule = mealSchedule::find ($id);
+
         $request->validate([
             'meal_id' => 'required',
             'user_id' => 'required',
@@ -107,13 +110,12 @@ class MealScheduleController extends Controller
     }
 }
 
-    public function destroy(MealSchedule $MealSchedule)
+    public function destroy($id)
     {
         try {
-            // run your code here
-            //  $MealSchedule->delete();
+            $MealSchedule = mealSchedule::find ($id);
+             $MealSchedule->delete();
         return response()->json([
-            'data' => ($MealSchedule),
             'message' => 'Meal removed successfully!',
             'status' => Response::HTTP_NO_CONTENT
         ]);
