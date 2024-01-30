@@ -41,6 +41,7 @@ export default defineComponent({
                 selectMirror: true,
                 dayMaxEvents: true,
                 eventClick: this.handleEventClick,
+                select: this.handleDateSelect,
             },
         };
     },
@@ -131,7 +132,35 @@ export default defineComponent({
             // Clear suggestions for the selected field
             this.suggestedMeal = [];
         },
+        handleDateSelect(info) {
+            // 'info' contains information about the selected range
+            const start = info.startStr;
+            const end = info.endStr;
+            this.newEventModalVisible = true;
+            this.addingMode = true;
+            console.log(start + end);
 
+            this.newSchedule = {
+                meal_name: "",
+                meal_time: "",
+                user_id: "",
+                start_date: start,
+                end_date: end,
+            };
+
+            // // Add the new event to the FullCalendar
+            // this.$refs.fullCalendar.getApi().addEvent(newEvent);
+
+            // // You can also send the new event data to the server to save in the database if needed
+            // axios
+            //     .post("/schedule", newEvent)
+            //     .then((response) => {
+            //         // Handle the response if needed
+            //     })
+            //     .catch((error) => {
+            //         console.error("Error creating new event:", error);
+            //     });
+        },
         updateSchedule(id) {
             this.formattedEvents = {
                 meal_id: this.newSchedule.meal_id,
@@ -140,9 +169,6 @@ export default defineComponent({
                 start_date: this.newSchedule.start_date,
                 end_date: this.newSchedule.end_date,
             };
-            console.log(this.newSchedule);
-            console.log(this.formattedEvents);
-            console.log('Request Payload:', this.formattedEvents);
             axios
                 .put("/schedule/" + id, this.formattedEvents)
                 .then((resp) => {
@@ -155,7 +181,6 @@ export default defineComponent({
         },
 
         deleteSchedule(id) {
-            
             axios
                 .delete("/schedule/" + id)
                 .then((resp) => {
@@ -280,34 +305,42 @@ export default defineComponent({
                                 </div>
                             </div>
                         </div>
+
                         <div class="py-4 flex justify-between">
-                            <!-- <TextInput
+                            <TextInput
                                 class="w-[47%]"
-                                readonly
-                                v-model="newSchedule.meal_time"
-                            /> -->
+                                v-model="newSchedule.start_date"
+                                type="date"
+                                placeholder=""
+                            />
+                            <TextInput
+                                class="w-[47%]"
+                                v-model="newSchedule.end_date"
+                                type="date"
+                                placeholder=""
+                            />
+                        </div>
+                        <div class="py-4 flex justify-between">
                             <select
                                 v-model="newSchedule.meal_time"
-                                title="Meal Time"
-                                class="border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-[47%] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                                title="Meal Time" placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md "
                             >
-                                <option
-                                    v-show="newSchedule.meal_time != ''"
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="{{ newSchedule.meal_time  }}"
-                                >
-                                    {{ newSchedule.meal_time }}
-                                </option>
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    selected
-                                >
-                                    Choose a Meal Time
+                            <!-- v-show="newSchedule.meal_time != ''" -->
+                            
+                                <option  selected                               
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"                                   
+                                > Choose a meal time
+                                    <!-- {{ 
+                                    newSchedule.meal_time == ""
+                                        ? "Choose a Meal TIme"
+                                        : newSchedule.meal_time }} -->
                                 </option>
                                 <option
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
                                     value="breakfast"
                                 >
+                                
                                     Breakfast
                                 </option>
                                 <option
@@ -324,21 +357,6 @@ export default defineComponent({
                                 </option>
                             </select>
                         </div>
-                        <div class="py-4 flex justify-between">
-                            <TextInput
-                                class="w-[47%]"
-                                v-model="newSchedule.start_date"
-                                type="date"
-                                placeholder=""
-                            />
-                            <TextInput
-                                class="w-[47%]"
-                                v-model="newSchedule.end_date"
-                                type="date"
-                                placeholder=""
-                            />
-                        </div>
-
                         <div
                             class="flex justify-center item-center"
                             v-if="addingMode"

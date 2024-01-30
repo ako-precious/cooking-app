@@ -28,7 +28,7 @@ class MealScheduleController extends Controller
     {
         //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
 
-        $mealSchedules = MealSchedule::with('meal','user')->get();
+        $mealSchedules = MealSchedule::with('meal', 'user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
 
@@ -38,6 +38,9 @@ class MealScheduleController extends Controller
         $suggestions = Meal::where('name', 'like', '%' . $query . '%')->with('user')->take(6)->get();
         return response()->json($suggestions);
     }
+
+
+
 
     public function store(Request $request)
     {
@@ -50,81 +53,51 @@ class MealScheduleController extends Controller
         ]);
     }
 
-    // public function update(Request $request, MealSchedule $MealSchedule)
-    // { 
-    //     //  if (condition) {
-    //     //     # code...
-    //     //  }
-    //      $request->validate([
-    //         'meal_id' => 'required',
-    //         'user_id' => 'required',
-    //         'meal_time' => 'required',
-    //         'start_date' => 'required|date',
-    //         'end_date' => 'required|date',
-    //     ]);
-    //     $MealSchedule->update($request->all());
-
-    //         return response()->json([
-    //             'data' => new MealScheduleResource($MealSchedule),
-    //             'data2' => $request->all(),
-    //             'data3' => $MealSchedule,
-    //             'message' => 'Successfully updated Meal Schedule!',
-    //             'status' => Response::HTTP_ACCEPTED
-    //         ]);
-    // }
-
     public function update(Request $request, $id)
-{
-    try {
+    {
+        try {
 
-        $MealSchedule = mealSchedule::find ($id);
+            $MealSchedule = mealSchedule::find($id);
 
-        $request->validate([
-            'meal_id' => 'required',
-            'user_id' => 'required',
-            'meal_time' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-        ]);
-        $MealSchedule->update($request->all());
-        
-        // if ( $MealSchedule->update($request->all()) ) {
-            # code...
+            $request->validate([
+                'meal_id' => 'required',
+                'user_id' => 'required',
+                'meal_time' => 'required',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+            ]);
+            $MealSchedule->update($request->all());
             return response()->json([
                 'data' => new MealScheduleResource($MealSchedule),
                 'message' => 'Successfully updated Meal Schedule!',
                 // 'status' => Response::HTTP_ACCEPTED
                 'status' => Response::HTTP_OK
             ]);
-        // }
-    } catch (\Exception $e) {
-        // Log the exception for debugging purposes
-       
+        } catch (\Exception $e) {
 
-        // Return a response indicating a server error
-        return response()->json([
-            'data' => $e,
-            'message' => 'Error updating Meal Schedule. Please try again later.',
-            'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-        ]);
+            // Return a response indicating a server error
+            return response()->json([
+                'data' => $e,
+                'message' => 'Error updating Meal Schedule. Please try again later.',
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
+            ]);
+        }
     }
-}
 
     public function destroy($id)
     {
         try {
-            $MealSchedule = mealSchedule::find ($id);
-             $MealSchedule->delete();
-        return response()->json([
-            'message' => 'Meal removed successfully!',
-            'status' => Response::HTTP_NO_CONTENT
-        ]);
+            $MealSchedule = mealSchedule::find($id);
+            $MealSchedule->delete();
+            return response()->json([
+                'message' => 'Meal removed successfully!',
+                'status' => Response::HTTP_NO_CONTENT
+            ]);
         } catch (Exception $e) {
             return response()->json([
                 'message' => $e,
                 'status' => Response::HTTP_NO_CONTENT
             ]);
         }
-       
     }
 }
