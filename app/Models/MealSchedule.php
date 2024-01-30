@@ -10,7 +10,8 @@ class MealSchedule extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = ['meal_id', 'user_id', 'meal_time', 'start_date', 'end_date'];
+
 
     public function meal(): BelongsTo
     {

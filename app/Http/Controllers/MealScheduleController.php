@@ -83,14 +83,17 @@ class MealScheduleController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
         ]);
-
         $MealSchedule->update($request->all());
-
-        return response()->json([
-            'data' => new MealScheduleResource($MealSchedule),
-            'message' => 'Successfully updated Meal Schedule!',
-            'status' => Response::HTTP_ACCEPTED
-        ]);
+        
+        // if ( $MealSchedule->update($request->all()) ) {
+            # code...
+            return response()->json([
+                'data' => new MealScheduleResource($MealSchedule),
+                'message' => 'Successfully updated Meal Schedule!',
+                // 'status' => Response::HTTP_ACCEPTED
+                'status' => Response::HTTP_OK
+            ]);
+        // }
     } catch (\Exception $e) {
         // Log the exception for debugging purposes
        
@@ -108,8 +111,9 @@ class MealScheduleController extends Controller
     {
         try {
             // run your code here
-             $MealSchedule->delete();
+            //  $MealSchedule->delete();
         return response()->json([
+            'data' => ($MealSchedule),
             'message' => 'Meal removed successfully!',
             'status' => Response::HTTP_NO_CONTENT
         ]);

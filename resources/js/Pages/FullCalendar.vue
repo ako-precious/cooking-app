@@ -142,6 +142,7 @@ export default defineComponent({
             };
             console.log(this.newSchedule);
             console.log(this.formattedEvents);
+            console.log('Request Payload:', this.formattedEvents);
             axios
                 .put("/schedule/" + id, this.formattedEvents)
                 .then((resp) => {
@@ -154,25 +155,18 @@ export default defineComponent({
         },
 
         deleteSchedule(id) {
-            this.formattedEvents = {
-                id: id,
-                meal_id: this.newSchedule.meal_id,
-                user_id: this.newSchedule.user_id,
-                meal_time: this.newSchedule.meal_time,
-                start_date: this.newSchedule.start_date,
-                end_date: this.newSchedule.end_date,
-            };
+            
             axios
-                .delete("/schedule/" + id, {
-                    ...this.formattedEvents,
-                })
+                .delete("/schedule/" + id)
                 .then((resp) => {
                     this.closeModal();
                     this.getMealSchedule();
-                    this.addingMode = !this.addingMode;
                     console.log(resp);
+                    // this.addingMode = !this.addingMode;
                 })
-                .catch((err) => console.log("Unable to update event!", err));
+                .catch((err) =>
+                    console.log("Unable to delete event!", err.response.data)
+                );
         },
     },
 });

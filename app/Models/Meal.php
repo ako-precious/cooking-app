@@ -12,7 +12,7 @@ class Meal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['meal_id', 'user_id', 'meal_time', 'start_date', 'end_date'];
+    
 
 
     public function user(): BelongsTo
