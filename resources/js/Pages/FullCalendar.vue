@@ -16,15 +16,19 @@ export default defineComponent({
     components: {
         FullCalendar,
     },
+    props: {
+    auth: Object,
+  },
     data() {
         return {
+            userId: this.$page.props.auth.user.id ,
             suggestedMeal: [],
             schedules: [],
             formattedEvents: [],
             newEventModalVisible: false,
             newSchedule: {
                 meal_name: "",
-                meal_time: "",
+                meal_time: " ",
                 user_id: "",
                 start_date: "",
                 end_date: "",
@@ -142,8 +146,8 @@ export default defineComponent({
 
             this.newSchedule = {
                 meal_name: "",
-                meal_time: "",
-                user_id: "",
+                meal_time: "Choose a Meal Time",
+                user_id:  this.userId,
                 start_date: start,
                 end_date: end,
             };
@@ -161,6 +165,24 @@ export default defineComponent({
             //         console.error("Error creating new event:", error);
             //     });
         },
+         addSchedule(){
+            this.formattedEvents = {
+                meal_id: this.newSchedule.meal_id,
+                user_id: this.newSchedule.user_id,
+                meal_time: this.newSchedule.meal_time,
+                start_date: this.newSchedule.start_date,
+                end_date: this.newSchedule.end_date,
+            };
+            axios
+            .post("/schedule", this.formattedEvents)
+                .then((resp) => {
+                    this.closeModal();
+                    this.getMealSchedule();
+                    this.addingMode = !this.addingMode;
+                    console.log(resp);
+                })
+                .catch((err) => console.log("Unable to update event!", err));
+         },
         updateSchedule(id) {
             this.formattedEvents = {
                 meal_id: this.newSchedule.meal_id,
@@ -248,15 +270,15 @@ export default defineComponent({
                                 class="my-2 w-full"
                                 type="number"
                                 @input="getSuggestions('meal_id')"
-                                v-model="newSchedule.meal_id"
+                                v-model= newSchedule.meal_id
                                 placeholder=""
                             />
                             <TextInput
                                 readonly
-                                hidden
+                                
                                 class="my-2 w-full"
                                 type="number"
-                                v-model="newSchedule.user_id"
+                                v-model= newSchedule.user_id
                                 placeholder=""
                             />
                             <div
@@ -326,15 +348,9 @@ export default defineComponent({
                                 title="Meal Time" placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md "
                             >
-                            <!-- v-show="newSchedule.meal_time != ''" -->
-                            
                                 <option  selected                               
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow"                                   
-                                > Choose a meal time
-                                    <!-- {{ 
-                                    newSchedule.meal_time == ""
-                                        ? "Choose a Meal TIme"
-                                        : newSchedule.meal_time }} -->
+                                >  {{ newSchedule.meal_time }}
                                 </option>
                                 <option
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
@@ -361,7 +377,7 @@ export default defineComponent({
                             class="flex justify-center item-center"
                             v-if="addingMode"
                         >
-                            <PrimaryButton class="w-full">Save</PrimaryButton>
+                            <PrimaryButton  @click="addSchedule" class="w-full">Save</PrimaryButton>
                         </div>
 
                         <template v-else>
