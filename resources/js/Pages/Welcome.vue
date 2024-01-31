@@ -41,7 +41,7 @@ defineProps({
         <FoodCard></FoodCard>
         <FoodCard></FoodCard>
     </div>
-</template>
+   </template>
 
 <style scoped>
 .bg-dots-darker {

@@ -1,8 +1,8 @@
 <template>
     <div
-        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl foodcard dark:foodcard shadow-md transition-all duration-200 ease delay-75"
+        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-md  hover:shadow-none dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-md hover:dark:-shadow-none transition-all duration-200 ease delay-75"
     >
-        <a class="relative flex h-54 overflow-hidden" href="#">
+        <a class="relative flex h-50 overflow-hidden" href="#">
             <img
                 class="object-cover h-fit"
                 src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2R8ZW58MHx8MHx8fDA%3D"
@@ -10,10 +10,10 @@
             />
             <span
                 class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white"
-                >39% OFF</span
+                >New</span
             >
         </a>
-        <div class="mt-4 px-5 pb-5 transition-all duration-200 ease delay-75">
+        <div class="mt-2 px-5 pb-3 transition-all duration-200 ease delay-75">
             <a href="#">
                 <h5
                     class="text-lg font-bold tracking-tight text-oynx dark:text-snow"
@@ -21,7 +21,7 @@
                     Nike Air MX Super 2150 - Red
                 </h5>
             </a>
-            <div class="mt-2 mb-2 flex items-center justify-between">
+            <div class="mt-1 mb-1 flex items-center justify-between">
                 <a href="#">
                     <span class="text-sm text-oynx dark:text-snow">Sam</span>
                 </a>

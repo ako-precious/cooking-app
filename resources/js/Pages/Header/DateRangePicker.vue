@@ -10,7 +10,7 @@
             />
         </div>
 
-          <button class="button bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm text-lg">
+          <button class="button bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm text-lg hover:text-polynesian hover:dark:text-lighred">
             <font-awesome-icon :icon="['fas', 'search']" class="svgIcon "/>
           </button>
     </div>
@@ -53,6 +53,7 @@
   width: 120px;
   border-radius: 50px;
   transition-duration: 0.3s;
+
   background-color: rgb(181, 160, 255);
   align-items: center;
 }
