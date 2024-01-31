@@ -29,7 +29,10 @@
         @apply inline-block w-full px-3 py-2.5 mb-2 font-bold leading-normal text-center text-snow capitalize align-middle transition-all bg-persian border border-transparent border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-green-500 xl-max:to-persian xl-max:text-snow xl-max:border-0 hover:-translate-y-px dark:cursor-not-allowed dark:opacity-65 dark:pointer-events-none dark:bg-gradient-to-tl dark:from-green-500 dark:to-persian dark:text-snow dark:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-green-500 to-persian hover:border-persian;
     }
     .navbar-link{
-        @apply ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1  hover:bg-gradient-to-br hover:from-[#e3dedf] to-[#ffffff] hover:shadow-snow-md hover:dark:bg-gradient-to-br hover:dark:from-[#2b312e] dark:to-[#333a37]  hover:dark:shadow-oynx-md transition-all duration-250 delay-75
+        @apply ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1  hover:bg-gradient-to-br hover:from-[#e3dedf] to-[#ffffff] hover:shadow-snow-md hover:dark:bg-gradient-to-br hover:dark:from-[#2b312e] hover:dark:to-[#333a37]  hover:dark:shadow-oynx-md transition-all duration-250 delay-75 ease-in
+    }
+    .dropdown{
+        @apply bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-md hover:shadow-snow-md z-20 transition-all duration-250 ease-in
     }
        
 }
