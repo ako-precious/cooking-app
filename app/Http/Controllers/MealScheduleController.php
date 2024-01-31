@@ -11,11 +11,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Route;
 use App\Models\MealSchedule;
 use App\Models\Meal;
+use Illuminate\Support\Facades\Auth;
 
 class MealScheduleController extends Controller
 {
     public function schedule()
     {
+        
         return inertia('Meal-Schedule/Index', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -27,7 +29,7 @@ class MealScheduleController extends Controller
     public function index()
     {
         //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
-
+        $id = Auth::id();
         $mealSchedules = MealSchedule::with('meal', 'user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
@@ -54,8 +56,7 @@ class MealScheduleController extends Controller
     {
         try {
 
-            $MealSchedule = mealSchedule::find($id);
-           
+            $MealSchedule = mealSchedule::find($id);           
             $request->validate([
                 'meal_id' => 'required',
                 'user_id' => 'required',
