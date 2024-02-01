@@ -12,32 +12,7 @@
             </div>
 
             <!-- search -->
-            <div
-                class="w-full max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
-            >
-                <div
-                    class="bg-transparent capitalize font-bold text-sm p-4 mr-4 flex justify-around w-full"
-                    name=""
-                    id="">
-                    <a
-                        class="py-2 px-3 navbar-link "
-                        href="">
-                        <p>Meal Schedule</p>
-                    </a>
-                    <a
-                        class="py-2 px-3 navbar-link "
-                        href=""
-                    >
-                        <p>Special Meal</p>
-                    </a>
-                    <a
-                        class="py-2 px-3 navbar-link  "
-                        href=""
-                    >
-                        <p>Explore</p>
-                    </a>
-                </div>
-            </div>
+           <slot name="search"></slot>
 
             <!-- buttons -->
             <nav class="contents">
@@ -62,7 +37,7 @@
                             />
                         </a>
                     </li>
-                    <slot> </slot>
+                    <slot name="dropdown"> </slot>
                 </ul>
             </nav>
         </div>
