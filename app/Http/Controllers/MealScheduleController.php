@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\MealScheduleResource;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Application;
 use Exception;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Route;
-use App\Models\MealSchedule;
+use Inertia\Inertia;
 use App\Models\Meal;
+use Illuminate\Http\Request;
+use App\Models\MealSchedule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Resources\MealScheduleResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class MealScheduleController extends Controller
 {
@@ -29,7 +29,7 @@ class MealScheduleController extends Controller
     public function index()
     {
         //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
-        $id = Auth::id();
+        
         $mealSchedules = MealSchedule::with('meal', 'user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }

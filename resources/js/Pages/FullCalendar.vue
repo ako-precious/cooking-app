@@ -50,7 +50,7 @@ export default defineComponent({
         };
     },
     created() {
-        this.getMealSchedule(), this.closeModal(), this.getSuggestions();
+        this.getMealSchedule(), this.closeModal(), this.getSuggestions()
     },
     methods: {
         getMealSchedule() {

@@ -71,6 +71,7 @@
                     </div>
                 </div>
             </div>
+           
         </fixedPluginCard>
 
         <!-- </div> -->
@@ -95,6 +96,7 @@ export default {
     data() {
         return {
             isClassAdded: "-right-90",
+         
         };
     },
     methods: {
@@ -104,6 +106,9 @@ export default {
             this.isClassAdded =
                 this.isClassAdded === "-right-90" ? "right-0" : "-right-90";
         },
+       
+
+
     },
 };
 </script>

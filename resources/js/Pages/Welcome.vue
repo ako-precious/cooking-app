@@ -4,6 +4,7 @@ import DropBarNav from "./Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import Navbar from "./Header/Navbar.vue";
+import axios from "axios";
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
@@ -12,7 +13,38 @@ defineProps({
 });
 </script>
 
+<script>
+export default {
+    inheritAttrs: false,
+    data() {
+        return {
+            
+          meals: [],
+        };
+    },
+    created() {
+        this.getMeals()
+    },
+    methods: {
+      
+        getMeals() {
+            axios
+                .get("/api/meals")
+                .then((response) => {
+                    this.meals = response.data;                   
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
+        },
+
+
+    },
+};
+</script>
+
 <template>
+  
     <Head title="Welcome" />
 
     <!-- component -->
@@ -29,17 +61,10 @@ defineProps({
         <hr />
     </header>
 
-    <div
+    <div v-for=" meal in meals"
         class="container px-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx  "
     >
-        <FoodCard></FoodCard>
-        <FoodCard></FoodCard>
-        <FoodCard></FoodCard>
-        <FoodCard></FoodCard>
-        <FoodCard></FoodCard>
-        <FoodCard></FoodCard>
-        <FoodCard></FoodCard>
-        <FoodCard></FoodCard>
+         <FoodCard :meal="meal" ></FoodCard>
     </div>
    </template>
 

@@ -1,3 +1,9 @@
+
+
+<script setup>
+
+defineProps(["meal"]);
+</script>
 <template>
     <div
         class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-md  hover:shadow-none dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-md hover:dark:-shadow-none transition-all duration-200 ease delay-75"
@@ -18,12 +24,12 @@
                 <h5
                     class="text-lg font-bold tracking-tight text-oynx dark:text-snow"
                 >
-                    Nike Air MX Super 2150 - Red
+                   {{ meal.title }}
                 </h5>
             </a>
             <div class="mt-1 mb-1 flex items-center justify-between">
                 <a href="#">
-                    <span class="text-sm text-oynx dark:text-snow">Sam</span>
+                    <span class="text-sm text-oynx dark:text-snow">{{ meal.user.name }}</span>
                 </a>
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class="text-persian" />
@@ -36,7 +42,7 @@
             <div class="flex items-center justify-between">
                 <p>
                     <span class="text-lg font-bold text-oynx dark:text-snow"
-                        >$449</span
+                        >$14</span
                     >
                 </p>
                 <div

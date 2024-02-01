@@ -4,7 +4,7 @@
         <div class="relative pr-3 ">
             <input 
                 placeholder="Search for food"
-                class="input1 bg-transparent border-none w-full text-oynx dark:text-white max-w-xl rounded-full py-3 px-5"
+                class="input1 bg-transparent border-none w-full text-oynx dark:text-white max-w-2xl rounded-full py-3 px-5"
                 name="text"
                 type="text"
             />
