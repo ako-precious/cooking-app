@@ -27,9 +27,9 @@ defineProps(["meal"]);
                    {{ meal.title }}
                 </h5>
             </a>
-            <div class="my-2 flex items-center justify-between">
+            <div class="my-1 flex items-center justify-between">
                 <a href="#" class=" ">
-                    <span class="text-xs text-oynx dark:text-snow ">{{ meal.cook.name }}</span>
+                    <span class="text-xs text-oynx dark:text-snow hover:font-bold ">{{ meal.cook.name }}</span>
                 </a>
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class="text-persian" />

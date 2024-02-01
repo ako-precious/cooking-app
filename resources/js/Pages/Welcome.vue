@@ -33,20 +33,22 @@ export default {
     },
     methods: {
         getMeals() {
-            // axios
-            //     .get("/api/meals")
-            //     .then((response) => {
-            //         this.meals = response.data;
-            //     })
-            //     .catch((error) => {
-            //         console.error("Error fetching data:", error);
-            //     });
+            axios
+                .get("/api/meals")
+                .then((response) => {
+                    this.meals = response.data;
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
         },
         filterMeals(searchText) {
             axios
                 .get(`/api/filtered-meals?query=${searchText}`)
                 .then((response) => {
-                    this.meals = response.data;
+                if (response.data.length != 0 ) {
+                        this.meals = response.data;    
+                }
                 })
                 .catch((error) => {
                     console.error("Error fetching filtered data:", error);
@@ -107,7 +109,7 @@ export default {
         </Navbar>
         <DateRangePicker @filter-meals="filterMeals"
             v-if="!isHeaderFixed"
-            class="transition-all duration-300 delay-75 ease-in"
+            class="hidden lg:flex transition-all duration-300 delay-75 ease-in"
         ></DateRangePicker>
         <DateRangePicker @filter-meals="filterMeals"
             
