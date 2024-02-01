@@ -21,10 +21,23 @@ class WelcomeController extends Controller
             'phpVersion' => PHP_VERSION,
         ]);
     }
-//   dd(Auth::check()) ;
-    public function meals(){
-      
+
+    public function meals()
+    {
         $mealSchedules = Meal::with('user')->latest()->get();
+        return response()->json(MealResource::collection($mealSchedules));
+    }
+//   dd(Auth::check()) ;
+    public function filtered_meals(){
+
+        $searchText = request('query');
+        $query = Meal::query();
+        if ($searchText) {
+            $query->where('name', 'like', "%$searchText%")
+                  ->orWhere('description', 'like', "%$searchText%");
+        }
+      
+        $mealSchedules =  $query->with('user')->latest()->get();
         return response()->json(MealResource::collection($mealSchedules));
     }
 

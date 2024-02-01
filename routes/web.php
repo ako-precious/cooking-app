@@ -29,6 +29,7 @@ Route::get('/welcomed', function () {
 });
 
 Route::get('api/meals', [WelcomeController::class, 'meals']);
+Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
 
 Route::middleware([
     'auth:sanctum',
