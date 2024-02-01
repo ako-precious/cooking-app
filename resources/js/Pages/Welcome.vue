@@ -48,8 +48,8 @@ export default {
     <Head title="Welcome" />
 
     <!-- component -->
-    <header class="bg-snow dark:bg-oynx">
-        <Navbar>
+    <header class="bg-snow dark:bg-oynx z-990 height">
+        <Navbar class="  bg-snow dark:bg-oynx">
             <DropBarNav
                 :canLogin="canLogin"
                 :canRegister="canRegister"
@@ -57,8 +57,8 @@ export default {
                 :phpVersion="phpVersion"
             />
         </Navbar>
-        <DateRangePicker></DateRangePicker>
-        <hr />
+        <DateRangePicker class=""></DateRangePicker>
+        
     </header>
 <!-- {{ meals }}
 <ul   v-for=" meal in meals" >
@@ -66,7 +66,7 @@ export default {
 </ul> -->
     
     <div 
-        class="container px-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx  "
+        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx  "
    > <div v-for=" meal in meals">
 
        <FoodCard :meal="meal" ></FoodCard>

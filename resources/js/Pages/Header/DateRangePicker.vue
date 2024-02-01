@@ -1,10 +1,10 @@
 <template>
-    <div class="flex items-center justify-center pb-3 rounded- w-full text-oynx dark:text-snow">
+    <div class="flex items-center justify-center py-5 w-full lg:pb-3 lg:pt-0  text-oynx dark:text-snow">
        
         <div class="relative pr-3 ">
             <input 
                 placeholder="Search for food"
-                class="input1 bg-transparent border-none w-full text-oynx dark:text-white max-w-2xl rounded-full py-3 px-5"
+                class=" shadow-snow-inner dark:shadow-oynx-inner bg-transparent border-none w-[20rem] lg:max-w-lg 2xl:max-w-2xl text-oynx dark:text-white  rounded-full py-3 px-5 outline-none "
                 name="text"
                 type="text"
             />
@@ -20,13 +20,7 @@
 
 <style scoped>
 /* Add Tailwind CSS styles here or in your global styles */
-.input1 {
-  box-shadow: inset 8px 8px 13px #848484,
-            inset -8px -8px 13px #ffffff;
-}
-/* .input1.hover,
-.input1.active {
-} */
+
 
 .button {
   width: 50px;
