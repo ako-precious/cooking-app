@@ -1,11 +1,11 @@
 <template>
-  <form action="">
+  <form @submit.prevent >
     <div class="flex items-center justify-center py-5 w-full lg:p-0  text-oynx dark:text-snow">
        
         <div class="relative pr-3 ">
             <input 
                 placeholder="Search for food"
-                class=" -shadow-snow-sm  dark:-shadow-oynx-sm focus:shadow-snow-inner focus:dark:shadow-oynx-inner bg-transparent border-none w-[20rem] lg:max-w-lg 2xl:max-w-2xl text-oynx dark:text-white  rounded-full py-3 px-5 outline-none   dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred transition-all ease-in duration-250 delay-75"
+                class=" -shadow-snow-sm  dark:-shadow-oynx-sm focus:shadow-snow-inner focus:dark:shadow-oynx-inner bg-transparent border-none lg:w-[25rem]  2xl:max-w-2xl text-oynx dark:text-white  rounded-full py-3 px-5 outline-none   dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred transition-all ease-in duration-250 delay-75"
                 name="text"
                 type="text"
             />
