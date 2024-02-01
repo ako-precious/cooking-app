@@ -22,14 +22,14 @@ defineProps(["meal"]);
         <div class="mt-2 px-5 pb-3 transition-all duration-200 ease delay-75">
             <a href="#">
                 <h5
-                    class="text-lg font-bold tracking-tight text-oynx dark:text-snow"
+                    class="text-lg font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
                 >
                    {{ meal.title }}
                 </h5>
             </a>
             <div class="mt-1 mb-1 flex items-center justify-between">
                 <a href="#">
-                    <span class="text-sm text-oynx dark:text-snow">{{ meal.user.name }}</span>
+                    <span class="text-sm text-oynx dark:text-snow text-nowrap">{{ meal.cook.name }}</span>
                 </a>
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class="text-persian" />

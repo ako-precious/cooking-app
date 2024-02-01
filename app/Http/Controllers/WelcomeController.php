@@ -22,7 +22,7 @@ class WelcomeController extends Controller
         ]);
     }
 //   dd(Auth::check()) ;
-    public function meal(){
+    public function meals(){
       
         $mealSchedules = Meal::with('user')->latest()->get();
         return response()->json(MealResource::collection($mealSchedules));

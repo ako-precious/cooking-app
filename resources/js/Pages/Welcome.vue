@@ -60,13 +60,19 @@ export default {
         <DateRangePicker></DateRangePicker>
         <hr />
     </header>
-
-    <div v-for=" meal in meals"
+<!-- {{ meals }}
+<ul   v-for=" meal in meals" >
+<li>{{ meal.cook.name }}</li>
+</ul> -->
+    
+    <div 
         class="container px-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx  "
-    >
-         <FoodCard :meal="meal" ></FoodCard>
+   > <div v-for=" meal in meals">
+
+       <FoodCard :meal="meal" ></FoodCard>
     </div>
-   </template>
+    </div>
+   </template> 
 
 <style scoped>
 .bg-dots-darker {
