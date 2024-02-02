@@ -59,32 +59,34 @@ const submit = () => {
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
+           <div class="flex justify-between">
+               <div class="mt-4 group">
+                   <InputLabel for="password" value="Password" />
+                   <TextInput
+                       id="password"
+                       v-model="form.password"
+                       type="password"
+                       class="mt-1 block w-full"
+                       required
+                       autocomplete="new-password"
+                   />
+                   <InputError class="mt-2" :message="form.errors.password" />
+               </div>
+   
+               <div class="mt-4 group">
+                   <InputLabel for="password_confirmation" value="Confirm Password" />
+                   <TextInput
+                       id="password_confirmation"
+                       v-model="form.password_confirmation"
+                       type="password"
+                       class="mt-1 block w-full"
+                       required
+                       autocomplete="new-password"
+                   />
+                   <InputError class="mt-2" :message="form.errors.password_confirmation" />
+               </div>
 
-            <div class="mt-4 group">
-                <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4 group">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    required
-                    autocomplete="new-password"
-                />
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
+           </div>
 
             <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature" class="mt-4">
                 <InputLabel for="terms">

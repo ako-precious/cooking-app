@@ -3,7 +3,7 @@
 <script setup>
 import axios from "axios";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-
+ import Register from "@/Pages/Auth/Register.vue"; 
 import TextInput from "@/Components/TextInput.vue";
 defineProps(["meal"]);
 </script>
@@ -133,7 +133,7 @@ export default {
                 alt="product image"
             />
             <span
-                class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white"
+                class="absolute top-0 left-0 m-2 rounded-full bg-oynx px-2 text-center text-sm font-medium text-snow"
                 >New</span
             >
         </a>
@@ -187,7 +187,7 @@ export default {
             class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
             v-show="newEventModalVisible"
         >
-            <div v-if="$page.props.auth.user"
+            <div 
                 class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
             >
                 <div class="relative  rounded-lg shadow shadow-small">
@@ -203,86 +203,92 @@ export default {
                         />
                         <span class="sr-only">Close modal</span>
                     </button>
-                    <form @submit.prevent class="p-4 md:py-8 text-center">
-                        <h2 class="text-oynx dark:text-snow font-bold text-xl">
-                          New Meal Schedule
-                        </h2>
-                        <div class="py-4 relative">
-                            <TextInput
-                                class="my-2 w-full"
-                                v-model="newSchedule.meal_name"
-                                placeholder="Meal Name"
-                            />
-                            <TextInput
-                                readonly
-                                hidden
-                                class="my-2 w-full"
-                                type="number"
-                                v-model= newSchedule.meal_id
-                                placeholder=""
-                            />
-                            <TextInput
-                                readonly
-                                hidden
-                                class="my-2 w-full"
-                                type="number"
-                                v-model= newSchedule.user_id
-                                placeholder=""
-                            />
-                        </div>
+                    <div v-if="$page.props.auth.user">
 
-                        <div class="py-4 flex justify-between">
-                            <TextInput
-                                class="w-[47%]"
-                                v-model="newSchedule.start_date"
-                                type="date"
-                                placeholder=""
-                            />
-                            <TextInput
-                                class="w-[47%]"
-                                v-model="newSchedule.end_date"
-                                type="date"
-                                placeholder=""
-                            />
-                        </div>
-                        <div class="py-4 flex justify-between">
-                            <select
-                                v-model="newSchedule.meal_time"
-                                title="Meal Time" placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md "
-                            >
-                                <option  selected                               
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"                                   
-                                >  {{ newSchedule.meal_time }}
-                                </option>
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="breakfast"
+                        <form @submit.prevent class="p-4 md:py-8 text-center">
+                            <h2 class="text-oynx dark:text-snow font-bold text-xl">
+                              New Meal Schedule
+                            </h2>
+                            <div class="py-4 relative">
+                                <TextInput
+                                    class="my-2 w-full"
+                                    v-model="newSchedule.meal_name"
+                                    placeholder="Meal Name"
+                                />
+                                <TextInput
+                                    readonly
+                                    hidden
+                                    class="my-2 w-full"
+                                    type="number"
+                                    v-model= newSchedule.meal_id
+                                    placeholder=""
+                                />
+                                <TextInput
+                                    readonly
+                                    hidden
+                                    class="my-2 w-full"
+                                    type="number"
+                                    v-model= newSchedule.user_id
+                                    placeholder=""
+                                />
+                            </div>
+    
+                            <div class="py-4 flex justify-between">
+                                <TextInput
+                                    class="w-[47%]"
+                                    v-model="newSchedule.start_date"
+                                    type="date"
+                                    placeholder=""
+                                />
+                                <TextInput
+                                    class="w-[47%]"
+                                    v-model="newSchedule.end_date"
+                                    type="date"
+                                    placeholder=""
+                                />
+                            </div>
+                            <div class="py-4 flex justify-between">
+                                <select
+                                    v-model="newSchedule.meal_time"
+                                    title="Meal Time" placeholder="Choose a meal time"
+                                    class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md "
                                 >
-                                
-                                    Breakfast
-                                </option>
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="launch"
-                                >
-                                    Launch
-                                </option>
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="dinner"
-                                >
-                                    Dinner
-                                </option>
-                            </select>
-                        </div>
-                        <div
-                            class="flex justify-center item-center">
-                            <PrimaryButton  @click="addSchedule" class="w-full">Save</PrimaryButton>
-                        </div>
-
-                       
-                    </form>
+                                    <option  selected                               
+                                        class="bg-snow text-oynx dark:bg-oynx dark:text-snow"                                   
+                                    >  {{ newSchedule.meal_time }}
+                                    </option>
+                                    <option
+                                        class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                        value="breakfast"
+                                    >
+                                    
+                                        Breakfast
+                                    </option>
+                                    <option
+                                        class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                        value="launch"
+                                    >
+                                        Launch
+                                    </option>
+                                    <option
+                                        class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                        value="dinner"
+                                    >
+                                        Dinner
+                                    </option>
+                                </select>
+                            </div>
+                            <div
+                                class="flex justify-center item-center">
+                                <PrimaryButton  @click="addSchedule" class="w-full">Save</PrimaryButton>
+                            </div>
+    
+                           
+                        </form>
+                    </div>
+                    <template v-else>
+                        <Register></Register>
+                    </template>
                 </div>
             </div>
 
