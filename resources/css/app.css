@@ -31,8 +31,8 @@
     .navbar-link{
         @apply ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1  hover:bg-gradient-to-br hover:from-[#e3dedf] to-[#ffffff] hover:shadow-snow-md hover:dark:bg-gradient-to-br hover:dark:from-[#2b312e] hover:dark:to-[#333a37]  hover:dark:shadow-oynx-md transition-all duration-250 delay-75 ease-in
     }
-    .dropdown{
-        @apply bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-md hover:shadow-snow-md z-20 transition-all duration-250 ease-in
+    .shadow-small{
+        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-md  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-md hover:dark:shadow-oynx-md transition-all duration-250 ease-in delay-75
     }
        
 }

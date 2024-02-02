@@ -11,7 +11,7 @@ defineProps({
     <!-- <button class="inline-flex items-center  bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
         
     </button> -->
-    <button :type="type" class="button2 relative px-4 py-2 overflow-hidden dark:button2 mt-5 bg-snow transition-all duration-300 delay-75"><slot /></button>
+    <button :type="type" class="button2 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm relative px-4 py-2 overflow-hidden dark:button2 mt-5 bg-snow transition-all duration-300 delay-75"><slot /></button>
 </template>
 <style scoped>
 .button2 {
@@ -21,7 +21,7 @@ defineProps({
     cursor: pointer;
     font-size: 18px;
     border-radius: 0.5em;    
-    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    /* box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff; */
 }
 
 .button2:active {
@@ -78,7 +78,7 @@ defineProps({
 }
 
 @media (prefers-color-scheme: dark) {
-    .dark\:button2 {
+    /* .dark\:button2 {
         color: #ffe9f3;
         background: linear-gradient(145deg, #2b312e, #333a37);
         box-shadow: 18px 18px 36px #1f2321, -18px -18px 36px #414945;
@@ -87,6 +87,6 @@ defineProps({
     .dark\.button2:active {
         color: #303633;
         box-shadow: inset 4px 4px 12px  #303633, inset -4px -4px 12px rgb(0, 0, 0);
-    }    
+    }     */
 }
 </style>

@@ -11,11 +11,13 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
 // ? import Footer from "@/Layouts/FooterLayout.vue";
 import SideBarLink from "@/Components/Sidebar/SideBarLink.vue";
-import SideBarSpan from "@/Components/Sidebar/SideBarSpan.vue";
+import SideBarSpan from "@/Components/Sidebar/SidebarSpan.vue";
 import SideBarIcon from "@/Components/Sidebar/SideBarIcon.vue";
 import SideBarHeader from "@/Components/Sidebar/SideBarHeader.vue";
 // import FullCalendar from '@/Pages/FullCalendar.vue';
-import SideBarCollapse from "@/Components/Sidebar/SideBarCollapse.vue";
+// Correct import statement
+import SideBarCollapse from '@/Components/Sidebar/SidebarCollapse.vue';
+
 import NavBar from "@/Layouts/NavBar.vue";
 import SubNavBar from "@/Components/Navbar/SubNavBar.vue";
 import NavSideBar from "@/Components/Navbar/NavSideBar.vue";

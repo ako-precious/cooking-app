@@ -3,6 +3,8 @@
 <script setup>
 import axios from "axios";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+
+import TextInput from "@/Components/TextInput.vue";
 defineProps(["meal"]);
 </script>
 <script>
@@ -13,7 +15,7 @@ export default {
             userId: '' ,
             newSchedule: {
                 meal_name: "",
-                meal_time: "Choose a Meal Time",
+                meal_time: "",
                 user_id:  "",
                 start_date: "",
                 end_date: "",
@@ -24,7 +26,7 @@ export default {
         };
     },
     created() {
-        this.getMeals(), this.handleScroll(), this.filterMeals(), this.fetchData();
+        this.getMeals(), this.handleScroll(), this.filterMeals(), this.fetchData(), this.closeModal();
     },
     methods: {
         getMeals() {
@@ -75,15 +77,54 @@ export default {
         },
         handleScroll() {
             // Adjust the scroll threshold as needed
-            const scrollThreshold = 20;
+            const scrollThreshold = 50;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
+        openModal() {
+            // clear everything in the div and close it
+            this.newEventModalVisible = true;
+            // this.suggestedMeal = [];
+            // this.newSchedule = {
+            //     meal_name: "",
+            //     start_date: "",
+            //     end_date: "",
+            //     meal_time: "",
+            // };
+        },
+        closeModal() {
+            // clear everything in the div and close it
+            this.newEventModalVisible = false;
+            this.newSchedule = {
+                meal_name: "",
+                start_date: "",
+                end_date: "",
+                meal_time: "",
+            };
+        },
+        addSchedule(){
+            this.formattedEvents = {
+                meal_id: this.newSchedule.meal_id,
+                user_id: this.newSchedule.user_id,
+                meal_time: this.newSchedule.meal_time,
+                start_date: this.newSchedule.start_date,
+                end_date: this.newSchedule.end_date,
+            };
+            axios
+            .post("/schedule", this.formattedEvents)
+                .then((resp) => {
+                    this.closeModal();
+                    this.getMealSchedule();
+                    // this.addingMode = !this.addingMode;
+                    console.log(resp);
+                })
+                .catch((err) => console.log("Unable to update event!", err));
+         },
     },
 };
 </script>
 <template>
     <div
-        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-md transition-all duration-250 ease-in delay-75"
+        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl shadow-small"
     >
         <a class="relative flex h-54 overflow-hidden" href="#">
             <img
@@ -130,7 +171,7 @@ export default {
                         class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
 
-                    <font-awesome-icon
+                    <font-awesome-icon  @click="openModal"
                         icon="circle-plus" 
                         class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
@@ -142,23 +183,23 @@ export default {
             </div>
         </div>
     </div>
-    <div
+    <div     
             class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
             v-show="newEventModalVisible"
         >
-            <div
+            <div v-if="$page.props.auth.user"
                 class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
             >
-                <div class="relative card rounded-lg shadow dark:card">
+                <div class="relative  rounded-lg shadow shadow-small">
                     <button
                         @click="closeModal"
                         type="button"
-                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-12 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                         data-modal-hide="popup-modal"
                     >
                         <font-awesome-icon
                             icon="fa-solid fa-close"
-                            class="text-persian text-lg"
+                            class="text-persian text-2xl"
                         />
                         <span class="sr-only">Close modal</span>
                     </button>
@@ -244,6 +285,7 @@ export default {
                     </form>
                 </div>
             </div>
+
         </div>
 </template>
 <style scoped>
