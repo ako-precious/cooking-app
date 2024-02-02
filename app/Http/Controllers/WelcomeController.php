@@ -24,7 +24,8 @@ class WelcomeController extends Controller
 
     public function meals()
     {
-        $mealSchedules = Meal::with('user')->latest()->get();
+        $mealSchedules = Meal::with('user')->latest()->paginate(24)
+        ->withQueryString();
         return response()->json(MealResource::collection($mealSchedules));
     }
 //   dd(Auth::check()) ;
