@@ -153,11 +153,11 @@ export default {
             <FoodCard :meal="meal"></FoodCard>
         </div>
     </div>
-    <div class="flex justify-center items-center flex-col">
+    <div class="flex justify-center items-center flex-col" v-if="hasMoreData">
         <h2 class="font-bold text-lg text-oynx tracking-wider dark:text-snow">
             Continue exploring Meals
         </h2>
-        <button v-if="hasMoreData" @click="loadMoreData">Show More</button>
+        <button  @click="loadMoreData">Show More</button>
     </div>
 </template>
 
