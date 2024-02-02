@@ -95,7 +95,7 @@ export default {
     <!-- component -->
     <header
         :class="{ fixed: isHeaderFixed }"
-        class="bg-snow dark:bg-oynx z-990 w-screen transition-all duration-300 delay-75 ease-in"
+        class="bg-snow dark:bg-oynx z-990 w-screen transition-all duration-300 delay-75 ease-in animate-fade-in"
     >
         <Navbar class="bg-snow dark:bg-oynx">
             <template #search>
@@ -138,22 +138,22 @@ export default {
         <DateRangePicker
             @filter-meals="filterMeals"
             v-if="!isHeaderFixed"
-            class="hidden lg:flex transition-all duration-300 delay-75 ease-in"
+            class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
         ></DateRangePicker>
         <DateRangePicker
             @filter-meals="filterMeals"
-            class="lg:hidden transition-all duration-300 delay-75 ease-in"
+            class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in"
         ></DateRangePicker>
     </header>
 
     <div
-        class="container mt-4 p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+        class="container mt-4 p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
         <div v-for="meal in meals" :key="meal.id" class="animate-fade-in ">
             <FoodCard :meal="meal"></FoodCard>
         </div>
     </div>
-    <div class="flex justify-center items-center flex-col" v-if="hasMoreData">
+    <div class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce" v-if="hasMoreData">
         <h2 class="font-bold text-lg text-oynx tracking-wider dark:text-snow">
             Continue exploring Meals
         </h2>

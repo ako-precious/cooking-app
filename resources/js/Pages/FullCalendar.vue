@@ -28,7 +28,7 @@ export default defineComponent({
             newEventModalVisible: false,
             newSchedule: {
                 meal_name: "",
-                meal_time: " ",
+                meal_time: "",
                 user_id: "",
                 start_date: "",
                 end_date: "",
@@ -152,18 +152,6 @@ export default defineComponent({
                 end_date: end,
             };
 
-            // // Add the new event to the FullCalendar
-            // this.$refs.fullCalendar.getApi().addEvent(newEvent);
-
-            // // You can also send the new event data to the server to save in the database if needed
-            // axios
-            //     .post("/schedule", newEvent)
-            //     .then((response) => {
-            //         // Handle the response if needed
-            //     })
-            //     .catch((error) => {
-            //         console.error("Error creating new event:", error);
-            //     });
         },
          addSchedule(){
             this.formattedEvents = {
