@@ -59,7 +59,7 @@ const submit = () => {
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
-           <div class="flex justify-between">
+           <div class="flex flex-col lg:flex-row justify-between">
                <div class="mt-4 group">
                    <InputLabel for="password" value="Password" />
                    <TextInput

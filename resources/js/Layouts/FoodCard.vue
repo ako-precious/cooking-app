@@ -3,7 +3,7 @@
 <script setup>
 import axios from "axios";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
- import Register from "@/Pages/Auth/Register.vue"; 
+ import Login from "@/Pages/Auth/Login.vue"; 
 import TextInput from "@/Components/TextInput.vue";
 defineProps(["meal"]);
 </script>
@@ -13,6 +13,7 @@ export default {
     data() {
         return {
             userId: '' ,
+            message:'',
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
@@ -80,16 +81,20 @@ export default {
             const scrollThreshold = 50;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
-        openModal() {
+        openModal(meal) {
             // clear everything in the div and close it
             this.newEventModalVisible = true;
-            // this.suggestedMeal = [];
-            // this.newSchedule = {
-            //     meal_name: "",
-            //     start_date: "",
-            //     end_date: "",
-            //     meal_time: "",
-            // };
+           if (this.$page.props.auth.user) {
+             // this.suggestedMeal = [];
+             this.newSchedule = {
+                 meal_name: meal.title,
+                 meal_id: meal.id.toString(),
+                 user_id: this.$page.props.auth.user.id.toString(),
+                 start_date: "",
+                 end_date: "",
+                 meal_time: "Choose a Meal time",
+             };
+           }
         },
         closeModal() {
             // clear everything in the div and close it
@@ -112,12 +117,15 @@ export default {
             axios
             .post("/schedule", this.formattedEvents)
                 .then((resp) => {
-                    this.closeModal();
-                    this.getMealSchedule();
-                    // this.addingMode = !this.addingMode;
+                    this.message = resp.message
                     console.log(resp);
+
+                    new Promise((resolve) => setTimeout(resolve, 100));
+
+                    this.closeModal();
+                    // this.addingMode = !this.addingMode;
                 })
-                .catch((err) => console.log("Unable to update event!", err));
+                .catch((err) => console.log("Unable to add Meal !", err));
          },
     },
 };
@@ -171,7 +179,7 @@ export default {
                         class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
 
-                    <font-awesome-icon  @click="openModal"
+                    <font-awesome-icon  @click="openModal(meal)"
                         icon="circle-plus" 
                         class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
@@ -210,7 +218,7 @@ export default {
                               New Meal Schedule
                             </h2>
                             <div class="py-4 relative">
-                                <TextInput
+                                <TextInput readonly
                                     class="my-2 w-full"
                                     v-model="newSchedule.meal_name"
                                     placeholder="Meal Name"
@@ -287,7 +295,7 @@ export default {
                         </form>
                     </div>
                     <template v-else>
-                        <Register></Register>
+                        <Login></Login>
                     </template>
                 </div>
             </div>
