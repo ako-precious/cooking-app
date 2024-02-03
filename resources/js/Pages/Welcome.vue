@@ -95,7 +95,7 @@ export default {
     <!-- component -->
     <header
         :class="{ fixed: isHeaderFixed }"
-        class="bg-snow dark:bg-oynx z-990 w-screen transition-all duration-300 delay-75 ease-in animate-fade-in"
+        class="bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
     >
         <Navbar class="bg-snow dark:bg-oynx">
             <template #search>
