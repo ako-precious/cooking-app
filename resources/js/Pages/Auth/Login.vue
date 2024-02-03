@@ -35,7 +35,7 @@ const submit = () => {
 
     <AuthenticationCard >
         <template #logo>
-            <AuthenticationCardLogo />
+            <!-- <AuthenticationCardLogo /> -->
         </template>
 
         <div

@@ -122,7 +122,7 @@ export default {
             axios
                 .post("/schedule", this.formattedEvents)
                 .then((resp) => {
-                    this.message = resp.message;
+                    this.message = resp.data.message;
                     console.log(resp);
 
                     setTimeout(() => {
@@ -138,7 +138,7 @@ export default {
                         console.log("Unable to add Meal !", err);
                         // Uncomment the line below if you want to toggle addingMode after the delay
                         // this.addingMode = !this.addingMode;
-                    }, 5000);
+                    }, 10000);
                 });
         },
     },
