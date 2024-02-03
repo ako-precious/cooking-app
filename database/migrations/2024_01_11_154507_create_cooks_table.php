@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cooks', function (Blueprint $table) {
-           $table->string('address');
+        Schema::create('cooks', function (Blueprint $table) {  
+            $table->id();        
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'foreign_key_name')->references('id')->on('users');
-            $table->string('means_of_id')->nullable();
             $table->string('certificate')->nullable();
             $table->string('means_of_alt')->nullable();
             $table->longText('other_info')->nullable();

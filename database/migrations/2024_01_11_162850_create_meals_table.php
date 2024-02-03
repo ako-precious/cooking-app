@@ -17,6 +17,14 @@ return new class extends Migration
             $table->foreign('cook_id', 'foreign_meal_cooks')->references('id')->on('users');
             $table->string('name');
             $table->string('description');
+            $table->string('meal_photo_path', 2048)->nullable();
+            $table->float('price');
+            $table->unsignedBigInteger('rating_id');
+            $table->foreign('rating_id', 'foreign_meal_rating')->references('id')->on('ratings');
+            $table->unsignedBigInteger('ingredient_id');
+            $table->foreign('ingredients_id', 'foreign_meal_ingredient')->references('id')->on('ingredients');
+            $table->unsignedBigInteger('photo_id');
+            $table->foreign('photo_id', 'foreign_meal_pictures')->references('id')->on('meal_photos');
             $table->timestamps();
         });
     }
