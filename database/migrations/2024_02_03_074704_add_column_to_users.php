@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('badge_id')->nullable();
             $table->foreign('badge_id', 'user_badge')->references('id')->on('badges');
             $table->unsignedBigInteger('DRA_id')->nullable();
-            $table->foreign('DRA_id', 'user_Dietary_restrictions_allergies')->references('id')->on('dietary_restrictions_allergies');
+            $table->json('ingredients');
             $table->longText('other_info')->nullable();
         });
     }

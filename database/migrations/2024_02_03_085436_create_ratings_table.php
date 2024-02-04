@@ -17,8 +17,11 @@ return new class extends Migration
             $table->foreign('meal_id', 'foreign_meal_rating')->references('id')->on('meals');            
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id', 'foreign_meal_rating')->references('id')->on('users');
-            $table->integer('presentation');
-            $
+            $table->tinyInteger('presentation');
+            $table->tinyInteger('taste');
+            $table->tinyInteger('value');
+            $table->tinyInteger('nutrition');
+            $table->tinyInteger('variety'); 
             $table->longText('comment');
 
             $table->timestamps();

@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('meal_photo_path', 2048)->nullable();
             $table->float('price');
-            $table->unsignedBigInteger('ingredient_id');
-            $table->foreign('ingredients_id', 'foreign_meal_ingredient')->references('id')->on('ingredients');            
+            $table->json('ingredients');
             $table->timestamps();
         });
     }
