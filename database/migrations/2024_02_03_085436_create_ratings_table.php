@@ -12,7 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ratings', function (Blueprint $table) {
-            $table->id();
+            $table->id();            
+            $table->unsignedBigInteger('meal_id')->nullable();
+            $table->foreign('meal_id', 'foreign_meal_rating')->references('id')->on('meals');            
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id', 'foreign_meal_rating')->references('id')->on('users');
+            $table->integer('presentation');
+            $
+            $table->longText('comment');
+
             $table->timestamps();
         });
     }
