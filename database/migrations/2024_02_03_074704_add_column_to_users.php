@@ -15,11 +15,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('status')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('means_of_id')->nullable();
-            $table->unsignedBigInteger('badge_id')->nullable();
-            $table->foreign('badge_id', 'user_badge')->references('id')->on('badges');
-            $table->unsignedBigInteger('DRA_id')->nullable();
-            $table->json('ingredients');
+            $table->string('means_of_id')->nullable();           
+            $table->json('dietary_restrictions_allergies')->nullable();
             $table->longText('other_info')->nullable();
         });
     }

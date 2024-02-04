@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('badges', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('description');
+            $table->string("badge_photo_path", 2048);
             $table->timestamps();
         });
     }
