@@ -22,8 +22,7 @@ return new class extends Migration
             $table->tinyInteger('value');
             $table->tinyInteger('nutrition');
             $table->tinyInteger('variety'); 
-            $table->longText('comment');
-
+            $table->text('comment');
             $table->timestamps();
         });
     }

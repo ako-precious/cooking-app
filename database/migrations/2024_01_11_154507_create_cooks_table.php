@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'foreign_key_name')->references('id')->on('users');
             $table->string('certificate')->nullable();
-            $table->string('means_of_alt')->nullable();
+            $table->string('means_of_id')->nullable();
             $table->longText('other_info')->nullable();
 
             $table->timestamps();

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('meal_photo_path', 2048)->nullable();
             $table->float('price');
             $table->json('ingredients');
+            $table->integer('cooking_limit');
             $table->timestamps();
         });
     }
