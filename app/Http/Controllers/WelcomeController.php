@@ -13,7 +13,8 @@ use App\Models\Meal;
 class WelcomeController extends Controller
 {
     public function index() {
-     
+        
+       
           return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -28,7 +29,6 @@ class WelcomeController extends Controller
         
         return response()->json(MealResource::collection($mealSchedules));
     }
-//   dd(Auth::check()) ;
     public function filtered_meals(){
 
         $searchText = request('query');

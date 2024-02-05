@@ -74,7 +74,7 @@ class MealFactory extends Factory
             'cook_id' => $this->faker->randomElement($cooksIds),
             'name' => $chosenFood = $this->faker->randomElement(array_keys($foodsAndIngredients)),
             'description' => implode(' ', $this->faker->sentences(3)),
-            'price' => $this->faker->randomFloat(2, 5, 50),
+            'price' => $this->faker->numberBetween(2, 5, 50),
             'ingredients' => json_encode([
                 'ingredient' => $foodsAndIngredients[$chosenFood],
             ]),

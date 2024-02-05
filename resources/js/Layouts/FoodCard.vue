@@ -111,7 +111,7 @@ export default {
             this.message = "";
             this.error = "";
         },
-        addSchedule() {
+        formatSchedule() {
             this.formattedEvents = {
                 meal_id: this.newSchedule.meal_id,
                 user_id: this.newSchedule.user_id,
@@ -119,27 +119,39 @@ export default {
                 start_date: this.newSchedule.start_date,
                 end_date: this.newSchedule.end_date,
             };
-            axios
-                .post("/schedule", this.formattedEvents)
-                .then((resp) => {
-                    this.message = resp.data.message;
-                    console.log(resp);
+        },
 
-                    setTimeout(() => {
-                        this.closeModal();
-                        // Uncomment the line below if you want to toggle addingMode after the delay
-                        // this.addingMode = !this.addingMode;
-                    }, 5000);
-                })
-                .catch((err) => {
-                    this.error = "Unable to add Meal !";
-                    setTimeout(() => {
-                        this.error = "";
-                        console.log("Unable to add Meal !", err);
-                        // Uncomment the line below if you want to toggle addingMode after the delay
-                        // this.addingMode = !this.addingMode;
-                    }, 10000);
-                });
+        addSchedule() {
+            const today = new Date().toISOString().replace(/T.*$/, "");
+            if (today >= this.newSchedule.start_date) {
+                this.error =
+                    "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
+            }if ( this.newSchedule.start_date >= this.newSchedule.start_end) {
+                this.error = "The start date cannot be the same as or later than the end date. Please choose a start date that comes before the end date."
+                   }
+             else {
+                this.formatSchedule();
+
+                axios
+                    .post("/schedule", this.formattedEvents)
+                    .then((resp) => {
+                        this.message = resp.data.message;
+                        console.log(resp);
+
+                        setTimeout(() => {
+                            this.closeModal();
+                            // Uncomment the line below if you want to toggle addingMode after the delay
+                            // this.addingMode = !this.addingMode;
+                        }, 5000);
+                    })
+                    .catch((err) => {
+                        this.error = "Unable to add Meal !";
+                        setTimeout(() => {
+                            this.error = "";
+                            console.log("Unable to add Meal !", err);
+                        }, 10000);
+                    });
+            }
         },
     },
 };
@@ -167,7 +179,7 @@ export default {
                     {{ meal.title }}
                 </h5>
             </a>
-            <div class="my-1 flex items-center justify-between">
+            <div class="my-2 flex items-center justify-between">
                 <a href="#" class=" ">
                     <span
                         class="text-xs text-oynx dark:text-snow hover:font-bold"
@@ -185,7 +197,7 @@ export default {
             <div class="flex items-center justify-between">
                 <p>
                     <span class="text-lg font-bold text-oynx dark:text-snow"
-                        >$14</span
+                        >${{ Math.round(meal.price) }}</span
                     >
                 </p>
                 <div
@@ -241,9 +253,8 @@ export default {
                         <div
                             class="px-6 py-4 mt-1 bg-lighred/20 rounded-lg text-lighred"
                         >
-                             <span class="font-bold">{{ error }}</span> 
+                            <span class="font-bold">{{ error }}</span>
                         </div>
-                        
                     </div>
 
                     <form @submit.prevent class="p-4 md:py-8 text-center">

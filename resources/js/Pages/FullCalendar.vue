@@ -142,16 +142,25 @@ export default defineComponent({
             const end = info.endStr;
             this.newEventModalVisible = true;
             this.addingMode = true;
-            console.log(start + end);
+            // console.log(start + end);
 
             this.newSchedule = {
                 meal_name: "",
                 meal_time: "Choose a Meal Time",
-                user_id:  this.userId,
+                user_id:  this.userId.toString(),
                 start_date: start,
                 end_date: end,
             };
 
+        },
+        formatSchedule() {
+            this.formattedEvents = {
+                meal_id: this.newSchedule.meal_id,
+                user_id: this.newSchedule.user_id,
+                meal_time: this.newSchedule.meal_time,
+                start_date: this.newSchedule.start_date,
+                end_date: this.newSchedule.end_date,
+            };
         },
          addSchedule(){
             this.formattedEvents = {

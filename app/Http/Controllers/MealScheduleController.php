@@ -17,7 +17,7 @@ class MealScheduleController extends Controller
 {
     public function schedule()
     {
-        
+        // dd(Auth::id()) ;
         return inertia('Meal-Schedule/Index', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
@@ -29,8 +29,8 @@ class MealScheduleController extends Controller
     public function index()
     {
         //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
-        
-        $mealSchedules = MealSchedule::with('meal', 'user')->get();
+        $userId = Auth::id();
+        $mealSchedules = MealSchedule::where('user_id',$userId)->with('meal', 'user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
 
