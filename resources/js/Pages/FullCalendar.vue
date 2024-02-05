@@ -116,8 +116,8 @@ export default defineComponent({
             this.newSchedule = {
                 id: id,
                 meal_name: title,
-                meal_id: meal_id,
-                user_id: user_id,
+                meal_id: meal_id.toString(),
+                user_id: user_id.toString(),
                 meal_time: meal_time,
                 start_date: start,
                 end_date: end,
@@ -193,7 +193,6 @@ export default defineComponent({
                     .post("/schedule", this.formattedEvents)
                     .then((resp) => {
                         this.message = resp.data.message;
-                        console.log(resp);
 
                         setTimeout(() => {
                             this.closeModal();
@@ -205,7 +204,6 @@ export default defineComponent({
                         this.error = "Unable to add Meal !";
                         setTimeout(() => {
                             this.error = "";
-                            console.log("Unable to add Meal !", err);
                         }, 10000);
                     });
             }
@@ -234,14 +232,22 @@ export default defineComponent({
                 axios
                     .put("/schedule/" + id, this.formattedEvents)
                     .then((resp) => {
-                        this.closeModal();
-                        this.getMealSchedule();
-                        this.addingMode = !this.addingMode;
-                        console.log(resp);
+                        this.message = resp.data.message;
+
+                        setTimeout(() => {
+                            // Uncomment the line below if you want to toggle addingMode after the delay
+                            // this.addingMode = !this.addingMode;
+                            this.closeModal();
+                            this.getMealSchedule();
+                            this.addingMode = !this.addingMode;
+                        }, 5000);
                     })
-                    .catch((err) =>
-                        console.log("Unable to update event!", err)
-                    );
+                    .catch((err) => {
+                        this.error = "Unable to add Meal !";
+                        setTimeout(() => {
+                            this.error = "";
+                        }, 10000);
+                    });
             }
         },
 
@@ -249,14 +255,22 @@ export default defineComponent({
             axios
                 .delete("/schedule/" + id)
                 .then((resp) => {
-                    this.closeModal();
-                    this.getMealSchedule();
-                    console.log(resp);
-                    // this.addingMode = !this.addingMode;
+                    this.message = resp.data.message;
+
+                    setTimeout(() => {
+                        // Uncomment the line below if you want to toggle addingMode after the delay
+                        // this.addingMode = !this.addingMode;
+                        this.closeModal();
+                        this.getMealSchedule();
+                        this.addingMode = !this.addingMode;
+                    }, 5000);
                 })
-                .catch((err) =>
-                    console.log("Unable to delete event!", err.response.data)
-                );
+                .catch((err) => {
+                    this.error = "Unable to add Meal !";
+                    setTimeout(() => {
+                        this.error = "";
+                    }, 10000);
+                });
         },
     },
 });
