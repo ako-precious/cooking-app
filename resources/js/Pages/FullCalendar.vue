@@ -17,11 +17,13 @@ export default defineComponent({
         FullCalendar,
     },
     props: {
-    auth: Object,
-  },
+        auth: Object,
+    },
     data() {
         return {
-            userId: this.$page.props.auth.user.id ,
+            message: "",
+            error: "",
+            userId: this.$page.props.auth.user.id,
             suggestedMeal: [],
             schedules: [],
             formattedEvents: [],
@@ -50,7 +52,10 @@ export default defineComponent({
         };
     },
     created() {
-        this.getMealSchedule(), this.closeModal(), this.getSuggestions()
+        this.getMealSchedule(),
+            this.closeModal(),
+            this.getSuggestions(),
+            this.formatSchedule();
     },
     methods: {
         getMealSchedule() {
@@ -147,11 +152,10 @@ export default defineComponent({
             this.newSchedule = {
                 meal_name: "",
                 meal_time: "Choose a Meal Time",
-                user_id:  this.userId.toString(),
+                user_id: this.userId.toString(),
                 start_date: start,
                 end_date: end,
             };
-
         },
         formatSchedule() {
             this.formattedEvents = {
@@ -162,41 +166,83 @@ export default defineComponent({
                 end_date: this.newSchedule.end_date,
             };
         },
-         addSchedule(){
-            this.formattedEvents = {
-                meal_id: this.newSchedule.meal_id,
-                user_id: this.newSchedule.user_id,
-                meal_time: this.newSchedule.meal_time,
-                start_date: this.newSchedule.start_date,
-                end_date: this.newSchedule.end_date,
-            };
-            axios
-            .post("/schedule", this.formattedEvents)
-                .then((resp) => {
-                    this.closeModal();
-                    this.getMealSchedule();
-                    // this.addingMode = !this.addingMode;
-                    console.log(resp);
-                })
-                .catch((err) => console.log("Unable to update event!", err));
-         },
+
+        addSchedule() {
+            const today = new Date().toISOString().replace(/T.*$/, "");
+            if (
+                this.newSchedule.meal_name == "" ||
+                this.newSchedule.start_date == "" ||
+                this.newSchedule.end_date == "" ||
+                this.newSchedule.meal_time == "" ||
+                this.newSchedule.user_id == ""
+            ) {
+                this.error =
+                    "Please fill in all  fields to create your schedule.";
+            } else if (today >= this.newSchedule.start_date) {
+                this.error =
+                    "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
+            } else if (
+                this.newSchedule.start_date > this.newSchedule.end_date
+            ) {
+                this.error =
+                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
+            } else {
+                this.formatSchedule();
+
+                axios
+                    .post("/schedule", this.formattedEvents)
+                    .then((resp) => {
+                        this.message = resp.data.message;
+                        console.log(resp);
+
+                        setTimeout(() => {
+                            this.closeModal();
+                            // Uncomment the line below if you want to toggle addingMode after the delay
+                            // this.addingMode = !this.addingMode;
+                        }, 5000);
+                    })
+                    .catch((err) => {
+                        this.error = "Unable to add Meal !";
+                        setTimeout(() => {
+                            this.error = "";
+                            console.log("Unable to add Meal !", err);
+                        }, 10000);
+                    });
+            }
+        },
         updateSchedule(id) {
-            this.formattedEvents = {
-                meal_id: this.newSchedule.meal_id,
-                user_id: this.newSchedule.user_id,
-                meal_time: this.newSchedule.meal_time,
-                start_date: this.newSchedule.start_date,
-                end_date: this.newSchedule.end_date,
-            };
-            axios
-                .put("/schedule/" + id, this.formattedEvents)
-                .then((resp) => {
-                    this.closeModal();
-                    this.getMealSchedule();
-                    this.addingMode = !this.addingMode;
-                    console.log(resp);
-                })
-                .catch((err) => console.log("Unable to update event!", err));
+            const today = new Date().toISOString().replace(/T.*$/, "");
+            if (
+                this.newSchedule.meal_name == "" ||
+                this.newSchedule.start_date == "" ||
+                this.newSchedule.end_date == "" ||
+                this.newSchedule.meal_time == "" ||
+                this.newSchedule.user_id == ""
+            ) {
+                this.error =
+                    "Please fill in all  fields to create your schedule.";
+            } else if (today >= this.newSchedule.start_date) {
+                this.error =
+                    "Schedules can only be edited to future dates. Would you like to choose a future date for the start ";
+            } else if (
+                this.newSchedule.start_date > this.newSchedule.end_date
+            ) {
+                this.error =
+                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
+            } else {
+                this.formatSchedule();
+                axios
+                    .put("/schedule/" + id, this.formattedEvents)
+                    .then((resp) => {
+                        this.closeModal();
+                        this.getMealSchedule();
+                        this.addingMode = !this.addingMode;
+                        console.log(resp);
+                    })
+                    .catch((err) =>
+                        console.log("Unable to update event!", err)
+                    );
+            }
         },
 
         deleteSchedule(id) {
@@ -246,6 +292,20 @@ export default defineComponent({
                         />
                         <span class="sr-only">Close modal</span>
                     </button>
+                    <div class="" v-if="message">
+                        <div
+                            class="px-6 py-4 mt-1 bg-persian/20 rounded-lg text-persian"
+                        >
+                            <span class="font-bold"> {{ message }} </span>
+                        </div>
+                    </div>
+                    <div class="" v-if="error">
+                        <div
+                            class="px-6 py-4 mt-1 bg-lighred/20 rounded-lg text-lighred"
+                        >
+                            <span class="font-bold">{{ error }}</span>
+                        </div>
+                    </div>
                     <form @submit.prevent class="p-4 md:py-8 text-center">
                         <h2 class="text-oynx dark:text-snow font-bold text-xl">
                             {{
@@ -267,7 +327,7 @@ export default defineComponent({
                                 class="my-2 w-full"
                                 type="number"
                                 @input="getSuggestions('meal_id')"
-                                v-model= newSchedule.meal_id
+                                v-model="newSchedule.meal_id"
                                 placeholder=""
                             />
                             <TextInput
@@ -275,7 +335,7 @@ export default defineComponent({
                                 hidden
                                 class="my-2 w-full"
                                 type="number"
-                                v-model= newSchedule.user_id
+                                v-model="newSchedule.user_id"
                                 placeholder=""
                             />
                             <div
@@ -342,18 +402,20 @@ export default defineComponent({
                         <div class="py-4 flex justify-between">
                             <select
                                 v-model="newSchedule.meal_time"
-                                title="Meal Time" placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md "
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
-                                <option  selected                               
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"                                   
-                                >  {{ newSchedule.meal_time }}
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                >
+                                    {{ newSchedule.meal_time }}
                                 </option>
                                 <option
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
                                     value="breakfast"
                                 >
-                                
                                     Breakfast
                                 </option>
                                 <option
@@ -374,7 +436,9 @@ export default defineComponent({
                             class="flex justify-center item-center"
                             v-if="addingMode"
                         >
-                            <PrimaryButton  @click="addSchedule" class="w-full">Save</PrimaryButton>
+                            <PrimaryButton @click="addSchedule" class="w-full"
+                                >Save</PrimaryButton
+                            >
                         </div>
 
                         <template v-else>

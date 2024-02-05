@@ -91,13 +91,13 @@ const logout = () => {
           
              
             <li class="mt-0.5 w-full group">
-                <Link :href="`/teams`">
+                <Link :href="`/meal-schedule`">
                 <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
                     <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
                        
                         <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
                     </SideBarIcon>
-                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Calendar </SideBarSpan>
+                    <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Meal schedule </SideBarSpan>
                 </SideBarLink>
             </Link>
             </li>

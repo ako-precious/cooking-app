@@ -123,13 +123,23 @@ export default {
 
         addSchedule() {
             const today = new Date().toISOString().replace(/T.*$/, "");
-            if (today >= this.newSchedule.start_date) {
+            if (
+                this.newSchedule.start_date == "" ||
+                this.newSchedule.end_date == "" ||
+                this.newSchedule.meal_time == "" ||
+                this.newSchedule.user_id == ""
+            ) {
+                this.error =
+                    "Please fill in all  fields to create your schedule.";
+            } else if (today >= this.newSchedule.start_date) {
                 this.error =
                     "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
-            }if ( this.newSchedule.start_date >= this.newSchedule.start_end) {
-                this.error = "The start date cannot be the same as or later than the end date. Please choose a start date that comes before the end date."
-                   }
-             else {
+            } else if (
+                this.newSchedule.start_date > this.newSchedule.end_date
+            ) {
+                this.error =
+                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
+            } else {
                 this.formatSchedule();
 
                 axios
@@ -264,6 +274,7 @@ export default {
                         <div class="py-4 relative">
                             <TextInput
                                 readonly
+                                required
                                 class="my-2 w-full"
                                 v-model="newSchedule.meal_name"
                                 placeholder="Meal Name"
@@ -271,6 +282,7 @@ export default {
                             <TextInput
                                 readonly
                                 hidden
+                                required
                                 class="my-2 w-full"
                                 type="number"
                                 v-model="newSchedule.meal_id"
@@ -279,6 +291,7 @@ export default {
                             <TextInput
                                 readonly
                                 hidden
+                                required
                                 class="my-2 w-full"
                                 type="number"
                                 v-model="newSchedule.user_id"
@@ -288,12 +301,14 @@ export default {
 
                         <div class="py-4 flex justify-between">
                             <TextInput
+                                required
                                 class="w-[47%]"
                                 v-model="newSchedule.start_date"
                                 type="date"
                                 placeholder=""
                             />
                             <TextInput
+                                required
                                 class="w-[47%]"
                                 v-model="newSchedule.end_date"
                                 type="date"
@@ -302,6 +317,7 @@ export default {
                         </div>
                         <div class="py-4 flex justify-between">
                             <select
+                                required
                                 v-model="newSchedule.meal_time"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
