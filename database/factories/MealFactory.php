@@ -21,23 +21,64 @@ class MealFactory extends Factory
      */
     public function definition(): array
     {
-        $foods = [
-            "Sushi","Chocolate Fondue","Pizza","Caviar","Croissant", "Dim Sum", "Escargot", "Tiramisu", "Peking Duck", "Gelato", 
-            "Pasta Carbonara", "Lobster Bisque", "Moussaka", "Poutine", "Pho", "Tapas", "Churros", "Baklava", "Hummus", "Ramen", 
-            "Pad Thai", "Ceviche", "Paella", "Beef Wellington", "Macarons", "Creme Brulee", "Tandoori Chicken", "Kaiseki", "Gyoza", 
-            "Fondue", "Pierogi", "Bruschetta", "Tartare", "Jambalaya", 'Smoothie and Donuts', 'Moussaka', 'Empanadas', 'Samosa',
-            'Peking Duck', 'Tiramisu', 'Wiener Schnitzel', 'Borscht', 'Croque Monsieur',
-            'Jollof Rice', 'Fish and Chips', 'Pierogi', 'Falafel', 'Pho', 'Rendang', 'Pasta Carbonara', 'Burger and Ice Cream',
+
+
+        $foodsAndIngredients = [
+            "Sushi" => ["seafood", "rice", "vinegar", "sugar", "salt", "wasabi", "ginger", "soy sauce"],
+            "Chocolate Fondue" => ["chocolate", "cream", "milk", "sugar", "fruit"],
+            "Pizza" => ["dough", "tomato sauce", "cheese", "toppings"],
+            "Caviar" => ["fish eggs", "salt", "onion", "lemon", "cream fraiche"],
+            "Croissant" => ["dough", "butter", "sugar", "salt", "yeast"],
+            "Dim Sum" => ["dumplings", "fillings", "sauce"],
+            "Escargot" => ["snails", "garlic", "butter", "parsley", "wine"],
+            "Tiramisu" => ["ladyfingers", "mascarpone cheese", "eggs", "sugar", "cocoa powder"],
+            "Peking Duck" => ["duck", "pancakes", "scallions", "hoisin sauce"],
+            "Gelato" => ["milk", "cream", "sugar", "flavorings"],
+            "Pasta Carbonara" => ["pasta", "eggs", "cheese", "pancetta", "black pepper"],
+            "Lobster Bisque" => ["lobster", "cream", "butter", "brandy", "vegetables"],
+            "Moussaka" => ["eggplant", "ground lamb",  "bechamel sauce", "cheese"],
+            "Poutine" => ["fries", "cheese curds", "gravy"],
+            "Pho" => ["beef broth", "rice noodles", "meat", "vegetables", "herbs"],
+            "Tapas" => ["small plates of various Spanish dishes"],
+            "Churros" => ["dough", "sugar", "cinnamon"],
+            "Baklava" => ["phyllo dough", "nuts", "honey", "spices"],
+            "Hummus" => ["chickpeas", "tahini", "olive oil", "lemon juice", "garlic"],
+            "Ramen" => ["noodles", "broth", "meat", "vegetables", "egg"],
+            "Pad Thai" => ["rice noodles", "eggs", "tofu", "vegetables", "peanut sauce"],
+            "Ceviche" => ["fish", "citrus juice", "onions", "peppers", "cilantro"],
+            "Paella" => ["rice", "chicken", "seafood", "vegetables", "saffron"],
+            "Beef Wellington" => ["beef", "duxelles", "puff pastry"],
+            "Macarons" => ["almond flour", "sugar", "egg whites", "food coloring"],
+            "Creme Brulee" => ["cream", "egg yolks", "sugar", "vanilla extract"],
+            "Tandoori Chicken" => ["chicken", "yogurt", "tandoori masala", "lemon juice"],
+            "Kaiseki" => ["multiple small, beautifully arranged courses"],
+            "Gyoza" => ["dumplings", "meat", "vegetables"],
+            "Fondue" => ["cheese", "wine", "cornstarch", "kirsch"],
+            "Pierogi" => ["dumplings", "potato", "cheese", "onion", "bacon"],
+            "Bruschetta" => ["bread", "tomatoes", "garlic", "olive oil", "basil"],
+            "Tartare" => ["raw meat", "capers", "onions", "egg yolk", "spices"],
+            "Jambalaya" => ["rice", "meat", "seafood", "vegetables", "spices"],
+            "Smoothie and Donuts" => ["fruits", "milk", "yogurt", "ice cream", "dough", "sugar", "oil"],
+            "Moussaka" => ["eggplant", "ground lamb",  "bechamel sauce", "cheese"],
+            "Empanadas" => ["dough", "fillings", "meat", "vegetables"],
+            "Samosa" => ["pastry", "fillings", "meat", "vegetables"],
+            "Peking Duck" => ["duck", "pancakes", "scallions", "hoisin sauce"],
+            "Tiramisu" => ["ladyfingers", "mascarpone cheese", "eggs", "sugar", "cocoa powder"],
+            "Wiener Schnitzel" => ["veal", "breadcrumbs", "egg", "flour"],
+            "Borscht" => ["beets", "cabbage", "potatoes", "meat", "sour cream"],
+            "Croque Monsieur" => ["bread", "ham", "cheese", "bechamel sauce"],
         ];
 
-        //   "", , "Cookies", "", "Pie", "Pancakes", "Waffles",
-        //   "Oatmeal", "Cereal", "", "Bacon", , "Bagel", ""
         $cooksIds = Cook::pluck('user_id')->all();
         return [
             'cook_id' => $this->faker->randomElement($cooksIds),
-            'name' => $this->faker->randomElement($foods),
-            'price' => $this->faker->randomFloat(2, 5, 100),
+            'name' => $chosenFood = $this->faker->randomElement(array_keys($foodsAndIngredients)),
             'description' => implode(' ', $this->faker->sentences(3)),
+            'price' => $this->faker->randomFloat(2, 5, 50),
+            'ingredients' => json_encode([
+                'ingredient' => $foodsAndIngredients[$chosenFood],
+            ]),
+            'cooking_limit'=> $this->faker->numberBetween(10, 20)
         ];
     }
 }

@@ -21,11 +21,11 @@ class CookFactory extends Factory
     public function definition(): array
     {
         return [
-            'address' => $this->faker->address(),
+            
             'user_id' => User::factory(),
-            'means_of_id' => null,
             'certificate' => null,
-            'means_of_alt' => null,
+            'means_of_id' => null,
+            // 'means_of_alt' => null,
             'other_info' => implode(' ', $this->faker->sentences(5)),
         ];
     }
