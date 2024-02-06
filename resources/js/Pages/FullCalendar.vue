@@ -277,7 +277,7 @@ export default defineComponent({
 </script>
 <template>
     <div
-        class="container card dark:card rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
+        class="container shadow-reverse rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
     >
         <FullCalendar class="demo-app-calendar" :options="calendarOptions">
             <template v-slot:eventContent="arg">

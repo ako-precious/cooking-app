@@ -216,7 +216,8 @@ const clearPhotoFileInput = () => {
                 </div>
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
+            <!-- Address -->
+            <div class="col-span-6 sm:col-span-6">
                 <InputLabel for="address" value="Address" />
                 <TextInput
                     id="address"
@@ -229,7 +230,6 @@ const clearPhotoFileInput = () => {
                 <InputError :message="form.errors.address" class="mt-2" />
             </div>
 
-            <!-- Phone Number -->
             <div class="col-span-6 sm:col-span-4">
             </div>
         </template>

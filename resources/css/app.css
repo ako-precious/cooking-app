@@ -34,5 +34,8 @@
     .shadow-small{
         @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-md  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-md hover:dark:shadow-oynx-md transition-all duration-250 ease-in delay-75
     }
+    .shadow-reverse{
+        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-md  hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-md hover:dark:shadow-oynx-sm transition-all duration-250 ease-in delay-75
+    }
        
 }

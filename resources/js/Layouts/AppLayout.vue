@@ -52,7 +52,7 @@ const logout = () => {
          
     <!-- sidenav  -->
 
-    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" disable-scrollbars card dark:card" 
+    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" disable-scrollbars shadow-reverse " 
         :class=" sidebarReduced, {
             'bg-slate-850': isClassWhite,
             'translate-x-0':isClassTranslated,
@@ -210,8 +210,8 @@ const logout = () => {
                                    </div>
         
                                    <!-- Settings Dropdown -->
-                                   <div  class="ml-2 relative text-persian active:text-polynesian hover:text-polynesian  dark:active:text-lighred dark:hover:text-lighred bg-oynx rounded-full p-1 dropdown dark:dropdown z-20 transition-all duration-200 ease-in-out">
-                                       <Dropdown align="right" width="48">
+                                   <div  class="ml-2  lg:mr-4 relative text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred rounded-full p-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm hover:shadow-none hover:border-polynesian dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-sm hover:dark:shadow-none z-20 transition-all duration-250 ease-in">
+    <Dropdown align="right" width="48">
                                            <template #trigger>
                                                <button v-if="$page.props.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                                    <img class="h-8 w-8 rounded-full object-cover" :src="$page.props.auth.user.profile_photo_url" :alt="$page.props.auth.user.name">
@@ -219,7 +219,7 @@ const logout = () => {
         
                                                <span v-else class="inline-flex rounded-md">
                                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md  transition ease-in-out duration-150">
-                                                       {{ $page.props.auth.user.name }}  {{ $page.props.auth.user.id }}
+                                                       {{ $page.props.auth.user.name }} 
         
                                                        <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -229,27 +229,31 @@ const logout = () => {
                                            </template>
         
                                            <template #content class=" bg-snow dark:bg-oynx">
-                                               <!-- Account Management -->
-                                               <div class="block px-4 py-2 text-xs text-gray-400">
-                                                   Manage Account
-                                               </div>
-        
-                                               <DropdownLink :href="route('profile.show')">
-                                                   Profile
-                                               </DropdownLink>
-        
-                                               <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
-                                                   API Tokens
-                                               </DropdownLink>
-        
-                                               <div class="border-t border-gray-200 dark:border-gray-600" />
-        
-                                               <!-- Authentication -->
-                                               <form @submit.prevent="logout">
-                                                   <DropdownLink as="button">
-                                                       Log Out
-                                                   </DropdownLink>
-                                               </form>
+                                            <div class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow  ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
+             >
+                                                <!-- Account Management -->
+                                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                                    Manage Account
+                                                </div>
+         
+                                                <DropdownLink :href="route('profile.show')">
+                                                    Profile
+                                                </DropdownLink>
+         
+                                                <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
+                                                    API Tokens
+                                                </DropdownLink>
+         
+                                                <div class="border-t border-gray-200 dark:border-gray-600" />
+         
+                                                <!-- Authentication -->
+                                                <form @submit.prevent="logout">
+                                                    <DropdownLink as="button">
+                                                        Log Out
+                                                    </DropdownLink>
+                                                </form>
+
+                                            </div>
                                            </template>
                                        </Dropdown>
                                    </div>
@@ -390,7 +394,7 @@ export default {
 
             this.classChanged =
                 this.classChanged === "notfixeddiv"
-                    ?  " card " + "dark:card"
+                    ?  " shadow-reverse" + ' sticky top-[1%] z-[1000] right-0 '
                     : "notfixeddiv";
         },
         changeBgBlack() {
@@ -472,10 +476,7 @@ export default {
 </script>
 
 <style scoped>
-.dropdown {
-    background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: 15px 15px 30px #d6d2d3, -15px -15px 30px #ffffff;
-}
+
 
 .card {
     background: linear-gradient(145deg, #e3dedf, #ffffff);
@@ -485,18 +486,5 @@ export default {
     background: linear-gradient(145deg, #e3dedf, #ffffff);
     box-shadow: -10px -10px 15px #a19e9f, 10px 10px 15px #ffffff;
 }
-@media (prefers-color-scheme: dark) {
-    .dark\:card {
-        background: linear-gradient(145deg, #2b312e, #333a37);
-        box-shadow: 10px 10px 15px #262b29, -10px -10px 15px #3a413d;
-    }
-    .dark\:card:hover {
-        background: linear-gradient(145deg, #2b312e, #333a37);
-        box-shadow: -10px -10px 15px #262b29, 10px 10px 15px #3a413d;
-    }
-    .dark\:dropdown {
-        background: #303633;
-        box-shadow: 15px 15px 30px #292e2b, -15px -15px 30px #373e3b;
-    }
-}
+
 </style>
