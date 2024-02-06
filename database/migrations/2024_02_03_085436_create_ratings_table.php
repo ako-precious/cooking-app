@@ -21,7 +21,7 @@ return new class extends Migration
             $table->tinyInteger('taste');
             $table->tinyInteger('value');
             $table->tinyInteger('nutrition');
-            $table->tinyInteger('variety'); 
+            $table->tinyInteger('portion_size'); 
             $table->text('comment');
             $table->timestamps();
         });
