@@ -27,6 +27,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone_number',
+        'address',
+        'dietary_restriction_allergies',
+        'other_info'
     ];
 
     /**

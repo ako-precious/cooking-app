@@ -13,11 +13,15 @@ const props = defineProps({
     user: Object,
 });
 
+// const ingredients = ref([]);
+
 const form = useForm({
     _method: "PUT",
     name: props.user.name,
     email: props.user.email,
+    phone_number: props.user.phone_number,
     address: props.user.address,
+    other_info: props.user.other_info,
     photo: null,
 });
 
@@ -76,6 +80,43 @@ const clearPhotoFileInput = () => {
 };
 </script>
 
+<script>
+export default {
+    data() {
+        return {
+            ingredients: [],
+            newIngredient: "", // To store the input for a new ingredient
+        };
+    },
+    methods: {
+        addIngredient() {
+            if (this.newIngredient.trim() !== "") {
+                this.ingredients.push(this.newIngredient.trim());
+                this.newIngredient = "";
+            }
+        },
+        removeIngredient(index) {
+            this.ingredients.splice(index, 1);
+        },
+        submitForm() {
+            // Include this.ingredients in your form data when submitting
+            const formData = {
+                ingredients: this.ingredients,
+                // Other form fields
+            };
+
+            // Send formData to your Laravel backend for storage
+            axios
+                .post("/schedule", formData)
+                .then((resp) => {
+                    console.log(resp);
+                    this.closeModal();
+                })
+                .catch((err) => console.log("Unable to add Meal!", err));
+        },
+    },
+};
+</script>
 <template>
     <FormSection @submitted="updateProfileInformation">
         <template #title> Profile Information </template>
@@ -201,7 +242,6 @@ const clearPhotoFileInput = () => {
                     </div>
                     <!-- Address -->
                     <div class="w-full mb-[1.5rem] lg:mb-0 lg:w-[48%]">
-                      
                         <InputLabel for="Phone Number" value="Phone Number" />
                         <TextInput
                             id="phone_number"
@@ -211,7 +251,10 @@ const clearPhotoFileInput = () => {
                             required
                             autocomplete="phone_number"
                         />
-                        <InputError :message="form.errors.phone_number" class="mt-2" />
+                        <InputError
+                            :message="form.errors.phone_number"
+                            class="mt-2"
+                        />
                     </div>
                 </div>
             </div>
@@ -230,8 +273,35 @@ const clearPhotoFileInput = () => {
                 <InputError :message="form.errors.address" class="mt-2" />
             </div>
 
-            <div class="col-span-6 sm:col-span-4">
+            <!-- other info -->
+            <div class="col-span-6 sm:col-span-6">
+                <InputLabel
+                    for="other_info"
+                    value="Something Interesting about you"
+                />
+
+                <textarea
+                    autocomplete="other_info"
+                    id="other_info"
+                    class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                    rows="4"
+                    cols="50"
+                    v-model="form.other_info"
+                ></textarea>
+                <InputError :message="form.errors.other_info" class="mt-2" />
             </div>
+
+            <!-- <div class="col-span-6 sm:col-span-4">
+                <div v-for="(ingredient, index) in ingredients" :key="index">
+      {{ ingredient }}
+      <button @click="removeIngredient(index)">Remove</button>
+    </div>
+
+    <div>
+      <input v-model="newIngredient" placeholder="New Ingredient" />
+      <button @click="addIngredient">Add Ingredient</button>
+    </div>
+            </div> -->
         </template>
 
         <template #actions>
