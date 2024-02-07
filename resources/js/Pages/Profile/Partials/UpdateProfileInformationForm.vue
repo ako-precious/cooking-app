@@ -21,7 +21,9 @@ const form = useForm({
     email: props.user.email,
     phone_number: props.user.phone_number,
     address: props.user.address,
-    dietary_restrictions_allergies: JSON.stringify(props.user.dietary_restrictions_allergies),
+    // dietary_restrictions_allergies: JSON.stringify(
+    //     props.user.dietary_restrictions_allergies
+    // ),
     other_info: props.user.other_info,
     photo: null,
 });
@@ -80,18 +82,23 @@ const clearPhotoFileInput = () => {
     }
 };
 
-// Reactive variable to hold the dietary_restriction_allergies data
-const dietary_restrictions_allergies = ref(form.data.dietary_restrictions_allergies);
+// Parse existing JSON data into an array
+const dietaryRestrictions = JSON.parse(props.user.dietary_restriction_allergies || '[]');
 
-// Function to add a new item to dietary_restriction_allergies
-const addRestriction = () => {
-    // Push a new empty string or any default value to the array
-    dietary_restrictions_allergies.value.push("");
+// Add a new item to the array
+const addItem = () => {
+  dietaryRestrictions.push("");
 };
 
-// Function to remove an item from dietary_restriction_allergies
-const removeRestriction = (index) => {
-    dietary_restrictions_allergies.value.splice(index, 1);
+// Remove an item from the array
+const removeItem = (index) => {
+  dietaryRestrictions.splice(index, 1);
+};
+
+// Convert array back to JSON before submitting the form
+const submitForm = () => {
+  form.dietary_restriction_allergies = JSON.stringify(dietaryRestrictions);
+  form.post(route('your.update.route'));
 };
 </script>
 
@@ -315,24 +322,24 @@ export default {
                     :message="form.errors.dietary_restrictions_allergies"
                     class="mt-2"
                 /> -->
-                <div>
-                    <!-- Display existing items and allow users to update or delete them -->
-                    <div v-for="(item, index) in dietary_restrictions_allergies" :key="index">
-                        <div>
-                            <input v-model="dietary_restrictions_allergies[index]" type="text" />
-                            <button @click="removeRestriction(index)">
-                                Remove
-                            </button>
-                        </div>
+               
+                <!-- Dietary Restriction and Allergies -->
+                <div class="mt-4">
+                    <label
+                        for="dietary_restrictions_allergies"
+                        class="block text-sm font-medium text-gray-700"
+                        >Dietary Restriction and Allergies</label
+                    >
+                    <div class="mt-1">
+                        <div v-for="(item, index) in dietaryRestrictions" :key="index">
+        <input v-model="item" type="text" />
+        <button @click="removeItem(index)">Remove</button>
+      </div>
+      <button @click="addItem">Add Item</button>
+   
+
                     </div>
-
-                    <!-- Button to add a new item -->
-                    <button @click="addRestriction">Add Restriction</button>
-
-                    <!-- Other form fields -->
-
-                    <!-- Submit button -->
-                    <!-- <button @click="form.submit()">Save</button> -->
+                    <InputError :message="form.errors.dietary_restrictions_allergies" class="mt-2" />
                 </div>
             </div>
 
