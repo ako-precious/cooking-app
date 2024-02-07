@@ -272,6 +272,29 @@ export default {
                 />
                 <InputError :message="form.errors.address" class="mt-2" />
             </div>
+            
+            <!-- dietary_restriction_allergies -->
+            <div class="col-span-6 sm:col-span-6">
+                <InputLabel for="" value="Dietary Restriction and Allergies" />
+                <div v-for="(ingredient, index) in ingredients" :key="index">
+      {{ ingredient }}
+      <button @click="removeIngredient(index)">Remove</button>
+    </div>
+
+    <div>
+      <input v-model="newIngredient" placeholder="New Ingredient" />
+      <button @click="addIngredient">Add Ingredient</button>
+    </div>
+                <TextInput
+                    id="address"
+                    v-model="form.address"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="address"
+                />
+                <InputError :message="form.errors.address" class="mt-2" />
+            </div>
 
             <!-- other info -->
             <div class="col-span-6 sm:col-span-6">
@@ -292,15 +315,7 @@ export default {
             </div>
 
             <!-- <div class="col-span-6 sm:col-span-4">
-                <div v-for="(ingredient, index) in ingredients" :key="index">
-      {{ ingredient }}
-      <button @click="removeIngredient(index)">Remove</button>
-    </div>
-
-    <div>
-      <input v-model="newIngredient" placeholder="New Ingredient" />
-      <button @click="addIngredient">Add Ingredient</button>
-    </div>
+             
             </div> -->
         </template>
 
