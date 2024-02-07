@@ -21,9 +21,7 @@ const form = useForm({
     email: props.user.email,
     phone_number: props.user.phone_number,
     address: props.user.address,
-    // dietary_restrictions_allergies: JSON.stringify(
-    //     props.user.dietary_restrictions_allergies
-    // ),
+    dietary_restrictions_allergies: props.user.dietary_restrictions_allergies,
     other_info: props.user.other_info,
     photo: null,
 });
@@ -36,7 +34,6 @@ const updateProfileInformation = () => {
     if (photoInput.value) {
         form.photo = photoInput.value.files[0];
     }
-
     form.post(route("user-profile-information.update"), {
         errorBag: "updateProfileInformation",
         preserveScroll: true,
@@ -82,23 +79,12 @@ const clearPhotoFileInput = () => {
     }
 };
 
-// Parse existing JSON data into an array
-const dietaryRestrictions = JSON.parse(props.user.dietary_restriction_allergies || '[]');
-
-// Add a new item to the array
 const addItem = () => {
-  dietaryRestrictions.push("");
+    form.dietary_restrictions_allergies.push("");
 };
 
-// Remove an item from the array
 const removeItem = (index) => {
-  dietaryRestrictions.splice(index, 1);
-};
-
-// Convert array back to JSON before submitting the form
-const submitForm = () => {
-  form.dietary_restriction_allergies = JSON.stringify(dietaryRestrictions);
-  form.post(route('your.update.route'));
+    form.dietary_restrictions_allergies.splice(index, 1);
 };
 </script>
 
@@ -314,7 +300,7 @@ export default {
                     id="address"
                     v-model="form.dietary_restriction_allergies"
                     type="text"
-                    class="mt-1 block w-full"
+                    
                     required
                     autocomplete="address"
                 />
@@ -322,25 +308,35 @@ export default {
                     :message="form.errors.dietary_restrictions_allergies"
                     class="mt-2"
                 /> -->
-               
-                <!-- Dietary Restriction and Allergies -->
-                <div class="mt-4">
-                    <label
-                        for="dietary_restrictions_allergies"
-                        class="block text-sm font-medium text-gray-700"
-                        >Dietary Restriction and Allergies</label
-                    >
-                    <div class="mt-1">
-                        <div v-for="(item, index) in dietaryRestrictions" :key="index">
-        <input v-model="item" type="text" />
-        <button @click="removeItem(index)">Remove</button>
-      </div>
-      <button @click="addItem">Add Item</button>
-   
 
+                <!-- Dietary Restriction and Allergies -->
+                <div class="mt-1">
+                    <p class=" bg-snow/20  cursor-pointer p-2" @click="addItem">Add Item</p>
+                    <div class="flex flex-wrap">
+                        <div
+                            class="relative w-1/3 p-1"
+                            v-for="(
+                                item, index
+                            ) in form.dietary_restrictions_allergies"
+                            :key="index"
+                        >
+                        <TextInput
+                         class=" block w-full h-full text-sm "
+                                v-model="
+                                    form.dietary_restrictions_allergies[index]
+                                "
+                            />
+                            <p class="absolute  top-1 right-1 bg-snow/20  cursor-pointer p-2" @click="removeItem(index)"><font-awesome-icon
+                        icon="fa-solid fa-close"
+                        class="text-persian text- w-full h-full "
+                    /> </p>
+                        </div>
                     </div>
-                    <InputError :message="form.errors.dietary_restrictions_allergies" class="mt-2" />
                 </div>
+                <InputError
+                    :message="form.errors.dietary_restrictions_allergies"
+                    class="mt-2"
+                />
             </div>
 
             <!-- other info -->

@@ -33,6 +33,8 @@ class User extends Authenticatable
         'other_info'
     ];
 
+  
+    
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -44,7 +46,7 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
-
+    
     /**
      * The attributes that should be cast.
      *
@@ -52,6 +54,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'dietary_restrictions_allergies' => 'array'
     ];
 
     /**

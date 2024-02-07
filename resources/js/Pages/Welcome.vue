@@ -226,6 +226,6 @@ button:active:before {
     }
 
     .animate-fade-in {
-        animation: fade-in 0.7s ease-in;
+        animation: fade-in 0.5s ease-in;
     }
 </style>
