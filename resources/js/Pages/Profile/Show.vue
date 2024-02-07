@@ -24,7 +24,7 @@ defineProps({
         </template>
 
         <div class="md:grid md:grid-cols-4 md:gap-6">
-            <div class=" col-span-1 w-full max-w-full py-10 px-6 lg:px-2 ">
+            <div class=" col-span-1 w-full max-w-full py-6 sm:px-6 lg:px-0 ">
                 <div
                     class="sticky flex flex-col min-w-0 break-words w-full  top-1/100 shadow-reverse dark:bg-slate-850  rounded-2xl bg-clip-border"
                 >
@@ -42,20 +42,6 @@ defineProps({
                                 <span
                                     class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
                                     >Profile</span
-                                >
-                            </a>
-                        </li>
-                        <li class="pt-2">
-                            <a
-                                href="#basic-info"
-                                class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                            >
-                                <i
-                                    class="mr-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                ></i>
-                                <span
-                                    class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                    >Basic Info</span
                                 >
                             </a>
                         </li>
@@ -87,34 +73,7 @@ defineProps({
                                 >
                             </a>
                         </li>
-                        <li class="pt-2">
-                            <a
-                                href="#accounts"
-                                class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                            >
-                                <i
-                                    class="mr-2 ni ni-badge text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                ></i>
-                                <span
-                                    class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                    >Accounts</span
-                                >
-                            </a>
-                        </li>
-                        <li class="pt-2">
-                            <a
-                                href="#notifications"
-                                class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                            >
-                                <i
-                                    class="mr-2 ni ni-bell-55 text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                ></i>
-                                <span
-                                    class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                    >Notifications</span
-                                >
-                            </a>
-                        </li>
+                       
                         <li class="pt-2">
                             <a
                                 href="#sessions"
@@ -146,45 +105,39 @@ defineProps({
                     </ul>
                 </div>
             </div>
-            <div class="col-span-3 max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
-                <div v-if="$page.props.jetstream.canUpdateProfileInformation">
+            <div class="col-span-3 max-w-7xl mx-auto py-6 sm:px-6 ">
+                <div v-if="$page.props.jetstream.canUpdateProfileInformation" id="profile">
                     <UpdateProfileInformationForm
-                        :user="$page.props.auth.user"
-                    />
+                        :user="$page.props.auth.user"/>
 
                     <SectionBorder />
                 </div>
 
-                <div v-if="$page.props.jetstream.canUpdatePassword">
+                <div v-if="$page.props.jetstream.canUpdatePassword" id="password">
                     <UpdatePasswordForm class="mt-10 sm:mt-0" />
 
                     <SectionBorder />
                 </div>
 
-                <div
-                    v-if="
-                        $page.props.jetstream.canManageTwoFactorAuthentication
-                    "
+                <div id="2FA"
+                    v-if="$page.props.jetstream.canManageTwoFactorAuthentication"
                 >
                     <TwoFactorAuthenticationForm
                         :requires-confirmation="confirmsTwoFactorAuthentication"
-                        class="mt-10 sm:mt-0"
-                    />
+                        class="mt-10 sm:mt-0"/>
 
                     <SectionBorder />
                 </div>
 
-                <LogoutOtherBrowserSessionsForm
+                <LogoutOtherBrowserSessionsForm id="sessions"
                     :sessions="sessions"
-                    class="mt-10 sm:mt-0"
-                />
+                    class="mt-10 sm:mt-0"/>
 
-                <template
-                    v-if="$page.props.jetstream.hasAccountDeletionFeatures"
-                >
+                <template 
+                    v-if="$page.props.jetstream.hasAccountDeletionFeatures">
                     <SectionBorder />
 
-                    <DeleteUserForm class="mt-10 sm:mt-0" />
+                    <DeleteUserForm id="delete" class="mt-10 sm:mt-0" />
                 </template>
             </div>
         </div>

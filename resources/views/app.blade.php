@@ -17,21 +17,26 @@
     @inertiaHead
 
     <style>
+        
         .disable-scrollbars {
             scrollbar-width: none;
             /* Firefox */
             -ms-overflow-style: none;
             /* IE 10+ */
         }
+        html {
+scroll-behavior: smooth;
+}
 
         .disable-scrollbars::-webkit-scrollbar {
             display: none;
             /* Chrome/Safari/Webkit */
         }
     </style>
+    
 </head>
 
-<body class="disable-scrollbars font-sans antialiased bg-snow dark:bg-oynx">
+<body class="disable-scrollbars scroll-smooth font-sans antialiased bg-snow dark:bg-oynx">
     @inertia
 </body>
 

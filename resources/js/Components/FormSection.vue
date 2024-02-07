@@ -10,14 +10,14 @@ const hasActions = computed(() => !! useSlots().actions);
 <template>
     <div class="">
         
-        <div class="mt-5 md:mt-0 md:col-span-2 shadow-reverse text-oynx dark:text-snow ">
+        <div class="mt-5 md:mt-0 md:col-span-2 shadow-reverse text-oynx dark:text-snow rounded-xl">
             <SectionTitle>
-                <!-- <template #description>
-                    <slot name="description" />
-                </template> -->
-
+                
                 <template #title>
-                  <h2 class="text-2xl px-4 pt-6  text-oynx dark:text-snow"> <slot name="title" /> </h2>  
+                    <h2 class="text-2xl px-4 pt-6 sm:px-6 text-oynx dark:text-snow"> <slot name="title" /> </h2>  
+                </template>
+                <template #description>
+                  <p class="px-4 sm:px-6 text-oynx dark:text-snow"> <slot name="description" /> </p>  
                 </template>
             </SectionTitle>
             <form @submit.prevent="$emit('submitted')">
