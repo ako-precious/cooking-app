@@ -283,35 +283,12 @@ export default {
 
             <!-- dietary_restriction_allergies -->
             <div class="col-span-6 sm:col-span-6">
-                <InputLabel for="" value="Dietary Restriction and Allergies" />
-                <!-- <div v-for="(ingredient, index) in ingredients" :key="index">
-                    {{ ingredient }}
-                    <button @click="removeIngredient(index)">Remove</button>
+                <div class="flex items-center justify-between">
+                    <InputLabel for="" value="Dietary Restriction and Allergies" />
+                    <p class=" bg-snow/50  cursor-pointer p-1 text-sm " @click="addItem" title="add Dietary Restriction and Allergies " >Add <font-awesome-icon icon="plus"  class="text-persian  "/></p>
                 </div>
-
-                <div>
-                    <input
-                        v-model="newIngredient"
-                        placeholder="New Ingredient"
-                    />
-                    <button @click="addIngredient">Add Ingredient</button>
-                </div> -->
-                <!-- <TextInput
-                    id="address"
-                    v-model="form.dietary_restriction_allergies"
-                    type="text"
-                    
-                    required
-                    autocomplete="address"
-                />
-                <InputError
-                    :message="form.errors.dietary_restrictions_allergies"
-                    class="mt-2"
-                /> -->
-
-                <!-- Dietary Restriction and Allergies -->
+               
                 <div class="mt-1">
-                    <p class=" bg-snow/20  cursor-pointer p-2" @click="addItem">Add Item</p>
                     <div class="flex flex-wrap">
                         <div
                             class="relative w-1/3 p-1"
@@ -326,9 +303,9 @@ export default {
                                     form.dietary_restrictions_allergies[index]
                                 "
                             />
-                            <p class="absolute  top-1 right-1 bg-snow/20  cursor-pointer p-2" @click="removeItem(index)"><font-awesome-icon
+                            <p class="absolute bottom-1 top-1 right-1 bg-snow/20  cursor-pointer p-2" @click="removeItem(index)"><font-awesome-icon
                         icon="fa-solid fa-close"
-                        class="text-persian text- w-full h-full "
+                        class="text-persian text-  "
                     /> </p>
                         </div>
                     </div>
