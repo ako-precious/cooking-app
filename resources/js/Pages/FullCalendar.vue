@@ -293,7 +293,7 @@ export default defineComponent({
             <div
                 class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
             >
-                <div class="relative card rounded-lg shadow dark:card">
+                <div class="relative shadow-reverse rounded-lg">
                     <button
                         @click="closeModal"
                         type="button"

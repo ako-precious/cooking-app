@@ -291,7 +291,7 @@ export default {
                 <div class="mt-1">
                     <div class="flex flex-wrap">
                         <div
-                            class="relative w-1/3 p-1"
+                            class="relative sm:w-1/3 p-1"
                             v-for="(
                                 item, index
                             ) in form.dietary_restrictions_allergies"
