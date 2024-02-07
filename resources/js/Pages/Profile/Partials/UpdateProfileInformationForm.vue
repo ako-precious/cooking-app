@@ -21,6 +21,7 @@ const form = useForm({
     email: props.user.email,
     phone_number: props.user.phone_number,
     address: props.user.address,
+    dietary_restrictions_allergies: JSON.stringify(props.user.dietary_restrictions_allergies),
     other_info: props.user.other_info,
     photo: null,
 });
@@ -78,9 +79,23 @@ const clearPhotoFileInput = () => {
         photoInput.value.value = null;
     }
 };
+
+// Reactive variable to hold the dietary_restriction_allergies data
+const dietary_restrictions_allergies = ref(form.data.dietary_restrictions_allergies);
+
+// Function to add a new item to dietary_restriction_allergies
+const addRestriction = () => {
+    // Push a new empty string or any default value to the array
+    dietary_restrictions_allergies.value.push("");
+};
+
+// Function to remove an item from dietary_restriction_allergies
+const removeRestriction = (index) => {
+    dietary_restrictions_allergies.value.splice(index, 1);
+};
 </script>
 
-<script>
+<!-- <script>
 export default {
     data() {
         return {
@@ -116,7 +131,7 @@ export default {
         },
     },
 };
-</script>
+</script> -->
 <template>
     <FormSection @submitted="updateProfileInformation">
         <template #title> Profile Information </template>
@@ -272,28 +287,53 @@ export default {
                 />
                 <InputError :message="form.errors.address" class="mt-2" />
             </div>
-            
+
             <!-- dietary_restriction_allergies -->
             <div class="col-span-6 sm:col-span-6">
                 <InputLabel for="" value="Dietary Restriction and Allergies" />
-                <div v-for="(ingredient, index) in ingredients" :key="index">
-      {{ ingredient }}
-      <button @click="removeIngredient(index)">Remove</button>
-    </div>
+                <!-- <div v-for="(ingredient, index) in ingredients" :key="index">
+                    {{ ingredient }}
+                    <button @click="removeIngredient(index)">Remove</button>
+                </div>
 
-    <div>
-      <input v-model="newIngredient" placeholder="New Ingredient" />
-      <button @click="addIngredient">Add Ingredient</button>
-    </div>
-                <TextInput
+                <div>
+                    <input
+                        v-model="newIngredient"
+                        placeholder="New Ingredient"
+                    />
+                    <button @click="addIngredient">Add Ingredient</button>
+                </div> -->
+                <!-- <TextInput
                     id="address"
-                    v-model="form.address"
+                    v-model="form.dietary_restriction_allergies"
                     type="text"
                     class="mt-1 block w-full"
                     required
                     autocomplete="address"
                 />
-                <InputError :message="form.errors.address" class="mt-2" />
+                <InputError
+                    :message="form.errors.dietary_restrictions_allergies"
+                    class="mt-2"
+                /> -->
+                <div>
+                    <!-- Display existing items and allow users to update or delete them -->
+                    <div v-for="(item, index) in dietary_restrictions_allergies" :key="index">
+                        <div>
+                            <input v-model="dietary_restrictions_allergies[index]" type="text" />
+                            <button @click="removeRestriction(index)">
+                                Remove
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Button to add a new item -->
+                    <button @click="addRestriction">Add Restriction</button>
+
+                    <!-- Other form fields -->
+
+                    <!-- Submit button -->
+                    <!-- <button @click="form.submit()">Save</button> -->
+                </div>
             </div>
 
             <!-- other info -->

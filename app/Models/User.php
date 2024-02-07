@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password',
         'phone_number',
         'address',
-        'dietary_restriction_allergies',
+        'dietary_restrictions_allergies',
         'other_info'
     ];
 

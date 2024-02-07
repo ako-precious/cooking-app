@@ -24,7 +24,7 @@ defineProps({
         </template>
 
         <div class="md:grid md:grid-cols-4 md:gap-6">
-            <div class=" col-span-1 w-full max-w-full py-6 sm:px-6 lg:px-0 ">
+            <div class=" col-span-1 w-full max-w-full py-6  ">
                 <div
                     class="sticky flex flex-col min-w-0 break-words w-full  top-1/100 shadow-reverse dark:bg-slate-850  rounded-2xl bg-clip-border"
                 >
@@ -105,7 +105,7 @@ defineProps({
                     </ul>
                 </div>
             </div>
-            <div class="col-span-3 max-w-7xl mx-auto py-6 sm:px-6 ">
+            <div class="col-span-3 w-full mx-auto py-6 sm:px-6 lg:px-8  ">
                 <div v-if="$page.props.jetstream.canUpdateProfileInformation" id="profile">
                     <UpdateProfileInformationForm
                         :user="$page.props.auth.user"/>

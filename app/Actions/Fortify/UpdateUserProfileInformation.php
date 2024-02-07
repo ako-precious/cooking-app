@@ -36,7 +36,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'email' => $input['email'],
                 'phone_number' => $input['phone_number'],
                 'address' => $input['address'],                
-                'dietary_restriction_allergies' => $input['dietary_restriction_allergies'],                
+                'dietary_restrictions_allergies' => $input['dietary_restrictions_allergies'],                
                 'other_info' => $input['other_info'],
             ])->save();
         }
