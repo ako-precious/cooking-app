@@ -19,13 +19,16 @@
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
                     <!-- class="ml-2  relative inline-block bg-snow dark:bg-oynx rounded-full text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred cook dark:cook" -->
                     <li
+                    
                     class="text-nowrap py-2 px-4 navbar-link"
                     >
+                    <Link  :href="`/welcomed`" >
                         <a
                             class=""
                             href="" >
                             <p>Be a Cook</p>
                         </a>
+                    </Link>
                     </li>
                     <li
                         class="navbar-link"
@@ -43,7 +46,11 @@
         </div>
 </template>
 
-<script></script>
+<script setup>
+
+import { Link } from "@inertiajs/vue3";
+// import route from "vendor/tightenco/ziggy/src/js";
+</script>
 <style>
 
 @media (prefers-color-scheme: dark) {
