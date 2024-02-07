@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CookController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
 use App\Models\MealSchedule;
@@ -39,6 +40,7 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/cook/setup', [CookController::class, 'setup']);
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
