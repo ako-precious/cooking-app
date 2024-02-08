@@ -8,41 +8,25 @@ import { Head, Link } from "@inertiajs/vue3";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div
-            class="container relative mx-auto overflow-hidden h-screen w-screen"
-        >
-            <iframe
-                src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
-                frameborder="0"
-                width="100%"
-                height="100%"
-                class="absolute  -right-40 z-0"
-            ></iframe>
-
+        <div class="container relative mx-auto overflow-hidden w-screen">
             <div class="m-auto flex items-center h-full px-6 lg:p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                    <div class="z-10">
-                        <p class="mt-4 font-semibold leading-relaxed">
-                            Discover your culinary talents and share your
-                            masterpieces with the world! Whether you're a
-                            seasoned chef or a passionate home cook, we provide the perfect stage for showcasing
-                            your delicious creations.
-                            <br />
-                            <br />
-                            Connect with Student
-                            <span class="hidden"> food enthusiasts </span> eager
-                            to taste your dishes and offer your culinary
-                            expertise to those seeking homemade delights. Join
-                            us and let your cooking skills
-                            shine!
-                        </p>
-                        <Link :href="`/become-a-cook`">
-                            <button class=" bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
-                        </Link>
-                        
-                    </div>
+                <div class="lg:w-1/2">
+                    <h1 class="font-semibold lg:text-5xl tracking-wide text-oynx dark:text-snow">
+                        Experience simplicity with Foodmart
+                    </h1>
+                    <!-- <h1 class="font-bold pt-1 lg:text-5xl tracking-wide text-oynx dark:text-snow">Get started easily!</h1> -->
+                </div>
+                <div class="lg:w-1/2">
+
                 </div>
             </div>
+        </div>
+        <div class="fixed h-24 shadow-reverse w-full bottom-0">
+            <Link :href="`/become-a-cook`" class="float-right mr-8">
+                <button
+                    class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
+                ></button>
+            </Link>
         </div>
     </div>
 </template>
@@ -75,10 +59,10 @@ import { Head, Link } from "@inertiajs/vue3";
 }
 
 .type1::after {
-    content: "Monetize Your Passion";
+    content: "Let's Guide You";
     height: 50px;
     width: 165px;
-    background-color: #004E98;
+    background-color: #004e98;
     color: #fff;
     position: absolute;
     top: 0%;
@@ -91,11 +75,11 @@ import { Head, Link } from "@inertiajs/vue3";
 }
 
 .type1::before {
-    content: "Start Cooking Today";
+    content: "Get Started";
     height: 50px;
     width: 165px;
     /* background-color: #fff; */
-    color: #004E98;
+    color: #004e98;
     position: absolute;
     top: 0%;
     left: 0%;

@@ -17,12 +17,11 @@
             <!-- buttons -->
             <nav class="contents">
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
-                    <!-- class="ml-2  relative inline-block bg-snow dark:bg-oynx rounded-full text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred cook dark:cook" -->
-                    <li
+                   <li
                     
                     class="text-nowrap py-2 px-4 navbar-link"
                     >
-                    <Link  :href="`/welcomed`" >
+                    <Link  :href="`/cook/setup`" >
                         <a
                             class=""
                             href="" >
