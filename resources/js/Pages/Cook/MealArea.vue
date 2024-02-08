@@ -7,39 +7,70 @@ import BecomeCook from "./BecomeCook.vue";
 <template>
     <BecomeCook>
         <template #info>
-            <div class="container relative mx-auto overflow-hidden w-screen">
+            <div class="container relative mx-auto overflow-hidden ">
                 <div
-                    class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8"
+                    class="m-auto flex flex-col  max-w-[1000px] justify-center h-full px-6 w-full"
                 >
-                    <div class="lg:w-1/2 py-5 lg:px-5">
+                    <div class=" py-5 lg:pb-12 ">
                         <h1
-                            class=" pb-3 font-semibold text-sm lg:text-lg  tracking-wide text-oynx dark:text-snow"
-                        >Phase 1
-                        </h1>
-                        <h1
-                            class="font-semibold text-3xl lg:text-5xl tracking-wide text-oynx dark:text-snow"
+                            class="font-semibold text-2xl lg:text-4xl  text-oynx dark:text-snow"
                         >
-                            Tell us about your Meal
-                        </h1>
-                        <h1
-                            class=" pt-5 text-lg lg:text-xl  text-oynx dark:text-snow"
-                        >
-                        In this step, we'll ask you what type of meal you want to make, and if you are availability structure. How many people you can cook for per meal.
+                            What Continent is more likely familiar to your meal?
                         </h1>
                     </div>
-                    <div class="lg:w-1/2">
+                    <div class="lg:w-full">
                         <div class="flex flex-col w-full">
-                            <div class="flex lg:p-5">
-                                
-                                <div class="w-2/3 p-3 lg:p-10 ml-8 ">
+                            <div class="grid grid-cols-4 gap-6">
+                                <div class=" col-span-1 w-full max-w-full py-6  ">
+                <div
+                    class=" flex  min-w-0 break-words w-full   shadow-reverse rounded-2xl bg-clip-border"
+                >
+                    <div
+                        class="flex  lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
+                    >
+                    <font-awesome-icon icon="earth-africa" />
+                    <div>
+                        
+                    </div>
+                        <div class="pt-2 w-full">
+                            <a
+                                href="#delete"
+                                class="px-4 py-2 transition-colors ease-in-out rounded-lg group text-oynx dark:text-snow "
+                            >
+                                <span
+                                    class=" lg:text-xl leading-normal text-oynx dark:text-snow"
+                                    >Africa</span
+                                >
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                                <div >
+                                    <h1
+                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
+                                    >
+                                    <font-awesome-icon icon="earth-africa" />
+                                    <font-awesome-icon icon="earth-america" />
+                                    <font-awesome-icon icon="earth-americas" />
+                                    <font-awesome-icon icon="earth-oceania" />
+                                    </h1>
+                                    <p
+                                        class="pt-3 lg:text-lg text-oynx dark:text-snow"
+                                    >
+                                        Bring your meal to life! Upload 5+
+                                        photos, tell your story with a title and
+                                        description. We'll lend a hand.
+                                    </p>
+                                </div>
+                                <div >
                                     <img
-                                        class=""
-                                        src="/images/whattocook.jpg"
+                                        src="/images/takepicturesofmeal.jpg"
                                         alt=""
                                     />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -56,20 +87,22 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/overview`" class=" font-semibold">
-                    <button class="cta ">
-                        <span class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow">
-                          Back  
+                <Link
+                    :href="`/become-a-cook/about-your-meal`"
+                    class="font-semibold"
+                >
+                    <button class="cta">
+                        <span
+                            class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
+                        >
+                            Back
                         </span>
                     </button>
                 </Link>
             </div>
         </template>
         <template #mainbtn>
-            <Link
-                :href="`/become-a-cook/region`"
-                class="float-right mr-8"
-            >
+            <Link :href="`/become-a-cook/`" class="float-right mr-8">
                 <button
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link
@@ -87,24 +120,22 @@ import BecomeCook from "./BecomeCook.vue";
     }
 }
 
-
 .hover-underline-animation:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
 }
 
 .cta:hover .hover-underline-animation:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
-
 
 /* the design for the next button */
 .button {

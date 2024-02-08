@@ -21,7 +21,7 @@ import BecomeCook from "./BecomeCook.vue";
                                
                                 <div class="w-2/3">
                                     <h1 class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow">What delicious meal are you planning to cook?</h1>
-                                    <p class=" pt-3  lg:text-lg text-oynx dark:text-snow">Share some basic info, like what you can cook and how many people you can cook for.</p>
+                                    <p class=" pt-3  lg:text-lg text-oynx dark:text-snow">Share some basic info, like who you food is made for and how many people you can cook for.</p>
                                 </div>
                                 <div class="w-1/3 lg:h-[180px] ml-8 p-3">
                                     <img class="" src="/images/whattocook.jpg" alt="">
