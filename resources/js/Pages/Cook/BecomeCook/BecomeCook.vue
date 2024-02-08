@@ -11,7 +11,7 @@ import { Head, Link } from "@inertiajs/vue3";
         <!-- <Overview /> -->
         <slot name="info" class="animate-fade-in delay-100"></slot>
 
-        <div class="fixed h-24 shadow-reverse w-full bottom-0">
+        <div class="fixed h-20 shadow-reverse w-full bottom-0">
            <slot class="animate-left-in" name="progressbar"></slot>
             <slot name="backbtn" ></slot>
             <slot name="mainbtn"></slot>

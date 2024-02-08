@@ -11,11 +11,11 @@ import BecomeCook from "./BecomeCook.vue";
                 <div
                     class="m-auto flex flex-col max-w-[1000px] justify-center h-full px-6 lg:pb-20 w-full"
                 >
-                    <div class="py-5 lg:pb-12">
+                    <div class="py-5 text-center lg:pb-12">
                         <h1
                             class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
                         >
-                        Share what makes your place special
+                        Share what makes your meal special
                         </h1>
                     </div>
                     <div class="lg:w-full">
@@ -34,7 +34,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                 autocomplete="other_info"
                                                 id="other_info"
                                                 class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                                                rows="4"
+                                                rows="7"
                                                 cols="50"
                                             ></textarea>
                                         </div>
@@ -57,7 +57,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/photos`" class="font-semibold">
+                <Link :href="`/become-a-cook/meal-title`" class="font-semibold">
                     <button class="cta">
                         <span
                             class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"

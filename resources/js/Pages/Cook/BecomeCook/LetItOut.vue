@@ -7,39 +7,42 @@ import BecomeCook from "./BecomeCook.vue";
 <template>
     <BecomeCook>
         <template #info>
-            <div class="container relative mx-auto overflow-hidden">
+            <div class="container relative mx-auto overflow-hidden w-screen">
                 <div
-                    class="m-auto flex flex-col max-w-[1000px] justify-center h-full px-6 lg:pb-20 w-full"
+                    class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8"
                 >
-                    <div class="py-5 lg:pb-12">
+                    <div class="lg:w-1/2 py-5 lg:px-5">
                         <h1
-                            class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
+                            class="pb-3 font-semibold text-sm lg:text-lg tracking-wide text-oynx dark:text-snow"
                         >
-                            Let's crown your culinary creation with a unique
-                            title
+                            Phase 2
+                        </h1>
+                        <h1
+                            class="font-semibold text-3xl lg:text-5xl tracking-wide text-oynx dark:text-snow"
+                        >
+                            Steal The show
+                        </h1>
+                        <h1
+                            class="pt-5 text-lg lg:text-xl text-oynx dark:text-snow"
+                        >
+                            To really make your Meal stand out, we'll be
+                            adding some visual elements in this phase. By
+                            including the key ingredients and photos of the meal (3 or
+                            more!), you'll help readers understand your meal
+                            better and imagine the deliciousness firsthand.
+                            Plus, creating a unique title and description will
+                            make your Meal even more searchable and appealing.
                         </h1>
                     </div>
-                    <div class="lg:w-full">
+                    <div class="lg:w-1/2">
                         <div class="flex flex-col w-full">
-                            <div
-                                class="flex justify-center item-center lg:gap-10 lg:px-10"
-                            >
-                                <div class="w-full max-w-full py-2">
-                                    <div
-                                        class="relative flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
-                                    >
-                                        <div
-                                            class=" m-auto flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
-                                        >
-                                            <textarea
-                                                autocomplete="other_info"
-                                                id="other_info"
-                                                class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                                                rows="5"
-                                                cols="50"
-                                            ></textarea>
-                                        </div>
-                                    </div>
+                            <div class="flex lg:p-5">
+                                <div class="w-2/3 p-3 lg:p-10 ml-8">
+                                    <img
+                                        class=""
+                                        src="/images/whattocook.jpg"
+                                        alt=""
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -52,13 +55,13 @@ import BecomeCook from "./BecomeCook.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 10%"
+                    style="width: 0%"
                 ></div>
             </div>
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/photos`" class="font-semibold">
+                <Link :href="`/become-a-cook/cook-limit`" class="font-semibold">
                     <button class="cta">
                         <span
                             class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
@@ -70,7 +73,7 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/description`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/ingredients`" class="float-right mr-8">
                 <button
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link
