@@ -35,7 +35,10 @@
         @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-md  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-md hover:dark:shadow-oynx-md transition-all duration-250 ease-in delay-75
     }
     .shadow-reverse{
-        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-md  hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-md hover:dark:shadow-oynx-sm transition-all duration-350 ease-in delay-75
+        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-md  hover:shadow-snow-sm active:shadow-none dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-md hover:dark:shadow-oynx-sm transition-all duration-350 ease-in delay-75
+    }
+    .group-action-text{
+        @apply text-oynx dark:text-snow group-hover:text-polynesian group-hover:dark:text-lighred group-active:text-persian transition-all duration-250 delay-100
     }
        
 }

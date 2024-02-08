@@ -12,7 +12,7 @@ import { Head, Link } from "@inertiajs/vue3";
         <slot name="info" class="animate-fade-in delay-100"></slot>
 
         <div class="fixed h-24 shadow-reverse w-full bottom-0">
-           <slot name="progressbar"></slot>
+           <slot class="animate-left-in" name="progressbar"></slot>
             <slot name="backbtn" ></slot>
             <slot name="mainbtn"></slot>
             
@@ -45,5 +45,19 @@ import { Head, Link } from "@inertiajs/vue3";
 
 .animate-fade-in {
     animation: fade-in 0.7s ease-in;
+}
+@keyframes left-in {
+    from {
+        opacity: 0;
+        left: -15rem;
+    }
+    to {
+        opacity: 1;
+        left: 0;
+    }
+}
+
+.animate-left-in {
+    animation: left-in 0.7s ease-in;
 }
 </style>
