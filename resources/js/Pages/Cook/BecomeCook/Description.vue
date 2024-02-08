@@ -69,7 +69,7 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/cook-limit`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/finishing-up`" class="float-right mr-8">
                 <button
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link

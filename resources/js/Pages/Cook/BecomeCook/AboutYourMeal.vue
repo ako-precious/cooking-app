@@ -13,16 +13,16 @@ import BecomeCook from "./BecomeCook.vue";
                 >
                     <div class="lg:w-1/2 py-5 lg:px-5">
                         <h1
-                            class=" pb-3 font-semibold text-sm lg:text-lg  tracking-wide text-oynx dark:text-snow"
+                            class=" pb-3 font-semibold text-sm lg:text-base  tracking-wide text-oynx dark:text-snow"
                         >Phase 1
                         </h1>
                         <h1
-                            class="font-semibold text-3xl lg:text-5xl tracking-wide text-oynx dark:text-snow"
+                            class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
                             Tell us about your Meal
                         </h1>
                         <h1
-                            class=" pt-5 text-lg lg:text-xl  text-oynx dark:text-snow"
+                            class=" pt-5 lg:text-lg text-oynx dark:text-snow"
                         >
                         In this phase, we'll know what type of meal you want to make, and if you are availability structure. How many people you can cook for per meal.
                         </h1>

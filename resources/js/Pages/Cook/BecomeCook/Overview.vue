@@ -10,10 +10,10 @@ import BecomeCook from "./BecomeCook.vue";
              <div class="container relative mx-auto overflow-hidden w-screen">
                 <div class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8">
                     <div class=" lg:w-1/2 py-5 lg:px-5">
-                        <h1 class="font-semibold text-3xl lg:text-5xl tracking-wide  text-oynx dark:text-snow">
+                        <h1 class="font-semibold text-3xl lg:text-4xl tracking-wide  text-oynx dark:text-snow">
                             Experience Simplicity with Foodmart
                         </h1>
-                        <!-- <h1 class="font-bold pt-1 lg:text-xl tracking-wide text-oynx dark:text-snow">Get started easily!</h1> -->
+                        <h1 class=" pt-1 lg:text-lg tracking-wide text-oynx dark:text-snow">The perfect is the enemy of the creativity. You can alway change thing you don't like </h1>
                     </div>
                     <div class="lg:w-1/2">
                         <div class="flex flex-col w-full">

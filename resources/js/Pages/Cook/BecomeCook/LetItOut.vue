@@ -13,25 +13,19 @@ import BecomeCook from "./BecomeCook.vue";
                 >
                     <div class="lg:w-1/2 py-5 lg:px-5">
                         <h1
-                            class="pb-3 font-semibold text-sm lg:text-lg tracking-wide text-oynx dark:text-snow"
+                            class="pb-3 font-semibold text-sm lg:text-base tracking-wide text-oynx dark:text-snow"
                         >
-                            Phase 2
+                            Phase 3
                         </h1>
                         <h1
-                            class="font-semibold text-3xl lg:text-5xl tracking-wide text-oynx dark:text-snow"
+                            class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
-                            Steal The show
+                        Get the meal out there
                         </h1>
                         <h1
-                            class="pt-5 text-lg lg:text-xl text-oynx dark:text-snow"
+                            class="pt-5 lg:text-lg  text-oynx dark:text-snow"
                         >
-                            To really make your Meal stand out, we'll be
-                            adding some visual elements in this phase. By
-                            including the key ingredients and photos of the meal (3 or
-                            more!), you'll help readers understand your meal
-                            better and imagine the deliciousness firsthand.
-                            Plus, creating a unique title and description will
-                            make your Meal even more searchable and appealing.
+                        Get your aprons tightened!  Final step: personalize booking preferences, set your price point, and proudly publish your meal for eager foodies to discover.
                         </h1>
                     </div>
                     <div class="lg:w-1/2">

@@ -68,6 +68,9 @@ Route::middleware([
     Route::get('/become-a-cook/description', function () {
         return Inertia::render('Cook/BecomeCook/Description');
     });
+    Route::get('/become-a-cook/finishing-up', function () {
+        return Inertia::render('Cook/BecomeCook/LetItOut');
+    });
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
