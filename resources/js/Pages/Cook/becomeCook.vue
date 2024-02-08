@@ -1,5 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import Overview from "./Overview.vue";
+
 </script>
 
 <template>
@@ -8,19 +10,8 @@ import { Head, Link } from "@inertiajs/vue3";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div class="container relative mx-auto overflow-hidden w-screen">
-            <div class="m-auto flex items-center h-full px-6 lg:p-8">
-                <div class="lg:w-1/2">
-                    <h1 class="font-semibold lg:text-5xl tracking-wide text-oynx dark:text-snow">
-                        Experience simplicity with Foodmart
-                    </h1>
-                    <!-- <h1 class="font-bold pt-1 lg:text-5xl tracking-wide text-oynx dark:text-snow">Get started easily!</h1> -->
-                </div>
-                <div class="lg:w-1/2">
-
-                </div>
-            </div>
-        </div>
+    <Overview />
+      
         <div class="fixed h-24 shadow-reverse w-full bottom-0">
             <Link :href="`/become-a-cook`" class="float-right mr-8">
                 <button
