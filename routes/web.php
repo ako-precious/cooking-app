@@ -42,19 +42,19 @@ Route::middleware([
     })->name('dashboard');
     Route::get('/cook/setup', [CookController::class, 'setup']);
     Route::get('/become-a-cook/overview', function () {
-        return Inertia::render('Cook/Overview');
+        return Inertia::render('Cook/BecomeCook/Overview');
     });
     Route::get('/become-a-cook/about-your-meal', function () {
-        return Inertia::render('Cook/AboutYourMeal');
+        return Inertia::render('Cook/BecomeCook/AboutYourMeal');
     });
     Route::get('/become-a-cook/region', function () {
-        return Inertia::render('Cook/MealArea');
+        return Inertia::render('Cook/BecomeCook/MealArea');
     });
     Route::get('/become-a-cook/cook-limit', function () {
-        return Inertia::render('Cook/CookingLimit');
+        return Inertia::render('Cook/BecomeCook/CookingLimit');
     });
     Route::get('/become-a-cook/steal-the-show', function () {
-        return Inertia::render('Cook/StealShow');
+        return Inertia::render('Cook/BecomeCook/StealShow');
     });
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
