@@ -66,7 +66,7 @@ import TextInput from "@/Components/TextInput.vue";
         </template>
         <template #mainbtn>
             <Link
-                :href="`/become-a-cook/`"
+                :href="`/become-a-cook/steal-the-show`"
                 class="float-right mr-8"
             >
                 <button

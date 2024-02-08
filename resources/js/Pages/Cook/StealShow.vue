@@ -13,25 +13,31 @@ import BecomeCook from "./BecomeCook.vue";
                 >
                     <div class="lg:w-1/2 py-5 lg:px-5">
                         <h1
-                            class=" pb-3 font-semibold text-sm lg:text-lg  tracking-wide text-oynx dark:text-snow"
-                        >Phase 1
+                            class="pb-3 font-semibold text-sm lg:text-lg tracking-wide text-oynx dark:text-snow"
+                        >
+                            Phase 2
                         </h1>
                         <h1
                             class="font-semibold text-3xl lg:text-5xl tracking-wide text-oynx dark:text-snow"
                         >
-                            Tell us about your Meal
+                            Steal The show
                         </h1>
                         <h1
-                            class=" pt-5 text-lg lg:text-xl  text-oynx dark:text-snow"
+                            class="pt-5 text-lg lg:text-xl text-oynx dark:text-snow"
                         >
-                        In this step, we'll ask you what type of meal you want to make, and if you are availability structure. How many people you can cook for per meal.
+                            To really make your Meal stand out, we'll be
+                            adding some visual elements in this phase. By
+                            including the key ingredients and photos of the meal (3 or
+                            more!), you'll help readers understand your meal
+                            better and imagine the deliciousness firsthand.
+                            Plus, creating a unique title and description will
+                            make your Meal even more searchable and appealing.
                         </h1>
                     </div>
                     <div class="lg:w-1/2">
                         <div class="flex flex-col w-full">
                             <div class="flex lg:p-5">
-                                
-                                <div class="w-2/3 p-3 lg:p-10 ml-8 ">
+                                <div class="w-2/3 p-3 lg:p-10 ml-8">
                                     <img
                                         class=""
                                         src="/images/whattocook.jpg"
@@ -39,7 +45,6 @@ import BecomeCook from "./BecomeCook.vue";
                                     />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -56,20 +61,19 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/overview`" class=" font-semibold">
-                    <button class="cta ">
-                        <span class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow">
-                          Back  
+                <Link :href="`/become-a-cook/overview`" class="font-semibold">
+                    <button class="cta">
+                        <span
+                            class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
+                        >
+                            Back
                         </span>
                     </button>
                 </Link>
             </div>
         </template>
         <template #mainbtn>
-            <Link
-                :href="`/become-a-cook/region`"
-                class="float-right mr-8"
-            >
+            <Link :href="`/become-a-cook/region`" class="float-right mr-8">
                 <button
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link
@@ -87,24 +91,22 @@ import BecomeCook from "./BecomeCook.vue";
     }
 }
 
-
 .hover-underline-animation:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
 }
 
 .cta:hover .hover-underline-animation:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
-
 
 /* the design for the next button */
 .button {

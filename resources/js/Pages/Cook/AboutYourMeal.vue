@@ -24,7 +24,7 @@ import BecomeCook from "./BecomeCook.vue";
                         <h1
                             class=" pt-5 text-lg lg:text-xl  text-oynx dark:text-snow"
                         >
-                        In this step, we'll ask you what type of meal you want to make, and if you are availability structure. How many people you can cook for per meal.
+                        In this phase, we'll ask you what type of meal you want to make, and if you are availability structure. How many people you can cook for per meal.
                         </h1>
                     </div>
                     <div class="lg:w-1/2">
