@@ -1,9 +1,12 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+
+import BecomeCook from "./BecomeCook.vue";
 </script>
 
 <template>
-    
+    <BecomeCook>
+
         <div class="container relative mx-auto overflow-hidden w-screen">
             <div class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8">
                 <div class=" lg:w-1/2 py-5 lg:pr-5">
@@ -51,6 +54,7 @@ import { Head, Link } from "@inertiajs/vue3";
                 </div>
             </div>
         </div>
+    </BecomeCook>
        
 </template>
 

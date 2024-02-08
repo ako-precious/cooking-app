@@ -36,7 +36,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             us and let your cooking skills
                             shine!
                         </p>
-                        <Link :href="`/become-a-cook`">
+                        <Link :href="`/become-a-cook/overview`">
                             <button class=" bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
                         </Link>
                         

@@ -10,7 +10,8 @@ import Overview from "./Overview.vue";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-    <Overview class="animate-fade-in" />
+    <!-- <Overview /> -->
+    <slot class="animate-fade-in"></slot>
       
         <div class="fixed h-24 shadow-reverse w-full bottom-0">
             <Link :href="`/become-a-cook`" class="float-right mr-8">
