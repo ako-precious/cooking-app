@@ -11,11 +11,11 @@ import BecomeCook from "./BecomeCook.vue";
                 <div
                     class="m-auto flex flex-col max-w-[1000px] justify-center h-full px-6 lg:pb-20 w-full"
                 >
-                    <div class="py-5 lg:pb-12">
+                    <div class="py-5 lg:pb-12 text-center">
                         <h1
                             class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
                         >
-                        Share the secrets! List the magic ingredients you used.
+                        Share photos of your delicious creation!
                         </h1>
                     </div>
                     <div class="lg:w-full">
@@ -23,15 +23,16 @@ import BecomeCook from "./BecomeCook.vue";
                             <div class="flex justify-center item-center lg:gap-10 lg:px-10">
                                 <div class=" w-full max-w-full py-2">
                                     <div
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                        class="relative flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
+                                    <input type="file" multiple class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
                                         <div
-                                            class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
+                                            class="absolute top-0 right-0 left-0 bottom-0 m-auto flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
                                         >
                                             <font-awesome-icon
                                                 class="text-4xl group-action-text"
-                                                icon="earth-africa"
-                                            />
+                                                 icon="images" />
+                                           
                                             <div></div>
                                             <div class="pt-2 w-full">
                                                 <p
@@ -39,7 +40,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                 >
                                                     <span
                                                         class="lg:text-xl leading-normal"
-                                                        >Africa</span
+                                                        > Click or Drag (Minimum (3)) photos to the box</span
                                                     >
                                                 </p>
                                             </div>
@@ -65,7 +66,7 @@ import BecomeCook from "./BecomeCook.vue";
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
                 <Link
-                    :href="`/become-a-cook/about-your-meal`"
+                    :href="`/become-a-cook/ingredients`"
                     class="font-semibold"
                 >
                     <button class="cta">
@@ -79,7 +80,7 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/cook-limit`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/meal-title`" class="float-right mr-8">
                 <button
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link

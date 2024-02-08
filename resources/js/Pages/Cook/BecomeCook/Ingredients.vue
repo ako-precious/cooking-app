@@ -15,7 +15,7 @@ import BecomeCook from "./BecomeCook.vue";
                         <h1
                             class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
                         >
-                        Share the secrets! List the magic ingredients you used.
+                         Let's list the magic ingredients used for the meal.
                         </h1>
                     </div>
                     <div class="lg:w-full">
@@ -141,7 +141,7 @@ import BecomeCook from "./BecomeCook.vue";
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
                 <Link
-                    :href="`/become-a-cook/ingredients`"
+                    :href="`/become-a-cook/steal-the-show`"
                     class="font-semibold"
                 >
                     <button class="cta">
