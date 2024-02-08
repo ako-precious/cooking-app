@@ -10,7 +10,7 @@ import Overview from "./Overview.vue";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-    <Overview />
+    <Overview class="animate-fade-in" />
       
         <div class="fixed h-24 shadow-reverse w-full bottom-0">
             <Link :href="`/become-a-cook`" class="float-right mr-8">
@@ -88,4 +88,12 @@ import Overview from "./Overview.vue";
 .type1:hover::before {
     transform: translateY(-50px) scale(0) rotate(120deg);
 }
+@keyframes fade-in {
+        from { opacity: 0; bottom: -10rem;}
+        to { opacity: 1; bottom: 0; }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.7s ease-in;
+    }
 </style>

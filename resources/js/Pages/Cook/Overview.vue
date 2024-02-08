@@ -6,8 +6,8 @@ import { Head, Link } from "@inertiajs/vue3";
     
         <div class="container relative mx-auto overflow-hidden w-screen">
             <div class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8">
-                <div class=" lg:w-1/2 py-5">
-                    <h1 class="font-semibold text-3xl lg:text-5xl tracking-wide text-oynx dark:text-snow">
+                <div class=" lg:w-1/2 py-5 lg:pr-5">
+                    <h1 class="font-semibold text-3xl lg:text-5xl tracking-wide  text-oynx dark:text-snow">
                         Experience simplicity with Foodmart
                     </h1>
                     <!-- <h1 class="font-bold pt-1 lg:text-xl tracking-wide text-oynx dark:text-snow">Get started easily!</h1> -->
@@ -30,7 +30,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             
                             <div class="w-2/3">
                                 <h1 class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow">Steal the show</h1>
-                                <p class=" pt-3 lg:text-lg  text-oynx dark:text-snow">Bring your meal to life! Upload 5+ photos, tell your story with a title and description. <br> We'll lend a hand.</p>
+                                <p class=" pt-3 lg:text-lg  text-oynx dark:text-snow">Bring your meal to life! Upload 5+ photos, tell your story with a title and description. We'll lend a hand.</p>
                             </div>
                             <div class="w-1/3 lg:h-[180px] ml-8 p-3">
                                 <img src="/images/takepicturesofmeal.jpg" alt="">
