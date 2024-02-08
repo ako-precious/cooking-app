@@ -56,6 +56,12 @@ Route::middleware([
     Route::get('/become-a-cook/steal-the-show', function () {
         return Inertia::render('Cook/BecomeCook/StealShow');
     });
+    Route::get('/become-a-cook/ingredients', function () {
+        return Inertia::render('Cook/BecomeCook/Ingredients');
+    });
+    Route::get('/become-a-cook/photos', function () {
+        return Inertia::render('Cook/BecomeCook/Photos');
+    });
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);

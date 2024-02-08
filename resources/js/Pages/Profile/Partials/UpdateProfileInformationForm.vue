@@ -289,7 +289,7 @@ export default {
                 </div>
                
                 <div class="mt-1">
-                    <div class="flex flex-wrap">
+                    <div class="flex flex-wrap-reverse flex-row-reverse">
                         <div
                             class="relative sm:w-1/3 p-1"
                             v-for="(
