@@ -17,10 +17,11 @@
             <!-- buttons -->
             <nav class="contents">
                 <ul class="ml-4 xl:w-48 flex items-center justify-end">
-                   <li
-                    
+                   <!-- hso -->
+                   <li                     
                     class="text-nowrap py-2 px-4 navbar-link"
                     >
+
                     <Link  :href="`/cook/setup`" >
                         <a
                             class=""

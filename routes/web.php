@@ -43,6 +43,7 @@ Route::middleware([
     })->name('dashboard');
     Route::get('/cook/setup', [CookController::class, 'setup']);
     Route::resource('cook', CookController::class);
+    
     Route::get('/become-a-cook/overview', function () {
         return Inertia::render('Cook/BecomeCook/Overview');
     });

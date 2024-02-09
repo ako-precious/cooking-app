@@ -6,96 +6,146 @@ import BecomeCook from "./BecomeCook.vue";
 
 <template>
     <BecomeCook>
-        <template #info >
-             <div class="container relative mx-auto overflow-hidden w-screen">
-                <div class="m-auto flex flex-col  items-center h-full px-6 lg:p-8">
-                    <div class=" lg:w-2/3 py-5 ">
-                        <h1 class="font-semibold text-3xl lg:text-4xl tracking-wide  text-oynx dark:text-snow">
+        <template #info>
+            <div class="container relative mx-auto overflow-hidden w-screen">
+                <div
+                    class="m-auto flex flex-col items-center h-full px-6 lg:p-8"
+                >
+                    <div class="lg:w-2/3 py-5">
+                        <h1
+                            class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
+                        >
                             Experience Simplicity with Foodmart
                         </h1>
-                        <h1 class=" pt-1 lg:text-lg tracking-wide text-oynx dark:text-snow">The perfect is the enemy of the creativity. You can alway change thing you don't like </h1>
+                        <h1
+                            class="pt-1 lg:text-lg tracking-wide text-oynx dark:text-snow"
+                        >
+                            The perfect is the enemy of the creativity. You can
+                            alway change thing you don't like
+                        </h1>
                     </div>
                     <div class="lg:w-2/3">
-                        
                         <div class="flex flex-col w-full">
                             <div class="flex py-5">
-                               
                                 <div class="w-2/3">
-                                    <h1 class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow">What delicious meal are you planning to cook?</h1>
-                                    <p class=" pt-3  lg:text-lg text-oynx dark:text-snow">Share some basic info, like who you food is made for and how many people you can cook for.</p>
+                                    <h1
+                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
+                                    >
+                                        What delicious meal are you planning to
+                                        cook?
+                                    </h1>
+                                    <p
+                                        class="pt-3 lg:text-lg text-oynx dark:text-snow"
+                                    >
+                                        Share some basic info, like who you food
+                                        is made for and how many people you can
+                                        cook for.
+                                    </p>
                                 </div>
                                 <div class="w-1/3 lg:h-[180px] ml-8 p-3">
-                                    <img class="" src="/images/whattocook.jpg" alt="">
+                                    <img
+                                        class=""
+                                        src="/images/whattocook.jpg"
+                                        alt=""
+                                    />
                                 </div>
-                         </div>
-                            
-                        
+                            </div>
+
                             <div class="flex py-5">
-                                
                                 <div class="w-2/3">
-                                    <h1 class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow">Steal the show</h1>
-                                    <p class=" pt-3 lg:text-lg  text-oynx dark:text-snow">Bring your meal to life! Upload 5+ photos, tell your story with a title and description. We'll lend a hand.</p>
+                                    <h1
+                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
+                                    >
+                                        Steal the show
+                                    </h1>
+                                    <p
+                                        class="pt-3 lg:text-lg text-oynx dark:text-snow"
+                                    >
+                                        Bring your meal to life! Upload 5+
+                                        photos, tell your story with a title and
+                                        description. We'll lend a hand.
+                                    </p>
                                 </div>
                                 <div class="w-1/3 lg:h-[180px] ml-8 p-3">
-                                    <img src="/images/takepicturesofmeal.jpg" alt="">
+                                    <img
+                                        src="/images/takepicturesofmeal.jpg"
+                                        alt=""
+                                    />
                                 </div>
-                         </div>
+                            </div>
                             <div class="flex py-5">
-                            
                                 <div class="w-2/3">
-                                    <h1 class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow">Let's get the meal out there!</h1>
-                                    <p class=" pt-3 lg:text-lg  text-oynx dark:text-snow">Pick your available time, set the price, and share your culinary creation.</p>
+                                    <h1
+                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
+                                    >
+                                        Let's get the meal out there!
+                                    </h1>
+                                    <p
+                                        class="pt-3 lg:text-lg text-oynx dark:text-snow"
+                                    >
+                                        Pick your available time, set the price,
+                                        and share your culinary creation.
+                                    </p>
                                 </div>
                                 <div class="w-1/3 lg:h-[180px] ml-8 p-3">
-                                    <img src="/images/getitout.jpg" alt="">
+                                    <img src="/images/getitout.jpg" alt="" />
                                 </div>
-                         </div>
+                            </div>
                         </div>
-    
                     </div>
                 </div>
             </div>
-
         </template>
 
-        <template #progressbar >
+        <template #progressbar>
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
-                <div class="h-1 bg-persian transition-all duration-250 delay-75 " style="width: 0%"></div>
+                <div
+                    class="h-1 bg-persian transition-all duration-250 delay-75"
+                    style="width: 0%"
+                ></div>
             </div>
-        </template >
-        <template #backbtn >
-
         </template>
-        <template #mainbtn >
-            <Link :href="`/become-a-cook/about-your-meal`" class="float-right mr-8">
-                <button @click="createTableRow"
-                    class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
-            </Link>
+        <template #backbtn> </template>
+        <template #mainbtn>
+            <!-- <Link :href="`/become-a-cook/about-your-meal`" class=""> -->
+            <button
+                @click="createNewMeal"
+                class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
+            ></button>
+            <!-- </Link> -->
         </template>
     </BecomeCook>
-       
 </template>
 
 <script>
 
-export default {
-    methods: {
-        createNewRow() {
-            // axios.post('/meal/store')
-            //     .then(response => {
-            //         // Handle the response and extract the ID of the newly created row
-            //         const newMealId = response.data.id;
+import axios from 'axios';
 
-            //         // Redirect to the new route with the ID included
-            //         this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
-            //     })
-            //     .catch(error => {
-            //         console.error('Error creating new row:', error);
-            //     });
+export default {
+    data(){
+        return{
+            newMeal: {
+                user_id: this.$page.props.auth.user.id,                
+            },
+        }
+
+    },
+    methods: {
+        createNewMeal() {
+            axios.post('/meal', this.newMeal)
+                .then(response => {
+                    // Handle the response and extract the ID of the newly created row
+                    const newMealId = response.data.id;
+
+                    // Redirect to the new route with the ID included
+                    this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
+                })
+                .catch(error => {
+                    console.error('Error creating new row:', error);
+                });
         }
     }
 }
-
 </script>
 
 <style scoped>
@@ -176,4 +226,3 @@ export default {
     animation: fade-in 0.7s ease-in;
 }
 </style>
-

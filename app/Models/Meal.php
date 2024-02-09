@@ -12,9 +12,11 @@ class Meal extends Model
 {
     use HasFactory;
 
+    protected $table = 'meals';
+
+    protected $fillable = ['cook_id', 'name', 'region', 'description',  'price', 'ingredients', 'cooking_limit', 'status'];
+
     
-
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'cook_id', 'id');
@@ -22,5 +24,17 @@ class Meal extends Model
     public function meal_schedule(): HasMany
     {
         return $this->hasMany(MealSchedule::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($model) {
+            if (is_null($model->status)) {
+                $model->status = 'pending';
+            }
+        });
+        
     }
 }
