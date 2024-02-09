@@ -47,7 +47,10 @@ Route::middleware([
     Route::get('/become-a-cook/overview', function () {
         return Inertia::render('Cook/BecomeCook/Overview');
     });
-    Route::get('/become-a-cook/{meal}/about-your-meal', function () {
+    Route::get('/become-a-cook/{newMealId}/overview', function () {
+        return Inertia::render('Cook/BecomeCook/Overview');
+    });
+    Route::get('/become-a-cook/{newMealId}/about-your-meal', function () {
         return Inertia::render('Cook/BecomeCook/AboutYourMeal');
     });
     Route::get('/become-a-cook/region', function () {

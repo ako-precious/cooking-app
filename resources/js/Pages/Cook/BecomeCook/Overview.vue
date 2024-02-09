@@ -11,7 +11,7 @@ import BecomeCook from "./BecomeCook.vue";
                 <div
                     class="m-auto flex flex-col items-center h-full px-6 lg:p-8"
                 >
-                    <div class="lg:w-2/3 py-5">
+                    <div class="lg:w-3/4 text-center py-5">
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
@@ -24,15 +24,15 @@ import BecomeCook from "./BecomeCook.vue";
                             alway change thing you don't like
                         </h1>
                     </div>
-                    <div class="lg:w-2/3">
-                        <div class="flex flex-col w-full">
-                            <div class="flex py-5">
-                                <div class="w-2/3">
+                    <div class="lg:w-4/5">
+                        <div class="grid sm:grid-cols-2 py-5  md:grid-cols-3 gap-3 lg:gap-6 ">
+                            <div class="w-full">
+                            <div class="flex flex-col ">
+                                    
                                     <h1
                                         class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
                                     >
-                                        What delicious meal are you planning to
-                                        cook?
+                                     Let's know about your meal
                                     </h1>
                                     <p
                                         class="pt-3 lg:text-lg text-oynx dark:text-snow"
@@ -42,19 +42,19 @@ import BecomeCook from "./BecomeCook.vue";
                                         cook for.
                                     </p>
                                 </div>
-                                <div class="w-1/3 lg:h-[180px] ml-8 p-3">
+                                <!-- <div class="w-1/3 lg:h-[180px] ml-8 p-3">
                                     <img
                                         class=""
                                         src="/images/whattocook.jpg"
                                         alt=""
                                     />
-                                </div>
+                                </div> -->
                             </div>
 
-                            <div class="flex py-5">
-                                <div class="w-2/3">
+                            <div class="w-full">
+                            <div class="flex flex-col">
                                     <h1
-                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
+                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide   text-oynx dark:text-snow"
                                     >
                                         Steal the show
                                     </h1>
@@ -66,17 +66,17 @@ import BecomeCook from "./BecomeCook.vue";
                                         description. We'll lend a hand.
                                     </p>
                                 </div>
-                                <div class="w-1/3 lg:h-[180px] ml-8 p-3">
+                                <!-- <div class="w-1/3 lg:h-[180px] ml-8 p-3">
                                     <img
                                         src="/images/takepicturesofmeal.jpg"
                                         alt=""
                                     />
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="flex py-5">
-                                <div class="w-2/3">
+                            <div class="w-full">
+                            <div class="flex flex-col">
                                     <h1
-                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
+                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide lg:h-[60px] text-oynx dark:text-snow"
                                     >
                                         Let's get the meal out there!
                                     </h1>
@@ -87,9 +87,9 @@ import BecomeCook from "./BecomeCook.vue";
                                         and share your culinary creation.
                                     </p>
                                 </div>
-                                <div class="w-1/3 lg:h-[180px] ml-8 p-3">
+                                <!-- <div class="w-1/3 lg:h-[180px] ml-8 p-3">
                                     <img src="/images/getitout.jpg" alt="" />
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -125,20 +125,22 @@ export default {
     data(){
         return{
             newMeal: {
-                user_id: this.$page.props.auth.user.id,                
+                user_id: this.$page.props.auth.user.id,                    
             },
         }
 
     },
     methods: {
         createNewMeal() {
+            if (cond) {
+                
+            }
             axios.post('/meal', this.newMeal)
                 .then(response => {
                     // Handle the response and extract the ID of the newly created row
                     const newMealId = response.data.id;
 
-                    // Redirect to the new route with the ID included
-                    this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
+                    this.$inertia.visit(`/become-a-cook/${newMealId}/about-your-meal`);
                 })
                 .catch(error => {
                     console.error('Error creating new row:', error);
@@ -176,7 +178,7 @@ export default {
     content: "Let's Guide You";
     height: 50px;
     width: 165px;
-    background-color: #004e98;
+    background-color: #1B998B;
     color: #fff;
     position: absolute;
     top: 0%;
@@ -193,7 +195,7 @@ export default {
     height: 50px;
     width: 165px;
     /* background-color: #fff; */
-    color: #004e98;
+    color: #1B998B;
     position: absolute;
     top: 0%;
     left: 0%;

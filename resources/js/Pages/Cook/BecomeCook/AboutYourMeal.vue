@@ -67,7 +67,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #mainbtn>
             <Link
-                :href="`/become-a-cook/region`"
+                :href="`/become-a-cook/${newMealId}/region`"
                 class="float-right mr-8"
             >
                 <button
@@ -126,7 +126,7 @@ import BecomeCook from "./BecomeCook.vue";
     content: "We're with you";
     height: 50px;
     width: 165px;
-    background-color: #004e98;
+    background-color: #1B998B;
     color: #fff;
     position: absolute;
     top: 0%;
@@ -143,7 +143,7 @@ import BecomeCook from "./BecomeCook.vue";
     height: 50px;
     width: 165px;
     /* background-color: #fff; */
-    color: #004e98;
+    color: #1B998B;
     position: absolute;
     top: 0%;
     left: 0%;

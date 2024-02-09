@@ -110,7 +110,7 @@ export default {
     content: "Monetize Your Passion";
     height: 50px;
     width: 165px;
-    background-color: #004e98;
+    background-color: #1B998B;
     color: #fff;
     position: absolute;
     top: 0%;
@@ -127,7 +127,7 @@ export default {
     height: 50px;
     width: 165px;
     /* background-color: #fff; */
-    color: #004e98;
+    color: #1B998B;
     position: absolute;
     top: 0%;
     left: 0%;
