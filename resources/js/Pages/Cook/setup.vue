@@ -25,21 +25,23 @@ import { Head, Link } from "@inertiajs/vue3";
                         <p class="mt-4 font-semibold leading-relaxed">
                             Discover your culinary talents and share your
                             masterpieces with the world! Whether you're a
-                            seasoned chef or a passionate home cook, we provide the perfect stage for showcasing
-                            your delicious creations.
+                            seasoned chef or a passionate home cook, we provide
+                            the perfect stage for showcasing your delicious
+                            creations.
                             <br />
                             <br />
                             Connect with Student
                             <span class="hidden"> food enthusiasts </span> eager
                             to taste your dishes and offer your culinary
                             expertise to those seeking homemade delights. Join
-                            us and let your cooking skills
-                            shine!
+                            us and let your cooking skills shine!
                         </p>
                         <Link :href="`/become-a-cook/overview`">
-                            <button @click="addUserToCook" class=" bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
+                            <button
+                                @click="addUserToCook"
+                                class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
+                            ></button>
                         </Link>
-                        
                     </div>
                 </div>
             </div>
@@ -52,14 +54,20 @@ import axios from 'axios';
 export default {
     data(){
         return{
-            user_id: this.$page.props.auth.user.id,        }
-    },
+            newCook: {
+                user_id: this.$page.props.auth.user.id,
+                certificate: null,
+                means_of_id: null,
+                other_info: null,
+                status: 'pending',
+            },}
+    }, 
     methods: {
         addUserToCook() {
-            axios.post('/cook', this.user_id )
+            axios.post('/cook', this.newCook )
                 .then(response => {
                     // Handle the response and extract the ID of the newly created row
-                   console.log(response.data.id); 
+                   console.log(response.data.id);
 
                     // Redirect to the new route with the ID included
                     // this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
@@ -102,7 +110,7 @@ export default {
     content: "Monetize Your Passion";
     height: 50px;
     width: 165px;
-    background-color: #004E98;
+    background-color: #004e98;
     color: #fff;
     position: absolute;
     top: 0%;
@@ -119,7 +127,7 @@ export default {
     height: 50px;
     width: 165px;
     /* background-color: #fff; */
-    color: #004E98;
+    color: #004e98;
     position: absolute;
     top: 0%;
     left: 0%;

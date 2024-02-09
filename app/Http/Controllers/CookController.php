@@ -15,13 +15,10 @@ class CookController extends Controller
 
     public function store(Request $request)
     {
+        
         // Create a new row in your table
-        $newCook = Cook::create([
-            'user_id' => $request->user_id
-            // Add any necessary attributes here
-        ]);
-
+        $newCook = Cook::create($request->all());
         // Return the ID of the newly created row
-        return response()->json(['id' => $newCook]);
+        return response()->json(['data' => $newCook]);
     }
 }

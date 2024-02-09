@@ -67,10 +67,11 @@ import BecomeCook from "./BecomeCook.vue";
 
         </template>
         <template #mainbtn >
-            <Link :href="`/become-a-cook/${cookId}/about-your-meal`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/about-your-meal`" class="float-right mr-8">
                 <button @click="createTableRow"
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
-            </Link></template>
+            </Link>
+        </template>
     </BecomeCook>
        
 </template>
@@ -80,17 +81,17 @@ import BecomeCook from "./BecomeCook.vue";
 export default {
     methods: {
         createNewRow() {
-            axios.post('/meal/store')
-                .then(response => {
-                    // Handle the response and extract the ID of the newly created row
-                    const newMealId = response.data.id;
+            // axios.post('/meal/store')
+            //     .then(response => {
+            //         // Handle the response and extract the ID of the newly created row
+            //         const newMealId = response.data.id;
 
-                    // Redirect to the new route with the ID included
-                    this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
-                })
-                .catch(error => {
-                    console.error('Error creating new row:', error);
-                });
+            //         // Redirect to the new route with the ID included
+            //         this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
+            //     })
+            //     .catch(error => {
+            //         console.error('Error creating new row:', error);
+            //     });
         }
     }
 }
