@@ -11,13 +11,13 @@ import { Head, Link } from "@inertiajs/vue3";
         <div
             class="container relative mx-auto overflow-hidden h-screen w-screen"
         >
-            <iframe
+            <!-- <iframe
                 src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
                 frameborder="0"
                 width="100%"
                 height="100%"
                 class="absolute  -right-40 z-0"
-            ></iframe>
+            ></iframe> -->
 
             <div class="m-auto flex items-center h-full px-6 lg:p-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -37,7 +37,7 @@ import { Head, Link } from "@inertiajs/vue3";
                             shine!
                         </p>
                         <Link :href="`/become-a-cook/overview`">
-                            <button class=" bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
+                            <button @click="addUserToCook" class=" bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
                         </Link>
                         
                     </div>
@@ -47,6 +47,30 @@ import { Head, Link } from "@inertiajs/vue3";
     </div>
 </template>
 
+<script>
+import axios from 'axios';
+export default {
+    data(){
+        return{
+            user_id: this.$page.props.auth.user.id,        }
+    },
+    methods: {
+        addUserToCook() {
+            axios.post('/cook', this.user_id )
+                .then(response => {
+                    // Handle the response and extract the ID of the newly created row
+                   console.log(response.data.id); 
+
+                    // Redirect to the new route with the ID included
+                    // this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
+                })
+                .catch(error => {
+                    console.error('Error creating new row:', error);
+                });
+        }
+    }
+}
+</script>
 <!-- Saving for later -->
 <!-- "Indulge your taste buds and unlock a world of culinary delights with our platform, where passionate home chefs transform ordinary ingredients into extraordinary experiences. From tantalizing dishes to mouthwatering desserts, our community of food artisans invites you to savor their creations and bring the flavors of the world into your home. Whether you're seeking a gourmet feast for a special occasion or craving everyday comfort food made with love, discover your perfect match among our talented cooks who are ready to turn your cravings into unforgettable culinary adventures." -->
 

@@ -8,16 +8,17 @@ import BecomeCook from "./BecomeCook.vue";
     <BecomeCook>
         <template #info >
              <div class="container relative mx-auto overflow-hidden w-screen">
-                <div class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8">
-                    <div class=" lg:w-1/2 py-5 lg:px-5">
+                <div class="m-auto flex flex-col  items-center h-full px-6 lg:p-8">
+                    <div class=" lg:w-2/3 py-5 ">
                         <h1 class="font-semibold text-3xl lg:text-4xl tracking-wide  text-oynx dark:text-snow">
                             Experience Simplicity with Foodmart
                         </h1>
                         <h1 class=" pt-1 lg:text-lg tracking-wide text-oynx dark:text-snow">The perfect is the enemy of the creativity. You can alway change thing you don't like </h1>
                     </div>
-                    <div class="lg:w-1/2">
+                    <div class="lg:w-2/3">
+                        
                         <div class="flex flex-col w-full">
-                            <div class="flex pb-5">
+                            <div class="flex py-5">
                                
                                 <div class="w-2/3">
                                     <h1 class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow">What delicious meal are you planning to cook?</h1>
@@ -66,14 +67,35 @@ import BecomeCook from "./BecomeCook.vue";
 
         </template>
         <template #mainbtn >
-            <Link :href="`/become-a-cook/about-your-meal`" class="float-right mr-8">
-                <button
+            <Link :href="`/become-a-cook/${cookId}/about-your-meal`" class="float-right mr-8">
+                <button @click="createTableRow"
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"></button>
             </Link></template>
     </BecomeCook>
        
 </template>
 
+<script>
+
+export default {
+    methods: {
+        createNewRow() {
+            axios.post('/meal/store')
+                .then(response => {
+                    // Handle the response and extract the ID of the newly created row
+                    const newMealId = response.data.id;
+
+                    // Redirect to the new route with the ID included
+                    this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
+                })
+                .catch(error => {
+                    console.error('Error creating new row:', error);
+                });
+        }
+    }
+}
+
+</script>
 
 <style scoped>
 .bg-dots-darker {

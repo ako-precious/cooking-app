@@ -3,6 +3,7 @@
 use App\Http\Controllers\CookController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
+use App\Http\Controllers\MealController;
 use App\Models\MealSchedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -41,10 +42,11 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     Route::get('/cook/setup', [CookController::class, 'setup']);
+    Route::resource('cook', CookController::class);
     Route::get('/become-a-cook/overview', function () {
         return Inertia::render('Cook/BecomeCook/Overview');
     });
-    Route::get('/become-a-cook/about-your-meal', function () {
+    Route::get('/become-a-cook/{meal}/about-your-meal', function () {
         return Inertia::render('Cook/BecomeCook/AboutYourMeal');
     });
     Route::get('/become-a-cook/region', function () {
@@ -73,5 +75,6 @@ Route::middleware([
     });
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
+    Route::resource('/meal', MealController::class);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
 });
