@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('certificate')->nullable();
             $table->string('means_of_id')->nullable();
             $table->longText('other_info')->nullable();
-
+            $table->enum('status', ['pending','unavailable', 'available'])->default('pending');
             $table->timestamps();
         });
     }

@@ -15,12 +15,16 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cook_id');
             $table->foreign('cook_id', 'foreign_meal_cooks')->references('id')->on('users');
-            $table->string('name');
-            $table->string('description');
-            $table->string('meal_photo_path', 2048)->nullable();
-            $table->float('price');
-            $table->json('ingredients');
-            $table->integer('cooking_limit');
+            $table->string('name', 50)->nullable();
+            $table->string('region', 30)->nullable();
+            $table->string('description',600)->nullable();
+            $table->unsignedBigInteger('photo_id')->nullable();
+            $table->foreign('photo_id', 'foreign_meal_photos')->references('id')->on('photos')->nullOnDelete();
+            $table->float('price', 8, 2)->default(10.00);
+            $table->json('ingredients')->nullable();
+            $table->integer('cooking_limit')->default(10);
+            $table->enum('status', ['pending', 'available'])->default('pending');
+            
             $table->timestamps();
         });
     }

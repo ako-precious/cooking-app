@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();            
-            $table->unsignedBigInteger('meal_id')->nullable();
+            $table->unsignedBigInteger('meal_id');
             $table->foreign('meal_id', 'foreign_meal_rating')->references('id')->on('meals');            
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'foreign_user_rating')->references('id')->on('users');
             $table->tinyInteger('presentation');
             $table->tinyInteger('taste');
             $table->tinyInteger('value');
             $table->tinyInteger('nutrition');
             $table->tinyInteger('portion_size'); 
-            $table->text('comment');
+            $table->string('comment',600);
             $table->timestamps();
         });
     }
