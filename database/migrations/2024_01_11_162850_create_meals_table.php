@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name', 50)->nullable();
             $table->string('region', 30)->nullable();
             $table->string('description',600)->nullable();
-            $table->unsignedBigInteger('photo_id')->nullable();
-            $table->foreign('photo_id', 'foreign_meal_photos')->references('id')->on('photos')->nullOnDelete();
+            // $table->unsignedBigInteger('photo_id')->nullable();
+            // $table->foreign('photo_id', 'foreign_meal_photo')->references('id')->on('meal_photos')->nullOnDelete();
             $table->float('price', 8, 2)->default(10.00);
             $table->json('ingredients')->nullable();
             $table->integer('cooking_limit')->default(10);

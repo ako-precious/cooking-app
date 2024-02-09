@@ -20,6 +20,12 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('address')->nullable();
+            $table->string('status')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('means_of_id')->nullable();           
+            $table->json('dietary_restrictions_allergies')->nullable();
+            $table->longText('other_info')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
