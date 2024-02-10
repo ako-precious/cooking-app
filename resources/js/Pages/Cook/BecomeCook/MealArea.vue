@@ -25,7 +25,7 @@ import BecomeCook from "./BecomeCook.vue";
                                     
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div :class="{ 'border-persian border-2 ': selectedDiv === 'Africa' }"
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border " @click="[sendData('Africa'), selectDiv('Africa')]" 
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer " @click="[sendData('Africa'), selectDiv('Africa')]" 
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -50,7 +50,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div :class="{ 'border-persian border-2 ': selectedDiv === 'Antarctica' }"  @click="[sendData('Antarctica'), selectDiv('Antarctica')]"
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -75,7 +75,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div :class="{ 'border-persian border-2 ': selectedDiv === 'Asia' }"  @click="[sendData('Asia'), selectDiv('Asia')]"
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border" 
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer" 
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -101,7 +101,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div  :class="{ 'border-persian border-2 ': selectedDiv === 'Europe' }"  @click="[sendData('Europe'), selectDiv('Europe')]"
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -126,7 +126,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div  :class="{ 'border-persian border-2 ': selectedDiv === 'North America' }"  @click="[sendData('North America'), selectDiv('North America')]" 
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -151,7 +151,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div :class="{ 'border-persian border-2 ': selectedDiv === 'Oceania' }"  @click="[sendData('Oceania'), selectDiv('Oceania')]" 
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -176,7 +176,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div :class="{ 'border-persian border-2 ': selectedDiv === 'South America' }"  @click="[sendData('South America'), selectDiv('South America')]"  
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -231,9 +231,11 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
+            <Link :href="`/become-a-cook/${Meal.id}/cook-limit`" class="">
                 <button
                     class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button></template>
+                ></button> </Link
+        ></template>
     </BecomeCook>
 </template>
 
@@ -265,10 +267,7 @@ export default {
                 .catch(error => {
                     console.error('Error sending data:', error);
                 });
-                const MealId = response.data.meal.id;
-                        this.$inertia.visit(
-                            `/become-a-cook/${MealId}/meal-limit`
-                        );
+              
     
         },
         selectDiv(divId) {

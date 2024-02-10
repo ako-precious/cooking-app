@@ -15,14 +15,16 @@ import BecomeCook from "./BecomeCook.vue";
                         <h1
                             class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
                         >
-                        Share photos of your delicious creation!
+                            Share photos of your delicious creation!
                         </h1>
                     </div>
                     <div class="lg:w-full">
                         <div class="flex flex-col w-full">
-                            <div class="flex justify-center item-center lg:gap-10 lg:px-10">
-                                <div class=" w-full max-w-full py-2">
-                                    <div
+                            <div
+                                class="flex justify-center item-center lg:gap-10 lg:px-10"
+                            >
+                                <div class="w-full max-w-full py-2 fle">
+                                    <!-- <div
                                         class="relative flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                     <input type="file" multiple class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50">
@@ -45,9 +47,93 @@ import BecomeCook from "./BecomeCook.vue";
                                                 </p>
                                             </div>
                                         </div>
+                                    </div> -->
+                                    <div
+                                        class="relative flex flex-col min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                    > <div class="relative flex">
+                                        <input
+                                            type="file"
+                                            multiple
+                                            accept="image/*"
+                                            @change="previewImages"
+                                            class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
+                                        /><div
+                                            
+                                            class="absolute top-0 right-0 left-0 bottom-0 m-auto flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
+                                        >
+                                            <font-awesome-icon
+                                                class="text-4xl group-action-text"
+                                                icon="images"
+                                            />
+                                            <div  v-if="imagePreviews.length"
+                                            
+                                            class="mt-4  m-auto flex flex-wrap justify-center w-full p-4 mb-0 list-none rounded-xl">
+                                            <p
+                                                    class="font-semibold text-center px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
+                                                >
+                                                    <span
+                                                        class="lg:text-xl leading-normal"
+                                                        >Drag to rearrange the images (the first image will be used as the cover page )</span
+                                                    >
+                                                </p>
+                                        </div>
+                                        
+                                            <div v-else class="pt-2 w-full">
+                                                <p
+                                                    class="font-semibold text-center px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
+                                                >
+                                                    <span
+                                                        class="lg:text-xl leading-normal"
+                                                        >Click or Drag (Minimum
+                                                        (3)) photos to the
+                                                        box</span
+                                                    >
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                        <!-- Image preview container -->
+                                        <div class="grid grid-cols-3  md:grid-cols-5 gap-5 lg:gap-8 lg:px-10">
+
+                                        </div>
+                                        <div
+                                            v-if="imagePreviews.length"
+                                            ref="imageContainer"
+                                            class="mt-4  m-auto  justify-center w-full p-4 mb-0 list-none grid grid-cols-2  md:grid-cols-5 gap-5 lg:gap-7 lg:px-10 rounded-xl"
+                                        >
+                                            <div
+                                                v-for="(
+                                                    preview, index
+                                                ) in imagePreviews"
+                                                :key="index"
+                                                class="relative"
+                                                draggable
+                                                @dragstart="
+                                                    dragStart(index, $event)
+                                                "
+                                                @dragover.prevent
+                                                @drop="drop(index, $event)"
+                                            >
+                                            <p
+                                                    class="absolute top-0 right-0 bg-snow dark:bg-oynx cursor-pointer p-1 px-2"
+                                                    @click="removeImage(index)"
+                                                >
+                                                    <font-awesome-icon
+                                                        icon="fa-solid fa-close"
+                                                        class="text-lighred text-sm"
+                                                    />
+                                                </p>
+                                                <img
+                                                    :src="preview"
+                                                    alt="Image Preview"
+                                                    class="w-full h-full object-cover rounded"
+                                                />
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                              
                             </div>
                         </div>
                     </div>
@@ -87,6 +173,66 @@ import BecomeCook from "./BecomeCook.vue";
         ></template>
     </BecomeCook>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            imagePreviews: [], // Array to hold image preview URLs
+        };
+    },
+    methods: {
+    previewImages(event) {
+      this.imagePreviews = [];
+      const files = event.target.files;
+      if (files) {
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          if (file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              this.imagePreviews.push(e.target.result);
+            };
+            reader.readAsDataURL(file);
+          }
+        }
+      }
+    },
+    dragStart(index, event) {
+      event.dataTransfer.setData("text/plain", index);
+      this.dragIndex = index;
+    },
+    removeImage(index) {
+        this.imagePreviews.splice(index, 1);
+        },
+
+    drop(index, event) {
+      event.preventDefault();
+      const data = event.dataTransfer.getData("text/plain");
+      const fromIndex = parseInt(data);
+      if (fromIndex !== index) {
+        const temp = this.imagePreviews[fromIndex];
+        this.imagePreviews.splice(fromIndex, 1);
+        this.imagePreviews.splice(index, 0, temp);
+      }
+      this.dragIndex = null;
+    },
+    createNewMeal() {
+      axios.post('/meal_photos' , {
+        images: this.imagePreviews, // Send the image previews array
+        // other meal data...
+      })
+      .then(response => {
+        // Handle response...
+      })
+      .catch(error => {
+        // Handle error...
+      });
+    }
+
+  },
+};
+</script>
 
 <style scoped>
 .bg-dots-darker {

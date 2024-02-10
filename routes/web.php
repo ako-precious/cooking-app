@@ -4,6 +4,7 @@ use App\Http\Controllers\CookController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\MealPhotosController;
 use App\Models\MealSchedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -53,7 +54,7 @@ Route::middleware([
     Route::put('meal/region/{id}', [MealController::class, 'region' ]);
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
-    Route::put('meal/title/{id}', [MealController::class, 'title' ]);
+    Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::get('/become-a-cook/{newMealId}/cook-limit', [CookController::class, 'cook_limit' ]);
     Route::get('/become-a-cook/{newMealId}/spotlight', [CookController::class, 'spotlight' ]);
     Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients' ]);
@@ -63,5 +64,6 @@ Route::middleware([
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal', MealController::class);
+    Route::resource('/meal-photos', MealPhotosController::class);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
 });
