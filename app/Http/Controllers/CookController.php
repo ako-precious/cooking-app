@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cook;
+use App\Models\Meal;
 
 class CookController extends Controller
 {
@@ -12,7 +13,18 @@ class CookController extends Controller
         // dd(Auth::id()) ;
         return inertia('Cook/setup',);
     }
-
+    public function about_your_meal($newMealId)
+    {
+        $Meal = Meal::find($newMealId);
+        // dd($Meal);
+        return inertia('Cook/BecomeCook/AboutYourMeal',['Meal' => $Meal]);
+    }
+    public function overview($newMealId)
+    {
+        $Meal = Meal::find($newMealId);
+        // dd($Meal);
+        return inertia('Cook/BecomeCook/Overview',['Meal' => $Meal]);
+    }
     public function store(Request $request)
     {
         $user_id = $request->user_id;
@@ -28,4 +40,5 @@ class CookController extends Controller
         // Return the ID of the newly created row
         return response()->json(['data' => $newCook]);
     }
+    
 }

@@ -36,7 +36,7 @@ import BecomeCook from "./BecomeCook.vue";
                                         class=""
                                         src="/images/whattocook.jpg"
                                         alt=""
-                                    />
+                                    /> {{ Meal }}
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/overview`" class=" font-semibold">
+                <Link :href="`/become-a-cook/${Meal.id}/overview`" class=" font-semibold">
                     <button class="cta ">
                         <span class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow">
                           Back  
@@ -66,10 +66,11 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
+           
             <Link
                 :href="`/become-a-cook/region`"
                 class="float-right mr-8"
-            >
+            > 
                 <button 
                 @click="createNewMeal"
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
@@ -81,10 +82,13 @@ import BecomeCook from "./BecomeCook.vue";
 <script>
 
 import axios from 'axios';
-import { useRouter } from 'vue-router';
 export default {
+    props: {
+    Meal: Object,
+  },
     data(){
         return{
+
             // newMeal: {
             //     user_id: this.$page.props.auth.user.id,                    
             // },
@@ -92,18 +96,10 @@ export default {
         }
 
     },
-    setup() {
-    const route = useRouter();
-
-    const newMealId = route.value.params.newMealId;
-
-    // Now you can use newMealId in your component
-    console.log('New Meal ID:', newMealId);
+    mounted() {
+        
+    console.log(this.Meal); // Log the meal data to console
   },
-//     created() {
-//     // Check if newMealId already exists from props or localStorage
-//     this.newMealId = this.$page.props.newMealId || localStorage.getItem('newMealId');
-//   },
     methods: {
         createNewMeal() {
             console.log( this.newMealId);

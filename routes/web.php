@@ -47,13 +47,9 @@ Route::middleware([
     Route::get('/become-a-cook/overview', function () {
         return Inertia::render('Cook/BecomeCook/Overview');
     });
-    Route::get('/become-a-cook/{newMealId}/overview', function ($newMealId) {
-        return Inertia::render('Cook/BecomeCook/Overview');
-    });
-    Route::get('/become-a-cook/{newMealId}/about-your-meal', function () {
-        return Inertia::render('Cook/BecomeCook/AboutYourMeal');
-    });
-    Route::get('/become-a-cook/region', function () {
+    Route::get('/become-a-cook/{newMealId}/overview', [CookController::class, 'overview']);
+    Route::get('/become-a-cook/{newMealId}/about-your-meal', [CookController::class, 'about_your_meal']);
+      Route::get('/become-a-cook/region', function () {
         return Inertia::render('Cook/BecomeCook/MealArea');
     });
     Route::get('/become-a-cook/cook-limit', function () {

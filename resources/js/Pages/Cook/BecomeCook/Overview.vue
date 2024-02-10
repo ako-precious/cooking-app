@@ -25,14 +25,15 @@ import BecomeCook from "./BecomeCook.vue";
                         </h1>
                     </div>
                     <div class="lg:w-4/5">
-                        <div class="grid sm:grid-cols-2 py-5  md:grid-cols-3 gap-3 lg:gap-6 ">
+                        <div
+                            class="grid sm:grid-cols-2 py-5 md:grid-cols-3 gap-3 lg:gap-6"
+                        >
                             <div class="w-full">
-                            <div class="flex flex-col ">
-                                    
+                                <div class="flex flex-col">
                                     <h1
                                         class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
                                     >
-                                     Let's know about your meal
+                                        Let's know about your meal
                                     </h1>
                                     <p
                                         class="pt-3 lg:text-lg text-oynx dark:text-snow"
@@ -52,12 +53,11 @@ import BecomeCook from "./BecomeCook.vue";
                             </div>
 
                             <div class="w-full">
-                            <div class="flex flex-col">
+                                <div class="flex flex-col">
                                     <h1
-                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide   text-oynx dark:text-snow"
+                                        class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
                                     >
-                                    
-                                    Let's take the spot light
+                                        Let's take the spot light
                                     </h1>
                                     <p
                                         class="pt-3 lg:text-lg text-oynx dark:text-snow"
@@ -75,7 +75,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 </div> -->
                             </div>
                             <div class="w-full">
-                            <div class="flex flex-col">
+                                <div class="flex flex-col">
                                     <h1
                                         class="font-bold pt-1 text-xl lg:text-2xl tracking-wide lg:h-[60px] text-oynx dark:text-snow"
                                     >
@@ -119,48 +119,52 @@ import BecomeCook from "./BecomeCook.vue";
 </template>
 
 <script>
-
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-    data(){
-        return{
-            newMeal: {
-                user_id: this.$page.props.auth.user.id,                    
-            },
-            newMealId : null,
-        }
-
+    props: {
+        Meal: Object,
     },
-    created() {
-    // Check if newMealId already exists from props or localStorage
-    this.newMealId = this.$page.props.newMealId || localStorage.getItem('newMealId');
-  },
+    data() {
+        return {
+            newMeal: {
+                user_id: this.$page.props.auth.user.id,
+            },
+            MealId: this.Meal.id,
+        };
+    },
+
     methods: {
         createNewMeal() {
-             // Check if the current route is "/become-a-cook/overview"
-             if (this.newMealId) {
-        // If newMealId is already defined, visit the specified URL
-        this.$inertia.visit(`/become-a-cook/${this.newMealId}/about-your-meal`);
-    } else {
-        // Otherwise, proceed to create a new meal
-        axios.post('/meal', this.newMeal)
-            .then(response => {
-                // Handle the response and extract the ID of the newly created row
-                const newMealId = response.data.id;
+            // Check if the current route is "/become-a-cook/overview"
+            if (this.MealId) {
+                // If newMealId is already defined, visit the specified URL
+                this.$inertia.visit(
+                    `/become-a-cook/${this.MealId}/about-your-meal`
+                );
+            } else {
+                // Otherwise, proceed to create a new meal
+                axios
+                    .post("/meal", this.newMeal)
+                    .then((response) => {
+                        // Handle the response and extract the ID of the newly created row
+                        const newMealId = response.data.id;
 
-                // Update newMealId in the component's data
-                this.newMealId = newMealId;
+                        // Update newMealId in the component's data
+                        this.newMealId = newMealId;
 
-                // Redirect to the specified URL with the newMealI
-                this.$inertia.visit(`/become-a-cook/${this.newMealId}/about-your-meal`)})
-            .catch(error => {
-                console.error('Error creating new meal:', error);
-            });
-    }
-        }
-    }
-}
+                        // Redirect to the specified URL with the newMealI
+                        this.$inertia.visit(
+                            `/become-a-cook/${this.newMealId}/about-your-meal`
+                        );
+                    })
+                    .catch((error) => {
+                        console.error("Error creating new meal:", error);
+                    });
+            }
+        },
+    },
+};
 </script>
 
 <style scoped>
@@ -191,7 +195,7 @@ export default {
     content: "Let's Guide You";
     height: 50px;
     width: 165px;
-    background-color: #1B998B;
+    background-color: #1b998b;
     color: #fff;
     position: absolute;
     top: 0%;
@@ -208,7 +212,7 @@ export default {
     height: 50px;
     width: 165px;
     /* background-color: #fff; */
-    color: #1B998B;
+    color: #1b998b;
     position: absolute;
     top: 0%;
     left: 0%;
