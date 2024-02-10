@@ -56,7 +56,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/overview`" class=" font-semibold">
+                <Link :href="`/become-a-cook/${$route.props.newMealId}/overview`" class=" font-semibold">
                     <button class="cta ">
                         <span class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow">
                           Back  
@@ -67,7 +67,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #mainbtn>
             <Link
-                :href="`/become-a-cook/${newMealId}/region`"
+                :href="`/become-a-cook/region`"
                 class="float-right mr-8"
             >
                 <button

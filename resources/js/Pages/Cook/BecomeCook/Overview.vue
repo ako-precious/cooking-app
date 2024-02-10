@@ -56,7 +56,8 @@ import BecomeCook from "./BecomeCook.vue";
                                     <h1
                                         class="font-bold pt-1 text-xl lg:text-2xl tracking-wide   text-oynx dark:text-snow"
                                     >
-                                        Steal the show
+                                    
+                                    Let's take the spot light
                                     </h1>
                                     <p
                                         class="pt-3 lg:text-lg text-oynx dark:text-snow"
@@ -107,7 +108,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn> </template>
         <template #mainbtn>
-            <!-- <Link :href="`/become-a-cook/about-your-meal`" class=""> -->
+            <!-- <Link :href="`/become-a-cook/${newMealId}/about-your-meal`" class=""> -->
             <button
                 @click="createNewMeal"
                 class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
@@ -127,24 +128,39 @@ export default {
             newMeal: {
                 user_id: this.$page.props.auth.user.id,                    
             },
+            newMealId : null,
         }
 
     },
+    created() {
+    // Check if newMealId already exists from props or localStorage
+    this.newMealId = this.$page.props.newMealId || localStorage.getItem('newMealId');
+  },
     methods: {
         createNewMeal() {
-            if (cond) {
-                
-            }
-            axios.post('/meal', this.newMeal)
-                .then(response => {
-                    // Handle the response and extract the ID of the newly created row
-                    const newMealId = response.data.id;
+             // Check if the current route is "/become-a-cook/overview"
+             if (this.newMealId) {
+        // If newMealId is already defined, visit the specified URL
+        this.$inertia.visit(`/become-a-cook/${this.newMealId}/about-your-meal`);
+    } else {
+        // Otherwise, proceed to create a new meal
+        axios.post('/meal', this.newMeal)
+            .then(response => {
+                // Handle the response and extract the ID of the newly created row
+                const newMealId = response.data.id;
 
-                    this.$inertia.visit(`/become-a-cook/${newMealId}/about-your-meal`);
-                })
-                .catch(error => {
-                    console.error('Error creating new row:', error);
-                });
+                // Update newMealId in the component's data
+                this.newMealId = newMealId;
+
+               console.log(this.$page.props.newMealId = newMealId)
+
+                // Redirect to the specified URL with the newMealI
+                this.$inertia.visit(`/become-a-cook/${this.newMealId}/about-your-meal`, { newMealId: this.newMealId });
+            })
+            .catch(error => {
+                console.error('Error creating new meal:', error);
+            });
+    }
         }
     }
 }
