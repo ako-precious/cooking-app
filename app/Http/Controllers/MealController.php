@@ -15,8 +15,20 @@ class MealController extends Controller
             'cook_id' => $request->user_id,
             'name', 'region', 'description',  'price', 'ingredients', 'cooking_limit', 'status'
         ]);
-
+          
         // Return the ID of the newly created row
         return response()->json(['id' => $newRow->id]);
     }
+    public function region(Request $request, $id )
+    {
+        // Create 
+      $meal =  Meal::find($id);
+ 
+        $meal->region = $request->region; 
+        $meal->save();
+        
+        // Return the ID of the newly created row
+        return response()->json(['meal' => $meal]);
+    }
+    
 }

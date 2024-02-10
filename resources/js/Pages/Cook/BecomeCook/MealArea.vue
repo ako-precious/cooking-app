@@ -21,9 +21,11 @@ import BecomeCook from "./BecomeCook.vue";
                     <div class="lg:w-full">
                         <div class="flex flex-col w-full">
                             <div class="grid grid-cols-2  md:grid-cols-3 gap-5 lg:gap-10 lg:px-10">
+                                                             
+                                    
                                 <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                    <div :class="{ 'border-persian border-2 ': selectedDiv === 'Africa' }"
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border " @click="[sendData('Africa'), selectDiv('Africa')]" 
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -47,7 +49,7 @@ import BecomeCook from "./BecomeCook.vue";
                                     </div>
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
+                                    <div :class="{ 'border-persian border-2 ': selectedDiv === 'Antarctica' }"  @click="[sendData('Antarctica'), selectDiv('Antarctica')]"
                                         class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                         <div
@@ -72,8 +74,8 @@ import BecomeCook from "./BecomeCook.vue";
                                     </div>
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                    <div :class="{ 'border-persian border-2 ': selectedDiv === 'Asia' }"  @click="[sendData('Asia'), selectDiv('Asia')]"
+                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border" 
                                     >
                                         <div
                                             class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
@@ -98,7 +100,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 </div>
                                 
                                 <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
+                                    <div  :class="{ 'border-persian border-2 ': selectedDiv === 'Europe' }"  @click="[sendData('Europe'), selectDiv('Europe')]"
                                         class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                         <div
@@ -123,7 +125,7 @@ import BecomeCook from "./BecomeCook.vue";
                                     </div>
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
+                                    <div  :class="{ 'border-persian border-2 ': selectedDiv === 'North America' }"  @click="[sendData('North America'), selectDiv('North America')]" 
                                         class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                         <div
@@ -148,7 +150,7 @@ import BecomeCook from "./BecomeCook.vue";
                                     </div>
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
+                                    <div :class="{ 'border-persian border-2 ': selectedDiv === 'Oceania' }"  @click="[sendData('Oceania'), selectDiv('Oceania')]" 
                                         class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                         <div
@@ -173,7 +175,7 @@ import BecomeCook from "./BecomeCook.vue";
                                     </div>
                                 </div>
                                 <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
+                                    <div :class="{ 'border-persian border-2 ': selectedDiv === 'South America' }"  @click="[sendData('South America'), selectDiv('South America')]"  
                                         class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                         <div
@@ -197,7 +199,6 @@ import BecomeCook from "./BecomeCook.vue";
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -216,7 +217,7 @@ import BecomeCook from "./BecomeCook.vue";
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
                 <Link
-                    :href="`/become-a-cook/about-your-meal`"
+                    :href="`/become-a-cook/${Meal.id}/about-your-meal`"
                     class="font-semibold"
                 >
                     <button class="cta">
@@ -230,13 +231,51 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/cook-limit`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/${Meal.id}/cook-limit`" class="float-right mr-8">
                 <button
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link
         ></template>
     </BecomeCook>
 </template>
+
+<script>
+
+import axios from 'axios';
+export default {
+    props: {
+    Meal: Object,
+  },
+  data() {
+        return {
+            selectedDiv: this.Meal.region,
+        };
+    },
+    mounted() {
+        
+    console.log(this.Meal); // Log the meal data to console
+  },
+    methods: {
+        
+        sendData(region) {
+          
+            // Perform an HTTP request to send the data to the server
+            axios.put('/meal/region/'+ this.Meal.id, { region })
+                .then(response => {
+                    console.log('Data sent successfully:', response.data);
+                })
+                .catch(error => {
+                    console.error('Error sending data:', error);
+                });
+    
+        },
+        selectDiv(divId) {
+            
+            this.selectedDiv = divId;
+        }
+    }
+}
+</script>
 
 <style scoped>
 .bg-dots-darker {

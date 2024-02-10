@@ -49,30 +49,17 @@ Route::middleware([
     });
     Route::get('/become-a-cook/{newMealId}/overview', [CookController::class, 'overview']);
     Route::get('/become-a-cook/{newMealId}/about-your-meal', [CookController::class, 'about_your_meal']);
-      Route::get('/become-a-cook/region', function () {
-        return Inertia::render('Cook/BecomeCook/MealArea');
-    });
-    Route::get('/become-a-cook/cook-limit', function () {
-        return Inertia::render('Cook/BecomeCook/CookingLimit');
-    });
-    Route::get('/become-a-cook/steal-the-show', function () {
-        return Inertia::render('Cook/BecomeCook/StealShow');
-    });
-    Route::get('/become-a-cook/ingredients', function () {
-        return Inertia::render('Cook/BecomeCook/Ingredients');
-    });
-    Route::get('/become-a-cook/photos', function () {
-        return Inertia::render('Cook/BecomeCook/Photos');
-    });
-    Route::get('/become-a-cook/meal-title', function () {
-        return Inertia::render('Cook/BecomeCook/Title');
-    });
-    Route::get('/become-a-cook/description', function () {
+    Route::get('/become-a-cook/{newMealId}/region', [CookController::class, 'region' ]);
+    Route::put('meal/region/{id}', [MealController::class, 'region' ]);
+    Route::get('/become-a-cook/{newMealId}/cook-limit', [CookController::class, 'cook_limit' ]);
+    Route::get('/become-a-cook/{newMealId}/spotlight', [CookController::class, 'spotlight' ]);
+    Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients' ]);
+    Route::get('/become-a-cook/{newMealId}/photos', [CookController::class, 'photos' ]);
+    Route::get('/become-a-cook/{newMealId}/meal-title',[CookController::class, 'title' ]);
+    Route::get('/become-a-cook/{newMealId}/description', function () {
         return Inertia::render('Cook/BecomeCook/Description');
     });
-    Route::get('/become-a-cook/finishing-up', function () {
-        return Inertia::render('Cook/BecomeCook/LetItOut');
-    });
+    Route::get('/become-a-cook/{newMealId}/finishing-up', [CookController::class, 'finish_up' ]);
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal', MealController::class);
