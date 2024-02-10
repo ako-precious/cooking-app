@@ -21,13 +21,16 @@ class MealController extends Controller
     }
     public function region(Request $request, $id )
     {
-        // Create 
-      $meal =  Meal::find($id);
- 
+      $meal =  Meal::find($id); 
         $meal->region = $request->region; 
         $meal->save();
-        
-        // Return the ID of the newly created row
+        return response()->json(['meal' => $meal]);
+    }
+    public function limit(Request $request, $id )
+    {
+        $meal =  Meal::find($id);
+        $meal->cooking_limit = $request->limit; 
+        $meal->save();
         return response()->json(['meal' => $meal]);
     }
     

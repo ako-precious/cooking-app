@@ -8,37 +8,47 @@ import TextInput from "@/Components/TextInput.vue";
 <template>
     <BecomeCook>
         <template #info>
-            <div class="container relative mx-auto overflow-hidden w-screen">
+            <div
+                class="container relative mx-auto overflow-hidden pb-10 lg:p-0 w-screen"
+            >
                 <div
                     class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8"
                 >
                     <div class="lg:w-1/2 py-5 lg:px-5">
-                       
                         <h1
-                            class="font-semibold text-3xl lg:text-5xl tracking-wide text-oynx dark:text-snow"
+                            class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
                             How many people can you cook for
                         </h1>
-                        <h1
-                            class=" pt-5 text-lg lg:text-xl  text-oynx dark:text-snow"
-                        >
-                        Your commitment to delivering the best experience for each person is admirable. To help you prioritize quality, could you share your preferred number for preparing an exceptional meal?
+                        <h1 class="pt-5 text-lg text-oynx dark:text-snow">
+                            Your commitment to delivering the best experience
+                            for each person is admirable. To help you prioritize
+                            quality, could you share your preferred number for
+                            preparing an exceptional meal per time?
                         </h1>
                     </div>
-                    <div class="lg:w-1/2">
+                    <div class="w-full lg:w-1/2">
                         <div class="flex flex-col w-full">
                             <div class="flex lg:p-5">
-                                
-                                <div class="w-2/3 p-3 lg:p-10 ml-8 ">
-                                    <input 
-                placeholder="Limit"
-                class=" -shadow-snow-sm  dark:-shadow-oynx-sm focus:shadow-snow-inner focus:dark:shadow-oynx-inner bg-transparent border-none sm:w-[15rem] md:w-[20rem] lg:w-[25rem]  2xl:max-w-2xl text-oynx dark:text-white  rounded-full py-3 px-5 outline-none   dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred transition-all ease-in duration-250 delay-75"
-                v-model="searchText"
-                
-                type="number" min="1" max="20" />
+                                <div
+                                    class="w-full lg:w-2/3 p-3 lg:p-10 lg:ml-8"
+                                >
+                                    <input
+                                        placeholder="Limit"
+                                        class="-shadow-snow-sm w-full dark:-shadow-oynx-sm focus:shadow-snow-inner focus:dark:shadow-oynx-inner bg-transparent border-none sm:w-[15rem] md:w-[20rem] lg:w-[25rem] 2xl:max-w-2xl text-oynx dark:text-white rounded-full py-3 px-5 outline-none dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred transition-all ease-in duration-250 delay-75"
+                                        v-model="cooking_limit"
+                                        type="number"
+                                        min="1"
+                                        max="20"
+                                    />
+
+                                    <h1
+                                        class="w-full pt-5 text-lg text-oynx dark:text-snow"
+                                    >
+                                        The maximum is 20 for now
+                                    </h1>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -55,10 +65,15 @@ import TextInput from "@/Components/TextInput.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/region`" class=" font-semibold">
-                    <button class="cta ">
-                        <span class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow">
-                          Back  
+                <Link
+                    :href="`/become-a-cook/${Meal.id}/region`"
+                    class="font-semibold"
+                >
+                    <button class="cta" @click="saveData">
+                        <span
+                            class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
+                        >
+                            Back
                         </span>
                     </button>
                 </Link>
@@ -66,15 +81,51 @@ import TextInput from "@/Components/TextInput.vue";
         </template>
         <template #mainbtn>
             <Link
-                :href="`/become-a-cook/steal-the-show`"
+                :href="`/become-a-cook/${Meal.id}/spotlight`"
                 class="float-right mr-8"
             >
                 <button
+                    @click="saveData"
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link
         ></template>
     </BecomeCook>
 </template>
+
+<script>
+import axios from "axios";
+export default {
+    props: {
+        Meal: Object,
+    },
+    data() {
+        return {
+            cooking_limit: this.Meal.cooking_limit,
+        };
+    },
+    mounted() {
+        console.log(this.Meal); // Log the meal data to console
+    },
+    methods: {
+        saveData() {
+            // Send an HTTP request to your backend API to save the data
+            const limit = this.cooking_limit;
+            if (limit < 21) {
+                axios
+                    .put("/meal/limit/" + this.Meal.id, { limit })
+                    .then((response) => {
+                        // Handle successful response
+                        console.log("Data saved successfully:", response.data);
+                    })
+                    .catch((error) => {
+                        // Handle error
+                        console.error("Error saving data:", error);
+                    });
+            }
+        },
+    },
+};
+</script>
 
 <style scoped>
 .bg-dots-darker {
@@ -86,24 +137,22 @@ import TextInput from "@/Components/TextInput.vue";
     }
 }
 
-
 .hover-underline-animation:after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  transform-origin: bottom right;
-  transition: transform 0.25s ease-out;
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
 }
 
 .cta:hover .hover-underline-animation:after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
-
 
 /* the design for the next button */
 .button {

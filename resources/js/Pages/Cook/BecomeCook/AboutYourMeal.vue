@@ -81,14 +81,11 @@ import BecomeCook from "./BecomeCook.vue";
 
 <script>
 
-import axios from 'axios';
 export default {
     props: {
     Meal: Object,
-  },
-    
-    mounted() {
-        
+  },    
+    mounted() {        
     console.log(this.Meal); // Log the meal data to console
   },
     

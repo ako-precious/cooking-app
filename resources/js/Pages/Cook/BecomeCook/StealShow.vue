@@ -61,7 +61,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/cook-limit`" class="font-semibold">
+                <Link :href="`/become-a-cook/${Meal.id}/cook-limit`" class="font-semibold">
                     <button class="cta">
                         <span
                             class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
@@ -73,7 +73,7 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/ingredients`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/${Meal.id}/ingredients`" class="float-right mr-8">
                 <button
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link
@@ -81,6 +81,18 @@ import BecomeCook from "./BecomeCook.vue";
     </BecomeCook>
 </template>
 
+<script>
+
+export default {
+    props: {
+    Meal: Object,
+  },    
+    mounted() {        
+    console.log(this.Meal); // Log the meal data to console
+  },
+    
+}
+</script>
 <style scoped>
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
