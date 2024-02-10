@@ -33,5 +33,20 @@ class MealController extends Controller
         $meal->save();
         return response()->json(['meal' => $meal]);
     }
+    public function ingredients(Request $request, $id )
+    {
+        $meal =  Meal::find($id);
+        $meal->ingredients = $request->ingredients; 
+        $meal->save();
+        return response()->json(['meal' => $meal]);
+    }
+    public function title(Request $request, $id )
+    {
+        $meal =  Meal::find($id);
+        $meal->name = $request->title; 
+        $meal->description = $request->description; 
+        $meal->save();
+        return response()->json(['meal' => $meal]);
+    }
     
 }

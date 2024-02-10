@@ -16,6 +16,9 @@ class Meal extends Model
 
     protected $fillable = ['cook_id', 'name', 'region', 'description',  'price', 'ingredients', 'cooking_limit', 'status'];
 
+    protected $casts = [
+        'ingredients' => 'json',
+    ];
     
     public function user(): BelongsTo
     {

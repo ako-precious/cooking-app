@@ -1,7 +1,11 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
+import axios from "axios";
+import TextInput from "@/Components/TextInput.vue";
 import BecomeCook from "./BecomeCook.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+
 </script>
 
 <template>
@@ -15,114 +19,53 @@ import BecomeCook from "./BecomeCook.vue";
                         <h1
                             class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
                         >
-                         Let's list the magic ingredients used for the meal.
+                            Let's list the magic ingredients used for the meal.
                         </h1>
                     </div>
                     <div class="lg:w-full">
                         <div class="flex flex-col w-full">
-                            <div class="grid grid-cols-2  md:grid-cols-3 gap-5 lg:gap-10 lg:px-10">
-                                                             
-                                <div class="col-span-1 w-full max-w-full py-2">
+                            <div
+                                class="grid grid-cols-2 md:grid-cols-3 gap-5 lg:gap-10 lg:px-10"
+                            >
+                                <div class="col-span-6 sm:col-span-6">
                                     <div
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
+                                        class="flex items-center "
                                     >
-                                        <div
-                                            class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
-                                        >
+                                    <p
+                                    class="bg-snow/50 cursor-pointer pb-4  lg:text-lg text-oynx dark:text-snow active:text-persian "
+                                    @click="addItem"
+                                    title="add Dietary Restriction and Allergies "
+                                    >
+                                    Click to  Add Ingredients
                                             <font-awesome-icon
-                                                class="text-4xl group-action-text"
-                                                icon="earth-europe"
-                                            />
-                                            <div></div>
-                                            <div class="pt-2 w-full">
+                                                icon="plus"/>
+                                        </p>
+                                    </div>
+
+                                    <div class="mt-1">
+                                        <div
+                                            class="flex flex-wrap-reverse flex-row-reverse">
+                                            <div
+                                                class="relative sm:w-1/3 p-1"
+                                                v-for="(item, index) in ingredients"
+                                                :key="index">
+                                                <TextInput required
+                                                    class="block w-full h-full text-sm"
+                                                    v-model="ingredients[index]"/>
                                                 <p
-                                                    class="font-semibold text-center px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
+                                                    class="absolute bottom-1 top-1 right-1 bg-snow/20 cursor-pointer p-2"
+                                                    @click="removeItem(index)"
                                                 >
-                                                    <span
-                                                        class="lg:text-xl leading-normal"
-                                                        >Europe </span
-                                                    >
+                                                    <font-awesome-icon
+                                                        icon="fa-solid fa-close"
+                                                        class="text-lighred text-"
+                                                    />
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
+                                  
                                 </div>
-                                <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
-                                    >
-                                        <div
-                                            class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
-                                        >
-                                            <font-awesome-icon
-                                                class="text-4xl group-action-text"
-                                                icon="earth-americas"
-                                            />
-                                            <div></div>
-                                            <div class="pt-2 w-full">
-                                                <p
-                                                    class="font-semibold text-center px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
-                                                >
-                                                    <span
-                                                        class="lg:text-xl leading-normal"
-                                                        >North America </span
-                                                    >
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
-                                    >
-                                        <div
-                                            class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
-                                        >
-                                            <font-awesome-icon
-                                                class="text-4xl group-action-text"
-                                                icon="earth-oceania"
-                                            />
-                                            <div></div>
-                                            <div class="pt-2 w-full">
-                                                <p
-                                                    class="font-semibold text-center px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
-                                                >
-                                                    <span
-                                                        class="lg:text-xl leading-normal"
-                                                        >Oceania</span
-                                                    >
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-span-1 w-full max-w-full py-2">
-                                    <div
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
-                                    >
-                                        <div
-                                            class="flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
-                                        >
-                                            <font-awesome-icon
-                                                class="text-4xl group-action-text"
-                                                icon="earth-americas"
-                                            />
-                                            <div></div>
-                                            <div class="pt-2 w-full">
-                                                <p
-                                                    class="font-semibold text-center px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
-                                                >
-                                                    <span
-                                                        class="lg:text-xl leading-normal"
-                                                        >South America</span
-                                                    >
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -141,10 +84,10 @@ import BecomeCook from "./BecomeCook.vue";
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
                 <Link
-                    :href="`/become-a-cook/steal-the-show`"
+                    :href="`/become-a-cook/${Meal.id}/spotlight`"
                     class="font-semibold"
                 >
-                    <button class="cta">
+                    <button class="cta" @click="saveData">
                         <span
                             class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
                         >
@@ -155,39 +98,46 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/photos`" class="float-right mr-8">
-                <button
+            <Link :href="`/become-a-cook/${Meal.id}/meal-title`" class="float-right mr-8">
+                <button @click="saveData" 
                     class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
                 ></button> </Link
         ></template>
     </BecomeCook>
 </template>
 
-
 <script>
-import axios from "axios";
+
 export default {
     props: {
         Meal: Object,
     },
     data() {
         return {
-            cooking_limit: this.Meal.cooking_limit,
+            ingredients: this.Meal.ingredients || [],
         };
     },
     mounted() {
         console.log(this.Meal); // Log the meal data to console
     },
     methods: {
+        removeItem(index) {
+            this.ingredients.splice(index, 1);
+        },
+        addItem() {
+            this.ingredients.push("");
+        },
         saveData() {
             // Send an HTTP request to your backend API to save the data
-            const limit = this.cooking_limit;
-            if (limit < 21) {
+            const ingredients = this.ingredients;
+            // console.log(ingredients.length);
+            if (ingredients.length > 0) {
                 axios
-                    .put("/meal/limit/" + this.Meal.id, { limit })
+                    .put("/meal/ingredients/" + this.Meal.id, { ingredients })
                     .then((response) => {
                         // Handle successful response
                         console.log("Data saved successfully:", response.data);
+                        
                     })
                     .catch((error) => {
                         // Handle error

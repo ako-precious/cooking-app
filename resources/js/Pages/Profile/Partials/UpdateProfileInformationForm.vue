@@ -4,10 +4,10 @@ import { Link, router, useForm } from "@inertiajs/vue3";
 import ActionMessage from "@/Components/ActionMessage.vue";
 import FormSection from "@/Components/FormSection.vue";
 import InputError from "@/Components/InputError.vue";
+import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
 
 const props = defineProps({
     user: Object,
@@ -190,7 +190,7 @@ export default {
             </div>
 
             <!-- Name -->
-            <div class="col-span-6 sm:col-span-6">
+            <div class="col-span-6 ">
                 <InputLabel for="name" value="Name" />
                 <TextInput
                     id="name"
@@ -204,7 +204,7 @@ export default {
             </div>
 
             <!-- Email -->
-            <div class="col-span-6 sm:col-span-6">
+            <div class="col-span-6 ">
                 <div class="flex flex-col lg:flex-row justify-between">
                     <div class="w-full mb-[1.5rem] lg:mb-0 lg:w-[48%]">
                         <InputLabel for="email" value="Email" />
@@ -268,7 +268,7 @@ export default {
             </div>
 
             <!-- Address -->
-            <div class="col-span-6 sm:col-span-6">
+            <div class="col-span-6 ">
                 <InputLabel for="address" value="Address" />
                 <TextInput
                     id="address"
@@ -282,7 +282,7 @@ export default {
             </div>
 
             <!-- dietary_restriction_allergies -->
-            <div class="col-span-6 sm:col-span-6">
+            <div class="col-span-6 ">
                 <div class="flex items-center justify-between">
                     <InputLabel for="" value="Dietary Restriction and Allergies" />
                     <p class=" bg-snow/50  cursor-pointer p-1 text-sm " @click="addItem" title="add Dietary Restriction and Allergies " >Add <font-awesome-icon icon="plus"  class="text-persian  "/></p>
@@ -317,7 +317,7 @@ export default {
             </div>
 
             <!-- other info -->
-            <div class="col-span-6 sm:col-span-6">
+            <div class="col-span-6 ">
                 <InputLabel
                     for="other_info"
                     value="Something Interesting about you"
