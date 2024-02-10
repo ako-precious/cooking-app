@@ -152,14 +152,8 @@ export default {
                 // Update newMealId in the component's data
                 this.newMealId = newMealId;
 
-               console.log(this.$page.props.newMealId = newMealId)
-
                 // Redirect to the specified URL with the newMealI
-                this.$inertia.visit(`/become-a-cook/${this.newMealId}/about-your-meal`, {
-    data: {
-        newMealId: this.newMealId
-    }});
-            })
+                this.$inertia.visit(`/become-a-cook/${this.newMealId}/about-your-meal`)})
             .catch(error => {
                 console.error('Error creating new meal:', error);
             });

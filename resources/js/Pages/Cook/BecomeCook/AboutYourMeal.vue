@@ -81,7 +81,7 @@ import BecomeCook from "./BecomeCook.vue";
 <script>
 
 import axios from 'axios';
-
+import { useRouter } from 'vue-router';
 export default {
     data(){
         return{
@@ -92,8 +92,13 @@ export default {
         }
 
     },
-    mounted() {
-    console.log(this.$page.props.newMealId); // Access the passed newMealId
+    setup() {
+    const route = useRouter();
+
+    const newMealId = route.value.params.newMealId;
+
+    // Now you can use newMealId in your component
+    console.log('New Meal ID:', newMealId);
   },
 //     created() {
 //     // Check if newMealId already exists from props or localStorage
