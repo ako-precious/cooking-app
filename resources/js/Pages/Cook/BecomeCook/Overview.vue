@@ -109,6 +109,21 @@ import BecomeCook from "./BecomeCook.vue";
         <template #backbtn> </template>
         <template #mainbtn>
             <!-- <Link :href="`/become-a-cook/${newMealId}/about-your-meal`" class=""> -->
+            <!-- <button
+                class=" text-sm bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 relative overflow-hidden transition-all duration-500 ease-in-out group bg-transparent border-none rounded-lg h-14 w-44 hover:shadow-lg"
+            >
+                <span
+                    class="absolute inset-0 flex items-center justify-center bg-persian text-white transform translate-y-14 text-sm transition-all duration-500 ease-in-out group-hover:translate-y-0"
+                >
+                    Let's Guide You
+                </span>
+                <span
+                    class="absolute inset-0 flex items-center justify-center text-persian transform scale-125 transition-all duration-500 ease-in-out group-hover:scale-0 group-hover:-translate-y-[50px] group-hover:rotate-[120]"
+                >
+                    Get Started
+                </span>
+            </button> -->
+
             <button
                 @click="createNewMeal"
                 class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"

@@ -53,14 +53,12 @@ Route::middleware([
     Route::put('meal/region/{id}', [MealController::class, 'region' ]);
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
+    Route::put('meal/title/{id}', [MealController::class, 'title' ]);
     Route::get('/become-a-cook/{newMealId}/cook-limit', [CookController::class, 'cook_limit' ]);
     Route::get('/become-a-cook/{newMealId}/spotlight', [CookController::class, 'spotlight' ]);
     Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients' ]);
     Route::get('/become-a-cook/{newMealId}/photos', [CookController::class, 'photos' ]);
     Route::get('/become-a-cook/{newMealId}/meal-title',[CookController::class, 'title' ]);
-    Route::get('/become-a-cook/{newMealId}/description', function () {
-        return Inertia::render('Cook/BecomeCook/Description');
-    });
     Route::get('/become-a-cook/{newMealId}/finishing-up', [CookController::class, 'finish_up' ]);
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);

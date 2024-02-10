@@ -42,11 +42,12 @@ class MealController extends Controller
     }
     public function title(Request $request, $id )
     {
+        // dd($request);
         $meal =  Meal::find($id);
-        $meal->name = $request->title; 
+        $meal->name = $request->name; 
         $meal->description = $request->description; 
         $meal->save();
-        return response()->json(['meal' => $meal]);
+        return response()->json(['meal' => $meal, 'request' =>$request->all()]);
     }
     
 }

@@ -19,7 +19,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                             class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
                         >
                             Let's crown your culinary creation with a unique
-                            title and description
+                            title and Share what makes your meal special
                         </h1>
                     </div>
                     <div class="lg:w-full">
@@ -41,7 +41,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                 />
                                                 <TextInput
                                                     id="name"
-                                                    v-model="meal.meal_title"
+                                                    v-model="meal.name"
                                                     type="text"
                                                     class="mt-1 block w-full"
                                                     required
@@ -61,7 +61,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                 <textarea
                                                     autocomplete="other_info"
                                                     id="other_info"
-                                                    v-model="meal_description"
+                                                    v-model="meal.description"
                                                     class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
                                                     rows="5"
                                                     cols="50"
@@ -87,7 +87,7 @@ import InputLabel from "@/Components/InputLabel.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/${Meal.i}/ingredients`" class="font-semibold">
+                <Link :href="`/become-a-cook/${Meal.id}/ingredients`" class="font-semibold">
                     <button class="cta">
                         <span
                             class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
@@ -99,16 +99,17 @@ import InputLabel from "@/Components/InputLabel.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/${Meal.id}/photos`" class="float-right mr-8">
-                <button
-                    class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button> </Link
-        ></template>
+            <!-- <Link :href="`/become-a-cook/${Meal.id}/photos`" class=""> -->
+                <button @click="saveData"
+                    class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
+                ></button> 
+                <!-- </Link> -->
+    </template>
     </BecomeCook>
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
     props: {
         Meal: Object,
@@ -116,33 +117,33 @@ export default {
     data() {
         return {
            meal:{
-           meal_title: this.Meal.name,
-           meal_description: this.Meal.description,
+           name: this.Meal.name,
+           description: this.Meal.description,
            } 
         };
-    },
-    mounted() {
-        console.log(this.Meal); // Log the meal data to console
     },
     methods: {
         
         saveData() {
-            // Send an HTTP request to your backend API to save the data
-            c
-            // console.log(ingredients.length);
-            if (ingredients.length > 0) {
+ // Log the meal data to console
+            // Send an HTTP request to your backend API to save the data            
+            const meal = this.meal;
+            console.log({meal});            
                 axios
-                    .put("/meal/ingredients/" + this.Meal.id, this.meal)
+                    .put("/meal/title/" + this.Meal.id, meal )
                     .then((response) => {
                         // Handle successful response
-                        console.log("Data saved successfully:", response.data);
-                        
+                        console.log("Data saved successfully:", response.data.meal);
+                        const MealId = response.data.meal.id;
+                        this.$inertia.visit(
+                            `/become-a-cook/${MealId}/photos`
+                        );
                     })
                     .catch((error) => {
                         // Handle error
                         console.error("Error saving data:", error);
                     });
-            }
+            
         },
     },
 };

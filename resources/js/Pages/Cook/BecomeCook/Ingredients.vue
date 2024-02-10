@@ -87,7 +87,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                     :href="`/become-a-cook/${Meal.id}/spotlight`"
                     class="font-semibold"
                 >
-                    <button class="cta" @click="saveData">
+                    <button class="cta" >
                         <span
                             class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
                         >
@@ -98,11 +98,10 @@ import InputLabel from "@/Components/InputLabel.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/${Meal.id}/meal-title`" class="float-right mr-8">
                 <button @click="saveData" 
-                    class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button> </Link
-        ></template>
+                    class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
+                ></button> 
+    </template>
     </BecomeCook>
 </template>
 
@@ -135,8 +134,11 @@ export default {
                 axios
                     .put("/meal/ingredients/" + this.Meal.id, { ingredients })
                     .then((response) => {
-                        // Handle successful response
-                        console.log("Data saved successfully:", response.data);
+                       
+                        const MealId = response.data.meal.id;
+                        this.$inertia.visit(
+                            `/become-a-cook/${MealId}/meal-title`
+                        );
                         
                     })
                     .catch((error) => {

@@ -69,7 +69,7 @@ import TextInput from "@/Components/TextInput.vue";
                     :href="`/become-a-cook/${Meal.id}/region`"
                     class="font-semibold"
                 >
-                    <button class="cta" @click="saveData">
+                    <button class="cta">
                         <span
                             class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
                         >
@@ -80,15 +80,12 @@ import TextInput from "@/Components/TextInput.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link
-                :href="`/become-a-cook/${Meal.id}/spotlight`"
-                class="float-right mr-8"
-            >
+           
                 <button
                     @click="saveData"
-                    class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button> </Link
-        ></template>
+                    class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
+                ></button>
+            </template>
     </BecomeCook>
 </template>
 
@@ -115,7 +112,10 @@ export default {
                     .put("/meal/limit/" + this.Meal.id, { limit })
                     .then((response) => {
                         // Handle successful response
-                        console.log("Data saved successfully:", response.data);
+                        const MealId = response.data.meal.id;
+                        this.$inertia.visit(
+                            `/become-a-cook/${MealId}/spotlight`
+                        );
                     })
                     .catch((error) => {
                         // Handle error
