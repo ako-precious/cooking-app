@@ -56,7 +56,6 @@ import BecomeCook from "./BecomeCook.vue";
                                                 type="file"
                                                 multiple
                                                 accept="image/*"
-                                                
                                                 @change="previewImages"
                                                 class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
                                             />
@@ -194,7 +193,7 @@ import BecomeCook from "./BecomeCook.vue";
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
     props: {
         Meal: Object,
@@ -202,6 +201,7 @@ export default {
     data() {
         return {
             imagePreviews: [],
+            imageFiles: [],
             minSize: 500, // Minimum image size (in pixels)
             maxSize: 3000, // Maximum image size (in pixels)
             dragIndex: null, // Array to hold image preview URLs
@@ -212,15 +212,15 @@ export default {
         async previewImages(event) {
             this.imagePreviews = [];
             this.errors = [];
-            const files = event.target.files;
-            if (files) {
-                if (files.length < 3) {
+            this.imageFiles = event.target.files;
+            if (this.imageFiles) {
+                if (this.imageFiles.length < 3) {
                     // Display an error message or prevent further processing
                     alert("Please upload at least three pictures.");
                     return;
                 }
-                for (let i = 0; i < files.length; i++) {
-                    const file = files[i];
+                for (let i = 0; i < this.imageFiles.length; i++) {
+                    const file = this.imageFiles[i];
                     if (file.type.startsWith("image/")) {
                         const img = new Image();
                         img.src = URL.createObjectURL(file);
@@ -276,20 +276,39 @@ export default {
             this.dragIndex = null;
         },
         createNewPhotos() {
+            const formData = new FormData();
+            for (let i = 0; i < this.imageFiles.length; i++) {
+                formData.append("images[]", this.imageFiles[i]);
+            }
 
-           
-              axios.post('/meal_photos' , {
-                images: this.imagePreviews, // Send the image previews array
-                meal_id:this.Meal.id// other meal data...
-              })
-              .then(response => {
-                // Handle response...
-                console.log(response.data);
-              })
-              .catch(error => {
-                  // Handle error
-                  console.error("Error saving data:", error);
-              });
+                formData.meal_id= this.Meal.id;
+            axios
+                .post("/meal_photos/", formData, {
+                    meal_id: this.Meal.id,
+                     // other meal data...
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log("Images uploaded successfully:", response.data);
+                    // Handle the response to update UI or perform other actions
+                })
+                .catch((error) => {
+                    console.error("Error uploading images:", error);
+                });
+            // axios
+            //     .post("/meal_photos", {
+            //         images: this.imagePreviews, // Send the image previews array
+            //     })
+            //     .then((response) => {
+            //         // Handle response...
+            //         console.log(response.data);
+            //     })
+            //     .catch((error) => {
+            //         // Handle error
+            //         console.error("Error saving data:", error);
+            //     });
         },
     },
 };
