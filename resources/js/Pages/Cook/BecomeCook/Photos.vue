@@ -277,11 +277,10 @@ export default {
         },
         createNewPhotos() {
             const formData = new FormData();
+            formData.append('meal_id',this.Meal.id);
             for (let i = 0; i < this.imageFiles.length; i++) {
                 formData.append("images[]", this.imageFiles[i]);
             }
-
-                formData.meal_id= this.Meal.id;
             axios
                 .post("/meal_photos/", formData, {
                     meal_id: this.Meal.id,
