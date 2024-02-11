@@ -56,6 +56,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                 type="file"
                                                 multiple
                                                 accept="image/*"
+                                                
                                                 @change="previewImages"
                                                 class="cursor-pointer relative block opacity-0 w-full h-full p-20 z-50"
                                             />
@@ -202,7 +203,7 @@ export default {
         return {
             imagePreviews: [],
             minSize: 500, // Minimum image size (in pixels)
-            maxSize: 5000, // Maximum image size (in pixels)
+            maxSize: 3000, // Maximum image size (in pixels)
             dragIndex: null, // Array to hold image preview URLs
             errors: [],
         };
@@ -238,7 +239,7 @@ export default {
                                         this.errors.push(
                                             `Image ${
                                                 i + 1
-                                            } exceeds maximum dimensions of 5000 in pixels.`
+                                            } exceeds maximum dimensions of 3000 in pixels.`
                                         );
                                     }
                                 } else {
@@ -275,6 +276,7 @@ export default {
             this.dragIndex = null;
         },
         createNewPhotos() {
+
            
               axios.post('/meal_photos' , {
                 images: this.imagePreviews, // Send the image previews array
