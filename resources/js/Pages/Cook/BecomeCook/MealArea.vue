@@ -293,9 +293,7 @@ import BecomeCook from "./BecomeCook.vue";
                     <button class="relative group">
                         <span
                             class="hover-underline-animation"
-                        >
-                            Back
-                        </span>
+                        >Back</span>
                     </button>
                     
                 </Link>
@@ -304,17 +302,16 @@ import BecomeCook from "./BecomeCook.vue";
         <template #mainbtn>
             
             <Link :href="`/become-a-cook/${Meal.id}/cook-limit`" class="">
-                <button
-                class=" group float-right mr-8 mt-5 relative overflow-hidden transition-all duration-500 ease-in-out transform bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm rounded-lg h-12 w-40 button type1 text-xs hover:shadow-dark-blur"
-                ></button> </Link> 
-                <button class="float-left mr-8 mt-5 text-xs relative overflow-hidden transition-all duration-500 ease-in-out transform bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm rounded-lg h-12 w-40">
-                    <span class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-white bg-blue-600 hover:bg-blue-700 transition-all duration-500 ease-in-out transform translate-y-full">
+                <button class="btn2span">
+                    <span class="next-span">
+                        Next Step
+                    </span>
+                    <span class="with-span">
             We're with you
         </span>
-        <span class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-blue-600 hover:text-white transition-all duration-500 ease-in-out transform translate-y-0 scale-125 group-hover:rotate-[120]">
-            Next Step
-        </span>
     </button>
+                
+            </Link> 
             </template>
             </BecomeCook>
 </template>
@@ -352,44 +349,6 @@ export default {
 </script>
 <style scoped>
 
-.button::after {
-    content: "We're with you";
-    height: 50px;
-    width: 100%;
-    background-color: #004e98;
-    color: #fff;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-.button::before {
-    content: "Next Step";
-    height: 50px;
-    width: 100%;
-    /* background-color: #fff; */
-    color: #004e98;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(0px) scale(1.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.button:hover::after {
-    transform: translateY(0) scale(1.2);
-}
-
-.button:hover::before {
-    transform: translateY(-50px) scale(0) rotate(120deg);
-}
 @keyframes fade-in {
     from {
         opacity: 0;
