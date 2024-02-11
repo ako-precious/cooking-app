@@ -13,33 +13,33 @@ import BecomeCook from "./BecomeCook.vue";
                 >
                     <div class="lg:w-1/2 py-5 lg:px-5">
                         <h1
-                            class=" pb-3 font-semibold text-sm lg:text-base  tracking-wide text-oynx dark:text-snow"
-                        >Phase 1
+                            class="pb-3 font-semibold text-sm lg:text-base tracking-wide text-oynx dark:text-snow"
+                        >
+                            Phase 1
                         </h1>
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
                             Tell us about your Meal
                         </h1>
-                        <h1
-                            class=" pt-5 lg:text-lg text-oynx dark:text-snow"
-                        >
-                        In this phase, we'll know what type of meal you want to make, and if you are availability structure. How many people you can cook for per meal.
+                        <h1 class="pt-5 lg:text-lg text-oynx dark:text-snow">
+                            In this phase, we'll know what type of meal you want
+                            to make, and if you are availability structure. How
+                            many people you can cook for per meal.
                         </h1>
                     </div>
                     <div class="lg:w-1/2">
                         <div class="flex flex-col w-full">
                             <div class="flex lg:p-5">
-                                
-                                <div class="w-2/3 p-3 lg:p-10 ml-8 ">
+                                <div class="w-2/3 p-3 lg:p-10 ml-8">
                                     <img
                                         class=""
                                         src="/images/whattocook.jpg"
                                         alt=""
-                                    /> {{ Meal }}
+                                    />
+                                 
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -56,42 +56,37 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/${Meal.id}/overview`" class=" font-semibold">
+                <Link
+                    :href="`/become-a-cook/${Meal.id}/overview`"
+                    class="font-semibold"
+                >
                     <button class="relative group">
-                        <span
-                            class="hover-underline-animation"
-                        >
-                            Back
-                        </span>
+                        <span class="hover-underline-animation"> Back </span>
                     </button>
                 </Link>
             </div>
         </template>
         <template #mainbtn>
-           
             <Link
                 :href="`/become-a-cook/${Meal.id}/region`"
                 class="float-right mr-8"
-            > 
-                <button 
-                @click="createNewMeal"
-                    class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button> </Link
-        ></template>
+            >
+                <button class="btn2span group">
+                    <span class="next-span">Next Step</span>
+                    <span class="with-span">We're with you</span>
+                </button>
+            </Link>
+        </template>
     </BecomeCook>
 </template>
 
 <script>
-
 export default {
     props: {
-    Meal: Object,
-  },    
-   
-    
-}
+        Meal: Object,
+    },
+};
 </script>
-
 
 <style scoped>
 .bg-dots-darker {
@@ -103,62 +98,6 @@ export default {
     }
 }
 
-
-/* the design for the next button */
-.button {
-    height: 50px;
-    width: 165px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-}
-
-.button:hover {
-    box-shadow: 0.5px 0.5px 150px #252525;
-}
-
-.type1::after {
-    content: "We're with you";
-    height: 50px;
-    width: 165px;
-    background-color: #1B998B;
-    color: #fff;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1::before {
-    content: "Next Step";
-    height: 50px;
-    width: 165px;
-    /* background-color: #fff; */
-    color: #1B998B;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(0px) scale(1.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1:hover::after {
-    transform: translateY(0) scale(1.2);
-}
-
-.type1:hover::before {
-    transform: translateY(-50px) scale(0) rotate(120deg);
-}
 @keyframes fade-in {
     from {
         opacity: 0;

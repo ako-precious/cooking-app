@@ -108,27 +108,11 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn> </template>
         <template #mainbtn>
-            <!-- <Link :href="`/become-a-cook/${newMealId}/about-your-meal`" class=""> -->
-            <!-- <button
-                class=" text-sm bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 relative overflow-hidden transition-all duration-500 ease-in-out group bg-transparent border-none rounded-lg h-14 w-44 hover:shadow-lg"
-            >
-                <span
-                    class="absolute inset-0 flex items-center justify-center bg-persian text-white transform translate-y-14 text-sm transition-all duration-500 ease-in-out group-hover:translate-y-0"
-                >
-                    Let's Guide You
-                </span>
-                <span
-                    class="absolute inset-0 flex items-center justify-center text-persian transform scale-125 transition-all duration-500 ease-in-out group-hover:scale-0 group-hover:-translate-y-[50px] group-hover:rotate-[120]"
-                >
-                    Get Started
-                </span>
-            </button> -->
-
-            <button
-                @click="createNewMeal"
-                class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-            ></button>
-            <!-- </Link> -->
+                       
+                <button @click="createNewMeal" class="btn2span group">
+                    <span class="next-span">Next Step</span>
+                    <span class="with-span">We're with you</span>
+                </button>
         </template>
     </BecomeCook>
 </template>
@@ -190,60 +174,6 @@ export default {
     .dark\:bg-dots-lighter {
         background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
     }
-}
-.button {
-    height: 50px;
-    width: 165px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-}
-
-.button:hover {
-    box-shadow: 0.5px 0.5px 150px #252525;
-}
-
-.type1::after {
-    content: "Let's Guide You";
-    height: 50px;
-    width: 165px;
-    background-color: #1b998b;
-    color: #fff;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1::before {
-    content: "Get Started";
-    height: 50px;
-    width: 165px;
-    /* background-color: #fff; */
-    color: #1b998b;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(0px) scale(1.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1:hover::after {
-    transform: translateY(0) scale(1.2);
-}
-
-.type1:hover::before {
-    transform: translateY(-50px) scale(0) rotate(120deg);
 }
 @keyframes fade-in {
     from {

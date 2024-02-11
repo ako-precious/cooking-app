@@ -182,12 +182,12 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="``" class="float-right mr-8">
-                <button
-                    @click="createNewPhotos"
-                    class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button> </Link
-        ></template>
+            
+                
+                    <button  @click="createNewPhotos" class="btn2span group">
+                    <span class="next-span">Next Step</span>
+                    <span class="with-span">We're with you</span>
+                </button> </template>
     </BecomeCook>
 </template>
 

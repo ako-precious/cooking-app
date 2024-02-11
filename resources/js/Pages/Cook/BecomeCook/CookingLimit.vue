@@ -81,10 +81,10 @@ import TextInput from "@/Components/TextInput.vue";
         </template>
         <template #mainbtn>
            
-                <button
-                    @click="saveData"
-                    class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button>
+                    <button @click="saveData" class="btn2span group">
+                    <span class="next-span">Next Step</span>
+                    <span class="with-span">We're with you</span>
+                </button>
             </template>
     </BecomeCook>
 </template>
@@ -138,61 +138,6 @@ export default {
 }
 
 
-/* the design for the next button */
-.button {
-    height: 50px;
-    width: 165px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-}
-
-.button:hover {
-    box-shadow: 0.5px 0.5px 150px #252525;
-}
-
-.type1::after {
-    content: "We're with you";
-    height: 50px;
-    width: 165px;
-    background-color: #004e98;
-    color: #fff;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1::before {
-    content: "Next Step";
-    height: 50px;
-    width: 165px;
-    /* background-color: #fff; */
-    color: #004e98;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(0px) scale(1.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1:hover::after {
-    transform: translateY(0) scale(1.2);
-}
-
-.type1:hover::before {
-    transform: translateY(-50px) scale(0) rotate(120deg);
-}
 @keyframes fade-in {
     from {
         opacity: 0;
