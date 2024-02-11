@@ -86,10 +86,7 @@ import BecomeCook from "./BecomeCook.vue";
 export default {
     props: {
     Meal: Object,
-  },    
-    mounted() {        
-    console.log(this.Meal); // Log the meal data to console
-  },
+  }, 
     
 }
 </script>

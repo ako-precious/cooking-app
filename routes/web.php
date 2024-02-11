@@ -64,6 +64,6 @@ Route::middleware([
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal', MealController::class);
-    Route::resource('/meal-photos', MealPhotosController::class);
+    Route::resource('/meal_photos', MealPhotosController::class);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
 });

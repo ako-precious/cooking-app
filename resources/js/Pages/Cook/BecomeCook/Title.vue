@@ -132,8 +132,7 @@ export default {
                 axios
                     .put("/meal/title/" + this.Meal.id, meal )
                     .then((response) => {
-                        // Handle successful response
-                        console.log("Data saved successfully:", response.data.meal);
+                        
                         const MealId = response.data.meal.id;
                         this.$inertia.visit(
                             `/become-a-cook/${MealId}/photos`
