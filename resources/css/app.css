@@ -40,5 +40,9 @@
     .group-action-text{
         @apply text-oynx dark:text-snow group-hover:text-polynesian group-hover:dark:text-lighred group-active:text-persian transition-all duration-250 delay-100
     }
+    .hover-underline-animation{
+        @apply  z-10 relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow after:absolute after:w-full after:h-[2px] after:bottom-0 after:left-0 after:scale-x-0 after:origin-bottom-right   after:transition-transform after:ease-out after:duration-300 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left
+                      
+    }
        
 }
