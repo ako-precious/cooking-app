@@ -292,7 +292,7 @@ import BecomeCook from "./BecomeCook.vue";
                 >
                     <button class="relative group">
                         <span
-                            class="hover-underline-animation "
+                            class="hover-underline-animation"
                         >
                             Back
                         </span>
@@ -302,12 +302,21 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
+            
             <Link :href="`/become-a-cook/${Meal.id}/cook-limit`" class="">
                 <button
-                    class="float-right mr-8 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                ></button> </Link
-        ></template>
-    </BecomeCook>
+                class=" group float-right mr-8 mt-5 relative overflow-hidden transition-all duration-500 ease-in-out transform bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm rounded-lg h-12 w-40 button type1 text-xs hover:shadow-dark-blur"
+                ></button> </Link> 
+                <button class="float-left mr-8 mt-5 text-xs relative overflow-hidden transition-all duration-500 ease-in-out transform bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:shadow-oynx-sm rounded-lg h-12 w-40">
+                    <span class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-white bg-blue-600 hover:bg-blue-700 transition-all duration-500 ease-in-out transform translate-y-full">
+            We're with you
+        </span>
+        <span class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-blue-600 hover:text-white transition-all duration-500 ease-in-out transform translate-y-0 scale-125 group-hover:rotate-[120]">
+            Next Step
+        </span>
+    </button>
+            </template>
+            </BecomeCook>
 </template>
 <script>
 import axios from "axios";
@@ -343,27 +352,10 @@ export default {
 </script>
 <style scoped>
 
-
-/* the design for the next button */
-.button {
-    height: 50px;
-    width: 165px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-}
-
-.button:hover {
-    box-shadow: 0.5px 0.5px 150px #252525;
-}
-
-.type1::after {
+.button::after {
     content: "We're with you";
     height: 50px;
-    width: 165px;
+    width: 100%;
     background-color: #004e98;
     color: #fff;
     position: absolute;
@@ -375,11 +367,10 @@ export default {
     justify-content: center;
     transition: all 0.5s ease-in-out;
 }
-
-.type1::before {
+.button::before {
     content: "Next Step";
     height: 50px;
-    width: 165px;
+    width: 100%;
     /* background-color: #fff; */
     color: #004e98;
     position: absolute;
@@ -392,11 +383,11 @@ export default {
     transition: all 0.5s ease-in-out;
 }
 
-.type1:hover::after {
+.button:hover::after {
     transform: translateY(0) scale(1.2);
 }
 
-.type1:hover::before {
+.button:hover::before {
     transform: translateY(-50px) scale(0) rotate(120deg);
 }
 @keyframes fade-in {

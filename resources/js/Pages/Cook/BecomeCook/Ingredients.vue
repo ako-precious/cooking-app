@@ -86,10 +86,9 @@ import InputLabel from "@/Components/InputLabel.vue";
                 <Link
                     :href="`/become-a-cook/${Meal.id}/spotlight`"
                     class="font-semibold"
-                >
-                    <button class="cta" >
+                ><button class="relative group">
                         <span
-                            class="hover-underline-animation relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow"
+                            class="hover-underline-animation"
                         >
                             Back
                         </span>
@@ -160,22 +159,6 @@ export default {
     }
 }
 
-.hover-underline-animation:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-
-.cta:hover .hover-underline-animation:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
 
 /* the design for the next button */
 .button {
