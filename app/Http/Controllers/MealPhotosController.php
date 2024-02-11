@@ -8,6 +8,9 @@ use App\Models\MealPhotos;
 
 class MealPhotosController extends Controller
 {
+
+
+    
     public function store(Request $request)
     {
         

@@ -112,9 +112,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             </div>
                                         </div>
                                         <!-- Image preview container -->
-                                        <div
-                                            class="grid grid-cols-3 md:grid-cols-5 gap-5 lg:gap-8 lg:px-10"
-                                        ></div>
+                                     
                                         <div
                                             v-if="imagePreviews.length"
                                             ref="imageContainer"
