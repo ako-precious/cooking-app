@@ -143,6 +143,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                     />
                                                 </p>
                                                 <img
+                                                
                                                     :src="preview.src"
                                                     :alt="preview.src"
                                                     class="w-full h-full object-cover rounded"
@@ -197,11 +198,12 @@ import axios from "axios";
 export default {
     props: {
         Meal: Object,
+        mealPhotos: Object,
     },
     data() {
         return {
             imagePreviews: [],
-            imageFiles: [],
+            imageFiles: this.mealPhotos.meal_photo_path,
             minSize: 500, // Minimum image size (in pixels)
             maxSize: 3000, // Maximum image size (in pixels)
             dragIndex: null, // Array to hold image preview URLs

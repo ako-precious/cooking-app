@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cook;
 use App\Models\Meal;
+use App\Models\MealPhotos;
 
 class CookController extends Controller
 {
@@ -62,7 +63,8 @@ class CookController extends Controller
     public function photos($newMealId)
     {
         $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal]);
+        $mealPhotos = MealPhotos::where('meal_id', $newMealId)->get();
+        return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal, 'mealPhotos' => $mealPhotos]);
     }
     public function title($newMealId)
     {
