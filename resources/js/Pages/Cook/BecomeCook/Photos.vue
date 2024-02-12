@@ -112,7 +112,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             </div>
                                         </div>
                                         <!-- Image preview container -->
-                                     
+
                                         <div
                                             v-if="imagePreviews.length"
                                             ref="imageContainer"
@@ -141,7 +141,6 @@ import BecomeCook from "./BecomeCook.vue";
                                                     />
                                                 </p>
                                                 <img
-                                                
                                                     :src="preview.src"
                                                     :alt="preview.src"
                                                     class="w-full h-full object-cover rounded"
@@ -171,22 +170,18 @@ import BecomeCook from "./BecomeCook.vue";
                     :href="`/become-a-cook/${Meal.id}/meal-title`"
                     class="font-semibold"
                 >
-                <button class="relative group">
-                        <span
-                            class="hover-underline-animation"
-                        >
-                            Back
-                        </span>
+                    <button class="relative group">
+                        <span class="hover-underline-animation"> Back </span>
                     </button>
                 </Link>
             </div>
         </template>
-        <template #mainbtn>           
-                
-                    <button  @click="createNewPhotos" class="btn2span group">
-                    <span class="next-span">Next Step</span>
-                    <span class="with-span">We're with you</span>
-                </button> </template>
+        <template #mainbtn>
+            <button @click="createNewPhotos" class="btn2span group">
+                <span class="next-span">Next Step</span>
+                <span class="with-span">We're with you</span>
+            </button>
+        </template>
     </BecomeCook>
 </template>
 
@@ -209,8 +204,6 @@ export default {
     },
     methods: {
         async previewImages(event) {
-            this.imagePreviews = [];
-            this.errors = [];
             this.imageFiles = event.target.files;
             if (this.imageFiles) {
                 if (this.imageFiles.length < 3) {
@@ -223,7 +216,7 @@ export default {
                     alert("!0 is the limit pictures.");
                     return;
                 }
-                console.log(this.imageFiles)
+
                 for (let i = 0; i < this.imageFiles.length; i++) {
                     const file = this.imageFiles[i];
                     if (file.type.startsWith("image/")) {
@@ -246,22 +239,70 @@ export default {
                                             `Image ${
                                                 i + 1
                                             } exceeds maximum dimensions of 3000 in pixels.`
-                                            );
-                                            // this.imagePreviews.splice(index, image);
-                                        }
-                                    } else {
-                                        this.imagePreviews.splice(i + 1, img);
-                                        this.errors.push(
-                                            `Image ${
-                                                i + 1
-                                            } does not meet minimum dimensions of 500 in pixels.`
-                                            );
+                                        );
+                                        // this.imagePreviews.splice(index, image);
+                                    }
+                                } else {
+                                    this.imagePreviews.splice(i + 1, img);
+                                    this.errors.push(
+                                        `Image ${
+                                            i + 1
+                                        } does not meet minimum dimensions of 500 in pixels.`
+                                    );
                                 }
                                 resolve();
                             };
                         });
                     }
                 }
+
+                const validImages = [];
+                const invalidImages = [];
+
+                // Iterate through each image file
+                for (let i = 0; i < this.imageFiles.length; i++) {
+                    const file = this.imageFiles[i];
+
+                    // Create a FileReader object to read the image file
+                    const reader = new FileReader();
+
+                    // Create a promise to handle asynchronous image loading
+                    const loadPromise = new Promise((resolve) => {
+                        reader.onload = () => {
+                            const img = new Image();
+                            img.onload = () => {
+                                // Check if the image dimensions meet the size requirements
+                                if (
+                                    img.width >= this.minSize &&
+                                    img.width <= this.maxSize &&
+                                    img.height >= this.minSize &&
+                                    img.height <= this.maxSize
+                                ) {
+                                    validImages.push(file);
+                                } else {
+                                    invalidImages.push(file);
+                                }
+                                resolve();
+                            };
+                            img.src = reader.result;
+                        };
+                    });
+
+                    // Read the image file as a data URL
+                    reader.readAsDataURL(file);
+
+                    // Wait for the image to load
+                    await loadPromise;
+                }
+
+                // Update this.imageFiles with valid images
+                this.imageFiles = validImages;
+
+                // Display an error message for invalid images
+                if (invalidImages.length > 0) {
+                    
+                }
+                console.log(this.imageFiles);
             }
         },
         dragStart(index, event) {
@@ -284,27 +325,31 @@ export default {
             this.dragIndex = null;
         },
         createNewPhotos() {
-            const formData = new FormData();
-            formData.append('meal_id',this.Meal.id);
-            for (let i = 0; i < this.imageFiles.length; i++) {
-                formData.append("images[]", this.imageFiles[i]);
-            }
-            console.log(formData)
-            axios
-                .post("/meal_photos/", formData, {
-                    meal_id: this.Meal.id,
-                     // other meal data...
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                })
-                .then((response) => {
-                    console.log("Images uploaded successfully:", response.data);
-                    // Handle the response to update UI or perform other actions
-                })
-                .catch((error) => {
-                    console.error("Error uploading images:", error);
-                });
+            
+                const formData = new FormData();
+                formData.append("meal_id", this.Meal.id);
+                for (let i = 0; i < this.imageFiles.length; i++) {
+                    formData.append("images[]", this.imageFiles[i]);
+                }
+                axios
+                    .post("/meal_photos/", formData, {
+                        meal_id: this.Meal.id,
+                        // other meal data...
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    })
+                    .then((response) => {
+                        console.log(
+                            "Images uploaded successfully:",
+                            response.data
+                        );
+                        // Handle the response to update UI or perform other actions
+                    })
+                    .catch((error) => {
+                        console.error("Error uploading images:", error);
+                    });
+            
         },
     },
 };
