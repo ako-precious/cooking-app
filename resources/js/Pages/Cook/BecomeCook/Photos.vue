@@ -223,6 +223,7 @@ export default {
                     alert("!0 is the limit pictures.");
                     return;
                 }
+                console.log(this.imageFiles)
                 for (let i = 0; i < this.imageFiles.length; i++) {
                     const file = this.imageFiles[i];
                     if (file.type.startsWith("image/")) {
