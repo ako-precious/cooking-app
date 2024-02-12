@@ -195,13 +195,16 @@ export default {
     data() {
         return {
             imagePreviews: [],
-            imageFiles: this.mealPhotos.meal_photo_path,
+            imageFiles: [],
             minSize: 500, // Minimum image size (in pixels)
             maxSize: 3000, // Maximum image size (in pixels)
             dragIndex: null, // Array to hold image preview URLs
             errors: [],
         };
     },
+    created() {
+    this.fetchImages(); // Fetch images from the backend when the component is created
+  },
     methods: {
         async previewImages(event) {
             this.imageFiles = event.target.files;
@@ -217,6 +220,8 @@ export default {
                     return;
                 }
 
+                const validImages = [];
+                const invalidImages = [];
                 for (let i = 0; i < this.imageFiles.length; i++) {
                     const file = this.imageFiles[i];
                     if (file.type.startsWith("image/")) {
@@ -234,7 +239,6 @@ export default {
                                     ) {
                                         this.imagePreviews.push(img);
                                     } else {
-                                        this.imagePreviews.splice(i + 1, img);
                                         this.errors.push(
                                             `Image ${
                                                 i + 1
@@ -243,7 +247,6 @@ export default {
                                         // this.imagePreviews.splice(index, image);
                                     }
                                 } else {
-                                    this.imagePreviews.splice(i + 1, img);
                                     this.errors.push(
                                         `Image ${
                                             i + 1
@@ -255,9 +258,6 @@ export default {
                         });
                     }
                 }
-
-                const validImages = [];
-                const invalidImages = [];
 
                 // Iterate through each image file
                 for (let i = 0; i < this.imageFiles.length; i++) {
@@ -300,11 +300,20 @@ export default {
 
                 // Display an error message for invalid images
                 if (invalidImages.length > 0) {
-                    
                 }
                 console.log(this.imageFiles);
             }
         },
+
+        fetchImages() {
+            
+                    this.imagePreviews = this.mealPhotos.map((image) => ({
+                        src: image.meal_photo_path, // Assuming your image object has a 'url' property
+                        id: image.id, // Assuming your image object has an 'id' property
+                    }));
+                
+        },
+
         dragStart(index, event) {
             event.dataTransfer.setData("text/plain", index);
             this.dragIndex = index;
@@ -325,31 +334,26 @@ export default {
             this.dragIndex = null;
         },
         createNewPhotos() {
-            
-                const formData = new FormData();
-                formData.append("meal_id", this.Meal.id);
-                for (let i = 0; i < this.imageFiles.length; i++) {
-                    formData.append("images[]", this.imageFiles[i]);
-                }
-                axios
-                    .post("/meal_photos/", formData, {
-                        meal_id: this.Meal.id,
-                        // other meal data...
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                        },
-                    })
-                    .then((response) => {
-                        console.log(
-                            "Images uploaded successfully:",
-                            response.data
-                        );
-                        // Handle the response to update UI or perform other actions
-                    })
-                    .catch((error) => {
-                        console.error("Error uploading images:", error);
-                    });
-            
+            const formData = new FormData();
+            formData.append("meal_id", this.Meal.id);
+            for (let i = 0; i < this.imageFiles.length; i++) {
+                formData.append("images[]", this.imageFiles[i]);
+            }
+            axios
+                .post("/meal_photos/", formData, {
+                    meal_id: this.Meal.id,
+                    // other meal data...
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log("Images uploaded successfully:", response.data);
+                    // Handle the response to update UI or perform other actions
+                })
+                .catch((error) => {
+                    console.error("Error uploading images:", error);
+                });
         },
     },
 };
