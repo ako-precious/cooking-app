@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('meal_id');
             $table->foreign('meal_id', 'foreign_meal_photos')->references('id')->on('meals');
             $table->string("meal_photo_path", 2048);
+            $table->integer('order');
             $table->timestamps();
         });
     }

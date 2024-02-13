@@ -316,8 +316,11 @@ export default {
                     },
                 })
                 .then((response) => {
-                    console.log("Images uploaded successfully:", response.data);
-                    // Handle the response to update UI or perform other actions
+                    // console.log("Images uploaded successfully:", response.data);
+                    const MealId = response.data.meal.id;
+                    this.$inertia.visit(
+                            `/become-a-cook/${MealId}/finishing-up`
+                        );
                 })
                 .catch((error) => {
                     console.error("Error uploading images:", error);

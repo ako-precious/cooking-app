@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('meal_photos', function (Blueprint $table) {
-            $table->integer('order');
+        Schema::table('meals', function (Blueprint $table) {
+            $table->enum('ordering_preferences', ['manual', 'automatic'])->default('manual');
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('meal_photos', function (Blueprint $table) {
+        Schema::table('meals', function (Blueprint $table) {
             //
         });
     }

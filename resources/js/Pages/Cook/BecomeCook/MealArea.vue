@@ -335,7 +335,7 @@ export default {
             axios
                 .put("/meal/region/" + this.Meal.id, { region })
                 .then((response) => {
-                    console.log("Data sent successfully:", response.data);
+                    // console.log("Data sent successfully:", response.data);
                 })
                 .catch((error) => {
                     console.error("Error sending data:", error);

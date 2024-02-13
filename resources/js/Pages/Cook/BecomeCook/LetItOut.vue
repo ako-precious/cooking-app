@@ -25,7 +25,7 @@ import BecomeCook from "./BecomeCook.vue";
                         <h1
                             class="pt-5 lg:text-lg  text-oynx dark:text-snow"
                         >
-                        Get your aprons tightened!  Final step: personalize booking preferences, set your price point, and proudly publish your meal for eager foodies to discover.
+                        Get your aprons tightened!  Final step: personalize ordering preferences, set your price point, and proudly publish your meal for eager foodies to discover.
                         </h1>
                     </div>
                     <div class="lg:w-1/2">
@@ -34,7 +34,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 <div class="w-2/3 p-3 lg:p-10 ml-8">
                                     <img
                                         class=""
-                                        src="/images/whattocook.jpg"
+                                        src="/images/getitout.jpg"
                                         alt=""
                                     />
                                 </div>
@@ -67,7 +67,7 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/ingredients`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/${Meal.id}/`" class="float-right mr-8">
                 <button  class="btn2span group">
                     <span class="next-span">Next Step</span>
                     <span class="with-span">We're with you</span>
@@ -75,6 +75,15 @@ import BecomeCook from "./BecomeCook.vue";
         ></template>
     </BecomeCook>
 </template>
+<script>
+
+export default {
+    props: {
+    Meal: Object,
+  }, 
+    
+}
+</script>
 
 <style scoped>
 .bg-dots-darker {

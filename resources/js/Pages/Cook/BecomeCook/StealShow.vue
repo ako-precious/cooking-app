@@ -40,7 +40,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 <div class="w-2/3 p-3 lg:p-10 ml-8">
                                     <img
                                         class=""
-                                        src="/images/whattocook.jpg"
+                                        src="/images/takepicturesofmeal.jpg"
                                         alt=""
                                     />
                                 </div>
