@@ -48,6 +48,7 @@ Route::middleware([
     Route::get('/become-a-cook/overview', function () {
         return Inertia::render('Cook/BecomeCook/Overview');
     });
+    Route::get('/become-a-cook', [CookController::class, 'pending_meal']);
     Route::get('/become-a-cook/{newMealId}/overview', [CookController::class, 'overview']);
     Route::get('/become-a-cook/{newMealId}/about-your-meal', [CookController::class, 'about_your_meal']);
     Route::get('/become-a-cook/{newMealId}/region', [CookController::class, 'region' ]);

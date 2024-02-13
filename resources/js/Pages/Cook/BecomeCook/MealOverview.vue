@@ -27,13 +27,7 @@ import TextInput from "@/Components/TextInput.vue";
                     <div class="w-full lg:w-1/2">
                         <div class="flex flex-col w-full">
                             <div class="flex lg:p-5">
-                                <div
-                                    class="w-full lg:w-2/3 p-3 lg:p-10 lg:ml-8"
-                                >
-                                <p class="font-semibold text-4xl lg:text-5xl tracking-wide text-oynx dark:text-snow flex items-center"><font-awesome-icon icon="dollar-sign" /> <input type="number" class=" border-2 bg-transparent border-none w-2/3 focus:ring-0 text-4xl lg:text-5xl" v-model="count" name="" id=""> {{  }}</p>
-
-                                    
-                                </div>
+                               
                             </div>
                         </div>
                     </div>

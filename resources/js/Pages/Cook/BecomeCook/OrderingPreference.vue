@@ -29,7 +29,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             'border-persian border-2 ':
                                                 selectedDiv === 'automatic',
                                         }"
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
+                                        class="flex min-w-0 break-words w-full shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                         @click="
                                             [
                                                 sendData('automatic'),
@@ -74,7 +74,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                 selectDiv('manual'),
                                             ]
                                         "
-                                        class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
+                                        class="flex min-w-0 break-words w-full shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                     >
                                     
                                     <div

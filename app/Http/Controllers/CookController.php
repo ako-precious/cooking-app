@@ -14,6 +14,11 @@ class CookController extends Controller
         // dd(Auth::id()) ;
         return inertia('Cook/setup',);
     }
+    public function pending_meal()
+    {
+        // dd(Auth::id()) ;
+        return inertia('Cook/BecomeCook/index');
+    }
     public function store(Request $request)
     {
         $user_id = $request->user_id;
