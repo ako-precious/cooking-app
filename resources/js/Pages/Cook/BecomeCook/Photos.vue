@@ -222,84 +222,39 @@ export default {
 
                 const validImages = [];
                 const invalidImages = [];
-                const reader = new FileReader();
-
                 for (let i = 0; i < this.imageFiles.length; i++) {
-                    const file = this.imageFiles[i];
-                    if (file.type.startsWith("image/")) {
-                        reader.onload = () => {
-                        const img = new Image();
-                        img.src = URL.createObjectURL(file);
-                         new Promise((resolve) => {
-                            img.onload = () => {
-                                if (
-                                    img.width >= this.minSize &&
-                                    img.height >= this.minSize
-                                ) {
-                                    if (
-                                        img.width <= this.maxSize &&
-                                        img.height <= this.maxSize
-                                    ) {
-                                        this.imagePreviews.push(img);
-                                    } else {
-                                        this.errors.push(
-                                            `Image ${
-                                                i + 1
-                                            } exceeds maximum dimensions of 3000 in pixels.`
-                                        );
-                                        // this.imagePreviews.splice(index, image);
-                                    }
-                                } else {
-                                    this.errors.push(
-                                        `Image ${
-                                            i + 1
-                                        } does not meet minimum dimensions of 500 in pixels.`
-                                    );
-                                }
-                                resolve();
-                            };
-                        });
-                    };
-                    
-                    }
-                    reader.readAsDataURL(file);
+    const file = this.imageFiles[i];
+    if (file.type.startsWith("image/")) {
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        
+        await new Promise((resolve) => {
+            img.onload = () => {
+                if (
+                    img.width >= this.minSize &&
+                    img.height >= this.minSize &&
+                    img.width <= this.maxSize &&
+                    img.height <= this.maxSize
+                ) {
+                    this.imagePreviews.push(img);
+                    validImages.push(file);
+                } else {
+                    this.errors.push(
+                        `Image ${
+                            i + 1
+                        } dimensions do not meet requirements (min: ${this.minSize}px, max: ${this.maxSize}px).`
+                    );
+                    invalidImages.push(file);
                 }
+                resolve();
+            };
+        });
+    } else {
+        this.errors.push(`File ${i + 1} is not an image.`);
+        invalidImages.push(file);
+    }
+}
 
-                // // Iterate through each image file
-                for (let i = 0; i < this.imageFiles.length; i++) {
-                    const file = this.imageFiles[i];
-
-                    // Create a FileReader object to read the image file
-                    const reader = new FileReader();
-
-                    // Create a promise to handle asynchronous image loading
-                    const loadPromise = new Promise((resolve) => {
-                        reader.onload = () => {
-                            const img = new Image();
-                            img.onload = () => {
-                                // Check if the image dimensions meet the size requirements
-                                if (
-                                    img.width >= this.minSize &&
-                                    img.width <= this.maxSize &&
-                                    img.height >= this.minSize &&
-                                    img.height <= this.maxSize
-                                ) {
-                                    validImages.push(file);
-                                } else {
-                                    invalidImages.push(file);
-                                }
-                                resolve();
-                            };
-                            img.src = reader.result;
-                        };
-                    });
-
-                    // Read the image file as a data URL
-                    reader.readAsDataURL(file);
-
-                    // Wait for the image to load
-                    await loadPromise;
-                }
 
                 // Update this.imageFiles with valid images
                 this.imageFiles = validImages;
@@ -326,6 +281,8 @@ export default {
         },
         removeImage(index) {
             this.imagePreviews.splice(index, 1);
+           this.imageFiles.splice(index, 1);
+           console.log(this.imageFiles);
         },
 
         drop(index, event) {
@@ -334,9 +291,14 @@ export default {
             const fromIndex = parseInt(data);
             if (fromIndex !== index) {
                 const temp = this.imagePreviews[fromIndex];
+                const file = this.imageFiles[fromIndex];
                 this.imagePreviews.splice(fromIndex, 1);
                 this.imagePreviews.splice(index, 0, temp);
+                this.imageFiles.splice(fromIndex, 1);
+                this.imageFiles.splice(index, 0, file);
             }
+            
+            console.log(this.imageFiles);
             this.dragIndex = null;
         },
         createNewPhotos() {
