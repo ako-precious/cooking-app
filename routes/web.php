@@ -55,6 +55,7 @@ Route::middleware([
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
+    Route::put('meal/preference/{id}', [MealController::class, 'preference' ]);    
     Route::get('/become-a-cook/{newMealId}/cook-limit', [CookController::class, 'cook_limit' ]);
     Route::get('/become-a-cook/{newMealId}/spotlight', [CookController::class, 'spotlight' ]);
     Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients' ]);

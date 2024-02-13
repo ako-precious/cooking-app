@@ -14,7 +14,7 @@ class Meal extends Model
 
     protected $table = 'meals';
 
-    protected $fillable = ['cook_id', 'name', 'region', 'description',  'price', 'ingredients', 'cooking_limit', 'status'];
+    protected $fillable = ['cook_id', 'name', 'region', 'description',  'price', 'ingredients', 'cooking_limit', 'status', 'ordering_preferences'];
 
     protected $casts = [
         'ingredients' => 'json',

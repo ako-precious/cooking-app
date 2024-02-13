@@ -27,13 +27,13 @@ import BecomeCook from "./BecomeCook.vue";
                                     <div
                                         :class="{
                                             'border-persian border-2 ':
-                                                selectedDiv === 'Automatic',
+                                                selectedDiv === 'automatic',
                                         }"
                                         class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                         @click="
                                             [
-                                                sendData('Automatic'),
-                                                selectDiv('Automatic'),
+                                                sendData('automatic'),
+                                                selectDiv('automatic'),
                                             ]
                                         "
                                     >
@@ -66,12 +66,12 @@ import BecomeCook from "./BecomeCook.vue";
                                     <div
                                         :class="{
                                             'border-persian border-2 ':
-                                                selectedDiv === 'Manual',
+                                                selectedDiv === 'manual',
                                         }"
                                         @click="
                                             [
-                                                sendData('Manual'),
-                                                selectDiv('Manual'),
+                                                sendData('manual'),
+                                                selectDiv('manual'),
                                             ]
                                         "
                                         class="flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
@@ -165,6 +165,7 @@ export default {
     methods: {
         sendData(preference) {
             // Perform an HTTP request to send the data to the server
+            console.log(preference);
             axios
                 .put("/meal/preference/" + this.Meal.id, { preference })
                 .then((response) => {

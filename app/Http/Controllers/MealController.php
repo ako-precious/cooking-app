@@ -40,6 +40,13 @@ class MealController extends Controller
         $meal->save();
         return response()->json(['meal' => $meal]);
     }
+    public function preference(Request $request, $id )
+    {
+        $meal =  Meal::find($id);
+        $meal->ordering_preferences = $request->preference; 
+        $meal->save();
+        return response()->json(['meal' => $meal]);
+    }
     public function title(Request $request, $id )
     {
         // dd($request);
