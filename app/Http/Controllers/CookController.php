@@ -63,9 +63,12 @@ class CookController extends Controller
     public function photos($newMealId)
     {
         $Meal = Meal::find($newMealId);
-        $mealPhotos = MealPhotos::where('meal_id', $newMealId)->first();
-        $photoUrl = Storage::url($mealPhotos->meal_photo_path);;
-        dd($photoUrl);
+        $mealPhotos = MealPhotos::where('meal_id', $newMealId)->get();
+        // foreach ($mealPhotos->meal_photo_path as $photoUrl) {
+        //     # code...
+        //     // $photoUrl = Storage::url($mealPhotos->meal_photo_path);
+        //     dd($photoUrl);
+        // }
         return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal, 'mealPhotos' => $mealPhotos]);
     }
     public function title($newMealId)

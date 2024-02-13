@@ -222,12 +222,15 @@ export default {
 
                 const validImages = [];
                 const invalidImages = [];
+                const reader = new FileReader();
+
                 for (let i = 0; i < this.imageFiles.length; i++) {
                     const file = this.imageFiles[i];
                     if (file.type.startsWith("image/")) {
+                        reader.onload = () => {
                         const img = new Image();
                         img.src = URL.createObjectURL(file);
-                        await new Promise((resolve) => {
+                         new Promise((resolve) => {
                             img.onload = () => {
                                 if (
                                     img.width >= this.minSize &&
@@ -256,10 +259,13 @@ export default {
                                 resolve();
                             };
                         });
+                    };
+                    
                     }
+                    reader.readAsDataURL(file);
                 }
 
-                // Iterate through each image file
+                // // Iterate through each image file
                 for (let i = 0; i < this.imageFiles.length; i++) {
                     const file = this.imageFiles[i];
 
@@ -308,7 +314,7 @@ export default {
         fetchImages() {
             
                     this.imagePreviews = this.mealPhotos.map((image) => ({
-                        src: image.meal_photo_path, // Assuming your image object has a 'url' property
+                        src: `storage/${image.meal_photo_path}`, // Assuming your image object has a 'url' property
                         id: image.id, // Assuming your image object has an 'id' property
                     }));
                 

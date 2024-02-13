@@ -129,15 +129,16 @@ export default {
             newMeal: {
                 user_id: this.$page.props.auth.user.id,
             },
-            MealId: this.Meal.id,
+            MealId: '',
         };
     },
 
     methods: {
         createNewMeal() {
             // Check if the current route is "/become-a-cook/overview"
-            if (this.MealId) {
+            if (this.Meal.id) {
                 // If newMealId is already defined, visit the specified URL
+                this.MealId =this.Meal.id
                 this.$inertia.visit(
                     `/become-a-cook/${this.MealId}/about-your-meal`
                 );
