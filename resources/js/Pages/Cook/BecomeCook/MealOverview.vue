@@ -52,7 +52,7 @@ import TextInput from "@/Components/TextInput.vue";
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
                 <Link
-                    :href="`/become-a-cook/${Meal.id}/ordering-preference`"
+                    :href="`/become-a-cook/${Meal.id}/region`"
                     class="font-semibold"
                 >
                 <button class="relative group">
@@ -69,7 +69,7 @@ import TextInput from "@/Components/TextInput.vue";
            
                     <button @click="saveData" class="btn2span group">
                     <span class="next-span">Next Step</span>
-                    <span class="with-span">We're with you</span>
+                    <span class="with-span">We are done</span>
                 </button>
             </template>
     </BecomeCook>
@@ -89,23 +89,7 @@ export default {
     },
     methods: {
         saveData() {
-            // Send an HTTP request to your backend API to save the data
-            const price = this.count;
-            
-                axios
-                    .put("/meal/price/" + this.Meal.id, { price })
-                    .then((response) => {
-                        // Handle successful response
-                        // console.log(response.data.meal);
-                        const MealId = response.data.meal.id;
-                        this.$inertia.visit(
-                            `/become-a-cook/${MealId}/final-overview`
-                        );
-                    })
-                    .catch((error) => {
-                        // Handle error
-                        console.error("Error saving data:", error);
-                    });
+           
             
         },
     },

@@ -92,6 +92,11 @@ class CookController extends Controller
         $Meal = Meal::find($newMealId);
         return inertia('Cook/BecomeCook/PriceSetting', ['Meal' => $Meal]);
     }
+    public function final_overview($newMealId)
+    {
+        $Meal = Meal::find($newMealId);
+        return inertia('Cook/BecomeCook/MealOverview', ['Meal' => $Meal]);
+    }
     
 
 }
