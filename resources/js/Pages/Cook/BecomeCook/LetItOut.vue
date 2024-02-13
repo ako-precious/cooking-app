@@ -67,7 +67,7 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/become-a-cook/${Meal.id}/`" class="float-right mr-8">
+            <Link :href="`/become-a-cook/${Meal.id}/ordering-preference`" class="float-right mr-8">
                 <button  class="btn2span group">
                     <span class="next-span">Next Step</span>
                     <span class="with-span">We're with you</span>
