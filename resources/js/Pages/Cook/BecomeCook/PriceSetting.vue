@@ -18,13 +18,10 @@ import TextInput from "@/Components/TextInput.vue";
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
-                            How many people can you cook for
+                            Set the price for the meal
                         </h1>
                         <h1 class="pt-5 text-lg text-oynx dark:text-snow">
-                            Your commitment to delivering the best experience
-                            for each person is admirable. To help you prioritize
-                            quality, could you share your preferred number for
-                            preparing an exceptional meal at a time?
+                            Craft a price that reflects the unique joy of enjoying your culinary creation
                         </h1>
                     </div>
                     <div class="w-full lg:w-1/2">
@@ -33,20 +30,9 @@ import TextInput from "@/Components/TextInput.vue";
                                 <div
                                     class="w-full lg:w-2/3 p-3 lg:p-10 lg:ml-8"
                                 >
-                                    <input
-                                        placeholder="Limit"
-                                        class="-shadow-snow-sm w-full dark:-shadow-oynx-sm focus:shadow-snow-inner focus:dark:shadow-oynx-inner bg-transparent border-none sm:w-[15rem] md:w-[20rem] lg:w-[25rem] 2xl:max-w-2xl text-oynx dark:text-white rounded-full py-3 px-5 outline-none dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred transition-all ease-in duration-250 delay-75"
-                                        v-model="cooking_limit"
-                                        type="number"
-                                        min="1"
-                                        max="20"
-                                    />
+                                <p class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow flex items-center">Count: <input type="number" class="bg-transparent border-none w-24 focus:border-none text-3xl lg:text-4xl" v-model="count" name="" id=""> {{  }}</p>
 
-                                    <h1
-                                        class="w-full pt-5 text-lg text-oynx dark:text-snow"
-                                    >
-                                        The maximum is 20 for now
-                                    </h1>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -94,14 +80,12 @@ import axios from "axios";
 export default {
     props: {
         Meal: Object,
+        
     },
     data() {
-        return {
-            cooking_limit: this.Meal.cooking_limit,
+        return { 
+            count: this.Meal.price,
         };
-    },
-    mounted() {
-        console.log(this.Meal); // Log the meal data to console
     },
     methods: {
         saveData() {

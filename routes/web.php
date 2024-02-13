@@ -56,6 +56,7 @@ Route::middleware([
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/preference/{id}', [MealController::class, 'preference' ]);    
+    Route::put('meal/price/{id}', [MealController::class, 'price' ]);    
     Route::get('/become-a-cook/{newMealId}/cook-limit', [CookController::class, 'cook_limit' ]);
     Route::get('/become-a-cook/{newMealId}/spotlight', [CookController::class, 'spotlight' ]);
     Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients' ]);
@@ -63,6 +64,7 @@ Route::middleware([
     Route::get('/become-a-cook/{newMealId}/meal-title',[CookController::class, 'title' ]);
     Route::get('/become-a-cook/{newMealId}/finishing-up', [CookController::class, 'finish_up' ]);
     Route::get('/become-a-cook/{newMealId}/ordering-preference', [CookController::class, 'ordering_preference' ]);
+    Route::get('/become-a-cook/{newMealId}/price',[CookController::class, 'price' ]);
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal', MealController::class);
