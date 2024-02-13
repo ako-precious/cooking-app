@@ -203,8 +203,8 @@ export default {
         };
     },
     created() {
-    this.fetchImages(); // Fetch images from the backend when the component is created
-  },
+        this.fetchImages(); // Fetch images from the backend when the component is created
+    },
     methods: {
         async previewImages(event) {
             this.imageFiles = event.target.files;
@@ -223,38 +223,43 @@ export default {
                 const validImages = [];
                 const invalidImages = [];
                 for (let i = 0; i < this.imageFiles.length; i++) {
-    const file = this.imageFiles[i];
-    if (file.type.startsWith("image/")) {
-        const img = new Image();
-        img.src = URL.createObjectURL(file);
-        
-        await new Promise((resolve) => {
-            img.onload = () => {
-                if (
-                    img.width >= this.minSize &&
-                    img.height >= this.minSize &&
-                    img.width <= this.maxSize &&
-                    img.height <= this.maxSize
-                ) {
-                    this.imagePreviews.push(img);
-                    validImages.push(file);
-                } else {
-                    this.errors.push(
-                        `Image ${
-                            i + 1
-                        } dimensions do not meet requirements (min: ${this.minSize}px, max: ${this.maxSize}px).`
-                    );
-                    invalidImages.push(file);
-                }
-                resolve();
-            };
-        });
-    } else {
-        this.errors.push(`File ${i + 1} is not an image.`);
-        invalidImages.push(file);
-    }
-}
+                    const file = this.imageFiles[i];
+                    if (file.type.startsWith("image/")) {
+                        const img = new Image();
+                        img.src = URL.createObjectURL(file);
 
+                        await new Promise((resolve) => {
+                            img.onload = () => {
+                                if (
+                                    img.width >= this.minSize &&
+                                    img.height >= this.minSize &&
+                                    img.width <= this.maxSize &&
+                                    img.height <= this.maxSize
+                                ) {
+                                    this.imagePreviews.push(img);
+                                    validImages.push(file);
+                                } else {
+                                    this.errors.push(
+                                        `Image ${
+                                            i + 1
+                                        } dimensions do not meet requirements (min: ${
+                                            this.minSize
+                                        }px, max: ${this.maxSize}px).`
+                                    );
+
+                                    invalidImages.push(file);
+                                }
+                                setTimeout(() => {
+                                    this.errors = [];
+                                }, 10000);
+                                resolve();
+                            };
+                        });
+                    } else {
+                        this.errors.push(`File ${i + 1} is not an image.`);
+                        invalidImages.push(file);
+                    }
+                }
 
                 // Update this.imageFiles with valid images
                 this.imageFiles = validImages;
@@ -262,17 +267,14 @@ export default {
                 // Display an error message for invalid images
                 if (invalidImages.length > 0) {
                 }
-                console.log(this.imageFiles);
             }
         },
 
         fetchImages() {
-            
-                    this.imagePreviews = this.mealPhotos.map((image) => ({
-                        src: `storage/${image.meal_photo_path}`, // Assuming your image object has a 'url' property
-                        id: image.id, // Assuming your image object has an 'id' property
-                    }));
-                
+            this.imagePreviews = this.mealPhotos.map((image) => ({
+                src: `storage/${image.meal_photo_path}`, // Assuming your image object has a 'url' property
+                id: image.id, // Assuming your image object has an 'id' property
+            }));
         },
 
         dragStart(index, event) {
@@ -281,8 +283,7 @@ export default {
         },
         removeImage(index) {
             this.imagePreviews.splice(index, 1);
-           this.imageFiles.splice(index, 1);
-           console.log(this.imageFiles);
+            this.imageFiles.splice(index, 1);
         },
 
         drop(index, event) {
@@ -297,8 +298,7 @@ export default {
                 this.imageFiles.splice(fromIndex, 1);
                 this.imageFiles.splice(index, 0, file);
             }
-            
-            console.log(this.imageFiles);
+
             this.dragIndex = null;
         },
         createNewPhotos() {

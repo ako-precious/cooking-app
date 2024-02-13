@@ -18,10 +18,10 @@ class MealPhotosController extends Controller
         $meal_id = $request->input('meal_id');
         foreach ($request->file('images') as $index => $image) {
         //     // Store the image in the storage or public directory
-            $path = $image->store('images'); // This will store in storage/app/images
+            // $path = $image->store('images'); // This will store in storage/app/images
 
         //     // If you want to store in public directory directly
-            // $path = $image->store('public/images'); // This will store in public/storage/images
+            $path = $image->store('public/images'); // This will store in public/storage/images
             
            $meal = MealPhotos::create([
                 'meal_id' => $meal_id,
