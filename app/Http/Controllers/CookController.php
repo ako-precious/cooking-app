@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cook;
 use App\Models\Meal;
 use App\Models\MealPhotos;
-
+use Illuminate\Support\Facades\Auth;
 class CookController extends Controller
 {
     public function setup()
@@ -35,6 +35,11 @@ class CookController extends Controller
         return response()->json(['data' => $newCook]);
     }
 
+    public function checkCook(){
+        $user_id =   Auth::id();
+         $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
+         return response()->json(['checkUser' => $checkUser]);
+      }
     public function about_your_meal($newMealId)
     {
         $Meal = Meal::find($newMealId);

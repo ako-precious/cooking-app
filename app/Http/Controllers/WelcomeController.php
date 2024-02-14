@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\MealResource;
+use App\Models\Cook;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\MealSchedule;
 use App\Models\Meal;

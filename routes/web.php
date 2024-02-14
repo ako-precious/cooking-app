@@ -68,6 +68,7 @@ Route::middleware([
     Route::get('/become-a-cook/{newMealId}/price',[CookController::class, 'price' ]);
     Route::get('/become-a-cook/{newMealId}/final-overview',[CookController::class, 'final_overview' ]);
     Route::get('/meal-schedule', [MealScheduleController::class, "schedule"]);
+    Route::get('/checkUser', [CookController::class, "checkCook"]);
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal', MealController::class);
     Route::resource('/meal_photos', MealPhotosController::class);
