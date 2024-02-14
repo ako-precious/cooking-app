@@ -28,9 +28,9 @@ import BecomeCook from "./BecomeCook.vue";
                                 class="col-span-1 w-full max-w-full"
                             >
                                 <div
-                                    class="flex min-w-0 break-words w-full items-center shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
+                                    class="flex min-w-0 break-words w-full items-center justify-between shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                 >
-                                    <Link
+                                    <Link class="w4"
                                         :href="`/become-a-cook/${item.id}/overview`"
                                     >
                                         <div
@@ -66,7 +66,7 @@ import BecomeCook from "./BecomeCook.vue";
                                         </div>
                                     </Link>
                                     <p
-                                        class="bottom-1 top-1 right-1 bg-snow/20 cursor-pointer p-2"
+                                        class="bottom-1  w-12 top-1 right-1 bg-snow/20 cursor-pointer p-2"
                                         @click="removePending(item.id)"
                                     >
                                         <font-awesome-icon

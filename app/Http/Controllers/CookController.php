@@ -9,6 +9,7 @@ use App\Models\MealPhotos;
 use Illuminate\Support\Facades\Auth;
 class CookController extends Controller
 {
+    
     public function setup()
     {
         // dd(Auth::id()) ;
@@ -43,18 +44,43 @@ class CookController extends Controller
       }
     public function about_your_meal($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/AboutYourMeal', ['Meal' => $Meal]);
+        $user_id =   Auth::id();      
+       $cook = Cook::firstWhere('user_id', $user_id);
+       if ($cook !== null) {
+           # code...
+           $Meal = Meal::find($newMealId);
+           return inertia('Cook/BecomeCook/AboutYourMeal', ['Meal' => $Meal]);
+       }else {
+        # code...
+        return redirect()->route('welcome',);
+       }
     }
     public function overview($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/Overview', ['Meal' => $Meal]);
+        $user_id =   Auth::id();      
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/Overview', ['Meal' => $Meal]);
+        }else {
+         # code...
+         return redirect()->route('welcome',);
+        }
+       
     }
     public function region($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/MealArea', ['Meal' => $Meal]);
+        $user_id =   Auth::id();      
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/MealArea', ['Meal' => $Meal]);
+        }else {
+         # code...
+         return redirect()->route('welcome',);
+        }
     }
     public function cook_limit($newMealId)
     {

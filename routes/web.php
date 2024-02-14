@@ -21,7 +21,7 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/welcomed', function () {
     return Inertia::render('Welcomed', [
         'canLogin' => Route::has('login'),
