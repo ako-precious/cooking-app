@@ -27,14 +27,14 @@ import BecomeCook from "./BecomeCook.vue";
                                 :key="index"
                                 class="col-span-1 w-full max-w-full"
                             >
-                                <Link
-                                    :href="`/become-a-cook/${item.id}/overview`"
+                                <div
+                                    class="flex min-w-0 break-words w-full items-center shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                 >
-                                    <div
-                                        class="flex min-w-0 break-words w-full shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
+                                    <Link
+                                        :href="`/become-a-cook/${item.id}/overview`"
                                     >
                                         <div
-                                            class="flex items-center justify-between w-full p-4 mb-0 list-none rounded-xl"
+                                            class="relative flex items-center justify-between w-full p-4 mb-0 list-none rounded-xl"
                                         >
                                             <font-awesome-icon
                                                 class="lg:text-2xl leading-normal"
@@ -47,7 +47,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                     <span
                                                         v-if="item.name"
                                                         class="lg:text-xl leading-normal"
-                                                        >Ordering instantly
+                                                    >
                                                         {{ item.name }}</span
                                                     >
                                                     <span
@@ -64,8 +64,17 @@ import BecomeCook from "./BecomeCook.vue";
                                             </div>
                                             <div></div>
                                         </div>
+                                    </Link>
+                                    <p
+                                        class="bottom-1 top-1 right-1 bg-snow/20 cursor-pointer p-2"
+                                        @click="removePending(item.id)"
+                                    >
+                                        <font-awesome-icon
+                                            icon="fa-solid fa-close"
+                                            class="text-lighred text-"
+                                        />
+                                    </p>
                                     </div>
-                                </Link>
                             </div>
                         </div>
                     </div>
@@ -76,6 +85,7 @@ import BecomeCook from "./BecomeCook.vue";
 </template>
 
 <script>
+import axios from "axios";
 export default {
     props: {
         pending: Object,
@@ -84,29 +94,19 @@ export default {
         this.FormattedDate();
     },
     methods: {
-        // FormattedDate(item ) {
-        //     // Parse the timestamp string into a Date object
-        //     const createdAtDate = new Date(item);
+        removePending(id) {
+            // Assuming you have an endpoint to delete the photo from the database
+            axios
+                .delete(`/meal/${id}`)
+                .then((response) => {
+                    console.log(response);
+                    // Handle success if needed
+                })
+                .catch((error) => {
+                    console.error("Error deleting meal photo:", error);
+                });
+        },
 
-        //     // Define options for date formatting
-        //     const options = {
-        //         year: "numeric",
-        //         month: "2-digit",
-        //         day: "2-digit",
-        //         hour: "numeric",
-        //         minute: "numeric",
-        //         hour12: true, // Use 12-hour format
-        //     };
-
-        //     // Format the date using Intl.DateTimeFormat
-        //     const formattedCreatedAt = new Intl.DateTimeFormat(
-        //         "en-US",
-        //         options
-        //     ).format(createdAtDate);
-
-        //     // return formattedCreatedAt;
-        //     console.log(formattedCreatedAt);
-        // },
         FormattedDate(timestamp) {
             const date = new Date(timestamp);
             const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)

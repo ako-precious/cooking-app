@@ -108,6 +108,6 @@ class CookController extends Controller
         $Meal = Meal::find($newMealId);
         return inertia('Cook/BecomeCook/MealOverview', ['Meal' => $Meal]);
     }
-    
+   
 
 }

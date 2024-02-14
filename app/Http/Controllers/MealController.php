@@ -63,5 +63,15 @@ class MealController extends Controller
         $meal->save();
         return response()->json(['meal' => $meal, 'request' =>$request->all()]);
     }
-    
+    public function destroy($id)
+    {
+
+        $MealSchedule = Meal::find($id);
+
+                $MealSchedule->delete();
+            return response()->json([
+                'message' => 'Meal removed successfully!'
+            ]);
+        
+    }
 }

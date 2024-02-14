@@ -136,7 +136,7 @@ export default {
     methods: {
         createNewMeal() {
             // Check if the current route is "/become-a-cook/overview"
-            if (this.Meal.id) {
+            if (this.Meal) {
                 // If newMealId is already defined, visit the specified URL
                 this.MealId =this.Meal.id
                 this.$inertia.visit(
