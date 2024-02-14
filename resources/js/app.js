@@ -15,12 +15,12 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 /* import specific icons */
-import { faArrowRight, faImages, faBackward, faCalendar, faCaretDown, faCirclePlus, faClose, faDoorOpen, faEarth, faEarthAfrica, faEarthAmerica, faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faForward, faGear, faGlobe, faHouse, faMagnifyingGlass, faPlus, faRightToBracket, faShare, faStar, faUser, faUserPlus, faDollarSign, } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faImages, faBackward, faCalendar, faCaretDown, faCirclePlus, faClose, faDoorOpen, faEarth, faEarthAfrica, faEarthAmerica, faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faForward, faGear, faGlobe, faHouse, faMagnifyingGlass, faPlus, faRightToBracket, faShare, faStar, faUser, faUserPlus, faDollarSign, faBowlRice, } from "@fortawesome/free-solid-svg-icons";
 import {  faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 /* add icons to the library */
-library.add( faUser, faGlobe, faArrowRight, faCaretDown, faUserPlus, faRightToBracket, faDoorOpen, faCirclePlus, faHeart, faShare, faStar, faGoogle, faCalendar, faGear, faClose, faHouse, faMagnifyingGlass, faForward, faBackward, faPlus, faEarthAfrica, faEarthAmerica, faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faEarth, faImages, faDollarSign   );
+library.add( faUser, faGlobe, faArrowRight, faCaretDown, faUserPlus, faRightToBracket, faDoorOpen, faCirclePlus, faHeart, faShare, faStar, faGoogle, faCalendar, faGear, faClose, faHouse, faMagnifyingGlass, faForward, faBackward, faPlus, faEarthAfrica, faEarthAmerica, faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faEarth, faImages, faDollarSign, faBowlRice   );
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

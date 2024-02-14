@@ -17,8 +17,8 @@ class CookController extends Controller
     public function pending_meal()
     {
         // dd(Auth::id()) ;
-        $newCook = Cook::where('user_id', $user_id)->get();
-        return inertia('Cook/BecomeCook/index');
+        $pending = Meal::where('status', 'pending')->get();
+        return inertia('Cook/BecomeCook/index',['pending' => $pending]);
     }
     public function store(Request $request)
     {
