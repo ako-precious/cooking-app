@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Cook;
 use App\Models\Meal;
 use App\Models\MealPhotos;
 use Illuminate\Support\Facades\Auth;
+
 class CookController extends Controller
 {
-    
+
     public function setup()
     {
         // dd(Auth::id()) ;
@@ -17,9 +19,16 @@ class CookController extends Controller
     }
     public function pending_meal()
     {
-        // dd(Auth::id()) ;
-        $pending = Meal::where('status', 'pending')->get();
-        return inertia('Cook/BecomeCook/index',['pending' => $pending]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $pending = Meal::where('status', 'pending')->get();
+            return inertia('Cook/BecomeCook/index', ['pending' => $pending]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function store(Request $request)
     {
@@ -37,103 +46,168 @@ class CookController extends Controller
         return response()->json(['data' => $newCook]);
     }
 
-    public function checkCook(){
+    public function checkCook()
+    {
         $user_id =   Auth::id();
-         $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
-         return response()->json(['checkUser' => $checkUser]);
-      }
+        $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
+        return response()->json(['checkUser' => $checkUser]);
+    }
     public function about_your_meal($newMealId)
     {
-        $user_id =   Auth::id();      
-       $cook = Cook::firstWhere('user_id', $user_id);
-       if ($cook !== null) {
-           # code...
-           $Meal = Meal::find($newMealId);
-           return inertia('Cook/BecomeCook/AboutYourMeal', ['Meal' => $Meal]);
-       }else {
-        # code...
-        return redirect()->route('welcome',);
-       }
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/AboutYourMeal', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function overview($newMealId)
     {
-        $user_id =   Auth::id();      
+        $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
             return inertia('Cook/BecomeCook/Overview', ['Meal' => $Meal]);
-        }else {
-         # code...
-         return redirect()->route('welcome',);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
         }
-       
     }
     public function region($newMealId)
     {
-        $user_id =   Auth::id();      
+        $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
             return inertia('Cook/BecomeCook/MealArea', ['Meal' => $Meal]);
-        }else {
-         # code...
-         return redirect()->route('welcome',);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
         }
     }
     public function cook_limit($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/CookingLimit', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/CookingLimit', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function spotlight($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/StealShow', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/StealShow', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function ingredients($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/Ingredients', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/Ingredients', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function photos($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        $mealPhotos = MealPhotos::where('meal_id', $newMealId)->get();
-        // foreach ($mealPhotos->meal_photo_path as $photoUrl) {
-        //     # code...
-            // $photoUrl = Storage::url($mealPhotos->meal_photo_path);
-            // dd($photoUrl);
-        // }
-        return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal, 'mealPhotos' => $mealPhotos]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            $mealPhotos = MealPhotos::where('meal_id', $newMealId)->get();
+            return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal, 'mealPhotos' => $mealPhotos]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function title($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/Title', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/Title', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function finish_up($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/LetItOut', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/LetItOut', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function ordering_preference($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/OrderingPreference', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/OrderingPreference', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
-    
+
     public function price($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/PriceSetting', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/PriceSetting', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
     public function final_overview($newMealId)
     {
-        $Meal = Meal::find($newMealId);
-        return inertia('Cook/BecomeCook/MealOverview', ['Meal' => $Meal]);
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/MealOverview', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
     }
-   
-
 }

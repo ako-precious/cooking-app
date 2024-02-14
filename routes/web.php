@@ -5,7 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
-use App\Models\MealSchedule;
+use App\Models\Cook;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -46,7 +46,15 @@ Route::middleware([
     Route::resource('cook', CookController::class);
     
     Route::get('/become-a-cook/overview', function () {
-        return Inertia::render('Cook/BecomeCook/Overview');
+        $user_id =   Auth::id();      
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            return Inertia::render('Cook/BecomeCook/Overview');
+        }else {
+         # code...
+         return redirect()->route('welcome',);
+        }
     });
     Route::get('/become-a-cook', [CookController::class, 'pending_meal']);
     Route::get('/become-a-cook/{newMealId}/overview', [CookController::class, 'overview']);
