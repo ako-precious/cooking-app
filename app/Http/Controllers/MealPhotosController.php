@@ -34,6 +34,22 @@ class MealPhotosController extends Controller
         return response()->json(['image' => $meal]);
     }
 
+    public function update(Request $request, $id)
+    {
+    
+            $photo = MealPhotos::find($id);           
+            
+            $photo->update($request->all());
+          
+                return response()->json([
+                    'data' =>   $photo,
+                    'message' => 'Successfully updated Meal Schedule!',
+                   
+                ]);
+           
+        
+    }
+
     public function destroy($id)
     {
 
@@ -43,7 +59,6 @@ class MealPhotosController extends Controller
         if (Storage::exists($photoPath)) {
             // Delete the photo from storage
             Storage::delete($photoPath);
-
 
             $MealSchedule->delete();
             return response()->json([

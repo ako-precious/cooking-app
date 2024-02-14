@@ -51,7 +51,10 @@ import BecomeCook from "./BecomeCook.vue";
                                     <div
                                         class="relative flex flex-col min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
-                                        <div class="relative flex">
+                                        <div
+                                            v-if="imagePreviews.length < 10"
+                                            class="relative flex"
+                                        >
                                             <input
                                                 type="file"
                                                 multiple
@@ -96,23 +99,31 @@ import BecomeCook from "./BecomeCook.vue";
                                                         >
                                                     </p>
                                                 </div>
-                                                <div
-                                                    v-if="errors.length"
-                                                    class="m-auto flex flex-wrap justify-center w-full px-6 mb-0 list-none rounded-xl"
-                                                >
-                                                    <ul>
-                                                        <li
-                                                            v-for="error in errors"
-                                                            :key="error"
-                                                        >
-                                                            {{ error }}
-                                                        </li>
-                                                    </ul>
-                                                </div>
                                             </div>
                                         </div>
                                         <!-- Image preview container -->
-
+                                        <div
+                                            v-if="errors.length"
+                                            class="m-auto flex flex-wrap justify-center w-full px-6 mb-0 list-none rounded-xl"
+                                        >
+                                            <ul>
+                                                <li
+                                                    class="text-lighred"
+                                                    v-for="error in errors"
+                                                    :key="error"
+                                                >
+                                                    {{ error }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div
+                                            v-if="error"
+                                            class="m-auto flex flex-wrap justify-center w-full px-6 mb-0 list-none rounded-xl"
+                                        >
+                                            <p class="text-lighred">
+                                                {{ error }}
+                                            </p>
+                                        </div>
                                         <div
                                             v-if="imagePreviews.length"
                                             ref="imageContainer"
@@ -132,7 +143,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                 @drop="drop(index, $event)"
                                             >
                                                 <p
-                                                    class="absolute top-0 right-0 bg-snow dark:bg-oynx cursor-pointer p-1 px-2"
+                                                    class="absolute top-0 right-0 bg-snow/50 dark:bg-oynx/50 cursor-pointer p-1 px-2"
                                                     @click="removeImage(index)"
                                                 >
                                                     <font-awesome-icon
@@ -275,9 +286,7 @@ export default {
                 id: image.id, // Assuming your image object has an 'id' property
             }));
         },
-        updatePhotos() {
-            
-        },
+        updatePhotos() {},
 
         dragStart(index, event) {
             event.dataTransfer.setData("text/plain", index);
@@ -318,10 +327,28 @@ export default {
                 this.imagePreviews.splice(index, 0, temp);
                 this.imageFiles.splice(fromIndex, 1);
                 this.imageFiles.splice(index, 0, file);
-            }
 
+                if (this.mealPhotos && index < this.mealPhotos.length) {
+                    // Perform photo update in the database
+                    const mealPhotoId = this.mealPhotos[index].id;
+                    axios
+                        .put(`/meal_photos/${mealPhotoId}`, { file })
+                        .then((response) => {
+                            // Handle success if necessary
+                            console.log(
+                                "Meal photo updated in the database:",
+                                response.data
+                            );
+                        })
+                        .catch((error) => {
+                            // Handle error if necessary
+                            console.error("Error updating meal photo:", error);
+                        });
+                }
+            }
             this.dragIndex = null;
         },
+
         createNewPhotos() {
             if (this.imageFiles.length < 10 || this.imageFiles.length > 3) {
                 const formData = new FormData();
