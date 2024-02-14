@@ -140,6 +140,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                         class="text-lighred text-sm"
                                                     />
                                                 </p>
+                                                <!-- <input type="hidden"  v-model="preview.id"> -->
                                                 <img
                                                     :src="preview.src"
                                                     :alt="preview.src"
@@ -177,7 +178,15 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <button @click="createNewPhotos" class="btn2span group">
+            <button
+                v-if="mealPhotos"
+                @click="updatePhotos"
+                class="btn2span group"
+            >
+                <span class="next-span">Next Step</span>
+                <span class="with-span">We're with you</span>
+            </button>
+            <button v-else @click="createNewPhotos" class="btn2span group">
                 <span class="next-span">Next Step</span>
                 <span class="with-span">We're with you</span>
             </button>
@@ -200,6 +209,7 @@ export default {
             maxSize: 3000, // Maximum image size (in pixels)
             dragIndex: null, // Array to hold image preview URLs
             errors: [],
+            error: "",
         };
     },
     created() {
@@ -209,17 +219,6 @@ export default {
         async previewImages(event) {
             this.imageFiles = event.target.files;
             if (this.imageFiles) {
-                if (this.imageFiles.length < 3) {
-                    // Display an error message or prevent further processing
-                    alert("Please upload at least three pictures.");
-                    return;
-                }
-                if (this.imageFiles.length > 10) {
-                    // Display an error message or prevent further processing
-                    alert("!0 is the limit pictures.");
-                    return;
-                }
-
                 const validImages = [];
                 const invalidImages = [];
                 for (let i = 0; i < this.imageFiles.length; i++) {
@@ -272,9 +271,12 @@ export default {
 
         fetchImages() {
             this.imagePreviews = this.mealPhotos.map((image) => ({
-                src: `storage/${image.meal_photo_path}`, // Assuming your image object has a 'url' property
+                src: `/storage/${image.meal_photo_path}`.replace("/public", ""), // Assuming your image object has a 'url' property
                 id: image.id, // Assuming your image object has an 'id' property
             }));
+        },
+        updatePhotos() {
+            
         },
 
         dragStart(index, event) {
@@ -284,6 +286,25 @@ export default {
         removeImage(index) {
             this.imagePreviews.splice(index, 1);
             this.imageFiles.splice(index, 1);
+
+            if (this.mealPhotos && index < this.mealPhotos.length) {
+                const mealPhoto = this.mealPhotos[index];
+                console.log(mealPhoto);
+
+                // Assuming you have an endpoint to delete the photo from the database
+                axios
+                    .delete(`/meal_photos/${mealPhoto.id}`)
+                    .then((response) => {
+                        console.log(response);
+                        // Handle success if needed
+                    })
+                    .catch((error) => {
+                        console.error("Error deleting meal photo:", error);
+                    });
+
+                // // Assuming you have a method to remove the photo from the application
+                // this.deleteMealPhoto(index);
+            }
         },
 
         drop(index, event) {
@@ -302,29 +323,34 @@ export default {
             this.dragIndex = null;
         },
         createNewPhotos() {
-            const formData = new FormData();
-            formData.append("meal_id", this.Meal.id);
-            for (let i = 0; i < this.imageFiles.length; i++) {
-                formData.append("images[]", this.imageFiles[i]);
-            }
-            axios
-                .post("/meal_photos/", formData, {
-                    meal_id: this.Meal.id,
-                    // other meal data...
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                })
-                .then((response) => {
-                    // console.log("Images uploaded successfully:", response.data);
-                    const MealId = response.data.meal.id;
-                    this.$inertia.visit(
+            if (this.imageFiles.length < 10 || this.imageFiles.length > 3) {
+                const formData = new FormData();
+                formData.append("meal_id", this.Meal.id);
+                for (let i = 0; i < this.imageFiles.length; i++) {
+                    formData.append("images[]", this.imageFiles[i]);
+                }
+                axios
+                    .post("/meal_photos/", formData, {
+                        meal_id: this.Meal.id,
+                        // other meal data...
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    })
+                    .then((response) => {
+                        // console.log("Images uploaded successfully:", response.data);
+                        const MealId = response.data.meal.id;
+                        this.$inertia.visit(
                             `/become-a-cook/${MealId}/finishing-up`
                         );
-                })
-                .catch((error) => {
-                    console.error("Error uploading images:", error);
-                });
+                    })
+                    .catch((error) => {
+                        // console.error("Error uploading images:", error);
+                        this.error = "Error uploading images:";
+                    });
+            } else {
+                this.error = "The pictures are more than 10 or less 3";
+            }
         },
     },
 };
