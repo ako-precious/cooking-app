@@ -44,14 +44,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             >Ordering instantly</span
                                         >
                                     </p>
-                                    <p
-                                        class="px-4 transition-colors ease-in-out rounded-lg group-action-text"
-                                    >
-                                        <span
-                                            class="text-sm lg:text-lg leading-normal"
-                                            >The order is accepted automatically and instantly </span
-                                        >
-                                    </p>
+                                   
                                 </div>
                                     <div></div>
                                 </div>

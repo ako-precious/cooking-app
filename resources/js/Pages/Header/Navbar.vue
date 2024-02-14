@@ -71,9 +71,7 @@ export default {
             axios
                     .get("/checkUser" )
                     .then((response) => {
-
-                        console.log(this.check = response.data.checkUser)
-                       
+                    this.check = response.data.checkUser                       
                     })
                     .catch((error) => {
                         // Handle error

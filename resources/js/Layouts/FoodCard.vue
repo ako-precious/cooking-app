@@ -192,14 +192,14 @@ export default {
             <div class="my-2 flex items-center justify-between">
                 <a href="#" class=" ">
                     <span
-                        class="text-xs text-oynx dark:text-snow hover:font-bold"
+                        class="text-xs text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
                         >{{ meal.cook.name }}</span
                     >
                 </a>
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class="text-persian" />
                     <span
-                        class="mr-2 ml-3 rounded bg-persian px-2.5 py-0.5 text-xs font-semibold"
+                        class="mr-2 ml-3 rounded bg-persian px-1 py-0.5 text-xs font-semibold"
                         >5.0</span
                     >
                 </div>
