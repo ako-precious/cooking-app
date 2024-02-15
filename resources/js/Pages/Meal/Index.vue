@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
-import BecomeCook from "./BecomeCook.vue";
+
 </script>
 
 <template>
@@ -22,12 +22,71 @@ import BecomeCook from "./BecomeCook.vue";
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
                         <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
+                            <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
+<div class="flex flex-col overflow-x-auto">
+  <div class="sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-left text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+              <th scope="col" class="px-6 py-4">Heading</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">1</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+            </tr>
+            <tr class="border-b dark:border-neutral-500">
+              <td class="whitespace-nowrap px-6 py-4 font-medium ">2</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4 ">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4 ">Cell</td>
+            </tr>
+            <tr class="border-b ">
+              <td class="whitespace-nowrap px-6 py-4 font-medium ">3</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+              <td class="whitespace-nowrap px-6 py-4">Cell</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
                             <div
-                                v-for="(item, index) in pending"
+                                v-for="(item, index) in menu"
                                 :key="index"
                                 class="col-span-1 w-full max-w-full"
                             >
-                                <tr
+                                <div
                                     class="flex min-w-0 break-words w-full items-center justify-between shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                 >
                                     <Link class="w4"
@@ -66,7 +125,7 @@ import BecomeCook from "./BecomeCook.vue";
                                         </div>
                                     </Link>
                                    
-                                </tr>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -80,7 +139,7 @@ import BecomeCook from "./BecomeCook.vue";
 import axios from "axios";
 export default {
     props: {
-        pending: Object,
+        menu: Object,
     },
     created() {
         this.FormattedDate();

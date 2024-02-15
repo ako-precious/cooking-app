@@ -43,8 +43,6 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::get('/cook/setup', [CookController::class, 'setup']);
-    Route::resource('cook', CookController::class);
     
     Route::get('/become-a-cook/overview', function () {
         $user_id =   Auth::id();      
@@ -53,15 +51,16 @@ Route::middleware([
             # code...
             return Inertia::render('Cook/BecomeCook/Overview');
         }else {
-         # code...
-         return redirect()->route('welcome',);
+            # code...
+            return redirect()->route('welcome',);
         }
     });
-
+    
     Route::resource('/meal', MealController::class);
+    Route::resource('/cook/menu', CookController::class);
+    Route::get('/cook/setup', [CookController::class, 'setup']);
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal_photos', MealPhotosController::class);
-    Route::resource('/cook/menu', CookController::class);
     Route::get('/checkUser', [CookController::class, "checkCook"]);
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
