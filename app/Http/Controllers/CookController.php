@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CookController extends Controller
 {
+    public function index(){
+        return inertia('meal/index');
+    }
 
     public function setup()
     {

@@ -8,6 +8,8 @@ use App\Models\Meal;
 
 class MealController extends Controller
 {
+
+     
     public function store(Request $request)
     {
         // Create a new row in your table
