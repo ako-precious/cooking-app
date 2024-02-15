@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('meal_photos', function (Blueprint $table) {
-            $table->integer('order');
+        Schema::table('meal_schedules', function (Blueprint $table) {
+            $table->enum('status', ['pending', 'reject', 'accept', 'processed', 'ready', 'in transit', 'delivered', 'confirmed'])->default('pending');
         });
     }
 
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('meal_photos', function (Blueprint $table) {
+        Schema::table('meal_schedules', function (Blueprint $table) {
             //
         });
     }

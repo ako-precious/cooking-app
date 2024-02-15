@@ -23,8 +23,8 @@ return new class extends Migration
             $table->float('price', 8, 2)->default(10.00);
             $table->json('ingredients')->nullable();
             $table->integer('cooking_limit')->default(10);
-            $table->enum('status', ['pending', 'available'])->default('pending');
-            
+            $table->enum('status', ['pending','unavailable', 'available'])->default('pending');
+            $table->enum('ordering_preferences', ['manual', 'automatic'])->default('manual');
             $table->timestamps();
         });
     }

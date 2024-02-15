@@ -154,7 +154,8 @@ export default defineComponent({
                 meal_time: "Choose a Meal Time",
                 user_id: this.userId.toString(),
                 start_date: start,
-                end_date: end,
+                end_date: start,
+                // end_date: end,
             };
         },
         formatSchedule() {
@@ -302,7 +303,7 @@ export default defineComponent({
                     >
                         <font-awesome-icon
                             icon="fa-solid fa-close"
-                            class="text-persian text-lg"
+                            class="text-lighred text-lg"
                         />
                         <span class="sr-only">Close modal</span>
                     </button>
@@ -401,13 +402,13 @@ export default defineComponent({
 
                         <div class="py-4 flex justify-between">
                             <TextInput
-                                class="w-[47%]"
+                                class="w-full"
                                 v-model="newSchedule.start_date"
                                 type="date"
                                 placeholder=""
                             />
                             <TextInput
-                                class="w-[47%]"
+                                class="w-[47%]" hidden
                                 v-model="newSchedule.end_date"
                                 type="date"
                                 placeholder=""
