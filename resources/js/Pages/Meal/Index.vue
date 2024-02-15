@@ -43,10 +43,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                                                     class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
                                                                 >
                                                                     <div
-                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
                                                                     ></div>
                                                                     <div
-                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
                                                                     ></div>
                                                                 </div>
                                                             </div>
@@ -55,9 +55,9 @@ import { Head, Link } from "@inertiajs/vue3";
             class="relative px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
             Product Detail
             <div class="cursor-pointer absolute top-1/3 right-3.5  flex flex-col justify items-center">
-                <div class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid">
+                <div class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid">
                 </div>
-                <div  class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid">
+                <div  class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid">
                 </div>
             </div>
         </th> -->
@@ -70,10 +70,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                                                     class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
                                                                 >
                                                                     <div
-                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
                                                                     ></div>
                                                                     <div
-                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
                                                                     ></div>
                                                                 </div>
                                                             </div>
@@ -87,10 +87,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                                                     class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
                                                                 >
                                                                     <div
-                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
                                                                     ></div>
                                                                     <div
-                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
                                                                     ></div>
                                                                 </div>
                                                             </div>
@@ -105,10 +105,10 @@ import { Head, Link } from "@inertiajs/vue3";
                                                                     class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
                                                                 >
                                                                     <div
-                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
                                                                     ></div>
                                                                     <div
-                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
                                                                     ></div>
                                                                 </div>
                                                             </div>

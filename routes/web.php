@@ -60,7 +60,7 @@ Route::middleware([
     Route::resource('/meal', MealController::class);
     Route::resource('/cook/menu', CookController::class);
     Route::get('/cook/setup', [CookController::class, 'setup']);
-    Route::post('/checkout', [MealScheduleController::class, 'checkout']);
+    Route::get('/checkout', [MealScheduleController::class, 'checkout']);
     Route::post('/success', [MealScheduleController::class, 'success'])->name('checkout.success');
     Route::post('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
     Route::resource('/schedule', MealScheduleController::class);
