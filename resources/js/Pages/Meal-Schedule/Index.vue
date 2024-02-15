@@ -1,5 +1,5 @@
 <template>
-    <AppLayout title="Dashboard">
+    <AppLayout title="Meal Schedules">
         <FullCalendar ></FullCalendar>
    </AppLayout>
 </template>
