@@ -86,17 +86,19 @@ export default {
         this.FormattedDate();
     },
     methods: {
-        removePending(id) {
-            // Assuming you have an endpoint to delete the photo from the database
-            axios
-                .delete(`/meal/${id}`)
-                .then((response) => {
-                    console.log(response);
-                    // Handle success if needed
-                })
-                .catch((error) => {
-                    console.error("Error deleting meal photo:", error);
-                });
+        
+        FormattedDate(timestamp) {
+            const date = new Date(timestamp);
+            const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+                .toString()
+                .padStart(2, "0")}-${date
+                .getDate()
+                .toString()
+                .padStart(2, "0")} at ${date.getHours()}:${date
+                .getMinutes()
+                .toString()
+                .padStart(2, "0")}`;
+            return formattedDate;
         },
 
        

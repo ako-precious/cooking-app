@@ -12,7 +12,16 @@ use Illuminate\Support\Facades\Auth;
 class CookController extends Controller
 {
     public function index(){
-        return inertia('meal/index');
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code.
+            $menu = Meal::where('cook_id', $user_id)->get();
+            return inertia('Meal/Index', ['menu' => $menu]);
+        } else {
+            # code...
+            return redirect()->route('welcome');
+        }
     }
 
     public function setup()
@@ -26,7 +35,7 @@ class CookController extends Controller
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code...
-            $pending = Meal::where('status', 'pending')->get();
+            $pending = Meal::where('status', 'pending')->where('cook_id', $user_id)->get();
             return inertia('Cook/BecomeCook/index', ['pending' => $pending]);
         } else {
             # code...
