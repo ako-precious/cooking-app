@@ -85,6 +85,17 @@ export default {
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
         openModal(meal) {
+            // Get the current date
+            const currentDate = new Date();
+
+            // Add one day to the current date
+            const nextDayDate = new Date(currentDate);
+            nextDayDate.setDate(currentDate.getDate() + 1);
+
+            // Format the next day date as an ISO string without the time part
+            const nextDayISOString = nextDayDate
+                .toISOString()
+                .replace(/T.*$/, "");
             // clear everything in the div and close it
             this.newEventModalVisible = true;
             if (this.$page.props.auth.user) {
@@ -93,8 +104,8 @@ export default {
                     meal_name: meal.title,
                     meal_id: meal.id.toString(),
                     user_id: this.$page.props.auth.user.id.toString(),
-                    start_date: "",
-                    end_date: "",
+                    start_date: nextDayISOString,
+                    end_date: nextDayISOString,
                     meal_time: "Choose a Meal time",
                 };
             }
@@ -302,12 +313,13 @@ export default {
                         <div class="py-4 flex justify-between">
                             <TextInput
                                 required
-                                class="w-[47%]"
+                                class="w-full"
                                 v-model="newSchedule.start_date"
                                 type="date"
                                 placeholder=""
                             />
                             <TextInput
+                            hidden
                                 required
                                 class="w-[47%]"
                                 v-model="newSchedule.end_date"

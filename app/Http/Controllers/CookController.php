@@ -49,8 +49,10 @@ class CookController extends Controller
     public function checkCook()
     {
         $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
         $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
-        return response()->json(['checkUser' => $checkUser]);
+        return response()->json(['checkUser' => $checkUser]);}
     }
     public function about_your_meal($newMealId)
     {
