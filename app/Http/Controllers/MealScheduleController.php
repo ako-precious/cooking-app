@@ -27,29 +27,39 @@ class MealScheduleController extends Controller
         ]);
     }
 
-    public function checkout()
+    public function checkout($id)
     {
         // This is your test secret API key.
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRECT_KEY'));
 
+         $lineItems[] = [[
+              # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+              'price' => '10000',
+              'quantity' => 1,
+            ]];
 
+         
+        
         $YOUR_DOMAIN = 'http://127.0.0.1:8000/';
 
         $checkout_session = \Stripe\Checkout\Session::create([
-            'line_items' => [[
-              # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
-              'price' => '{{PRICE_ID}}',
-              'quantity' => 1,
-            ]],
+            'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN . '/success',
-            'cancel_url' => $YOUR_DOMAIN . '/cancel',
+            'success_url' => route('checkout.success'),
+            'cancel_url' => route('checkout.cancel'),
           ]);
+          return redirect($checkout_session->url);
+    }
+ 
+    public function success(){
+
     }
 
+    public function cancel(){
+
+    }
     public function index()
     {
-        //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
         $userId = Auth::id();
         $mealSchedules = MealSchedule::where('user_id', $userId)->with('meal', 'user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
@@ -75,8 +85,6 @@ class MealScheduleController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
-
             $MealSchedule = mealSchedule::find($id);
             $request->validate([
                 'meal_id' => 'required',
@@ -102,15 +110,7 @@ class MealScheduleController extends Controller
                     'status' => Response::HTTP_OK
                 ]);
             }
-        } catch (\Exception $e) {
-
-            // Return a response indicating a server error
-            return response()->json([
-                'data' => $e,
-                'message' => 'Error updating Meal Schedule. Please try again later.',
-                'status' => Response::HTTP_INTERNAL_SERVER_ERROR
-            ]);
-        }
+        
     }
 
     public function destroy($id)
