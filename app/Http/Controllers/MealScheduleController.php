@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
+use Stripe\Climate\Order;
 use Symfony\Component\HttpFoundation\Response;
 
 class MealScheduleController extends Controller
@@ -48,7 +49,14 @@ class MealScheduleController extends Controller
             'success_url' => route('checkout.success'),
             'cancel_url' => route('checkout.cancel'),
           ]);
+          
+          $order = new Order();
+          $order->meal_id = $id;
+          $order->total_price = 1000.00;
+          $order->session_id = $checkout_session->id;
+
           return redirect($checkout_session->url);
+
     }
  
     public function success(){
