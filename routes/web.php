@@ -57,9 +57,11 @@ Route::middleware([
          return redirect()->route('welcome',);
         }
     });
+
     Route::resource('/meal', MealController::class);
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal_photos', MealPhotosController::class);
+    Route::resource('/cooks/menu', CookController::class);
     Route::get('/checkUser', [CookController::class, "checkCook"]);
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);

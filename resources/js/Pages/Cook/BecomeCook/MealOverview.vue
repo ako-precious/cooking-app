@@ -60,11 +60,15 @@ import TextInput from "@/Components/TextInput.vue";
             </div>
         </template>
         <template #mainbtn>
-           
-                    <button @click="saveData" class="btn2span group">
+            <Link
+                    :href="`/cook/menu`"
+                    class="font-semibold "
+                >
+                <button @click="saveData" class="btn2span group">
                     <span class="next-span">Next Step</span>
                     <span class="with-span">We are done</span>
                 </button>
+            </Link>
             </template>
     </BecomeCook>
 </template>

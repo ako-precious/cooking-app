@@ -479,23 +479,3 @@ export default defineComponent({
     </div>
 </template>
 
-<style>
-.card {
-    background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: 10px 10px 15px #cac6c6, -10px -10px 15px #ffffff;
-}
-.card:hover {
-    background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: -10px -10px 15px #a19e9f, 10px 10px 15px #ffffff;
-}
-@media (prefers-color-scheme: dark) {
-    .dark\:card {
-        background: linear-gradient(145deg, #2b312e, #333a37);
-        box-shadow: 10px 10px 15px #262b29, -10px -10px 15px #3a413d;
-    }
-    .dark\:card:hover {
-        background: linear-gradient(145deg, #2b312e, #333a37);
-        box-shadow: -10px -10px 15px #262b29, 10px 10px 15px #3a413d;
-    }
-}
-</style>
