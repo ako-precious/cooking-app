@@ -26,11 +26,32 @@ class MealScheduleController extends Controller
             'InitialEvent' => MealSchedule::with('meal', 'user')->get()->toArray()
         ]);
     }
+
+    public function checkout()
+    {
+        // This is your test secret API key.
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRECT_KEY'));
+
+
+        $YOUR_DOMAIN = 'http://127.0.0.1:8000/';
+
+        $checkout_session = \Stripe\Checkout\Session::create([
+            'line_items' => [[
+              # Provide the exact Price ID (e.g. pr_1234) of the product you want to sell
+              'price' => '{{PRICE_ID}}',
+              'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => $YOUR_DOMAIN . '/success',
+            'cancel_url' => $YOUR_DOMAIN . '/cancel',
+          ]);
+    }
+
     public function index()
     {
         //     dd((MealScheduleResource::collection(MealSchedule::with('meal')->with('user')->get()) ));
         $userId = Auth::id();
-        $mealSchedules = MealSchedule::where('user_id',$userId)->with('meal', 'user')->get();
+        $mealSchedules = MealSchedule::where('user_id', $userId)->with('meal', 'user')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
 
@@ -56,7 +77,7 @@ class MealScheduleController extends Controller
     {
         try {
 
-            $MealSchedule = mealSchedule::find($id);           
+            $MealSchedule = mealSchedule::find($id);
             $request->validate([
                 'meal_id' => 'required',
                 'user_id' => 'required',
@@ -66,21 +87,20 @@ class MealScheduleController extends Controller
             ]);
             $MealSchedule->update($request->all());
             if ($MealSchedule->update($request->all())) {
-                
+
                 return response()->json([
                     'data' => new MealScheduleResource($MealSchedule),
                     'message' => 'Successfully updated Meal Schedule!',
                     // 'status' => Response::HTTP_ACCEPTED
                     'status' => Response::HTTP_OK
                 ]);
-            }else{
+            } else {
                 return response()->json([
                     // 'data' => new MealScheduleResource($MealSchedule),
                     'message' => 'Meal Schedule was not Updated!',
                     // 'status' => Response::HTTP_ACCEPTED
                     'status' => Response::HTTP_OK
                 ]);
-
             }
         } catch (\Exception $e) {
 

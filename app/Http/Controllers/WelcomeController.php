@@ -42,5 +42,5 @@ class WelcomeController extends Controller
         $mealSchedules =  $query->with('user')->latest()->paginate(12);
         return response()->json(MealResource::collection($mealSchedules));
     }
-
+      
 }

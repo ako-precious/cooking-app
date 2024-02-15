@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MealScheduleController;
 
+use App\Http\Controllers\WelcomeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,3 +19,5 @@ use App\Http\Controllers\MealScheduleController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('api/meals', [WelcomeController::class, 'meals']);
+Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);

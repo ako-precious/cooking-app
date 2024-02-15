@@ -32,6 +32,7 @@ Route::get('/welcomed', function () {
     ]);
 });
 
+// Route::get('{any}', [WelcomeController::class, 'index']);
 Route::get('api/meals', [WelcomeController::class, 'meals']);
 Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
 
