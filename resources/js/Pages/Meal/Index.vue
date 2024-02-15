@@ -1,7 +1,5 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-
-
 </script>
 
 <template>
@@ -22,65 +20,259 @@ import { Head, Link } from "@inertiajs/vue3";
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
                         <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
-                            <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com --> 
-<div class="flex flex-col overflow-x-auto">
-  <div class="sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-      <div class="overflow-x-auto">
-        <table class="min-w-full text-left text-sm font-light">
-          <thead class="border-b font-medium dark:border-neutral-500">
-            <tr>
-              <th scope="col" class="px-6 py-4">#</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-              <th scope="col" class="px-6 py-4">Heading</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b dark:border-neutral-500">
-              <td class="whitespace-nowrap px-6 py-4 font-medium">1</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-            </tr>
-            <tr class="border-b dark:border-neutral-500">
-              <td class="whitespace-nowrap px-6 py-4 font-medium ">2</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4 ">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4 ">Cell</td>
-            </tr>
-            <tr class="border-b ">
-              <td class="whitespace-nowrap px-6 py-4 font-medium ">3</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-              <td class="whitespace-nowrap px-6 py-4">Cell</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
+                            <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
+                            <div class="flex flex-col overflow-x-auto">
+                                <div class="sm:-mx-6 lg:-mx-8">
+                                    <div
+                                        class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                                    >
+                                        <div class="overflow-x-auto">
+                                            <table
+                                                class="min-w-full text-left text-sm font-light"
+                                            >
+                                                <thead
+                                                    class="align-bottom shadow-sm translate-x-0"
+                                                >
+                                                    <tr>
+                                                        <th
+                                                            class="relative px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
+                                                        >
+                                                            <div class="flex items-center">
+                                                                Id
+                                                                <div
+                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
+                                                                >
+                                                                    <div
+                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                    ></div>
+                                                                    <div
+                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                    ></div>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <!-- <th
+            class="relative px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
+            Product Detail
+            <div class="cursor-pointer absolute top-1/3 right-3.5  flex flex-col justify items-center">
+                <div class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid">
+                </div>
+                <div  class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid">
+                </div>
+            </div>
+        </th> -->
+                                                        <th
+                                                            class="relative px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
+                                                        >
+                                                            <div class="flex items-center">
+                                                                Part Number
+                                                                <div
+                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
+                                                                >
+                                                                    <div
+                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                    ></div>
+                                                                    <div
+                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                    ></div>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+                                                        <th
+                                                            class="relative px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
+                                                        >
+                                                            <div class="flex items-center">
+                                                                Product Price
+                                                                <div
+                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
+                                                                >
+                                                                    <div
+                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                    ></div>
+                                                                    <div
+                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                    ></div>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+
+                                                        <th
+                                                            class="relative px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
+                                                        >
+                                                            <div class="flex items-center">
+                                                                Product Category
+                                                                <div
+                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
+                                                                >
+                                                                    <div
+                                                                        class="mb-1 border-4 boder-t-0 opacity-60 border-transparent border-b-black border-solid"
+                                                                    ></div>
+                                                                    <div
+                                                                        class="border-4 boder-b-0 opacity-60 border-transparent border-t-black border-solid"
+                                                                    ></div>
+                                                                </div>
+                                                            </div>
+                                                        </th>
+
+                                                        <th
+                                                            class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70"
+                                                        >
+                                                            Actions
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr
+                                                        class="border-b dark:border-neutral-500"
+                                                    >
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4 font-medium"
+                                                        >
+                                                            1
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                    </tr>
+                                                    <tr
+                                                        class="border-b dark:border-neutral-500"
+                                                    >
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4 font-medium"
+                                                        >
+                                                            2
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="border-b">
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4 font-medium"
+                                                        >
+                                                            3
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                        <td
+                                                            class="whitespace-nowrap px-6 py-4"
+                                                        >
+                                                            Cell
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div
                                 v-for="(item, index) in menu"
                                 :key="index"
@@ -89,7 +281,8 @@ import { Head, Link } from "@inertiajs/vue3";
                                 <div
                                     class="flex min-w-0 break-words w-full items-center justify-between shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
                                 >
-                                    <Link class="w4"
+                                    <Link
+                                        class="w4"
                                         :href="`/become-a-cook/${item.id}/overview`"
                                     >
                                         <div
@@ -124,7 +317,6 @@ import { Head, Link } from "@inertiajs/vue3";
                                             <div></div>
                                         </div>
                                     </Link>
-                                   
                                 </div>
                             </div>
                         </div>
@@ -145,7 +337,6 @@ export default {
         this.FormattedDate();
     },
     methods: {
-        
         FormattedDate(timestamp) {
             const date = new Date(timestamp);
             const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
@@ -159,8 +350,6 @@ export default {
                 .padStart(2, "0")}`;
             return formattedDate;
         },
-
-       
     },
 };
 </script>
