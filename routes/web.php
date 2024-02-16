@@ -60,8 +60,8 @@ Route::middleware([
     Route::resource('/meal', MealController::class);
     Route::resource('/cook/menu', CookController::class);
     Route::get('/cook/setup', [CookController::class, 'setup']);
-    Route::post('/checkout', [MealScheduleController::class, 'checkout']);
-    Route::get('/process_order/{id}',  function ($id) {  return Inertia::render('MealSchedule/Checkout',response()->json(['id' => $id]));});
+    Route::post('/checkout', [MealScheduleController::class, 'checkout.id']);
+    Route::get('/process_order/{id}',  [MealScheduleController::class, 'process_order']);
     Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');
     Route::get('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
     Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');

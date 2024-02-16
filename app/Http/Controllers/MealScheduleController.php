@@ -32,8 +32,9 @@ class MealScheduleController extends Controller
         ]);
     }
 
-    public function checkout($id)
+    public function checkout(Request $request)
     {
+         $id = $request->input('meal_id');
         $meal_order =   MealSchedule::with('meal', 'user')->find($id);
         $photo = MealPhotos::where('meal_id', $meal_order->meal_id)->first();
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
@@ -158,6 +159,11 @@ class MealScheduleController extends Controller
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
 
+    public function process_order($id)
+    {
+        $mealSchedule = MealSchedule::find($id);
+        return inertia('MealSchedule/Checkout', ['mealSchedule' => $mealSchedule]);
+    }
     public function getSuggestions()
     {
         $query = request('query');
@@ -182,7 +188,7 @@ class MealScheduleController extends Controller
             'status' => Response::HTTP_CREATED
         ]);
     }
-
+     
     public function update(Request $request, $id)
     {
         $MealSchedule = mealSchedule::find($id);

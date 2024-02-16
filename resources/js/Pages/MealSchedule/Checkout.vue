@@ -7,15 +7,23 @@
   <script>
 
   export default {
+    props: {
+        mealSchedule: Object,
+    },
     mounted() {
-        console.log( this.id);
-    //   this.initializeStripeCheckout();
+        
+        console.log(this.mealSchedule.id )
+      this.initializeStripeCheckout();
     },
     methods: {
       async initializeStripeCheckout() {
-        const response = await fetch("/checkout", {
-          method: "POST",
-        });
+        const id =  this.mealSchedule.id 
+        // const response = await fetch(`/checkout?meal=${id}}`, {
+        //   method: "POST",
+        // });
+        const response = await fetch(`/checkout?meal=${id}`, {
+    method: "POST",
+});
         
         const { clientSecret } = await response.json();
         
