@@ -32,9 +32,9 @@ class MealScheduleController extends Controller
         ]);
     }
 
-    public function checkout()
+    public function checkout($id)
     {
-        $meal_order =   MealSchedule::with('meal', 'user')->find(1);
+        $meal_order =   MealSchedule::with('meal', 'user')->find($id);
         $photo = MealPhotos::where('meal_id', $meal_order->meal_id)->first();
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $totalPrice = 0;
@@ -104,7 +104,7 @@ class MealScheduleController extends Controller
 
     public function webhook()
     {
-        
+
         $stripe = new \Stripe\StripeClient('sk_test_...');
 
         // This is your Stripe CLI webhook secret for testing your endpoint locally.
@@ -144,7 +144,7 @@ class MealScheduleController extends Controller
                     // Send email to customer
                 }
 
-            // ... handle other event types
+                // ... handle other event types
             default:
                 echo 'Received unknown event type ' . $event->type;
         }
@@ -168,17 +168,16 @@ class MealScheduleController extends Controller
     public function store(Request $request)
     {
         $new_MealSchedule = MealSchedule::create($request->all());
-// dd($new_MealSchedule);
+        // dd($new_MealSchedule);
 
-$meal_status = Meal::find($new_MealSchedule->meal_id);
-        if ($meal_status->status === 'available') {
+        $meal_status = Meal::find($new_MealSchedule->meal_id);
+        if ($meal_status->status === 'pending') {
             $new_MealSchedule->status = 'accept';
             $new_MealSchedule->save();
         }
 
         return response()->json([
-            'data12' => $new_MealSchedule,
-            'data' => new MealScheduleResource($new_MealSchedule),
+            'data' => $new_MealSchedule,
             'message' => 'Successfully added a new Meal Schedule!',
             'status' => Response::HTTP_CREATED
         ]);

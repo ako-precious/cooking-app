@@ -5,9 +5,11 @@
   </template>
   
   <script>
+
   export default {
     mounted() {
-      this.initializeStripeCheckout();
+        console.log( this.id);
+    //   this.initializeStripeCheckout();
     },
     methods: {
       async initializeStripeCheckout() {

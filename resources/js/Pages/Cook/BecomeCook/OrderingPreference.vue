@@ -168,10 +168,9 @@ export default {
             axios
                 .put("/meal/preference/" + this.Meal.id, { preference })
                 .then((response) => {
-                    console.log("Data sent successfully:", response.data);
+                   
                 })
                 .catch((error) => {
-                    console.error("Error sending data:", error);
                 });
         },
         selectDiv(divId) {
