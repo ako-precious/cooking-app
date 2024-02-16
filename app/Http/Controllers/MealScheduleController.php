@@ -12,9 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
+use App\Models\MealPhotos;
 use Stripe\Climate\Order;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Exceptions\NotFoundHttpException;
+use Illuminate\Support\Facades\Storage;
 
 class MealScheduleController extends Controller
 {
@@ -33,8 +35,7 @@ class MealScheduleController extends Controller
     public function checkout()
     {
         $meal_order =   MealSchedule::with('meal', 'user')->find(1);
-        //   dd($meal_order);
-        // This is your test secret API key.
+        $photo = MealPhotos::where('meal_id', $meal_order->meal_id)->first();
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $totalPrice = 0;
         $totalPrice += $meal_order->meal->price;
@@ -44,7 +45,7 @@ class MealScheduleController extends Controller
                 'product_data' => [
                     'name' => $meal_order->meal->name,
                     'description' => $meal_order->meal->description
-                    // 'images' => [$product->image]
+                    // 'images' => [$photo->meal_photo_path]
                 ],
                 'unit_amount' => $meal_order->meal->price * 100,
             ],
@@ -53,8 +54,9 @@ class MealScheduleController extends Controller
         $checkout_session = \Stripe\Checkout\Session::create([
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-            'cancel_url' => route('checkout.cancel'),
+            'ui_mode' => 'embedded',
+            'return_url' => route('checkout.return', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+            // 'cancel_url' => route('checkout.cancel'),
         ]);
 
         $order = new Orders();
@@ -63,11 +65,12 @@ class MealScheduleController extends Controller
         $order->session_id = $checkout_session->id;
         $order->save();
 
-        return redirect($checkout_session->url);
+        // return redirect($checkout_session->url);
+        return json_encode(array('clientSecret' => $checkout_session->client_secret));
     }
 
 
-    public function success(Request $request)
+    public function return(Request $request)
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $sessionId = $request->get('session_id');
@@ -123,12 +126,12 @@ class MealScheduleController extends Controller
             );
         } catch (\UnexpectedValueException $e) {
             // Invalid payload
-            return response('', 400);
+            return response($e, 400);
             // http_response_code(400);
             exit();
         } catch (\Stripe\Exception\SignatureVerificationException $e) {
             // Invalid signature
-            return response('', 400);
+            return response($e, 400);
             // http_response_code(400);
             exit();
         }

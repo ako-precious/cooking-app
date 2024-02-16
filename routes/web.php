@@ -60,8 +60,10 @@ Route::middleware([
     Route::resource('/meal', MealController::class);
     Route::resource('/cook/menu', CookController::class);
     Route::get('/cook/setup', [CookController::class, 'setup']);
-    Route::get('/checkout', [MealScheduleController::class, 'checkout']);
-    Route::get('/success', [MealScheduleController::class, 'success'])->name('checkout.success');
+    Route::post('/checkout', [MealScheduleController::class, 'checkout']);
+    Route::get('/process_order',  function () {  return Inertia::render('MealSchedule/Checkout');}
+    );
+    Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');
     Route::get('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
     Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
     Route::resource('/schedule', MealScheduleController::class);
