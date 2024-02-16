@@ -20,9 +20,9 @@
                 <!-- hso -->
 
                 <li v-if="check" class="text-nowrap py-2 px-4 navbar-link">
-                    <Link :href="`/cook/setup`">
+                    <Link :href="`/cook/menu`">
                         <a class="" href="">
-                            <p>You are a Cook</p>
+                            <p>Your Menu</p>
                         </a>
                     </Link>
                 </li>

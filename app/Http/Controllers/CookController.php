@@ -17,7 +17,7 @@ class CookController extends Controller
         if ($cook !== null) {
             # code.
             $menu = Meal::where('cook_id', $user_id)->get();
-            return inertia('Meal/Index', ['menu' => $menu]);
+            return inertia('Cook/Menu/Index', ['menu' => $menu]);
         } else {
             # code...
             return redirect()->route('welcome');
