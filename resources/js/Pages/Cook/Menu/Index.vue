@@ -1,6 +1,8 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "../../../Components/Table/TableHead.vue";
+import TableRow from "../../../Components/Table/TableRow.vue";
+
 </script>
 
 <template>
@@ -94,144 +96,8 @@ import TableHeadVue from "../../../Components/Table/TableHead.vue";
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- <tr
-                                                class="border-b dark:border-neutral-500"
-                                            >
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                            </tr> -->
-                                            <tr class="border-b">
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4 font-medium"
-                                                >
-                                                    3
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                            </tr>
-                                            <tr class="border-b">
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4 font-medium"
-                                                >
-                                                    3
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                                <td
-                                                    class="whitespace-nowrap px-6 py-4"
-                                                >
-                                                    Cell
-                                                </td>
-                                            </tr>
+                                          <TableRow></TableRow>
+                                           
                                         </tbody>
                                     </table>
                                 </div>
