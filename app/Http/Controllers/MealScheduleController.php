@@ -61,7 +61,7 @@ class MealScheduleController extends Controller
         ]);
 
         $order = new Orders();
-        $order->meal_id = 1;
+        $order->meal_id = $id;
         $order->total_price = 100.00;
         $order->session_id = $checkout_session->id;
         $order->save();
@@ -95,14 +95,19 @@ class MealScheduleController extends Controller
                 $order->status = 'paid';
                 $order->save();
             }
+            
             if ($order->status === 'paid') {
-                # code...
-                $mealSchedule = MealSchedule::where('id', $order->meal_id);
-                $mealSchedule->status = 'processed';
-                $mealSchedule->save();
+                // Fetch the meal schedule associated with the order
+                $mealSchedule = MealSchedule::find($order->meal_id);
+            
+                if ($mealSchedule) {
+                    // Update the status of the meal schedule to 'processed'
+                    $mealSchedule->status = 'processed';
+                    $mealSchedule->save();
+                }
             }
+          
 
-            // dd($customer);
             return response()->json([$customer ]);
         } catch (\Exception $e) {
             // throw new NotFoundHttpException();
@@ -151,6 +156,13 @@ class MealScheduleController extends Controller
                     $order->save();
                     // Send email to customer
                 }
+                if ($order->status === 'paid') {
+                    # code...
+                    $mealSchedule = MealSchedule::where('id', $order->meal_id);
+                    $mealSchedule->status = 'processed';
+                    $mealSchedule->save();
+                }
+    
 
                 // ... handle other event types
             default:
