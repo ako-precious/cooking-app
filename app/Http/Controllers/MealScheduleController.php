@@ -102,10 +102,6 @@ class MealScheduleController extends Controller
         }
     }
 
-    public function cancel()
-    {
-    }
-
     public function webhook()
     {
         
@@ -172,6 +168,14 @@ class MealScheduleController extends Controller
     public function store(Request $request)
     {
         $new_MealSchedule = MealSchedule::create($request->all());
+// dd($new_MealSchedule);
+
+$meal_status = Meal::find($new_MealSchedule->meal_id);
+        if ($meal_status->status === 'available') {
+            $new_MealSchedule->status = 'accept';
+            $new_MealSchedule->save();
+        }
+
         return response()->json([
             'data12' => $new_MealSchedule,
             'data' => new MealScheduleResource($new_MealSchedule),

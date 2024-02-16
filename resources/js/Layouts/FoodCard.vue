@@ -258,7 +258,7 @@ export default {
                 >
                     <font-awesome-icon
                         icon="fa-solid fa-close"
-                        class="text-persian text-2xl"
+                        class="text-lighred text-2xl"
                     />
                     <span class="sr-only">Close modal</span>
                 </button>
@@ -363,7 +363,7 @@ export default {
                         </div>
                         <div class="flex justify-center item-center">
                             <PrimaryButton @click="addSchedule" class="w-full"
-                                >Save</PrimaryButton
+                                >Order</PrimaryButton
                             >
                         </div>
                     </form>
