@@ -32,24 +32,24 @@ class MealScheduleController extends Controller
 
     public function checkout()
     {
-      $meal_order =   MealSchedule::with('meal', 'user')->find(1);
+        $meal_order =   MealSchedule::with('meal', 'user')->find(1);
         //   dd($meal_order);
         // This is your test secret API key.
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $totalPrice = 0;
         $totalPrice += $meal_order->meal->price;
-            $lineItems[] = [
-                'price_data' => [
-                    'currency' => 'cad',
-                    'product_data' => [
-                        'name' => $meal_order->meal->name,
-                        'description' => $meal_order->meal->description
-                        // 'images' => [$product->image]
-                    ],
-                    'unit_amount' => $meal_order->meal->price * 100,
+        $lineItems[] = [
+            'price_data' => [
+                'currency' => 'cad',
+                'product_data' => [
+                    'name' => $meal_order->meal->name,
+                    'description' => $meal_order->meal->description
+                    // 'images' => [$product->image]
                 ],
-                'quantity' => 1,
-            ];
+                'unit_amount' => $meal_order->meal->price * 100,
+            ],
+            'quantity' => 1,
+        ];
         $checkout_session = \Stripe\Checkout\Session::create([
             'line_items' => $lineItems,
             'mode' => 'payment',
@@ -59,7 +59,7 @@ class MealScheduleController extends Controller
 
         $order = new Orders();
         $order->meal_id = 1;
-        $order->total_price = 1000.00;
+        $order->total_price = 100.00;
         $order->session_id = $checkout_session->id;
         $order->save();
 
@@ -67,37 +67,90 @@ class MealScheduleController extends Controller
     }
 
 
-    public function success(Request $request )
+    public function success(Request $request)
     {
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $sessionId = $request->get('session_id');
-        
+
         try {
             $session = \Stripe\Checkout\Session::retrieve($sessionId);
             if (!$session) {
                 // throw new NotFoundHttpException;
+                return response('', 404);
             }
             // dd(\Stripe\Object::retrieve($session->customer_details));
             $customer = $session->customer_details;
-            
+
             $order = Orders::where('session_id', $sessionId)->first();
-           
+
             if (!$order) {
                 // throw new NotFoundHttpException();
+                return response('', 404);
             }
             if ($order->status === 'unpaid') {
                 $order->status = 'paid';
                 $order->save();
             }
-            dd($customer);
+            // dd($customer);
             return response()->json($customer);
         } catch (\Exception $e) {
             // throw new NotFoundHttpException();
+            return response('', 404);
         }
     }
 
     public function cancel()
     {
+    }
+
+    public function webhook()
+    {
+        
+        $stripe = new \Stripe\StripeClient('sk_test_...');
+
+        // This is your Stripe CLI webhook secret for testing your endpoint locally.
+        $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
+
+        $payload = @file_get_contents('php://input');
+        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+        $event = null;
+
+        try {
+            $event = \Stripe\Webhook::constructEvent(
+                $payload,
+                $sig_header,
+                $endpoint_secret
+            );
+        } catch (\UnexpectedValueException $e) {
+            // Invalid payload
+            return response('', 400);
+            // http_response_code(400);
+            exit();
+        } catch (\Stripe\Exception\SignatureVerificationException $e) {
+            // Invalid signature
+            return response('', 400);
+            // http_response_code(400);
+            exit();
+        }
+
+        // Handle the event
+        switch ($event->type) {
+            case 'checkout.session.completed':
+                $session = $event->data->object;
+
+                $order = Orders::where('session_id', $session->id)->first();
+                if ($order && $order->status === 'unpaid') {
+                    $order->status = 'paid';
+                    $order->save();
+                    // Send email to customer
+                }
+
+            // ... handle other event types
+            default:
+                echo 'Received unknown event type ' . $event->type;
+        }
+
+        http_response_code(200);
     }
     public function index()
     {
