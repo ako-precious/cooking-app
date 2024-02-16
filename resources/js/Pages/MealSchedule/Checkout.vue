@@ -21,7 +21,7 @@
         // const response = await fetch(`/checkout?meal=${id}}`, {
         //   method: "POST",
         // });
-        const response = await fetch(`/checkout?meal=${id}`, {
+        const response = await fetch(`/checkout?meal_id=${id}`, {
     method: "POST",
 });
         

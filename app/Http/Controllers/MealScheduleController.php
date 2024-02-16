@@ -95,8 +95,15 @@ class MealScheduleController extends Controller
                 $order->status = 'paid';
                 $order->save();
             }
+            if ($order->status === 'paid') {
+                # code...
+                $mealSchedule = MealSchedule::where('id', $order->meal_id);
+                $mealSchedule->status = 'processed';
+                $mealSchedule->save();
+            }
+
             // dd($customer);
-            return response()->json($customer);
+            return response()->json([$customer ]);
         } catch (\Exception $e) {
             // throw new NotFoundHttpException();
             return response('', 404);
