@@ -14,6 +14,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
 use Stripe\Climate\Order;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Exceptions\NotFoundHttpException;
 
 class MealScheduleController extends Controller
 {
@@ -52,7 +53,7 @@ class MealScheduleController extends Controller
         $checkout_session = \Stripe\Checkout\Session::create([
             'line_items' => $lineItems,
             'mode' => 'payment',
-            'success_url' => route('checkout.success'),
+            'success_url' => route('checkout.success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
             'cancel_url' => route('checkout.cancel'),
         ]);
 
@@ -66,8 +67,33 @@ class MealScheduleController extends Controller
     }
 
 
-    public function success()
+    public function success(Request $request )
     {
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        $sessionId = $request->get('session_id');
+        
+        try {
+            $session = \Stripe\Checkout\Session::retrieve($sessionId);
+            if (!$session) {
+                // throw new NotFoundHttpException;
+            }
+            // dd(\Stripe\Object::retrieve($session->customer_details));
+            $customer = $session->customer_details;
+            
+            $order = Orders::where('session_id', $sessionId)->first();
+           
+            if (!$order) {
+                // throw new NotFoundHttpException();
+            }
+            if ($order->status === 'unpaid') {
+                $order->status = 'paid';
+                $order->save();
+            }
+            dd($customer);
+            return response()->json($customer);
+        } catch (\Exception $e) {
+            // throw new NotFoundHttpException();
+        }
     }
 
     public function cancel()

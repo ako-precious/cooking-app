@@ -61,8 +61,8 @@ Route::middleware([
     Route::resource('/cook/menu', CookController::class);
     Route::get('/cook/setup', [CookController::class, 'setup']);
     Route::get('/checkout', [MealScheduleController::class, 'checkout']);
-    Route::post('/success', [MealScheduleController::class, 'success'])->name('checkout.success');
-    Route::post('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
+    Route::get('/success', [MealScheduleController::class, 'success'])->name('checkout.success');
+    Route::get('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
     Route::resource('/schedule', MealScheduleController::class);
     Route::resource('/meal_photos', MealPhotosController::class);
     Route::get('/checkUser', [CookController::class, "checkCook"]);
