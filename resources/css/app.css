@@ -20,7 +20,7 @@
         @apply fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 transition-all duration-200 ease-in-out -translate-x-full  border-0 shadow-xl dark:shadow-none xl:ml-6  z-990 rounded-2xl xl:translate-x-0  max-w-24 overflow-hidden;
     }
     .sidebar {
-        @apply fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 transition-all duration-200 ease-in-out -translate-x-full  border-0 shadow-xl dark:shadow-none xl:ml-6  z-990 rounded-2xl xl:translate-x-0  max-w-64 overflow-y-auto;
+        @apply fixed inset-y-0 left-0 flex-wrap items-center justify-between block w-full p-0 my-4 transition-all duration-200 ease-in-out -translate-x-full  border-0 shadow-xl dark:shadow-none xl:ml-6  z-990 rounded-2xl xl:translate-x-0  max-w-64 overflow-hidden;
     }
     .blackbtn {
         @apply inline-block w-full px-4 py-2.5 mb-2 ml-2 font-bold leading-normal text-center text-gray-900 capitalize align-middle transition-all bg-transparent border border-persian border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-green-500 xl-max:to-persian xl-max:text-snow xl-max:border-0 hover:-translate-y-px dark:cursor-not-allowed dark:opacity-65 dark:pointer-events-none dark:bg-gradient-to-tl dark:from-green-500 dark:to-persian dark:text-snow dark:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-none hover:border-persian;
