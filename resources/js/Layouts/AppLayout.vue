@@ -269,7 +269,7 @@ const logout = () => {
                                                 </DropdownLink>
 
                                                 <div
-                                                    class="border-t border-gray-200 dark:border-gray-600"
+                                                    class="border-t border-snow-200 dark:border-gray-600"
                                                 />
 
                                                 <!-- Authentication -->

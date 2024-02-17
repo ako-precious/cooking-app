@@ -3,7 +3,7 @@
         <div class="">
             <!-- Navbar Fixed -->
             <hr
-                class="h-px my-6 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent"
+                class="h-px my-3 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow/20 dark:to-transparent"
             />
             <DropdownLink>
                 <div class="flex ">
