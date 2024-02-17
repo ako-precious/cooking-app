@@ -22,7 +22,7 @@ import NavBar from "@/Layouts/NavBar.vue";
 import SubNavBar from "@/Components/Navbar/SubNavBar.vue";
 import NavSideBar from "@/Components/Navbar/NavSideBar.vue";
 import SideNav from "@/Layouts/SideNav.vue";
-import FixLayout from "@/Layouts/FixLayout.vue";
+import Toggles from "@/Layouts/Toggles.vue";
 
 defineProps({
     title: String,
@@ -95,7 +95,7 @@ const logout = () => {
                 
                <li class="mt-0.5 w-full group">
                    <Link :href="`/meal-schedule`">
-                   <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
+                   <SideBarLink :class="getRouteClass('meal-schedule')"  class="  transition-all duration-200 delay-75">
                        <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
                           
                            <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
@@ -105,30 +105,7 @@ const logout = () => {
                </Link>
                </li>
                 
-               <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-schedule`">
-                   <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
-                       <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
-                          
-                           <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
-                       </SideBarIcon>
-                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Meal schedule </SideBarSpan>
-                   </SideBarLink>
-               </Link>
-               </li>
-                
-               <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-schedule`">
-                   <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
-                       <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
-                          
-                           <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
-                       </SideBarIcon>
-                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Meal schedule </SideBarSpan>
-                   </SideBarLink>
-               </Link>
-               </li>
-                
+              
                <li class="mt-0.5 w-full group">
                    <Link :href="`/meal-schedule`">
                    <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
@@ -198,8 +175,7 @@ const logout = () => {
             <div class="hidden md:block w-4/12  ">
                 <div class="flex items-center w-full">
                         <div
-                            class="relative flex w-full transition-all rounded-lg ease group "
-                        >
+                            class="relative flex w-full transition-all rounded-lg ease group ">
                            
                             <TextInput class="w-full relative pl-8" />
                            
@@ -216,64 +192,8 @@ const logout = () => {
                            <div class="flex justify-between h-16">
                                
                                <div class="flex sm:items-center sm:ms-6">
-                                   <div class="ms-3 relative">
-                                       <!-- Teams Dropdown -->
-                                       <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
-                                           <template #trigger>
-                                               <span class="inline-flex rounded-md">
-                                                   <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
-                                                       {{ $page.props.auth.user.current_team.name }}
-        
-                                                       <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
-                                                       </svg>
-                                                   </button>
-                                               </span>
-                                           </template>
-        
-                                           <template #content>
-                                               <div class="w-60 bg-snow dark:bg-oynx">
-                                                   <!-- Team Management -->
-                                                   <div class="block px-4 py-2 text-xs text-gray-500">
-                                                       Manage Team
-                                                   </div>
-        
-                                                   <!-- Team Settings -->
-                                                   <DropdownLink :href="route('teams.show', $page.props.auth.user.current_team)">
-                                                       Team Settings
-                                                   </DropdownLink>
-        
-                                                   <DropdownLink v-if="$page.props.jetstream.canCreateTeams" :href="route('teams.create')">
-                                                       Create New Team
-                                                   </DropdownLink>
-        
-                                                   <!-- Team Switcher -->
-                                                   <template v-if="$page.props.auth.user.all_teams.length > 1">
-                                                       <div class="border-t border-gray-200 dark:border-gray-600" />
-        
-                                                       <div class="block px-4 py-2 text-xs text-gray-400">
-                                                           Switch Teams
-                                                       </div>
-        
-                                                       <template v-for="team in $page.props.auth.user.all_teams" :key="team.id">
-                                                           <form @submit.prevent="switchToTeam(team)">
-                                                               <DropdownLink as="button">
-                                                                   <div class="flex items-center">
-                                                                       <svg v-if="team.id == $page.props.auth.user.current_team_id" class="me-2 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                                           <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                                       </svg>
-        
-                                                                       <div>{{ team.name }}</div>
-                                                                   </div>
-                                                               </DropdownLink>
-                                                           </form>
-                                                       </template>
-                                                   </template>
-                                               </div>
-                                           </template>
-                                       </Dropdown>
-                                   </div>
-        
+                                   <!-- Teams Dropdown -->
+                              
                                    <!-- Settings Dropdown -->
                                    <div  class="ml-2  lg:mr-4 relative text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred rounded-full p-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-md hover:shadow-snow-sm focus:shadow-none active:shadow-none hover:border-polynesian dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-md hover:dark:shadow-oynx-sm active:dark:shadow-none z-20 transition-all duration-250 ease-in">
     <Dropdown align="right" width="48">
@@ -283,8 +203,9 @@ const logout = () => {
                                                </button>
         
                                                <span v-else class="inline-flex rounded-md">
-                                                   <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md  transition ease-in-out duration-150">
-                                                       {{ $page.props.auth.user.name }} 
+                                                   <button type="button" class="inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-full  transition ease-in-out duration-150">
+                                                       {{truncatedIng($page.props.auth.user.name)  }} 
+                                                     
         
                                                        <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
@@ -297,7 +218,7 @@ const logout = () => {
                                             <div class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow  ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
              >
                                                 <!-- Account Management -->
-                                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                                <div class="block px-4 py-2 text-xs text-gray-600">
                                                     Manage Account
                                                 </div>
          
@@ -317,7 +238,14 @@ const logout = () => {
                                                         Log Out
                                                     </DropdownLink>
                                                 </form>
-
+<!-- avbarFixed -->
+                                              <Toggles >
+                                                <input
+                                @click="toggleNavClass()"
+                                
+                                class="rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 relative float-left mt-1 ml-auto w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:bg-none checked:bg-right"
+                                type="checkbox"
+                            /></Toggles>
                                             </div>
                                            </template>
                                        </Dropdown>
@@ -361,72 +289,7 @@ const logout = () => {
         </div>
         <!-- end cards -->
     </main>
-    <!-- fixed plugin  -->
-    <FixLayout @click="toggleNavClass()">
-        <div>
-            <h6 class="mb-0 dark:text-white">Sidebar Colors</h6>
-        </div>
-        <a href="javascript:void(0)">
-            <div class="my-2 text-left" sidenav-colors>
-                <span
-                    class="py-2.2 text-xs rounded-circle h-5.6 mr-1.25 w-5.6 ease-in-out bg-gradient-to-tl from-blue-500 to-violet-500 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-slate-700 text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                    active-color
-                    data-color="blue"
-                    onclick="sidebarColor(this)"
-                ></span>
-                <span
-                    class="py-2.2 text-xs rounded-circle h-5.6 mr-1.25 w-5.6 ease-in-out bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                    data-color="gray"
-                    onclick="sidebarColor(this)"
-                ></span>
-                <span
-                    class="py-2.2 text-xs rounded-circle h-5.6 mr-1.25 w-5.6 ease-in-out bg-gradient-to-tl from-blue-700 to-cyan-500 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                    data-color="cyan"
-                    onclick="sidebarColor(this)"
-                ></span>
-                <span
-                    class="py-2.2 text-xs rounded-circle h-5.6 mr-1.25 w-5.6 ease-in-out bg-gradient-to-tl from-emerald-500 to-teal-400 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                    data-color="emerald"
-                    onclick="sidebarColor(this)"
-                ></span>
-                <span
-                    class="py-2.2 text-xs rounded-circle h-5.6 mr-1.25 w-5.6 ease-in-out bg-gradient-to-tl from-orange-500 to-yellow-500 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                    data-color="orange"
-                    onclick="sidebarColor(this)"
-                ></span>
-                <span
-                    class="py-2.2 text-xs rounded-circle h-5.6 mr-1.25 w-5.6 ease-in-out bg-gradient-to-tl from-red-600 to-orange-600 relative inline-block cursor-pointer whitespace-nowrap border border-solid border-white text-center align-baseline font-bold uppercase leading-none text-white transition-all duration-200 hover:border-slate-700"
-                    data-color="red"
-                    onclick="sidebarColor(this)"
-                ></span>
-            </div>
-        </a>
 
-        <!-- Sidenav Type -->
-        <div class="mt-4">
-            <h6 class="mb-0 dark:text-white">Sidenav Type</h6>
-            <p class="text-sm leading-normal dark:text-white dark:opacity-80 py-2">
-                Choose between 2 different sidenav types.
-            </p>
-        </div>
-        <div class="flex">
-            <button
-                    class="whitebtn"
-                    @click="changeBgWhite()"
-                    transparent-style-btn
-                    data-class="bg-transparent"
-                    active-style
-                > Light
-                </button>
-                <button
-                    class="blackbtn" @click="changeBgBlack()"
-                    transparent-style-btn
-                    data-class="bg-transparent"
-                    active-style
-                > Dark                    
-                </button>
-        </div>
-    </FixLayout>
         
     </div>
 </template>
@@ -451,9 +314,19 @@ export default {
         };
     },
     created() {
-        this.updateTextBasedOnFilePath(window.location.pathname);
+        this.updateTextBasedOnFilePath(window.location.pathname); this.truncatedIng()
     },
     methods: {
+        truncatedIng(description) {
+            // Check if description exists and has more than 30 characters
+            if (description && description.length > 3) {
+                // Truncate description to 30 characters and add ellipsis
+                return description.slice(0, 3) + "...";
+            } else {
+                // Return full description if it's less than or equal to 30 characters
+                return description;
+            }
+        },
         toggleNavClass() {
             // Toggle the value when the button is clicked
 
