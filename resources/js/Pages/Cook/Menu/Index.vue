@@ -2,7 +2,6 @@
 import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "../../../Components/Table/TableHead.vue";
 import TableRow from "../../../Components/Table/TableRow.vue";
-
 </script>
 
 <template>
@@ -11,7 +10,7 @@ import TableRow from "../../../Components/Table/TableRow.vue";
     >
         <div class="container relative mx-auto overflow-hidden">
             <div
-                class="m-auto flex flex-col max-w-[1300px] justify-center h-full px-6 lg:pb-20 w-full"
+                class="m-auto flex flex-col max-w-[1000px] justify-center h-full px-6 lg:pb-20 w-full"
             >
                 <div class="py-5 lg:pb-12">
                     <h1
@@ -30,74 +29,97 @@ import TableRow from "../../../Components/Table/TableRow.vue";
                             >
                                 <div class="overflow-x-auto">
                                     <table
-                                        class="min-w-full text-left text-sm font-light"
+                                        class=" min-w-full text-left text-sm font-light"
                                     >
                                         <thead
                                             class="align-bottom shadow-sm translate-x-0"
                                         >
                                             <tr>
                                                 <TableHeadVue>
-                                                    <template #title> Title </template>
+                                                    <template #title>
+                                                        Title
+                                                    </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-up"
                                                         />
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-down"
                                                         />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
-                                                    <template #title> Title </template>
+                                                    <template #title>
+                                                        Description
+                                                    </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-up"
                                                         />
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-down"
                                                         />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
-                                                    <template #title> Title </template>
+                                                    <template #title>
+                                                        Price
+                                                    </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-up"
                                                         />
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-down"
                                                         />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
-                                                    <template #title> Title </template>
+                                                    <template #title>
+                                                        ingredients
+                                                    </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-up"
                                                         />
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-down"
                                                         />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
-                                                    <template #title> Title </template>
+                                                    <template #title>
+                                                        Title
+                                                    </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-up"
                                                         />
-                                                        <font-awesome-icon class="text-xs"
+                                                        <font-awesome-icon
+                                                            class="text-xs"
                                                             icon="caret-down"
                                                         />
                                                     </template>
                                                 </TableHeadVue>
-
-                                               
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          <TableRow></TableRow>
-                                           
+                                           <tr v-for="meal in menu"
+                                                :key="meal.id"
+                                                class="animate-fade-in border-b" >
+
+                                                <TableRow :meal="meal">
+                                                </TableRow>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -119,24 +141,7 @@ export default {
     props: {
         menu: Object,
     },
-    created() {
-        this.FormattedDate();
-    },
-    methods: {
-        FormattedDate(timestamp) {
-            const date = new Date(timestamp);
-            const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
-                .toString()
-                .padStart(2, "0")}-${date
-                .getDate()
-                .toString()
-                .padStart(2, "0")} at ${date.getHours()}:${date
-                .getMinutes()
-                .toString()
-                .padStart(2, "0")}`;
-            return formattedDate;
-        },
-    },
+  
 };
 </script>
 
@@ -153,6 +158,6 @@ export default {
 }
 
 .animate-fade-in {
-    animation: fade-in 0.7s ease-in;
+    animation: fade-in 0.5s ease-in;
 }
 </style>

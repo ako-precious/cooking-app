@@ -53,12 +53,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                     <span
                                                         v-else
                                                         class="lg:text-xl leading-normal"
-                                                        >Food created on
-                                                        {{
-                                                            FormattedDate(
-                                                                item.created_at
-                                                            )
-                                                        }}
+                                                        >Food created on{{FormattedDate(item.created_at)}}
                                                     </span>
                                                 </p>
                                             </div>
