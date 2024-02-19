@@ -4,7 +4,7 @@ defineProps(["meal"]);
 </script>
 <template>
     <td v-if="meal.name" class="whitespace-nowrap pl-6 py-3 font-semibold">
-        <Link :href="`/become-a-cook/${meal.id}/ingredients`" class="flex items-center j">
+        <Link :href="`/cook/menu/edit`" class="flex items-center j">
             <div class="w-16 h-16 ">
                 <img
                     :src="meal_photo"
@@ -19,7 +19,7 @@ defineProps(["meal"]);
         </Link>
     </td>
     <td v-else class="whitespace-nowrap pl-6 py-3 font-semibold">
-        <Link :href="`/become-a-cook/${meal.id}/ingredients`" class="flex items-center j">
+        <Link :href="`/become-a-cook`" class="flex items-center j">
             <div class="w-16 h-16 p-4 ">
                 <font-awesome-icon icon="image" class=" w-full h-full object-cover rounded text-persian "/>
                   

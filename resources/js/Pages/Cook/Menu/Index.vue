@@ -14,26 +14,20 @@ import TableRow from "./TableRow.vue";
             >
                 <div class="py-5 lg:pb-12">
                     <h1
-                        class="font-semibold text-2xl text-center lg:text-4xl text-oynx dark:text-snow"
-                    >
+                        class="font-semibold text-2xl text-center lg:text-4xl text-oynx dark:text-snow">
                         Continue to create your menu
                     </h1>
                 </div>
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
-                        <!-- <div class="grid grid-cols-1 gap-5 "> -->
-
                         <div class="sm:-mx-6 lg:-mx-8">
                             <div
-                                class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
-                            >
+                                class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                                 <div class="overflow-x-auto">
                                     <table
-                                        class=" min-w-full text-left text-sm font-light relative"
-                                    >
+                                        class=" min-w-full text-left text-sm font-light relative">
                                         <thead
-                                            class="align-bottom shadow-sm translate-x-0 sticky top-1 "
-                                        >
+                                            class="align-bottom shadow-sm translate-x-0 sticky top-1 ">
                                             <tr>
                                                 <TableHeadVue>
                                                     <template #title>

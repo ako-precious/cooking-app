@@ -64,6 +64,7 @@ Route::middleware([
     Route::get('/process_order/{id}',  [MealScheduleController::class, 'process_order']);
     Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');
     Route::get('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
+    Route::get('/become-a-cook', [CookController::class, 'pending_meal'])->name('become-a-cook');
     Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
     Route::resource('/schedule', MealScheduleController::class);
     Route::put('/meal_photos/reorder', [MealPhotosController::class, 'reorder']);
@@ -72,9 +73,9 @@ Route::middleware([
     Route::get('/checkUser', [CookController::class, "checkCook"]);
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
+    Route::put('meal/status/{id}', [MealController::class, 'status' ]);
     Route::put('meal/price/{id}', [MealController::class, 'price' ]);    
     Route::put('meal/region/{id}', [MealController::class, 'region' ]);
-    Route::get('/become-a-cook', [CookController::class, 'pending_meal'])->name('become-a-cook');
     Route::put('meal/preference/{id}', [MealController::class, 'preference' ]);    
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
     Route::get('/meal-schedule', [MealScheduleController::class, 'schedule']);

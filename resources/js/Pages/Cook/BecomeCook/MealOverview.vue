@@ -133,12 +133,12 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <Link :href="`/cook/menu`" class="font-semibold">
+            <!-- <Link :href="`/cook/menu`" class="font-semibold"> -->
                 <button @click="saveData" class="btn2span group">
                     <span class="next-span">Unveil</span>
                     <span class="with-span">We are done</span>
                 </button>
-            </Link>
+            <!-- </Link> -->
         </template>
     </BecomeCook>
 </template>
@@ -155,7 +155,18 @@ export default {
         };
     },
     methods: {
-        saveData() {},
+        saveData() {
+            const status = 'unavailable'
+            console.log(this.meal.id);
+            axios
+                .put("/meal/status/" + this.meal.id, { status })
+                .then((response) => {
+                    console.log("Data sent successfully:", response.data);
+                })
+                .catch((error) => {
+                    console.error("Error sending data:", error);
+                });
+        },
     },
 };
 </script>
