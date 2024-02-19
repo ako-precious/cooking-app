@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "../../../Components/Table/TableHead.vue";
-import TableRow from "../../../Components/Table/TableRow.vue";
+import TableRow from "./TableRow.vue";
 </script>
 
 <template>

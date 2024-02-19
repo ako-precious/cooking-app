@@ -27,7 +27,14 @@ defineProps(["meal"]);
 </template>
 
 <script>
+import axios from "axios";
 export default {
+    data() {
+        return {          
+           meal_photo: '',
+           
+        }
+    },
     created() {
         this.FormattedDate();
         this.truncatedIng();
@@ -45,12 +52,12 @@ export default {
             return formattedDate;
         },
         getImage(){
-            const id = meal.id
+            const id = this.meal.id
             axios
-                    .get(`/checkout?meal_id=${id}`)
+                    .get(`/meal_photos/show-photo?meal_id=${id}`)
                     .then((response) => {
                        
-                        console.log(response.data.meal.id); 
+                        console.log(response.data); 
                        
                         
                     })

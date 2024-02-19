@@ -53,7 +53,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                     <span
                                                         v-else
                                                         class="lg:text-xl leading-normal"
-                                                        >Food created on{{FormattedDate(item.created_at)}}
+                                                        >Food created on {{FormattedDate(item.created_at)}}
                                                     </span>
                                                 </p>
                                             </div>
@@ -94,7 +94,9 @@ export default {
             axios
                 .delete(`/meal/${id}`)
                 .then((response) => {
-                    console.log(response);
+                    console.log(response.data);
+                    // this.pending = response.data.pending;
+
                     // Handle success if needed
                 })
                 .catch((error) => {

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Meal;
+use App\Models\Cook;
 
 class MealController extends Controller
 {
@@ -70,9 +72,13 @@ class MealController extends Controller
 
         $MealSchedule = Meal::find($id);
 
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        $pending = Meal::where('status', 'pending')->where('cook_id', $user_id)->get();
+        return inertia('Cook/BecomeCook/index', [ 'message' => 'Meal removed successfully!','pending' => $pending]);
                 $MealSchedule->delete();
             return response()->json([
-                'message' => 'Meal removed successfully!'
+               
             ]);
         
     }
