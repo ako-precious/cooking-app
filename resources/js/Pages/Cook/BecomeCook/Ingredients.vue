@@ -44,16 +44,16 @@ import InputLabel from "@/Components/InputLabel.vue";
 
                                     <div class="mt-1">
                                         <div
-                                            class="flex flex-wrap-reverse flex-row-reverse">
+                                            class="flex  flex-col-reverse ">
                                             <div
-                                                class="relative sm:w-1/3 p-1"
+                                                class="relative sm:w-full p-2"
                                                 v-for="(item, index) in ingredients"
                                                 :key="index">
                                                 <TextInput required
-                                                    class="block w-full h-full text-sm"
+                                                    class="block w-full h-full text-sm p-3"
                                                     v-model="ingredients[index]"/>
                                                 <p
-                                                    class="absolute bottom-1 top-1 right-1 bg-snow/20 cursor-pointer p-2"
+                                                    class="absolute bottom-2 top-1 right-2 bg-snow/20  cursor-pointer p-2"
                                                     @click="removeItem(index)"
                                                 >
                                                     <font-awesome-icon

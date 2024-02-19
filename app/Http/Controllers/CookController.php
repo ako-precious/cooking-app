@@ -17,7 +17,11 @@ class CookController extends Controller
         if ($cook !== null) {
             # code.
             $menu = Meal::where('cook_id', $user_id)->with('mealPhotos')->get();
-            
+            foreach ($menu as $meal) {
+                # code...
+                $mealPhoto = MealPhotos::where('meal_id', $meal->id)->orderBy('order', 'asc')->get();                
+            }
+            dd($mealPhoto);
             return inertia('Cook/Menu/Index', ['menu' => $menu]);
         } else {
             # code...
