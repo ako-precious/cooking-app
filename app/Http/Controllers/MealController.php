@@ -61,7 +61,7 @@ class MealController extends Controller
     public function status(Request $request, $id )
     {
         $meal =  Meal::find($id);
-        $meal->price = $request->status; 
+        $meal->status = $request->status; 
         $meal->save();
         return response()->json(['meal' => $meal]);
     }

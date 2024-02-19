@@ -157,11 +157,12 @@ export default {
     methods: {
         saveData() {
             const status = 'unavailable'
-            console.log(this.meal.id);
+            
             axios
-                .put("/meal/status/" + this.meal.id, { status })
+                .put("/meal/status/" + this.meal.data.id, { status })
                 .then((response) => {
                     console.log("Data sent successfully:", response.data);
+                    this.$inertia.visit(`/cook/menu`);
                 })
                 .catch((error) => {
                     console.error("Error sending data:", error);
