@@ -151,7 +151,7 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            $mealPhotos = MealPhotos::where('meal_id', $newMealId)->get();
+            $mealPhotos = MealPhotos::where('meal_id', $newMealId)->orderBy('order', 'asc')->get();
             return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal, 'mealPhotos' => $mealPhotos]);
         } else {
             # code...
