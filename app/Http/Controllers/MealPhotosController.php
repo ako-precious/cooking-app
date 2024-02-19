@@ -31,23 +31,24 @@ class MealPhotosController extends Controller
         $mealPhotos = $request->input('mealPhotos');
         foreach ($mealPhotos as $mealPhoto) {
             $photo = MealPhotos::findOrFail($mealPhoto['id']);
-            $photo->update(['index' => $mealPhoto['index']]);
+            $photo->update(['order' => $mealPhoto['index']]);
         }
-        return response()->json(['message' => 'Meal photos reordered successfully']);
+        return response()->json(['message' => $mealPhotos]);
+        // return response()->json(['message' => 'Meal photos reordered successfully']);
     }
-    public function update(Request $request, $id)
-    {
+    // public function update(Request $request, $id)
+    // {
 
-        $photo = MealPhotos::find($id);
+    //     $photo = MealPhotos::find($id);
 
-        $photo->update($request->all());
+    //     $photo->update($request->all());
 
-        return response()->json([
-            'data' =>   $photo,
-            'message' => 'Successfully updated Meal Schedule!',
+    //     return response()->json([
+    //         'data' =>   $photo,
+    //         'message' => 'Successfully updated Meal Schedule!',
 
-        ]);
-    }
+    //     ]);
+    // }
 
     public function destroy($id)
     {
