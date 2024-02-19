@@ -85,6 +85,10 @@ export default {
             // count: this.Meal.price,
         };
     },
+    mounted(){
+        console.log(this.Meal);
+
+    },
     methods: {
         saveData() {
            

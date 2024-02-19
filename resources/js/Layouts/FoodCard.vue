@@ -221,8 +221,8 @@ export default {
             </div>
             <div class="flex items-center justify-between">
                 <p>
-                    <span class="text-lg font-bold text-oynx dark:text-snow"
-                        >${{ Math.round(meal.price) }}</span
+                    <!-- <span class="text-lg font-bold text-oynx dark:text-snow"
+                        >${{ Math.round(meal.price) }}</span -->
                     >
                 </p>
                 <div

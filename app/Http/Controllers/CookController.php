@@ -224,8 +224,10 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::with('user')->find($newMealId);
-             dd(MealResource::make($Meal));
-            return inertia('Cook/BecomeCook/MealOverview', [ 'Meal', MealResource::make($Meal)]);
+            dd($Meal);
+            $mealData = MealResource::make($Meal)->toArray();
+            return inertia('Cook/BecomeCook/MealOverview', ['meal' => $mealData]);
+            // return inertia('Cook/BecomeCook/MealOverview', response()->json(['meal' => MealResource::make($Meal)]));
         } else {
             # code...
             return redirect()->route('welcome',);
