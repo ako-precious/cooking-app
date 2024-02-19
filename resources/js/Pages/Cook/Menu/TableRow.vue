@@ -8,7 +8,7 @@ defineProps(["meal"]);
     <td v-if="meal.name" class="whitespace-nowrap px-6 py-4 font-semibold">
 
         <Link :href="`/become-a-cook/${meal.id}/ingredients`">
-        
+
             {{ meal.name }}
         </Link>
     </td>
@@ -32,7 +32,7 @@ export default {
         this.FormattedDate();
         this.truncatedIng();
     },
-    computed: {},
+    mounted() {this.getImage()},
     methods: {
         FormattedDate(timestamp) {
             const date = new Date(timestamp);
@@ -44,7 +44,21 @@ export default {
                 .padStart(2, "0")}`;
             return formattedDate;
         },
-
+        getImage(){
+            const id = meal.id
+            axios
+                    .get(`/checkout?meal_id=${id}`)
+                    .then((response) => {
+                       
+                        console.log(response.data.meal.id); 
+                       
+                        
+                    })
+                    .catch((error) => {
+                        // Handle error
+                        console.error("Error saving data:", error);
+                    });
+        },
         truncatedIng(description) {
             // Check if description exists and has more than 30 characters
             if (description && description.length > 1) {

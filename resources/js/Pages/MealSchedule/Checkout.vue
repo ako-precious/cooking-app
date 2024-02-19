@@ -18,9 +18,7 @@
     methods: {
       async initializeStripeCheckout() {
         const id =  this.mealSchedule.id 
-        // const response = await fetch(`/checkout?meal=${id}}`, {
-        //   method: "POST",
-        // });
+        
         const response = await fetch(`/checkout?meal_id=${id}`, {
     method: "POST",
 });

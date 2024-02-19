@@ -67,6 +67,7 @@ Route::middleware([
     Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
     Route::resource('/schedule', MealScheduleController::class);
     Route::put('/meal_photos/reorder', [MealPhotosController::class, 'reorder']);
+    Route::get('/meal_photos/show-photo', [MealPhotosController::class, 'show_photo']);
     Route::resource('/meal_photos', MealPhotosController::class);
     Route::get('/checkUser', [CookController::class, "checkCook"]);
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
