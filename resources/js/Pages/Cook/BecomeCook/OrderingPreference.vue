@@ -46,7 +46,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             >
                                                 <span
                                                     class="lg:text-xl leading-normal"
-                                                    >Ordering instantly</span
+                                                    >One-click Ordering</span
                                                 >
                                             </p>
                                             <p
@@ -158,7 +158,7 @@ export default {
     },
     data() {
         return {
-            selectedDiv: this.Meal.region,
+            selectedDiv: this.Meal.ordering_preferences,
         };
     },
    
@@ -168,7 +168,7 @@ export default {
             axios
                 .put("/meal/preference/" + this.Meal.id, { preference })
                 .then((response) => {
-                   
+                   console.log(response.data);
                 })
                 .catch((error) => {
                 });

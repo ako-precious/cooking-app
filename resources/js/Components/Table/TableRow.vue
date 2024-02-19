@@ -17,9 +17,10 @@ defineProps(["meal"]);
     </td>
     <td class="whitespace-nowrap px-6 py-4">{{ meal.status }}</td>
     <td class="whitespace-nowrap px-6 py-4">$ {{ meal.price }}</td>
-    <td class="whitespace-nowrap px-6 py-4 text-center">
-        {{ meal.ordering_preferences }}
+   
+    <td v-if="meal.ordering_preferences == 'automatic'" class="whitespace-nowrap px-6 py-4 text-center flex items-center"><font-awesome-icon class="text-persian text-lg pr-1" icon="toggle-on" /> On
     </td>
+    <td v-else class="whitespace-nowrap px-6 py-4 flex items-center"> <font-awesome-icon class="text-persian text-lg pr-1" icon="toggle-off" /> Off</td>
     <td class="whitespace-nowrap px-6 py-4">Cell</td>
 </template>
 

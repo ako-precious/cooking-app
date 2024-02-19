@@ -82,7 +82,7 @@ import TableRow from "../../../Components/Table/TableRow.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Ordering preference
+                                                        Quick Order
                                                     </template>
                                                     <template #symbols>
                                                         <font-awesome-icon

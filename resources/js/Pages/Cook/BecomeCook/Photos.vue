@@ -287,16 +287,21 @@ export default {
             }));
         },
         updatePhotos() {
+
+           const MealId = this.Meal.id
+            this.$inertia.visit(
+                            `/become-a-cook/${MealId}/finishing-up`
+                        );
             
                 
-                if (this.mealPhotos.length < 10) {
-                    // Call the function to add new photos
-                    
-                    // this.storePhotos();
-                } else {
-                    // Handle if the maximum limit of photos is reached
-                    console.log("Maximum limit of photos reached.");
-                }
+                // if (this.mealPhotos.length < 10) {
+                //     // Call the function to add new photos
+
+                //     // this.storePhotos();
+                // } else {
+                //     // Handle if the maximum limit of photos is reached
+                //     console.log("Maximum limit of photos reached.");
+                // }
            
         },
 
