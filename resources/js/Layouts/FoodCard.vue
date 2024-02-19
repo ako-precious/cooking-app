@@ -201,14 +201,14 @@ export default {
                 <h5
                     class="text-lg font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
                 >
-                    {{ meal.title }}
+                    <!-- {{ meal.title }} -->
                 </h5>
             </a>
             <div class="my-2 flex items-center justify-between">
                 <a href="#" class=" ">
-                    <span
+                    <!-- <span
                         class="text-xs text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
-                        >{{ meal.cook.name }}</span
+                        >{{ meal.cook.name }}</span -->
                     >
                 </a>
                 <div class="flex items-center">

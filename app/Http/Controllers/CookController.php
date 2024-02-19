@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MealResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Cook;
@@ -222,8 +223,9 @@ class CookController extends Controller
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code...
-            $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/MealOverview', ['Meal' => $Meal]);
+            $Meal = Meal::with('user')->find($newMealId);
+             dd(MealResource::make($Meal));
+            return inertia('Cook/BecomeCook/MealOverview', [ 'Meal', MealResource::make($Meal)]);
         } else {
             # code...
             return redirect()->route('welcome',);

@@ -1,8 +1,8 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
+import FoodCard from "@/Layouts/FoodCard.vue";
 import BecomeCook from "./BecomeCook.vue";
-import TextInput from "@/Components/TextInput.vue";
 </script>
 
 <template>
@@ -14,7 +14,7 @@ import TextInput from "@/Components/TextInput.vue";
                 <div
                     class="m-auto flex flex-col  items-center h-full px-6 lg:p-8"
                 >
-                    <div class="lg:w-1/2 py-5 lg:px-5">
+                    <div class=" py-5 lg:px-5">
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
@@ -24,10 +24,10 @@ import TextInput from "@/Components/TextInput.vue";
                             One last look before your meal wows everyone: Review details to ensure accuracy.
                         </h1>
                     </div>
-                    <div class="w-full lg:w-1/2">
-                        <div class="flex flex-col w-full">
+                    <div class="w-full ">
+                        <div class="flex flex-col lg:flex-row w-full">
                             <div class="flex lg:p-5">
-                               
+                                <FoodCard :meal="Meal"></FoodCard>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@ import TextInput from "@/Components/TextInput.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link
+                <!-- <Link
                     :href="`/become-a-cook/${Meal.id}/region`"
                     class="font-semibold"
                 >
@@ -56,7 +56,7 @@ import TextInput from "@/Components/TextInput.vue";
                             Back
                         </span>
                     </button>
-                </Link>
+                </Link> -->
             </div>
         </template>
         <template #mainbtn>
@@ -82,7 +82,7 @@ export default {
     },
     data() {
         return { 
-            count: this.Meal.price,
+            // count: this.Meal.price,
         };
     },
     methods: {
