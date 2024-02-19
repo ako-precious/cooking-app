@@ -23,7 +23,7 @@ import BecomeCook from "./BecomeCook.vue";
                     <div class="flex flex-col w-full">
                         <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
                             <div
-                                v-for="(item, index) in pending"
+                                v-for="(item, index) in pendingMeals"
                                 :key="index"
                                 class="col-span-1 w-full max-w-full"
                             >
@@ -84,6 +84,11 @@ import axios from "axios";
 export default {
     props: {
         pending: Object,
+    }, data() {
+        return {          
+           pendingMeals: this.pending,
+           
+        }
     },
     created() {
         this.FormattedDate();
@@ -95,7 +100,7 @@ export default {
                 .delete(`/meal/${id}`)
                 .then((response) => {
                     console.log(response.data);
-                    // this.pending = response.data.pending;
+                    this.pendingMeals = response.data.pending;
 
                     // Handle success if needed
                 })

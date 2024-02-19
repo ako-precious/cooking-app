@@ -71,13 +71,12 @@ class MealController extends Controller
     {
 
         $MealSchedule = Meal::find($id);
-
+        $MealSchedule->delete();
+       
         $user_id =   Auth::id();
-        $cook = Cook::firstWhere('user_id', $user_id);
         $pending = Meal::where('status', 'pending')->where('cook_id', $user_id)->get();
-        return inertia('Cook/BecomeCook/index', [ 'message' => 'Meal removed successfully!','pending' => $pending]);
-                $MealSchedule->delete();
-            return response()->json([
+    
+            return response()->json(['message' => 'Meal removed successfully!','pending' => $pending
                
             ]);
         
