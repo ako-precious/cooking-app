@@ -26,7 +26,7 @@ class MealPhotosController extends Controller
             $meal = MealPhotos::create([
                 'meal_id' => $meal_id,
                 'meal_photo_path' => $path,
-                'order' => (int)$index + 1, // Assuming order starts from 1
+                // 'order' => (int)$index + 1, // Assuming order starts from 1
             ]);
             // Save the file path or identifier in an array
 

@@ -55,7 +55,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/cook-limit`" class="font-semibold">
+                <Link :href="`/become-a-cook/${Meal.id}/photos`" class="font-semibold">
                     <button class="relative group">
                         <span
                             class="hover-underline-animation"

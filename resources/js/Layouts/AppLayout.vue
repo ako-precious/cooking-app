@@ -117,30 +117,6 @@ const logout = () => {
                    </SideBarLink>
                </Link>
                </li>
-                
-               <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-schedule`">
-                   <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
-                       <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
-                          
-                           <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
-                       </SideBarIcon>
-                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Meal schedule </SideBarSpan>
-                   </SideBarLink>
-               </Link>
-               </li>
-                
-               <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-schedule`">
-                   <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
-                       <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
-                          
-                           <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
-                       </SideBarIcon>
-                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Meal schedule </SideBarSpan>
-                   </SideBarLink>
-               </Link>
-               </li>
               
            </SideBarCollapse>
     
@@ -238,14 +214,7 @@ const logout = () => {
                                                         Log Out
                                                     </DropdownLink>
                                                 </form>
-<!-- avbarFixed -->
-                                              <Toggles >
-                                                <input
-                                @click="toggleNavClass()"
-                                
-                                class="rounded-10 duration-250 ease-in-out after:rounded-circle after:shadow-2xl after:duration-250 checked:after:translate-x-5.3 h-5 relative float-left mt-1 ml-auto w-10 cursor-pointer appearance-none border border-solid border-gray-200 bg-slate-800/10 bg-none bg-contain bg-left bg-no-repeat align-top transition-all after:absolute after:top-px after:h-4 after:w-4 after:translate-x-px after:bg-white after:content-[''] checked:bg-none checked:bg-right"
-                                type="checkbox"
-                            /></Toggles>
+                                                     <!-- Add the toggle bo ttuns later -->
                                             </div>
                                            </template>
                                        </Dropdown>

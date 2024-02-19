@@ -189,7 +189,7 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <button
+            <!-- <button
                 v-if="mealPhotos"
                 @click="updatePhotos"
                 class="btn2span group"
@@ -198,6 +198,10 @@ import BecomeCook from "./BecomeCook.vue";
                 <span class="with-span">We're with you</span>
             </button>
             <button v-else @click="createNewPhotos" class="btn2span group">
+                <span class="next-span">Next Step</span>
+                <span class="with-span">We're with you</span>
+            </button> -->
+            <button @click="createNewPhotos" class="btn2span group">
                 <span class="next-span">Next Step</span>
                 <span class="with-span">We're with you</span>
             </button>
@@ -372,7 +376,7 @@ export default {
                         );
                     })
                     .catch((error) => {
-                        // console.error("Error uploading images:", error);
+                        console.error("Error uploading images:", error);
                         this.error = "Error uploading images:";
                     });
             } else {
