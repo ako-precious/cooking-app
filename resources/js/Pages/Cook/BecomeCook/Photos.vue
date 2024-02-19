@@ -125,9 +125,9 @@ import BecomeCook from "./BecomeCook.vue";
                                             </p>
                                         </div>
                                         <div
+                                            class="mt-4 m-auto justify-center w-full p-4 mb-0 list-none grid grid-cols-2 md:grid-cols-5 gap-5 lg:gap-7 lg:px-10 rounded-xl"
                                             v-if="imagePreviews.length"
                                             ref="imageContainer"
-                                            class="mt-4 m-auto justify-center w-full p-4 mb-0 list-none grid grid-cols-2 md:grid-cols-5 gap-5 lg:gap-7 lg:px-10 rounded-xl"
                                         >
                                             <div
                                                 v-for="(
@@ -151,7 +151,7 @@ import BecomeCook from "./BecomeCook.vue";
                                                         class="text-lighred text-sm"
                                                     />
                                                 </p>
-                                                <!-- <input type="hidden"  v-model="preview.id"> -->
+
                                                 <img
                                                     :src="preview.src"
                                                     :alt="preview.src"
@@ -286,7 +286,19 @@ export default {
                 id: image.id, // Assuming your image object has an 'id' property
             }));
         },
-        updatePhotos() {},
+        updatePhotos() {
+            
+                
+                if (this.mealPhotos.length < 10) {
+                    // Call the function to add new photos
+                    
+                    // this.storePhotos();
+                } else {
+                    // Handle if the maximum limit of photos is reached
+                    console.log("Maximum limit of photos reached.");
+                }
+           
+        },
 
         dragStart(index, event) {
             event.dataTransfer.setData("text/plain", index);
@@ -334,48 +346,49 @@ export default {
         },
 
         async reorderMealPhotos(fromIndex, toIndex) {
-    // Make a copy of mealPhotos array to avoid mutating the original array
-    const newMealPhotos = this.mealPhotos;
+            // Make a copy of mealPhotos array to avoid mutating the original array
+            const newMealPhotos = this.mealPhotos;
 
-    // Remove the photo from the original position
-    const movedItem = newMealPhotos.splice(fromIndex, 1)[0];
+            // Remove the photo from the original position
+            const movedItem = newMealPhotos.splice(fromIndex, 1)[0];
 
-    // Insert the photo into the new position
-    newMealPhotos.splice(toIndex, 0, movedItem);
+            // Insert the photo into the new position
+            newMealPhotos.splice(toIndex, 0, movedItem);
 
-    // Update the index property for each photo
-    newMealPhotos.forEach((photo, index) => {
-        photo.index = index + 1; // Assuming index starts from 1
-    });
+            // Update the index property for each photo
+            newMealPhotos.forEach((photo, index) => {
+                photo.index = index + 1; // Assuming index starts from 1
+            });
 
-    try {
-        // Send a PUT request to update the meal photos order in the database
-         await axios.put(`/meal_photos/reorder`, {
-            mealPhotos: newMealPhotos,
-        })
-        .then((response) => {
-                        console.log(response.data); 
+            try {
+                // Send a PUT request to update the meal photos order in the database
+                await axios
+                    .put(`/meal_photos/reorder`, {
+                        mealPhotos: newMealPhotos,
+                    })
+                    .then((response) => {
+                        console.log(response.data);
                         // this.$inertia.visit(
                         //     `/become-a-cook/${MealId}/finishing-up`
                         // );
-                    })
-
-        // Update mealPhotos in the Vue component with the reordered photos
-        // this.mealPhotos = newMealPhotos;
-
-        // Handle success response if necessary
-        // console.log("Meal photos reordered:", response.data);
-    } catch (error) {
-        // Handle error response if necessary
-        console.error("Error reordering meal photos:", error);
-        // Rollback changes if needed
-        // this.mealPhotos = [...this.originalMealPhotos];
-    }
-},
+                    });
+            } catch (error) {
+                // Handle error response if necessary
+                console.error("Error reordering meal photos:", error);
+                // Rollback changes if needed
+                // this.mealPhotos = [...this.originalMealPhotos];
+            }
+        },
 
         createNewPhotos() {
             if (this.imageFiles.length >= 3 && this.imageFiles.length <= 10) {
-                const formData = new FormData();
+              this.storePhotos()
+            } else {
+                this.error = "The number of pictures must be between 3 and 10";
+            }
+        },
+        storePhotos(){
+            const formData = new FormData();
                 formData.append("meal_id", this.Meal.id);
                 for (let i = 0; i < this.imageFiles.length; i++) {
                     formData.append("images[]", this.imageFiles[i]);
@@ -397,9 +410,6 @@ export default {
                         console.error("Error uploading images:", error);
                         this.error = "Error uploading images";
                     });
-            } else {
-                this.error = "The number of pictures must be between 3 and 10";
-            }
         },
     },
 };
