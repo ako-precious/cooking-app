@@ -10,6 +10,6 @@ class orders extends Model
     use HasFactory;
     
     protected $table = 'orders';
-
+// meal_id represents the scheduled meal id 
     protected $fillable = ['meal_id', 'total_price', 'status', 'session_id'];
 }

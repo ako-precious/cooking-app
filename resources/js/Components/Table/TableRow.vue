@@ -6,7 +6,9 @@ defineProps(["meal"]);
 </script>
 <template>
     <td v-if="meal.name" class="whitespace-nowrap px-6 py-4 font-semibold">
+
         <Link :href="`/become-a-cook/${meal.id}/ingredients`">
+        
             {{ meal.name }}
         </Link>
     </td>

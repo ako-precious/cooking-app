@@ -28,6 +28,10 @@ class Meal extends Model
     {
         return $this->hasMany(MealSchedule::class);
     }
+    public function mealPhotos(): HasMany
+    {
+        return $this->hasMany(MealPhotos::class);
+    }
 
     public static function boot()
     {

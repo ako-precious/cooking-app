@@ -16,7 +16,8 @@ class CookController extends Controller
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code.
-            $menu = Meal::where('cook_id', $user_id)->get();
+            $menu = Meal::where('cook_id', $user_id)->with('mealPhotos')->get();
+            
             return inertia('Cook/Menu/Index', ['menu' => $menu]);
         } else {
             # code...
