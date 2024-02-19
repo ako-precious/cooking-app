@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class CookController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
@@ -69,8 +70,9 @@ class CookController extends Controller
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
-        $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
-        return response()->json(['checkUser' => $checkUser]);}
+            $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
+            return response()->json(['checkUser' => $checkUser]);
+        }
     }
     public function about_your_meal($newMealId)
     {
@@ -224,6 +226,10 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::with('user')->find($newMealId);
+            if ($Meal->name == Null || $Meal->region == Null || $Meal->description == Null || $Meal->price == Null || $Meal->ingredients == Null || $Meal->cooking_limit == Null || $Meal->status == Null || $Meal->ordering_preferences == Null) {
+                return redirect()->route('become-a-cook');
+            }
+
             $mealData = MealResource::make($Meal);
             // dd($mealData);
             return inertia('Cook/BecomeCook/MealOverview', ['meal' => $mealData]);
