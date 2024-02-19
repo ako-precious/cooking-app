@@ -25,6 +25,10 @@ export default {
             isHeaderFixed: false,
         };
     },
+    mounted(){
+        console.log(this.meal);
+
+    },
     created() {
         this.getMeals(),
             this.handleScroll(),
@@ -201,14 +205,14 @@ export default {
                 <h5
                     class="text-lg font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
                 >
-                    <!-- {{ meal.title }} -->
+                    {{ meal.title }}
                 </h5>
             </a>
             <div class="my-2 flex items-center justify-between">
                 <a href="#" class=" ">
-                    <!-- <span
+                    <span
                         class="text-xs text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
-                        >{{ meal.cook.name }}</span -->
+                        >{{ meal.cook.name }}</span
                     >
                 </a>
                 <div class="flex items-center">
@@ -221,9 +225,8 @@ export default {
             </div>
             <div class="flex items-center justify-between">
                 <p>
-                    <!-- <span class="text-lg font-bold text-oynx dark:text-snow"
-                        >${{ Math.round(meal.price) }}</span -->
-                    >
+                    <span class="text-lg font-bold text-oynx dark:text-snow"
+                        >${{ meal.price }}</span>
                 </p>
                 <div
                     class="items-center justify-end rounded-md flex opacity-0 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"

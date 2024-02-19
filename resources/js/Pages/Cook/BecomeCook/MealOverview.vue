@@ -27,7 +27,8 @@ import BecomeCook from "./BecomeCook.vue";
                     <div class="w-full ">
                         <div class="flex flex-col lg:flex-row w-full">
                             <div class="flex lg:p-5">
-                                <FoodCard :meal="Meal"></FoodCard>
+                                <FoodCard :meal="meal.data"></FoodCard>
+
                             </div>
                         </div>
                     </div>
@@ -77,17 +78,13 @@ import BecomeCook from "./BecomeCook.vue";
 import axios from "axios";
 export default {
     props: {
-        Meal: Object,
+        meal: Object,
         
     },
     data() {
         return { 
             // count: this.Meal.price,
         };
-    },
-    mounted(){
-        console.log(this.Meal);
-
     },
     methods: {
         saveData() {
