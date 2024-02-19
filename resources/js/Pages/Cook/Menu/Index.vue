@@ -29,10 +29,10 @@ import TableRow from "./TableRow.vue";
                             >
                                 <div class="overflow-x-auto">
                                     <table
-                                        class=" min-w-full text-left text-sm font-light"
+                                        class=" min-w-full text-left text-sm font-light relative"
                                     >
                                         <thead
-                                            class="align-bottom shadow-sm translate-x-0"
+                                            class="align-bottom shadow-sm translate-x-0 sticky top-1 "
                                         >
                                             <tr>
                                                 <TableHeadVue>

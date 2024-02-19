@@ -12,16 +12,16 @@ import TextInput from "@/Components/TextInput.vue";
                 class="container relative mx-auto overflow-hidden pb-10 lg:p-0 w-screen"
             >
                 <div
-                    class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8"
+                    class="m-auto flex flex-col  items-center h-full px-6 lg:p-8"
                 >
                     <div class="lg:w-1/2 py-5 lg:px-5">
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
-                            Set the price for the meal
+                        Thrilled to finally share...
                         </h1>
                         <h1 class="pt-5 text-lg text-oynx dark:text-snow">
-                            Craft a price that reflects the unique joy of enjoying your culinary creation
+                            One last look before your meal wows everyone: Review details to ensure accuracy.
                         </h1>
                     </div>
                     <div class="w-full lg:w-1/2">
@@ -65,7 +65,7 @@ import TextInput from "@/Components/TextInput.vue";
                     class="font-semibold "
                 >
                 <button @click="saveData" class="btn2span group">
-                    <span class="next-span">Next Step</span>
+                    <span class="next-span">Unveil</span>
                     <span class="with-span">We are done</span>
                 </button>
             </Link>

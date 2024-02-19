@@ -3,9 +3,9 @@ import { Head, Link } from "@inertiajs/vue3";
 defineProps(["meal"]);
 </script>
 <template>
-    <td v-if="meal.name" class="whitespace-nowrap px-6 py-4 font-semibold">
+    <td v-if="meal.name" class="whitespace-nowrap pl-6 py-3 font-semibold">
         <Link :href="`/become-a-cook/${meal.id}/ingredients`" class="flex items-center j">
-            <div class="w-20 h-20 ">
+            <div class="w-16 h-16 ">
                 <img
                     :src="meal_photo"
                     :alt="meal_photo"
@@ -18,9 +18,9 @@ defineProps(["meal"]);
             </p>
         </Link>
     </td>
-    <td v-else class="whitespace-nowrap px-6 py-4 font-semibold">
+    <td v-else class="whitespace-nowrap pl-6 py-3 font-semibold">
         <Link :href="`/become-a-cook/${meal.id}/ingredients`" class="flex items-center j">
-            <div class="w-20 h-20 p-4 ">
+            <div class="w-16 h-16 p-4 ">
                 <font-awesome-icon icon="image" class=" w-full h-full object-cover rounded text-persian "/>
                   
             </div>
@@ -31,24 +31,31 @@ defineProps(["meal"]);
             </p>
         </Link>
     </td>
-    <td class="whitespace-nowrap px-6 py-4">{{ meal.status }}</td>
-    <td class="whitespace-nowrap px-6 py-4">$ {{ meal.price }}</td>
+    <td class="whitespace-nowrap px-6 py-3">{{ meal.status }}</td>
+    <td class="whitespace-nowrap px-6 py-3">$ {{ meal.price }}</td>
 
     <td
         v-if="meal.ordering_preferences == 'automatic'"
-        class="whitespace-nowrap px-6 py-4 text-center flex items-center"
+        class="whitespace-nowrap px-6 py-3 text-center"
     >
+    <div class=" flex items-center ">
         <font-awesome-icon class="text-persian text-lg pr-1" icon="toggle-on" />
+       <p>
         On
+       </p> 
+
+    </div>
     </td>
-    <td v-else class="whitespace-nowrap px-6 py-4 flex items-center">
-        <font-awesome-icon
-            class="text-persian text-lg pr-1"
-            icon="toggle-off"
-        />
-        Off
+    <td v-else class="whitespace-nowrap px-6 py-3 ">
+        <div class=" flex items-center ">
+            <font-awesome-icon
+                class="text-persian text-lg pr-1"
+                icon="toggle-off"
+            />
+            Off
+        </div>
     </td>
-    <td class="whitespace-nowrap px-6 py-4">Cell</td>
+    <td class="whitespace-nowrap px-6 py-3"></td>
 </template>
 
 <script>
