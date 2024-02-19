@@ -25,7 +25,7 @@ import BecomeCook from "./BecomeCook.vue";
                             details to ensure accuracy.
                         </h1>
                     </div>
-                    <div class="max-w-[1000px]">
+                    <div class="max-w-[1000px] pb-20">
                         <div class="flex flex-col lg:flex-row w-full">
                             <div class="relative flex lg:p-5 lg:w-1/2">
                                 <div class="relative">
@@ -45,13 +45,13 @@ import BecomeCook from "./BecomeCook.vue";
                                         ></FoodCard>
                                 </div>
                             </div>
-                            <div class="relative flex flex-col lg:p-5 lg:w-1/2">
-                                <div class="w-full py-5 lg:py-8">
+                            <div class="relative flex flex-col lg:pr-10 lg:w-1/2">
+                                <div class="w-full py-5 ">
                                     <div class="flex flex-col">
                                         <h1
                                             class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
                                         >
-                                            What to do next
+                                            What to do next?
                                         </h1>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             Let's know about your meal
                                         </h1>
                                         <p
-                                            class="pt-3 text-sm lg:text-base text-oynx dark:text-snow"
+                                            class="pt-3 text-sm  text-oynx dark:text-snow"
                                         >
                                             Share some basic info, like who you
                                             food is made for and how many people
@@ -72,7 +72,7 @@ import BecomeCook from "./BecomeCook.vue";
                                     </div>
                                 </div>
 
-                                <div class="w-full py-3">
+                                <div class="w-full py-2">
                                     <div class="flex flex-col">
                                         <h1
                                             class="font-bold pt-1 text-lg lg:text-xl  tracking-wide text-oynx dark:text-snow"
@@ -80,7 +80,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             Let's take the spot light
                                         </h1>
                                         <p
-                                            class="pt-3 text-sm lg:text-base text-oynx dark:text-snow"
+                                            class="pt-3 text-sm  text-oynx dark:text-snow"
                                         >
                                             Bring your meal to life! Upload 5+
                                             photos, tell your story with a title
@@ -88,7 +88,7 @@ import BecomeCook from "./BecomeCook.vue";
                                         </p>
                                     </div>
                                 </div>
-                                <div class="w-full py-3">
+                                <div class="w-full py-2">
                                     <div class="flex flex-col">
                                         <h1
                                             class="font-bold pt-1 text-lg lg:text-xl  tracking-wide text-oynx dark:text-snow"
@@ -96,7 +96,7 @@ import BecomeCook from "./BecomeCook.vue";
                                             Let's take the spot light
                                         </h1>
                                         <p
-                                            class="pt-3 text-sm lg:text-base text-oynx dark:text-snow"
+                                            class="pt-3 text-sm  text-oynx dark:text-snow"
                                         >
                                             Bring your meal to life! Upload 5+
                                             photos, tell your story with a title
