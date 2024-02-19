@@ -189,8 +189,8 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <!-- <button
-                v-if="mealPhotos"
+            <button
+                v-if="mealPhotos.length > 0"
                 @click="updatePhotos"
                 class="btn2span group"
             >
@@ -198,11 +198,7 @@ import BecomeCook from "./BecomeCook.vue";
                 <span class="with-span">We're with you</span>
             </button>
             <button v-else @click="createNewPhotos" class="btn2span group">
-                <span class="next-span">Next Step</span>
-                <span class="with-span">We're with you</span>
-            </button> -->
-            <button @click="createNewPhotos" class="btn2span group">
-                <span class="next-span">Next Step</span>
+                <span class="next-span">Nextt Step</span>
                 <span class="with-span">We're with you</span>
             </button>
         </template>
@@ -333,20 +329,37 @@ export default {
                 this.imageFiles.splice(index, 0, file);
 
                 if (this.mealPhotos && index < this.mealPhotos.length) {
+                    const newMealPhotos = [...this.mealPhotos]; // Make a copy of mealPhotos array
+                    // Reorder the images in the newMealPhotos array
+                    const movedItem = newMealPhotos.splice(fromIndex, 1)[0];
+                    newMealPhotos.splice(index, 0, movedItem);
+
+                    // Update the index property of each meal photo object in the newMealPhotos array
+                    newMealPhotos.forEach((photo, i) => {
+                        photo.index = i + 1; // Assuming index starts from 1
+                    });
+
+                    // Update the mealPhotos data in Vue component
+                    this.mealPhotos = newMealPhotos;
+
                     // Perform photo update in the database
-                    const mealPhotoId = this.mealPhotos[index].id;
                     axios
-                        .put(`/meal_photos/${mealPhotoId}`, { file })
+                        .put(`/meal_photos/reorder`, {
+                            mealPhotos: newMealPhotos,
+                        })
                         .then((response) => {
                             // Handle success if necessary
                             console.log(
-                                "Meal photo updated in the database:",
+                                "Meal photos reordered in the database:",
                                 response.data
                             );
                         })
                         .catch((error) => {
                             // Handle error if necessary
-                            console.error("Error updating meal photo:", error);
+                            console.error(
+                                "Error reordering meal photos:",
+                                error
+                            );
                         });
                 }
             }
@@ -354,33 +367,31 @@ export default {
         },
 
         createNewPhotos() {
-            if (this.imageFiles.length < 10 || this.imageFiles.length > 3) {
+            if (this.imageFiles.length >= 3 && this.imageFiles.length <= 10) {
                 const formData = new FormData();
                 formData.append("meal_id", this.Meal.id);
                 for (let i = 0; i < this.imageFiles.length; i++) {
                     formData.append("images[]", this.imageFiles[i]);
+                    formData.append("indexes[]", i + 1); // Add the index
                 }
                 axios
-                    .post("/meal_photos/", formData, {
-                        meal_id: this.Meal.id,
-                        // other meal data...
+                    .post("/meal_photos", formData, {
                         headers: {
                             "Content-Type": "multipart/form-data",
                         },
                     })
                     .then((response) => {
-                        // console.log("Images uploaded successfully:", response.data);
-                        const MealId = response.data.meal.id;
+                        const MealId = response.data.image.meal_id;
                         this.$inertia.visit(
                             `/become-a-cook/${MealId}/finishing-up`
                         );
                     })
                     .catch((error) => {
                         console.error("Error uploading images:", error);
-                        this.error = "Error uploading images:";
+                        this.error = "Error uploading images";
                     });
             } else {
-                this.error = "The pictures are more than 10 or less 3";
+                this.error = "The number of pictures must be between 3 and 10";
             }
         },
     },

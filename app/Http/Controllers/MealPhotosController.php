@@ -11,44 +11,30 @@ class MealPhotosController extends Controller
 {
 
 
-
     public function store(Request $request)
     {
-
-
         $meal_id = $request->input('meal_id');
         foreach ($request->file('images') as $index => $image) {
-
-
-            //     // If you want to store in public directory directly
-            $path = $image->store('public/images'); // This will store in public/storage/images
-
+            $path = $image->store('public/images');
+    
             $meal = MealPhotos::create([
                 'meal_id' => $meal_id,
                 'meal_photo_path' => $path,
-                // 'order' => (int)$index + 1, // Assuming order starts from 1
+                'order' => $request->input('indexes')[$index], // Set the order column
             ]);
-            // Save the file path or identifier in an array
-
         }
         return response()->json(['image' => $meal]);
     }
-
-    public function update(Request $request, $id)
-    {
     
-            $photo = MealPhotos::find($id);           
-            
-            $photo->update($request->all());
-          
-                return response()->json([
-                    'data' =>   $photo,
-                    'message' => 'Successfully updated Meal Schedule!',
-                   
-                ]);
-           
-        
+    public function reorder(Request $request)
+{
+    $mealPhotos = $request->input('mealPhotos');
+    foreach ($mealPhotos as $mealPhoto) {
+        $photo = MealPhotos::findOrFail($mealPhoto['id']);
+        $photo->update(['index' => $mealPhoto['index']]);
     }
+    return response()->json(['message' => 'Meal photos reordered successfully']);
+}
 
     public function destroy($id)
     {
