@@ -310,11 +310,58 @@ export default {
                     .catch((error) => {
                         console.error("Error deleting meal photo:", error);
                     });
-
-                // // Assuming you have a method to remove the photo from the application
-                // this.deleteMealPhoto(index);
             }
         },
+
+        // drop(index, event) {
+        //     event.preventDefault();
+        //     const data = event.dataTransfer.getData("text/plain");
+        //     const fromIndex = parseInt(data);
+        //     if (fromIndex !== index) {
+        //         const temp = this.imagePreviews[fromIndex];
+        //         const file = this.imageFiles[fromIndex];
+        //         this.imagePreviews.splice(fromIndex, 1);
+        //         this.imagePreviews.splice(index, 0, temp);
+        //         this.imageFiles.splice(fromIndex, 1);
+        //         this.imageFiles.splice(index, 0, file);
+
+        //         if (this.mealPhotos && index < this.mealPhotos.length) {
+        //             const newMealPhotos = [...this.mealPhotos]; // Make a copy of mealPhotos array
+        //             // Reorder the images in the newMealPhotos array
+        //             const movedItem = newMealPhotos.splice(fromIndex, 1)[0];
+        //             newMealPhotos.splice(index, 0, movedItem);
+
+        //             // Update the index property of each meal photo object in the newMealPhotos array
+        //             newMealPhotos.forEach((photo, i) => {
+        //                 photo.index = i + 1; // Assuming index starts from 1
+        //             });
+
+        //             // Update the mealPhotos data in Vue component
+        //             this.mealPhotos = newMealPhotos;
+
+        //             // Perform photo update in the database
+        //             axios
+        //                 .put(`/meal_photos/reorder`, {
+        //                     mealPhotos: newMealPhotos,
+        //                 })
+        //                 .then((response) => {
+        //                     // Handle success if necessary
+        //                     console.log(
+        //                         "Meal photos reordered in the database:",
+        //                         response.data
+        //                     );
+        //                 })
+        //                 .catch((error) => {
+        //                     // Handle error if necessary
+        //                     console.error(
+        //                         "Error reordering meal photos:",
+        //                         error
+        //                     );
+        //                 });
+        //         }
+        //     }
+        //     this.dragIndex = null;
+        // },
 
         drop(index, event) {
             event.preventDefault();
@@ -328,42 +375,46 @@ export default {
                 this.imageFiles.splice(fromIndex, 1);
                 this.imageFiles.splice(index, 0, file);
 
+                // Reorder the meal photos if the dragged item is within the mealPhotos array
                 if (this.mealPhotos && index < this.mealPhotos.length) {
-                    const newMealPhotos = [...this.mealPhotos]; // Make a copy of mealPhotos array
-                    // Reorder the images in the newMealPhotos array
-                    const movedItem = newMealPhotos.splice(fromIndex, 1)[0];
-                    newMealPhotos.splice(index, 0, movedItem);
-
-                    // Update the index property of each meal photo object in the newMealPhotos array
-                    newMealPhotos.forEach((photo, i) => {
-                        photo.index = i + 1; // Assuming index starts from 1
-                    });
-
-                    // Update the mealPhotos data in Vue component
-                    this.mealPhotos = newMealPhotos;
-
-                    // Perform photo update in the database
-                    axios
-                        .put(`/meal_photos/reorder`, {
-                            mealPhotos: newMealPhotos,
-                        })
-                        .then((response) => {
-                            // Handle success if necessary
-                            console.log(
-                                "Meal photos reordered in the database:",
-                                response.data
-                            );
-                        })
-                        .catch((error) => {
-                            // Handle error if necessary
-                            console.error(
-                                "Error reordering meal photos:",
-                                error
-                            );
-                        });
+                    this.reorderMealPhotos(fromIndex, index); // Call reorderMealPhotos method
                 }
             }
             this.dragIndex = null;
+        },
+
+        async reorderMealPhotos(fromIndex, toIndex) {
+            // Make a copy of mealPhotos array to avoid mutating the original array
+            const newMealPhotos = [...this.mealPhotos];
+
+            // Remove the photo from the original position
+            const movedItem = newMealPhotos.splice(fromIndex, 1)[0];
+
+            // Insert the photo into the new position
+            newMealPhotos.splice(toIndex, 0, movedItem);
+
+            // Update the index property for each photo
+            newMealPhotos.forEach((photo, index) => {
+                photo.index = index + 1; // Assuming index starts from 1
+            });
+
+            try {
+                // Send a PUT request to update the meal photos order in the database
+                const response = await axios.put(`/meal_photos/reorder`, {
+                    mealPhotos: newMealPhotos,
+                });
+
+                // Update mealPhotos in the Vue component with the reordered photos
+                this.mealPhotos = newMealPhotos;
+
+                // Handle success response if necessary
+                console.log("Meal photos reordered:", response.data);
+            } catch (error) {
+                // Handle error response if necessary
+                console.error("Error reordering meal photos:", error);
+                // Rollback changes if needed
+                // this.mealPhotos = [...this.originalMealPhotos];
+            }
         },
 
         createNewPhotos() {

@@ -16,7 +16,7 @@ class MealPhotosController extends Controller
         $meal_id = $request->input('meal_id');
         foreach ($request->file('images') as $index => $image) {
             $path = $image->store('public/images');
-    
+
             $meal = MealPhotos::create([
                 'meal_id' => $meal_id,
                 'meal_photo_path' => $path,
@@ -25,16 +25,29 @@ class MealPhotosController extends Controller
         }
         return response()->json(['image' => $meal]);
     }
-    
+
     public function reorder(Request $request)
-{
-    $mealPhotos = $request->input('mealPhotos');
-    foreach ($mealPhotos as $mealPhoto) {
-        $photo = MealPhotos::findOrFail($mealPhoto['id']);
-        $photo->update(['index' => $mealPhoto['index']]);
+    {
+        $mealPhotos = $request->input('mealPhotos');
+        foreach ($mealPhotos as $mealPhoto) {
+            $photo = MealPhotos::findOrFail($mealPhoto['id']);
+            $photo->update(['index' => $mealPhoto['index']]);
+        }
+        return response()->json(['message' => 'Meal photos reordered successfully']);
     }
-    return response()->json(['message' => 'Meal photos reordered successfully']);
-}
+    public function update(Request $request, $id)
+    {
+
+        $photo = MealPhotos::find($id);
+
+        $photo->update($request->all());
+
+        return response()->json([
+            'data' =>   $photo,
+            'message' => 'Successfully updated Meal Schedule!',
+
+        ]);
+    }
 
     public function destroy($id)
     {
