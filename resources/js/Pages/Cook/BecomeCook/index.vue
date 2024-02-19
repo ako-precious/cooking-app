@@ -99,7 +99,7 @@ export default {
             axios
                 .delete(`/meal/${id}`)
                 .then((response) => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     this.pendingMeals = response.data.pending;
 
                     // Handle success if needed

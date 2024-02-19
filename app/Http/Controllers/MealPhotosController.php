@@ -14,12 +14,10 @@ class MealPhotosController extends Controller
 
     // public function index()
     // {
-
     //     $mealPhoto = MealPhotos::where('meal_id', $meal->id)->orderBy('order', 'asc')->get();   
     // }
     public function show_photo(Request $request){
-
-        $meal_id = $request->input('id');
+        $meal_id = $request->input('meal_id');
           $mealPhoto = MealPhotos::where('meal_id', $meal_id)->orderBy('order', 'asc')->first();   
           return response()->json(['imagePhoto' => $mealPhoto]);
       }
