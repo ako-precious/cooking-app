@@ -46,13 +46,14 @@ class MealScheduleFactory extends Factory
         } while ($endDate <= $startDate);  // Keep generating until end_date is after start_date
 
         $userIds = User::pluck('id')->all();
+        $status = ['pending', 'reject', 'accept', 'processed', 'ready', 'in transit', 'delivered', 'confirmed'];
         
         return [
             'meal_id' => $this->faker->randomElement($mealIds),
             'user_id' => $this->faker->randomElement($userIds),
             'meal_time' => $this->faker->randomElement($meal_time),
             'start_date' => $startDate,
-            'end_date' => $endDate,
+            'end_date' => $startDate,
 
         ];
     }

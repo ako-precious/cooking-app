@@ -68,18 +68,20 @@ class MealFactory extends Factory
             "Borscht" => ["beets", "cabbage", "potatoes", "meat", "sour cream"],
             "Croque Monsieur" => ["bread", "ham", "cheese", "bechamel sauce"],
         ];
-          $status = ['pending', ]
+          $status = ['pending', 'available' ];
+          $preference = ['manual', 'automatic'];
         // $cooksIds = Cook::pluck('user_id')->all();
-        $cooksIds = 1;
+         $cooksIds = 1;
         return [
-            'cook_id' => $this->faker->randomElement($cooksIds),
+            // 'cook_id' => $this->faker->randomElement($cooksIds),
+            'cook_id' => $cooksIds,
             'name' => $chosenFood = $this->faker->randomElement(array_keys($foodsAndIngredients)),
             'description' => implode(' ', $this->faker->sentences(3)),
             'price' => $this->faker->numberBetween(5, 50),
-            'ingredients' => json_encode([$foodsAndIngredients[$chosenFood],
-            ]),              
+            'ingredients' => json_encode([$foodsAndIngredients[$chosenFood]]),              
             'cooking_limit'=> $this->faker->numberBetween(10, 20),
-            'status'=>$this->faker->randomElement()
+            'status'=>$this->faker->randomElement($status),
+            'ordering_preferences'=>$this->faker->randomElement($preference),
         ];
     }
 }
