@@ -41,4 +41,14 @@ class OrdersController extends Controller
             return redirect()->route('welcome');
         }
     }
+    public function order()
+    {
+        $user_id = Auth::id();
+        
+                $orders = MealSchedule::where('user_id', $user_id)->with('order', 'meal', 'user')->get();
+             
+         
+        
+        return inertia('Order/Index', ['orders' => $orders]);
+    }
 }

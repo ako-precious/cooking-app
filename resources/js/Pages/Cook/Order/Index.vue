@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-import TableHeadVue from "../../../Components/Table/TableHead.vue";
+import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
 </script>
 
@@ -109,7 +109,22 @@ import TableRow from "./TableRow.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Customer's NAme
+                                                       Cook's NAme
+                                                    </template>
+                                                    <template #symbols>
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-up"
+                                                        />
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-down"
+                                                        />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Meal Price
                                                     </template>
                                                     <template #symbols>
                                                         <font-awesome-icon

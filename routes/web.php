@@ -59,6 +59,7 @@ Route::middleware([
     });
     
     Route::resource('cook/order',OrdersController::class);
+    Route::get('meal-order', [OrdersController::class, 'order' ]);
     
     
     //photo Controller
