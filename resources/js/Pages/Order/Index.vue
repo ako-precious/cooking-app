@@ -12,7 +12,12 @@ import TableRow from "./TableRow.vue";
             <div
                 class="m-auto flex flex-col  justify-center h-full px-6 lg:pb-20 w-full"
             >
-               
+                <div class="py-5 lg:pb-12">
+                    <h1
+                        class="font-semibold text-2xl text-center lg:text-4xl text-oynx dark:text-snow">
+                        Continue to create your menu
+                    </h1>
+                </div>
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
                         <div class="sm:-mx-6 lg:-mx-8">
@@ -91,8 +96,8 @@ import TableRow from "./TableRow.vue";
                                                 :key="meal.id"
                                                 class="animate-fade-in border-b py-4" >
 
-                                                <TableRow :meal="meal">
-                                                </TableRow>
+                                                <!-- <TableRow :meal="meal">
+                                                </TableRow> -->
                                             </tr>
                                         </tbody>
                                     </table>

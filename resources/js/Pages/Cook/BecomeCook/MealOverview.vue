@@ -157,7 +157,6 @@ export default {
     methods: {
         saveData() {
             const status = 'unavailable'
-            
             axios
                 .put("/meal/status/" + this.meal.data.id, { status })
                 .then((response) => {

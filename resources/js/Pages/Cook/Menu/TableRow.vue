@@ -19,7 +19,7 @@ defineProps(["meal"]);
         </Link>
     </td>
     <td v-else class="whitespace-nowrap pl-6 py-3 font-semibold">
-        <Link :href="`/become-a-cook`" class="flex items-center j">
+        <Link :href="`/become-a-cook/${meal.id}/overview`" class="flex items-center j">
             <div class="w-16 h-16 p-4 ">
                 <font-awesome-icon icon="image" class=" w-full h-full object-cover rounded text-persian "/>
                   
