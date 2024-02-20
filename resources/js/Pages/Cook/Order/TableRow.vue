@@ -83,21 +83,7 @@ export default {
                 .toString()
                 .padStart(2, "0")}`;
             return formattedDate;
-        },
-        getImage() {
-            const id = this.meal.id;
-            axios
-                .get(`/meal_photos/show-photo?meal_id=${id}`)
-                .then((response) => {
-                    if (response.data.imagePhoto.meal_photo_path) {
-                        (this.meal_photo =`/storage/${response.data.imagePhoto.meal_photo_path}`.replace("/public",""))                       
-                    }
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error("Error saving data:", error);
-                });
-        },
+        },      
         truncatedIng(description) {
             // Check if description exists and has more than 30 characters
             if (description && description.length > 1) {

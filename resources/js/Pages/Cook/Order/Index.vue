@@ -92,7 +92,52 @@ import TableRow from "./TableRow.vue";
                                             <tr>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Title
+                                                        Meal Title
+                                                    </template>
+                                                    <template #symbols>
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-up"
+                                                        />
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-down"
+                                                        />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Customer's NAme
+                                                    </template>
+                                                    <template #symbols>
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-up"
+                                                        />
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-down"
+                                                        />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Meal Time
+                                                    </template>
+                                                    <template #symbols>
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-up"
+                                                        />
+                                                        <font-awesome-icon
+                                                            class="text-xs"
+                                                            icon="caret-down"
+                                                        />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Meal Date
                                                     </template>
                                                     <template #symbols>
                                                         <font-awesome-icon
@@ -122,21 +167,6 @@ import TableRow from "./TableRow.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Price
-                                                    </template>
-                                                    <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
-                                                    </template>
-                                                </TableHeadVue>
-                                                <TableHeadVue>
-                                                    <template #title>
                                                         Quick Order
                                                     </template>
                                                     <template #symbols>
@@ -152,14 +182,15 @@ import TableRow from "./TableRow.vue";
                                                 </TableHeadVue>
                                             </tr>
                                         </thead>
+                                        <!-- {{ orders  }} -->
                                         <tbody>
-                                           <!-- <tr v-for="meal in menu"
+                                           <tr v-for="meal in orders"
                                                 :key="meal.id"
-                                                class="animate-fade-in border-b py-4" > -->
-{{ orders }}
-                                                <!-- <TableRow :meal="meal">
-                                                </TableRow> -->
-                                            <!-- </tr> -->
+                                                class="animate-fade-in border-b py-4" >
+{{ meal }}
+                                                <!-- <TableRow :meal="meal"> -->
+                                                <!-- </TableRow> -->
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -180,6 +211,8 @@ import axios from "axios";
 export default {
     props: {
         orders: Object,
+    }, mounted() {
+        console.log(this.orders);
     },
   
 };
