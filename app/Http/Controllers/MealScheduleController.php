@@ -61,7 +61,7 @@ class MealScheduleController extends Controller
         ]);
 
         $order = new Orders();
-        $order->meal_id = $id;
+        $order->meal_schedule_id = $id;
         $order->total_price = 100.00;
         $order->session_id = $checkout_session->id;
         $order->save();
@@ -98,7 +98,7 @@ class MealScheduleController extends Controller
             
             if ($order->status === 'paid') {
                 // Fetch the meal schedule associated with the order
-                $mealSchedule = MealSchedule::find($order->meal_id);
+                $mealSchedule = MealSchedule::find($order->meal_schedule_id);
             
                 if ($mealSchedule) {
                     // Update the status of the meal schedule to 'processed'

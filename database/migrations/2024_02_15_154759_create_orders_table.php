@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('meal_id'); // meal schedule id 
-            $table->foreign('meal_id', 'meal_oder')->references('id')->on('meal_schedules');
+            $table->unsignedBigInteger('meal_schedule_id'); // meal schedule id 
+            $table->foreign('meal_schedule_id ', 'meal_oder')->references('id')->on('meal_schedules');
             $table->float('total_price', 8,2);
             $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
             $table->string('session_id');

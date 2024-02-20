@@ -16,18 +16,20 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        $user_id =   Auth::id();
+        $user_id = Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
-            # code.
-            $menu = Orders::where('cook_id', $user_id)->with('mealPhotos')->get();
-            // foreach ($menu as $meal) {
-            //     # code...
-            //     $mealPhoto = MealPhotos::where('meal_id', $meal->id)->orderBy('order', 'asc')->first();                
-            // }
-            // dd($mealPhoto);
-            return inertia('Cook/Menu/Index', ['menu' => $menu]);
-        } else {
+            $orders = []; // Initialize an empty array to store all orders
+            $menu = Meal::where('cook_id', $user_id)->get();
+            foreach ($menu as $meal) {
+                // Fetch orders for each meal and add them to the $orders array
+                $orders[$meal->id] = MealSchedule::where('meal_id', $meal->id)->get();
+            }
+            dd($orders);
+             // You can uncomment this line for debugging
+            return inertia('Cook/Order/Index', ['orders' => $orders]);
+        }
+         else {
             # code...
             return redirect()->route('welcome');
         }
