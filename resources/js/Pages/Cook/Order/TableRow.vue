@@ -3,50 +3,30 @@ import { Head, Link } from "@inertiajs/vue3";
 defineProps(["meal"]);
 </script>
 <template>
-    <td v-if="meal.name" class="whitespace-nowrap pl-6 py-3 font-semibold">
-        <Link :href="`/cook/menu/edit`" class="flex items-center j">
-            <div class="w-16 h-16 ">
-                <img
-                    :src="meal_photo"
-                    :alt="meal_photo"
-                    class=" w-full h-full object-cover rounded"
-                />
-            </div>
-            <p class="pl-4 lg:pl-8">
-
-                {{ meal.name }}
-            </p>
-        </Link>
-    </td>
-    <td v-else class="whitespace-nowrap pl-6 py-3 font-semibold">
+    
+    <td class="whitespace-nowrap px-3 py-3 font-semibold">
         <Link :href="`/become-a-cook/${meal.id}/overview`" class="flex items-center j">
-            <div class="w-16 h-16 p-4 ">
-                <font-awesome-icon icon="image" class=" w-full h-full object-cover rounded text-persian "/>
-                  
-            </div>
-
+          
             <p class=" pl-4 lg:pl-8">
 
-                Meal created on {{ FormattedDate(meal.created_at) }}
+                {{ meal.meal.name }}
             </p>
         </Link>
     </td>
-    <td class="whitespace-nowrap px-6 py-3">{{ meal.status }}</td>
-    <td class="whitespace-nowrap px-6 py-3">$ {{ meal.price }}</td>
+    <td class="whitespace-nowrap px-3 py-3">{{ meal.user.name }}</td>
+    <td class="whitespace-nowrap px-3 py-3"> {{ meal.meal_time }}</td>
+    <td class="whitespace-nowrap px-3 py-3">  {{ FormattedDate(meal.created_at) }}</td>
 
-    <td
-        v-if="meal.ordering_preferences == 'automatic'"
-        class="whitespace-nowrap px-6 py-3 text-center"
-    >
+    <td             class="whitespace-nowrap px-3 py-3 text-center">
     <div class=" flex items-center ">
-        <font-awesome-icon class="text-persian text-lg pr-1" icon="toggle-on" />
+        
        <p>
-        On
+        {{ meal.status }}
        </p> 
 
     </div>
     </td>
-    <td v-else class="whitespace-nowrap px-6 py-3 ">
+    <!-- <td v-else class="whitespace-nowrap px-6 py-3 ">
         <div class=" flex items-center ">
             <font-awesome-icon
                 class="text-persian text-lg pr-1"
@@ -54,7 +34,7 @@ defineProps(["meal"]);
             />
             Off
         </div>
-    </td>
+    </td> -->
     <td class="whitespace-nowrap px-6 py-3"></td>
 </template>
 
@@ -69,9 +49,6 @@ export default {
     created() {
         this.FormattedDate();
         this.truncatedIng();
-    },
-    mounted() {
-        this.getImage();
     },
     methods: {
         FormattedDate(timestamp) {

@@ -22,7 +22,7 @@ class OrdersController extends Controller
             $orders = []; // Initialize an empty array to store all orders
             $menu = Meal::where('cook_id', $user_id)->get();
             foreach ($menu as $meal) {
-                // Fetch orders for each meal and add them to the $orders array
+                // Fetch orders for each meal and add them to the $orders array 
                 $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
                 
                 if ($mealSchedules->isNotEmpty()) {
@@ -32,7 +32,7 @@ class OrdersController extends Controller
                 }
             }
         
-            dd($orders);
+            // dd($orders);
             // You can uncomment this line for debugging
             return inertia('Cook/Order/Index', ['orders' => $orders]);
         }
