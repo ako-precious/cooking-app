@@ -23,9 +23,15 @@ class OrdersController extends Controller
             $menu = Meal::where('cook_id', $user_id)->get();
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array
-                $orders[$meal->id] = MealSchedule::where('meal_id', $meal->id)->get();
+                
+                $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
+            if ($mealSchedules->isNotEmpty()) {
+                // Add the meal and its related orders to the $orders array
+                $orders[$meal->id] = $mealSchedules;
             }
-            dd($orders);
+            }
+
+            // dd($orders);
              // You can uncomment this line for debugging
             return inertia('Cook/Order/Index', ['orders' => $orders]);
         }

@@ -62,7 +62,7 @@ class MealScheduleController extends Controller
 
         $order = new Orders();
         $order->meal_schedule_id = $id;
-        $order->total_price = 100.00;
+        $order->total_price = $meal_order->meal->price;
         $order->session_id = $checkout_session->id;
         $order->save();
 
