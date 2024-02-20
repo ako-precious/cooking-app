@@ -4,7 +4,7 @@ defineProps(["meal"]);
 </script>
 <template>
     
-    <td class="whitespace-nowrap px-3 py-3 font-semibold">
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
         <Link :href="`/become-a-cook/${meal.id}/overview`" class="flex items-center j">
           
             <p class=" pl-4 lg:pl-8">
@@ -13,11 +13,11 @@ defineProps(["meal"]);
             </p>
         </Link>
     </td>
-    <td class="whitespace-nowrap px-3 py-3">{{ meal.user.name }}</td>
-    <td class="whitespace-nowrap px-3 py-3"> {{ meal.meal_time }}</td>
-    <td class="whitespace-nowrap px-3 py-3">  {{ FormattedDate(meal.created_at) }}</td>
+    <td class="whitespace-nowrap px-6 py-3">{{ meal.user.name }}</td>
+    <td class="whitespace-nowrap px-6 py-3"> {{ meal.meal_time }}</td>
+    <td class="whitespace-nowrap px-6 py-3">  {{ FormattedDate(meal.created_at) }}</td>
 
-    <td             class="whitespace-nowrap px-3 py-3 text-center">
+    <td             class="whitespace-nowrap px-6 py-3 text-center">
     <div class=" flex items-center ">
         
        <p>

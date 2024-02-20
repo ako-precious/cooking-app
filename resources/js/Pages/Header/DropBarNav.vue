@@ -51,7 +51,7 @@ defineProps({
                         >
                             <Link
                                 v-if="$page.props.auth.user"
-                                :href="route('dashboard')"
+                                :href="route('meal-order')"
                                 class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                             >
                                 Dashboard<font-awesome-icon

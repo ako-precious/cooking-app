@@ -109,22 +109,7 @@ import TableRow from "./TableRow.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                       Cook's NAme
-                                                    </template>
-                                                    <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
-                                                    </template>
-                                                </TableHeadVue>
-                                                <TableHeadVue>
-                                                    <template #title>
-                                                        Meal Price
+                                                        Customer's NAme
                                                     </template>
                                                     <template #symbols>
                                                         <font-awesome-icon

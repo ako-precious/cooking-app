@@ -42,9 +42,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return Inertia::render('Dashboard');
+    // })->name('dashboard');
     
     Route::get('/become-a-cook/overview', function () {
         $user_id =   Auth::id();      
@@ -59,7 +59,7 @@ Route::middleware([
     });
     
     Route::resource('cook/order',OrdersController::class);
-    Route::get('meal-order', [OrdersController::class, 'order' ]);
+    Route::get('meal-order', [OrdersController::class, 'order' ])->name('meal-order');
     
     
     //photo Controller
@@ -70,7 +70,7 @@ Route::middleware([
     //Meal Schedule
     Route::resource('/schedule', MealScheduleController::class);
     Route::post('/checkout', [MealScheduleController::class, 'checkout']);
-    Route::get('/meal-schedule', [MealScheduleController::class, 'schedule']);
+    Route::get('/calendar', [MealScheduleController::class, 'schedule']);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
     Route::get('/process_order/{id}',  [MealScheduleController::class, 'process_order']);
     Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');

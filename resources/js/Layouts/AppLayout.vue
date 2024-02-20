@@ -64,7 +64,7 @@ const logout = () => {
         <SideBarHeader class="">
              <!-- Logo -->
              <div class="shrink-0 flex items-center">
-                                <Link :href="route('dashboard')">
+                                <Link :href="route('welcome')">
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div>
@@ -79,14 +79,14 @@ const logout = () => {
        
            <SideBarCollapse>
                <li class="mt-0.5 w-full group">
-                   <Link :href="`/`">
+                   <Link :href="`/meal-order`">
                        <SideBarLink :class="{ 'activesidelink': isDashboard }"  >
                            <SideBarIcon class="group-hover:animate-bounce">
                                <font-awesome-icon
                                    icon="fa-solid fa-house"
                                    style="color: #2a744a"
                            /></SideBarIcon>
-                           <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Dashboard </SideBarSpan>
+                           <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Meal Order </SideBarSpan>
                        </SideBarLink>
                    </Link>
                </li>
@@ -94,13 +94,13 @@ const logout = () => {
              
                 
                <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-schedule`">
+                   <Link :href="`/calendar`">
                    <SideBarLink :class="getRouteClass('meal-schedule')"  class="  transition-all duration-200 delay-75">
                        <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
                           
                            <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
                        </SideBarIcon>
-                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Meal schedule </SideBarSpan>
+                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Calendar </SideBarSpan>
                    </SideBarLink>
                </Link>
                </li>
