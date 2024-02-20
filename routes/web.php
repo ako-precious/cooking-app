@@ -5,6 +5,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
+use App\Http\Controllers\OrdersController;
 use App\Models\Cook;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,7 @@ Route::middleware([
     Route::get('/meal_photos/show-photo', [MealPhotosController::class, 'show_photo']);
     Route::resource('/meal_photos', MealPhotosController::class);
     Route::get('/checkUser', [CookController::class, "checkCook"]);
+    Route::resource('cook/order',OrdersController::class);
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
     Route::put('meal/status/{id}', [MealController::class, 'status' ]);

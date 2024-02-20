@@ -23,6 +23,7 @@ class MealScheduleController extends Controller
     public function schedule()
     {
         // dd(Auth::id()) ;
+        return inertia('Meal-Schedule/Index');
         return inertia('Meal-Schedule/Index', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),

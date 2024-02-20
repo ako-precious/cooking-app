@@ -26,7 +26,7 @@ export default {
         };
     },
     mounted(){
-        console.log(this.meal);
+        // console.log(this.meal);
 
     },
     created() {
