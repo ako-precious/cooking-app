@@ -88,7 +88,11 @@ export default {
             const id = this.meal.id;
             axios
                 .get(`/meal_photos/show-photo?meal_id=${id}`)
-                .then((response) => {(this.meal_photo =`/storage/${response.data.imagePhoto.meal_photo_path}`.replace("/public",""))})
+                .then((response) => {
+                    if (response.data.imagePhoto.meal_photo_path) {
+                        (this.meal_photo =`/storage/${response.data.imagePhoto.meal_photo_path}`.replace("/public",""))                       
+                    }
+                })
                 .catch((error) => {
                     // Handle error
                     console.error("Error saving data:", error);

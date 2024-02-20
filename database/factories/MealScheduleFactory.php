@@ -54,6 +54,7 @@ class MealScheduleFactory extends Factory
             'meal_time' => $this->faker->randomElement($meal_time),
             'start_date' => $startDate,
             'end_date' => $startDate,
+            'status' => $status,
 
         ];
     }
