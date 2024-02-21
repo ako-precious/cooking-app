@@ -79,12 +79,12 @@ const logout = () => {
        
            <SideBarCollapse>
                <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-order`">
-                       <SideBarLink :class="{ 'activesidelink': isDashboard }"  >
+                   <Link :href="`/meal-schedule`">
+                       <SideBarLink :class="getRouteClass('meal-schedule')"    >
                            <SideBarIcon class="group-hover:animate-bounce">
-                               <font-awesome-icon
-                                   icon="fa-solid fa-house"
-                                   style="color: #2a744a"
+                            <font-awesome-icon
+                                    icon="door-open"
+                                    class="ml-2 "  
                            /></SideBarIcon>
                            <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Meal Order </SideBarSpan>
                        </SideBarLink>
@@ -95,7 +95,7 @@ const logout = () => {
                 
                <li class="mt-0.5 w-full group">
                    <Link :href="`/calendar`">
-                   <SideBarLink :class="getRouteClass('meal-schedule')"  class="  transition-all duration-200 delay-75">
+                   <SideBarLink :class="getRouteClass('calendar')"  class="  transition-all duration-200 delay-75">
                        <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
                           
                            <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
@@ -106,17 +106,7 @@ const logout = () => {
                </li>
                 
               
-               <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-schedule`">
-                   <SideBarLink :class="getRouteClass('teams')"  class="  transition-all duration-200 delay-75">
-                       <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
-                          
-                           <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
-                       </SideBarIcon>
-                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Meal schedule </SideBarSpan>
-                   </SideBarLink>
-               </Link>
-               </li>
+             
               
            </SideBarCollapse>
     
@@ -366,10 +356,10 @@ export default {
         updateTextBasedOnFilePath( filePath ) {
         
 
-            if (filePath.includes("players")) {
-                this.resultText = "Players";
-            } else if (filePath.includes("teams")) {
-                this.resultText = "Teams";
+            if (filePath.includes("meal-schedule")) {
+                this.resultText = "Meal schedule";
+            } else if (filePath.includes("Calendar")) {
+                this.resultText = "Calendar";
             } else if (filePath.includes("batting")) {
                 this.resultText = "Batting";
             } else if (filePath.includes("bowling")) {
