@@ -1,8 +1,13 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import axios from "axios";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import Login from "@/Pages/Auth/Login.vue";
+import TextInput from "@/Components/TextInput.vue";
 </script>
 
 <template>
+    <Head>{Mwal}</Head>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -18,10 +23,10 @@ import { Head, Link } from "@inertiajs/vue3";
                     </h1>
                 </div>
                 <div
-                    class="flex flex-col lg:flex-row lg:h-[18rem] overflow-scroll disable-scrollbars"
+                    class="flex flex-col lg:flex-row h-[18rem] overflow-scroll disable-scrollbars"
                 >
                     <div class="lg:w-1/2">
-                        <div class="overflow-hidden">
+                        <div class="overflow-hidden px-4 pb-4 lg:p-0">
                             <img
                                 class="h-auto max-w-full rounded-lg"
                                 src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
@@ -123,7 +128,7 @@ import { Head, Link } from "@inertiajs/vue3";
                 </div>
 
                 <div class="lg:w-full py-8">
-                    <div class="flex flex-col w-full">
+                    <div class="flex flex-col lg:flex-row  w-full relative">
                         <div class="lg:w-1/2">
 
                        
@@ -184,8 +189,102 @@ import { Head, Link } from "@inertiajs/vue3";
                         class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
                     />
                        </div>  
-                       <div   class="lg:w-1/2">
-                        
+                       <div   class="lg:w-1/2  relative max-h-screen">
+                        <div class="lg:p-12 sticky top-0 z-10 ">
+
+                            <div class=" shadow-reverse rounded-lg   ">
+                                
+                                <form @submit.prevent class="p-4 md:py-8 text-center">
+                                <h2 class="text-oynx dark:text-snow font-bold text-xl">
+                                    New Meal Schedule
+                                </h2>
+                                <div class="py-4 relative">
+                                    <TextInput
+                                        readonly
+                                        required
+                                        class="my-2 w-full"
+                                        v-model="newSchedule.meal_name"
+                                        placeholder="Meal Name"
+                                    />
+                                    <TextInput
+                                        readonly
+                                        hidden
+                                        required
+                                        class="my-2 w-full"
+                                        type="number"
+                                        v-model="newSchedule.meal_id"
+                                        placeholder=""
+                                    />
+                                    <TextInput
+                                        readonly
+                                        hidden
+                                        required
+                                        class="my-2 w-full"
+                                        type="number"
+                                        v-model="newSchedule.user_id"
+                                        placeholder=""
+                                    />
+                                </div>
+        
+                                <div class="py-4 flex justify-between">
+                                    <TextInput
+                                        required
+                                        class="w-full"
+                                        v-model="newSchedule.start_date"
+                                        type="date"
+                                        placeholder=""
+                                    />
+                                    <TextInput
+                                    hidden
+                                        required
+                                        class="w-[47%]"
+                                        v-model="newSchedule.end_date"
+                                        type="date"
+                                        placeholder=""
+                                    />
+                                </div>
+                                <div class="py-4 flex justify-between">
+                                    <select
+                                        required
+                                        v-model="newSchedule.meal_time"
+                                        title="Meal Time"
+                                        placeholder="Choose a meal time"
+                                        class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                                    >
+                                        <option
+                                            selected
+                                            class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                        >
+                                            {{ newSchedule.meal_time }}
+                                        </option>
+                                        <option
+                                            class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                            value="breakfast"
+                                        >
+                                            Breakfast
+                                        </option>
+                                        <option
+                                            class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                            value="launch"
+                                        >
+                                            Launch
+                                        </option>
+                                        <option
+                                            class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                            value="dinner"
+                                        >
+                                            Dinner
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="flex justify-center item-center">
+                                    <PrimaryButton @click="addSchedule" class="w-full"
+                                        >Order</PrimaryButton
+                                    >
+                                </div>
+                            </form>
+                            </div>
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -195,6 +294,186 @@ import { Head, Link } from "@inertiajs/vue3";
 </template>
 
 <script>
+export default {
+    inheritAttrs: false,
+    data() {
+        return {
+            userId: "",
+            message: "",
+            error: "",
+            newSchedule: {
+                meal_name: "",
+                meal_time: "",
+                user_id: "",
+                start_date: "",
+                end_date: "",
+            },
+            formattedEvents: [],
+            newEventModalVisible: false,
+            isHeaderFixed: false,
+        };
+    },
+    mounted(){
+        // console.log(this.meal);
+
+    },
+    created() {
+        this.getMeals(),
+            this.handleScroll(),
+            this.filterMeals(),
+            this.fetchData(),
+            this.closeModal();
+    },
+    methods: {
+        getMeals() {
+            axios
+                .get("/api/meals")
+                .then((response) => {
+                    this.meals = response.data;
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
+        },
+        filterMeals(searchText) {
+            axios
+                .get(`/api/filtered-meals?query=${searchText}`)
+                .then((response) => {
+                    if (response.data.length != 0) {
+                        this.meals = response.data;
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching filtered data:", error);
+                });
+        },
+        async loadMoreData() {
+            if (this.hasMoreData) {
+                this.page++;
+                await this.fetchData();
+            }
+        },
+        async fetchData() {
+            try {
+                const response = await axios.get(
+                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
+                );
+                const newMeals = response.data;
+
+                // If there is no new data, set hasMoreData to false
+                if (newMeals.length === 0) {
+                    this.hasMoreData = false;
+                }
+
+                // Concatenate new data to the existing meals
+                this.meals = [...this.meals, ...newMeals];
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        },
+        handleScroll() {
+            // Adjust the scroll threshold as needed
+            const scrollThreshold = 50;
+            this.isHeaderFixed = window.scrollY > scrollThreshold;
+        },
+        openModal(meal) {
+            // Get the current date
+            const currentDate = new Date();
+
+            // Add one day to the current date
+            const nextDayDate = new Date(currentDate);
+            nextDayDate.setDate(currentDate.getDate() + 1);
+
+            // Format the next day date as an ISO string without the time part
+            const nextDayISOString = nextDayDate
+                .toISOString()
+                .replace(/T.*$/, "");
+            // clear everything in the div and close it
+            this.newEventModalVisible = true;
+            if (this.$page.props.auth.user) {
+                // this.suggestedMeal = [];
+                this.newSchedule = {
+                    meal_name: meal.title,
+                    meal_id: meal.id.toString(),
+                    user_id: this.$page.props.auth.user.id.toString(),
+                    start_date: nextDayISOString,
+                    end_date: nextDayISOString,
+                    meal_time: "Choose a Meal time",
+                };
+            }
+        },
+        closeModal() {
+            // clear everything in the div and close it
+            this.newEventModalVisible = false;
+            this.newSchedule = {
+                meal_name: "",
+                start_date: "",
+                end_date: "",
+                meal_time: "",
+            };
+            this.message = "";
+            this.error = "";
+        },
+        formatSchedule() {
+            this.formattedEvents = {
+                meal_id: this.newSchedule.meal_id,
+                user_id: this.newSchedule.user_id,
+                meal_time: this.newSchedule.meal_time,
+                start_date: this.newSchedule.start_date,
+                end_date: this.newSchedule.end_date,
+            };
+        },
+
+        addSchedule() {
+            const today = new Date().toISOString().replace(/T.*$/, "");
+            if (
+                this.newSchedule.start_date == "" ||
+                this.newSchedule.end_date == "" ||
+                this.newSchedule.meal_time == "" ||
+                this.newSchedule.user_id == ""
+            ) {
+                this.error =
+                    "Please fill in all  fields to create your schedule.";
+            } else if (today >= this.newSchedule.start_date) {
+                this.error =
+                    "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
+            } else if (
+                this.newSchedule.start_date > this.newSchedule.end_date
+            ) {
+                this.error =
+                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
+            } else {
+                this.formatSchedule();
+
+                axios
+                    .post("/schedule", this.formattedEvents)
+                    .then((resp) => {
+                        this.message = resp.data.message;
+                       
+                        const MealId = resp.data.data.id;
+                        this.$inertia.visit(
+                            `/process_order/${MealId}`
+                        );
+
+                        // setTimeout(() => {
+                        //     this.closeModal();
+                        //     // Uncomment the line below if you want to toggle addingMode after the delay
+                        //     // this.addingMode = !this.addingMode;
+                        // }, 5000);
+                    })
+                    .catch((err) => {
+                        this.error = "Unable to add Meal !";
+                        setTimeout(() => {
+                            this.error = "";
+                            console.log("Unable to add Meal !", err);
+                        }, 10000);
+                    });
+            }
+        },
+    },
+};
+</script>
+<!-- <script>
 import axios from "axios";
 export default {
     props: {
@@ -219,7 +498,7 @@ export default {
         },
     },
 };
-</script>
+</script> -->
 
 <style scoped>
 @keyframes fade-in {
