@@ -89,10 +89,10 @@ import TableRow from "./TableRow.vue";
                                 >
                                     <div class="overflow-x-scroll disable-scrollbars ">
                                         <table
-                                            class="min-w-full text-left text-sm font-light relative"
-                                        >
+                                            class="w-full text-left text-sm font-light relative"
+                                        > 
                                             <thead
-                                                class="align-bottom shadow-sm translate-x-0 sticky top-1"
+                                                class="align-bottom shadow-sm translate-x-0 sticky top-0 z-10  border-b"
                                             >
                                                 <tr>
                                                     <TableHeadVue>
