@@ -171,54 +171,6 @@ import TableRow from "./TableRow.vue";
                                                         </template>
                                                     </TableHeadVue>
                                                     
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            status
-                                                        </template>
-                                                        <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            status
-                                                        </template>
-                                                        <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            status
-                                                        </template>
-                                                        <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    
                                                 </tr>
                                             </thead>
                                            

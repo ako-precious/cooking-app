@@ -71,6 +71,9 @@ export default {
                 return description;
             }
         },
+        getCook(id){
+            
+        }
     },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
     <hr
-        class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent "
+        class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent "
     />
     <div
         class="items-center block overflow-y-auto h-full relative disable-scrollbars"
