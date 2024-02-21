@@ -169,20 +169,24 @@ import { Head, Link } from "@inertiajs/vue3";
                         />
                         <div class="py-5">
                             <h1
-                                class="font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
+                            class="font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
                             >
-                                Ingredients
-                            </h1>
-                            <ul>
-                                <li>jk</li>
-                                <li>jk</li>
-                                <li>jk</li>
-                                <li>jk</li>
-                            </ul>
-                        </div>
-                       </div>  <div
-                            class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10"
-                        ></div>
+                            Ingredients
+                        </h1>
+                        <ul>
+                            <li>jk</li>
+                            <li>jk</li>
+                            <li>jk</li>
+                            <li>jk</li>
+                        </ul>
+                    </div>
+                    <hr
+                        class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+                    />
+                       </div>  
+                       <div   class="lg:w-1/2">
+                        
+                    </div>
                     </div>
                 </div>
             </div>
