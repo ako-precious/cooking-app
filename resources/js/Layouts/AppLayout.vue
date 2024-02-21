@@ -86,7 +86,7 @@ const logout = () => {
                                     icon="door-open"
                                     class="ml-2 "  
                            /></SideBarIcon>
-                           <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Meal Order </SideBarSpan>
+                           <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Meal Schedule </SideBarSpan>
                        </SideBarLink>
                    </Link>
                </li>

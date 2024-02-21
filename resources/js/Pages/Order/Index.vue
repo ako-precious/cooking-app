@@ -6,12 +6,12 @@ import TableRow from "./TableRow.vue";
 </script>
 
 <template>
-    <AppLayout title="Meal Order">
+    <AppLayout title="Meal Schedule">
      
         <div
             class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center  selection:bg-lighred selection:text-white"
         >
-            <div class="container relative mx-auto text-oynx dark:text-snow overflow-hidden">
+            <div class="container relative mx-auto text-oynx dark:text-snow ">
                 <div
                     class="m-auto flex flex-col justify-center h-full  lg:pb-10 w-full py-6 shadow-reverse rounded-lg  my-2"
                 >
