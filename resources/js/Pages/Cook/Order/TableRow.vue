@@ -13,7 +13,7 @@ defineProps(["meal"]);
             </p>
         </Link>
     </td>
-    <td class="whitespace-nowrap px-6 py-3">{{ meal.user }}</td>
+    <td class="whitespace-nowrap px-6 py-3">{{ meal.user.name }}</td>
     <td class="whitespace-nowrap px-6 py-3"> {{ meal.meal_time }}</td>
     <td class="whitespace-nowrap px-6 py-3">  {{ FormattedDate(meal.created_at) }}</td>
 

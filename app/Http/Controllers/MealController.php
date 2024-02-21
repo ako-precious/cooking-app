@@ -75,7 +75,7 @@ class MealController extends Controller
         return response()->json(['meal' => $meal, 'request' =>$request->all()]);
     }
     public function show($id){
-        $Meal = Meal::with('user')->find($id);
+        $Meal = Meal::with('user','mealPhotos')->find($id);
         return response()->json(['meal' => $Meal]);
     }
     public function destroy($id)

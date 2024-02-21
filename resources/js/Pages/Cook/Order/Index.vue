@@ -84,7 +84,7 @@ import TableRow from "./TableRow.vue";
                             <div
                                 class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
-                                <div class="overflow-x-scroll disable-scrollbar">
+                                <div class="overflow-x-scroll disable-scrollbars">
                                     <table
                                         class="w-full px-4 text-left text-sm font-light relative"
                                     >
