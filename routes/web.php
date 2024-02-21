@@ -77,10 +77,11 @@ Route::middleware([
     
     //Meal Controller
     Route::resource('/meal', MealController::class);
+    Route::get('meals/{id}', [MealController::class, 'meals' ]);    
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
-    Route::put('meal/status/{id}', [MealController::class, 'status' ]);
     Route::put('meal/price/{id}', [MealController::class, 'price' ]);    
+    Route::put('meal/status/{id}', [MealController::class, 'status' ]);
     Route::put('meal/region/{id}', [MealController::class, 'region' ]);
     Route::put('meal/preference/{id}', [MealController::class, 'preference' ]);    
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
@@ -99,7 +100,7 @@ Route::middleware([
     Route::get('/become-a-cook/{newMealId}/finishing-up', [CookController::class, 'finish_up' ]);
     Route::get('/become-a-cook', [CookController::class, 'pending_meal'])->name('become-a-cook');
     Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients' ]);
+    Route::get('/become-a-cook/{newMealId}/final-overview',[CookController::class, 'final_overview' ]);
     Route::get('/become-a-cook/{newMealId}/about-your-meal', [CookController::class, 'about_your_meal']);
     Route::get('/become-a-cook/{newMealId}/ordering-preference', [CookController::class, 'ordering_preference' ]);
-    Route::get('/become-a-cook/{newMealId}/final-overview',[CookController::class, 'final_overview' ]);
 });

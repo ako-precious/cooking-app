@@ -8,272 +8,181 @@ import { Head, Link } from "@inertiajs/vue3";
     >
         <div class="container relative mx-auto overflow-hidden">
             <div
-                class="m-auto flex flex-col max-w-[1000px] justify-center h-full px-6 lg:pb-20 w-full"
+                class="m-auto flex flex-col justify-center h-full px-6 lg:px-8 lg:pb-20 w-full"
             >
-                <div class="py-5 lg:pb-12">
+                <div class="py-5">
                     <h1
-                        class="font-semibold text-2xl text-center lg:text-4xl text-oynx dark:text-snow"
+                        class="font-semibold text-3xl lg:text-4xl text-oynx dark:text-snow"
                     >
-                        Continue to create your menu
+                        Meal Title
                     </h1>
                 </div>
-                <div class="lg:w-full">
-                    <div class="flex flex-col w-full">
-                        <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
-                            <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
-                            <div class="flex flex-col overflow-x-auto">
-                                <div class="sm:-mx-6 lg:-mx-8">
-                                    <div
-                                        class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
-                                    >
-                                        <div class="overflow-x-auto">
-                                            <table
-                                                class="min-w-full text-left text-sm font-light"
-                                            >
-                                                <thead
-                                                    class="align-bottom shadow-sm translate-x-0"
-                                                >
-                                                    <tr>
-                                                        <th
-                                                            class="relative px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
-                                                        >
-                                                            <div class="flex items-center">
-                                                                Id
-                                                                <div
-                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
-                                                                >
-                                                                    <div
-                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
-                                                                    ></div>
-                                                                    <div
-                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
-                                                                    ></div>
-                                                                </div>
-                                                            </div>
-                                                        </th>
-                                                        <!-- <th
-            class="relative px-6 py-3 pl-2 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-            Product Detail
-            <div class="cursor-pointer absolute top-1/3 right-3.5  flex flex-col justify items-center">
-                <div class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid">
-                </div>
-                <div  class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid">
-                </div>
-            </div>
-        </th> -->
-                                                        <th
-                                                            class="relative px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
-                                                        >
-                                                            <div class="flex items-center">
-                                                                Part Number
-                                                                <div
-                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
-                                                                >
-                                                                    <div
-                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
-                                                                    ></div>
-                                                                    <div
-                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
-                                                                    ></div>
-                                                                </div>
-                                                            </div>
-                                                        </th>
-                                                        <th
-                                                            class="relative px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
-                                                        >
-                                                            <div class="flex items-center">
-                                                                Product Price
-                                                                <div
-                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
-                                                                >
-                                                                    <div
-                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
-                                                                    ></div>
-                                                                    <div
-                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
-                                                                    ></div>
-                                                                </div>
-                                                            </div>
-                                                        </th>
-
-                                                        <th
-                                                            class="relative px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70"
-                                                        >
-                                                            <div class="flex items-center">
-                                                                Product Category
-                                                                <div
-                                                                    class="cursor-pointer absolute top-1/3 right-3.5 flex flex-col justify items-center"
-                                                                >
-                                                                    <div
-                                                                        class="mb-1 border-4 border-t-0 opacity-60 border-transparent border-b-black border-solid"
-                                                                    ></div>
-                                                                    <div
-                                                                        class="border-4 border-b-0 opacity-60 border-transparent border-t-black border-solid"
-                                                                    ></div>
-                                                                </div>
-                                                            </div>
-                                                        </th>
-
-                                                        <th
-                                                            class="px-6 py-3 font-semibold capitalize align-middle bg-transparent border-b border-collapse border-solid shadow-none dark:border-white/40 dark:text-white tracking-none whitespace-nowrap text-slate-400 opacity-70"
-                                                        >
-                                                            Actions
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr
-                                                        class="border-b dark:border-neutral-500"
-                                                    >
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4 font-medium"
-                                                        >
-                                                            1
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                    </tr>
-                                                    <tr
-                                                        class="border-b dark:border-neutral-500"
-                                                    >
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4 font-medium"
-                                                        >
-                                                            2
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="border-b">
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4 font-medium"
-                                                        >
-                                                            3
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                        <td
-                                                            class="whitespace-nowrap px-6 py-4"
-                                                        >
-                                                            Cell
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
+                <div
+                    class="flex flex-col lg:flex-row lg:h-[18rem] overflow-scroll disable-scrollbars"
+                >
+                    <div class="lg:w-1/2">
+                        <div class="overflow-hidden">
+                            <img
+                                class="h-auto max-w-full rounded-lg"
+                                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
+                                alt=""
+                            />
+                        </div>
+                    </div>
+                    <div
+                        class="lg:w-1/2 px-4 grid grid-cols-2 md:grid-cols-3 gap-4"
+                    >
+                        <div class="grid gap-4">
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
+                                    alt=""
+                                />
                             </div>
                         </div>
+                        <div class="grid gap-4">
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                        <div class="grid gap-4">
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div
+                                class="overflow-scroll disable-scrollbars rounded-lg"
+                            >
+                                <img
+                                    class="h-auto max-w-full rounded-lg"
+                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
+                                    alt=""
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-full py-8">
+                    <div class="flex flex-col w-full">
+                        <div class="lg:w-1/2">
+
+                       
+                        <div class="flex items-center py-5">
+                            <font-awesome-icon
+                                icon="user"
+                                class="mr-5 p-2 bg-oynx text-snow rounded-full"
+                            />
+                            <h1
+                                class="font-semibold text-xl text-oynx dark:text-snow"
+                            >
+                                Cooked by Ako Precious
+                            </h1>
+                        </div>
+                        <hr
+                            class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+                        />
+                        <div class="flex flex-col py-8">
+                           
+                            <h1
+                                class="text-lg text-oynx dark:text-snow"
+                            >
+                            This meal is popular in certain regions of Africa </h1>
+                        </div>
+                        
+                        <hr
+                            class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+                        />
+                        <div class="flex flex-col py-8">
+                            <h1
+                                class="font-semibold text-2xl lg:text-3xl pb-4 text-oynx dark:text-snow"
+                            >
+                                About the meal
+                            </h1>
+                            <h1
+                                class="text-lg text-oynx dark:text-snow"
+                            >
+                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae omnis eligendi excepturi asperiores porro, necessitatibus iusto? Consequuntur sequi, veniam veritatis, accusantium tempora ipsam placeat quo asperiores error, adipisci dignissimos!
+                            </h1>
+                        </div>
+                        <hr
+                            class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+                        />
+                        <div class="py-5">
+                            <h1
+                                class="font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
+                            >
+                                Ingredients
+                            </h1>
+                            <ul>
+                                <li>jk</li>
+                                <li>jk</li>
+                                <li>jk</li>
+                                <li>jk</li>
+                            </ul>
+                        </div>
+                       </div>  <div
+                            class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10"
+                        ></div>
                     </div>
                 </div>
             </div>

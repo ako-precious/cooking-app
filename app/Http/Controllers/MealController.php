@@ -75,21 +75,21 @@ class MealController extends Controller
         return response()->json(['meal' => $meal, 'request' =>$request->all()]);
     }
     public function show($id){
-        $Meal = Meal::with('user','mealPhotos')->find($id);
+        $Meal = Meal::with('user')->find($id);
         return response()->json(['meal' => $Meal]);
+    }
+    public function meals($id){
+        $Meal = Meal::with('user','mealPhotos')->find($id);
+        return inertia('Meal/Show', ['meal' => $Meal]);
     }
     public function destroy($id)
     {
-
         $MealSchedule = Meal::find($id);
         $MealSchedule->delete();
        
         $user_id =   Auth::id();
-        $pending = Meal::where('status', 'pending')->where('cook_id', $user_id)->get();
-    
-            return response()->json(['message' => 'Meal removed successfully!','pending' => $pending
-               
-            ]);
+        $pending = Meal::where('status', 'pending')->where('cook_id', $user_id)->get();    
+            return response()->json(['message' => 'Meal removed successfully!','pending' => $pending ]);
         
     }
 
