@@ -13,7 +13,7 @@ defineProps(["meal"]);
             </p>
         </Link>
     </td>
-    <td class="whitespace-nowrap px-6 py-3">{{ meal.meal.user }}</td>
+    <td class="whitespace-nowrap px-6 py-3">{{ getCook( meal.meal.id) }}</td>
     <td class="whitespace-nowrap px-6 py-3"> {{ meal.meal_time }}</td>
     <td class="whitespace-nowrap px-6 py-3">  {{ FormattedDate(meal.created_at) }}</td>
 
@@ -48,7 +48,8 @@ export default {
     },
     created() {
         this.FormattedDate();
-        this.truncatedIng();
+        this.truncatedIng(); 
+        this.getCook();
     },
     methods: {
         FormattedDate(timestamp) {
@@ -72,7 +73,14 @@ export default {
             }
         },
         getCook(id){
-            
+// console.log(id);
+//             axios.get("/meal/" + id, ).then((response) => {
+//                     console.log("Data sent successfully:", response.data.meal);
+//                     return response.data.meal.name
+//                 })
+//                 .catch((error) => {
+//                     console.error("Error sending data:", error);
+//                 });
         }
     },
 };

@@ -74,6 +74,10 @@ class MealController extends Controller
         $meal->save();
         return response()->json(['meal' => $meal, 'request' =>$request->all()]);
     }
+    public function show($id){
+        // $Meal = Meal::with()find($id);
+        // return response()->json(['meal' => $Meal]);
+    }
     public function destroy($id)
     {
 
@@ -88,4 +92,5 @@ class MealController extends Controller
             ]);
         
     }
+
 }

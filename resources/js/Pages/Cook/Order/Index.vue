@@ -8,7 +8,7 @@ import TableRow from "./TableRow.vue";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div class="container relative mx-auto overflow-hidden">
+        <div class="container relative mx-auto ">
             <div
                 class="m-auto flex flex-col justify-center h-full px-6 lg:pb-20 w-full"
             >
@@ -82,11 +82,11 @@ import TableRow from "./TableRow.vue";
                     <div class="flex flex-col w-full">
                         <div class="sm:-mx-6 lg:-mx-8">
                             <div
-                                class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                                class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
-                                <div class="overflow-x-auto">
+                                <div class="overflow-x-scroll disable-scrollbar">
                                     <table
-                                        class="min-w-full px-4 text-left text-sm font-light relative"
+                                        class="w-full px-4 text-left text-sm font-light relative"
                                     >
                                         <thead
                                             class="align-bottom shadow-sm translate-x-0 sticky top-1"

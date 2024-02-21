@@ -5,7 +5,7 @@ defineProps(["meal"]);
 <template>
     
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        <Link :href="`/become-a-cook/${meal.id}/overview`" class="flex items-center j">
+        <Link :href="``" class="flex items-center j">
           
             <p class=" pl-4 lg:pl-8">
 

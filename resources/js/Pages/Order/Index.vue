@@ -9,11 +9,11 @@ import TableRow from "./TableRow.vue";
     <AppLayout title="Meal Order">
      
         <div
-            class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-lighred selection:text-white"
+            class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center  selection:bg-lighred selection:text-white"
         >
             <div class="container relative mx-auto text-oynx dark:text-snow overflow-hidden">
                 <div
-                    class="m-auto flex flex-col justify-center h-full  lg:pb-20 w-full py-6 shadow-reverse rounded-lg  my-2"
+                    class="m-auto flex flex-col justify-center h-full  lg:pb-10 w-full py-6 shadow-reverse rounded-lg  my-2"
                 >
                     <!-- <div class="col-span-1 w-full max-w-full py-6">
                         <div

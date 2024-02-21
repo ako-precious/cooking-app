@@ -42,9 +42,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return Inertia::render('Dashboard');
-    // })->name('dashboard');
+    
     
     Route::get('/become-a-cook/overview', function () {
         $user_id =   Auth::id();      
