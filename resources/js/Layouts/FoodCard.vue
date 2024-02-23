@@ -3,6 +3,7 @@ import axios from "axios";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Login from "@/Pages/Auth/Login.vue";
 import TextInput from "@/Components/TextInput.vue";
+import { Head, Link } from "@inertiajs/vue3";
 defineProps(["meal"]);
 </script>
 <script>
@@ -189,7 +190,7 @@ export default {
     <div
         class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl shadow-reverse"
     >
-        <a class="relative flex h-54 overflow-hidden" href="#">
+        <Link class="relative flex h-54 overflow-hidden" :href="`/meals/${meal.id}`"  >
             <img
                 class="object-cover h-fit"
                 src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2R8ZW58MHx8MHx8fDA%3D"
@@ -199,15 +200,15 @@ export default {
                 class="absolute top-0 left-0 m-2 rounded-full bg-oynx px-2 text-center text-sm font-medium text-snow"
                 >New</span
             >
-        </a>
+        </Link>
         <div class="my-2 px-5 pb-3 transition-all duration-200 ease delay-75">
-            <a href="#">
+            <Link  :href="`/meals/${meal.id}`"  >
                 <h5
                     class="text-lg font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
                 >
                     {{ meal.title }}
                 </h5>
-            </a>
+            </Link>
             <div class="my-2 flex items-center justify-between">
                 <a href="#" class=" ">
                     <span

@@ -7,7 +7,7 @@ import TextInput from "@/Components/TextInput.vue";
 </script>
 
 <template>
-    <Head>{Mwal}</Head>
+    <Head>{{ meal }}</Head>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -67,9 +67,9 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                         <div class="grid gap-4">
-                            <div
+                            <div v-for="photo in meal.meal_photos" 
                                 class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
+                            > {{ photo }}
                                 <img
                                     class="h-auto max-w-full rounded-lg"
                                     src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
@@ -128,19 +128,19 @@ import TextInput from "@/Components/TextInput.vue";
                 </div>
 
                 <div class="lg:w-full py-8">
-                    <div class="flex flex-col lg:flex-row  w-full relative">
+                    <div class="flex flex-col lg:flex-row  w-full relative ">
                         <div class="lg:w-1/2">
 
                        
                         <div class="flex items-center py-5">
                             <font-awesome-icon
                                 icon="user"
-                                class="mr-5 p-2 bg-oynx text-snow rounded-full"
+                                class="mr-3 p-2 bg-oynx text-snow rounded-full"
                             />
                             <h1
                                 class="font-semibold text-xl text-oynx dark:text-snow"
                             >
-                                Cooked by Ako Precious
+                                Cooked by {{ meal.user.name }}
                             </h1>
                         </div>
                         <hr
@@ -151,7 +151,7 @@ import TextInput from "@/Components/TextInput.vue";
                             <h1
                                 class="text-lg text-oynx dark:text-snow"
                             >
-                            This meal is popular in certain regions of Africa </h1>
+                            <font-awesome-icon icon="globe" class="mr-3"/>  This meal is popular in certain regions of {{ meal.region }} </h1>
                         </div>
                         
                         <hr
@@ -161,38 +161,39 @@ import TextInput from "@/Components/TextInput.vue";
                             <h1
                                 class="font-semibold text-2xl lg:text-3xl pb-4 text-oynx dark:text-snow"
                             >
-                                About the meal
+                            <font-awesome-icon icon="newspaper" class="mr-2"/>   About the meal
                             </h1>
                             <h1
                                 class="text-lg text-oynx dark:text-snow"
                             >
                               Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae omnis eligendi excepturi asperiores porro, necessitatibus iusto? Consequuntur sequi, veniam veritatis, accusantium tempora ipsam placeat quo asperiores error, adipisci dignissimos!
-                            </h1>
+                        <br>
+                         {{ meal }}         </h1>
                         </div>
                         <hr
                             class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
                         />
+                      
                         <div class="py-5">
                             <h1
-                            class="font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
-                            >
+                            class=" py-3 font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
+                            > <font-awesome-icon icon="pepper-hot" class="mr-2" />
                             Ingredients
                         </h1>
-                        <ul>
-                            <li>jk</li>
-                            <li>jk</li>
-                            <li>jk</li>
-                            <li>jk</li>
+
+                        <ul class="max-w-md space-y-1 text-oynx list-disc list-inside dark:text-snow"  v-for="ingredient in meal.ingredients" :key="meal.id">
+
+                            <li class="py-1">{{ ingredient }}</li>
+                            
                         </ul>
                     </div>
                     <hr
                         class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
                     />
                        </div>  
-                       <div   class="lg:w-1/2  relative max-h-screen">
-                        <div class="lg:p-12 sticky top-0 z-10 ">
-
-                            <div class=" shadow-reverse rounded-lg   ">
+                       <div   class="lg:w-1/2  relative">
+                        <div class="sticky lg:p-12 top-0 z-10 ">
+                      <div class=" shadow-reverse rounded-lg   ">
                                 
                                 <form @submit.prevent class="p-4 md:py-8 text-center">
                                 <h2 class="text-oynx dark:text-snow font-bold text-xl">
@@ -296,6 +297,9 @@ import TextInput from "@/Components/TextInput.vue";
 <script>
 export default {
     inheritAttrs: false,
+    props: {
+        meal: Object,
+    },
     data() {
         return {
             userId: "",
@@ -318,64 +322,10 @@ export default {
 
     },
     created() {
-        this.getMeals(),
-            this.handleScroll(),
-            this.filterMeals(),
-            this.fetchData(),
-            this.closeModal();
+        
     },
     methods: {
-        getMeals() {
-            axios
-                .get("/api/meals")
-                .then((response) => {
-                    this.meals = response.data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
-                });
-        },
-        filterMeals(searchText) {
-            axios
-                .get(`/api/filtered-meals?query=${searchText}`)
-                .then((response) => {
-                    if (response.data.length != 0) {
-                        this.meals = response.data;
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching filtered data:", error);
-                });
-        },
-        async loadMoreData() {
-            if (this.hasMoreData) {
-                this.page++;
-                await this.fetchData();
-            }
-        },
-        async fetchData() {
-            try {
-                const response = await axios.get(
-                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
-                );
-                const newMeals = response.data;
-
-                // If there is no new data, set hasMoreData to false
-                if (newMeals.length === 0) {
-                    this.hasMoreData = false;
-                }
-
-                // Concatenate new data to the existing meals
-                this.meals = [...this.meals, ...newMeals];
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        },
-        handleScroll() {
-            // Adjust the scroll threshold as needed
-            const scrollThreshold = 50;
-            this.isHeaderFixed = window.scrollY > scrollThreshold;
-        },
+       
         openModal(meal) {
             // Get the current date
             const currentDate = new Date();
@@ -402,18 +352,7 @@ export default {
                 };
             }
         },
-        closeModal() {
-            // clear everything in the div and close it
-            this.newEventModalVisible = false;
-            this.newSchedule = {
-                meal_name: "",
-                start_date: "",
-                end_date: "",
-                meal_time: "",
-            };
-            this.message = "";
-            this.error = "";
-        },
+       
         formatSchedule() {
             this.formattedEvents = {
                 meal_id: this.newSchedule.meal_id,
