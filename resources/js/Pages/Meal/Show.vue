@@ -67,12 +67,14 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                         <div class="grid gap-4">
-                            <div v-for="photo in meal.meal_photos" 
+                            <div   v-for="(
+                                                    preview, index
+                                                ) in imagePreviews" 
                                 class="overflow-scroll disable-scrollbars rounded-lg"
-                            > {{ photo }}
+                            >
                                 <img
                                     class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg"
+                                    :src="preview.src"
                                     alt=""
                                 />
                             </div>
@@ -127,7 +129,7 @@ import TextInput from "@/Components/TextInput.vue";
                     </div>
                 </div>
 
-                <div class="lg:w-full py-8">
+                <div class="lg:w-full py-8 relative">
                     <div class="flex flex-col lg:flex-row  w-full relative ">
                         <div class="lg:w-1/2">
 
@@ -192,6 +194,7 @@ import TextInput from "@/Components/TextInput.vue";
                     />
                        </div>  
                        <div   class="lg:w-1/2  relative">
+                        
                         <div class="sticky lg:p-12 top-0 z-10 ">
                       <div class=" shadow-reverse rounded-lg   ">
                                 
@@ -302,6 +305,7 @@ export default {
     },
     data() {
         return {
+            imagePreviews: [],
             userId: "",
             message: "",
             error: "",
@@ -319,6 +323,7 @@ export default {
     },
     mounted(){
         // console.log(this.meal);
+        this.fetchImages();
 
     },
     created() {
@@ -326,6 +331,13 @@ export default {
     },
     methods: {
        
+
+        fetchImages() {
+            this.imagePreviews = this.meal.meal_photos.map((image) => ({
+                src: `/storage/${image.meal.meal_photo_path}`.replace("/public", ""), // Assuming your image object has a 'url' property
+                id: image.id, // Assuming your image object has an 'id' property
+            }));
+        },
         openModal(meal) {
             // Get the current date
             const currentDate = new Date();
