@@ -23,13 +23,13 @@ import TextInput from "@/Components/TextInput.vue";
                     </h1>
                 </div>
                 <div
-                    class="flex flex-col lg:flex-row h-[18rem] overflow-scroll disable-scrollbars"
+                    class="flex flex-col lg:flex-row h-[20rem] overflow-scroll disable-scrollbars"
                 >
                     <div class="lg:w-1/2">
                         <div class="overflow-hidden px-4 pb-4 lg:p-0">
                             <img
                                 class="h-auto max-w-full rounded-lg"
-                                src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
+                                :src="src"
                                 alt=""
                             />
                         </div>
@@ -37,95 +37,23 @@ import TextInput from "@/Components/TextInput.vue";
                     <div
                         class="lg:w-1/2 px-4 grid grid-cols-2 md:grid-cols-3 gap-4"
                     >
-                        <div class="grid gap-4">
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div class="grid gap-4">
-                            <div   v-for="(
-                                                    preview, index
-                                                ) in imagePreviews" 
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    :src="preview.src"
-                                    alt=""
-                                />
-                            </div>
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-                        <div class="grid gap-4">
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg"
-                                    alt=""
-                                />
-                            </div>
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <img
-                                    class="h-auto max-w-full rounded-lg"
-                                    src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
+
+                      <div v-for="(
+                                                  preview, index
+                                              ) in other_src">
+
+                          <div  
+                              class="overflow-scroll disable-scrollbars rounded-lg"
+                          >
+                              <img
+                                  class="h-auto max-w-full rounded-lg"
+                                  :src="preview.src"
+                                                  :alt="preview.src"
+                              />
+                          </div>
+                      </div>
+                          
+                       
                     </div>
                 </div>
 
@@ -305,6 +233,8 @@ export default {
     },
     data() {
         return {
+            src:'',
+            other_src:'',
             imagePreviews: [],
             userId: "",
             message: "",
@@ -322,21 +252,40 @@ export default {
         };
     },
     mounted(){
-        // console.log(this.meal);
-        this.fetchImages();
+       
 
     },
-    created() {
-        
+    created() {      
+        this.getPhoto()
+        this.getPhotos()
     },
     methods: {
        
-
-        fetchImages() {
-            this.imagePreviews = this.meal.meal_photos.map((image) => ({
-                src: `/storage/${image.meal.meal_photo_path}`.replace("/public", ""), // Assuming your image object has a 'url' property
+        getPhoto() {
+            axios
+                .get("/meal_photos/" + this.meal.id)
+                .then((response) => {
+                    this.src = `/storage/${response.data.firstPhoto.meal_photo_path}`.replace("/public", "");
+                    console.log(this.src);
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
+        },
+        getPhotos() {
+            axios
+                .get("/meal_photos/" + this.meal.id)
+                .then((response) => {
+                    // this.other_src = `/storage/${response.data.otherPhotos.meal_photo_path}`.replace("/public", "");
+                    this.other_src = response.data.otherPhotos.map((image) => ({
+                src: `/storage/${image.meal_photo_path}`.replace("/public", ""), // Assuming your image object has a 'url' property
                 id: image.id, // Assuming your image object has an 'id' property
             }));
+                    console.log(this.other_src);
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
         },
         openModal(meal) {
             // Get the current date

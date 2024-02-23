@@ -386,10 +386,10 @@ export default {
         },
 
         createNewPhotos() {
-            if (this.imageFiles.length >= 3 && this.imageFiles.length <= 10) {
+            if (this.imageFiles.length >= 4 && this.imageFiles.length <= 10) {
               this.storePhotos()
             } else {
-                this.error = "The number of pictures must be between 3 and 10";
+                this.error = "The number of pictures must be between 4 and 10";
             }
         },
         storePhotos(){

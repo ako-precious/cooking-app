@@ -13,6 +13,7 @@ export default {
         return {
             userId: "",
             message: "",
+            src:"",
             error: "",
             newSchedule: {
                 meal_name: "",
@@ -36,6 +37,7 @@ export default {
             this.filterMeals(),
             this.fetchData(),
             this.closeModal();
+            this.getPhoto();
     },
     methods: {
         getMeals() {
@@ -43,6 +45,17 @@ export default {
                 .get("/api/meals")
                 .then((response) => {
                     this.meals = response.data;
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
+        },
+        getPhoto() {
+            axios
+                .get("/meal_photos/" + this.meal.id)
+                .then((response) => {
+                    this.src = `/storage/${response.data.firstPhoto.meal_photo_path}`.replace("/public", "");
+                    // console.log(this.src);
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
@@ -191,7 +204,12 @@ export default {
         class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl shadow-reverse"
     >
         <Link class="relative flex h-54 overflow-hidden" :href="`/meals/${meal.id}`"  >
-            <img
+            <img v-if="src"
+                class="object-cover h-fit"
+                :src="src"
+                alt="product image"
+            />
+            <img v-else
                 class="object-cover h-fit"
                 src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2R8ZW58MHx8MHx8fDA%3D"
                 alt="product image"
