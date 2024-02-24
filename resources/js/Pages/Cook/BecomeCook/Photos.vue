@@ -94,8 +94,13 @@ import BecomeCook from "./BecomeCook.vue";
                                                         <span
                                                             class="lg:text-xl leading-normal"
                                                             >Click or Drag
-                                                            (Minimum (3)) photos
-                                                            to the box</span
+                                                            <span
+                                                                class="font-bold"
+                                                            >
+                                                                (Minimum of 4)
+                                                            </span>
+                                                            photos to the
+                                                            box</span
                                                         >
                                                     </p>
                                                 </div>
@@ -246,8 +251,12 @@ export default {
                                     img.width <= this.maxSize &&
                                     img.height <= this.maxSize
                                 ) {
-                                    this.imagePreviews.push(img);
-                                    validImages.push(file);
+                                    if (validImages.length  >= 11) {
+                                        this.imagePreviews.push(img);
+                                        validImages.push(file);
+                                    }else{
+                                        this.error = 'the images are more than 10'
+                                    }
                                 } else {
                                     this.errors.push(
                                         `Image ${
@@ -261,6 +270,7 @@ export default {
                                 }
                                 setTimeout(() => {
                                     this.errors = [];
+                                    this.error = ''
                                 }, 10000);
                                 resolve();
                             };
@@ -287,22 +297,17 @@ export default {
             }));
         },
         updatePhotos() {
+            const MealId = this.Meal.id;
+            this.$inertia.visit(`/become-a-cook/${MealId}/finishing-up`);
 
-           const MealId = this.Meal.id
-            this.$inertia.visit(
-                            `/become-a-cook/${MealId}/finishing-up`
-                        );
-            
-                
-                // if (this.mealPhotos.length < 10) {
-                //     // Call the function to add new photos
+            if (this.mealPhotos.length < 10 || this.mealPhotos.length) {
+                // Call the function to add new photos
 
-                //     // this.storePhotos();
-                // } else {
-                //     // Handle if the maximum limit of photos is reached
-                //     console.log("Maximum limit of photos reached.");
-                // }
-           
+                this.storePhotos();
+            } else {
+                // Handle if the maximum limit of photos is reached
+                console.log("Maximum limit of photos reached.");
+            }
         },
 
         dragStart(index, event) {
@@ -386,35 +391,35 @@ export default {
         },
 
         createNewPhotos() {
-            if (this.imageFiles.length >= 4 && this.imageFiles.length <= 10) {
-              this.storePhotos()
+            if (this.imageFiles.length >= 3 && this.imageFiles.length <= 11) {
+                this.storePhotos();
             } else {
                 this.error = "The number of pictures must be between 4 and 10";
             }
         },
-        storePhotos(){
+        storePhotos() {
             const formData = new FormData();
-                formData.append("meal_id", this.Meal.id);
-                for (let i = 0; i < this.imageFiles.length; i++) {
-                    formData.append("images[]", this.imageFiles[i]);
-                    formData.append("indexes[]", i + 1); // Add the index
-                }
-                axios
-                    .post("/meal_photos", formData, {
-                        headers: {
-                            "Content-Type": "multipart/form-data",
-                        },
-                    })
-                    .then((response) => {
-                        const MealId = response.data.image.meal_id;
-                        this.$inertia.visit(
-                            `/become-a-cook/${MealId}/finishing-up`
-                        );
-                    })
-                    .catch((error) => {
-                        console.error("Error uploading images:", error);
-                        this.error = "Error uploading images";
-                    });
+            formData.append("meal_id", this.Meal.id);
+            for (let i = 0; i < this.imageFiles.length; i++) {
+                formData.append("images[]", this.imageFiles[i]);
+                formData.append("indexes[]", i + 1); // Add the index
+            }
+            axios
+                .post("/meal_photos", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    const MealId = response.data.image.meal_id;
+                    this.$inertia.visit(
+                        `/become-a-cook/${MealId}/finishing-up`
+                    );
+                })
+                .catch((error) => {
+                    console.error("Error uploading images:", error);
+                    this.error = "Error uploading images";
+                });
         },
     },
 };

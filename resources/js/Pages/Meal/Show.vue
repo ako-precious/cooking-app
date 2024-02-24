@@ -94,6 +94,8 @@ import TextInput from "@/Components/TextInput.vue";
                             <h1
                                 class="text-lg text-oynx dark:text-snow"
                             >{{ meal.description }}</h1>
+                           
+                    
                         </div>
                         <hr
                             class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
@@ -102,7 +104,7 @@ import TextInput from "@/Components/TextInput.vue";
                         <div class="py-5">
                             <h1
                             class=" py-3 font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
-                            > <font-awesome-icon icon="pepper-hot" class="mr-2" />
+                            > <font-awesome-icon icon="pepper-hot" class="mr-2" /> 
                             Ingredients
                         </h1>
 
