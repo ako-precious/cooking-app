@@ -7,7 +7,7 @@ import TextInput from "@/Components/TextInput.vue";
 </script>
 
 <template>
-    <Head>{{ meal }}</Head>
+    <Head>{{ meal.name }}</Head>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -19,7 +19,7 @@ import TextInput from "@/Components/TextInput.vue";
                     <h1
                         class="font-semibold text-3xl lg:text-4xl text-oynx dark:text-snow"
                     >
-                        Meal Title
+                        {{ meal.name }}
                     </h1>
                 </div>
                 <div
@@ -38,9 +38,7 @@ import TextInput from "@/Components/TextInput.vue";
                         class="lg:w-1/2 px-4 grid grid-cols-2 md:grid-cols-3 gap-4"
                     >
 
-                      <div v-for="(
-                                                  preview, index
-                                              ) in other_src">
+                      <div v-for="(preview, index) in other_src">
 
                           <div  
                               class="overflow-scroll disable-scrollbars rounded-lg"
@@ -95,10 +93,7 @@ import TextInput from "@/Components/TextInput.vue";
                             </h1>
                             <h1
                                 class="text-lg text-oynx dark:text-snow"
-                            >
-                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas molestiae omnis eligendi excepturi asperiores porro, necessitatibus iusto? Consequuntur sequi, veniam veritatis, accusantium tempora ipsam placeat quo asperiores error, adipisci dignissimos!
-                        <br>
-                         {{ meal }}         </h1>
+                            >{{ meal.description }}</h1>
                         </div>
                         <hr
                             class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
@@ -124,7 +119,7 @@ import TextInput from "@/Components/TextInput.vue";
                        <div   class="lg:w-1/2  relative">
                         
                         <div class="sticky lg:p-12 top-0 z-10 ">
-                      <div class=" shadow-reverse rounded-lg   ">
+                      <div class="shadow-reverse rounded-lg">
                                 
                                 <form @submit.prevent class="p-4 md:py-8 text-center">
                                 <h2 class="text-oynx dark:text-snow font-bold text-xl">
@@ -252,7 +247,7 @@ export default {
         };
     },
     mounted(){
-       
+       this.openModal()
 
     },
     created() {      
@@ -266,7 +261,7 @@ export default {
                 .get("/meal_photos/" + this.meal.id)
                 .then((response) => {
                     this.src = `/storage/${response.data.firstPhoto.meal_photo_path}`.replace("/public", "");
-                    console.log(this.src);
+                    
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
@@ -281,13 +276,13 @@ export default {
                 src: `/storage/${image.meal_photo_path}`.replace("/public", ""), // Assuming your image object has a 'url' property
                 id: image.id, // Assuming your image object has an 'id' property
             }));
-                    console.log(this.other_src);
+                    
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
                 });
         },
-        openModal(meal) {
+        openModal() {
             // Get the current date
             const currentDate = new Date();
 
@@ -304,8 +299,8 @@ export default {
             if (this.$page.props.auth.user) {
                 // this.suggestedMeal = [];
                 this.newSchedule = {
-                    meal_name: meal.title,
-                    meal_id: meal.id.toString(),
+                    meal_name: this.meal.name,
+                    meal_id: this.meal.id.toString(),
                     user_id: this.$page.props.auth.user.id.toString(),
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,

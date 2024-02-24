@@ -26,10 +26,7 @@ class MealPhotosController extends Controller
     public function show($id){
        
           $firstPhoto = MealPhotos::where('meal_id', $id)->orderBy('order', 'asc')->first();   
-          $otherPhotos = MealPhotos::where('meal_id', $id)
-    ->orderBy('order', 'asc')
-    ->skip(1) // Skip the first photo
-    ->get();
+          $otherPhotos = MealPhotos::where('meal_id', $id)->orderBy('order', 'asc')->skip(1)->get();
           return response()->json(['firstPhoto' => $firstPhoto, 'otherPhotos' =>$otherPhotos]);
       }
 
