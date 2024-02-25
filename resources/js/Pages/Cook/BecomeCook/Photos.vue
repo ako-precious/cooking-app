@@ -121,13 +121,21 @@ import BecomeCook from "./BecomeCook.vue";
                                                 </li>
                                             </ul>
                                         </div>
+
                                         <div
-                                            v-if="error"
-                                            class="m-auto flex flex-wrap justify-center w-full px-6 mb-0 list-none rounded-xl"
+                                            v-if="
+                                                imagePreviews.length > 10 ||
+                                                imagePreviews.length < 4
+                                            "
                                         >
-                                            <p class="text-lighred">
-                                                {{ error }}
-                                            </p>
+                                            <div
+                                                v-if="error"
+                                                class="m-auto flex flex-wrap justify-center w-full px-6 mb-0 list-none rounded-xl"
+                                            >
+                                                <p class="text-lighred">
+                                                    {{ error }}
+                                                </p>
+                                            </div>
                                         </div>
                                         <div
                                             class="mt-4 m-auto justify-center w-full p-4 mb-0 list-none grid grid-cols-2 md:grid-cols-5 gap-5 lg:gap-7 lg:px-10 rounded-xl"
@@ -251,12 +259,8 @@ export default {
                                     img.width <= this.maxSize &&
                                     img.height <= this.maxSize
                                 ) {
-                                    if (validImages.length  >= 11) {
-                                        this.imagePreviews.push(img);
-                                        validImages.push(file);
-                                    }else{
-                                        this.error = 'the images are more than 10'
-                                    }
+                                    this.imagePreviews.push(img);
+                                    validImages.push(file);
                                 } else {
                                     this.errors.push(
                                         `Image ${
@@ -268,9 +272,20 @@ export default {
 
                                     invalidImages.push(file);
                                 }
+                                if (
+                                    this.imagePreviews.length > 10 
+                                ) {
+                                    this.error =
+                                        "Maximum limit of photos reached (10).";
+                                }
+                                if (
+                                    this.imagePreviews.length < 4
+                                ) {
+                                    this.error =
+                                        "Maximum number of photos (4).";
+                                }
                                 setTimeout(() => {
                                     this.errors = [];
-                                    this.error = ''
                                 }, 10000);
                                 resolve();
                             };
@@ -300,13 +315,11 @@ export default {
             const MealId = this.Meal.id;
             this.$inertia.visit(`/become-a-cook/${MealId}/finishing-up`);
 
-            if (this.mealPhotos.length < 10 || this.mealPhotos.length) {
-                // Call the function to add new photos
-
+            if (this.imagePreviews.length < 10 || this.mealPhotos.length < 10) {
                 this.storePhotos();
             } else {
                 // Handle if the maximum limit of photos is reached
-                console.log("Maximum limit of photos reached.");
+                console.log("Maximum limit of photos reached (10).");
             }
         },
 
@@ -391,19 +404,30 @@ export default {
         },
 
         createNewPhotos() {
-            if (this.imageFiles.length >= 3 && this.imageFiles.length <= 11) {
+            if (this.imageFiles.length > 4 && this.imageFiles.length < 10) {
                 this.storePhotos();
             } else {
                 this.error = "The number of pictures must be between 4 and 10";
             }
         },
+
         storePhotos() {
             const formData = new FormData();
             formData.append("meal_id", this.Meal.id);
+
+            // Calculate the starting index for newly uploaded images
+            let startingIndex = 0;
+            if (this.imagePreviews.length > 0) {
+                const lastImage =
+                    this.imagePreviews[this.imagePreviews.length - 1];
+                startingIndex = lastImage.index + 1;
+            }
+
             for (let i = 0; i < this.imageFiles.length; i++) {
                 formData.append("images[]", this.imageFiles[i]);
-                formData.append("indexes[]", i + 1); // Add the index
+                formData.append("indexes[]", startingIndex + i); // Add the updated index
             }
+
             axios
                 .post("/meal_photos", formData, {
                     headers: {
@@ -421,6 +445,30 @@ export default {
                     this.error = "Error uploading images";
                 });
         },
+        // storePhotos() {
+        //     const formData = new FormData();
+        //     formData.append("meal_id", this.Meal.id);
+        //     for (let i = 0; i < this.imageFiles.length; i++) {
+        //         formData.append("images[]", this.imageFiles[i]);
+        //         formData.append("indexes[]", i + 1); // Add the index
+        //     }
+        //     axios
+        //         .post("/meal_photos", formData, {
+        //             headers: {
+        //                 "Content-Type": "multipart/form-data",
+        //             },
+        //         })
+        //         .then((response) => {
+        //             const MealId = response.data.image.meal_id;
+        //             this.$inertia.visit(
+        //                 `/become-a-cook/${MealId}/finishing-up`
+        //             );
+        //         })
+        //         .catch((error) => {
+        //             console.error("Error uploading images:", error);
+        //             this.error = "Error uploading images";
+        //         });
+        // },
     },
 };
 </script>
