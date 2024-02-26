@@ -4,6 +4,8 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import Login from "@/Pages/Auth/Login.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link } from "@inertiajs/vue3";
+import Loader from "@/Components/Loader.vue";
+
 defineProps(["meal"]);
 </script>
 <script>
@@ -12,8 +14,9 @@ export default {
     data() {
         return {
             userId: "",
+            isLoading: true,
             message: "",
-            src:"",
+            src: "",
             error: "",
             newSchedule: {
                 meal_name: "",
@@ -27,17 +30,16 @@ export default {
             isHeaderFixed: false,
         };
     },
-    mounted(){
+    mounted() {
         // console.log(this.meal);
-
     },
     created() {
+        this.getPhoto();
         this.getMeals(),
             this.handleScroll(),
             this.filterMeals(),
             this.fetchData(),
             this.closeModal();
-            this.getPhoto();
     },
     methods: {
         getMeals() {
@@ -48,17 +50,23 @@ export default {
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
-                });
+                })
+                
         },
         getPhoto() {
             axios
                 .get("/meal_photos/" + this.meal.id)
                 .then((response) => {
-                    this.src = `/storage/${response.data.firstPhoto.meal_photo_path}`.replace("/public", "");
+                    this.src =
+                        `/storage/${response.data.firstPhoto.meal_photo_path}`.replace("/public","");
                     // console.log(this.src);
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
+                })
+                .finally(() => {
+                    // Set loading state to false when fetching completes
+                    this.isLoading = false;
                 });
         },
         filterMeals(searchText) {
@@ -175,11 +183,9 @@ export default {
                     .post("/schedule", this.formattedEvents)
                     .then((resp) => {
                         this.message = resp.data.message;
-                       
+
                         const MealId = resp.data.data.id;
-                        this.$inertia.visit(
-                            `/process_order/${MealId}`
-                        );
+                        this.$inertia.visit(`/process_order/${MealId}`);
 
                         // setTimeout(() => {
                         //     this.closeModal();
@@ -203,24 +209,35 @@ export default {
     <div
         class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl shadow-reverse"
     >
-        <Link class="relative flex h-54 overflow-hidden" :href="`/meals/${meal.id}`"  >
-            <img v-if="src"
-                class="object-cover h-fit"
-                :src="src"
-                alt="product image"
-            />
-            <img v-else
-                class="object-cover h-fit"
-                src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2R8ZW58MHx8MHx8fDA%3D"
-                alt="product image"
-            />
+        <Link
+            class="relative flex h-54 overflow-hidden"
+            :href="`/meals/${meal.id}`"
+        >
+            <div v-if="isLoading" class="">
+                <Loader class="object-cover h-fit"></Loader>
+            </div>
+
+            <div v-if="!isLoading">
+                <img
+                    v-if="src"
+                    class="object-cover h-fit"
+                    :src="src"
+                    alt="product image"
+                />
+                <img
+                    v-else
+                    class="object-cover h-fit"
+                    src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZvb2R8ZW58MHx8MHx8fDA%3D"
+                    alt="product image"
+                />
+            </div>
             <span
                 class="absolute top-0 left-0 m-2 rounded-full bg-oynx px-2 text-center text-sm font-medium text-snow"
                 >New</span
             >
         </Link>
         <div class="my-2 px-5 pb-3 transition-all duration-200 ease delay-75">
-            <Link  :href="`/meals/${meal.id}`"  >
+            <Link :href="`/meals/${meal.id}`">
                 <h5
                     class="text-lg font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
                 >
@@ -245,7 +262,8 @@ export default {
             <div class="flex items-center justify-between">
                 <p>
                     <span class="text-lg font-bold text-oynx dark:text-snow"
-                        >${{ meal.price }}</span>
+                        >${{ meal.price }}</span
+                    >
                 </p>
                 <div
                     class="items-center justify-end rounded-md flex opacity-0 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
@@ -345,7 +363,7 @@ export default {
                                 placeholder=""
                             />
                             <TextInput
-                            hidden
+                                hidden
                                 required
                                 class="w-[47%]"
                                 v-model="newSchedule.end_date"
