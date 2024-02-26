@@ -87,15 +87,15 @@ export default {
         getImage() {
             const id = this.meal.id;
             axios
-                .get(`/meal_photos/show-photo?meal_id=${id}`)
+                .get(`/meal_photos/${id}`)
                 .then((response) => {
-                    if (response.data.imagePhoto.meal_photo_path) {
-                        (this.meal_photo =`/storage/${response.data.imagePhoto.meal_photo_path}`.replace("/public",""))                       
+                    if (response.data.firstPhoto.meal_photo_path) {
+                        (this.meal_photo =`/storage/${response.data.firstPhoto.meal_photo_path}`.replace("/public",""))                       
                     }
                 })
                 .catch((error) => {
                     // Handle error
-                    console.error("Error saving data:", error);
+                    // console.error("Error saving data:", error);
                 });
         },
         truncatedIng(description) {
