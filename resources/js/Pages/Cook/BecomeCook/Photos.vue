@@ -272,15 +272,11 @@ export default {
 
                                     invalidImages.push(file);
                                 }
-                                if (
-                                    this.imagePreviews.length > 10 
-                                ) {
+                                if (this.imagePreviews.length > 10) {
                                     this.error =
                                         "Maximum limit of photos reached (10).";
                                 }
-                                if (
-                                    this.imagePreviews.length < 4
-                                ) {
+                                if (this.imagePreviews.length < 4) {
                                     this.error =
                                         "Maximum number of photos (4).";
                                 }
@@ -415,17 +411,31 @@ export default {
             // Calculate the starting index for newly uploaded images
             let startingIndex = 0;
             if (this.mealPhotos.length > 0) {
-                const lastImage =
-                this.mealPhotos[this.mealPhotos.length - 1];
-                startingIndex = lastImage.index + 1;
+                const lastImage =  parseInt(this.mealPhotos[this.mealPhotos.length - 1].order);
+                startingIndex = lastImage + 1;
+                console.log(lastImage );
+                console.log(lastImage + 1);
             }
-            console.log(this.mealPhotos.length );
-                
-                for (let i = 0; i < this.imageFiles.length; i++) {
-                    formData.append("images[]", this.imageFiles[i]);
-                    formData.append("indexes[]", startingIndex + i); // Add the updated index
+            console.log(this.mealPhotos.length);
+            console.log(this.mealPhotos[this.mealPhotos.length - 1].order );
+
+
+            for (let i = 0; i < this.imageFiles.length; i++) {
+                formData.append("images[]", this.imageFiles[i]);
+                const index = startingIndex + i; // Calculate the index
+                if (!isNaN(index)) {
+                    // Check if the index is a valid number
+                    //     formData.append("images[]", this.imageFiles[i]);
+                    formData.append("indexes[]", index); // Append the valid index
+                } else {
+                    console.error("Invalid index:", index);
+                    // Handle the case where the index is not valid
                 }
-                console.log(formData);
+            }
+            // for (let i = 0; i < this.imageFiles.length; i++) {
+            //     formData.append("indexes[]", startingIndex + i); // Add the updated index
+            // }
+            console.log(formData);
 
             axios
                 .post("/meal_photos", formData, {
