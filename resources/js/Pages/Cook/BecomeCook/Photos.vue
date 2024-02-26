@@ -312,9 +312,6 @@ export default {
             }));
         },
         updatePhotos() {
-            const MealId = this.Meal.id;
-            this.$inertia.visit(`/become-a-cook/${MealId}/finishing-up`);
-
             if (this.imagePreviews.length < 10 || this.mealPhotos.length < 10) {
                 this.storePhotos();
             } else {
@@ -417,16 +414,18 @@ export default {
 
             // Calculate the starting index for newly uploaded images
             let startingIndex = 0;
-            if (this.imagePreviews.length > 0) {
+            if (this.mealPhotos.length > 0) {
                 const lastImage =
-                    this.imagePreviews[this.imagePreviews.length - 1];
+                this.mealPhotos[this.mealPhotos.length - 1];
                 startingIndex = lastImage.index + 1;
             }
-
-            for (let i = 0; i < this.imageFiles.length; i++) {
-                formData.append("images[]", this.imageFiles[i]);
-                formData.append("indexes[]", startingIndex + i); // Add the updated index
-            }
+            console.log(this.mealPhotos.length );
+                
+                for (let i = 0; i < this.imageFiles.length; i++) {
+                    formData.append("images[]", this.imageFiles[i]);
+                    formData.append("indexes[]", startingIndex + i); // Add the updated index
+                }
+                console.log(formData);
 
             axios
                 .post("/meal_photos", formData, {
@@ -436,6 +435,7 @@ export default {
                 })
                 .then((response) => {
                     const MealId = response.data.image.meal_id;
+                    console.log(response);
                     this.$inertia.visit(
                         `/become-a-cook/${MealId}/finishing-up`
                     );
