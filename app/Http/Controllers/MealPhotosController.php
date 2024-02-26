@@ -45,30 +45,18 @@ class MealPhotosController extends Controller
         return response()->json(['image' => $meal]);
     }
 
-    public function reorder(Request $request)
+    
+
+    public function update(Request $request, $id)
     {
+
         $mealPhotos = $request->input('mealPhotos');
         foreach ($mealPhotos as $mealPhoto) {
             $photo = MealPhotos::findOrFail($mealPhoto['id']);
             $photo->update(['order' => $mealPhoto['index']]);
         }
         return response()->json(['message' => $mealPhotos]);
-        // return response()->json(['message' => 'Meal photos reordered successfully']);
     }
-
-    // public function update(Request $request, $id)
-    // {
-
-    //     $photo = MealPhotos::find($id);
-
-    //     $photo->update($request->all());
-
-    //     return response()->json([
-    //         'data' =>   $photo,
-    //         'message' => 'Successfully updated Meal Schedule!',
-
-    //     ]);
-    // }
 
     public function destroy($id)
     {

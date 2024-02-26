@@ -62,7 +62,6 @@ Route::middleware([
     
     //photo Controller
     Route::resource('/meal_photos', MealPhotosController::class);
-    Route::put('/meal_photos/reorder', [MealPhotosController::class, 'reorder']);
     Route::get('/meal_photos/show-photo', [MealPhotosController::class, 'show_photo']);
     
     //Meal Schedule

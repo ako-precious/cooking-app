@@ -308,12 +308,17 @@ export default {
             }));
         },
         updatePhotos() {
-            if (this.imagePreviews.length < 10 || this.mealPhotos.length < 10) {
-                this.storePhotos();
-            } else {
-                // Handle if the maximum limit of photos is reached
-                console.log("Maximum limit of photos reached (10).");
-            }
+            // if (condition) {
+                if (
+                    this.imagePreviews.length < 10 ||
+                    this.mealPhotos.length < 10
+                ) {
+                    this.storePhotos();
+                } else {
+                    // Handle if the maximum limit of photos is reached
+                    console.log("Maximum limit of photos reached (10).");
+                }
+            // }
         },
 
         dragStart(index, event) {
@@ -379,7 +384,7 @@ export default {
             try {
                 // Send a PUT request to update the meal photos order in the database
                 await axios
-                    .put(`/meal_photos/reorder`, {
+                    .put(`/meal_photos/update`, {
                         mealPhotos: newMealPhotos,
                     })
                     .then((response) => {
@@ -411,14 +416,15 @@ export default {
             // Calculate the starting index for newly uploaded images
             let startingIndex = 0;
             if (this.mealPhotos.length > 0) {
-                const lastImage =  parseInt(this.mealPhotos[this.mealPhotos.length - 1].order);
+                const lastImage = parseInt(
+                    this.mealPhotos[this.mealPhotos.length - 1].order
+                );
                 startingIndex = lastImage + 1;
-                console.log(lastImage );
+                console.log(lastImage);
                 console.log(lastImage + 1);
             }
             console.log(this.mealPhotos.length);
-            console.log(this.mealPhotos[this.mealPhotos.length - 1].order );
-
+            console.log(this.mealPhotos[this.mealPhotos.length - 1].order);
 
             for (let i = 0; i < this.imageFiles.length; i++) {
                 formData.append("images[]", this.imageFiles[i]);
