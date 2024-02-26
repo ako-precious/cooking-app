@@ -115,7 +115,7 @@ import BecomeCook from "./BecomeCook.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 66.67%"
+                    style="width: 80%"
                 ></div>
             </div>
         </template>
@@ -168,7 +168,7 @@ export default {
             axios
                 .put("/meal/preference/" + this.Meal.id, { preference })
                 .then((response) => {
-                   console.log(response.data);
+                //    console.log(response.data);
                 })
                 .catch((error) => {
                 });

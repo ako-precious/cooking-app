@@ -55,7 +55,7 @@ import BecomeCook from "./BecomeCook.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 27%"
+                    style="width: 30%"
                 ></div>
             </div>
         </template>

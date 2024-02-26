@@ -185,7 +185,7 @@ import BecomeCook from "./BecomeCook.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 50%"
+                    style="width: 60%"
                 ></div>
             </div>
         </template>
@@ -344,7 +344,7 @@ export default {
                         // Handle success if needed
                     })
                     .catch((error) => {
-                        console.error("Error deleting meal photo:", error);
+                        // console.error("Error deleting meal photo:", error);
                     });
             }
         },
@@ -436,7 +436,7 @@ export default {
                     //     formData.append("images[]", this.imageFiles[i]);
                     formData.append("indexes[]", index); // Append the valid index
                 } else {
-                    console.error("Invalid index:", index);
+                    // console.error("Invalid index:", index);
                     // Handle the case where the index is not valid
                 }
             }
@@ -459,7 +459,7 @@ export default {
                     );
                 })
                 .catch((error) => {
-                    console.error("Error uploading images:", error);
+                    // console.error("Error uploading images:", error);
                     this.error = "Error uploading images";
                 });
         },

@@ -81,7 +81,7 @@ import InputLabel from "@/Components/InputLabel.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 41.6%"
+                    style="width: 50%"
                 ></div>
             </div>
         </template>
@@ -128,7 +128,7 @@ export default {
  // Log the meal data to console
             // Send an HTTP request to your backend API to save the data            
             const meal = this.meal;
-            console.log({meal});            
+            // console.log({meal});            
                 axios
                     .put("/meal/title/" + this.Meal.id, meal )
                     .then((response) => {
@@ -140,7 +140,7 @@ export default {
                     })
                     .catch((error) => {
                         // Handle error
-                        console.error("Error saving data:", error);
+                        // console.error("Error saving data:", error);
                     });
             
         },

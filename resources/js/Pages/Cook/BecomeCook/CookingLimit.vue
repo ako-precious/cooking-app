@@ -59,7 +59,7 @@ import TextInput from "@/Components/TextInput.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 18%"
+                    style="width: 20%"
                 ></div>
             </div>
         </template>
@@ -101,7 +101,7 @@ export default {
         };
     },
     mounted() {
-        console.log(this.Meal); // Log the meal data to console
+        // console.log(this.Meal); // Log the meal data to console
     },
     methods: {
         saveData() {
@@ -119,7 +119,7 @@ export default {
                     })
                     .catch((error) => {
                         // Handle error
-                        console.error("Error saving data:", error);
+                        // console.error("Error saving data:", error);
                     });
             }
         },

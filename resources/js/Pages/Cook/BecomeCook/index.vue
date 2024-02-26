@@ -105,7 +105,7 @@ export default {
                     // Handle success if needed
                 })
                 .catch((error) => {
-                    console.error("Error deleting meal photo:", error);
+                    // console.error("Error deleting meal photo:", error);
                 });
         },
 

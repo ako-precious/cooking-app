@@ -159,7 +159,7 @@ export default {
                         );
                     })
                     .catch((error) => {
-                        console.error("Error creating new meal:", error);
+                        // console.error("Error creating new meal:", error);
                     });
             }
         },
