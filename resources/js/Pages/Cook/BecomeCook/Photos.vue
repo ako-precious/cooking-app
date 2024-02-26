@@ -308,7 +308,7 @@ export default {
             }));
         },
         updatePhotos() {
-            // if (condition) {
+            if (this.imageFiles.length > 0) {
                 if (
                     this.imagePreviews.length < 10 ||
                     this.mealPhotos.length < 10
@@ -318,7 +318,10 @@ export default {
                     // Handle if the maximum limit of photos is reached
                     console.log("Maximum limit of photos reached (10).");
                 }
-            // }
+            } else {
+                const MealId = this.Meal.id;
+                this.$inertia.visit(`/become-a-cook/${MealId}/finishing-up`);
+            }
         },
 
         dragStart(index, event) {
