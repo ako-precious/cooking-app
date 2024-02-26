@@ -185,7 +185,7 @@ import BecomeCook from "./BecomeCook.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 10%"
+                    style="width: 50%"
                 ></div>
             </div>
         </template>
@@ -316,7 +316,7 @@ export default {
                     this.storePhotos();
                 } else {
                     // Handle if the maximum limit of photos is reached
-                    console.log("Maximum limit of photos reached (10).");
+                    // //console.log("Maximum limit of photos reached (10).");
                 }
             } else {
                 const MealId = this.Meal.id;
@@ -334,13 +334,13 @@ export default {
 
             if (this.mealPhotos && index < this.mealPhotos.length) {
                 const mealPhoto = this.mealPhotos[index];
-                console.log(mealPhoto);
+                // //console.log(mealPhoto);
 
                 // Assuming you have an endpoint to delete the photo from the database
                 axios
                     .delete(`/meal_photos/${mealPhoto.id}`)
                     .then((response) => {
-                        console.log(response);
+                        // //console.log(response);
                         // Handle success if needed
                     })
                     .catch((error) => {
@@ -391,7 +391,7 @@ export default {
                         mealPhotos: newMealPhotos,
                     })
                     .then((response) => {
-                        console.log(response.data);
+                        // //console.log(response.data);
                         // this.$inertia.visit(
                         //     `/become-a-cook/${MealId}/finishing-up`
                         // );
@@ -423,11 +423,10 @@ export default {
                     this.mealPhotos[this.mealPhotos.length - 1].order
                 );
                 startingIndex = lastImage + 1;
-                console.log(lastImage);
-                console.log(lastImage + 1);
+                //console.log(lastImage);
+                //console.log(lastImage + 1);
             }
-            console.log(this.mealPhotos.length);
-            console.log(this.mealPhotos[this.mealPhotos.length - 1].order);
+          
 
             for (let i = 0; i < this.imageFiles.length; i++) {
                 formData.append("images[]", this.imageFiles[i]);
@@ -444,7 +443,7 @@ export default {
             // for (let i = 0; i < this.imageFiles.length; i++) {
             //     formData.append("indexes[]", startingIndex + i); // Add the updated index
             // }
-            console.log(formData);
+            // //console.log(formData);
 
             axios
                 .post("/meal_photos", formData, {
@@ -454,7 +453,7 @@ export default {
                 })
                 .then((response) => {
                     const MealId = response.data.image.meal_id;
-                    console.log(response);
+                    // //console.log(response);
                     this.$inertia.visit(
                         `/become-a-cook/${MealId}/finishing-up`
                     );
