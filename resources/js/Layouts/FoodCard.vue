@@ -43,14 +43,14 @@ export default {
     },
     methods: {
         getMeals() {
-            axios
-                .get("/api/meals")
-                .then((response) => {
-                    this.meals = response.data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
-                })
+            // axios
+            //     .get("/api/meals")
+            //     .then((response) => {
+            //         this.meals = response.data;
+            //     })
+            //     .catch((error) => {
+            //         console.error("Error fetching data:", error);
+            //     })
                 
         },
         getPhoto() {
@@ -70,16 +70,18 @@ export default {
                 });
         },
         filterMeals(searchText) {
-            axios
-                .get(`/api/filtered-meals?query=${searchText}`)
-                .then((response) => {
-                    if (response.data.length != 0) {
-                        this.meals = response.data;
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching filtered data:", error);
-                });
+          
+                axios
+                    .get(`/api/filtered-meals?query=${searchText}`)
+                    .then((response) => {
+                        if (response.data.length != 0) {
+                            this.meals = response.data;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching filtered data:", error);
+                    });                
+            
         },
         async loadMoreData() {
             if (this.hasMoreData) {
