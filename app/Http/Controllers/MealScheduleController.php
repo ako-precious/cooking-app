@@ -174,7 +174,7 @@ class MealScheduleController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $mealSchedules = MealSchedule::where('user_id', $userId)->with('meal', 'user')->get();
+        $mealSchedules = MealSchedule::where('user_id', $userId)->with('meal', 'user', 'order')->get();
         return response()->json(MealScheduleResource::collection($mealSchedules));
     }
 

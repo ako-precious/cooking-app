@@ -358,6 +358,8 @@ export default {
         },
 
         addSchedule() {
+
+            
             const today = new Date().toISOString().replace(/T.*$/, "");
             if (
                 this.newSchedule.start_date == "" ||
@@ -382,15 +384,16 @@ export default {
                     .post("/schedule", this.formattedEvents)
                     .then((resp) => {
                         this.message = resp.data.message;
+                        if (this.meal.ordering_preferences == 'automatic') {
+                
+                            const MealId = resp.data.data.id;
+                            this.$inertia.visit(`/process_order/${MealId}`);
+            }else{
+                this.$inertia.visit(`/meal-schedule`)
+            }
+        
 
-                        const MealId = resp.data.data.id;
-                        this.$inertia.visit(`/process_order/${MealId}`);
-
-                        // setTimeout(() => {
-                        //     this.closeModal();
-                        //     // Uncomment the line below if you want to toggle addingMode after the delay
-                        //     // this.addingMode = !this.addingMode;
-                        // }, 5000);
+                      
                     })
                     .catch((err) => {
                         this.error = "Unable to add Meal !";

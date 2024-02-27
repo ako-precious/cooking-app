@@ -24,6 +24,13 @@ defineProps(["meal"]);
             </p>
         </div>
     </td>
+    <td class="whitespace-nowrap px-6 py-3 text-center">
+        <div class="flex items-center">
+            <p v-if="meal.order">
+                {{ meal.order }}
+            </p>
+        </div>
+    </td>
     <!-- <td v-else class="whitespace-nowrap px-6 py-3 ">
         <div class=" flex items-center ">
             <font-awesome-icon
