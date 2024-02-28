@@ -32,11 +32,11 @@ export default {
     },
     mounted() {
         // console.log(this.meal);
+        this.handleScroll()
     },
     created() {
         this.getPhoto();
         this.getMeals(),
-            this.handleScroll(),
             this.filterMeals(),
             this.fetchData(),
             this.closeModal();

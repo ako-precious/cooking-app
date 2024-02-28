@@ -5,6 +5,7 @@ defineProps(["meal"]);
 <template>
     <td v-if="meal.name" class="whitespace-nowrap pl-6 py-3 font-semibold">
         <Link :href="`/cook/menu/edit`" class="flex items-center j">
+            
             <div class="w-16 h-16 ">
                 <img
                     :src="meal_photo"
@@ -67,11 +68,11 @@ export default {
         };
     },
     created() {
-        this.FormattedDate();
-        this.truncatedIng();
+        this.getImage();
     },
     mounted() {
-        this.getImage();
+        this.FormattedDate();
+        this.truncatedIng();
     },
     methods: {
         FormattedDate(timestamp) {

@@ -4,7 +4,7 @@
     >
         <div class="flex justify-between items-center">
             <slot name="title"></slot>
-            <div class="pl-2 flex flex-col justify items-center">
+            <div class="pl-3 flex flex-col justify items-center">
                 <slot name="symbols"></slot>
             </div>
         </div>

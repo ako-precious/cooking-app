@@ -179,15 +179,16 @@ import TableRow from "./TableRow.vue";
                                             </tr>
                                         </thead>
                                        
-                                        <tbody>
-                                            <tr
+                                        <tbody class="relative">
+                                            <tr 
                                                 v-for="meal in orders.flat()"
                                                 :key="meal.id"
-                                                class="animate-fade-in border-b py-4"
+                                                class="animate-fade-in border-b py-4 "
                                             >
                                                 <TableRow :meal="meal">
                                                 </TableRow>
                                             </tr>
+                                           
                                         </tbody>
                                     </table>
                                 </div>
