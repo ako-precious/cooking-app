@@ -166,7 +166,7 @@ class MealScheduleController extends Controller
                 }
                 if ($order->status === 'paid') {
                     # code...
-                    $mealSchedule = MealSchedule::where('id', $order->meal_id);
+                    $mealSchedule = MealSchedule::find($order->meal_id); ;
                     $mealSchedule->status = 'processed';
                     $mealSchedule->save();
                 }

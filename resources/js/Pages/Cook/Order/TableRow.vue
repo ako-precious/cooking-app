@@ -1,9 +1,9 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-defineProps(["meal"]);
+defineProps(["order"]);
 </script>
 <template>
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+    <td class="whitespace-nowrap px-6 py-3 font-bold ">
         <Link :href="``" class="flex items-center j">
             <div class="w-16 h-16">
                 <img
@@ -17,9 +17,9 @@ defineProps(["meal"]);
             </p>
         </Link>
     </td>
-    <td class="whitespace-nowrap px-6 py-3">{{ meal.user.name }}</td>
-    <td class="whitespace-nowrap px-6 py-3">{{ meal.meal_time }}</td>
-    <td class="whitespace-nowrap px-6 py-3">
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ meal.user.name }}</td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ meal.meal_time }}</td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ FormattedDate(meal.created_at) }}
     </td>
 
@@ -40,7 +40,7 @@ defineProps(["meal"]);
         </div>
     </td> -->
     <td class="whitespace-nowrap px-6 py-3 relative">
-        <button
+        <!-- <button
             class="shadow-md rounded-md cursor-pointer w-[120px] h-[40px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
         >
             <span class="span-mother flex overflow-hidden">
@@ -59,20 +59,20 @@ defineProps(["meal"]);
                 <span>tu</span>
                 <span>s</span>
             </span>
-        </button>
+        </button> -->
         <div class=" bg text-xl z-20 flex items-center">
             <div v-if="meal.status == 'pending'" class="flex ">
-                <div class="mr-2"><p>accept</p></div>
-                <div><p>reject</p></div>
+                <div  @click="ChangeStatus('accept')"  class="mr-2 p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">accept</p></div>
+                <div  @click="ChangeStatus('reject')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">reject</p></div>
             </div>
             <div v-else-if="meal.status == 'processed'">
-                <div><p>ready</p></div>
+                <div  @click="ChangeStatus('ready')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">ready</p></div>
             </div>
             <div v-else-if="meal.status == 'ready'">
-                <div><p>in transit</p></div>
+                <div  @click="ChangeStatus('in transit')" class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">in transit</p></div>
             </div>
             <div v-else-if="meal.status == 'in transit'">
-                <div><p>delivered</p></div>
+                <div  @click="ChangeStatus('delivered')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">delivered</p></div>
             </div>
         </div>
     </td>
@@ -82,7 +82,9 @@ defineProps(["meal"]);
 import axios from "axios";
 export default {
     data() {
+
         return {
+            meal: this.order,
             meal_photo: "",
         };
     },
@@ -132,7 +134,17 @@ export default {
                 return description;
             }
         },
-        ChangeStatus() {},
+        ChangeStatus(status) {
+            axios
+                .put("/update-status/" + this.meal.id, { status })
+                .then((response) => {
+                    console.log("Data sent successfully:", response.data.order.status);
+                    this.meal.status = response.data.order.status
+                })
+                .catch((error) => {
+                    console.error("Error sending data:", error);
+                });
+        },
     },
 };
 </script>

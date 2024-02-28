@@ -24,11 +24,9 @@ class OrdersController extends Controller
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array 
                 $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
-                
                 if ($mealSchedules->isNotEmpty()) {
                     // Append the meal schedules to the $orders array
                     $orders[] = $mealSchedules;
-                
                 }
             }
         
@@ -45,10 +43,16 @@ class OrdersController extends Controller
     {
         $user_id = Auth::id();
         
-                $orders = MealSchedule::where('user_id', $user_id)->with('order', 'meal', 'user')->get();
-             
-         
-        
+                $orders = MealSchedule::where('user_id', $user_id)->with('order', 'meal', 'user')->get(); 
         return inertia('Order/Index', ['orders' => $orders]);
     }
+
+    public function updateStatus(Request $request, $id){
+
+        $mealSchedule = MealSchedule::find($id); 
+        $mealSchedule->status =  $request->status;
+        $mealSchedule->save();
+        return response()->json(['order' => $mealSchedule]);
+    }
+
 }

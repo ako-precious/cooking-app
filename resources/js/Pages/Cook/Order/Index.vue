@@ -169,7 +169,7 @@ import TableRow from "./TableRow.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        
+                                                        Change Status
                                                     </template>
                                                     <template #symbols>
                                                        
@@ -181,11 +181,11 @@ import TableRow from "./TableRow.vue";
                                        
                                         <tbody class="relative">
                                             <tr 
-                                                v-for="meal in orders.flat()"
-                                                :key="meal.id"
+                                                v-for="order in orders.flat()"
+                                                :key="order.id"
                                                 class="animate-fade-in border-b py-4 "
                                             >
-                                                <TableRow :meal="meal">
+                                                <TableRow :order="order">
                                                 </TableRow>
                                             </tr>
                                            
