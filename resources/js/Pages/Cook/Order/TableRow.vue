@@ -23,7 +23,7 @@ defineProps(["order"]);
         {{ FormattedDate(meal.created_at) }}
     </td>
 
-    <td class="whitespace-nowrap px-6 py-3 text-center">
+    <td class="whitespace-nowrap px-6 py-3 text-center font-semibold">
         <div class="flex items-center">
             <p>
                 {{ meal.status }}
@@ -136,7 +136,7 @@ export default {
         },
         ChangeStatus(status) {
             axios
-                .put("/update-status/" + this.meal.id, { status })
+                .put("/cook/order/" + this.meal.id, { status })
                 .then((response) => {
                     console.log("Data sent successfully:", response.data.order.status);
                     this.meal.status = response.data.order.status

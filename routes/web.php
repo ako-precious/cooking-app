@@ -57,7 +57,6 @@ Route::middleware([
     });
     
     Route::resource('cook/order',OrdersController::class);
-    Route::put('update-status/{id}', [OrdersController::class, 'updateStatus' ]);
     Route::get('meal-schedule', [OrdersController::class, 'order' ])->name('meal-schedule');
     
     

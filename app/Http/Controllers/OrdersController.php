@@ -47,7 +47,7 @@ class OrdersController extends Controller
         return inertia('Order/Index', ['orders' => $orders]);
     }
 
-    public function updateStatus(Request $request, $id){
+    public function update(Request $request, $id){
 
         $mealSchedule = MealSchedule::find($id); 
         $mealSchedule->status =  $request->status;
