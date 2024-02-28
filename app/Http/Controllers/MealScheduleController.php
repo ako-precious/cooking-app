@@ -32,9 +32,17 @@ class MealScheduleController extends Controller
         ]);
     }
 
+    public function checkMealStatus(Request $request)
+    {
+        $mealId = $request->input('meal_id');
+        // Check the status of the meal
+        $meal = MealSchedule::findOrFail($mealId);
+        return response()->json(['status' => $meal->status]);
+    }
+
     public function checkout(Request $request)
     {
-         $id = $request->input('meal_id');
+        $id = $request->input('schedule_id');
         $meal_order =   MealSchedule::with('meal', 'user')->find($id);
         $photo = MealPhotos::where('meal_id', $meal_order->meal_id)->first();
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
@@ -46,7 +54,7 @@ class MealScheduleController extends Controller
                 'product_data' => [
                     'name' => $meal_order->meal->name,
                     'description' => $meal_order->meal->description
-                    // 'images' => [$photo->meal_photo_path]
+                    // 'image' => $photo->meal_photo_path
                 ],
                 'unit_amount' => $meal_order->meal->price * 100,
             ],
@@ -57,7 +65,7 @@ class MealScheduleController extends Controller
             'mode' => 'payment',
             'ui_mode' => 'embedded',
             'return_url' => route('checkout.return', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-            // 'cancel_url' => route('checkout.cancel'),
+            'expires_at' => time() + (2 * 60 * 60),
         ]);
 
         $order = new Orders();
@@ -95,20 +103,20 @@ class MealScheduleController extends Controller
                 $order->status = 'paid';
                 $order->save();
             }
-            
+
             if ($order->status === 'paid') {
                 // Fetch the meal schedule associated with the order
                 $mealSchedule = MealSchedule::find($order->meal_schedule_id);
-            
+
                 if ($mealSchedule) {
                     // Update the status of the meal schedule to 'processed'
                     $mealSchedule->status = 'processed';
                     $mealSchedule->save();
                 }
             }
-          
 
-            return response()->json([$customer ]);
+
+            return response()->json([$customer]);
         } catch (\Exception $e) {
             // throw new NotFoundHttpException();
             return response('', 404);
@@ -162,7 +170,7 @@ class MealScheduleController extends Controller
                     $mealSchedule->status = 'processed';
                     $mealSchedule->save();
                 }
-    
+
 
                 // ... handle other event types
             default:
@@ -196,10 +204,11 @@ class MealScheduleController extends Controller
         // dd($new_MealSchedule);
 
         $meal_status = Meal::find($new_MealSchedule->meal_id);
-        if ($meal_status->status === 'pending') {
+        if ($meal_status->ordering_preferences === 'automatic') {
             $new_MealSchedule->status = 'accept';
             $new_MealSchedule->save();
         }
+
 
         return response()->json([
             'data' => $new_MealSchedule,
@@ -207,7 +216,7 @@ class MealScheduleController extends Controller
             'status' => Response::HTTP_CREATED
         ]);
     }
-     
+
     public function update(Request $request, $id)
     {
         $MealSchedule = mealSchedule::find($id);
