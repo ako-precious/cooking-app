@@ -138,7 +138,7 @@ export default {
             axios
                 .put("/cook/order/" + this.meal.id, { status })
                 .then((response) => {
-                    console.log("Data sent successfully:", response.data.order.status);
+                    // console.log("Data sent successfully:", response.data.order.status);
                     this.meal.status = response.data.order.status
                 })
                 .catch((error) => {

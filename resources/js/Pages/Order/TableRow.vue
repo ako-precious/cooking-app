@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 defineProps(["meal"]);
 </script>
 <template>
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+    <td class="whitespace-nowrap px-6 py-3 font-bold">
         <Link :href="`//${meal.id}`" class="flex items-center j">
             <p class="">
                 {{ meal.meal.name }}
@@ -11,36 +11,30 @@ defineProps(["meal"]);
         </Link>
     </td>
     <!-- <td class="whitespace-nowrap px-6 py-3">{{  meal.meal.id }}</td> -->
-    <td class="whitespace-nowrap px-6 py-3">{{ getCook(meal.meal.id) }}</td>
-    <td class="whitespace-nowrap px-6 py-3">{{ meal.meal_time }}</td>
-    <td class="whitespace-nowrap px-6 py-3">
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ getCook(meal.meal.id) }}</td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ meal.meal_time }}</td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ FormattedDate(meal.created_at) }}
     </td>
 
-    <td class="whitespace-nowrap px-6 py-3 text-center">
+    <td class="whitespace-nowrap px-6 py-3 text-center font-semibold">
         <div class="flex items-center">
             <p>
                 {{ meal.status }}
             </p>
         </div>
     </td>
-    <td class="whitespace-nowrap px-6 py-3 text-center">
-        <div class="flex items-center">
-            <p v-if="meal.order">
-                {{ meal.order }}
-            </p>
-        </div>
-    </td>
-    <!-- <td v-else class="whitespace-nowrap px-6 py-3 ">
-        <div class=" flex items-center ">
-            <font-awesome-icon
-                class="text-persian text-lg pr-1"
-                icon="toggle-off"
-            />
-            Off
-        </div>
-    </td> -->
-    <td class="whitespace-nowrap px-6 py-3"></td>
+   
+    <td class="whitespace-nowrap px-6 py-3"> <div class=" bg text-xl z-20 flex items-center">
+           
+            <div v-if="meal.status == 'accept'">
+                <Link :href="`/process_order/${meal.id}`" >
+                    <div  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Pay</p></div></Link>
+            </div>            
+            <div v-else-if="meal.status == 'delivered'">
+                <div  @click="ChangeStatus('confirmed')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Confirm</p></div>
+            </div>
+        </div></td>
 </template>
 
 <script>
@@ -55,6 +49,7 @@ export default {
     created() {
         this.FormattedDate();
         this.truncatedIng();
+        // this.getCook()
     },
     methods: {
         FormattedDate(timestamp) {
@@ -88,6 +83,16 @@ export default {
                     console.error("Error sending data:", error);
                 });
                 return this.user_name
+        }, ChangeStatus(status) {
+            axios
+                .put("/cook/order/" + this.meal.id, { status })
+                .then((response) => {
+                    console.log("Data sent successfully:", response.data.order.status);
+                    // this.meal.status = response.data.order.status
+                })
+                .catch((error) => {
+                    console.error("Error sending data:", error);
+                });
         },
     },
 };
