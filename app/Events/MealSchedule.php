@@ -14,12 +14,14 @@ class MealSchedule implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+
+    public $message;
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct($message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -30,7 +32,17 @@ class MealSchedule implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new Channel('my-channel'),
         ];
+    }
+
+    /**
+     * Get the channels the event should broadcast event status.
+     *
+     * @return array<int, \Illuminate\Broadcasting\Channel>
+     */
+    public function broadcastAs()
+    {
+        return 'meal-status';
     }
 }
