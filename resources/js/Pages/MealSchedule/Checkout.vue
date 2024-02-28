@@ -23,7 +23,7 @@ export default {
       const { clientSecret } = await response.json();
       
       // Initialize Stripe
-      const stripe = Stripe(env('STRIPE_PRIMARY_KEY'));
+      const stripe = Stripe('pk_test_51OjplDL2JFKeogL4wsxVYfkG8zCegW66jPKapqF6QtnmakopSVRHFn2YE4tuQK4ZhZROFhJ9iTohD5dZ2wlS1H9x00zqkwyGg2');
       
       // Create a checkout instance
       const checkout = await stripe.initEmbeddedCheckout({

@@ -167,6 +167,14 @@ import TableRow from "./TableRow.vue";
                                                         />
                                                     </template>
                                                 </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        
+                                                    </template>
+                                                    <template #symbols>
+                                                       
+                                                    </template>
+                                                </TableHeadVue>
                                                 
                                             </tr>
                                         </thead>

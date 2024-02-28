@@ -65,7 +65,7 @@ class MealScheduleController extends Controller
             'mode' => 'payment',
             'ui_mode' => 'embedded',
             'return_url' => route('checkout.return', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-            'expires_at' => time() + (2 * 60 * 60),
+            // 'expires_at' => time() + (2 * 60 * 60),
         ]);
 
         $order = new Orders();
