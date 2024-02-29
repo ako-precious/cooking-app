@@ -30,8 +30,9 @@ export default {
 
             const channel = pusher.subscribe("my-channel");
             channel.bind("meal-status", (data) => {
+                this.message
                 console.log(this.messages.push(JSON.stringify(data)));
-                alert(); 
+                // alert(); 
             });
         },
     },

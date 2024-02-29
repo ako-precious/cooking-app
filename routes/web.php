@@ -35,6 +35,8 @@ Route::get('/welcomed', function () {
 
 
 Route::get('api/meals', [WelcomeController::class, 'meals']);
+Route::resource('/meal_photos', MealPhotosController::class);
+Route::get('/checkUser', [CookController::class, "checkCook"]);
 Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
 
 Route::middleware([
@@ -61,7 +63,6 @@ Route::middleware([
     
     
     //photo Controller
-    Route::resource('/meal_photos', MealPhotosController::class);
     
     //Meal Schedule
     Route::resource('/schedule', MealScheduleController::class);
@@ -88,7 +89,6 @@ Route::middleware([
     //cook Controller
     Route::resource('/cook/menu', CookController::class);
     Route::get('/cook/setup', [CookController::class, 'setup']);
-    Route::get('/checkUser', [CookController::class, "checkCook"]);
     Route::get('/become-a-cook/{newMealId}/price',[CookController::class, 'price' ]);
     Route::get('/become-a-cook/{newMealId}/photos', [CookController::class, 'photos' ]);
     Route::get('/become-a-cook/{newMealId}/region', [CookController::class, 'region' ]);
