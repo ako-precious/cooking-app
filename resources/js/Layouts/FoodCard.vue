@@ -32,14 +32,14 @@ export default {
     },
     mounted() {
         // console.log(this.meal);
-        this.handleScroll()
+        this.handleScroll();
+        this.closeModal();
     },
     created() {
         this.getPhoto();
-        // this.getMeals(),
-        //     this.filterMeals(),
-        //     this.fetchData(),
-        //     this.closeModal();
+        this.getMeals(),
+            this.filterMeals(),
+            this.fetchData()
     },
     methods: {
         getMeals() {
