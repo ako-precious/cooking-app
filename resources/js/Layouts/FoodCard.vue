@@ -36,10 +36,10 @@ export default {
     },
     created() {
         this.getPhoto();
-        this.getMeals(),
-            this.filterMeals(),
-            this.fetchData(),
-            this.closeModal();
+        // this.getMeals(),
+        //     this.filterMeals(),
+        //     this.fetchData(),
+        //     this.closeModal();
     },
     methods: {
         getMeals() {

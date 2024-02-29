@@ -28,7 +28,7 @@
   
         const channel = pusher.subscribe('my-channel');
         channel.bind('meal-status', (data) => {
-          this.messages.push(data);
+console.log(this.messages.push(data));
         });
       },
     },
