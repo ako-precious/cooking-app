@@ -4,6 +4,7 @@ import DropBarNav from "./Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import Navbar from "./Header/Navbar.vue";
+import PusherNotification from "@/Components/PusherNotification.vue";
 import axios from "axios";
 defineProps({
     canLogin: Boolean,
@@ -145,7 +146,7 @@ export default {
             class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in"
         ></DateRangePicker>
     </header>
-       
+       <PusherNotification></PusherNotification>
     <div
         class="container mt-4 p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >

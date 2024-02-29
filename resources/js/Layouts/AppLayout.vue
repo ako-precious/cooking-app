@@ -63,17 +63,19 @@ const logout = () => {
         
         <SideBarHeader class="">
              <!-- Logo -->
+             <Link :href="route('welcome')">
              <div class="shrink-0 flex items-center">
-                                <Link :href="route('welcome')">
-                                    <ApplicationMark class="block h-9 w-auto" />
-                                </Link>
-                            </div>
-
-            <span :class="{ 'opacity-0': isLinkHidden }"
-                class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase"
-            >
-                FoodMart
-            </span>
+                    <ApplicationMark class="block h-9 w-auto" />
+                </div>
+            </Link>
+                
+                <Link :href="route('welcome')">
+                    <span :class="{ 'opacity-0': isLinkHidden }"
+                    class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase"
+                    >
+                    Ounjemi
+                </span>
+            </Link>
         </SideBarHeader>
         
        
