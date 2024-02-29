@@ -11,7 +11,7 @@
 
 <script>
 import Pusher from "pusher-js";
-
+import Echo from 'laravel-echo';
 export default {
     data() {
         return {
@@ -23,18 +23,32 @@ export default {
     },
     methods: {
         setupPusher() {
-            const pusher = new Pusher("c6401e5016523495976b", {
-                cluster: "us2",
-                //   encrypted: true,
+            window.Echo = new Echo({
+                broadcaster: 'pusher',
+                key: 'c6401e5016523495976b',
+                cluster: 'us2',
+                encrypted: true,
             });
 
-            const channel = pusher.subscribe("my-channel");
-            channel.bind("meal-status", (data) => {
-                this.message
-                console.log(this.messages.push(JSON.stringify(data)));
-                // alert(); 
-            });
+            window.Echo.channel('my-channel')
+                .listen('.meal-status', (data) => {
+                    this.messages.push(data.message);
+                });
         },
+
+        // setupPusher() {
+        //     // const pusher = new Pusher("c6401e5016523495976b", {
+        //     //     cluster: "us2",
+        //     //       encrypted: true,
+        //     // });
+
+        //     const channel = pusher.subscribe("my-channel");
+        //     channel.bind("meal-status", (data) => {
+        //         this.message
+        //         console.log(this.messages.push(JSON.stringify(data)));
+        //         // alert(); 
+        //     });
+        // },
     },
 };
 </script>

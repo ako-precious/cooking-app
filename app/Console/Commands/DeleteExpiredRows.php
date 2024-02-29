@@ -27,8 +27,8 @@ class DeleteExpiredRows extends Command
     public function handle()
     {
 
-    DB::table('notification')
-        ->where('my_date_column', '<', now()->subDays(30))
+    DB::table('notifications')
+        ->where('created_at', '<', now()->subDays(30))
         ->delete();
 
     }

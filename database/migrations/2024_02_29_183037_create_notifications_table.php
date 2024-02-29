@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id', 'user_meal_schedule')->references('id')->on('users');
+            $table->foreign('user_id', 'user_notification')->references('id')->on('users');
             $table->string('message');
-            $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
+            $table->enum('status', ['unread', 'read'])->default('unread');
             $table->timestamps();
         });
     }

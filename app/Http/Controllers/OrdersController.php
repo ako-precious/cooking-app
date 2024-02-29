@@ -6,6 +6,7 @@ use App\Models\Cook;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use App\Models\MealSchedule;
+use App\Events\MealStatusUpdated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -52,6 +53,12 @@ class OrdersController extends Controller
         $mealSchedule = MealSchedule::find($id); 
         $mealSchedule->status =  $request->status;
         $mealSchedule->save();
+        // Hi [Customer Name], your order # [order number] placed on December 19th, 2023 has been delivered.
+
+        $message = "Your order #". $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
+
+        event(new MealStatusUpdated($message));
+
         return response()->json(['order' => $mealSchedule]);
     }
 
