@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
 use App\Models\MealPhotos;
+use App\Models\Notification;
 use Stripe\Climate\Order;
 class OrdersController extends Controller
 {
@@ -56,8 +57,13 @@ class OrdersController extends Controller
         // Hi [Customer Name], your order # [order number] placed on December 19th, 2023 has been delivered.
 
         $message = "Your order #". $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
-
-        event(new MealStatusUpdated($message));
+        
+        $notification = new Notification();
+        $notification->user_id = $mealSchedule->user_id;
+        $notification->message = $message;
+        $notification->status = 'unread';
+        $notification->save();
+     (event(new MealStatusUpdated($message)));
 
         return response()->json(['order' => $mealSchedule]);
     }
