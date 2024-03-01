@@ -70,7 +70,7 @@ class CookController extends Controller
     {
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
-        $notifications = Notification::where('user_id',$user_id)->get();
+        $notifications = Notification::where('user_id',$user_id)->where('status', 'unread')->get();
 
         if ($cook !== null) {
             $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();

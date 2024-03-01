@@ -43,14 +43,18 @@
                 </li> -->
                 
                 <li class="navbar-link">
-                    <div class="absolute"></div>
-                    <Dropdown>
+                    <Dropdown class="relative group">
                         <template #trigger>
-                          
-                                <font-awesome-icon
-                                    icon="bell"
-                                    class="h-3 lg:h-4 p-2 svg-inline--fa fa-user fa-w-14 fa-9x"
-                                />
+                            
+                            <font-awesome-icon
+                            icon="bell"
+                            class="h-4 lg:h-5 px-2 py-1 svg-inline--fa fa-user fa-w-14 fa-9x"
+                            />
+                            <div v-if="notifications" class="absolute top-[20%] right-[10%] ">
+        
+                                  <div
+                                  class="bg-lighred w-[8px] h-[8px]  rounded-full animate-ping group-hover:animate-none "><p class="opacity-0">r</p></div>
+                                </div>
                             
                         </template>
 
@@ -73,13 +77,9 @@
                             class=" relative flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
                             role="menuitem"
                         >
-                        <p v-if="notification.status == 'unread'" class="absolute h-full ">
+                        
 
-                          <div
-                          class="bg-lighred w-[10px] h-[10px]  rounded-full "><p class="opacity-0">r</p></div>
-                        </p>
-
-                        <p class="disable-scrollbars overflow-x-scroll text-nowrap ml-4">
+                        <p class="disable-scrollbars overflow-x-scroll text-nowrap ">
 
                             {{ notification.message }}
                         </p>
