@@ -35,4 +35,9 @@ class MealStatusUpdated implements ShouldBroadcast
     {
         return new Channel('my-channel');
     }
+
+    public function broadcastAs()
+    {
+        return 'meal-status';
+    }
 }

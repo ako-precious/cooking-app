@@ -2,8 +2,8 @@
     <div>
         <h1>Pusher Example</h1>
         <ul>
-            <li v-for="message in messages" :key="message.id">
-                {{ message.text }}
+            <li v-for="(message, index) in messages" :key="index">
+                {{ message }}
             </li>
         </ul>
     </div>
@@ -31,7 +31,7 @@ export default {
             });
 
             window.Echo.channel('my-channel')
-                .listen('.meal-status', (data) => {
+                .listen('meal-status', (data) => {
                     this.messages.push(data.message);
                 });
         },
