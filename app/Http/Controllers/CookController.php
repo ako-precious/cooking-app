@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Cook;
 use App\Models\Meal;
 use App\Models\MealPhotos;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class CookController extends Controller
@@ -69,9 +70,11 @@ class CookController extends Controller
     {
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
+        $notifications = Notification::where('user_id',$user_id)->get();
+
         if ($cook !== null) {
             $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
-            return response()->json(['checkUser' => $checkUser]);
+            return response()->json(['checkUser' => $checkUser, 'notifications' => $notifications]);
         }
     }
     public function about_your_meal($newMealId)

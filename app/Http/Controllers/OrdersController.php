@@ -60,6 +60,7 @@ class OrdersController extends Controller
         
         $notification = new Notification();
         $notification->user_id = $mealSchedule->user_id;
+        $notification->meal_schedule_id = $mealSchedule->id;
         $notification->message = $message;
         $notification->status = 'unread';
         $notification->save();

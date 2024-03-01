@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id', 'user_notification')->references('id')->on('users');
+            $table->unsignedBigInteger('meal_schedule_id');
+            $table->foreign('meal_schedule_id', 'schedule_notification')->references('id')->on('meal_schedules');
             $table->string('message');
             $table->enum('status', ['unread', 'read'])->default('unread');
             $table->timestamps();
