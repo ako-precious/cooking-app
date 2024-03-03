@@ -2,6 +2,7 @@
 import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "../../../Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
+import HeaderVue from "../Header.vue";
 </script>
 
 <template>
@@ -9,10 +10,11 @@ import TableRow from "./TableRow.vue";
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
         <div class="container relative mx-auto overflow-hidden">
+
+            <HeaderVue> </HeaderVue>  
             <div
-                class="m-auto flex flex-col  justify-center h-full px-6 lg:pb-20 w-full"
+                class="m-auto flex flex-col  justify-center h-full p-6 lg:pb-20 w-full"
             >
-               
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
                         <div class="sm:-mx-6 lg:-mx-8">
