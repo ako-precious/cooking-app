@@ -4,9 +4,16 @@ import { Head, Link } from "@inertiajs/vue3";
 
 <template>
     <Head title="Become A Cook" />
-
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
+<div class="container py-5  bg-snow dark:bg-oynx">
+<div class="flex justify-between items-center">
+    <div class=""> LOGO
+    </div>
+    
+    <div class=" w-32  navbar-link font-semibold shadow-reverse p-3 rounded-full text-sm ">
+       <Link :href="`/cook/menu`" > Save and Exist</Link></div>
+</div>
+ <div
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center selection:bg-red-500 selection:text-white"
     >
         <!-- <Overview /> -->
         <slot name="info" class="animate-fade-in delay-100"></slot>
@@ -17,7 +24,7 @@ import { Head, Link } from "@inertiajs/vue3";
             <slot name="mainbtn"></slot>
             
         </div>
-    </div>
+    </div></div>
 </template>
 
 <!-- Saving for later -->
