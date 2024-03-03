@@ -56,18 +56,19 @@ class OrdersController extends Controller
         $mealSchedule->save();
         // Hi [Customer Name], your order # [order number] placed on December 19th, 2023 has been delivered.
         $cook = Meal::find($mealSchedule->meal_id);
-        $message = "Your order #". $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
+        $message = "Your meal order #". $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
         
         $notification = new Notification();
         if ($mealSchedule->status = 'confirmed') {
             # code...
-            $notification->user_id = $cook->id;
+            $notification->user_id = $cook->cook_id;
+            $notification->message = "The meal order #". $mealSchedule->id . " delivery as been " . $mealSchedule->status;
         }else{
 
             $notification->user_id = $mealSchedule->user_id;
+            $notification->message = $message;
         }
         $notification->meal_schedule_id = $mealSchedule->id;
-        $notification->message = $message;
         $notification->status = 'unread';
         $notification->save();
 

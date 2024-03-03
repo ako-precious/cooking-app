@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
 use App\Models\MealPhotos;
+use App\Models\Notification;
+use App\Models\User;
 use Stripe\Climate\Order;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Exceptions\NotFoundHttpException;
@@ -208,7 +210,15 @@ class MealScheduleController extends Controller
             $new_MealSchedule->status = 'accept';
             $new_MealSchedule->save();
         }
+        $cook = Meal::find($new_MealSchedule->meal_id);
+        $user = User::find($new_MealSchedule->user_id);
 
+        $notification = new Notification();
+        $notification->user_id = $cook->id;        
+        $notification->meal_schedule_id = $new_MealSchedule->id;
+        $notification->message = "You have a meal order #". $new_MealSchedule->id . " from". $user->name ;
+        $notification->status = 'unread';
+        $notification->save();
 
         return response()->json([
             'data' => $new_MealSchedule,
