@@ -173,11 +173,10 @@ const logout = () => {
                                                <span v-else class="inline-flex rounded-md">
                                                    <button type="button" class="inline-flex items-center px-3 py-3 border border-transparent text-sm leading-4 font-medium rounded-full  transition ease-in-out duration-150">
                                                        {{truncatedIng($page.props.auth.user.name)  }} 
-                                                     
-        
-                                                       <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                                           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                       </svg>
+                                                       <font-awesome-icon
+                                        icon="caret-down"
+                                        class="h-3 lg:h-4 ml-2 svg-inline--fa fa-user fa-w-14 fa-9x"
+                                    />
                                                    </button>
                                                </span>
                                            </template>
