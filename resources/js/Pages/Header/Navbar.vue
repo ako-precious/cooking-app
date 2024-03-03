@@ -66,8 +66,8 @@
                     class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow  ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
                 >
                     <div 
-                        class="py-2 p-2"
-                        role="menu"
+                        class="py-2 p-2 max-h-[300px] disable-scrollbars overflow-y-scroll"
+                        role="menu" 
                         aria-orientation="vertical"
                         aria-labelledby="dropdown-button"
                     >
@@ -85,6 +85,8 @@
                         </p>
 
                         </a></div> 
+                      
+                    
                       
                     </div>
                 </div>
@@ -132,7 +134,6 @@ export default {
             axios
                 .get("/checkUser")
                 .then((response) => {
-                console.log(response.data.notifications);
                     this.notifications = response.data.notifications;
                 })
                 .catch((error) => {                    // Handle error
