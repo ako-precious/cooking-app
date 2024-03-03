@@ -2,13 +2,15 @@
 import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
+import HeaderVue from "../Header.vue";
 </script>
 
 <template>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div class="container relative mx-auto ">
+        <div class="container relative mx-auto">
+            <HeaderVue> </HeaderVue>  
             <div
                 class="m-auto flex flex-col justify-center h-full px-6 lg:pb-20 w-full"
             >
@@ -84,7 +86,9 @@ import TableRow from "./TableRow.vue";
                             <div
                                 class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
-                                <div class="overflow-x-scroll disable-scrollbars">
+                                <div
+                                    class="overflow-x-scroll disable-scrollbars"
+                                >
                                     <table
                                         class="w-full px-4 text-left text-sm font-light relative"
                                     >
@@ -172,23 +176,20 @@ import TableRow from "./TableRow.vue";
                                                         Change Status
                                                     </template>
                                                     <template #symbols>
-                                                       
                                                     </template>
                                                 </TableHeadVue>
-                                                
                                             </tr>
                                         </thead>
-                                       
+
                                         <tbody class="relative">
-                                            <tr 
+                                            <tr
                                                 v-for="order in orders.flat()"
                                                 :key="order.id"
-                                                class="animate-fade-in border-b py-4 "
+                                                class="animate-fade-in border-b py-4"
                                             >
                                                 <TableRow :order="order">
                                                 </TableRow>
                                             </tr>
-                                           
                                         </tbody>
                                     </table>
                                 </div>
@@ -211,12 +212,9 @@ export default {
         orders: Object,
     },
     mounted() {
-      
         // const allMealSchedules = this.orders.flat();
-
         // // Extract the id values from all objects
         // const allIds = allMealSchedules.map((mealSchedule) => mealSchedule.meal.name);
-
         // // Now allIds contains the id values of all objects
         // console.log(allIds);
         // console.log(this.orders);
