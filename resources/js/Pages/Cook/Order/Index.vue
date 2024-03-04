@@ -216,8 +216,16 @@ import axios from "axios";
 
 export default {
     props: {
-        orders: Object,
+        meal-orders: Object,
+        pending: Object, 
+        reject: Object,
+        accept: Object ,
+        processed: Object,
+        ready: Object,
+        delivered: Object, confirmed:Object
+
     },
+    
     mounted() {
         // const allMealSchedules = this.orders.flat();
         // // Extract the id values from all objects

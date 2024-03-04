@@ -26,17 +26,30 @@ class OrdersController extends Controller
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array 
                 $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
-                $allCount = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->count();
+                $pendingOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'pending')->with('order', 'meal', 'user')->get();
+                $rejectOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'reject')->with('order', 'meal', 'user')->get();
+                $acceptOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accept')->with('order', 'meal', 'user')->get();
+                $processedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
+                $readyOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
+                $deliveredOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
+                $confirmedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
                 if ($mealSchedules->isNotEmpty()) {
                     // Append the meal schedules to the $orders array
                     $orders[] = $mealSchedules;
+                    $pending[] = $pendingOrders;
+                    $reject[] = $rejectOrders;
+                    $accept[] = $acceptOrders;
+                    $processed[] = $processedOrders;
+                    $ready[] = $readyOrders;
+                    $delivered[] = $deliveredOrders;
+                    $confirmed[] = $confirmedOrders;
                 }
             }
-            // dd($allCount);
+            // dd($accept);
         
             // dd($orders);
             // You can uncomment this line for debugging
-            return inertia('Cook/Order/Index', ['orders' => $orders]);
+            return inertia('Cook/Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
         }
          else {
             # code...
