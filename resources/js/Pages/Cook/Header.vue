@@ -11,7 +11,7 @@ const logout = () => {
 <template>
     <div class="px-5">
 
-        <header class="py-5 bg-snow dark:bg-oynx">
+        <header class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in">
             <div
                 :class="{ fix: isHeaderFixed }"
                 class="flex justify-between items-center w-full bg-snow dark:bg-oynx"
@@ -24,7 +24,7 @@ const logout = () => {
                     id=""
                 >
                     <Link :href="`/cook/order`" class="py-2 px-3 navbar-link" >
-                        <p>Order</p>
+                        <p>Orders</p>
                     </Link>
                     <Link class="py-2 px-3 navbar-link" href="">
                         <p>Calendar</p>
@@ -36,6 +36,32 @@ const logout = () => {
                         <p>More  </p> <font-awesome-icon
                                             icon="caret-down"
                                             class="h-3 lg:h-4 ml-2 svg-inline--fa fa-user fa-w-14 fa-9x"></font-awesome-icon>
+                                            Type of cuisine:
+
+Italian
+French
+Mexican
+Thai
+Indian
+Mediterranean
+Japanese
+Vegetarian
+Vegan
+Dietary preference:
+
+Low-carb
+Gluten-free
+Dairy-free
+Spicy
+Light
+Hearty
+General terms:
+
+Surprise me! (Shows trust in the chef's expertise)
+Seasonal (Focuses on using fresh, in-season ingredients)
+Chef's choice (Similar to "surprise me!")
+Recommendation (Asks for the chef's suggestion based on your preferences)
+Signature dish (Requests the chef's most well-known creation)
                                        
                     </Link> -->
                 </div>
@@ -163,9 +189,10 @@ export default {
 .fix {
     position: fixed;
     top: 0;
+    right: 0;
+    
     width: 100%;
-    padding: 1.5rem 0;
-    padding-right: 4rem;
+    padding: 1.5rem 3rem;
     z-index: 1000; /* Adjust z-index as needed */
 }
 </style>
