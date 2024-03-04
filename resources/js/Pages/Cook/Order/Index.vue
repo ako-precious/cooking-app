@@ -31,7 +31,7 @@ import HeaderVue from "../Header.vue";
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >ALL [2]</span
+                                        >ALL [{{ orders.flat().length }}]</span
                                     >
                                 </button>
                             </li>
@@ -40,7 +40,7 @@ import HeaderVue from "../Header.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >Pending [2]</span>
+                                        >Pending [{{ orders.length }}]</span>
                                 </button>
                             </li>
                             <li class="pt-2">

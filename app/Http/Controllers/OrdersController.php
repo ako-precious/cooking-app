@@ -26,11 +26,13 @@ class OrdersController extends Controller
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array 
                 $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
+                $allCount = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->count();
                 if ($mealSchedules->isNotEmpty()) {
                     // Append the meal schedules to the $orders array
                     $orders[] = $mealSchedules;
                 }
             }
+            // dd($allCount);
         
             // dd($orders);
             // You can uncomment this line for debugging
