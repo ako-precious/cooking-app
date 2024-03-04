@@ -6,135 +6,84 @@ import HeaderVue from "../Header.vue";
 </script>
 
 <template>
- <Head>Orders</Head>
+    <Head>Orders</Head>
 
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
         <div class="container relative mx-auto">
-           <div >
-               <HeaderVue> </HeaderVue>  
-           </div>
+            <div>
+                <HeaderVue> </HeaderVue>
+            </div>
             <div
                 class="m-auto flex flex-col justify-center h-full px-6 lg:pb-20 w-full"
             >
                 <div class="col-span-1 w-full max-w-full py-6">
                     <div
-                        class="sticky flex flex-col min-w-0 break-words w-full top-1/100  dark:bg-slate-850 rounded-2xl bg-clip-border"
+                        class="sticky flex flex-col min-w-0 break-words w-full top-1/100 dark:bg-slate-850 rounded-2xl bg-clip-border"
                     >
                         <ul
                             class="flex justify-around p-4 mb-0 list-none rounded-xl"
                         >
                             <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="  flex items-center px-4 py-2 transition-colors ease-in-out rounded-xl group text-slate-500 hover:bg-gray-300"
+                                <button
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >All</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
-                                <button>
-  <span>BUTTON</span>
-</button>
-
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >ALL [2]</span
+                                    >
+                                </button>
                             </li>
                             <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="shadow-reverse flex items-center px-4 py-2 transition-colors ease-in-out rounded-xl group text-slate-500 hover:bg-gray-300"
-                                >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >Pending</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
+                                <button
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Pending [2]</span>
+                                </button>
                             </li>
                             <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="shadow-reverse flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                                >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >Accepted</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
+                                <button
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Rejected [2]</span>
+                                </button>
                             </li>
                             <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="shadow-reverse flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                                >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >Rejected</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
+                                <button
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Accepted [2]</span>
+                                </button>
                             </li>
                             <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="shadow-reverse flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                                >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >Processed</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
+                                <button
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Processed [2]</span>
+                                </button>
                             </li>
                             <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="shadow-reverse flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                                >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >Ready</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
+                                <button
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >delivered [2]</span>
+                                </button>
                             </li>
                             <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="shadow-reverse flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                                >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >delivered</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
+                                <button
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >confirmed [2]</span>
+                                </button>
                             </li>
-                            <li class="pt-2">
-                                <a
-                                    href="#profile"
-                                    class="shadow-reverse flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
-                                >
-                                <span
-                                class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                >confirmed</span>
-                                <i
-                                    class="ml-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                >2</i>
-                                </a>
-                            </li>
-                                                       
-                            
+                           
                         </ul>
                     </div>
                 </div>
@@ -281,66 +230,39 @@ export default {
 </script>
 
 <style scoped>
-button {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background: #183153;
-  font-family: "Montserrat", sans-serif;
-  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  cursor: pointer;
-  border: none;
-}
-
 button:after {
-  content: " ";
-  width: 0%;
-  height: 100%;
-  background: ;
-  position: absolute;
-  transition: all 0.4s ease-in-out;
-  right: 0;
+    content: " ";
+    width: 0%;
+    height: 100%;
+    background: #1b998b;
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    right: 0;
 }
 
 button:hover::after {
-  right: auto;
-  left: 0;
-  width: 100%;
-}
-
-button span {
-  text-align: center;
-  text-decoration: none;
-  width: 100%;
-  padding: 18px 25px;
-  color: #fff;
-  font-size: 1.125em;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  z-index: 20;
-  transition: all 0.3s ease-in-out;
+    right: auto;
+    left: 0;
+    width: 100%;
 }
 
 button:hover span {
-  color: #183153;
-  animation: scaleUp 0.3s ease-in-out;
+    color: white;
+    animation: scaleUp 0.3s ease-in-out;
 }
 
 @keyframes scaleUp {
-  0% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
 
-  50% {
-    transform: scale(0.95);
-  }
+    50% {
+        transform: scale(0.95);
+    }
 
-  100% {
-    transform: scale(1);
-  }
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes fade-in {
