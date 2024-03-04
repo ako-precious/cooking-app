@@ -26,64 +26,89 @@ import HeaderVue from "../Header.vue";
                             class="flex justify-around p-4 mb-0 list-none rounded-xl"
                         >
                             <li class="pt-2">
-                                <button
+                                <button @click="chooseStatus(meal_orders)"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >ALL [{{ orders.flat().length }}]</span
+                                        >ALL [{{
+                                            meal_orders.flat().length
+                                        }}]</span
                                     >
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                <button @click="chooseStatus(pending)"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >Pending [{{ orders.length }}]</span>
+                                        >Pending [{{
+                                            pending.flat().length
+                                        }}]</span
+                                    >
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                <button @click="chooseStatus(reject)"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >Rejected [2]</span>
+                                        >Rejected [{{
+                                            reject.flat().length
+                                        }}]</span
+                                    >
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                <button @click="chooseStatus(accept)"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >Accepted [2]</span>
+                                        >Accepted [{{
+                                            accept.flat().length
+                                        }}]</span
+                                    >
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                <button @click="chooseStatus(processed)"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >Processed [2]</span>
+                                        >Processed [{{
+                                            processed.flat().length
+                                        }}]</span
+                                    >
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                <button @click="chooseStatus(delivered)"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >delivered [2]</span>
+                                        >delivered [{{
+                                            delivered.flat().length
+                                        }}]</span
+                                    >
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian">
+                                <button  @click="chooseStatus(confirmed)"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
-                                        >confirmed [2]</span>
+                                        >confirmed [{{
+                                            confirmed.flat().length
+                                        }}]</span
+                                    >
                                 </button>
                             </li>
-                           
                         </ul>
                     </div>
                 </div>
@@ -216,16 +241,20 @@ import axios from "axios";
 
 export default {
     props: {
-        meal-orders: Object,
-        pending: Object, 
+        meal_orders: Object,
+        pending: Object,
         reject: Object,
-        accept: Object ,
+        accept: Object,
         processed: Object,
         ready: Object,
-        delivered: Object, confirmed:Object
-
+        delivered: Object,
+        confirmed: Object,
     },
-    
+    data() {
+        return {
+            orders: this.meal_orders,
+        };
+    },
     mounted() {
         // const allMealSchedules = this.orders.flat();
         // // Extract the id values from all objects
@@ -233,6 +262,11 @@ export default {
         // // Now allIds contains the id values of all objects
         // console.log(allIds);
         // console.log(this.orders);
+    },
+    methods: {
+        chooseStatus(status) {
+           this.orders = status 
+        },
     },
 };
 </script>
