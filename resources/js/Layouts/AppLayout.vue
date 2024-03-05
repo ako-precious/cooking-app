@@ -268,7 +268,7 @@ export default {
             isNavClassTranslated: false,
             isClassTranslated2: true,
             isDashboard: false,
-            resultText: 'Dashboard', 
+            resultText: 'Meal schedule', 
         };
     },
     created() {
