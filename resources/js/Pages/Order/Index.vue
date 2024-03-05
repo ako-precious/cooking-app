@@ -9,6 +9,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
 </script>
 
 <template>
+    <Head>Orders</Head>
     <AppLayout title="Meal Schedule">
         <div
             class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center selection:bg-lighred selection:text-white"

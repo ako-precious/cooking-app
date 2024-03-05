@@ -205,7 +205,6 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         Meal Title
                                                     </template>
                                                     <template #symbols>
-                                                        
                                                         <CaretUp />
                                                         <CaretDown/>
                                                     </template>
