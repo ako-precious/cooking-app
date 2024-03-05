@@ -3,6 +3,8 @@ import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
 import HeaderVue from "../Header.vue";
+import  CaretDown  from "@/Components/CaretDown.vue";
+import  CaretUp  from "@/Components/CaretUp.vue";
 </script>
 
 <template>
@@ -26,7 +28,17 @@ import HeaderVue from "../Header.vue";
                             class="flex justify-around p-4 mb-0 list-none rounded-xl"
                         >
                             <li class="pt-2">
-                                <button @click="[chooseStatus(meal_orders), selectedDiv('meal_orders'),  ]" :class="{ 'bg-persian text-snow' :  selected === 'meal_orders' }"
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(meal_orders),
+                                            selectedDiv('meal_orders'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'meal_orders',
+                                    }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -38,7 +50,17 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="[chooseStatus(pending), selectedDiv('pending'),]" :class="{ 'bg-persian text-snow' :  selected === 'pending' }"
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(pending),
+                                            selectedDiv('pending'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'pending',
+                                    }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -50,7 +72,17 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="[chooseStatus(reject), selectedDiv('reject'),]" :class="{ 'bg-persian text-snow' :  selected === 'reject' }"
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(reject),
+                                            selectedDiv('reject'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'reject',
+                                    }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -62,7 +94,17 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="[chooseStatus(accept), selectedDiv('accept'),]" :class="{ 'bg-persian text-snow' :  selected === 'accept' }"
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(accept),
+                                            selectedDiv('accept'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'accept',
+                                    }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -74,7 +116,17 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="[chooseStatus(processed), selectedDiv('processed'),]" :class="{ 'bg-persian text-snow' :  selected === 'processed' }"
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(processed),
+                                            selectedDiv('processed'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'processed',
+                                    }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -86,7 +138,17 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="[chooseStatus(delivered), selectedDiv('delivered'),]" :class="{ 'bg-persian text-snow' :  selected === 'delivered' }"
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(delivered),
+                                            selectedDiv('delivered'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'delivered',
+                                    }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -98,7 +160,17 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button  @click="[chooseStatus(confirmed), selectedDiv('confirmed'),]" :class="{ 'bg-persian text-snow' :  selected === 'confirmed' }"
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(confirmed),
+                                            selectedDiv('confirmed'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'confirmed',
+                                    }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -133,14 +205,9 @@ import HeaderVue from "../Header.vue";
                                                         Meal Title
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        
+                                                        <CaretUp />
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -148,14 +215,8 @@ import HeaderVue from "../Header.vue";
                                                         Customer's NAme
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -163,14 +224,8 @@ import HeaderVue from "../Header.vue";
                                                         Meal Time
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -178,14 +233,8 @@ import HeaderVue from "../Header.vue";
                                                         Meal Delivery Date
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -193,14 +242,8 @@ import HeaderVue from "../Header.vue";
                                                         status
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -253,7 +296,7 @@ export default {
     data() {
         return {
             orders: this.meal_orders,
-            selected: 'meal_orders'
+            selected: "meal_orders",
         };
     },
     mounted() {
@@ -266,10 +309,10 @@ export default {
     },
     methods: {
         chooseStatus(status) {
-           this.orders = status 
+            this.orders = status;
         },
-        selectedDiv(status){
-            this.selected = status
+        selectedDiv(status) {
+            this.selected = status;
         },
     },
 };
