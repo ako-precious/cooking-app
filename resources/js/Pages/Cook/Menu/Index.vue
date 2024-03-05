@@ -1,8 +1,10 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-import TableHeadVue from "../../../Components/Table/TableHead.vue";
+import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
 import HeaderVue from "../Header.vue";
+import  CaretDown  from "@/Components/CaretDown.vue";
+import  CaretUp  from "@/Components/CaretUp.vue";
 </script>
 
 <template>
@@ -31,14 +33,8 @@ import HeaderVue from "../Header.vue";
                                                         Title
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -46,14 +42,8 @@ import HeaderVue from "../Header.vue";
                                                         status
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -61,14 +51,8 @@ import HeaderVue from "../Header.vue";
                                                         Price
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -76,14 +60,8 @@ import HeaderVue from "../Header.vue";
                                                         Quick Order
                                                     </template>
                                                     <template #symbols>
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-up"
-                                                        />
-                                                        <font-awesome-icon
-                                                            class="text-xs"
-                                                            icon="caret-down"
-                                                        />
+                                                        <CaretUp/>
+                                                        <CaretDown/>
                                                     </template>
                                                 </TableHeadVue>
                                             </tr>

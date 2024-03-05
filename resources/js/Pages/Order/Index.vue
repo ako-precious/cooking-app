@@ -3,17 +3,19 @@ import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TableRow from "./TableRow.vue";
+
+import  CaretDown  from "@/Components/CaretDown.vue";
+import  CaretUp  from "@/Components/CaretUp.vue";
 </script>
 
 <template>
     <AppLayout title="Meal Schedule">
-     
         <div
-            class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center  selection:bg-lighred selection:text-white"
+            class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center selection:bg-lighred selection:text-white"
         >
-            <div class="container relative mx-auto text-oynx dark:text-snow ">
+            <div class="container relative mx-auto text-oynx dark:text-snow">
                 <div
-                    class="m-auto flex flex-col justify-center h-full  lg:pb-10 w-full py-6 shadow-reverse rounded-lg  my-2"
+                    class="m-auto flex flex-col justify-center h-full lg:pb-10 w-full py-6 shadow-reverse rounded-lg my-2"
                 >
                     <!-- <div class="col-span-1 w-full max-w-full py-6">
                         <div
@@ -84,15 +86,15 @@ import TableRow from "./TableRow.vue";
                     <div class="lg:w-full">
                         <div class="flex flex-col w-full">
                             <div class=" ">
-                                <div
-                                    class="inline-block w-full py-2"
-                                >
-                                    <div class="overflow-x-scroll disable-scrollbars ">
+                                <div class="inline-block w-full py-2">
+                                    <div
+                                        class="overflow-x-scroll disable-scrollbars"
+                                    >
                                         <table
                                             class="w-full text-left text-sm font-light relative"
-                                        > 
+                                        >
                                             <thead
-                                                class="align-bottom shadow-sm translate-x-0 sticky top-0 z-10  border-b"
+                                                class="align-bottom shadow-sm translate-x-0 sticky top-0 z-10 border-b"
                                             >
                                                 <tr>
                                                     <TableHeadVue>
@@ -100,14 +102,8 @@ import TableRow from "./TableRow.vue";
                                                             Meal Title
                                                         </template>
                                                         <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
+                                                            <CaretUp />
+                                                            <CaretDown />
                                                         </template>
                                                     </TableHeadVue>
                                                     <TableHeadVue>
@@ -115,14 +111,8 @@ import TableRow from "./TableRow.vue";
                                                             Cook's NAme
                                                         </template>
                                                         <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
+                                                            <CaretUp />
+                                                            <CaretDown />
                                                         </template>
                                                     </TableHeadVue>
                                                     <TableHeadVue>
@@ -130,14 +120,8 @@ import TableRow from "./TableRow.vue";
                                                             Meal Time
                                                         </template>
                                                         <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
+                                                            <CaretUp />
+                                                            <CaretDown />
                                                         </template>
                                                     </TableHeadVue>
                                                     <TableHeadVue>
@@ -145,14 +129,8 @@ import TableRow from "./TableRow.vue";
                                                             Meal Delivery Date
                                                         </template>
                                                         <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
+                                                            <CaretUp />
+                                                            <CaretDown />
                                                         </template>
                                                     </TableHeadVue>
                                                     <TableHeadVue>
@@ -160,28 +138,19 @@ import TableRow from "./TableRow.vue";
                                                             status
                                                         </template>
                                                         <template #symbols>
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-up"
-                                                            />
-                                                            <font-awesome-icon
-                                                                class="text-xs"
-                                                                icon="caret-down"
-                                                            />
+                                                            <CaretUp />
+                                                            <CaretDown />
                                                         </template>
                                                     </TableHeadVue>
                                                     <TableHeadVue>
                                                         <template #title>
-                                                            
                                                         </template>
                                                         <template #symbols>
-                                                           
                                                         </template>
                                                     </TableHeadVue>
-                                                    
                                                 </tr>
                                             </thead>
-                                           
+
                                             <tbody>
                                                 <tr
                                                     v-for="meal in orders.flat()"
@@ -196,14 +165,14 @@ import TableRow from "./TableRow.vue";
                                     </div>
                                 </div>
                             </div>
-    
+
                             <!-- </div> -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-   </AppLayout>
+    </AppLayout>
 </template>
 
 <script>
@@ -214,12 +183,9 @@ export default {
         orders: Object,
     },
     mounted() {
-      
         // const allMealSchedules = this.orders.flat();
-
         // // Extract the id values from all objects
         // const allIds = allMealSchedules.map((mealSchedule) => mealSchedule.meal.name);
-
         // // Now allIds contains the id values of all objects
         // console.log(allIds);
         // console.log(this.orders);
