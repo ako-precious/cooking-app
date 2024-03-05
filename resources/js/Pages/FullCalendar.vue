@@ -456,7 +456,7 @@ export default defineComponent({
                         </div>
 
                         <template v-else>
-                            <div class="flex justify-center item-center">
+                            <!-- <div class="flex justify-center item-center">
                                 <PrimaryButton
                                     class="mr-3"
                                     @click="updateSchedule(newSchedule.id)"
@@ -469,7 +469,7 @@ export default defineComponent({
                                 >
                                     Delete
                                 </SecondaryButton>
-                            </div>
+                            </div> -->
                         </template>
                     </form>
                 </div>
