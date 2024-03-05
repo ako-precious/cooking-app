@@ -26,7 +26,7 @@ import HeaderVue from "../Header.vue";
                             class="flex justify-around p-4 mb-0 list-none rounded-xl"
                         >
                             <li class="pt-2">
-                                <button @click="chooseStatus(meal_orders)"
+                                <button @click="[chooseStatus(meal_orders), selectedDiv('meal_orders'),  ]" :class="{ 'bg-persian text-snow' :  selected === 'meal_orders' }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -38,7 +38,7 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="chooseStatus(pending)"
+                                <button @click="[chooseStatus(pending), selectedDiv('pending'),]" :class="{ 'bg-persian text-snow' :  selected === 'pending' }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -50,7 +50,7 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="chooseStatus(reject)"
+                                <button @click="[chooseStatus(reject), selectedDiv('reject'),]" :class="{ 'bg-persian text-snow' :  selected === 'reject' }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -62,7 +62,7 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="chooseStatus(accept)"
+                                <button @click="[chooseStatus(accept), selectedDiv('accept'),]" :class="{ 'bg-persian text-snow' :  selected === 'accept' }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -74,7 +74,7 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="chooseStatus(processed)"
+                                <button @click="[chooseStatus(processed), selectedDiv('processed'),]" :class="{ 'bg-persian text-snow' :  selected === 'processed' }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -86,7 +86,7 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button @click="chooseStatus(delivered)"
+                                <button @click="[chooseStatus(delivered), selectedDiv('delivered'),]" :class="{ 'bg-persian text-snow' :  selected === 'delivered' }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -98,7 +98,7 @@ import HeaderVue from "../Header.vue";
                                 </button>
                             </li>
                             <li class="pt-2">
-                                <button  @click="chooseStatus(confirmed)"
+                                <button  @click="[chooseStatus(confirmed), selectedDiv('confirmed'),]" :class="{ 'bg-persian text-snow' :  selected === 'confirmed' }"
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
@@ -253,6 +253,7 @@ export default {
     data() {
         return {
             orders: this.meal_orders,
+            selected: 'meal_orders'
         };
     },
     mounted() {
@@ -266,6 +267,9 @@ export default {
     methods: {
         chooseStatus(status) {
            this.orders = status 
+        },
+        selectedDiv(status){
+            this.selected = status
         },
     },
 };
