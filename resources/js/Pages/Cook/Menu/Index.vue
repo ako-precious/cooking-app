@@ -9,7 +9,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
 
 <template>
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
+        class="relative sm:flex sm:justify-center sm:items-center  bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
         <div class="container relative mx-auto overflow-hidden">
 

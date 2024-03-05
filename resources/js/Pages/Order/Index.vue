@@ -4,15 +4,15 @@ import TableHeadVue from "@/Components/Table/TableHead.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TableRow from "./TableRow.vue";
 
-import  CaretDown  from "@/Components/CaretDown.vue";
-import  CaretUp  from "@/Components/CaretUp.vue";
+import CaretDown from "@/Components/CaretDown.vue";
+import CaretUp from "@/Components/CaretUp.vue";
 </script>
 
 <template>
     <Head>Orders</Head>
     <AppLayout title="Meal Schedule">
         <div
-            class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center selection:bg-lighred selection:text-white"
+            class="relative sm:flex sm:justify-center sm:items-center bg-center selection:bg-lighred selection:text-white"
         >
             <div class="container relative mx-auto text-oynx dark:text-snow">
                 <div
@@ -154,12 +154,27 @@ import  CaretUp  from "@/Components/CaretUp.vue";
 
                                             <tbody>
                                                 <tr
+                                                    v-if="meal"
                                                     v-for="meal in orders.flat()"
                                                     :key="meal.id"
                                                     class="animate-fade-in border-b py-4"
                                                 >
                                                     <TableRow :meal="meal">
                                                     </TableRow>
+                                                </tr>
+                                                <tr
+                                                    v-else
+                                                    class="animate-fade-in border-b py-4 mx-auto"
+                                                >
+                                                    <td colspan="6">
+                                                        <div
+                                                            class="py-6 italic  text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
+                                                        >
+                                                            You have not added
+                                                            any meal to your
+                                                            schedule yet. click <Link :href="`/`" class=" font-semibold ">here </Link> to add
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
