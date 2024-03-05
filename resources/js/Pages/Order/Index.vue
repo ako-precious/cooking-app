@@ -18,79 +18,176 @@ import CaretUp from "@/Components/CaretUp.vue";
                 <div
                     class="m-auto flex flex-col justify-center h-full lg:pb-10 w-full py-6 shadow-reverse rounded-lg my-2"
                 >
-                    <!-- <div class="col-span-1 w-full max-w-full py-6">
-                        <div
-                            class="sticky flex flex-col min-w-0 break-words w-full top-1/100  dark:bg-slate-850 rounded-2xl bg-clip-border"
+                <div class="col-span-1 w-full max-w-full py-6">
+                    <div
+                        class="sticky flex flex-col min-w-0 break-words w-full top-1/100 dark:bg-slate-850 rounded-2xl bg-clip-border"
+                    >
+                        <ul
+                            class="flex justify-around p-4 mb-0 list-none rounded-xl"
                         >
-                            <ul
-                                class="flex justify-around p-4 mb-0 list-none rounded-xl"
-                            >
-                                <li class="pt-2">
-                                    <a
-                                        href="#profile"
-                                        class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
+                            <li class="pt-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(meal_orders),
+                                            selectedDiv('meal_orders'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'meal_orders',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >ALL [{{
+                                            meal_orders.flat().length
+                                        }}]</span
                                     >
-                                        <i
-                                            class="mr-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                        ></i>
-                                        <span
-                                            class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                            >All</span
-                                        >
-                                    </a>
-                                </li>
-                                <li class="pt-2">
-                                    <a
-                                        href="#profile"
-                                        class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
+                                </button>
+                            </li>
+                            <li class="pt-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(pending),
+                                            selectedDiv('pending'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'pending',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Pending [{{
+                                            pending.flat().length
+                                        }}]</span
                                     >
-                                        <i
-                                            class="mr-2 ni ni-books text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                        ></i>
-                                        <span
-                                            class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                            >Past</span
-                                        >
-                                    </a>
-                                </li>
-                                <li class="pt-2">
-                                    <a
-                                        href="#password"
-                                        class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
+                                </button>
+                            </li>
+                            <li class="pt-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(reject),
+                                            selectedDiv('reject'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'reject',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Rejected [{{
+                                            reject.flat().length
+                                        }}]</span
                                     >
-                                        <i
-                                            class="mr-2 ni ni-atom text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                        ></i>
-                                        <span
-                                            class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                            >Today</span
-                                        >
-                                    </a>
-                                </li>
-                                <li class="pt-2">
-                                    <a
-                                        href="#2FA"
-                                        class="flex items-center px-4 py-2 transition-colors ease-in-out rounded-lg group text-slate-500 hover:bg-gray-300"
+                                </button>
+                            </li>
+                            <li class="pt-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(accept),
+                                            selectedDiv('accept'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'accept',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Accepted [{{
+                                            accept.flat().length
+                                        }}]</span
                                     >
-                                        <i
-                                            class="mr-2 ni ni-ui-04 text-oynx opacity-60 dark:text-snow dark:group-hover:text-oynx"
-                                        ></i>
-                                        <span
-                                            class="text-sm leading-normal dark:group-hover:text-oynx dark:text-snow"
-                                            >future</span
-                                        >
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
+                                </button>
+                            </li>
+                            <li class="pt-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(processed),
+                                            selectedDiv('processed'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'processed',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >Processed [{{
+                                            processed.flat().length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                            <li class="pt-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(delivered),
+                                            selectedDiv('delivered'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'delivered',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >delivered [{{
+                                            delivered.flat().length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                            <li class="pt-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(confirmed),
+                                            selectedDiv('confirmed'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'confirmed',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >confirmed [{{
+                                            confirmed.flat().length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
                     <div class="lg:w-full">
                         <div class="flex flex-col w-full">
                             <div class=" ">
                                 <div class="inline-block w-full py-2">
                                     <div
-                                        class="overflow-x-scroll disable-scrollbars"
-                                    >
+                                        class="overflow-x-scroll disable-scrollbars">
                                         <table
                                             class="w-full text-left text-sm font-light relative"
                                         >
@@ -154,7 +251,7 @@ import CaretUp from "@/Components/CaretUp.vue";
 
                                             <tbody>
                                                 <tr
-                                                    v-if="meal"
+                                                    v-if="orders.length > 0"
                                                     v-for="meal in orders.flat()"
                                                     :key="meal.id"
                                                     class="animate-fade-in border-b py-4"
@@ -198,13 +295,21 @@ export default {
     props: {
         orders: Object,
     },
-    mounted() {
-        // const allMealSchedules = this.orders.flat();
-        // // Extract the id values from all objects
-        // const allIds = allMealSchedules.map((mealSchedule) => mealSchedule.meal.name);
-        // // Now allIds contains the id values of all objects
-        // console.log(allIds);
-        // console.log(this.orders);
+ 
+    data() {
+        return {
+            orders: this.meal_orders,
+            selected: "meal_orders",
+        };
+    },
+   
+    methods: {
+        chooseStatus(status) {
+            this.orders = status;
+        },
+        selectedDiv(status) {
+            this.selected = status;
+        },
     },
 };
 </script>
