@@ -88,43 +88,6 @@ const removeItem = (index) => {
 };
 </script>
 
-<!-- <script>
-export default {
-    data() {
-        return {
-            ingredients: [],
-            newIngredient: "", // To store the input for a new ingredient
-        };
-    },
-    methods: {
-        addIngredient() {
-            if (this.newIngredient.trim() !== "") {
-                this.ingredients.push(this.newIngredient.trim());
-                this.newIngredient = "";
-            }
-        },
-        removeIngredient(index) {
-            this.ingredients.splice(index, 1);
-        },
-        submitForm() {
-            // Include this.ingredients in your form data when submitting
-            const formData = {
-                ingredients: this.ingredients,
-                // Other form fields
-            };
-
-            // Send formData to your Laravel backend for storage
-            axios
-                .post("/schedule", formData)
-                .then((resp) => {
-                    console.log(resp);
-                    this.closeModal();
-                })
-                .catch((err) => console.log("Unable to add Meal!", err));
-        },
-    },
-};
-</script> -->
 <template>
     <FormSection @submitted="updateProfileInformation">
         <template #title> Profile Information </template>
@@ -137,8 +100,10 @@ export default {
             <!-- Profile Photo -->
             <div
                 v-if="$page.props.jetstream.managesProfilePhotos"
-                class="col-span-6 sm:col-span-4"
+                class="col-span-6 sm:col-span-6 flex justify-center"
             >
+            <div>
+
                 <!-- Profile Photo File Input -->
                 <input
                     id="photo"
@@ -148,10 +113,10 @@ export default {
                     @change="updatePhotoPreview"
                 />
 
-                <InputLabel for="photo" value="Photo" />
+              
 
                 <!-- Current Profile Photo -->
-                <div v-show="!photoPreview" class="mt-2">
+                <div v-show="!photoPreview" class="mt-2 flex justify-center">
                     <img
                         :src="user.profile_photo_url"
                         :alt="user.name"
@@ -160,7 +125,7 @@ export default {
                 </div>
 
                 <!-- New Profile Photo Preview -->
-                <div v-show="photoPreview" class="mt-2">
+                <div v-show="photoPreview" class="mt-2 ">
                     <span
                         class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
                         :style="
@@ -169,13 +134,12 @@ export default {
                     />
                 </div>
 
-                <SecondaryButton
-                    class="mt-2 me-2"
+                <PrimaryButton               class="mt-2 me-2"
                     type="button"
                     @click.prevent="selectNewPhoto"
                 >
                     Select A New Photo
-                </SecondaryButton>
+                </PrimaryButton>
 
                 <SecondaryButton
                     v-if="user.profile_photo_path"
@@ -187,6 +151,8 @@ export default {
                 </SecondaryButton>
 
                 <InputError :message="form.errors.photo" class="mt-2" />
+            </div>
+
             </div>
 
             <!-- Name -->
