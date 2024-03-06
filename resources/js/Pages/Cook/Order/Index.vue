@@ -21,13 +21,13 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                 class="m-auto flex flex-col justify-center h-full lg:pb-12 w-full"
             >
                 <div class="col-span-1 w-full max-w-full py-6">
-                    <div
-                        class="sticky flex flex-col min-w-0 break-words w-full top-1/100 dark:bg-slate-850 rounded-2xl bg-clip-border"
+                      <div
+                        class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
                         <ul
-                            class="flex justify-around p-4 mb-0 list-none rounded-xl overflow-x-scroll"
+                            class=" overflow-x-scroll disable-scrollbars flex  w-full p-4 mb-0 list-none rounded-xl"
                         >
-                            <li class="pt-2">
+                            <li class="px-2">
                                 <button
                                     @click="
                                         [
@@ -49,7 +49,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     >
                                 </button>
                             </li>
-                            <li class="pt-2">
+                            <li class="px-2">
                                 <button
                                     @click="
                                         [
@@ -71,7 +71,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     >
                                 </button>
                             </li>
-                            <li class="pt-2">
+                            <li class="px-2">
                                 <button
                                     @click="
                                         [
@@ -93,7 +93,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     >
                                 </button>
                             </li>
-                            <li class="pt-2">
+                            <li class="px-2">
                                 <button
                                     @click="
                                         [
@@ -115,7 +115,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     >
                                 </button>
                             </li>
-                            <li class="pt-2">
+                            <li class="px-2">
                                 <button
                                     @click="
                                         [
@@ -137,7 +137,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     >
                                 </button>
                             </li>
-                            <li class="pt-2">
+                            <li class="px-2">
                                 <button
                                     @click="
                                         [
@@ -159,7 +159,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     >
                                 </button>
                             </li>
-                            <li class="pt-2">
+                            <li class="px-2">
                                 <button
                                     @click="
                                         [
