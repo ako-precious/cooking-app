@@ -9,7 +9,7 @@ import CaretUp from "@/Components/CaretUp.vue";
 </script>
 
 <template>
-    <Head>Orders</Head>
+   
     <AppLayout title="Meal Schedule">
         <div
             class="relative sm:flex sm:justify-center sm:items-center bg-center selection:bg-lighred selection:text-white"
@@ -267,9 +267,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                         <div
                                                             class="py-6 italic  text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
                                                         >
-                                                            You have not added
-                                                            any meal to your
-                                                            schedule yet. click <Link :href="`/`" class=" font-semibold ">here </Link> to add
+                                                            You have nothing here. click <Link :href="`/`" class=" font-semibold ">here </Link> to add
                                                         </div>
                                                     </td>
                                                 </tr>

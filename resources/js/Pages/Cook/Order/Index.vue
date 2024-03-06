@@ -21,6 +21,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                 class="m-auto flex flex-col justify-center h-full lg:pb-12 w-full"
             >
                 <div class="col-span-1 w-full max-w-full py-6">
+                
                       <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
@@ -256,14 +257,25 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                         </thead>
 
                                         <tbody class="relative">
-                                            <tr
+                                            <tr v-if="orders.flat().length > 0"
                                                 v-for="order in orders.flat()"
                                                 :key="order.id"
                                                 class="animate-fade-in border-b py-4"
                                             >
                                                 <TableRow :order="order">
                                                 </TableRow>
-                                            </tr>
+                                            </tr> <tr
+                                                    v-else
+                                                    class="animate-fade-in border-b py-4 mx-auto"
+                                                >
+                                                    <td colspan="6">
+                                                        <div
+                                                            class="py-6 italic  text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
+                                                        >
+                                                            You have nothing here. 
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                                 </div>

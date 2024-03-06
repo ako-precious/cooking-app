@@ -17,8 +17,16 @@ import  CaretUp  from "@/Components/CaretUp.vue";
             <div
                 class="m-auto flex flex-col  justify-center h-full p-6 lg:pb-20 w-full"
             >
+            
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
+                        <div class="py-3">
+                            <h1
+                            class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
+                        >
+                            {{ menu.length }} Meal(s)
+                        </h1>
+                        </div>
                         <div class="sm:-mx-6 lg:-mx-8">
                             <div
                                 class="inline-block min-w-full py-2 sm:px-6 lg:px-8">

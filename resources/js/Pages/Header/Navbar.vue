@@ -3,12 +3,22 @@
         class="container mx-auto px-4 lg:px-10 flex justify-between items-center"
     >
         <!-- logo -->
-        <div class="md:w-48 flex-shrink-0">
-            <img
-                class="h-8 md:h-10"
-                src="https://i.ibb.co/98pHdFq/2021-10-27-15h51-15.png"
-                alt=""
-            />
+        <div class="md:w-48 flex-shrink-0 flex items-center">
+            
+             <!-- Logo -->
+             <Link :href="route('welcome')">
+             <div class="w-full flex items-center">
+                    <ApplicationMark class="block w-auto" />
+                </div>
+            </Link>
+                
+                <Link :href="route('welcome')">
+                    <span :class="{ 'opacity-0': isLinkHidden }"
+                    class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase"
+                    >
+                    Ounjemi
+                </span>
+            </Link>
         </div>
 
         <!-- search -->
@@ -102,6 +112,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import Dropdown from "@/Components/Dropdown.vue";
+import ApplicationMark from '@/Components/ApplicationMark.vue';
 // import route from "vendor/tightenco/ziggy/src/js";
 </script>
 
