@@ -65,7 +65,7 @@ const logout = () => {
              <!-- Logo -->
              <Link :href="route('welcome')">
              <div class="w-full flex items-center">
-                    <ApplicationMark class="block h-9 w-auto" />
+                    <ApplicationMark class="block w-auto" />
                 </div>
             </Link>
                 

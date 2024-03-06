@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
+import ApplicationMark from '@/Components/ApplicationMark.vue';
 import SettingsDropdown from "@/Components/SettingsDropdown.vue";
 </script>
 
@@ -12,7 +13,11 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
                 :class="{ 'fix align-bottom shadow-sm' : isHeaderFixed }"
                 class="flex justify-between items-center w-full bg-snow dark:bg-oynx"
             >
-                <div class="">LOGO</div>
+            <Link :href="route('welcome')">
+             <div class="w-full flex items-center">
+                    <ApplicationMark class="block w-auto" />
+                </div>
+            </Link>
     
                 <div
                     class="bg-transparent  w-4/12 sm:w-4/12 capitalize font-bold text-sm mr-4 flex justify-around  transition-all duration-300 delay-75 ease-in"

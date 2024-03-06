@@ -1,5 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+
+import ApplicationMark from '@/Components/ApplicationMark.vue';
 </script>
 
 <template>
@@ -9,7 +11,11 @@ import { Head, Link } from "@inertiajs/vue3";
             :class="{ fix : isHeaderFixed }"
             class="flex justify-between items-center w-full bg-snow dark:bg-oynx "
         >
-            <div class="">LOGO</div>
+        <Link :href="route('welcome')">
+             <div class="w-full flex items-center">
+                    <ApplicationMark class="block w-auto" />
+                </div>
+            </Link>
 
             <div
                 class="w-32 navbar-link font-semibold shadow-reverse p-2 text-center rounded-full text-sm"
