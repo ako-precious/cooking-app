@@ -61,10 +61,10 @@ const logout = () => {
     >
   
         
-        <SideBarHeader class="">
+        <SideBarHeader class="flex items-center">
              <!-- Logo -->
              <Link :href="route('welcome')">
-             <div class="shrink-0 flex items-center">
+             <div class="w-full flex items-center">
                     <ApplicationMark class="block h-9 w-auto" />
                 </div>
             </Link>
@@ -165,7 +165,7 @@ const logout = () => {
                                    <!-- Settings Dropdown -->
                                  
               <SettingsDropdown></SettingsDropdown>
-              
+
                                </div>
                            </div>
                        </div>
