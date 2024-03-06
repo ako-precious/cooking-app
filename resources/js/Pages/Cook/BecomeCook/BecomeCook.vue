@@ -8,12 +8,12 @@ import ApplicationMark from '@/Components/ApplicationMark.vue';
     <Head title="Become A Cook" />
     <div class="container py-5 bg-snow dark:bg-oynx">
         <div
-            :class="{ fix : isHeaderFixed }"
-            class="flex justify-between items-center w-full bg-snow dark:bg-oynx "
+        :class="{ 'fix align-bottom shadow-sm' : isHeaderFixed }"
+            class="  flex justify-between  items-center w-full bg-snow dark:bg-oynx "
         >
         <Link :href="route('welcome')">
              <div class="w-full flex items-center">
-                    <ApplicationMark class="block w-auto" />
+                    <ApplicationMark class="block " />
                 </div>
             </Link>
 
@@ -70,11 +70,12 @@ export default {
 .fix {
     position: fixed;
     top: 0;
+    right: 0;
     width: 100%;
-    padding:  1.5rem 0;
-    padding-right: 4rem;
+    padding: 1.5rem 3rem;
     z-index: 1000; /* Adjust z-index as needed */
 }
+
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
