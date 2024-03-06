@@ -1,6 +1,7 @@
 <script setup>
 import Dropdown from "@/Components/Dropdown.vue";
-import DropdownLink from "@/Components/DropdownLink.vue";
+
+import SettingsDropdown from "@/Components/SettingsDropdown.vue";
 import { Link } from "@inertiajs/vue3";
 defineProps({
     canLogin: Boolean,
@@ -10,10 +11,15 @@ defineProps({
 });
 </script>
 <template>
-    <li
+   
+    <li v-if="canLogin">
+
+        <SettingsDropdown class="w-10 h-10"></SettingsDropdown>
+    </li>
+    <li v-else
     class="ml-2  lg:mr-4 relative text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred rounded-full p-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in"
     >
-    <Dropdown>
+    <Dropdown >
         <template #trigger>
            
             <button
@@ -46,20 +52,11 @@ defineProps({
                         aria-labelledby="dropdown-button"
                     >
                         <div
-                            v-if="canLogin"
+                            
                             class="sm:end-0 text-end z-10 transition-all duration-200 ease-in-out"
                         >
-                            <Link
-                                v-if="$page.props.auth.user"
-                                :href="route('meal-schedule')"
-                                class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                            >
-                               Meal Schedule<font-awesome-icon
-                                    icon="door-open"
-                                    class="ml-2"
-                            /></Link>
-
-                            <div v-else class="fle">
+                           
+                            <div >
                                 <Link
                                     :href="route('login')"
                                     class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"

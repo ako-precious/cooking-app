@@ -62,7 +62,7 @@ export default {
                     // console.log(this.src);
                 })
                 .catch((error) => {
-                    console.error("Error fetching data:", error);
+                    // console.error("Error fetching data:", error);
                 })
                 .finally(() => {
                     // Set loading state to false when fetching completes
@@ -79,7 +79,7 @@ export default {
                         }
                     })
                     .catch((error) => {
-                        console.error("Error fetching filtered data:", error);
+                        // console.error("Error fetching filtered data:", error);
                     });                
             
         },
@@ -104,7 +104,7 @@ export default {
                 // Concatenate new data to the existing meals
                 this.meals = [...this.meals, ...newMeals];
             } catch (error) {
-                console.error("Error fetching data:", error);
+                // console.error("Error fetching data:", error);
             }
         },
         handleScroll() {
@@ -199,7 +199,7 @@ export default {
                         this.error = "Unable to add Meal !";
                         setTimeout(() => {
                             this.error = "";
-                            console.log("Unable to add Meal !", err);
+                            // console.log("Unable to add Meal !", err);
                         }, 10000);
                     });
             }
