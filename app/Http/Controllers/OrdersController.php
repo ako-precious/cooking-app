@@ -46,9 +46,6 @@ class OrdersController extends Controller
                 }
             }
             // dd($accept);
-        
-            // dd($orders);
-            // You can uncomment this line for debugging
             return inertia('Cook/Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
         }
          else {
@@ -61,7 +58,14 @@ class OrdersController extends Controller
         $user_id = Auth::id();
         
                 $orders = MealSchedule::where('user_id', $user_id)->with('order', 'meal', 'user')->get(); 
-        return inertia('Order/Index', ['orders' => $orders]);
+                $pending[] = MealSchedule::where('user_id', $user_id)->where('status', 'pending')->with('order', 'meal', 'user')->get(); 
+                $reject[] = MealSchedule::where('user_id', $user_id)->where('status', 'reject')->with('order', 'meal', 'user')->get(); 
+                $accept[] = MealSchedule::where('user_id', $user_id)->where('status', 'accept')->with('order', 'meal', 'user')->get();
+                $processed[] = MealSchedule::where('user_id', $user_id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
+                $ready[] = MealSchedule::where('user_id', $user_id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
+                $delivered[] = MealSchedule::where('user_id', $user_id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
+                $confirmed[] = MealSchedule::where('user_id', $user_id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
+        return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
     }
 
     public function update(Request $request, $id){

@@ -15,10 +15,7 @@ import CaretUp from "@/Components/CaretUp.vue";
             class="relative sm:flex sm:justify-center sm:items-center bg-center selection:bg-lighred selection:text-white"
         >
             <div class="container relative mx-auto text-oynx dark:text-snow">
-                <div
-                    class="m-auto flex flex-col justify-center h-full lg:pb-10 w-full py-6 shadow-reverse rounded-lg my-2"
-                >
-                <div class="col-span-1 w-full max-w-full py-6">
+                <div class="col-span-1 w-full max-w-full py-6 overflow-x-scroll">
                     <div
                         class="sticky flex flex-col min-w-0 break-words w-full top-1/100 dark:bg-slate-850 rounded-2xl bg-clip-border"
                     >
@@ -42,7 +39,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
                                         >ALL [{{
-                                            meal_orders.flat().length
+                                            meal_orders.length
                                         }}]</span
                                     >
                                 </button>
@@ -64,7 +61,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
                                         >Pending [{{
-                                            pending.flat().length
+                                            pending.length
                                         }}]</span
                                     >
                                 </button>
@@ -86,7 +83,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
                                         >Rejected [{{
-                                            reject.flat().length
+                                            reject.length
                                         }}]</span
                                     >
                                 </button>
@@ -108,7 +105,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
                                         >Accepted [{{
-                                            accept.flat().length
+                                            accept.length
                                         }}]</span
                                     >
                                 </button>
@@ -130,7 +127,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
                                         >Processed [{{
-                                            processed.flat().length
+                                            processed.length
                                         }}]</span
                                     >
                                 </button>
@@ -152,7 +149,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
                                         >delivered [{{
-                                            delivered.flat().length
+                                            delivered.length
                                         }}]</span
                                     >
                                 </button>
@@ -174,7 +171,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
                                         >confirmed [{{
-                                            confirmed.flat().length
+                                            confirmed.length
                                         }}]</span
                                     >
                                 </button>
@@ -182,6 +179,9 @@ import CaretUp from "@/Components/CaretUp.vue";
                         </ul>
                     </div>
                 </div>
+                <div
+                    class="m-auto flex flex-col justify-center h-full lg:pb-10 w-full py-6 shadow-reverse rounded-lg my-2"
+                >
                     <div class="lg:w-full">
                         <div class="flex flex-col w-full">
                             <div class=" ">
@@ -252,7 +252,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                             <tbody>
                                                 <tr
                                                     v-if="orders.length > 0"
-                                                    v-for="meal in orders.flat()"
+                                                    v-for="meal in orders"
                                                     :key="meal.id"
                                                     class="animate-fade-in border-b py-4"
                                                 >
@@ -293,7 +293,14 @@ import axios from "axios";
 
 export default {
     props: {
-        orders: Object,
+        meal_orders: Object,
+        pending: Object,
+        reject: Object,
+        accept: Object,
+        processed: Object,
+        ready: Object,
+        delivered: Object,
+        confirmed: Object,
     },
  
     data() {
