@@ -15,12 +15,12 @@ import CaretUp from "@/Components/CaretUp.vue";
             class="relative sm:flex sm:justify-center sm:items-center bg-center selection:bg-lighred selection:text-white"
         >
             <div class="container relative mx-auto text-oynx dark:text-snow">
-                <div class="col-span-1 w-full max-w-full py-6 overflow-x-scroll">
+                <div class=" py-6 ">
                     <div
-                        class="sticky flex flex-col min-w-0 break-words w-full top-1/100 dark:bg-slate-850 rounded-2xl bg-clip-border"
+                        class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-slate-850 rounded-2xl bg-clip-border"
                     >
                         <ul
-                            class="flex justify-around p-4 mb-0 list-none rounded-xl"
+                            class=" overflow-x-scroll flex  w-full justify-around p-4 mb-0 list-none rounded-xl"
                         >
                             <li class="pt-2">
                                 <button
@@ -34,7 +34,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         'bg-persian text-snow':
                                             selected === 'meal_orders',
                                     }"
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow  cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
@@ -56,7 +56,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         'bg-persian text-snow':
                                             selected === 'pending',
                                     }"
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
@@ -78,7 +78,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         'bg-persian text-snow':
                                             selected === 'reject',
                                     }"
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
@@ -100,7 +100,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         'bg-persian text-snow':
                                             selected === 'accept',
                                     }"
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
@@ -122,7 +122,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         'bg-persian text-snow':
                                             selected === 'processed',
                                     }"
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
@@ -144,7 +144,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         'bg-persian text-snow':
                                             selected === 'delivered',
                                     }"
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
@@ -166,7 +166,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         'bg-persian text-snow':
                                             selected === 'confirmed',
                                     }"
-                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"

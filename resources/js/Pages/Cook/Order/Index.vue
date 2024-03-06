@@ -18,14 +18,14 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                 <HeaderVue> </HeaderVue>
             </div>
             <div
-                class="m-auto flex flex-col justify-center h-full px-6 lg:pb-20 w-full"
+                class="m-auto flex flex-col justify-center h-full lg:pb-12 w-full"
             >
                 <div class="col-span-1 w-full max-w-full py-6">
                     <div
                         class="sticky flex flex-col min-w-0 break-words w-full top-1/100 dark:bg-slate-850 rounded-2xl bg-clip-border"
                     >
                         <ul
-                            class="flex justify-around p-4 mb-0 list-none rounded-xl"
+                            class="flex justify-around p-4 mb-0 list-none rounded-xl overflow-x-scroll"
                         >
                             <li class="pt-2">
                                 <button
