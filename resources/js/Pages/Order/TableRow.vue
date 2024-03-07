@@ -91,7 +91,7 @@ defineProps(["meal"]);
                 >
                     <font-awesome-icon
                         icon="fa-solid fa-close"
-                        class="text-lighred text-lg"
+                        class="text-lighred text-3xl"
                     />
                     <span class="sr-only">Close modal</span>
                 </button>
@@ -110,11 +110,7 @@ defineProps(["meal"]);
                         </div>
                     </div> -->
                 <form @submit.prevent class="p-4 md:py-8">
-                    <h2
-                        class="text-oynx dark:text-snow text-center font-bold text-xl"
-                    >
-                        Rate the meal
-                    </h2>
+                   
                     <div class="flex flex-wrap justify-between">
                         <div class="py-4 w-[30%] relative fle flex-col">
                             <InputLabel
@@ -385,14 +381,14 @@ defineProps(["meal"]);
                             autocomplete="other_info"
                             id="other_info"
                             class="mt-1 text-sm block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                            rows="5"
-                            cols="30"
+                            rows="3"
+                            cols="50"
                         ></textarea>
                     </div>
 
                     <div
                         class="flex justify-center item-center"
-                        v-if="addingMode"
+                       
                     >
                         <PrimaryButton @click="addSchedule" class="w-full"
                             >Save</PrimaryButton
@@ -411,7 +407,20 @@ export default {
         return {
             meal_photo: "",
             user_name: "",
+            message: "",
+            error: "",
             newEventModalVisible: false,
+            userId: this.$page.props.auth.user.id,
+            newRating: {
+                meal_id:"",
+                user_id:"",
+                presentation: "",
+                taste: "",
+                value: "",
+                nutrition: "",
+                portion_size: "",
+                comment: "",
+            },
         };
     },
     created() {
@@ -466,13 +475,49 @@ export default {
                     console.error("Error sending data:", error);
                 });
         },
-        openModal(meal) {
-            // Get the current date
-            // const currentDate = new Date();
+        addSchedule() {
+            const today = new Date().toISOString().replace(/T.*$/, "");
+            if (
+                this.newSchedule.meal_name == "" ||
+                this.newSchedule.start_date == "" ||
+                this.newSchedule.end_date == "" ||
+                this.newSchedule.meal_time == "" ||
+                this.newSchedule.user_id == ""
+            ) {
+                this.error =
+                    "Please fill in all  fields to create your schedule.";
+            } else if (today >= this.newSchedule.start_date) {
+                this.error =
+                    "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
+            } else if (
+                this.newSchedule.start_date > this.newSchedule.end_date
+            ) {
+                this.error =
+                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
+            } else {
+                this.formatSchedule();
 
-            // // Add one day to the current date
-            // const nextDayDate = new Date(currentDate);
-            // nextDayDate.setDate(currentDate.getDate() + 1);
+                axios
+                    .post("/schedule", this.formattedEvents)
+                    .then((resp) => {
+                        this.message = resp.data.message;
+
+                        setTimeout(() => {
+                            this.closeModal();
+                            // Uncomment the line below if you want to toggle addingMode after the delay
+                            // this.addingMode = !this.addingMode;
+                        }, 5000);
+                    })
+                    .catch((err) => {
+                        this.error = "Unable to add Meal !";
+                        setTimeout(() => {
+                            this.error = "";
+                        }, 10000);
+                    });
+            }
+        },
+        openModal(meal) {
+           
 
             // // Format the next day date as an ISO string without the time part
             // const nextDayISOString = nextDayDate
@@ -480,6 +525,19 @@ export default {
             //     .replace(/T.*$/, "");
             // // clear everything in the div and close it
             this.newEventModalVisible = true;
+
+
+            newRating: {
+                meal_id:"",
+                user_id:"",
+                presentation: "",
+                taste: "",
+                value: "",
+                nutrition: "",
+                portion_size: "",
+                comment: "",
+            },
+
             // if (this.$page.props.auth.user) {
             //     // this.suggestedMeal = [];
             //     this.newSchedule = {
@@ -495,14 +553,18 @@ export default {
         closeModal() {
             // clear everything in the div and close it
             this.newEventModalVisible = false;
-            // this.newSchedule = {
-            //     meal_name: "",
-            //     start_date: "",
-            //     end_date: "",
-            //     meal_time: "",
-            // };
-            // this.message = "";
-            // this.error = "";
+            newRating: {
+                meal_id:"",
+                user_id:"",
+                presentation: "",
+                taste: "",
+                value: "",
+                nutrition: "",
+                portion_size: "",
+                comment: "",
+            },
+            this.message = "";
+            this.error = "";
         },
     },
 };
