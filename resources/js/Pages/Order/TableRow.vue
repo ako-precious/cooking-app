@@ -50,7 +50,7 @@ defineProps(["meal"]);
             v-show="newEventModalVisible"
         >
             <div
-                class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
+                class="relative p-4 w-full max-w-xl max-h-full transition-all duration-300 ease-in delay-200"
             >
                 <div class="relative shadow-reverse rounded-lg">
                     <button
@@ -79,32 +79,207 @@ defineProps(["meal"]);
                             <InputError class="font-bold">{{ error }}</InputError>
                         </div>
                     </div> -->
-                    <form @submit.prevent class="p-4 md:py-8 text-center">
-                        <h2 class="text-oynx dark:text-snow font-bold text-xl">
+                    <form @submit.prevent class="p-4 md:py-8 ">
+                        <h2 class="text-oynx dark:text-snow text-center font-bold text-xl">
                            Rate the meal
                         </h2>
-                        <div class="py-4 relative fle flex-col">
-                    <InputLabel>Presentation</InputLabel>
-                            <TextInput
-                                class="my-2 w-full"
-                                placeholder="Meal Name"
-                            />
+                        <div class="flex justify-between">
+                       
+                        <div class="py-4 w-[47%] relative fle flex-col">
+                            <InputLabel class="text-lg pb-2" for="presentation" value="Presentation" />
+                            <select
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                > Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="1">One</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="2">Two</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="3">Three</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="4">Four</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="5">Five</option>                                
+                            </select>
                            
                         </div>
-
-                        <div class="py-4 flex justify-between">
-                            <TextInput
-                                class="w-full"
-                                type="date"
-                                placeholder=""
-                            />
-                            <TextInput
-                                class="w-[47%]" hidden
-                                type="date"
-                                placeholder=""
-                            />
+                        <div class="py-4 w-[47%] relative fle flex-col">
+                            <InputLabel class="text-lg pb-2" for="taste" value="Taste" />
+                            <select
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                > Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="1">One</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="2">Two</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="3">Three</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="4">Four</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="5">Five</option>                                
+                            </select>
+                           
+                        </div></div>
+                        <div class=" flex justify-between">
+                        <div class="py-4 w-[47%]  relative fle flex-col">
+                            <InputLabel class="text-lg pb-2" for="value" value="Value for Money" />
+                            <select
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                > Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="1">One</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="2">Two</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="3">Three</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="4">Four</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="5">Five</option>                                
+                            </select>
+                           
                         </div>
-                       
+                        <div class="py-4 w-[47%] relative fle flex-col">
+                            <InputLabel class="text-lg pb-2" for="Nutrition" value="Nutrition" />
+                            <select
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                > Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="1">One</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="2">Two</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="3">Three</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="4">Four</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="5">Five</option>                                
+                            </select>
+                           
+                        </div></div>
+                         <div class="flex justify-between">
+                        <div class="py-4 w-[47%] relative fle flex-col">
+                            <InputLabel class="text-lg pb-2" for="portion" value="Portion" />
+                            <select
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm  focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                > Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="1">One</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="2">Two</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="3">Three</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="4">Four</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="5">Five</option>                                
+                            </select>
+                           
+                        </div>
+                        <div class="py-4 w-[47%] relative fle flex-col">
+                            <InputLabel class="text-lg pb-2" for="portion" value="Total Rating" />
+                            <select
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm  focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                > Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="1">One</option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="2">Two</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="3">Three</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="4">Four</option>                                
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="5">Five</option>                                
+                            </select>
+                           
+                        </div>
+                        </div>
+                        <div class="py-4 relative fle flex-col">
+                            <InputLabel class="text-lg pb-2" for="comment" value="Comment" />
+                            <textarea
+                                                    autocomplete="other_info"
+                                                    id="other_info"
+                                                    v-model="meal.description"
+                                                    class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                                                    rows="5"
+                                                    cols="50"
+                                                ></textarea>
+                        </div>
+
                         <div
                             class="flex justify-center item-center"
                             v-if="addingMode"
@@ -114,22 +289,7 @@ defineProps(["meal"]);
                             >
                         </div>
 
-                        <template v-else>
-                            <!-- <div class="flex justify-center item-center">
-                                <PrimaryButton
-                                    class="mr-3"
-                                    @click="updateSchedule(newSchedule.id)"
-                                    v-if="newEventModalVisible"
-                                    >Update
-                                </PrimaryButton>
-                                <SecondaryButton
-                                    @click="deleteSchedule(newSchedule.id)"
-                                    class="mr-4"
-                                >
-                                    Delete
-                                </SecondaryButton>
-                            </div> -->
-                        </template>
+                      
                     </form>
                 </div>
             </div>
