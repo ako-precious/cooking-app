@@ -6,6 +6,7 @@ use App\Http\Controllers\MealScheduleController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\RatingController;
 use App\Models\Cook;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,7 @@ Route::middleware([
     
     //Meal Controller
     Route::resource('/meal', MealController::class);
+    Route::resource('/rating', RatingController::class);
     Route::get('meals/{id}', [MealController::class, 'meals' ]);    
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);

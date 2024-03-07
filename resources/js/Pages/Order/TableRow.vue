@@ -1,14 +1,13 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
 defineProps(["meal"]);
 </script>
 <template>
-
     <td class="whitespace-nowrap px-6 py-3 font-bold">
         <Link :href="`//${meal.id}`" class="flex items-center j">
             <p class="">
@@ -17,8 +16,12 @@ defineProps(["meal"]);
         </Link>
     </td>
     <!-- <td class="whitespace-nowrap px-6 py-3">{{  meal.meal.id }}</td> -->
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ getCook(meal.meal.id) }}</td>
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ meal.meal_time }}</td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+        {{ getCook(meal.meal.id) }}
+    </td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+        {{ meal.meal_time }}
+    </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ FormattedDate(meal.created_at) }}
     </td>
@@ -30,42 +33,69 @@ defineProps(["meal"]);
             </p>
         </div>
     </td>
-   
-    <td class="whitespace-nowrap px-6 py-3"> <div class=" bg text-xl z-20 flex items-center">
-           
+
+    <td class="whitespace-nowrap px-6 py-3">
+        <div class="bg text-xl z-20 flex items-center">
             <div v-if="meal.status == 'accept'">
-                <Link :href="`/process_order/${meal.id}`" >
-                    <div  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Pay</p></div></Link>
-            </div>            
+                <Link :href="`/process_order/${meal.id}`">
+                    <div
+                        class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                    >
+                        <p
+                            class="text-base font-semibold group-action-text capitalize"
+                        >
+                            Pay
+                        </p>
+                    </div></Link
+                >
+            </div>
             <div v-else-if="meal.status == 'delivered'">
-                <div  @click="ChangeStatus('confirmed')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Confirm</p></div>
+                <div
+                    @click="ChangeStatus('confirmed')"
+                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                >
+                    <p
+                        class="text-base font-semibold group-action-text capitalize"
+                    >
+                        Confirm
+                    </p>
+                </div>
             </div>
             <div v-else-if="meal.status == 'confirmed'">
-                <div @click="openModal(meal.id)" class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Rate</p></div>
-            </div>
-
-        </div></td>
-        <div
-            class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
-            v-show="newEventModalVisible"
-        >
-            <div
-                class="relative p-4 w-full max-w-xl max-h-full transition-all duration-300 ease-in delay-200"
-            >
-                <div class="relative shadow-reverse rounded-lg">
-                    <button
-                        @click="closeModal"
-                        type="button"
-                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="popup-modal"
+                <div
+                    @click="openModal(meal.id)"
+                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                >
+                    <p
+                        class="text-base font-semibold group-action-text capitalize"
                     >
-                        <font-awesome-icon
-                            icon="fa-solid fa-close"
-                            class="text-lighred text-lg"
-                        />
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                    <!-- <div class="" v-if="message">
+                        Rate
+                    </p>
+                </div>
+            </div>
+        </div>
+    </td>
+    <div
+        class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+        v-show="newEventModalVisible"
+    >
+        <div
+            class="relative p-4 w-full max-w-xl max-h-full transition-all duration-300 ease-in delay-200"
+        >
+            <div class="relative shadow-reverse rounded-lg">
+                <button
+                    @click="closeModal"
+                    type="button"
+                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    data-modal-hide="popup-modal"
+                >
+                    <font-awesome-icon
+                        icon="fa-solid fa-close"
+                        class="text-lighred text-lg"
+                    />
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <!-- <div class="" v-if="message">
                         <div
                             class="px-6 py-4 mt-1 bg-persian/20 rounded-lg text-persian"
                         >
@@ -79,221 +109,299 @@ defineProps(["meal"]);
                             <InputError class="font-bold">{{ error }}</InputError>
                         </div>
                     </div> -->
-                    <form @submit.prevent class="p-4 md:py-8 ">
-                        <h2 class="text-oynx dark:text-snow text-center font-bold text-xl">
-                           Rate the meal
-                        </h2>
-                        <div class="flex justify-between">
-                       
-                        <div class="py-4 w-[47%] relative fle flex-col">
-                            <InputLabel class="text-lg pb-2" for="presentation" value="Presentation" />
+                <form @submit.prevent class="p-4 md:py-8">
+                    <h2
+                        class="text-oynx dark:text-snow text-center font-bold text-xl"
+                    >
+                        Rate the meal
+                    </h2>
+                    <div class="flex flex-wrap justify-between">
+                        <div class="py-4 w-[30%] relative fle flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
+                                for="presentation"
+                                value="Presentation"
+                            />
                             <select
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
                                 <option
                                     selected
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                > Choose a rating
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                >
+                                    Choose a rating
                                 </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="1">One</option>
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="1"
+                                >
+                                    1
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="2">Two</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="2"
+                                >
+                                    2
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="3">Three</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="3"
+                                >
+                                    3
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="4">Four</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="4"
+                                >
+                                    4
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="5">Five</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="5"
+                                >
+                                    5
+                                </option>
                             </select>
-                           
                         </div>
-                        <div class="py-4 w-[47%] relative fle flex-col">
-                            <InputLabel class="text-lg pb-2" for="taste" value="Taste" />
+                        <div class="py-4 w-[30%] relative fle flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
+                                for="taste"
+                                value="Taste"
+                            />
                             <select
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
                                 <option
                                     selected
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                > Choose a rating
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                >
+                                    Choose a rating
                                 </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="1">One</option>
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="2">Two</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="3">Three</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="4">Four</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="5">Five</option>                                
-                            </select>
-                           
-                        </div></div>
-                        <div class=" flex justify-between">
-                        <div class="py-4 w-[47%]  relative fle flex-col">
-                            <InputLabel class="text-lg pb-2" for="value" value="Value for Money" />
-                            <select
-                                title="Meal Time"
-                                placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
-                            >
-                                <option
-                                    selected
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                > Choose a rating
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="1"
+                                >
+                                    1
                                 </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="1">One</option>
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="2"
+                                >
+                                    2
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="2">Two</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="3"
+                                >
+                                    3
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="3">Three</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="4"
+                                >
+                                    4
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="4">Four</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="5">Five</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="5"
+                                >
+                                    5
+                                </option>
                             </select>
-                           
                         </div>
-                        <div class="py-4 w-[47%] relative fle flex-col">
-                            <InputLabel class="text-lg pb-2" for="Nutrition" value="Nutrition" />
+                        <div class="py-4 w-[30%] relative fle flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
+                                for="value"
+                                value="Value for Money"
+                            />
                             <select
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
                                 <option
                                     selected
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                > Choose a rating
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                >
+                                    Choose a rating
                                 </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="1">One</option>
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="1"
+                                >
+                                    1
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="2">Two</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="2"
+                                >
+                                    2
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="3">Three</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="3"
+                                >
+                                    3
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="4">Four</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="4"
+                                >
+                                    4
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="5">Five</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="5"
+                                >
+                                    5
+                                </option>
                             </select>
-                           
-                        </div></div>
-                         <div class="flex justify-between">
-                        <div class="py-4 w-[47%] relative fle flex-col">
-                            <InputLabel class="text-lg pb-2" for="portion" value="Portion" />
+                        </div>
+                        <div class="py-4 w-[30%] relative fle flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
+                                for="Nutrition"
+                                value="Nutrition"
+                            />
                             <select
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm  focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
                                 <option
                                     selected
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                > Choose a rating
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                >
+                                    Choose a rating
                                 </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="1">One</option>
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="2">Two</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="3">Three</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="4">Four</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="5">Five</option>                                
-                            </select>
-                           
-                        </div>
-                        <div class="py-4 w-[47%] relative fle flex-col">
-                            <InputLabel class="text-lg pb-2" for="portion" value="Total Rating" />
-                            <select
-                                title="Meal Time"
-                                placeholder="Choose a meal time"
-                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow  w-full shadow-snow-sm  focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
-                            >
-                                <option
-                                    selected
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                > Choose a rating
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="1"
+                                >
+                                    1
                                 </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="1">One</option>
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="2"
+                                >
+                                    2
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="2">Two</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="3"
+                                >
+                                    3
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="3">Three</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="4"
+                                >
+                                    4
+                                </option>
                                 <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="4">Four</option>                                
-                                <option
-                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                    value="5">Five</option>                                
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="5"
+                                >
+                                    5
+                                </option>
                             </select>
-                           
-                        </div>
-                        </div>
-                        <div class="py-4 relative fle flex-col">
-                            <InputLabel class="text-lg pb-2" for="comment" value="Comment" />
-                            <textarea
-                                                    autocomplete="other_info"
-                                                    id="other_info"
-                                                    v-model="meal.description"
-                                                    class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                                                    rows="5"
-                                                    cols="50"
-                                                ></textarea>
                         </div>
 
-                        <div
-                            class="flex justify-center item-center"
-                            v-if="addingMode"
+                        <div class="py-4 w-[30%] relative fle flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
+                                for="portion"
+                                value="Portion"
+                            />
+                            <select
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                >
+                                    Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="1"
+                                >
+                                    1
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="2"
+                                >
+                                    2
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="3"
+                                >
+                                    3
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="4"
+                                >
+                                    4
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="5"
+                                >
+                                    5
+                                </option>
+                            </select>
+                        </div>
+                        <div class="py-4 w-[30%] relative fle flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
+                                for="portion"
+                                value="Total Rating"
+                            />
+                            <TextInput
+                                class="w-full"
+                                type="number"
+                                placeholder=""
+                            />
+                        </div>
+                    </div>
+                    <div class="py-4 relative fle flex-col">
+                        <InputLabel
+                            class="text-lg pb-2"
+                            for="comment"
+                            value="Comment"
+                        />
+                        <textarea
+                            autocomplete="other_info"
+                            id="other_info"
+                            class="mt-1 text-sm block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                            rows="5"
+                            cols="30"
+                        ></textarea>
+                    </div>
+
+                    <div
+                        class="flex justify-center item-center"
+                        v-if="addingMode"
+                    >
+                        <PrimaryButton @click="addSchedule" class="w-full"
+                            >Save</PrimaryButton
                         >
-                            <PrimaryButton @click="addSchedule" class="w-full"
-                                >Save</PrimaryButton
-                            >
-                        </div>
-
-                      
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
@@ -302,7 +410,7 @@ export default {
     data() {
         return {
             meal_photo: "",
-            user_name: "",            
+            user_name: "",
             newEventModalVisible: false,
         };
     },
@@ -342,12 +450,16 @@ export default {
                 .catch((error) => {
                     console.error("Error sending data:", error);
                 });
-                return this.user_name
-        }, ChangeStatus(status) {
+            return this.user_name;
+        },
+        ChangeStatus(status) {
             axios
                 .put("/cook/order/" + this.meal.id, { status })
                 .then((response) => {
-                    console.log("Data sent successfully:", response.data.order.status);
+                    console.log(
+                        "Data sent successfully:",
+                        response.data.order.status
+                    );
                     // this.meal.status = response.data.order.status
                 })
                 .catch((error) => {
