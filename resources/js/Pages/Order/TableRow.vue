@@ -1,9 +1,14 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
 defineProps(["meal"]);
 </script>
 <template>
-    
+
     <td class="whitespace-nowrap px-6 py-3 font-bold">
         <Link :href="`//${meal.id}`" class="flex items-center j">
             <p class="">
@@ -36,10 +41,99 @@ defineProps(["meal"]);
                 <div  @click="ChangeStatus('confirmed')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Confirm</p></div>
             </div>
             <div v-else-if="meal.status == 'confirmed'">
-                <div  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Rate</p></div>
+                <div @click="openModal(meal.id)" class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Rate</p></div>
             </div>
 
         </div></td>
+        <div
+            class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+            v-show="newEventModalVisible"
+        >
+            <div
+                class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
+            >
+                <div class="relative shadow-reverse rounded-lg">
+                    <button
+                        @click="closeModal"
+                        type="button"
+                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="popup-modal"
+                    >
+                        <font-awesome-icon
+                            icon="fa-solid fa-close"
+                            class="text-lighred text-lg"
+                        />
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <!-- <div class="" v-if="message">
+                        <div
+                            class="px-6 py-4 mt-1 bg-persian/20 rounded-lg text-persian"
+                        >
+                            <span class="font-bold"> {{ message }} </span>
+                        </div>
+                    </div>
+                    <div class="" v-if="error">
+                        <div
+                            class="px-6 py-4 "
+                        >
+                            <InputError class="font-bold">{{ error }}</InputError>
+                        </div>
+                    </div> -->
+                    <form @submit.prevent class="p-4 md:py-8 text-center">
+                        <h2 class="text-oynx dark:text-snow font-bold text-xl">
+                           Rate the meal
+                        </h2>
+                        <div class="py-4 relative fle flex-col">
+                    <InputLabel>Presentation</InputLabel>
+                            <TextInput
+                                class="my-2 w-full"
+                                placeholder="Meal Name"
+                            />
+                           
+                        </div>
+
+                        <div class="py-4 flex justify-between">
+                            <TextInput
+                                class="w-full"
+                                type="date"
+                                placeholder=""
+                            />
+                            <TextInput
+                                class="w-[47%]" hidden
+                                type="date"
+                                placeholder=""
+                            />
+                        </div>
+                       
+                        <div
+                            class="flex justify-center item-center"
+                            v-if="addingMode"
+                        >
+                            <PrimaryButton @click="addSchedule" class="w-full"
+                                >Save</PrimaryButton
+                            >
+                        </div>
+
+                        <template v-else>
+                            <!-- <div class="flex justify-center item-center">
+                                <PrimaryButton
+                                    class="mr-3"
+                                    @click="updateSchedule(newSchedule.id)"
+                                    v-if="newEventModalVisible"
+                                    >Update
+                                </PrimaryButton>
+                                <SecondaryButton
+                                    @click="deleteSchedule(newSchedule.id)"
+                                    class="mr-4"
+                                >
+                                    Delete
+                                </SecondaryButton>
+                            </div> -->
+                        </template>
+                    </form>
+                </div>
+            </div>
+        </div>
 </template>
 
 <script>
@@ -48,7 +142,8 @@ export default {
     data() {
         return {
             meal_photo: "",
-            user_name: ""
+            user_name: "",            
+            newEventModalVisible: false,
         };
     },
     created() {
@@ -98,6 +193,44 @@ export default {
                 .catch((error) => {
                     console.error("Error sending data:", error);
                 });
+        },
+        openModal(meal) {
+            // Get the current date
+            // const currentDate = new Date();
+
+            // // Add one day to the current date
+            // const nextDayDate = new Date(currentDate);
+            // nextDayDate.setDate(currentDate.getDate() + 1);
+
+            // // Format the next day date as an ISO string without the time part
+            // const nextDayISOString = nextDayDate
+            //     .toISOString()
+            //     .replace(/T.*$/, "");
+            // // clear everything in the div and close it
+            this.newEventModalVisible = true;
+            // if (this.$page.props.auth.user) {
+            //     // this.suggestedMeal = [];
+            //     this.newSchedule = {
+            //         meal_name: meal.title,
+            //         meal_id: meal.id.toString(),
+            //         user_id: this.$page.props.auth.user.id.toString(),
+            //         start_date: nextDayISOString,
+            //         end_date: nextDayISOString,
+            //         meal_time: "Choose a Meal time",
+            //     };
+            // }
+        },
+        closeModal() {
+            // clear everything in the div and close it
+            this.newEventModalVisible = false;
+            // this.newSchedule = {
+            //     meal_name: "",
+            //     start_date: "",
+            //     end_date: "",
+            //     meal_time: "",
+            // };
+            // this.message = "";
+            // this.error = "";
         },
     },
 };

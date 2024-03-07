@@ -383,7 +383,7 @@ export default defineComponent({
                                                 suggestion.name
                                             }}</span>
                                         </div>
-                                        <span class="font-bold">By</span>
+                                        <span class="font-bold"> ${{  suggestion.price }}</span>
                                         <div class="flex flex-col items-center">
                                             <img
                                                 class="inline-block h-8 w-8 rounded-full"

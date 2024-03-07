@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TableRow from "./TableRow.vue";
-
+import DialogModal from "@/Components/DialogModal.vue";
 import CaretDown from "@/Components/CaretDown.vue";
 import CaretUp from "@/Components/CaretUp.vue";
 </script>
@@ -276,7 +276,124 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     </div>
                                 </div>
                             </div>
+                            <div
+            class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+            v-show="newEventModalVisible"
+        >
+            <div
+                class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
+            >
+                <div class="relative shadow-reverse rounded-lg">
+                    <button
+                        @click="closeModal"
+                        type="button"
+                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="popup-modal"
+                    >
+                        <font-awesome-icon
+                            icon="fa-solid fa-close"
+                            class="text-lighred text-lg"
+                        />
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="" v-if="message">
+                        <div
+                            class="px-6 py-4 mt-1 bg-persian/20 rounded-lg text-persian"
+                        >
+                            <span class="font-bold"> {{ message }} </span>
+                        </div>
+                    </div>
+                    <div class="" v-if="error">
+                        <div
+                            class="px-6 py-4 mt-1 bg-lighred/20 rounded-lg text-lighred"
+                        >
+                            <span class="font-bold">{{ error }}</span>
+                        </div>
+                    </div>
+                    <form @submit.prevent class="p-4 md:py-8 text-center">
+                        
+                        <div class="py-4 relative">
+                            <TextInput
+                                class="my-2 w-full"
+                                placeholder="Meal Name"
+                            />
+                           
+                        </div>
 
+                        <div class="py-4 flex justify-between">
+                            <TextInput
+                                class="w-full"
+                                type="date"
+                                placeholder=""
+                            />
+                            <TextInput
+                                class="w-[47%]" hidden
+                                type="date"
+                                placeholder=""
+                            />
+                        </div>
+                        <div class="py-4 flex justify-between">
+                            <select
+                              
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                >
+                                   
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="breakfast"
+                                >
+                                    Breakfast
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="launch"
+                                >
+                                    Launch
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
+                                    value="dinner"
+                                >
+                                    Dinner
+                                </option>
+                            </select>
+                        </div>
+                        <div
+                            class="flex justify-center item-center"
+                            v-if="addingMode"
+                        >
+                            <PrimaryButton @click="addSchedule" class="w-full"
+                                >Save</PrimaryButton
+                            >
+                        </div>
+
+                        <template v-else>
+                            <!-- <div class="flex justify-center item-center">
+                                <PrimaryButton
+                                    class="mr-3"
+                                    @click="updateSchedule(newSchedule.id)"
+                                    v-if="newEventModalVisible"
+                                    >Update
+                                </PrimaryButton>
+                                <SecondaryButton
+                                    @click="deleteSchedule(newSchedule.id)"
+                                    class="mr-4"
+                                >
+                                    Delete
+                                </SecondaryButton>
+                            </div> -->
+                        </template>
+                    </form>
+                </div>
+            </div>
+        </div>
                             <!-- </div> -->
                         </div>
                     </div>
@@ -315,6 +432,7 @@ export default {
         selectedDiv(status) {
             this.selected = status;
         },
+    
     },
 };
 </script>
