@@ -37,8 +37,8 @@ import InputLabel from "@/Components/InputLabel.vue";
                                     title="add Dietary Restriction and Allergies "
                                     >
                                     Click to  Add Ingredients
-                                            <font-awesome-icon
-                                                icon="plus"/>
+                                    <font-awesome-icon
+                                        icon="plus"/>
                                         </p>
                                     </div>
 

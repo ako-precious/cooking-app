@@ -3,6 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 defineProps(["meal"]);
 </script>
 <template>
+    
     <td class="whitespace-nowrap px-6 py-3 font-bold">
         <Link :href="`//${meal.id}`" class="flex items-center j">
             <p class="">
@@ -34,6 +35,10 @@ defineProps(["meal"]);
             <div v-else-if="meal.status == 'delivered'">
                 <div  @click="ChangeStatus('confirmed')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Confirm</p></div>
             </div>
+            <div v-else-if="meal.status == 'confirmed'">
+                <div  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">Rate</p></div>
+            </div>
+
         </div></td>
 </template>
 

@@ -14,8 +14,8 @@ import CaretUp from "@/Components/CaretUp.vue";
         <div
             class="relative sm:flex sm:justify-center sm:items-center bg-center selection:bg-lighred selection:text-white"
         >
-            <div class="container relative mx-auto text-oynx dark:text-snow">
-                <div class=" py-6 ">
+            <div class="container py-6 relative mx-auto text-oynx dark:text-snow">
+                <div class=" py-3 ">
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
