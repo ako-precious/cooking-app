@@ -112,14 +112,14 @@ defineProps(["meal"]);
                 <form @submit.prevent class="p-4 md:py-8">
                    
                     <div class="flex flex-wrap justify-between">
-                        <div class="py-4 w-[30%] relative fle flex-col">
+                        <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
                                 for="presentation"
                                 value="Presentation"
                             />
                             <select
-                                title="Meal Time"
+                                title="Meal Time"  v-model="newRating.presentation"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
@@ -161,14 +161,14 @@ defineProps(["meal"]);
                                 </option>
                             </select>
                         </div>
-                        <div class="py-4 w-[30%] relative fle flex-col">
+                        <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
                                 for="taste"
                                 value="Taste"
                             />
                             <select
-                                title="Meal Time"
+                                title="Meal Time"  v-model="newRating.taste"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
@@ -210,13 +210,13 @@ defineProps(["meal"]);
                                 </option>
                             </select>
                         </div>
-                        <div class="py-4 w-[30%] relative fle flex-col">
+                        <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
                                 for="value"
                                 value="Value for Money"
                             />
-                            <select
+                            <select v-model="newRating.value"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
@@ -259,13 +259,13 @@ defineProps(["meal"]);
                                 </option>
                             </select>
                         </div>
-                        <div class="py-4 w-[30%] relative fle flex-col">
+                        <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
                                 for="Nutrition"
                                 value="Nutrition"
                             />
-                            <select
+                            <select v-model="newRating.nutrition"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
@@ -309,13 +309,13 @@ defineProps(["meal"]);
                             </select>
                         </div>
 
-                        <div class="py-4 w-[30%] relative fle flex-col">
+                        <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
                                 for="portion"
                                 value="Portion"
-                            />
-                            <select
+                            /> 
+                            <select v-model="newRating.portion"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
@@ -358,26 +358,26 @@ defineProps(["meal"]);
                                 </option>
                             </select>
                         </div>
-                        <div class="py-4 w-[30%] relative fle flex-col">
+                        <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
                                 for="portion"
                                 value="Total Rating"
                             />
-                            <TextInput
+                            <TextInput v-model="newRating.total"
                                 class="w-full"
                                 type="number"
                                 placeholder=""
                             />
                         </div>
                     </div>
-                    <div class="py-4 relative fle flex-col">
+                    <div class="py-4 relative flex flex-col">
                         <InputLabel
                             class="text-lg pb-2"
                             for="comment"
                             value="Comment"
                         />
-                        <textarea
+                        <textarea v-model="newRating.comment"
                             autocomplete="other_info"
                             id="other_info"
                             class="mt-1 text-sm block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
@@ -387,12 +387,8 @@ defineProps(["meal"]);
                     </div>
 
                     <div
-                        class="flex justify-center item-center"
-                       
-                    >
-                        <PrimaryButton @click="addSchedule" class="w-full"
-                            >Save</PrimaryButton
-                        >
+                        class="flex justify-center item-center">
+                        <PrimaryButton @click="addSchedule" class="w-full">Save</PrimaryButton>
                     </div>
                 </form>
             </div>
@@ -411,6 +407,7 @@ export default {
             error: "",
             newEventModalVisible: false,
             userId: this.$page.props.auth.user.id,
+
             newRating: {
                 meal_id:"",
                 user_id:"",
@@ -419,6 +416,7 @@ export default {
                 value: "",
                 nutrition: "",
                 portion_size: "",
+                total: (presentation*taste*value*nutrition*portion_size)/5,
                 comment: "",
             },
         };
@@ -527,7 +525,7 @@ export default {
             this.newEventModalVisible = true;
 
 
-            newRating: {
+            newRating = {
                 meal_id:"",
                 user_id:"",
                 presentation: "",
@@ -535,8 +533,9 @@ export default {
                 value: "",
                 nutrition: "",
                 portion_size: "",
+                total:(presentation*taste*value*nutrition*portion_size)/5,
                 comment: "",
-            },
+            }
 
             // if (this.$page.props.auth.user) {
             //     // this.suggestedMeal = [];
@@ -553,16 +552,17 @@ export default {
         closeModal() {
             // clear everything in the div and close it
             this.newEventModalVisible = false;
-            newRating: {
+            newRating = {
                 meal_id:"",
                 user_id:"",
                 presentation: "",
                 taste: "",
                 value: "",
-                nutrition: "",
+                nutrition: "",                
                 portion_size: "",
+                total:"",
                 comment: "",
-            },
+            };
             this.message = "";
             this.error = "";
         },
