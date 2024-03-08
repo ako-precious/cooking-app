@@ -95,22 +95,19 @@ defineProps(["meal"]);
                     />
                     <span class="sr-only">Close modal</span>
                 </button>
-                <!-- <div class="" v-if="message">
-                        <div
-                            class="px-6 py-4 mt-1 bg-persian/20 rounded-lg text-persian"
-                        >
-                            <span class="font-bold"> {{ message }} </span>
-                        </div>
+                <div class="" v-if="message">
+                    <div
+                        class="px-6 py-4 mt-1 bg-persian/20 rounded-lg text-persian"
+                    >
+                        <span class="font-bold"> {{ message }} </span>
                     </div>
-                    <div class="" v-if="error">
-                        <div
-                            class="px-6 py-4 "
-                        >
-                            <InputError class="font-bold">{{ error }}</InputError>
-                        </div>
-                    </div> -->
+                </div>
+                <div class="" v-if="error">
+                    <div class="px-6 py-4">
+                        <InputError class="font-bold">{{ error }}</InputError>
+                    </div>
+                </div>
                 <form @submit.prevent class="p-4 md:py-8">
-                   
                     <div class="flex flex-wrap justify-between">
                         <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
@@ -119,7 +116,8 @@ defineProps(["meal"]);
                                 value="Presentation"
                             />
                             <select
-                                title="Meal Time"  v-model="newRating.presentation"
+                                title="Meal Time"
+                                v-model="newRating.presentation"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
@@ -168,7 +166,8 @@ defineProps(["meal"]);
                                 value="Taste"
                             />
                             <select
-                                title="Meal Time"  v-model="newRating.taste"
+                                title="Meal Time"
+                                v-model="newRating.taste"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
@@ -216,7 +215,8 @@ defineProps(["meal"]);
                                 for="value"
                                 value="Value for Money"
                             />
-                            <select v-model="newRating.value"
+                            <select
+                                v-model="newRating.value"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
@@ -265,7 +265,8 @@ defineProps(["meal"]);
                                 for="Nutrition"
                                 value="Nutrition"
                             />
-                            <select v-model="newRating.nutrition"
+                            <select
+                                v-model="newRating.nutrition"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
@@ -314,8 +315,9 @@ defineProps(["meal"]);
                                 class="text-lg pb-2"
                                 for="portion"
                                 value="Portion"
-                            /> 
-                            <select v-model="newRating.portion"
+                            />
+                            <select
+                                v-model="newRating.portion_size"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
@@ -364,11 +366,13 @@ defineProps(["meal"]);
                                 for="portion"
                                 value="Total Rating"
                             />
-                            <TextInput v-model="newRating.total"
-                                class="w-full"
-                                type="number"
-                                placeholder=""
-                            />
+                            <TextInput
+                            readonly
+        :value="String(totalRating)" 
+        class="w-full"
+        type="number"
+        placeholder=""
+      />
                         </div>
                     </div>
                     <div class="py-4 relative flex flex-col">
@@ -377,7 +381,8 @@ defineProps(["meal"]);
                             for="comment"
                             value="Comment"
                         />
-                        <textarea v-model="newRating.comment"
+                        <textarea
+                            v-model="newRating.comment"
                             autocomplete="other_info"
                             id="other_info"
                             class="mt-1 text-sm block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
@@ -386,9 +391,10 @@ defineProps(["meal"]);
                         ></textarea>
                     </div>
 
-                    <div
-                        class="flex justify-center item-center">
-                        <PrimaryButton @click="addSchedule" class="w-full">Save</PrimaryButton>
+                    <div class="flex justify-center item-center">
+                        <PrimaryButton @click="addSchedule" class="w-full"
+                            >Save</PrimaryButton
+                        >
                     </div>
                 </form>
             </div>
@@ -406,26 +412,43 @@ export default {
             message: "",
             error: "",
             newEventModalVisible: false,
-            userId: this.$page.props.auth.user.id,
 
             newRating: {
-                meal_id:"",
-                user_id:"",
-                presentation: "",
-                taste: "",
-                value: "",
-                nutrition: "",
-                portion_size: "",
-                total: (presentation*taste*value*nutrition*portion_size)/5,
-                comment: "",
+                meal_id: "",
+                user_id: "",
+                presentation: 0,
+                taste: 0,
+                value: 0,
+                nutrition:0,
+                portion_size:0,
+                                comment: "",
             },
         };
     },
     created() {
         this.FormattedDate();
         this.truncatedIng();
-        // this.getCook()
-    },
+    }, 
+  computed:{ totalRating() {
+      // Convert the individual ratings to numbers
+      const presentation = parseFloat(this.newRating.presentation);
+      const taste = parseFloat(this.newRating.taste);
+      const value = parseFloat(this.newRating.value);
+      const nutrition = parseFloat(this.newRating.nutrition);
+      const portion_size = parseFloat(this.newRating.portion_size);
+
+      // Check if any rating is not a number
+      if (
+        isNaN(presentation) || isNaN(taste) ||   isNaN(value) ||     isNaN(nutrition) ||       isNaN(portion_size)
+      ) {
+        return null; // Return null if any rating is invalid
+      }
+      // Calculate the total rating
+      const total = (presentation + taste + value + nutrition + portion_size) / 5;
+      // Return the total rating rounded to two decimal places
+      return Math.round(total * 100) / 100;
+
+    },},
     methods: {
         FormattedDate(timestamp) {
             const date = new Date(timestamp);
@@ -473,30 +496,24 @@ export default {
                     console.error("Error sending data:", error);
                 });
         },
+
         addSchedule() {
-            const today = new Date().toISOString().replace(/T.*$/, "");
+           
             if (
-                this.newSchedule.meal_name == "" ||
-                this.newSchedule.start_date == "" ||
-                this.newSchedule.end_date == "" ||
-                this.newSchedule.meal_time == "" ||
-                this.newSchedule.user_id == ""
+                this.newRating.presentation == "Choose a rating" ||
+                this.newRating.taste == "Choose a rating" ||
+                this.newRating.value == "Choose a rating" ||
+                this.newRating.nutrition == "Choose a rating" ||
+                this.newRating.portion_size == "Choose a rating" ||
+                this.newRating.comment == "" 
             ) {
                 this.error =
                     "Please fill in all  fields to create your schedule.";
-            } else if (today >= this.newSchedule.start_date) {
-                this.error =
-                    "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
-            } else if (
-                this.newSchedule.start_date > this.newSchedule.end_date
-            ) {
-                this.error =
-                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
-            } else {
-                this.formatSchedule();
+            }else {
+                console.log(this.newRating);
 
                 axios
-                    .post("/schedule", this.formattedEvents)
+                    .post("/rating", this.formattedEvents)
                     .then((resp) => {
                         this.message = resp.data.message;
 
@@ -514,53 +531,36 @@ export default {
                     });
             }
         },
+       
+  
         openModal(meal) {
-           
-
-            // // Format the next day date as an ISO string without the time part
-            // const nextDayISOString = nextDayDate
-            //     .toISOString()
-            //     .replace(/T.*$/, "");
-            // // clear everything in the div and close it
+            
             this.newEventModalVisible = true;
 
-
-            newRating = {
-                meal_id:"",
-                user_id:"",
-                presentation: "",
-                taste: "",
-                value: "",
-                nutrition: "",
-                portion_size: "",
-                total:(presentation*taste*value*nutrition*portion_size)/5,
+            this.newRating = {
+                meal_id: this.meal.meal.id,
+                user_id: this.$page.props.auth.user.id,
+                presentation: 0,
+                taste: 0,
+                value: 0,
+                nutrition:0,
+                portion_size:0,
                 comment: "",
-            }
+            };
 
-            // if (this.$page.props.auth.user) {
-            //     // this.suggestedMeal = [];
-            //     this.newSchedule = {
-            //         meal_name: meal.title,
-            //         meal_id: meal.id.toString(),
-            //         user_id: this.$page.props.auth.user.id.toString(),
-            //         start_date: nextDayISOString,
-            //         end_date: nextDayISOString,
-            //         meal_time: "Choose a Meal time",
-            //     };
-            // }
+           
         },
         closeModal() {
             // clear everything in the div and close it
             this.newEventModalVisible = false;
-            newRating = {
-                meal_id:"",
-                user_id:"",
-                presentation: "",
-                taste: "",
-                value: "",
-                nutrition: "",                
-                portion_size: "",
-                total:"",
+            this.newRating = {
+                meal_id: "",
+                user_id: "",
+                presentation: 0,
+                taste: 0,
+                value: 0,
+                nutrition: 0,
+                portion_size:0,
                 comment: "",
             };
             this.message = "";

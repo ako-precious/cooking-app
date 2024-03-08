@@ -63,6 +63,7 @@ Route::middleware([
     Route::get('meal-schedule', [OrdersController::class, 'order' ])->name('meal-schedule');
     
     
+    Route::resource('/rating', RatingController::class);
     //photo Controller
     
     //Meal Schedule
@@ -78,7 +79,6 @@ Route::middleware([
     
     //Meal Controller
     Route::resource('/meal', MealController::class);
-    Route::resource('/rating', RatingController::class);
     Route::get('meals/{id}', [MealController::class, 'meals' ]);    
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
