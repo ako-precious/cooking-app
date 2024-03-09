@@ -513,10 +513,11 @@ export default {
                 console.log(this.newRating);
 
                 axios
-                    .post("/rating", this.formattedEvents)
+                    .post("/rating", this.newRating)
                     .then((resp) => {
                         this.message = resp.data.message;
-
+                        
+ 
                         setTimeout(() => {
                             this.closeModal();
                             // Uncomment the line below if you want to toggle addingMode after the delay
@@ -524,6 +525,7 @@ export default {
                         }, 5000);
                     })
                     .catch((err) => {
+                        console.log(err);
                         this.error = "Unable to add Meal !";
                         setTimeout(() => {
                             this.error = "";

@@ -9,14 +9,21 @@ class RatingController extends Controller
 {
     public function store(Request $request)
     {
-        $rating = Rating::create($request->all());
-        // dd($rating);
+        // Find the rating for the user and meal, or create a new instance
+        $rating = Rating::firstOrNew([
+            'user_id' => $request->user_id,
+            'meal_id' => $request->meal_id,
+        ]);
 
-      
+        // Update or set the attributes with the data from the request
+        $rating->fill($request->all());
+
+        // Save the rating to the database
+        $rating->save();
+
         return response()->json([
             'data' => $rating,
-            'message' => 'Successfully added a new Meal Schedule!',
-           
+            'message' => $rating->wasRecentlyCreated ? 'Successfully added a new rating!' : 'Rating updated successfully!',
         ]);
     }
 }
