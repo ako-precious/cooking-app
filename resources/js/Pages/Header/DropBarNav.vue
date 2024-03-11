@@ -12,7 +12,7 @@ defineProps({
 </script>
 <template>
    
-    <li v-if="canLogin">
+    <li v-if="$page.props.auth.user">
 
         <SettingsDropdown class="w-10 h-10"></SettingsDropdown>
     </li>
