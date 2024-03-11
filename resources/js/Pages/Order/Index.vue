@@ -37,7 +37,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow  cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >ALL [{{
                                             meal_orders.length
                                         }}]</span
@@ -59,7 +59,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Pending [{{
                                             pending.length
                                         }}]</span
@@ -81,7 +81,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Rejected [{{
                                             reject.length
                                         }}]</span
@@ -103,7 +103,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Accepted [{{
                                             accept.length
                                         }}]</span
@@ -125,7 +125,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Processed [{{
                                             processed.length
                                         }}]</span
@@ -147,7 +147,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >ready [{{
                                             ready.length
                                         }}]</span
@@ -169,7 +169,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >ready [{{
                                             ready.length
                                         }}]</span
@@ -191,7 +191,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >transit [{{
                                             transit.length
                                         }}]</span
@@ -213,7 +213,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >delivered [{{
                                             delivered.length
                                         }}]</span
@@ -235,7 +235,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >confirmed [{{
                                             confirmed.length
                                         }}]</span
@@ -385,8 +385,42 @@ export default {
     },
 };
 </script>
-
 <style scoped>
+button:after {
+    content: " ";
+    width: 0%;
+    height: 100%;
+    background: #1b998b;
+    position: absolute;
+    transition: all 0.4s ease-in-out;
+    right: 0;
+}
+
+button:hover::after {
+    right: auto;
+    left: 0;
+    width: 100%;
+}
+
+button:hover span {
+    color: white;
+    animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;

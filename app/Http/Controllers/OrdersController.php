@@ -67,9 +67,10 @@ class OrdersController extends Controller
                 $accept = MealSchedule::where('user_id', $user_id)->where('status', 'accept')->with('order', 'meal', 'user')->get();
                 $processed = MealSchedule::where('user_id', $user_id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
                 $ready = MealSchedule::where('user_id', $user_id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
+                $transit = MealSchedule::where('user_id', $user_id)->where('status', 'in transit')->with('order', 'meal', 'user')->get();
                 $delivered = MealSchedule::where('user_id', $user_id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
                 $confirmed = MealSchedule::where('user_id', $user_id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
-        return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
+        return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'transit' =>$transit, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
     }
 
     // public function update(Request $request, $id){

@@ -43,7 +43,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >ALL [{{
                                             meal_orders.flat().length
                                         }}]</span
@@ -65,7 +65,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Pending [{{
                                             pending.flat().length
                                         }}]</span
@@ -87,7 +87,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Rejected [{{
                                             reject.flat().length
                                         }}]</span
@@ -109,7 +109,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Accepted [{{
                                             accept.flat().length
                                         }}]</span
@@ -131,9 +131,53 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Processed [{{
                                             processed.flat().length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                            <li class="px-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(ready),
+                                            selectedDiv('ready'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'ready',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
+                                        >ready [{{
+                                            ready.flat().length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                            <li class="px-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(transit),
+                                            selectedDiv('transit'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'transit',
+                                    }"
+                                    class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
+                                        >In transit [{{
+                                            transit.flat().length
                                         }}]</span
                                     >
                                 </button>
@@ -153,7 +197,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >delivered [{{
                                             delivered.flat().length
                                         }}]</span
@@ -175,7 +219,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                     class="relative w-32 font-bold flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
-                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >confirmed [{{
                                             confirmed.flat().length
                                         }}]</span
@@ -206,8 +250,8 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         Meal Title
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp />
-                                                        <CaretDown/>
+                                                        <CaretUp   @click="orderByASC('title')" />
+                                                        <CaretDown  @click="orderByDESC('title')" />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -215,8 +259,8 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         Customer's NAme
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp   @click="orderByASC('name')" />
+                                                        <CaretDown  @click="orderByDESC('name')" />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -224,8 +268,8 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         Meal Time
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp   @click="orderByASC('time')" />
+                                                        <CaretDown  @click="orderByDESC('time')" />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -301,6 +345,7 @@ export default {
         accept: Object,
         processed: Object,
         ready: Object,
+        transit: Object,
         delivered: Object,
         confirmed: Object,
     },
