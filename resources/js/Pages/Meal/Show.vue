@@ -1,8 +1,11 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
+
+import DropBarNav from "@/Pages/Header/DropBarNav.vue";
+import DateRangePicker from "@/Pages/Header/DateRangePicker.vue";
+import Navbar from "@/Pages/Header/Navbar.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import Login from "@/Pages/Auth/Login.vue";
 import TextInput from "@/Components/TextInput.vue";
 
 import Loader from "@/Components/Loader.vue";
@@ -10,6 +13,31 @@ import Loader from "@/Components/Loader.vue";
 
 <template>
     <Head :title="`${ meal.name }`" />
+    <header
+       
+        class="bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
+    >
+        <Navbar class="bg-snow dark:bg-oynx">
+            <template #search>
+                <div
+                    class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md flex items-center"
+                >
+                   
+                        <DateRangePicker
+                            @filter-meals="filterMeals"
+                            class="transition-all duration-300 delay-75 ease-in"
+                        ></DateRangePicker>
+                   
+                </div>
+            </template>
+            <template #dropdown>
+                <DropBarNav
+                  
+                />
+            </template>
+        </Navbar>
+        
+    </header>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -300,6 +328,23 @@ export default {
         this.getPhotos();
     },
     methods: {
+        filterMeals(searchText) {
+    axios
+        .get(`/api/filtered-meals?query=${searchText}`)
+        .then((response) => {
+            if (response.data.length != 0) {
+                // Use Inertia to visit the directed page with the meals data as a prop
+                this.$inertia.visit(
+                    '/',
+                    { meals: response.data } // Pass the meals data as a prop
+                );
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching filtered data:", error);
+        });
+},
+
         getPhoto() {
             axios
                 .get("/meal_photos/" + this.meal.id)
@@ -420,34 +465,74 @@ export default {
     },
 };
 </script>
-<!-- <script>
-import axios from "axios";
-export default {
-    props: {
-        menu: Object,
-    },
-    created() {
-        this.FormattedDate();
-    },
-    methods: {
-        FormattedDate(timestamp) {
-            const date = new Date(timestamp);
-            const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
-                .toString()
-                .padStart(2, "0")}-${date
-                .getDate()
-                .toString()
-                .padStart(2, "0")} at ${date.getHours()}:${date
-                .getMinutes()
-                .toString()
-                .padStart(2, "0")}`;
-            return formattedDate;
-        },
-    },
-};
-</script> -->
-
 <style scoped>
+button {
+    --color: #1b998b;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color 0.5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: var(--color);
+}
+
+button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+button:hover {
+    color: #fff;
+}
+
+button:before {
+    top: 100%;
+    left: 100%;
+    transition: all 0.7s;
+}
+
+button:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+button:active:before {
+    background: #0e534b;
+    transition: background 0s;
+}
+.bg-dots-darker {
+    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
+}
+.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Adjust z-index as needed */
+}
+
+@keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-in;
+    }
+
 @keyframes fade-in {
     from {
         opacity: 0;

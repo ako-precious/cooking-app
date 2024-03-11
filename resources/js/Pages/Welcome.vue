@@ -28,6 +28,7 @@ export default {
     },
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
+        this.meals = this.page.props.meals;
     },
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);

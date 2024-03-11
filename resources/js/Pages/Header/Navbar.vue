@@ -13,7 +13,7 @@
             </Link>
                 
                 <Link :href="route('welcome')">
-                    <span :class="{ 'opacity-0': isLinkHidden }"
+                    <span 
                     class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase"
                     >
                     Ounjemi
