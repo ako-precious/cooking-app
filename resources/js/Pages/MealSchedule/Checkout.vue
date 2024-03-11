@@ -1,4 +1,5 @@
 <template>
+  <Head title="Checkout" />
   <div id="checkout">
     <!-- Checkout will insert the payment form here -->
   </div>

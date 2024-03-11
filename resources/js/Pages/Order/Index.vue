@@ -136,6 +136,72 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 <button
                                     @click="
                                         [
+                                            chooseStatus(ready),
+                                            selectedDiv('ready'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'processed',
+                                    }"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >ready [{{
+                                            ready.length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                            <li class="px-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(ready),
+                                            selectedDiv('ready'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'processed',
+                                    }"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >ready [{{
+                                            ready.length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                            <li class="px-2">
+                                <button
+                                    @click="
+                                        [
+                                            chooseStatus(transit),
+                                            selectedDiv('transit'),
+                                        ]
+                                    "
+                                    :class="{
+                                        'bg-persian text-snow':
+                                            selected === 'processed',
+                                    }"
+                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
+                                >
+                                    <span
+                                        class="text-center w-full py-2 text-sm tracking-wider z-20 transition-all duration-300 ease-in-out"
+                                        >transit [{{
+                                            transit.length
+                                        }}]</span
+                                    >
+                                </button>
+                            </li>
+                            <li class="px-2">
+                                <button
+                                    @click="
+                                        [
                                             chooseStatus(delivered),
                                             selectedDiv('delivered'),
                                         ]
@@ -296,6 +362,7 @@ export default {
         accept: Object,
         processed: Object,
         ready: Object,
+        transit: Object,
         delivered: Object,
         confirmed: Object,
     },

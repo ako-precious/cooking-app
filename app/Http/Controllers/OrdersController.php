@@ -33,6 +33,7 @@ class OrdersController extends Controller
                 $acceptOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accept')->with('order', 'meal', 'user')->get();
                 $processedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
                 $readyOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
+                $transitOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'in transit')->with('order', 'meal', 'user')->get();
                 $deliveredOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
                 $confirmedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
                 if ($mealSchedules->isNotEmpty()) {
@@ -43,12 +44,13 @@ class OrdersController extends Controller
                     $accept[] = $acceptOrders;
                     $processed[] = $processedOrders;
                     $ready[] = $readyOrders;
+                    $transit[] = $transitOrders;
                     $delivered[] = $deliveredOrders;
                     $confirmed[] = $confirmedOrders;
                 }
             }
             // dd($accept);
-            return inertia('Cook/Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
+            return inertia('Cook/Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'transit' => $transit, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
         }
          else {
             # code...
