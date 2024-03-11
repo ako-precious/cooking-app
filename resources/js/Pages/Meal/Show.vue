@@ -334,9 +334,11 @@ export default {
         .then((response) => {
             if (response.data.length != 0) {
                 // Use Inertia to visit the directed page with the meals data as a prop
+            const meals = response.data
+               console.log( meals); ;
                 this.$inertia.visit(
-                    '/',
-                    { meals: response.data } // Pass the meals data as a prop
+                    route('welcome'), // Navigate to the welcome route
+                    { f_meals: meals } // Pass meals data as a prop
                 );
             }
         })
@@ -344,6 +346,7 @@ export default {
             console.error("Error fetching filtered data:", error);
         });
 },
+
 
         getPhoto() {
             axios

@@ -17,6 +17,9 @@ defineProps({
 <script>
 export default {
     inheritAttrs: false,
+    props: {
+    f_meals: Array // Define a prop named 'meals' to receive the data
+  },
     data() {
         return {
             meals: [],
@@ -28,7 +31,10 @@ export default {
     },
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
-        this.meals = this.page.props.meals;
+       
+
+           console.log(this.meals = this.f_meals); ;
+        
     },
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
