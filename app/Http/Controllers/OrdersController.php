@@ -5,8 +5,10 @@ use App\Models\Meal;
 use App\Models\Cook;
 use App\Models\Orders;
 use Illuminate\Http\Request;
-use App\Models\MealSchedule;
 use App\Events\MealStatusUpdated;
+use App\Models\MealSchedule;
+use App\Notifications\MealScheduleStatusUpdated;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -68,32 +70,70 @@ class OrdersController extends Controller
         return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
     }
 
-    public function update(Request $request, $id){
+    // public function update(Request $request, $id){
 
-        $mealSchedule = MealSchedule::find($id); 
-        $mealSchedule->status =  $request->status;
-        $mealSchedule->save();
-        // Hi [Customer Name], your order # [order number] placed on December 19th, 2023 has been delivered.
-        $cook = Meal::find($mealSchedule->meal_id);
-        $message = "Your meal order #". $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
+    //     $mealSchedule = MealSchedule::find($id); 
+    //     $mealSchedule->status =  $request->status;
+    //     $mealSchedule->save();
+    //     // Hi [Customer Name], your order # [order number] placed on December 19th, 2023 has been delivered.
+    //     $cook = Meal::find($mealSchedule->meal_id);
+    //     $message = "Your meal order #". $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
         
-        $notification = new Notification();
-        if ($mealSchedule->status = 'confirmed') {
-            # code...
-            $notification->user_id = $cook->cook_id;
-            $notification->message = "The meal order #". $mealSchedule->id . " delivery as been " . $mealSchedule->status;
-        }else{
+    //     $notification = new Notification();
+    //     if ($mealSchedule->status = 'confirmed') {
+    //         # code...
+    //         $notification->user_id = $cook->cook_id;
+    //         $notification->message = "The meal order #". $mealSchedule->id . " delivery as been " . $mealSchedule->status;
+    //     }else{
 
-            $notification->user_id = $mealSchedule->user_id;
-            $notification->message = $message;
-        }
-        $notification->meal_schedule_id = $mealSchedule->id;
-        $notification->status = 'unread';
-        $notification->save();
+    //         $notification->user_id = $mealSchedule->user_id;
+    //         $notification->message = $message;
+    //     }
+    //     $notification->meal_schedule_id = $mealSchedule->id;
+    //     $notification->status = 'unread';
+    //     $notification->save();
 
-     (event(new MealStatusUpdated($message)));
+    //     $recipient = User::find($recipientId);
+    //     if ($recipient) {
+    //         $recipient->notify(new MealScheduleStatusUpdated($notificationMessage));
+    //     }
 
-        return response()->json(['order' => $mealSchedule]);
+    //     return response()->json(['order' => $mealSchedule]);
+    // }
+
+    public function update(Request $request, $id)
+{
+    $mealSchedule = MealSchedule::find($id); 
+    $mealSchedule->status =  $request->status;
+    $mealSchedule->save();
+
+    // Prepare notification message
+    $message = "Your meal order #" . $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
+
+    // Determine recipient and notification message based on status
+    if ($mealSchedule->status === 'confirmed') {
+        $recipientId = $mealSchedule->meal->cook_id; // Assuming cook_id is the user ID of the cook
+        $notificationMessage = "The meal order #" . $mealSchedule->id . " delivery has been " . $mealSchedule->status;
+    } else {
+        $recipientId = $mealSchedule->user_id;
+        $notificationMessage = $message;
     }
+
+    // Save notification
+    $notification = new Notification();
+    $notification->user_id = $recipientId;
+    $notification->meal_schedule_id = $mealSchedule->id;
+    $notification->message = $notificationMessage;
+    $notification->status = 'unread';
+    $notification->save();
+
+    // Send email notification
+    $recipient = User::find($recipientId);
+    if ($recipient) {
+        $recipient->notify(new MealScheduleStatusUpdated($notificationMessage));
+    }
+
+    return response()->json(['order' => $mealSchedule]);
+}
 
 }
