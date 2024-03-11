@@ -32,7 +32,8 @@ import Loader from "@/Components/Loader.vue";
                             <div v-if="isLoading" class="">
                                 <Loader class="object-cover h-fit"></Loader>
                             </div>
-                            <img v-if="!isLoading"
+                            <img
+                                v-if="!isLoading"
                                 class="h-auto max-w-full rounded-lg"
                                 :src="src"
                                 alt=""
@@ -45,11 +46,12 @@ import Loader from "@/Components/Loader.vue";
                         <div v-for="(preview, index) in other_src">
                             <div
                                 class="overflow-scroll disable-scrollbars rounded-lg"
-                            > 
-                            <div v-if="isLoading" class="">
-                                <Loader class="object-cover h-fit"></Loader>
-                            </div>
-                                <img v-if="!isLoading"
+                            >
+                                <div v-if="isLoading" class="">
+                                    <Loader class="object-cover h-fit"></Loader>
+                                </div>
+                                <img
+                                    v-if="!isLoading"
                                     class="h-auto max-w-full rounded-lg"
                                     :src="preview.src"
                                     :alt="preview.src"
@@ -108,10 +110,13 @@ import Loader from "@/Components/Loader.vue";
                                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
                             />
 
-                            <div class="py-5 ">
+                            <div class="py-5">
                                 <div class="flex items-center">
-
-                                    <img class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2" src="https://img.icons8.com/ios/50/ingredients.png" alt="ingredients"/>  
+                                    <img
+                                        class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2"
+                                        src="https://img.icons8.com/ios/50/ingredients.png"
+                                        alt="ingredients"
+                                    />
                                     <h1
                                         class="py-3 font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
                                     >
@@ -131,9 +136,6 @@ import Loader from "@/Components/Loader.vue";
                                     <li class="py-1">{{ ingredient }}</li>
                                 </ul>
                             </div>
-                            <hr
-                                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-                            />
                         </div>
                         <div class="lg:w-1/2 relative">
                             <div class="sticky lg:p-12 top-0 z-10">
@@ -242,6 +244,23 @@ import Loader from "@/Components/Loader.vue";
                     </div>
                 </div>
             </div>
+            <hr
+                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+            />
+            <div 
+                    class="flex flex-col  py-6 overflow-scroll disable-scrollbars"
+                >
+                <h1
+                        class="font-semibold text-3xl text-center lg:text-4xl text-oynx dark:text-snow"
+                    >No Reviews
+                    </h1>
+                  
+                
+                </div>
+
+            <hr
+                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+            />
         </div>
     </div>
 </template>
@@ -358,8 +377,6 @@ export default {
         },
 
         addSchedule() {
-
-            
             const today = new Date().toISOString().replace(/T.*$/, "");
             if (
                 this.newSchedule.start_date == "" ||
@@ -384,16 +401,12 @@ export default {
                     .post("/schedule", this.formattedEvents)
                     .then((resp) => {
                         this.message = resp.data.message;
-                        if (this.meal.ordering_preferences == 'automatic') {
-                
+                        if (this.meal.ordering_preferences == "automatic") {
                             const MealId = resp.data.data.id;
                             this.$inertia.visit(`/process_order/${MealId}`);
-            }else{
-                this.$inertia.visit(`/meal-schedule`)
-            }
-        
-
-                      
+                        } else {
+                            this.$inertia.visit(`/meal-schedule`);
+                        }
                     })
                     .catch((err) => {
                         this.error = "Unable to add Meal !";
