@@ -3,7 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 defineProps(["order"]);
 </script>
 <template>
-    <td class="whitespace-nowrap px-6 py-3 font-bold ">
+    <td class="whitespace-nowrap px-6 py-3 font-bold">
         <Link :href="``" class="flex items-center j">
             <div class="w-16 h-16">
                 <img
@@ -17,8 +17,12 @@ defineProps(["order"]);
             </p>
         </Link>
     </td>
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ meal.user.name }}</td>
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">{{ meal.meal_time }}</td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+        {{ meal.user.name }}
+    </td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+        {{ meal.meal_time }}
+    </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ FormattedDate(meal.created_at) }}
     </td>
@@ -60,19 +64,64 @@ defineProps(["order"]);
                 <span>s</span>
             </span>
         </button> -->
-        <div class=" bg text-xl z-20 flex items-center">
-            <div v-if="meal.status == 'pending'" class="flex ">
-                <div  @click="ChangeStatus('accept')"  class="mr-2 p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">accept</p></div>
-                <div  @click="ChangeStatus('reject')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">reject</p></div>
+        <div class="bg text-xl z-20 flex items-center">
+            <div v-if="meal.status == 'pending'" class="flex">
+                <div
+                    @click="ChangeStatus('accept')"
+                    class="mr-2 p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                >
+                    <p
+                        class="text-base font-semibold group-action-text capitalize"
+                    >
+                        accept
+                    </p>
+                </div>
+                <div
+                    @click="ChangeStatus('reject')"
+                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                >
+                    <p
+                        class="text-base font-semibold group-action-text capitalize"
+                    >
+                        reject
+                    </p>
+                </div>
             </div>
             <div v-else-if="meal.status == 'processed'">
-                <div  @click="ChangeStatus('ready')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">ready</p></div>
+                <div
+                    @click="ChangeStatus('ready')"
+                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                >
+                    <p
+                        class="text-base font-semibold group-action-text capitalize"
+                    >
+                        ready
+                    </p>
+                </div>
             </div>
             <div v-else-if="meal.status == 'ready'">
-                <div  @click="ChangeStatus('in transit')" class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">in transit</p></div>
+                <div
+                    @click="ChangeStatus('in transit')"
+                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                >
+                    <p
+                        class="text-base font-semibold group-action-text capitalize"
+                    >
+                        in transit
+                    </p>
+                </div>
             </div>
             <div v-else-if="meal.status == 'in transit'">
-                <div  @click="ChangeStatus('delivered')"  class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group "><p class="text-base font-semibold group-action-text capitalize ">delivered</p></div>
+                <div
+                    @click="ChangeStatus('delivered')"
+                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
+                >
+                    <p
+                        class="text-base font-semibold group-action-text capitalize"
+                    >
+                        delivered
+                    </p>
+                </div>
             </div>
         </div>
     </td>
@@ -82,7 +131,6 @@ defineProps(["order"]);
 import axios from "axios";
 export default {
     data() {
-
         return {
             meal: this.order,
             meal_photo: "",
@@ -114,6 +162,7 @@ export default {
                     // console.error("Error saving data:", error);
                 });
         },
+       
         FormattedDate(timestamp) {
             const date = new Date(timestamp);
             const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
@@ -139,7 +188,7 @@ export default {
                 .put("/cook/order/" + this.meal.id, { status })
                 .then((response) => {
                     // console.log("Data sent successfully:", response.data.order.status);
-                    this.meal.status = response.data.order.status
+                    this.meal.status = response.data.order.status;
                 })
                 .catch((error) => {
                     console.error("Error sending data:", error);

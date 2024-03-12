@@ -3,15 +3,15 @@ import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
 import HeaderVue from "../Header.vue";
-import  CaretDown  from "@/Components/CaretDown.vue";
-import  CaretUp  from "@/Components/CaretUp.vue";
+import CaretDown from "@/Components/CaretDown.vue";
+import CaretUp from "@/Components/CaretUp.vue";
 </script>
 
 <template>
     <Head title="Orders" />
 
     <div
-        class="relative sm:flex sm:justify-center sm:items-center  bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
+        class="relative sm:flex sm:justify-center sm:items-center bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
         <div class="container relative mx-auto">
             <div>
@@ -21,12 +21,11 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                 class="m-auto flex flex-col justify-center h-full lg:pb-12 w-full"
             >
                 <div class="col-span-1 w-full max-w-full py-6">
-                
-                      <div
+                    <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
                         <ul
-                            class=" overflow-x-scroll disable-scrollbars flex  w-full p-4 mb-0 list-none rounded-xl"
+                            class="overflow-x-scroll disable-scrollbars flex w-full p-4 mb-0 list-none rounded-xl"
                         >
                             <li class="px-2">
                                 <button
@@ -154,9 +153,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >ready [{{
-                                            ready.flat().length
-                                        }}]</span
+                                        >ready [{{ ready.flat().length }}]</span
                                     >
                                 </button>
                             </li>
@@ -245,40 +242,60 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                             class="align-bottom shadow-sm translate-x-0 sticky top-1"
                                         >
                                             <tr>
-                                                <TableHeadVue>
+                                                <TableHeadVue
+                                                    @click="sort('meal_title')"
+                                                    :active="
+                                                        selected ===
+                                                        'meal_title'
+                                                    "
+                                                >
                                                     <template #title>
                                                         Meal Title
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp   @click="orderByASC('title')" />
-                                                        <CaretDown  @click="orderByDESC('title')" />
+                                                        <CaretUp
+                                                            @click="
+                                                                sort(
+                                                                    'meal_title',
+                                                                    true
+                                                                )
+                                                            "
+                                                        />
+                                                        <CaretDown
+                                                            @click="
+                                                                sort(
+                                                                    'meal_title',
+                                                                    false
+                                                                )
+                                                            "
+                                                        />
                                                     </template>
                                                 </TableHeadVue>
-                                                <TableHeadVue>
-                                                    <template #title>
-                                                        Customer's NAme
-                                                    </template>
-                                                    <template #symbols>
-                                                        <CaretUp   @click="orderByASC('name')" />
-                                                        <CaretDown  @click="orderByDESC('name')" />
-                                                    </template>
-                                                </TableHeadVue>
-                                                <TableHeadVue>
-                                                    <template #title>
-                                                        Meal Time
-                                                    </template>
-                                                    <template #symbols>
-                                                        <CaretUp   @click="orderByASC('time')" />
-                                                        <CaretDown  @click="orderByDESC('time')" />
-                                                    </template>
-                                                </TableHeadVue>
+                                                 <TableHeadVue @click="sort('customer_name')" :active="selected === 'customer_name'">
+      <template #title>
+        Customer's Name
+      </template>
+      <template #symbols>
+        <CaretUp @click="sort('customer_name', true)" />
+        <CaretDown @click="sort('customer_name', false)" />
+      </template>
+    </TableHeadVue>
+    <TableHeadVue @click="sort('meal_time')" :active="selected === 'meal_time'">
+      <template #title>
+        Meal Time
+      </template>
+      <template #symbols>
+        <CaretUp @click="sort('meal_time', true)" />
+        <CaretDown @click="sort('meal_time', false)" />
+      </template>
+    </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
                                                         Meal Delivery Date
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp />
+                                                        <CaretDown />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -286,8 +303,8 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         status
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp />
+                                                        <CaretDown />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -301,25 +318,27 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                         </thead>
 
                                         <tbody class="relative">
-                                            <tr v-if="orders.flat().length > 0"
-                                                v-for="order in orders.flat()"
+                                            <tr
+                                                v-if="orders.flat().length > 0"
+                                                v-for="order in sortedOrders.flat()"
                                                 :key="order.id"
                                                 class="animate-fade-in border-b py-4"
                                             >
                                                 <TableRow :order="order">
                                                 </TableRow>
-                                            </tr> <tr
-                                                    v-else
-                                                    class="animate-fade-in border-b py-4 mx-auto"
-                                                >
-                                                    <td colspan="6">
-                                                        <div
-                                                            class="py-6 italic  text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
-                                                        >
-                                                            You have nothing here. 
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                            </tr>
+                                            <tr
+                                                v-else
+                                                class="animate-fade-in border-b py-4 mx-auto"
+                                            >
+                                                <td colspan="6">
+                                                    <div
+                                                        class="py-6 italic text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
+                                                    >
+                                                        You have nothing here.
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -353,22 +372,44 @@ export default {
         return {
             orders: this.meal_orders,
             selected: "meal_orders",
+            sortOrder: "asc", // Default sort order
+            sortBy: "name", // Default sort by name
         };
     },
-    mounted() {
-        // const allMealSchedules = this.orders.flat();
-        // // Extract the id values from all objects
-        // const allIds = allMealSchedules.map((mealSchedule) => mealSchedule.meal.name);
-        // // Now allIds contains the id values of all objects
-        // console.log(allIds);
-        // console.log(this.orders);
-    },
+    computed: {
+  sortedOrders() {
+    return this.orders.flat().sort((a, b) => {
+      if (this.selected === "meal_title") {
+        return (a.meal_title || '').localeCompare(b.meal_title || '');
+      } else if (this.selected === "customer_name") {
+        return (a.customer_name || '').localeCompare(b.customer_name || '');
+      } else if (this.selected === "meal_time") {
+        const timeA = new Date(a.meal_time);
+        const timeB = new Date(b.meal_time);
+        if (!isNaN(timeA) && !isNaN(timeB)) {
+          return timeA - timeB;
+        }
+        // Handle cases where one or both meal_time values are not valid dates
+        // You can adjust the handling according to your requirements
+      }
+      // Handle cases where this.selected is not recognized
+      return 0;
+    });
+  },
+},
+
     methods: {
         chooseStatus(status) {
             this.orders = status;
         },
         selectedDiv(status) {
             this.selected = status;
+        },
+        sort(key, ascending) {
+            this.selected = key;
+            if (!ascending) {
+                this.orders = this.orders.map((order) => order.reverse());
+            }
         },
     },
 };
