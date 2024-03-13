@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CookController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
@@ -88,6 +89,7 @@ Route::middleware([
     Route::put('meal/preference/{id}', [MealController::class, 'preference' ]);    
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
     
+    Route::resource('cook/account', AccountController::class);
     //cook Controller
     Route::resource('/cook/menu', CookController::class);
     Route::get('/cook/setup', [CookController::class, 'setup']);

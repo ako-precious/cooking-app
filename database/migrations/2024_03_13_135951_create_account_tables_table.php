@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id', 'user_notification')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('stripe_account_id')->default('false');
             $table->boolean('charges_enabled')->default('false');
             $table->boolean('transfer_enabled')->default('false');

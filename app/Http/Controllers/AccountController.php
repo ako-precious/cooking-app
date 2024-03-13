@@ -7,16 +7,20 @@ use App\Models\Account;
 use Illuminate\Http\Request;
 use Stripe\Account as StripeAccount;
 
-class AccountTableController extends Controller
+class AccountController extends Controller
 {
 
     public function index()
     {
+
     }
     public function show()
     {
     }
-    public function create()
+    public function create(){
+        
+    }
+    public function store()
     {
         $user = Auth::user();
 
@@ -25,8 +29,8 @@ class AccountTableController extends Controller
         // See your keys here: https://dashboard.stripe.com/apikeys
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
 
-     $account =   $stripe->accounts->create([
-            'country' => 'CAD',
+     $account = $stripe->accounts->create([
+            'country' => 'CA',
             'type' => 'express',
             'email' => $user->email,
             'capabilities' => [
@@ -34,8 +38,14 @@ class AccountTableController extends Controller
                 'transfers' => ['requested' => true],
             ],
             'business_type' => 'individual',
-            'business_profile' => ['mcc' => 5814], 'name' => $user->name, 'product_description' => 'Meal from ' . $user->name, 'url' => env('APP_URL')
+            'business_profile' => ['mcc' => '5814',
+             'name' => $user->name, 
+            'product_description' => 'Meal from ' . $user->name, 
+            // 'url' => 'http://127.0.0.1:8000/'
+            ]
         ]);
+
+        dd( $account );
 
       $link =  $stripe->accountLinks->create([
             'account' => $account->id,
