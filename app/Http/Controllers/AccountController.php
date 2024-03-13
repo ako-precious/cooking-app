@@ -18,7 +18,7 @@ class AccountController extends Controller
     {
     }
     public function create(){
-        
+        return inertia('Cook/Account/Create', );
     }
     public function store()
     {
@@ -45,8 +45,6 @@ class AccountController extends Controller
             ]
         ]);
 
-        dd( $account );
-
       $link =  $stripe->accountLinks->create([
             'account' => $account->id,
             'refresh_url' => 'https://example.com/reauth',
@@ -56,8 +54,10 @@ class AccountController extends Controller
           ]);
 
       $account = new  Account();
-      $account->stripe_account_id = $$account->id;
+      $account->user_id = $user->id;
+      $account->stripe_account_id = $account->id;
 
-      return redirect($link->url);
+      return response()->json(['link' => $link]);
+    //   return redirect($link->url);
     }
 }

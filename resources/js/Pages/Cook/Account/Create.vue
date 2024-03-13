@@ -1,10 +1,6 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-import TableHeadVue from "@/Components/Table/TableHead.vue";
-import TableRow from "./TableRow.vue";
 import HeaderVue from "../Header.vue";
-import  CaretDown  from "@/Components/CaretDown.vue";
-import  CaretUp  from "@/Components/CaretUp.vue";
 </script>
 
 <template>
@@ -24,30 +20,31 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                         <div class="flex justify-between items-center">
                           
                             <div class="p-2 flex">
-                                <Link :href="`/become-a-cook/overview`">
-                                    <button
-            class="shadow-md  rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
+                                <!-- <form :action="cook.account.store" method="post"></form> -->
+                                
+                                    <button @click="CookAccount"
+            class="shadow-md  rounded-md cursor-pointer w-[250px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
         >   
             <span class="span-mother flex overflow-hidden">
             
-                <span>Cr</span>
-                <span>ea</span>
-                <span>t</span>
-                <span> e M</span>
-                <span>ea</span>
-                <span>l <font-awesome-icon
+                <span>Crea</span>
+                <span>te A S</span>
+                <span>trip</span>
+                <span> e Ac</span>
+                <span>cou</span>
+                <span>nt <font-awesome-icon
                                                 icon="plus"/></span>
             </span>
             <span class="span-mother2">
-                <span>Cr</span>
-                <span>ea</span>
-                <span>t</span>
-                <span> e M</span>
-                <span>ea</span>
-                <span>l <font-awesome-icon
+                <span>Crea </span>
+                <span>te A S</span>
+                <span>trip</span>
+                <span> e Ac</span>
+                <span>cou</span>
+                <span>nt <font-awesome-icon
                                                 icon="plus"/></span>
             </span>
-        </button></Link>
+        </button>
                             </div>
 
                         </div>
@@ -66,7 +63,24 @@ export default {
     props: {
         menu: Object,
     },
-  
+  methods:{
+    CookAccount() {
+            // Send an HTTP request to your backend API to save the data
+            
+                axios
+                    .post("/cook/account")
+                    .then((response) => {
+                       
+                        const link_url = response.data.link.url;
+                        this.$inertia.visit(link_url);
+                        
+                    })
+                    .catch((error) => {
+                        // Handle error
+                        console.error("Error saving data:", error);
+                    });
+                   },
+  }
 };
 </script>
 
