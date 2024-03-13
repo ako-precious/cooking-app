@@ -69,11 +69,8 @@ export default {
             
                 axios
                     .post("/cook/account")
-                    .then((response) => {
-                       
-                        const link_url = response.data.link.url;
-                        this.$inertia.visit(link_url);
-                        
+                    .then((response) => {                       
+                        window.location.href = response.data.url;
                     })
                     .catch((error) => {
                         // Handle error

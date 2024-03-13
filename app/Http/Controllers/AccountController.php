@@ -56,8 +56,9 @@ class AccountController extends Controller
       $account = new  Account();
       $account->user_id = $user->id;
       $account->stripe_account_id = $account->id;
-
-      return response()->json(['link' => $link]);
-    //   return redirect($link->url);
+    //   return response()->json(['url' => $link->url]);
+    //   return response()->json(['link' => $link]);
+      return redirect($link->url); 
+    // return response()->json(['url' => $link->url]);
     }
 }
