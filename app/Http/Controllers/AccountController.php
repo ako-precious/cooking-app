@@ -12,7 +12,10 @@ class AccountController extends Controller
 
     public function index()
     {
-
+        $user = Auth::user();
+        $accounts = Account::where('user_id', $user->id)->get();
+       
+        return inertia('Cook/Account/Create',['accounts', $accounts] );
     }
     public function show()
     {
@@ -30,6 +33,7 @@ class AccountController extends Controller
             'type' => 'express',
             'country' => 'CA',
             'email' => $user->email,
+            'address'=> $user->address,
             'capabilities' => [
                 'card_payments' => ['requested' => true],
                 'transfers' => ['requested' => true],

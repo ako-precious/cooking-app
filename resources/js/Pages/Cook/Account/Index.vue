@@ -1,6 +1,10 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import TableHeadVue from "@/Components/Table/TableHead.vue";
+import TableRow from "./TableRow.vue";
 import HeaderVue from "../Header.vue";
+import  CaretDown  from "@/Components/CaretDown.vue";
+import  CaretUp  from "@/Components/CaretUp.vue";
 </script>
 
 <template>
@@ -18,37 +22,101 @@ import HeaderVue from "../Header.vue";
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
                         <div class="flex justify-between items-center">
-                          
+                            <div class="py-3">
+                                <h1
+                                class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow">                              
+                            </h1>
+                            </div>
                             <div class="p-2 flex">
-                                <!-- <form :action="cook.account.store" method="post"></form> -->
-                                
-                                    <button @click="CookAccount"
-            class="shadow-md  rounded-md cursor-pointer w-[250px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
+                                <Link :href="`/become-a-cook/overview`">
+                                    <button
+            class="shadow-md  rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
         >   
             <span class="span-mother flex overflow-hidden">
             
-                <span>Crea</span>
-                <span>te A S</span>
-                <span>trip</span>
-                <span> e Ac</span>
-                <span>cou</span>
-                <span>nt <font-awesome-icon
+                <span>Cr</span>
+                <span>ea</span>
+                <span>t</span>
+                <span> e M</span>
+                <span>ea</span>
+                <span>l <font-awesome-icon
                                                 icon="plus"/></span>
             </span>
             <span class="span-mother2">
-                <span>Crea </span>
-                <span>te A S</span>
-                <span>trip</span>
-                <span> e Ac</span>
-                <span>cou</span>
-                <span>nt <font-awesome-icon
+                <span>Cr</span>
+                <span>ea</span>
+                <span>t</span>
+                <span> e M</span>
+                <span>ea</span>
+                <span>l <font-awesome-icon
                                                 icon="plus"/></span>
             </span>
-        </button>
+        </button></Link>
                             </div>
 
                         </div>
-                     
+                        <div class="sm:-mx-6 lg:-mx-8">
+                            <div
+                                class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                <div class="overflow-x-auto">
+                                    <table
+                                        class=" min-w-full text-left text-sm font-light relative">
+                                        <thead
+                                            class="align-bottom shadow-sm translate-x-0 sticky top-1 ">
+                                            <tr>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                    Account ID
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp/>
+                                                        <CaretDown/>
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        status
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp/>
+                                                        <CaretDown/>
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Price
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp/>
+                                                        <CaretDown/>
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Quick Order
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp/>
+                                                        <CaretDown/>
+                                                    </template>
+                                                </TableHeadVue>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr v-for="meal in menu"
+                                                :key="meal.id"
+                                                class="animate-fade-in border-b py-4" >
+
+                                                <TableRow :meal="meal">
+                                                </TableRow>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -61,28 +129,9 @@ import axios from "axios";
 
 export default {
     props: {
-        menu: Object,
+        account: Object,
     },
-  methods:{
-    CookAccount() {
-            // Send an HTTP request to your backend API to save the data
-            
-                axios
-                    .post("")
-                    .then((response) => {
-                       
-                        // const MealId = response.data.meal.id;
-                        // this.$inertia.visit(
-                        //     `/become-a-cook/${MealId}/meal-title`
-                        // );
-                        
-                    })
-                    .catch((error) => {
-                        // Handle error
-                        console.error("Error saving data:", error);
-                    });
-                   },
-  }
+  
 };
 </script>
 

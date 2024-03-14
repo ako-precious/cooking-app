@@ -16,10 +16,11 @@ return new class extends Migration
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('stripe_account_id')->default('false');
-            $table->boolean('charges_enabled')->default('false');
-            $table->boolean('transfer_enabled')->default('false');
-            $table->boolean('detailed_submitted')->default('false');
+            $table->string('stripe_account_id');
+            $table->boolean('charges_enabled')->default(false);
+            $table->boolean('transfer_enabled')->default(false);
+            $table->boolean('detailed_submitted')->default(false);
+
             $table->timestamps();
         });
     }
