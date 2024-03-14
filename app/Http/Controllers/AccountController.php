@@ -14,12 +14,26 @@ class AccountController extends Controller
     {
         $user = Auth::user();
         $accounts = Account::where('user_id', $user->id)->get();
-       
-        return inertia('Cook/Account/Create',['accounts', $accounts] );
+    //    dd($accounts);
+        return inertia('Cook/Account/Index',['accounts' => $accounts] );
     }
     public function show()
     {
     }
+ public function account_link($id){
+
+    $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
+    $link = $stripe->accountLinks->create([
+        'account' => $id,
+        'refresh_url' => 'https://example.com/reauth',
+        'return_url' => route('account.index', [], true) ,
+        'type' => 'account_onboarding',
+        'collect' => 'eventually_due'
+    ]);
+
+    return response()->json(['url' => $link->url]);
+ }
+
     public function create(){
         return inertia('Cook/Account/Create', );
     }
@@ -33,7 +47,6 @@ class AccountController extends Controller
             'type' => 'express',
             'country' => 'CA',
             'email' => $user->email,
-            'address'=> $user->address,
             'capabilities' => [
                 'card_payments' => ['requested' => true],
                 'transfers' => ['requested' => true],
@@ -49,7 +62,7 @@ class AccountController extends Controller
         $link = $stripe->accountLinks->create([
             'account' => $account->id,
             'refresh_url' => 'https://example.com/reauth',
-            'return_url' => 'https://example.com/return',
+            'return_url' => route('account.index', [], true) ,
             'type' => 'account_onboarding',
             'collect' => 'eventually_due'
         ]);

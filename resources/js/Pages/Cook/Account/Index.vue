@@ -8,7 +8,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
 </script>
 
 <template>
-      <Head title="Menu" />
+      <Head title="Account Onboarding" />
     <div
         class="relative sm:flex sm:justify-center sm:items-center  bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -66,7 +66,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                             <tr>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                    Account ID
+                                                        stripe account id
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp/>
@@ -75,7 +75,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        status
+                                                        charges enabled
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp/>
@@ -84,7 +84,7 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Price
+                                                        transfer enabled
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp/>
@@ -93,21 +93,29 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Quick Order
+                                                        detailed submitted
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp/>
                                                         <CaretDown/>
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        
+                                                    </template>
+                                                    <template #symbols>
+                                                        
                                                     </template>
                                                 </TableHeadVue>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <tr v-for="meal in menu"
-                                                :key="meal.id"
+                                           <tr v-for="account in accounts"
+                                                :key="account.id"
                                                 class="animate-fade-in border-b py-4" >
 
-                                                <TableRow :meal="meal">
+                                                <TableRow :account="account">
                                                 </TableRow>
                                             </tr>
                                         </tbody>
@@ -129,7 +137,7 @@ import axios from "axios";
 
 export default {
     props: {
-        account: Object,
+        accounts: Object,
     },
   
 };

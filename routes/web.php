@@ -90,6 +90,7 @@ Route::middleware([
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients' ]);
     
     Route::resource('cook/account', AccountController::class);
+    Route::post('account-link/{id}', [AccountController::class, 'account_link']);
     //cook Controller
     Route::resource('/cook/menu', CookController::class);
     Route::get('/cook/setup', [CookController::class, 'setup']);

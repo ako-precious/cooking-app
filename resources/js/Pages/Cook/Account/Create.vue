@@ -4,7 +4,7 @@ import HeaderVue from "../Header.vue";
 </script>
 
 <template>
-      <Head title="Menu" />
+      <Head title="Account Onboarding" />
     <div
         class="relative sm:flex sm:justify-center sm:items-center  bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >

@@ -21,7 +21,7 @@ export default {
     // },
 
     plugins: [forms, typography],
-    darkMode: "class",
+    // darkMode: "class",
   theme: {
    
     screens: {
