@@ -55,7 +55,8 @@ class AccountController extends Controller
         $accountModel->stripe_account_id = $account->id;
         $accountModel->save();
         
-        return redirect($link->url);
+        return response()->json(['url' => $link->url]);
+        // return redirect($link->url);
         
         // Set your secret key. Remember to switch to your live secret key in production.
         // See your keys here: https://dashboard.stripe.com/apikeys
@@ -91,6 +92,5 @@ class AccountController extends Controller
     // //   return response()->json(['url' => $link->url]);
     // //   return response()->json(['link' => $link]);
     //   return redirect($link->url); 
-    // return response()->json(['url' => $link->url]);
     }
 }
