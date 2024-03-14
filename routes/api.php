@@ -18,6 +18,7 @@ use App\Http\Controllers\WelcomeController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
+    Route::get('meals', [WelcomeController::class, 'meals']);
+    Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
 });
-Route::get('api/meals', [WelcomeController::class, 'meals']);
-Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);

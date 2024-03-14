@@ -25,7 +25,7 @@ class AccountController extends Controller
     $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
     $link = $stripe->accountLinks->create([
         'account' => $id,
-        'refresh_url' => 'https://example.com/reauth',
+        'refresh_url' => route('account.index', [], true) ,
         'return_url' => route('account.index', [], true) ,
         'type' => 'account_onboarding',
         'collect' => 'eventually_due'
@@ -61,7 +61,7 @@ class AccountController extends Controller
         
         $link = $stripe->accountLinks->create([
             'account' => $account->id,
-            'refresh_url' => 'https://example.com/reauth',
+            'refresh_url' => route('account.index', [], true) ,
             'return_url' => route('account.index', [], true) ,
             'type' => 'account_onboarding',
             'collect' => 'eventually_due'
@@ -70,6 +70,9 @@ class AccountController extends Controller
         $accountModel = new Account();
         $accountModel->user_id = $user->id;
         $accountModel->stripe_account_id = $account->id;
+        $accountModel->charges_enabled =false;
+        $accountModel->transfer_enabled =false;
+        $accountModel->detailed_submitted =false;
         $accountModel->save();
         
         return response()->json(['url' => $link->url]);

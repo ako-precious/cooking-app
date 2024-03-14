@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
+use App\Models\Account;
 use App\Models\MealPhotos;
 use App\Models\Notification;
 use App\Models\User;
@@ -168,12 +169,18 @@ class MealScheduleController extends Controller
                 }
                 if ($order->status === 'paid') {
                     # code...
-                    $mealSchedule = MealSchedule::find($order->meal_id); ;
+                    $mealSchedule = MealSchedule::find($order->meal_id);;
                     $mealSchedule->status = 'processed';
                     $mealSchedule->save();
                 }
 
-
+            case 'account.updated':
+                $account = $event->data->object;
+                $accountModel = Account::firstWhere('stripe_account_id', $account->id);
+                $accountModel->charges_enabled =$account->charges_enabled;
+        $accountModel->transfer_enabled =$account->payout_enabled;
+        $accountModel->detailed_submitted =$account->detailed_submitted;
+        $accountModel->save();
                 // ... handle other event types
             default:
                 echo 'Received unknown event type ' . $event->type;
@@ -214,9 +221,9 @@ class MealScheduleController extends Controller
         $user = User::find($new_MealSchedule->user_id);
 
         $notification = new Notification();
-        $notification->user_id = $cook->id;        
+        $notification->user_id = $cook->id;
         $notification->meal_schedule_id = $new_MealSchedule->id;
-        $notification->message = "You have a meal order #". $new_MealSchedule->id . " from". $user->name ;
+        $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from" . $user->name;
         $notification->status = 'unread';
         $notification->save();
 
