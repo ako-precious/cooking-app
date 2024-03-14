@@ -176,10 +176,10 @@ class MealScheduleController extends Controller
 
             case 'account.updated':
                 $account = $event->data->object;
-                $accountModel = Account::firstWhere('stripe_account_id', $account->id);
+                $accountModel = Account::where('stripe_account_id', $account->id)->first();
                 $accountModel->charges_enabled =$account->charges_enabled;
-        $accountModel->transfer_enabled =$account->payout_enabled;
-        $accountModel->detailed_submitted =$account->detailed_submitted;
+        $accountModel->transfer_enabled =$account->payouts_enabled;
+        $accountModel->detailed_submitted =$account->details_submitted;
         $accountModel->save();
                 // ... handle other event types
             default:
