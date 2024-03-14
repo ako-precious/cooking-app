@@ -24,41 +24,73 @@ class AccountController extends Controller
     {
         $user = Auth::user();
 
-
-        // Set your secret key. Remember to switch to your live secret key in production.
-        // See your keys here: https://dashboard.stripe.com/apikeys
         $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
 
-     $account = $stripe->accounts->create([
-            'country' => 'CA',
+        $account = $stripe->accounts->create([
             'type' => 'express',
+            'country' => 'CA',
             'email' => $user->email,
             'capabilities' => [
                 'card_payments' => ['requested' => true],
                 'transfers' => ['requested' => true],
             ],
             'business_type' => 'individual',
-            'business_profile' => ['mcc' => '5814',
-             'name' => $user->name, 
-            'product_description' => 'Meal from ' . $user->name, 
-            // 'url' => 'http://127.0.0.1:8000/'
+            'business_profile' => [
+                'mcc' => '5814',
+                'name' => $user->name,
+                'product_description' => 'Meal from ' . $user->name,
             ]
         ]);
-
-      $link =  $stripe->accountLinks->create([
+        
+        $link = $stripe->accountLinks->create([
             'account' => $account->id,
             'refresh_url' => 'https://example.com/reauth',
             'return_url' => 'https://example.com/return',
             'type' => 'account_onboarding',
-            'collect'=> 'eventually_due'
-          ]);
+            'collect' => 'eventually_due'
+        ]);
+        
+        $accountModel = new Account();
+        $accountModel->user_id = $user->id;
+        $accountModel->stripe_account_id = $account->id;
+        $accountModel->save();
+        
+        return redirect($link->url);
+        
+        // Set your secret key. Remember to switch to your live secret key in production.
+        // See your keys here: https://dashboard.stripe.com/apikeys
+    //     $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
 
-      $account = new  Account();
-      $account->user_id = $user->id;
-      $account->stripe_account_id = $account->id;
-    //   return response()->json(['url' => $link->url]);
-    //   return response()->json(['link' => $link]);
-      return redirect($link->url); 
+    //  $account = $stripe->accounts->create([
+    //         'country' => 'CA',
+    //         'type' => 'express',
+    //         'email' => $user->email,
+    //         'capabilities' => [
+    //             'card_payments' => ['requested' => true],
+    //             'transfers' => ['requested' => true],
+    //         ],
+    //         'business_type' => 'individual',
+    //         'business_profile' => ['mcc' => '5814',
+    //          'name' => $user->name, 
+    //         'product_description' => 'Meal from ' . $user->name, 
+    //         // 'url' => 'http://127.0.0.1:8000/'
+    //         ]
+    //     ]);
+
+    //   $link =  $stripe->accountLinks->create([
+    //         'account' => $account->id,
+    //         'refresh_url' => 'https://example.com/reauth',
+    //         'return_url' => 'https://example.com/return',
+    //         'type' => 'account_onboarding',
+    //         'collect'=> 'eventually_due'
+    //       ]);
+
+    //   $account = new  Account();
+    //   $account->user_id = $user->id;
+    //   $account->stripe_account_id = $account->id;
+    // //   return response()->json(['url' => $link->url]);
+    // //   return response()->json(['link' => $link]);
+    //   return redirect($link->url); 
     // return response()->json(['url' => $link->url]);
     }
 }
