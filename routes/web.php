@@ -35,8 +35,9 @@ Route::get('/welcomed', function () {
     ]);
 });
 
+Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
 
-Route::get('api/meals', [WelcomeController::class, 'meals']);
+// Route::get('api/meals', [WelcomeController::class, 'meals']);
 Route::resource('/meal_photos', MealPhotosController::class);
 Route::get('/checkUser', [CookController::class, "checkCook"]);
 Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
@@ -76,7 +77,6 @@ Route::middleware([
     Route::get('/process_order/{id}',  [MealScheduleController::class, 'process_order']);
     Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');
     Route::get('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
-    Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
     
     //Meal Controller
     Route::resource('/meal', MealController::class);

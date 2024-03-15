@@ -19,6 +19,7 @@ use App\Http\Controllers\WelcomeController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
-    Route::get('meals', [WelcomeController::class, 'meals']);
-    Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
 });
+Route::get('meals', [WelcomeController::class, 'meals']);
+Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
+Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');

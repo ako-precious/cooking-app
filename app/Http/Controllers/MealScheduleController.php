@@ -182,6 +182,7 @@ class MealScheduleController extends Controller
         $accountModel->detailed_submitted =$account->details_submitted;
         $accountModel->save();
                 // ... handle other event types
+                return response()->json([$account]);
             default:
                 echo 'Received unknown event type ' . $event->type;
         }
