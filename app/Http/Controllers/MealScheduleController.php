@@ -63,25 +63,25 @@ class MealScheduleController extends Controller
             ],
             'quantity' => 1,
         ];
-        $checkout_session = \Stripe\Checkout\Session::create([
-            'line_items' => $lineItems,
-            'mode' => 'payment',
-            'ui_mode' => 'embedded',
-            'return_url' => route('checkout.return', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-            'payment_intent_data' => [
-                
-            ]
-            // 'expires_at' => time() + (2 * 60 * 60),
+          
+        $payment_intent = \Stripe\PaymentIntent::create([
+            'amount' => $totalPrice * 100,
+            'currency' => 'cad',
+            'payment_method_types' => [
+                'card'
+            ],
+            'setup_future_usage' => 'off_session',
         ]);
+        
 
         $order = new Orders();
         $order->meal_schedule_id = $id;
         $order->total_price = $meal_order->meal->price;
-        $order->session_id = $checkout_session->id;
+        $order->session_id = $payment_intent->id;
         $order->save();
 
         // return redirect($checkout_session->url);
-        return json_encode(array('clientSecret' => $checkout_session->client_secret));
+        // return json_encode(array('clientSecret' => $checkout_session->client_secret));
     }
 
 

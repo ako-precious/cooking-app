@@ -71,7 +71,7 @@ const logout = () => {
                 
                 <Link :href="route('welcome')">
                     <span :class="{ 'opacity-0': isLinkHidden }"
-                    class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase"
+                    class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase text-oynx dark:text-snow "
                     >
                     Ounjemi
                 </span>
