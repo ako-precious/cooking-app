@@ -20,7 +20,10 @@ use Stripe\Climate\Order;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Http\Exceptions\NotFoundHttpException;
 use Illuminate\Support\Facades\Storage;
-
+use Stripe\StripeClient;
+use Stripe\PaymentIntent;
+use Illuminate\Support\Str;
+use Stripe\Stripe as StripeGateway;
 class MealScheduleController extends Controller
 {
     public function schedule()
@@ -81,7 +84,11 @@ class MealScheduleController extends Controller
         $order->save();
 
         // return redirect($checkout_session->url);
-        // return json_encode(array('clientSecret' => $checkout_session->client_secret));
+        return [
+            'token' => (string) Str::uuid(),
+            'client_secret' => $payment_intent->client_secret
+        ];
+        // return json_encode(array('clientSecret' => $payment_intent->client_secret));
     }
 
 
