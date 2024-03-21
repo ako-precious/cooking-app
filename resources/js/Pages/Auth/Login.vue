@@ -4,7 +4,9 @@ import AuthenticationCard from "@/Components/AuthenticationCard.vue";
 import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import InputError from "@/Components/InputError.vue";
+import AppleLogo from "@/Components/AppleLogo.vue";
 import GoogleLogo from "@/Components/GoogleLogo.vue";
+import FacebookLogo from "@/Components/FacebookLogo.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -91,7 +93,7 @@ const submit = () => {
             </div>
             <div class="block">
                 <PrimaryButton
-                    class="w-full mb-2"
+                    class="w-full mb-2 text-oynx  dark:text-snow "
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
@@ -106,13 +108,13 @@ const submit = () => {
                     </p>
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                 </div>
-                <div class="flex justify-between">
+                <div class="flex flex-col justify-between">
                     <div class="block">
                         <a href="#"
                             ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm">
+                                <p class="flex items-center text-sm text-oynx dark:text-snow">
                                     <GoogleLogo />
-                                    Google
+                                 <span class="text-center w-full">Continue with Google</span>  
                                 </p>
                             </PrimaryButton></a
                         >
@@ -120,9 +122,9 @@ const submit = () => {
                     <div class="block">
                         <a href="#"
                             ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm">
-                                    <GoogleLogo />
-                                    Google
+                                <p class="flex items-center text-sm text-oynx dark:text-snow">
+                                    <FacebookLogo />
+                                 <span class="text-center w-full">Continue with Facebook</span>  
                                 </p>
                             </PrimaryButton></a
                         >
@@ -130,9 +132,9 @@ const submit = () => {
                     <div class="block">
                         <a href="#"
                             ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm">
-                                    <GoogleLogo />
-                                    Google
+                                <p class="flex items-center text-sm text-oynx dark:text-snow">
+                                    <AppleLogo />
+                                 <span class="text-center w-full">Continue with Apple</span>  
                                 </p>
                             </PrimaryButton></a
                         >

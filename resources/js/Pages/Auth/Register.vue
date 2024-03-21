@@ -1,5 +1,4 @@
 <script setup>
-import GoogleLogo from "@/Components/GoogleLogo.vue";
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
@@ -8,6 +7,10 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+
+import AppleLogo from "@/Components/AppleLogo.vue";
+import GoogleLogo from "@/Components/GoogleLogo.vue";
+import FacebookLogo from "@/Components/FacebookLogo.vue";
 
 const form = useForm({
     name: '',
@@ -93,7 +96,7 @@ const submit = () => {
                     <div class="flex items-center">
                         <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
 
-                        <div class="ms-2">
+                        <div class="ms-2" >
                             I agree to the <a target="_blank" :href="route('terms.show')" class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">Privacy Policy</a>
                         </div>
                     </div>
@@ -106,7 +109,7 @@ const submit = () => {
                     Already registered?
                 </Link>
 
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="ms-4  text-oynx  dark:text-snow " :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Register
                 </PrimaryButton>
             </div>
@@ -118,13 +121,13 @@ const submit = () => {
                     </p>
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                 </div>
-                <div class="flex justify-between">
+                <div class="flex flex-col justify-between">
                     <div class="block">
                         <a href="#"
                             ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm">
+                                <p class="flex items-center text-sm text-oynx dark:text-snow">
                                     <GoogleLogo />
-                                    Google
+                                 <span class="text-center w-full">Continue with Google</span>  
                                 </p>
                             </PrimaryButton></a
                         >
@@ -132,9 +135,9 @@ const submit = () => {
                     <div class="block">
                         <a href="#"
                             ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm">
-                                    <GoogleLogo />
-                                    Google
+                                <p class="flex items-center text-sm text-oynx dark:text-snow">
+                                    <FacebookLogo />
+                                 <span class="text-center w-full">Continue with Facebook</span>  
                                 </p>
                             </PrimaryButton></a
                         >
@@ -142,9 +145,9 @@ const submit = () => {
                     <div class="block">
                         <a href="#"
                             ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm">
-                                    <GoogleLogo />
-                                    Google
+                                <p class="flex items-center text-sm text-oynx dark:text-snow">
+                                    <AppleLogo />
+                                 <span class="text-center w-full">Continue with Apple</span>  
                                 </p>
                             </PrimaryButton></a
                         >

@@ -1,4 +1,7 @@
 <script setup>
+
+import { Head, Link, router } from '@inertiajs/vue3';
+
 import DropdownLink from "@/Components/DropdownLink.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 const logout = () => {
