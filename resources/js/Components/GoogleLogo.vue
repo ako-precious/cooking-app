@@ -6,7 +6,7 @@
         width="34"
         height="34"
         viewBox="0 0 48 48"
-        class="pr-3"
+        class="mr-3"
     >
         <path
             fill="#FFC107"
