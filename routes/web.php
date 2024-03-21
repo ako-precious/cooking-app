@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\callback;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +43,9 @@ Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('check
 Route::resource('/meal_photos', MealPhotosController::class);
 Route::get('/checkUser', [CookController::class, "checkCook"]);
 Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
+
+Route::get('/auth/google/callback', [AccountController::class, 'callback']);
+Route::get('/auth/google/return', [AccountController::class, 'return']);
 
 Route::middleware([
     'auth:sanctum',

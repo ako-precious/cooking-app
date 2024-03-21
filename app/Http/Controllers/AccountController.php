@@ -5,11 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Account;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
 use Stripe\Account as StripeAccount;
 
 class AccountController extends Controller
 {
 
+    
+
+    public function return(Request $request)
+    {
+       return Socialite::driver("google")->redirect();
+    }
+    public function callback(Request $request)  
+    {
+         dd(Socialite::driver("google")->user());
+    }
     public function index()
     {
         $user = Auth::user();
