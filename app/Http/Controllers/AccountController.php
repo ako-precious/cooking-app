@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Account;
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Stripe\Account as StripeAccount;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -19,7 +22,17 @@ class AccountController extends Controller
     }
     public function callback(Request $request)  
     {
-         dd(Socialite::driver("google")->user());
+        
+        $googleUser = Socialite::driver("google")->user();
+        $user = User::updateOrCreate(['email' => $googleUser->email],
+        ['name' => $googleUser->name,
+        'google_id' => $googleUser->id,
+        //   'password'=> Hash::make(Str::random(12)) ,
+        'profile_photo_path' => $googleUser->avatar,
+        'email_verified_at' => now()]);
+        
+        Auth::login($user);
+         dd($googleUser);
     }
     public function index()
     {

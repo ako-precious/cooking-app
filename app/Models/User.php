@@ -30,7 +30,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_number',
         'address',
         'dietary_restrictions_allergies',
-        'other_info'
+        'other_info',
+        'google_id',
+        'email_verified_at'
     ];
 
   

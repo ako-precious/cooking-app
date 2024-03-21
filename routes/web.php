@@ -45,7 +45,7 @@ Route::get('/checkUser', [CookController::class, "checkCook"]);
 Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
 
 Route::get('/auth/google/callback', [AccountController::class, 'callback']);
-Route::get('/auth/google/return', [AccountController::class, 'return']);
+Route::get('/auth/google/return', [AccountController::class, 'return'])->name('auth.google');
 
 Route::middleware([
     'auth:sanctum',

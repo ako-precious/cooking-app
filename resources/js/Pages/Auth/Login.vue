@@ -33,7 +33,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Log in" />
+    <Head title="Sign in" />
 
     <AuthenticationCard >
         <!-- <template #logo> -->
@@ -110,34 +110,29 @@ const submit = () => {
                 </div>
                 <div class="flex flex-col justify-between">
                     <div class="block">
-                        <a href="#"
-                            ><PrimaryButton disabled class="w-full flex">
+                        <Link :href="route('auth.google')">
+                            <PrimaryButton disabled class="w-full flex">
                                 <p class="flex items-center text-sm text-oynx dark:text-snow">
                                     <GoogleLogo />
                                  <span class="text-center w-full">Continue with Google</span>  
                                 </p>
-                            </PrimaryButton></a
-                        >
+                            </PrimaryButton></Link>
                     </div>
                     <div class="block">
-                        <a href="#"
-                            ><PrimaryButton disabled class="w-full flex">
+                        <Link :href="``"><PrimaryButton disabled class="w-full flex">
                                 <p class="flex items-center text-sm text-oynx dark:text-snow">
                                     <FacebookLogo />
                                  <span class="text-center w-full">Continue with Facebook</span>  
                                 </p>
-                            </PrimaryButton></a
-                        >
+                            </PrimaryButton></Link>
                     </div>
                     <div class="block">
-                        <a href="#"
-                            ><PrimaryButton disabled class="w-full flex">
+                        <Link :href="``"><PrimaryButton disabled class="w-full flex">
                                 <p class="flex items-center text-sm text-oynx dark:text-snow">
                                     <AppleLogo />
                                  <span class="text-center w-full">Continue with Apple</span>  
                                 </p>
-                            </PrimaryButton></a
-                        >
+                            </PrimaryButton></Link>
                     </div>
                 </div>
             </div>
