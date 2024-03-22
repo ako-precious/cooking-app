@@ -24,15 +24,46 @@ class AccountController extends Controller
     {
         
         $googleUser = Socialite::driver("google")->user();
-        $user = User::updateOrCreate(['email' => $googleUser->email],
-        ['name' => $googleUser->name,
-        'google_id' => $googleUser->id,
-        //   'password'=> Hash::make(Str::random(12)) ,
-        'profile_photo_path' => $googleUser->avatar,
-        'email_verified_at' => now()]);
-        
-        Auth::login($user);
+        $find_user = User::firstWhere('google_id', $googleUser->id);
+        if($find_user){
+            Auth::login($find_user);
+        }else{
+
+            $user = User::updateOrCreate(['email' => $googleUser->email],
+            ['name' => $googleUser->name,
+            'google_id' => $googleUser->id,
+            //   'password'=> Hash::make(Str::random(12)) ,
+            'profile_photo_path' => $googleUser->avatar,
+            'email_verified_at' => now()]);
+            
+            Auth::login($user);
+        }
          dd($googleUser);
+    
+    }
+    public function fb_return(Request $request)
+    {
+       return Socialite::driver("facebook")->redirect();
+    }
+    public function fb_callback(Request $request)  
+    {
+        
+        $facebookUser = Socialite::driver("facebook")->user();
+        // $find_user = User::firstWhere('facebook_id', $facebookUser->id);
+        // if($find_user){
+        //     Auth::login($find_user);
+        // }else{
+
+        //     $user = User::updateOrCreate(['email' => $facebookUser->email],
+        //     ['name' => $facebookUser->name,
+        //     'facebook_id' => $facebookUser->id,
+        //     //   'password'=> Hash::make(Str::random(12)) ,
+        //     'profile_photo_path' => $facebookUser->avatar,
+        //     'email_verified_at' => now()]);
+            
+        //     Auth::login($user);
+        // }
+         dd($facebookUser);
     }
     public function index()
     {
