@@ -1,9 +1,10 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import Card from "./Card.vue";
 </script>
 
 <template>
-    <Head title="Welcome" />
+    <Head title="Become A Cook" />
 
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
@@ -42,8 +43,14 @@ import { Head, Link } from "@inertiajs/vue3";
                         <Link :href="`/become-a-cook/overview`">
                             <button
                                 @click="addUserToCook"
-                                class="bg-gradient-to-br from-[#e3dedf] to-[#ffffff] dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] shadow-snow-sm dark:shadow-oynx-sm mt-5 button type1 text-xs"
-                            ></button>
+                                class="btn2span group float-left w-[170px]"
+                            >
+                                <span class="next-span"> Start Cooking </span>
+                                <span class="with-span">
+                                    Monetize Your Passion
+                                </span>
+                            </button>
+                          
                         </Link>
                     </div>
                 </div>
@@ -52,51 +59,11 @@ import { Head, Link } from "@inertiajs/vue3";
     </div>
     <div class="container relative mx-auto my-8">
         <div
-            class="grid grid-rows-6 grid-flow-col gap-5 auto-cols-fr px-6 lg:p-8"
+            class="grid grid-rows-6 grid-flow-col gap-5 auto-cols-fr md:px-6 lg:p-8"
         >
-            <div class="row-span-4 shadow-extra-small rounded-3 ">
-                <div class="card  h-full rounded-3">
-                    <img
-                                        class="h-full"
-                                        src="/images/ordering.jpeg"
-                                        alt=""
-                                    />
-                    <div class="card__content">
-                        <p class="card__title">Card Title</p>
-                        <p class="card__description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-start-2 col-end-4 row-span-2 h-50 shadow-extra-small rounded-3 ...">
-                <div class="card h-full">
-                    <img
-                                        class="h-full"
-                                        src="/images/cook.png"
-                                        alt=""
-                                    />
-                    <div class="card__content">
-                        <p class="card__title">Card Title</p>
-                        <p class="card__description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="row-start-3 row-end-7 shadow-extra-small rounded-3 ...">
+            <div class="row-span-4 shadow-extra-small rounded-3">
                 <div class="card h-full rounded-3">
-                    <img
-                                        class="h-full"
-                                        src="/images/packing.jpeg"
-                                        alt=""
-                                    />
+                    <img class="h-full" src="/images/ordering.jpeg" alt="" />
                     <div class="card__content">
                         <p class="card__title">Card Title</p>
                         <p class="card__description">
@@ -108,13 +75,28 @@ import { Head, Link } from "@inertiajs/vue3";
                     </div>
                 </div>
             </div>
-            <div class="row-start-5 row-end-7 col-start-1 col-end-3 h-50 shadow-extra-small rounded-3 ...">
+            <div
+                class="col-start-2 col-end-4 row-span-2 h-50 shadow-extra-small rounded-3 ..."
+            >
+                <div class="animated-button transition-all duration-[0.6s] h-full w-full flex relative items-center justify-start cursor-pointer overflow-hidden group ">
+                    <img class="h-full absolute z-[9] transition-all duration-[0.8s] right-0 group-hover:-right-1/2" src="/images/cook.png" alt="" />
+                    <span class="text p-8 text-oynx dark:text-snow"
+                        >Remember to check the date of the confirmed orders. Prepare each dish by the customer's selected date. Don't forget to let them know when their food is prepared!.</span
+                    >
+                    <span class="circle bg-polynesian dark:bg-lighred absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-[0.8s] opacity-0 "></span>
+                    <img class="h-full  absolute z-[9] transition-all duration-[0.8s] -left-1/2 group-hover:left-0" src="/images/cook.png" alt="" />
+                </div>
+            </div>
+            <div
+                class="row-start-3 h-[420px] row-end-7 shadow-extra-small rounded-3 ..."
+            >
+                <Card></Card>
+            </div>
+            <div
+                class="row-start-5 row-end-7 col-start-1 col-end-3 h-50 shadow-extra-small rounded-3 ..."
+            >
                 <div class="card h-full rounded-3">
-                    <img
-                                        class="h-full"
-                                        src="/images/deliver.png"
-                                        alt=""
-                                    />
+                    <img class="h-full" src="/images/deliver.png" alt="" />
                     <div class="card__content">
                         <p class="card__title">Card Title</p>
                         <p class="card__description">
@@ -127,9 +109,11 @@ import { Head, Link } from "@inertiajs/vue3";
                 </div>
             </div>
 
-            <div class="col-start-2 col-end-3 row-span-2  shadow-extra-small rounded-3 ...">
+            <div
+                class="col-start-2 col-end-3 row-span-2 shadow-extra-small rounded-3 ..."
+            >
                 <div
-                    class="cursor-pointer group overflow-hidden p-5 duration-1000 hover:duration-1000 relative h-full w4 mx-auto  rounded-xl"
+                    class="cursor-pointer group overflow-hidden p-5 duration-1000 hover:duration-1000 relative h-full w4 mx-auto rounded-xl"
                 >
                     <div
                         class="group-hover:-top-3 bg-transparent -top-12 -left-12 absolute shadow-yellow-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
@@ -168,7 +152,6 @@ import { Head, Link } from "@inertiajs/vue3";
         </div>
     </div>
 </template>
-
 <script>
 import axios from "axios";
 export default {
@@ -201,13 +184,40 @@ export default {
     },
 };
 </script>
-<!-- Saving for later -->
-<!-- "Indulge your taste buds and unlock a world of culinary delights with our platform, where passionate home chefs transform ordinary ingredients into extraordinary experiences. From tantalizing dishes to mouthwatering desserts, our community of food artisans invites you to savor their creations and bring the flavors of the world into your home. Whether you're seeking a gourmet feast for a special occasion or craving everyday comfort food made with love, discover your perfect match among our talented cooks who are ready to turn your cravings into unforgettable culinary adventures." -->
 
 <style scoped>
+
+
+.animated-button .text {
+    position: relative;
+    width: 60%;
+    z-index: 1;
+    transform: translateX(-12px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+    box-shadow: 0 0 0 12px transparent;
+    border-radius: 12px;
+    justify-content: end;
+}
+
+
+.animated-button:hover .text {
+    transform: translateX(12px);
+    float: right;
+
+}
+
+.animated-button:hover .circle {
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+}
+
 .card {
     position: relative;
-   
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -270,59 +280,5 @@ export default {
     .dark\:bg-dots-lighter {
         background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
     }
-}
-.button {
-    height: 50px;
-    width: 165px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.5s ease-in-out;
-}
-
-.button:hover {
-    box-shadow: 0.5px 0.5px 150px #252525;
-}
-
-.type1::after {
-    content: "Monetize Your Passion";
-    height: 50px;
-    width: 165px;
-    background-color: #1b998b;
-    color: #fff;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1::before {
-    content: "Start Cooking Today";
-    height: 50px;
-    width: 165px;
-    /* background-color: #fff; */
-    color: #1b998b;
-    position: absolute;
-    top: 0%;
-    left: 0%;
-    transform: translateY(0px) scale(1.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.5s ease-in-out;
-}
-
-.type1:hover::after {
-    transform: translateY(0) scale(1.2);
-}
-
-.type1:hover::before {
-    transform: translateY(-50px) scale(0) rotate(120deg);
 }
 </style>
