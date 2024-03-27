@@ -48,7 +48,7 @@ Route::get('/auth/google/callback', [AccountController::class, 'callback']);
 Route::get('/auth/google/return', [AccountController::class, 'return'])->name('auth.google');
 
 Route::get('/auth/facebook/callback', [AccountController::class, 'fb_callback']);
-Route::get('/auth/facebook/return', [AccountController::class, 'fb_return'])->name('auth.google');
+Route::get('/auth/facebook/return', [AccountController::class, 'fb_return'])->name('auth.facebook');
 
 Route::middleware([
     'auth:sanctum',

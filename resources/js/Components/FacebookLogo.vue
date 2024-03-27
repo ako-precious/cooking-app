@@ -7,7 +7,7 @@
         width="44"
         height="44"
         viewBox="0 0 48 48"
-        class="mr-3"
+        
     >
         <path
             fill="#3F51B5"

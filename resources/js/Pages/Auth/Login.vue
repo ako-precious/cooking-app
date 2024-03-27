@@ -1,7 +1,6 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import AuthenticationCard from "@/Components/AuthenticationCard.vue";
-import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import InputError from "@/Components/InputError.vue";
 import AppleLogo from "@/Components/AppleLogo.vue";
@@ -10,6 +9,7 @@ import FacebookLogo from "@/Components/FacebookLogo.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import SocialLogin from "./SocialLogin.vue"
 
 defineProps({
     canResetPassword: Boolean,
@@ -35,9 +35,9 @@ const submit = () => {
 <template>
     <Head title="Sign in" />
 
-    <AuthenticationCard >
+    <AuthenticationCard>
         <!-- <template #logo> -->
-            <!-- <AuthenticationCardLogo /> -->
+        <!-- <AuthenticationCardLogo /> -->
         <!-- </template> -->
 
         <div
@@ -48,7 +48,7 @@ const submit = () => {
         </div>
 
         <form @submit.prevent="submit">
-            <div  class="mt-4 group">
+            <div class="mt-4 group">
                 <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
@@ -93,14 +93,14 @@ const submit = () => {
             </div>
             <div class="block">
                 <PrimaryButton
-                    class="w-full mb-2 text-oynx  dark:text-snow "
+                    class="w-full mb-2 text-oynx dark:text-snow"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                 >
                     Sign in
                 </PrimaryButton>
             </div>
-            <div class="mt-4">
+            <div class="my-4">
                 <div class="flex items-center py-2">
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                     <p class="text-oynx dark:text-snow w-full px-2 text-nowrap">
@@ -109,33 +109,38 @@ const submit = () => {
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                 </div>
                 <div class="flex flex-col justify-between">
-                    <div class="block">
+                  
+                   
+                    <div class="block my-2">
                         <Link :href="route('auth.google')">
-                            <PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm text-oynx dark:text-snow">
-                                    <GoogleLogo />
-                                 <span class="text-center w-full">Continue with Google</span>  
-                                </p>
-                            </PrimaryButton></Link>
+                            <SocialLogin>
+                                <template #logo>
+                                  <GoogleLogo />
+                              </template>
+                                <template #name>
+                                    Continue with Google
+                                </template>                             
+                            </SocialLogin>
+                            
+                        </Link>
                     </div>
-                    <div class="block">
-                        <Link :href="``"><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm text-oynx dark:text-snow">
-                                    <FacebookLogo />
-                                 <span class="text-center w-full">Continue with Facebook</span>  
-                                </p>
-                            </PrimaryButton></Link>
+                    <div class="block my-2">
+                        <Link :href="route('auth.facebook')">
+                            <SocialLogin>
+                              <template #logo>
+                                  <FacebookLogo title="logo"/>
+                              </template>
+                                <template #name>
+                                    Continue with Facebook
+                                </template>                             
+                            </SocialLogin>
+                            
+                        </Link>
                     </div>
-                    <div class="block">
-                        <Link :href="``"><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm text-oynx dark:text-snow">
-                                    <AppleLogo />
-                                 <span class="text-center w-full">Continue with Apple</span>  
-                                </p>
-                            </PrimaryButton></Link>
-                    </div>
+                  
                 </div>
             </div>
         </form>
     </AuthenticationCard>
 </template>
+

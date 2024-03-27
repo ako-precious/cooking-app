@@ -1,13 +1,12 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
+import SocialLogin from "./SocialLogin.vue"
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-
 import AppleLogo from "@/Components/AppleLogo.vue";
 import GoogleLogo from "@/Components/GoogleLogo.vue";
 import FacebookLogo from "@/Components/FacebookLogo.vue";
@@ -122,27 +121,34 @@ const submit = () => {
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                 </div>
                 <div class="flex flex-col justify-between">
-                    <div class="block">
-                        <a href="#"
-                            ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm text-oynx dark:text-snow">
-                                    <GoogleLogo />
-                                 <span class="text-center w-full">Continue with Google</span>  
-                                </p>
-                            </PrimaryButton></a
-                        >
+                    
+                    <div class="block my-2">
+                        <Link :href="route('auth.google')">
+                            <SocialLogin>
+                                <template #logo>
+                                  <GoogleLogo />
+                              </template>
+                                <template #name>
+                                    Continue with Google
+                                </template>                             
+                            </SocialLogin>
+                            
+                        </Link>
                     </div>
-                    <div class="block">
-                        <a href="#"
-                            ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm text-oynx dark:text-snow">
-                                    <FacebookLogo />
-                                 <span class="text-center w-full">Continue with Facebook</span>  
-                                </p>
-                            </PrimaryButton></a
-                        >
+                    <div class="block my-2">
+                        <Link :href="route('auth.facebook')">
+                            <SocialLogin>
+                              <template #logo>
+                                  <FacebookLogo title="logo"/>
+                              </template>
+                                <template #name>
+                                    Continue with Facebook
+                                </template>                             
+                            </SocialLogin>
+                            
+                        </Link>
                     </div>
-                    <div class="block">
+                    <!-- <div class="block">
                         <a href="#"
                             ><PrimaryButton disabled class="w-full flex">
                                 <p class="flex items-center text-sm text-oynx dark:text-snow">
@@ -151,7 +157,7 @@ const submit = () => {
                                 </p>
                             </PrimaryButton></a
                         >
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </form>
