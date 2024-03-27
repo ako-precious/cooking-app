@@ -111,7 +111,7 @@ const submit = () => {
                 <div class="flex flex-col justify-between">
                   
                    
-                    <div class="block my-2">
+                    <div class="block my-3">
                         <Link :href="route('auth.google')">
                             <SocialLogin>
                                 <template #logo>
@@ -124,7 +124,7 @@ const submit = () => {
                             
                         </Link>
                     </div>
-                    <div class="block my-2">
+                    <div class="block my-3">
                         <Link :href="route('auth.facebook')">
                             <SocialLogin>
                               <template #logo>
