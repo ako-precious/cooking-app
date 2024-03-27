@@ -25,7 +25,7 @@ import Card from "./Card.vue";
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     <div class="z-10">
                         <p
-                            class="mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
+                            class="text-xs md:text-base mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
                         >
                             Discover your culinary talents and share your
                             masterpieces with the world! Whether you're a
@@ -59,18 +59,24 @@ import Card from "./Card.vue";
     </div>
     <div class="container relative mx-auto my-8">
         <div
-            class="grid grid-rows-6 grid-flow-col gap-5 auto-cols-fr md:px-6 lg:p-8"
+            class=" flex flex-col lg:grid grid-rows-6 grid-flow-col gap-5 auto-cols-fr md:px-6 lg:p-8"
         >
-            <div class="row-span-4 shadow-extra-small rounded-3">
-                <div class="card h-full rounded-3">
-                    <img class="h-full" src="/images/ordering.jpeg" alt="" />
-                    <div class="card__content">
-                        <p class="card__title">Card Title</p>
-                        <p class="card__description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco.
+            <div class="row-span-4 shadow-extra-small rounded-3 ">
+                <div class="card h-full rounded-3 group ">
+                    
+                         <img class="h-full group-hover:scale-110  transition-all duration-[0.8s]" src="/images/ordering.jpeg" alt="" />
+                    
+                   
+                    <div class="card__content2 bg-polynesian dark:bg-lighred text-oynx dark:text-snow">
+                        
+                        <p class="card__description ">
+                            List your culinary specialties so they can browse your delicious options and choose their favorites.  Customers can then pick a date that works for them to enjoy your cooking. Once they submit a request, you can confirm your availability to ensure a smooth and delightful dining experience
+                        </p>
+                    </div>
+                    <div class="card__content bg-persian text-oynx dark:text-snow">
+                        
+                        <p class="card__description ">
+                            List your culinary specialties so they can browse your delicious options and choose their favorites.  Customers can then pick a date that works for them to enjoy your cooking. Once they submit a request, you can confirm your availability to ensure a smooth and delightful dining experience
                         </p>
                     </div>
                 </div>
@@ -78,12 +84,12 @@ import Card from "./Card.vue";
             <div
                 class="col-start-2 col-end-4 row-span-2 h-50 shadow-extra-small rounded-3 ..."
             >
-                <div class="animated-button transition-all duration-[0.6s] h-full w-full flex relative items-center justify-start cursor-pointer overflow-hidden group ">
+                <div class=" transition-all duration-[0.6s] h-full w-full flex relative items-center justify-start cursor-pointer overflow-hidden group hover:justify-end ">
                     <img class="h-full absolute z-[9] transition-all duration-[0.8s] right-0 group-hover:-right-1/2" src="/images/cook.png" alt="" />
-                    <span class="text p-8 text-oynx dark:text-snow"
+                    <span class="text p-8 text-oynx dark:text-snow relative w-[60%] z-[1] -translate-x-3 transition-all duration-[0.8s] group-hover:translate-x-3 "
                         >Remember to check the date of the confirmed orders. Prepare each dish by the customer's selected date. Don't forget to let them know when their food is prepared!.</span
                     >
-                    <span class="circle bg-polynesian dark:bg-lighred absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-[0.8s] opacity-0 "></span>
+                    <span class="circle bg-polynesian dark:bg-lighred absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-[0.8s] opacity-0 group-hover:w-[250px] group-hover:h-[250px] group-hover:opacity-100"></span>
                     <img class="h-full  absolute z-[9] transition-all duration-[0.8s] -left-1/2 group-hover:left-0" src="/images/cook.png" alt="" />
                 </div>
             </div>
@@ -95,17 +101,20 @@ import Card from "./Card.vue";
             <div
                 class="row-start-5 row-end-7 col-start-1 col-end-3 h-50 shadow-extra-small rounded-3 ..."
             >
-                <div class="card h-full rounded-3">
-                    <img class="h-full" src="/images/deliver.png" alt="" />
-                    <div class="card__content">
-                        <p class="card__title">Card Title</p>
-                        <p class="card__description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco.
-                        </p>
-                    </div>
+            <div class=" transition-all duration-[0.6s] h-full w-full flex relative items-center justify-end cursor-pointer overflow-hidden group hover:justify-end ">
+                    <img class="h-full absolute z-[9] transition-all duration-[0.8s] -group-hover:left-1/2 left-0" src="/images/deliver.png" alt="" />
+                    <span class="text p-8 text-oynx dark:text-snow relative w-[60%] z-[1] -translate-x-3 transition-all duration-[0.8s] group-hover:translate-x-3 "
+                        >Remember to check the date of the confirmed orders. Prepare each dish by the customer's selected date. Don't forget to let them know when their food is prepared!.</span
+                    >
+                    <span class="circle bg-polynesian dark:bg-lighred absolute w-5 h-5 top-0 right-0   rounded-full transition-all duration-[0.8s] group-hover:w-full group-hover:h-full group-hover:opacity-100"></span>
+                    <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner w-5 h-5 top-10 right-10 rounded-full transition-all duration-[0.8s] "></span>
+                    <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-20 right-20 rounded-full transition-all duration-[0.8s] "></span>
+                    <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-30 right-30 rounded-full transition-all duration-[0.8s] "></span>
+                    <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-40 right-40 rounded-full transition-all duration-[0.8s] "></span>
+                    <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-50 right-50 rounded-full transition-all duration-[0.8s] "></span>
+                    <div
+                        class="group-hover:left-44 bg-transparent top-12 left-1 absolute shadow-persian shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-44 h-44"
+                    ></div>
                 </div>
             </div>
 
@@ -187,34 +196,6 @@ export default {
 
 <style scoped>
 
-
-.animated-button .text {
-    position: relative;
-    width: 60%;
-    z-index: 1;
-    transform: translateX(-12px);
-    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.animated-button:hover {
-    box-shadow: 0 0 0 12px transparent;
-    border-radius: 12px;
-    justify-content: end;
-}
-
-
-.animated-button:hover .text {
-    transform: translateX(12px);
-    float: right;
-
-}
-
-.animated-button:hover .circle {
-    width: 220px;
-    height: 220px;
-    opacity: 1;
-}
-
 .card {
     position: relative;
 
@@ -239,14 +220,27 @@ export default {
 
 .card__content {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 40%;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #f2f2f2;
+    /* background-color: #f2f2f2; */
     transform: rotateX(-90deg);
+    transform-origin: bottom;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.card__content2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    padding: 20px;
+    box-sizing: border-box;
+    /* background-color: #f2f2f2; */
+    /* transform: rotateX(-90deg); */
     transform-origin: bottom;
     transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -255,23 +249,13 @@ export default {
     transform: rotateX(0deg);
 }
 
-.card__title {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
-    font-weight: 700;
-}
+
 
 .card:hover svg {
     scale: 0;
 }
 
-.card__description {
-    margin: 10px 0 0;
-    font-size: 14px;
-    color: #777;
-    line-height: 1.4;
-}
+
 
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
