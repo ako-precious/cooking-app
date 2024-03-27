@@ -8,22 +8,24 @@ import { Head, Link } from "@inertiajs/vue3";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div
-            class="container relative mx-auto overflow-hidden h-screen"
-        >
+        <div class="container relative mx-auto overflow-hidden h-screen">
             <iframe
                 src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
                 frameborder="0"
-                class="absolute  w-screen h-screen z-0"
+                class="absolute w-screen h-screen z-0"
             ></iframe>
-            <div class="absolute w-[80px] h-[40px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx">
+            <div
+                class="absolute w-[115px] h-[60px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx"
+            ></div>
 
-            </div>
-
-            <div class="m-auto flex items-center h-full px-6 lg:p-8 max-w-screen-lg">
+            <div
+                class="m-auto flex items-center h-full px-6 lg:p-8 max-w-screen-lg"
+            >
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     <div class="z-10">
-                        <p class="mt-4 font-semibold leading-relaxed text-oynx dark:text-snow">
+                        <p
+                            class="mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
+                        >
                             Discover your culinary talents and share your
                             masterpieces with the world! Whether you're a
                             seasoned chef or a passionate home cook, we provide
@@ -48,15 +50,17 @@ import { Head, Link } from "@inertiajs/vue3";
             </div>
         </div>
     </div>
-    <div class="container relative mx-auto  my-8 ">
-        <div class="grid grid-rows-6 grid-flow-col gap-4  auto-cols-fr px-6 lg:p-8">
-            <div class="row-span-4  ...">
-                <div class="card h-full ">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"
-                        ></path>
-                    </svg>
+    <div class="container relative mx-auto my-8">
+        <div
+            class="grid grid-rows-6 grid-flow-col gap-5 auto-cols-fr px-6 lg:p-8"
+        >
+            <div class="row-span-4 shadow-extra-small rounded-3 ">
+                <div class="card  h-full rounded-3">
+                    <img
+                                        class="h-full"
+                                        src="/images/ordering.jpeg"
+                                        alt=""
+                                    />
                     <div class="card__content">
                         <p class="card__title">Card Title</p>
                         <p class="card__description">
@@ -68,48 +72,13 @@ import { Head, Link } from "@inertiajs/vue3";
                     </div>
                 </div>
             </div>
-            <div class="col-start-2  col-end-4 row-span-2 h-50  ...">
-                <div class="card h-full ">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"
-                        ></path>
-                    </svg>
-                    <div class="card__content">
-                        <p class="card__title">Card Title</p>
-                        <p class="card__description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div></div>
-          
-            <div class="row-span-2 col-span-2  ...">
+            <div class="col-start-2 col-end-4 row-span-2 h-50 shadow-extra-small rounded-3 ...">
                 <div class="card h-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"
-                        ></path>
-                    </svg>
-                    <div class="card__content">
-                        <p class="card__title">Card Title</p>
-                        <p class="card__description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco.
-                        </p>
-                    </div>
-                </div></div>
-            <div class="row-start-3 row-end-7  ...">
-                <div class="card h-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path
-                            d="M20 5H4V19L13.2923 9.70649C13.6828 9.31595 14.3159 9.31591 14.7065 9.70641L20 15.0104V5ZM2 3.9934C2 3.44476 2.45531 3 2.9918 3H21.0082C21.556 3 22 3.44495 22 3.9934V20.0066C22 20.5552 21.5447 21 21.0082 21H2.9918C2.44405 21 2 20.5551 2 20.0066V3.9934ZM8 11C6.89543 11 6 10.1046 6 9C6 7.89543 6.89543 7 8 7C9.10457 7 10 7.89543 10 9C10 10.1046 9.10457 11 8 11Z"
-                        ></path>
-                    </svg>
+                    <img
+                                        class="h-full"
+                                        src="/images/cook.png"
+                                        alt=""
+                                    />
                     <div class="card__content">
                         <p class="card__title">Card Title</p>
                         <p class="card__description">
@@ -121,44 +90,81 @@ import { Head, Link } from "@inertiajs/vue3";
                     </div>
                 </div>
             </div>
-            <div class="col-start-2 col-end-3 row-span-2  ...">
-              
-              <div
-class="cursor-pointer group overflow-hidden p-5 duration-1000 hover:duration-1000 relative h-full w4 mx-auto  bg-neutral-800 rounded-xl"
->
-<div
-class="group-hover:-top-3 bg-transparent -top-12 -left-12 absolute shadow-yellow-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
-></div>
-<div
-class="group-hover:top-60 bg-transparent top-44 left-14 absolute shadow-red-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
-></div>
-<div
-class="group-hover:-left-12 bg-transparent top-24 left-56 absolute shadow-sky-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
-></div>
-<div
-class="group-hover:-top-44 bg-transparent top-12 left-12 absolute shadow-red-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-12 h-12"
-></div>
-<div
-class="group-hover:left-44 bg-transparent top-12 left-12 absolute shadow-green-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-44 h-44"
-></div>
-<div
-class="group-hover:-left-2 bg-transparent -top-24 -left-12 absolute shadow-sky-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-64 h-64"
-></div>
-<div
-class="group-hover:top-44 bg-transparent top-24 left-12 absolute shadow-sky-500 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-4 h-4"
-></div>
-<div
-class="w-full h-full shadow-xl shadow-neutral-900 p-3 bg-snow dark:bg-oynx opacity-50 rounded-xl flex-col gap-2 flex justify-center"
->
-<span class="text-neutral-50 font-bold text-xl italic">Get Paid</span>
-<p class=" text-oynx dark:text-snow">
-    Accept the order, prepare the meal, and deliver it – get paid once the customer confirms receiving it 
-</p>
-</div>
+            <div class="row-start-3 row-end-7 shadow-extra-small rounded-3 ...">
+                <div class="card h-full rounded-3">
+                    <img
+                                        class="h-full"
+                                        src="/images/packing.jpeg"
+                                        alt=""
+                                    />
+                    <div class="card__content">
+                        <p class="card__title">Card Title</p>
+                        <p class="card__description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row-start-5 row-end-7 col-start-1 col-end-3 h-50 shadow-extra-small rounded-3 ...">
+                <div class="card h-full rounded-3">
+                    <img
+                                        class="h-full"
+                                        src="/images/deliver.png"
+                                        alt=""
+                                    />
+                    <div class="card__content">
+                        <p class="card__title">Card Title</p>
+                        <p class="card__description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-
-          </div>
-      </div>
+            <div class="col-start-2 col-end-3 row-span-2  shadow-extra-small rounded-3 ...">
+                <div
+                    class="cursor-pointer group overflow-hidden p-5 duration-1000 hover:duration-1000 relative h-full w4 mx-auto  rounded-xl"
+                >
+                    <div
+                        class="group-hover:-top-3 bg-transparent -top-12 -left-12 absolute shadow-yellow-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
+                    ></div>
+                    <div
+                        class="group-hover:top-60 bg-transparent top-44 left-14 absolute shadow-lighred shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
+                    ></div>
+                    <div
+                        class="group-hover:-left-12 bg-transparent top-24 left-56 absolute shadow-sky-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
+                    ></div>
+                    <div
+                        class="group-hover:-top-44 bg-transparent top-12 left-12 absolute shadow-lighred shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-12 h-12"
+                    ></div>
+                    <div
+                        class="group-hover:left-44 bg-transparent top-12 left-12 absolute shadow-persian shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-44 h-44"
+                    ></div>
+                    <div
+                        class="group-hover:-left-2 bg-transparent -top-24 -left-12 absolute shadow-sky-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-64 h-64"
+                    ></div>
+                    <div
+                        class="group-hover:top-44 bg-transparent top-24 left-12 absolute shadow-sky-500 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-4 h-4"
+                    ></div>
+                    <div
+                        class="w-full h-full shadow-xl shadow-neutral-900 p-3 bg-snow dark:bg-oynx opacity-60 rounded-xl flex-col gap-2 flex justify-center"
+                    >
+                        <span class="text-neutral-50 font-bold text-xl italic"
+                            >Get Paid</span
+                        >
+                        <p class="text-oynx dark:text-snow">
+                            Accept the order, prepare the meal, and deliver it –
+                            get paid once the customer confirms receiving it
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -201,10 +207,7 @@ export default {
 <style scoped>
 .card {
     position: relative;
-    /* /* width: 300px; */
-  /* height: 100px;  */
-    background-color: #f2f2f2;
-    border-radius: 10px;
+   
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,7 +224,6 @@ export default {
 }
 
 .card:hover {
-    
     box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
 }
 
