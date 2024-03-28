@@ -8,7 +8,7 @@
                                         alt=""
                                     />
                                 </span>
-                                <p class="text-oynx pb-0 p-4 test-sm dark:text-snow">Pack the freshly prepared meal with the customer's satisfaction in mind, ensuring it arrives fresh and ready to enjoy.</p>
+                                <p class="text-sm md:text-base text-oynx pb-0 p-4 test-sm dark:text-snow">Pack the freshly prepared meal with the customer's satisfaction in mind, ensuring it arrives fresh and ready to enjoy.</p>
  
 </div>
 </template>

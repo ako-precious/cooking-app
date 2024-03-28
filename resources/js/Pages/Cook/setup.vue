@@ -9,7 +9,7 @@ import Card from "./Card.vue";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div class="container relative mx-auto overflow-hidden h-screen">
+        <div class="container relative mx-auto overflow-hidden ">
             <iframe
                 src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
                 frameborder="0"
@@ -25,7 +25,7 @@ import Card from "./Card.vue";
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     <div class="z-10">
                         <p
-                            class="text-xs md:text-base mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
+                            class="  mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
                         >
                             Discover your culinary talents and share your
                             masterpieces with the world! Whether you're a
@@ -34,11 +34,14 @@ import Card from "./Card.vue";
                             creations.
                             <br />
                             <br />
-                            Connect with Student
-                            <span class="hidden"> food enthusiasts </span> eager
-                            to taste your dishes and offer your culinary
-                            expertise to those seeking homemade delights. Join
-                            us and let your cooking skills shine!
+                            <span class="">
+
+                                Connect with Student
+                                <span class="hidden"> food enthusiasts </span> eager
+                                to taste your dishes and offer your culinary
+                                expertise to those seeking homemade delights. Join
+                                us and let your cooking skills shine!
+                            </span>
                         </p>
                         <Link :href="`/become-a-cook/overview`">
                             <button
@@ -69,28 +72,28 @@ import Card from "./Card.vue";
                    
                     <div class="card__content2 bg-polynesian dark:bg-lighred text-oynx dark:text-snow">
                         
-                        <p class="card__description ">
+                        <p class="card__description text-sm md:text-base ">
                             List your culinary specialties so they can browse your delicious options and choose their favorites.  Customers can then pick a date that works for them to enjoy your cooking. Once they submit a request, you can confirm your availability to ensure a smooth and delightful dining experience
                         </p>
                     </div>
                     <div class="card__content bg-persian text-oynx dark:text-snow">
                         
-                        <p class="card__description ">
+                        <p class="card__description text-sm md:text-base ">
                             List your culinary specialties so they can browse your delicious options and choose their favorites.  Customers can then pick a date that works for them to enjoy your cooking. Once they submit a request, you can confirm your availability to ensure a smooth and delightful dining experience
                         </p>
                     </div>
                 </div>
             </div>
             <div
-                class="col-start-2 col-end-4 row-span-2 h-50 shadow-extra-small rounded-3 ..."
+                class="col-start-2 col-end-4 row-span-2 md:h-50 shadow-extra-small rounded-3 ..."
             >
-                <div class=" transition-all duration-[0.6s] h-full w-full flex relative items-center justify-start cursor-pointer overflow-hidden group hover:justify-end ">
-                    <img class="h-full absolute z-[9] transition-all duration-[0.8s] right-0 group-hover:-right-1/2" src="/images/cook.png" alt="" />
-                    <span class="text p-8 text-oynx dark:text-snow relative w-[60%] z-[1] -translate-x-3 transition-all duration-[0.8s] group-hover:translate-x-3 "
+                <div class=" transition-all duration-[0.6s] h-full w-full flex flex-col-reverse  md:flex-row  relative items-center justify-center md:justify-start cursor-pointer overflow-hidden group md:hover:justify-end ">
+                    <img class=" hidden md:block h-full absolute z-[9] transition-all duration-[0.8s] right-0 group-hover:-right-1/2" src="/images/cook.png" alt="" />
+                    <span class="text-sm md:text-base p-6 text-oynx dark:text-snow relative w-full md:w-[60%] z-[1] -translate-x-3 transition-all duration-[0.8s] group-hover:translate-x-3 "
                         >Remember to check the date of the confirmed orders. Prepare each dish by the customer's selected date. Don't forget to let them know when their food is prepared!.</span
                     >
                     <span class="circle bg-polynesian dark:bg-lighred absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-[0.8s] opacity-0 group-hover:w-[250px] group-hover:h-[250px] group-hover:opacity-100"></span>
-                    <img class="h-full  absolute z-[9] transition-all duration-[0.8s] -left-1/2 group-hover:left-0" src="/images/cook.png" alt="" />
+                    <img class="relative h-full  md:absolute z-[9] transition-all duration-[0.8s] -left-1/2 group-hover:left-0" src="/images/cook.png" alt="" />
                 </div>
             </div>
             <div
@@ -99,22 +102,20 @@ import Card from "./Card.vue";
                 <Card></Card>
             </div>
             <div
-                class="row-start-5 row-end-7 col-start-1 col-end-3 h-50 shadow-extra-small rounded-3 ..."
+                class="row-start-5 row-end-7 col-start-1 col-end-3 md:h-50 shadow-extra-small rounded-3 ..."
             >
-            <div class=" transition-all duration-[0.6s] h-full w-full flex relative items-center justify-end cursor-pointer overflow-hidden group hover:justify-end ">
-                    <img class="h-full absolute z-[9] transition-all duration-[0.8s] -group-hover:left-1/2 left-0" src="/images/deliver.png" alt="" />
-                    <span class="text p-8 text-oynx dark:text-snow relative w-[60%] z-[1] -translate-x-3 transition-all duration-[0.8s] group-hover:translate-x-3 "
-                        >Remember to check the date of the confirmed orders. Prepare each dish by the customer's selected date. Don't forget to let them know when their food is prepared!.</span
+            <div class=" transition-all duration-[0.6s] h-full w-full flex flex-col md:flex-row relative items-center justify-between md:justify-end cursor-pointer overflow-hidden group md:hover:justify-start ">
+                    <img class= "relative w-full md:h-full md:w-auto md:absolute z-[9] transition-all duration-[0.8s] md:group-hover:left-[72%] left-0" src="/images/deliver.png" alt="" />
+                    <span class=" text-sm md:text-base w-full lg:p-8 text-oynx dark:text-snow relative md:w-[60%] z-[1] md:-translate-x-3 transition-all duration-[0.8s] md:group-hover:translate-x-3 p-4 md:p-0 "
+                        >Now comes the exciting part! Deliver the delicious meal to the customer, ready to be savored.</span
                     >
-                    <span class="circle bg-polynesian dark:bg-lighred absolute w-5 h-5 top-0 right-0   rounded-full transition-all duration-[0.8s] group-hover:w-full group-hover:h-full group-hover:opacity-100"></span>
-                    <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner w-5 h-5 top-10 right-10 rounded-full transition-all duration-[0.8s] "></span>
+                    <span class="circle bg-polynesian dark:bg-lighred absolute w-5 h-5 top-0 right-0  rounded-full transition-all duration-[0.8s] group-hover:w-full group-hover:h-full group-hover:opacity-100"></span>
+                    <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner  absolute w-5 h-5 top-10 right-10 rounded-full transition-all duration-[0.8s] "></span>
                     <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-20 right-20 rounded-full transition-all duration-[0.8s] "></span>
                     <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-30 right-30 rounded-full transition-all duration-[0.8s] "></span>
                     <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-40 right-40 rounded-full transition-all duration-[0.8s] "></span>
                     <span class="circle shadow-polynesian dark:shadow-lighred shadow-inner absolute w-5 h-5 top-50 right-50 rounded-full transition-all duration-[0.8s] "></span>
-                    <div
-                        class="group-hover:left-44 bg-transparent top-12 left-1 absolute shadow-persian shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-44 h-44"
-                    ></div>
+                    <span class="group-hover:left-44 bg-transparent top-12 left-1 absolute shadow-persian shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-44 h-44"></span>
                 </div>
             </div>
 
