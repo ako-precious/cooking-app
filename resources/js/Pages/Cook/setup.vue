@@ -1,31 +1,38 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import Card from "./Card.vue";
+
+import Header from './Navbar.vue';
 </script>
 
 <template>
     <Head title="Become A Cook" />
+    <div class="md:px-5">
 
+<Header >   
+</Header>
+</div>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div class="container relative mx-auto overflow-hidden ">
+    
+        <div class="container relative mx-auto flex items-center overflow-hidden min-h-screen ">
             <iframe
                 src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
                 frameborder="0"
-                class="absolute w-screen h-screen z-0"
+                class=" absolute w-full h-full z-0"
             ></iframe>
             <div
-                class="absolute w-[115px] h-[60px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx"
+                class="absolute w-[150px] h-[60px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx"
             ></div>
 
             <div
-                class="m-auto flex items-center h-full px-6 lg:p-8 max-w-screen-lg"
+                class="m-auto flex items-center h-full px-6 lg:p-8 max-w-screen-md lg:max-w-screen-lg"
             >
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                     <div class="z-10">
                         <p
-                            class="  mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
+                            class=" text-sm md:text-base  mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
                         >
                             Discover your culinary talents and share your
                             masterpieces with the world! Whether you're a
