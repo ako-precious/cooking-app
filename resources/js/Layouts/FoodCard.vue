@@ -209,7 +209,7 @@ export default {
 </script>
 <template>
     <div
-        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl shadow-reverse"
+        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl shadow-extra-small"
     >
         <Link
             class="relative flex h-54 overflow-hidden"

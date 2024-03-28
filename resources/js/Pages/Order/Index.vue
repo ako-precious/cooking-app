@@ -320,7 +320,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                     v-if="orders.length > 0"
                                                     v-for="meal in orders"
                                                     :key="meal.id"
-                                                    class="animate-fade-in border-b py-4"
+                                                    class="animate-fade-in border-b py-4  text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                                 >
                                                     <TableRow :meal="meal">
                                                     </TableRow>

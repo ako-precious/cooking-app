@@ -1,24 +1,24 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
-import ApplicationMark from '@/Components/ApplicationMark.vue';
+import ApplicationMark from "@/Components/ApplicationMark.vue";
 </script>
 
 <template>
     <Head title="Become A Cook" />
     <div class="container py-5 bg-snow dark:bg-oynx">
         <div
-        :class="{ 'fix align-bottom shadow-sm' : isHeaderFixed }"
-            class="  flex justify-between  items-center w-full bg-snow dark:bg-oynx "
+            :class="{ 'fix align-bottom shadow-sm': isHeaderFixed }"
+            class="flex justify-between items-center w-full bg-snow dark:bg-oynx"
         >
-        <Link :href="route('welcome')">
-             <div class="w-full flex items-center">
-                    <ApplicationMark class="block " />
+            <Link :href="route('welcome')">
+                <div class="w-full flex items-center">
+                    <ApplicationMark class="block" />
                 </div>
             </Link>
 
             <div
-                class="w-32 navbar-link font-semibold shadow-reverse p-2 text-center rounded-full text-sm"
+                class="w-32 navbar-link font-semibold shadow-extra-small p-2 text-center rounded-full text-sm"
             >
                 <Link :href="`/cook/menu`"> Save and Exist</Link>
             </div>
@@ -29,7 +29,7 @@ import ApplicationMark from '@/Components/ApplicationMark.vue';
             <!-- <Overview /> -->
             <slot name="info" class="animate-fade-in delay-100"></slot>
 
-            <div class="fixed h-20 shadow-reverse w-full bottom-0">
+            <div class="fixed h-20 shadow-extra-small w-full bottom-0">
                 <slot class="animate-left-in" name="progressbar"></slot>
                 <slot name="backbtn"></slot>
                 <slot name="mainbtn"></slot>
@@ -52,7 +52,7 @@ export default {
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
     },
-   
+
     methods: {
         handleScroll() {
             // Adjust the scroll threshold as needed
@@ -72,7 +72,7 @@ export default {
     top: 0;
     right: 0;
     width: 100%;
-    padding: 1.5rem 3rem;
+    padding: 1rem 3rem;
     z-index: 1000; /* Adjust z-index as needed */
 }
 

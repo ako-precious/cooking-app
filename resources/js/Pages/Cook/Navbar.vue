@@ -73,7 +73,7 @@ export default {
     top: 0;
     right: 0;
     width: 100%;
-    padding: 1.5rem 3rem;
+    padding: 1rem 3rem;
     z-index: 1000; /* Adjust z-index as needed */
 }
 </style>

@@ -103,13 +103,26 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <tr v-for="meal in menu"
+                                           <tr v-if="menu.length > 0"
+                                            v-for="meal in menu"
                                                 :key="meal.id"
-                                                class="animate-fade-in border-b py-4" >
+                                                class="animate-fade-in border-b py-4  text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred" >
 
                                                 <TableRow :meal="meal">
                                                 </TableRow>
                                             </tr>
+                                            <tr
+                                                    v-else
+                                                    class="animate-fade-in border-b py-4 mx-auto"
+                                                >
+                                                    <td colspan="6">
+                                                        <div
+                                                            class="py-6 italic  text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
+                                                        >
+                                                            You have nothing here. click <Link :href="`/become-a-cook`" class=" font-semibold ">here </Link> to add
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                         </tbody>
                                     </table>
                                 </div>

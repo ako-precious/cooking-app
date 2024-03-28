@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
+import ApplicationMark from "@/Components/ApplicationMark.vue";
 import BecomeCook from "./BecomeCook.vue";
 </script>
 
@@ -8,7 +9,23 @@ import BecomeCook from "./BecomeCook.vue";
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
-        <div class="container relative mx-auto overflow-hidden">
+        <div class="container py-5 relative mx-auto overflow-hidden">
+            <div
+            :class="{ 'fix align-bottom shadow-sm': isHeaderFixed }"
+            class="flex justify-between items-center w-full bg-snow dark:bg-oynx"
+        >
+            <Link :href="route('welcome')">
+                <div class="w-full flex items-center">
+                    <ApplicationMark class="block" />
+                </div>
+            </Link>
+
+            <div
+                class="w-32 navbar-link font-semibold shadow-extra-small p-2 text-center rounded-full text-sm"
+            >
+                <Link :href="`/cook/menu`">Exist</Link>
+            </div>
+        </div>
             <div
                 class="m-auto flex flex-col max-w-[1000px] justify-center h-full px-6 lg:pb-20 w-full"
             >
@@ -28,7 +45,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 class="col-span-1 w-full max-w-full"
                             >
                                 <div
-                                    class="flex min-w-0 break-words w-full items-center justify-between shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
+                                    class="flex min-w-0 break-words w-full items-center justify-between shadow-extra-small group rounded-2xl bg-clip-border cursor-pointer"
                                 >
                                     <Link class="w4"
                                         :href="`/become-a-cook/${item.id}/overview`"
@@ -61,12 +78,12 @@ import BecomeCook from "./BecomeCook.vue";
                                         </div>
                                     </Link>
                                     <p
-                                        class="bottom-1  w-12 top-1 right-1 bg-snow/20 cursor-pointer p-2"
+                                        class="bottom-1  w-12 top-1 right-1 h-full  text-xl cursor-pointer p-2 flex justify-center"
                                         @click="removePending(item.id)"
                                     >
                                         <font-awesome-icon
                                             icon="fa-solid fa-close"
-                                            class="text-lighred text-"
+                                            class="text-lighred text-2xl"
                                         />
                                     </p>
                                     </div>
@@ -90,6 +107,12 @@ export default {
            
         }
     },
+    mounted() {
+        window.addEventListener("scroll", this.handleScroll);
+    },
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.handleScroll);
+    },
     created() {
         this.FormattedDate();
     },
@@ -107,6 +130,10 @@ export default {
                 .catch((error) => {
                     // console.error("Error deleting meal photo:", error);
                 });
+        },  handleScroll() {
+            // Adjust the scroll threshold as needed
+            const scrollThreshold = 20;
+            this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
 
         FormattedDate(timestamp) {
@@ -140,5 +167,13 @@ export default {
 
 .animate-fade-in {
     animation: fade-in 0.7s ease-in;
+}
+.fix {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 1rem 3rem;
+    z-index: 1000; /* Adjust z-index as needed */
 }
 </style>
