@@ -20,12 +20,23 @@ import CaretUp from "@/Components/CaretUp.vue";
             <div
                 class="m-auto flex flex-col justify-center h-full lg:pb-12 w-full"
             >
+            <div class="py-5 lg:py-8 px-4 ">
+                    <h1
+                        class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
+                    >
+                        Glad you're back,
+                        <span class="capitalize">
+                            {{ firstWord }}
+                            <!-- {{ firstWord($page.props.auth.user.name ) }} -->
+                        </span>
+                    </h1>
+                </div>
                 <div class="col-span-1 w-full max-w-full py-6">
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
                         <ul
-                            class="overflow-x-scroll disable-scrollbars flex w-full p-4 mb-0 list-none rounded-xl"
+                            class="overflow-x-scroll disable-scrollbars flex w-full p-8 mb-0 list-none rounded-xl"
                         >
                             <li class="px-2">
                                 <button
@@ -377,6 +388,22 @@ export default {
         };
     },
     computed: {
+        firstWord() {
+            // Check if $page.props.auth.user.name is defined
+            if (
+                this.$page.props.auth &&
+                this.$page.props.auth.user &&
+                this.$page.props.auth.user.name
+            ) {
+                // Split the name string into an array of words
+                const words = this.$page.props.auth.user.name.split(" ");
+
+                // Return the first word
+                return words[0];
+            } else {
+                return ""; // Return an empty string if $page.props.auth.user.name is undefined
+            }
+        },
   sortedOrders() {
     return this.orders.flat().sort((a, b) => {
       if (this.selected === "meal_title") {
