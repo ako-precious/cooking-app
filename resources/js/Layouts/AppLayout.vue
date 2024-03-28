@@ -1,13 +1,13 @@
 <script setup>
-import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
-import ApplicationMark from '@/Components/ApplicationMark.vue';
-import Banner from '@/Components/Banner.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { ref } from "vue";
+import { Head, Link, router } from "@inertiajs/vue3";
+import ApplicationMark from "@/Components/ApplicationMark.vue";
+import Banner from "@/Components/Banner.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 import SettingsDropdown from "@/Components/SettingsDropdown.vue";
-import NavLink from '@/Components/NavLink.vue';
-import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import NavLink from "@/Components/NavLink.vue";
+import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 
 // ? import Footer from "@/Layouts/FooterLayout.vue";
 import SideBarLink from "@/Components/Sidebar/SideBarLink.vue";
@@ -16,30 +16,41 @@ import SideBarIcon from "@/Components/Sidebar/SideBarIcon.vue";
 import SideBarHeader from "@/Components/Sidebar/SideBarHeader.vue";
 // import FullCalendar from '@/Pages/FullCalendar.vue';
 // Correct import statement
-import SideBarCollapse from '@/Components/Sidebar/SidebarCollapse.vue';
+import SideBarCollapse from "@/Components/Sidebar/SidebarCollapse.vue";
 
 import NavBar from "@/Layouts/NavBar.vue";
 import SubNavBar from "@/Components/Navbar/SubNavBar.vue";
 import NavSideBar from "@/Components/Navbar/NavSideBar.vue";
 import SideNav from "@/Layouts/SideNav.vue";
 import Toggles from "@/Layouts/Toggles.vue";
+import { useAttrs } from "vue";
+import fixedPluginCard from "@/Layouts/FixedPluginCard.vue";
+
+import { useDark, useToggle } from "@vueuse/core";
+
+const isDark = useDark();
+const toggleDarkMode = useToggle(isDark);
+const attrs = useAttrs();
 
 defineProps({
     title: String,
 });
-
 const showingNavigationDropdown = ref(false);
 
 const switchToTeam = (team) => {
-    router.put(route('current-team.update'), {
-        team_id: team.id,
-    }, {
-        preserveState: false,
-    });
+    router.put(
+        route("current-team.update"),
+        {
+            team_id: team.id,
+        },
+        {
+            preserveState: false,
+        }
+    );
 };
 
 const logout = () => {
-    router.post(route('logout'));
+    router.post(route("logout"));
 };
 </script>
 
@@ -49,169 +60,206 @@ const logout = () => {
 
         <Banner />
 
-         
-    <!-- sidenav  -->
+        <!-- sidenav  -->
 
-    <SideNav @mouseover="hoverSidebar()" @mouseout="hoverOutSidebar() " class=" disable-scrollbars shadow-reverse " 
-        :class=" sidebarReduced, {
+        <SideNav
+            @mouseover="hoverSidebar()"
+            @mouseout="hoverOutSidebar()"
+            class="disable-scrollbars shadow-reverse"
+            :class=" sidebarReduced, {
             'bg-slate-850': isClassWhite,
             'translate-x-0':isClassTranslated,
             
-        }"
-    >
-  
-        
-        <SideBarHeader class="flex items-center">
-             <!-- Logo -->
-             <Link :href="route('welcome')">
-             <div class="w-full flex items-center">
-                    <ApplicationMark class="block w-auto" />
-                </div>
-            </Link>
-                
+        }">
+            <SideBarHeader class="flex items-center">
+                <!-- Logo -->
                 <Link :href="route('welcome')">
-                    <span :class="{ 'opacity-0': isLinkHidden }"
-                    class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase text-oynx dark:text-snow "
+                    <div class="w-full flex items-center">
+                        <ApplicationMark class="block w-auto" />
+                    </div>
+                </Link>
+
+                <Link :href="route('welcome')">
+                    <span
+                        :class="{ 'opacity-0': isLinkHidden }"
+                        class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase text-oynx dark:text-snow"
                     >
-                    Ounjemi
-                </span>
-            </Link>
-        </SideBarHeader>
-        
-       
-           <SideBarCollapse>
-               <li class="mt-0.5 w-full group">
-                   <Link :href="`/meal-schedule`">
-                       <SideBarLink :class="getRouteClass('meal-schedule')"    >
-                           <SideBarIcon class="group-hover:animate-bounce">
-                            <font-awesome-icon
+                        Ounjemi
+                    </span>
+                </Link>
+            </SideBarHeader>
+
+            <SideBarCollapse>
+                <li class="mt-0.5 w-full group">
+                    <Link :href="`/meal-schedule`">
+                        <SideBarLink :class="getRouteClass('meal-schedule')">
+                            <SideBarIcon class="group-hover:animate-bounce">
+                                <font-awesome-icon
                                     icon="door-open"
-                                    class="ml-2 "  
-                           /></SideBarIcon>
-                           <SideBarSpan :class="{ 'opacity-0': isLinkHidden }"> Meal Schedule </SideBarSpan>
-                       </SideBarLink>
-                   </Link>
-               </li>
-      
-             
-                
-               <li class="mt-0.5 w-full group">
-                   <Link :href="`/calendar`">
-                   <SideBarLink :class="getRouteClass('calendar')"  class="  transition-all duration-200 delay-75">
-                       <SideBarIcon class="group-hover:text-polynesian dark:group-hover:text-lighred">
-                          
-                           <font-awesome-icon icon="calendar" class="text-oynx dark:text-snow" />
-                       </SideBarIcon>
-                       <SideBarSpan :class="{ 'opacity-0': isLinkHidden }" class="group-hover:text-polynesian dark:group-hover:text-lighred"> Calendar </SideBarSpan>
-                   </SideBarLink>
-               </Link>
-               </li>
-                
-              
-             
-              
-           </SideBarCollapse>
-    
-        
-    </SideNav>
-    <!-- sidenav  -->
+                                    class="ml-2"
+                            /></SideBarIcon>
+                            <SideBarSpan :class="{ 'opacity-0': isLinkHidden }">
+                                Meal Schedule
+                            </SideBarSpan>
+                        </SideBarLink>
+                    </Link>
+                </li>
 
-    <main :class="marginReduced"
-        class="relative h-full max-h-screen transition-all duration-200 ease-in-out  rounded-xl"
-    >
-        <!-- Navbar -->
-        <NavBar :class="classChanged">
-            <div class="flex items-center ">
-                <nav>
-                    
-                    <h6 class="mb-0 lex flex pt-1 mr-12 bg-transparent rounded-lg sm:mr-16 font-bold text-persian capitalize text-xl"> <div id="resultDiv">{{ resultText }}</div> </h6>
-                </nav>
-                <SubNavBar @click="minSidebar()" class="group">
-                    <i  :class="{ 'translate-x-[5px]': isClassTranslated2 }"
-                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred  transition-all " 
-                    ></i>
-                    <i
-                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
-                    ></i>
-                    <i  :class="{ 'translate-x-[5px]': isClassTranslated2 }"
-                        class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all "
-                    ></i>
-                </SubNavBar>
+                <li class="mt-0.5 w-full group">
+                    <Link :href="`/calendar`">
+                        <SideBarLink
+                            :class="getRouteClass('calendar')"
+                            class="transition-all duration-200 delay-75"
+                        >
+                            <SideBarIcon
+                                class="group-hover:text-polynesian dark:group-hover:text-lighred"
+                            >
+                                <font-awesome-icon
+                                    icon="calendar"
+                                    class="text-oynx dark:text-snow"
+                                />
+                            </SideBarIcon>
+                            <SideBarSpan
+                                :class="{ 'opacity-0': isLinkHidden }"
+                                class="group-hover:text-polynesian dark:group-hover:text-lighred"
+                            >
+                                Calendar
+                            </SideBarSpan>
+                        </SideBarLink>
+                    </Link>
+                </li>
 
-            </div>
-
-            <div class="hidden md:block w-4/12  ">
-                <div class="flex items-center w-full">
+                <input
+                    id="switch"
+                    type="checkbox"
+                    @click="toggleDarkMode()"
+                    dark-toggle
+                    :checked="isDark"
+                />
+                <div class="app mb-10">
+                    <div class="body">
                         <div
-                            class="relative flex w-full transition-all rounded-lg ease group ">
-                           
-                            <TextInput class="w-full relative pl-8" />
-                           
-                            <font-awesome-icon icon="magnifying-glass" class=" group-focus:text-polynesian dark:group-focus:text-lighred group-hover:text-polynesian dark:group-hover:text-lighred group-active:text-polynesian dark:group-active:text-lighred absolute top-1/4 ml-2 text-persian" />
-
-                            
+                            class="content flex flex-col m-auto text-center w-2/3 translate-y-[5%]"
+                        >
+                            <div
+                                class="circle relative rounded-full w-[3rem] h-[3rem] m-auto"
+                            >
+                                <div
+                                    class="crescent absolute rounded-full right-0 w-[2.2rem] h-[2.2rem]"
+                                ></div>
+                            </div>
+                            <label for="switch">
+                                <div class="toggle"></div>
+                                <div
+                                    class="names items-center justify-between"
+                                    :class="{ 'opacity-0': isLinkHidden }"
+                                >
+                                    <p class="light">Light</p>
+                                    <p class="dark">Dark</p>
+                                </div>
+                            </label>
                         </div>
                     </div>
+                </div>
+            </SideBarCollapse>
+        </SideNav>
+        <!-- sidenav  -->
+        <main
+            :class="marginReduced"
+            class="relative h-full max-h-screen transition-all duration-200 ease-in-out rounded-xl"
+        >
+            <!-- Navbar -->
+            <NavBar :class="classChanged">
+                <div class="flex items-center">
+                    <nav>
+                        <h6
+                            class="mb-0 lex flex pt-1 mr-12 bg-transparent rounded-lg sm:mr-16 font-bold text-persian capitalize text-xl"
+                        >
+                            <div id="resultDiv">{{ resultText }}</div>
+                        </h6>
+                    </nav>
+                    <SubNavBar @click="minSidebar()" class="group">
+                        <i
+                            :class="{ 'translate-x-[5px]': isClassTranslated2 }"
+                            class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                        ></i>
+                        <i
+                            class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                        ></i>
+                        <i
+                            :class="{ 'translate-x-[5px]': isClassTranslated2 }"
+                            class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                        ></i>
+                    </SubNavBar>
+                </div>
 
-            </div>
+                <div class="hidden md:block w-4/12">
+                    <div class="flex items-center w-full">
+                        <div
+                            class="relative flex w-full transition-all rounded-lg ease group"
+                        >
+                            <TextInput class="w-full relative pl-8" />
+
+                            <font-awesome-icon
+                                icon="magnifying-glass"
+                                class="group-focus:text-polynesian dark:group-focus:text-lighred group-hover:text-polynesian dark:group-hover:text-lighred group-active:text-polynesian dark:group-active:text-lighred absolute top-1/4 ml-2 text-persian"
+                            />
+                        </div>
+                    </div>
+                </div>
                 <div class="flex">
-
                     <div class="max- mx-auto px-4 sm:px-6 lg:px-8">
-                           <div class="flex justify-between ">
-                               
-                               <div class="flex sm:items-center sm:ms-6">
-                                   
-                              
-                                   <!-- Settings Dropdown -->
-                                 
-              <SettingsDropdown></SettingsDropdown>
+                        <div class="flex justify-between">
+                            <div class="flex sm:items-center sm:ms-6">
+                                <!-- Settings Dropdown -->
 
-                               </div>
-                           </div>
-                       </div>
+                                <SettingsDropdown></SettingsDropdown>
+                            </div>
+                        </div>
+                    </div>
                     <NavSideBar>
-                        
-                        <div class="w-4.5 overflow-hidden group" @click="openSidebar()" >
-        
+                        <div
+                            class="w-4.5 overflow-hidden group"
+                            @click="openSidebar()"
+                        >
                             <i
-                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred  transition-all"
-                                :class="{ 'translate-x-[5px]': isClassTranslated }"
+                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                :class="{
+                                    'translate-x-[5px]': isClassTranslated,
+                                }"
                             ></i>
                             <i
                                 class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
                             ></i>
                             <i
-                                class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred  transition-all"
-                                :class="{ 'translate-x-[5px]': isClassTranslated }"
+                                class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                :class="{
+                                    'translate-x-[5px]': isClassTranslated,
+                                }"
                             ></i>
                         </div>
                     </NavSideBar>
                 </div>
-           
+
                 <!-- Responsive Navigation Menu -->
-              
-        </NavBar>
-        <!-- end Navbar -->
+            </NavBar>
+            <!-- end Navbar -->
 
-        <!-- cards -->
-        <div class="w-full px-6 py-6 mx-auto">
-            <slot>Default</slot>
- <!-- <FullCalendar></FullCalendar> -->
-            <!-- footer -->
-            <!-- <Footer /> -->
-            <!-- end footer -->
-        </div>
-        <!-- end cards -->
-    </main>
-
-        
+            <!-- cards -->
+            <div class="w-full px-6 py-6 mx-auto">
+                <slot>Default</slot>
+                <!-- <FullCalendar></FullCalendar> -->
+                <!-- footer -->
+                <!-- <Footer /> -->
+                <!-- end footer -->
+            </div>
+            <!-- end cards -->
+        </main>
     </div>
 </template>
 
 <script>
-
 export default {
-
     data() {
         return {
             classChanged: "notfixeddiv",
@@ -224,11 +272,12 @@ export default {
             isNavClassTranslated: false,
             isClassTranslated2: true,
             isDashboard: false,
-            resultText: 'Meal schedule', 
+            resultText: "Meal schedule",
         };
     },
     created() {
-        this.updateTextBasedOnFilePath(window.location.pathname); this.truncatedIng()
+        this.updateTextBasedOnFilePath(window.location.pathname);
+        this.truncatedIng();
     },
     methods: {
         truncatedIng(description) {
@@ -246,7 +295,7 @@ export default {
 
             this.classChanged =
                 this.classChanged === "notfixeddiv"
-                    ?  " shadow-reverse" + ' sticky top-[1%] z-[1000] right-0 '
+                    ? " shadow-reverse" + " sticky top-[1%] z-[1000] right-0 "
                     : "notfixeddiv";
         },
         changeBgBlack() {
@@ -261,56 +310,49 @@ export default {
         },
         minSidebar() {
             this.isLinkHidden = !this.isLinkHidden;
-            this.marginReduced = this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
-            this.sidebarReduced = this.sidebarReduced === "sidebar"
-                    ? "minisidebar"
-                    : "sidebar";
+            this.marginReduced =
+                this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
+            this.sidebarReduced =
+                this.sidebarReduced === "sidebar" ? "minisidebar" : "sidebar";
             this.isClassTranslated2 = !this.isClassTranslated2;
         },
         hoverSidebar() {
-            if (this.sidebarReduced ===  "minisidebar") {
-                
+            if (this.sidebarReduced === "minisidebar") {
                 this.isLinkHidden = !this.isLinkHidden;
-                this.marginReduced = this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
-                this.sidebarReduced = this.sidebarReduced === "sidebar"
+                this.marginReduced =
+                    this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
+                this.sidebarReduced =
+                    this.sidebarReduced === "sidebar"
                         ? "minisidebar"
                         : "sidebar";
                 this.isClassTranslated2 = !this.isClassTranslated2;
-                this.hover = true
+                this.hover = true;
             }
         },
         hoverOutSidebar() {
-            if ( this.hover === true) {
-                
+            if (this.hover === true) {
                 this.isLinkHidden = !this.isLinkHidden;
-                this.marginReduced = this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
-                this.sidebarReduced = this.sidebarReduced === "sidebar"
+                this.marginReduced =
+                    this.marginReduced === "xl:ml-68" ? "xl:ml-30" : "xl:ml-68";
+                this.sidebarReduced =
+                    this.sidebarReduced === "sidebar"
                         ? "minisidebar"
                         : "sidebar";
                 this.isClassTranslated2 = !this.isClassTranslated2;
-                this.hover = false
+                this.hover = false;
             }
         },
         getRouteClass(routeName) {
-                var currentRoute =   window.location.pathname;
-                if(currentRoute === '/'){
-                    
-                    return this.isDashboard = true         
-                }else{
-
-                    return {
-                        activesidelink: currentRoute.includes(routeName),
-                    };
-                }
-
-            
+            var currentRoute = window.location.pathname;
+            if (currentRoute === "/") {
+                return (this.isDashboard = true);
+            } else {
+                return {
+                    activesidelink: currentRoute.includes(routeName),
+                };
+            }
         },
-        
-
-
-        updateTextBasedOnFilePath( filePath ) {
-        
-
+        updateTextBasedOnFilePath(filePath) {
             if (filePath.includes("meal-schedule")) {
                 this.resultText = "Meal schedule";
             } else if (filePath.includes("Calendar")) {
@@ -319,24 +361,115 @@ export default {
                 this.resultText = "Batting";
             } else if (filePath.includes("bowling")) {
                 this.resultText = "Bowling";
-            } 
+            }
         },
-
-        
     },
 };
 </script>
 
 <style scoped>
-
-
-.card {
-    background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: 10px 10px 15px #cac6c6, -10px -10px 15px #ffffff;
+/* Middle */
+.circle {
+    background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
 }
-.card:hover {
-    background: linear-gradient(145deg, #e3dedf, #ffffff);
-    box-shadow: -10px -10px 15px #a19e9f, 10px 10px 15px #ffffff;
+.crescent {
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+    -webkit-transition: -webkit-transform 0.6s
+        cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: -webkit-transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1),
+        -webkit-transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
+label,
+.toggle {
+    height: 2rem;
+    border-radius: 100px;
+}
+
+label {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 100px;
+    position: relative;
+    margin: 1.8rem 0 4rem 0;
+    cursor: pointer;
+}
+
+.toggle {
+    position: absolute;
+    width: 50%;
+    background-color: #fff;
+    -webkit-box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+    -webkit-transition: -webkit-transform 0.3s
+        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: -webkit-transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        -webkit-transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.names {
+    font-size: 80%;
+    font-weight: bolder;
+    color: black;
+    width: 65%;
+    margin-left: 17.5%;
+    margin-top: 3.5%;
+    position: absolute;
+    display: flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dark {
+    opacity: 0.5;
+}
+
+/* -------- Switch Styles ------------*/
+[type="checkbox"] {
+    display: none;
+}
+/* Toggle */
+[type="checkbox"]:checked + .app .toggle {
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    transform: translateX(100%);
+    background-color: #303633;
+}
+
+[type="checkbox"]:checked + .app .dark {
+    opacity: 1;
+    color: white;
+}
+
+[type="checkbox"]:checked + .app .light {
+    opacity: 1;
+    color: white;
+}
+/* App */
+[type="checkbox"]:checked + .app .body {
+    /* background-color: #26242E; */
+    color: white;
+}
+/* Circle */
+[type="checkbox"]:checked + .app .crescent {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    background: #303633;
+}
+
+[type="checkbox"]:checked + .app .circle {
+    background: linear-gradient(40deg, #8983f7, #a3dafb 70%);
+}
 </style>
