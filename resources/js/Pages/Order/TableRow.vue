@@ -63,7 +63,7 @@ defineProps(["meal"]);
             </div>
             <div v-else-if="meal.status == 'confirmed'">
                 <div
-                    @click="openModal(meal.id)"
+                    @click="openModal(meal.meal.id)"
                     class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
                 >
                     <p
@@ -563,7 +563,7 @@ export default {
                 this.error =
                     "Please fill in all  fields to create your schedule.";
             }else {
-                console.log(this.newRating);
+                // console.log(this.newRating);
 
                 axios
                     .post("/rating", this.newRating)
@@ -590,6 +590,27 @@ export default {
        
   
         openModal(meal) {
+            axios
+                    .get("/rating/" + meal)
+                    .then((resp) => {
+                        console.log(resp);
+                        this.message = resp.data.message;
+                        
+ 
+                        setTimeout(() => {
+                            this.closeModal();
+                            // Uncomment the line below if you want to toggle addingMode after the delay
+                            // this.addingMode = !this.addingMode;
+                        }, 5000);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        this.error = "Unable to add Meal !";
+                        setTimeout(() => {
+                            this.error = "";
+                        }, 10000);
+                    });
+
             
             this.newEventModalVisible = true;
 

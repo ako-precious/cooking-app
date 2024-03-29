@@ -26,4 +26,8 @@ class RatingController extends Controller
             'message' => $rating->wasRecentlyCreated ? 'Successfully added a new rating!' : 'Rating updated successfully!',
         ]);
     }
+    public function show($meal_id){
+        $rating = Rating::firstWhere('meal', $meal_id);
+        return response()->json(['rating' => $rating]);
+    }
 }
