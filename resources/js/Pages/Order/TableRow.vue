@@ -576,8 +576,8 @@ export default {
                 this.error =
                     "Please fill in all  fields to create your schedule.";
             } else {
-                // console.log(this.newRating);
-                this.newRating.total = (this.newRating.presentation + this.newRating.taste + this.newRating.value + this.newRating.nutrition + this.newRating.portion_size + this.newRating.freshness) / 6;
+                this.newRating.total = ((parseFloat(this.newRating.presentation) + parseFloat(this.newRating.taste) + parseFloat(this.newRating.value) + parseFloat(this.newRating.nutrition) + parseFloat(this.newRating.portion_size) + parseFloat(this.newRating.freshness)) / 6);
+                console.log(this.newRating.total);
                 axios
                     .post("/rating", this.newRating)
                     .then((resp) => {
