@@ -141,7 +141,7 @@ import Loader from "@/Components/Loader.vue";
                                     />
                                     <img
                                         class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2 block dark:hidden"
-                                        src="/images/ingredients.png"
+                                        src="https://img.icons8.com/ios/50/ingredients.png"
                                         alt="ingredients"
                                     />
 

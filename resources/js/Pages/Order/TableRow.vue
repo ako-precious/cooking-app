@@ -603,7 +603,7 @@ export default {
             axios
                 .get("/rating/" + meal)
                 .then((resp) => {
-                    if (resp) {
+                    if (resp.data) {
                         this.newRating = resp.data.rating;
                     } else {
                         this.newRating = {

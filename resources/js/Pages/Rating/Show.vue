@@ -5,7 +5,7 @@ import axios from "axios";
 
 <template>
     <div>
-        <div
+        <div v-if="rating" 
             class="flex flex-wrap md:grid grid-rows-3 grid-flow-col gap-5 auto-cols-fr md:px-6 lg:p-8"
         >
             <div
@@ -38,7 +38,7 @@ import axios from "axios";
                     <div
                         class="w-full h-full shadow-xl shadow-neutral-900 p-5 bg-snow dark:bg-oynx opacity-60 rounded-xl flex-col gap-2 flex justify-center"
                     >
-                        <div class="flex flex-col">
+                        <div class="flex justify-center flex-col">
                             <div>
                                 <h1
                                     class="font-bold text-lg lg:text-xl text-oynx dark:text-snow"
@@ -55,7 +55,7 @@ import axios from "axios";
                                     <p
                                         class="ms-2 text-lg font-extrabold text-gray-900 dark:text-white"
                                     >
-                                        4.95
+                                        {{ total }}
                                     </p>
                                 </div>
                                 <span
@@ -166,7 +166,7 @@ import axios from "axios";
                             <p
                                 class="font-bold text-sm lg:text-base text-oynx dark:text-snow"
                             >
-                                4.0
+                                {{ presentation }}
                             </p>
                         </div>
                     </div>
@@ -190,7 +190,7 @@ import axios from "axios";
                             <p
                                 class="font-bold text-sm lg:text-base text-oynx dark:text-snow"
                             >
-                                4.0
+                                {{ freshness }}
                             </p>
                         </div>
                     </div>
@@ -214,7 +214,7 @@ import axios from "axios";
                             <p
                                 class="font-bold text-sm lg:text-base text-oynx dark:text-snow"
                             >
-                                4.0
+                                {{ taste }}
                             </p>
                         </div>
                     </div>
@@ -239,7 +239,7 @@ import axios from "axios";
                             <p
                                 class="font-bold text-sm lg:text-base text-oynx dark:text-snow"
                             >
-                                4.0
+                                {{ nutrition }}
                             </p>
                         </div>
                     </div>
@@ -263,7 +263,7 @@ import axios from "axios";
                             <p
                                 class="font-bold text-sm lg:text-base text-oynx dark:text-snow"
                             >
-                                4.0
+                            {{ portion_size }}
                             </p>
                         </div>
                     </div>
@@ -287,14 +287,14 @@ import axios from "axios";
                             <p
                                 class="font-bold text-sm lg:text-base text-oynx dark:text-snow"
                             >
-                                4.0
+                                {{ value }}
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex flex-col py-6 overflow-scroll disable-scrollbars">
+        <div v-else class="flex flex-col py-6 overflow-scroll disable-scrollbars">
             <h1
                 class="font-semibold text-3xl text-center lg:text-4xl text-oynx dark:text-snow"
             >
@@ -312,13 +312,14 @@ export default {
     },
     data() {
         return {
-            taste,
-            value,
-            nutrition,
-            freshness,
-            presentation,
-            portion_size,
-            total,
+            rating:'',
+            taste: "",
+            value: "",
+            nutrition: "",
+            freshness: "",
+            presentation: "",
+            portion_size: "",
+            total: "",
         };
     },
     created() {
@@ -329,9 +330,22 @@ export default {
             const mealId = this.meal.id;
             //    console.log( mealId);
             axios
-                .get("/rating/" + mealId)
+                .get("/ratings/" + mealId)
                 .then((response) => {
-                    console.log(response);
+                    if (response.data) {
+                        console.log(response);
+                        this.rating = 'yer';
+                        this.taste = response.data.taste;
+                        this.value = response.data.value;
+                        this.nutrition = response.data.nutrition;
+                        this.freshness = response.data.freshness;
+                        this.presentation = response.data.presentation;
+                        this.portion_size = response.data.portion_size;
+                        this.total = response.data.total;
+                        
+                    }else {
+                        this.rating = '';
+                    }
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);

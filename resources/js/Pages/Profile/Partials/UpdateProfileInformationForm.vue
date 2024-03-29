@@ -162,7 +162,7 @@ const removeItem = (index) => {
                     id="name"
                     v-model="form.name"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="mt-1 block w-full capitalize"
                     required
                     autocomplete="name"
                 />
