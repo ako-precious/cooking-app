@@ -122,7 +122,7 @@ defineProps(["meal"]);
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
                                 <option
-                                    selected 
+                                    selected
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
                                 >
                                     Choose a rating
@@ -417,12 +417,12 @@ defineProps(["meal"]);
                                 value="Total Rating"
                             />
                             <TextInput
-                            readonly
-        :value="String(totalRating)" 
-        class="w-full"
-        type="number"
-        placeholder=""
-      />
+                                readonly
+                                :value="String(totalRating)"
+                                class="w-full"
+                                type="number"
+                                placeholder=""
+                            />
                         </div>
                     </div>
                     <div class="py-4 relative flex flex-col">
@@ -469,38 +469,52 @@ export default {
                 presentation: 0,
                 taste: 0,
                 value: 0,
-                nutrition:0,
-                portion_size:0,
-                freshness:0,
-                                comment: "",
+                nutrition: 0,
+                portion_size: 0,
+                freshness: 0,
+                total: 0,
+                comment: "",
             },
         };
     },
     created() {
         this.FormattedDate();
         this.truncatedIng();
-    }, 
-  computed:{ totalRating() {
-      // Convert the individual ratings to numbers
-      const presentation = parseFloat(this.newRating.presentation);
-      const taste = parseFloat(this.newRating.taste);
-      const value = parseFloat(this.newRating.value);
-      const nutrition = parseFloat(this.newRating.nutrition);
-      const portion_size = parseFloat(this.newRating.portion_size);
-      const freshness = parseFloat(this.newRating.freshness);
+    },
+    computed: {
+        totalRating() {
+            // Convert the individual ratings to numbers
+            const presentation = parseFloat(this.newRating.presentation);
+            const taste = parseFloat(this.newRating.taste);
+            const value = parseFloat(this.newRating.value);
+            const nutrition = parseFloat(this.newRating.nutrition);
+            const portion_size = parseFloat(this.newRating.portion_size);
+            const freshness = parseFloat(this.newRating.freshness);
 
-      // Check if any rating is not a number
-      if (
-        isNaN(presentation) || isNaN(taste) ||   isNaN(value) ||     isNaN(nutrition) ||       isNaN(portion_size)||       isNaN(freshness)
-      ) {
-        return null; // Return null if any rating is invalid
-      }
-      // Calculate the total rating
-      const total = (presentation + taste + value + nutrition + portion_size + freshness) / 6;
-      // Return the total rating rounded to two decimal places
-      return Math.round(total * 100) / 100;
-
-    },},
+            // Check if any rating is not a number
+            if (
+                isNaN(presentation) ||
+                isNaN(taste) ||
+                isNaN(value) ||
+                isNaN(nutrition) ||
+                isNaN(portion_size) ||
+                isNaN(freshness)
+            ) {
+                return null; // Return null if any rating is invalid
+            }
+            // Calculate the total rating
+            const total =
+                (presentation +
+                    taste +
+                    value +
+                    nutrition +
+                    portion_size +
+                    freshness) /
+                6;
+            // Return the total rating rounded to two decimal places
+            return Math.round(total * 100) / 100;
+        },
+    },
     methods: {
         FormattedDate(timestamp) {
             const date = new Date(timestamp);
@@ -550,7 +564,6 @@ export default {
         },
 
         addSchedule() {
-           
             if (
                 this.newRating.presentation == "Choose a rating" ||
                 this.newRating.taste == "Choose a rating" ||
@@ -558,19 +571,18 @@ export default {
                 this.newRating.nutrition == "Choose a rating" ||
                 this.newRating.portion_size == "Choose a rating" ||
                 this.newRating.freshness == "Choose a rating" ||
-                this.newRating.comment == "" 
+                this.newRating.comment == ""
             ) {
                 this.error =
                     "Please fill in all  fields to create your schedule.";
-            }else {
+            } else {
                 // console.log(this.newRating);
-
+                this.newRating.total = (this.newRating.presentation + this.newRating.taste + this.newRating.value + this.newRating.nutrition + this.newRating.portion_size + this.newRating.freshness) / 6;
                 axios
                     .post("/rating", this.newRating)
                     .then((resp) => {
                         this.message = resp.data.message;
-                        
- 
+
                         setTimeout(() => {
                             this.closeModal();
                             // Uncomment the line below if you want to toggle addingMode after the delay
@@ -586,40 +598,36 @@ export default {
                     });
             }
         },
-       
-  
+
         openModal(meal) {
             axios
-                    .get("/rating/" + meal)
-                    .then((resp) => {
-                        if(resp){
-                            this.newRating = resp.data.rating;
-                        }else{
-                            this.newRating = {
-                meal_id: this.meal.meal.id,
-                user_id: this.$page.props.auth.user.id,
-                presentation: 0,
-                taste: 0,
-                value: 0,
-                nutrition:0,
-                portion_size:0,
-                freshness:0,
-                comment: "",
-            };
-                        }
-                    })
-                    .catch((err) => {
-                        // console.log(err);
-                        this.error = "Unable to add Meal !";
-                        // setTimeout(() => {
-                        //     this.error = "";
-                        // }, 10000);
-                    });
+                .get("/rating/" + meal)
+                .then((resp) => {
+                    if (resp) {
+                        this.newRating = resp.data.rating;
+                    } else {
+                        this.newRating = {
+                            meal_id: this.meal.meal.id,
+                            user_id: this.$page.props.auth.user.id,
+                            presentation: 0,
+                            taste: 0,
+                            value: 0,
+                            nutrition: 0,
+                            portion_size: 0,
+                            freshness: 0,
+                            comment: "",
+                        };
+                    }
+                })
+                .catch((err) => {
+                    // console.log(err);
+                    this.error = "Unable to add Meal !";
+                    // setTimeout(() => {
+                    //     this.error = "";
+                    // }, 10000);
+                });
 
-            
             this.newEventModalVisible = true;
-
-                      
         },
         closeModal() {
             // clear everything in the div and close it
@@ -631,8 +639,8 @@ export default {
                 taste: 0,
                 value: 0,
                 nutrition: 0,
-                portion_size:0,
-                freshness:0,
+                portion_size: 0,
+                freshness: 0,
                 comment: "",
             };
             this.message = "";
