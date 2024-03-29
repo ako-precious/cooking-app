@@ -2,11 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
+    public function index(Request $request)
+    {
+        $mealId = $request->input('meal_id');
+        $rating = Rating::where('meal_id', $mealId)->get();
+    //    dd($accounts);
+    return response()->json([
+        'data' => $rating,
+        'message' => $rating->wasRecentlyCreated ? 'Successfully added a new rating!' : 'Rating updated successfully!',
+    ]);
+    }
+
     public function store(Request $request)
     {
         // Find the rating for the user and meal, or create a new instance
@@ -27,7 +39,11 @@ class RatingController extends Controller
         ]);
     }
     public function show($meal_id){
-        $rating = Rating::firstWhere('meal', $meal_id);
+        $user_id =   Auth::id();
+        $rating = Rating::firstWhere([
+            'meal_id' => $meal_id,
+            'user_id' => $user_id
+        ]);
         return response()->json(['rating' => $rating]);
     }
 }

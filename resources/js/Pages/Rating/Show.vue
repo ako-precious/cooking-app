@@ -2,275 +2,15 @@
 import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 
-import DropBarNav from "@/Pages/Header/DropBarNav.vue";
-import DateRangePicker from "@/Pages/Header/DateRangePicker.vue";
-import Navbar from "@/Pages/Header/Navbar.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
 
-import Loader from "@/Components/Loader.vue";
 </script>
 
 <template>
     <Head :title="`${meal.name}`" />
-    <!-- <header
-        class="bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
-    >
-        <Navbar class="bg-snow dark:bg-oynx">
-            <template #search>
-                <div
-                    class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md flex items-center"
-                >
-                    <DateRangePicker
-                        @filter-meals="filterMeals"
-                        class="transition-all duration-300 delay-75 ease-in"
-                    ></DateRangePicker>
-                </div>
-            </template>
-            <template #dropdown>
-                <DropBarNav />
-            </template>
-        </Navbar>
-    </header> -->
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
-    >
-        <div class="container relative mx-auto overflow-hidden">
-            <div
-                class="m-auto flex flex-col justify-center h-full px-6 lg:px-8 lg:pb-20 w-full"
-            >
-                <div class="py-5">
-                    <h1
-                        class="font-semibold text-3xl lg:text-4xl text-oynx dark:text-snow"
-                    >
-                        {{ meal.name }}
-                    </h1>
-                </div>
-                <div
-                    class="flex flex-col lg:flex-row h-[20rem] overflow-scroll disable-scrollbars"
-                >
-                    <div class="lg:w-1/2">
-                        <div class="overflow-hidden px-4 pb-4 lg:p-0">
-                            <div v-if="isLoading" class="">
-                                <Loader class="object-cover h-fit"></Loader>
-                            </div>
-                            <img
-                                v-if="!isLoading"
-                                class="h-auto max-w-full rounded-lg"
-                                :src="src"
-                                alt=""
-                            />
-                        </div>
-                    </div>
-                    <div
-                        class="lg:w-1/2 px-4 grid grid-cols-2 md:grid-cols-3 gap-4"
-                    >
-                        <div v-for="(preview, index) in other_src">
-                            <div
-                                class="overflow-scroll disable-scrollbars rounded-lg"
-                            >
-                                <div v-if="isLoading" class="">
-                                    <Loader class="object-cover h-fit"></Loader>
-                                </div>
-                                <img
-                                    v-if="!isLoading"
-                                    class="h-auto max-w-full rounded-lg"
-                                    :src="preview.src"
-                                    :alt="preview.src"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+   
+    
+           <div>
 
-                <div class="lg:w-full py-8 relative">
-                    <div class="flex flex-col lg:flex-row w-full relative">
-                        <div class="lg:w-1/2">
-                            <div class="flex items-center py-5">
-                                <font-awesome-icon
-                                    icon="user"
-                                    class="mr-3 p-2 bg-oynx text-snow rounded-full"
-                                />
-                                <h1
-                                    class="font-semibold text-xl text-oynx dark:text-snow"
-                                >
-                                    Cooked by {{ meal.user.name }}
-                                </h1>
-                            </div>
-                            <hr
-                                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-                            />
-                            <div class="flex flex-col py-8">
-                                <h1 class="text-lg text-oynx dark:text-snow">
-                                    <font-awesome-icon
-                                        icon="globe"
-                                        class="mr-3"
-                                    />
-                                    This meal is popular in certain regions of
-                                    {{ meal.region }}
-                                </h1>
-                            </div>
-
-                            <hr
-                                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-                            />
-                            <div class="flex flex-col py-8">
-                                <h1
-                                    class="font-semibold text-2xl lg:text-3xl pb-4 text-oynx dark:text-snow"
-                                >
-                                    <font-awesome-icon
-                                        icon="newspaper"
-                                        class="mr-2"
-                                    />
-                                    About the meal
-                                </h1>
-                                <h1 class="text-lg text-oynx dark:text-snow">
-                                    {{ meal.description }}
-                                </h1>
-                            </div>
-                            <hr
-                                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-                            />
-
-                            <div class="py-5">
-                                <div class="flex items-center">
-                                    <img
-                                        class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2 hidden dark:block"
-                                        src="/images/icons8-ingredients-50.png"
-                                        alt="ingredients"
-                                    />
-                                    <img
-                                        class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2 block dark:hidden"
-                                        src="/images/ingredients.png"
-                                        alt="ingredients"
-                                    />
-
-                                    <h1
-                                        class="py-3 font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
-                                    >
-                                        Ingredients
-                                    </h1>
-                                </div>
-
-                                <ul
-                                    class="max-w-md space-y-1 text-oynx list-disc list-inside dark:text-snow"
-                                    v-for="ingredient in meal.ingredients"
-                                    :key="meal.id"
-                                >
-                                    <li class="py-1">{{ ingredient }}</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="lg:w-1/2 relative">
-                            <div class="sticky lg:p-12 top-0 z-10">
-                                <div class="shadow-reverse rounded-lg">
-                                    <form
-                                        @submit.prevent
-                                        class="p-4 md:py-8 text-center"
-                                    >
-                                        <h2
-                                            class="text-oynx dark:text-snow font-bold text-xl"
-                                        >
-                                            New Meal Schedule
-                                        </h2>
-                                        <div class="py-4 relative">
-                                            <TextInput
-                                                readonly
-                                                required
-                                                class="my-2 w-full"
-                                                v-model="newSchedule.meal_name"
-                                                placeholder="Meal Name"
-                                            />
-                                            <TextInput
-                                                readonly
-                                                hidden
-                                                required
-                                                class="my-2 w-full"
-                                                type="number"
-                                                v-model="newSchedule.meal_id"
-                                                placeholder=""
-                                            />
-                                            <TextInput
-                                                readonly
-                                                hidden
-                                                required
-                                                class="my-2 w-full"
-                                                type="number"
-                                                v-model="newSchedule.user_id"
-                                                placeholder=""
-                                            />
-                                        </div>
-
-                                        <div class="py-4 flex justify-between">
-                                            <TextInput
-                                                required
-                                                class="w-full"
-                                                v-model="newSchedule.start_date"
-                                                type="date"
-                                                placeholder=""
-                                            />
-                                            <TextInput
-                                                hidden
-                                                required
-                                                class="w-[47%]"
-                                                v-model="newSchedule.end_date"
-                                                type="date"
-                                                placeholder=""
-                                            />
-                                        </div>
-                                        <div class="py-4 flex justify-between">
-                                            <select
-                                                required
-                                                v-model="newSchedule.meal_time"
-                                                title="Meal Time"
-                                                placeholder="Choose a meal time"
-                                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
-                                            >
-                                                <option
-                                                    selected
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                >
-                                                    {{ newSchedule.meal_time }}
-                                                </option>
-                                                <option
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                    value="breakfast"
-                                                >
-                                                    Breakfast
-                                                </option>
-                                                <option
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                    value="launch"
-                                                >
-                                                    Launch
-                                                </option>
-                                                <option
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                    value="dinner"
-                                                >
-                                                    Dinner
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            class="flex justify-center item-center"
-                                        >
-                                            <PrimaryButton
-                                                @click="addSchedule"
-                                                class="w-full"
-                                                >Order</PrimaryButton
-                                            >
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr
-                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-            />
             <div
                 class="flex flex-wrap md:grid grid-rows-3 grid-flow-col gap-5 auto-cols-fr md:px-6 lg:p-8"
             > <div
@@ -303,15 +43,15 @@ import Loader from "@/Components/Loader.vue";
                         <div
                             class="w-full h-full shadow-xl shadow-neutral-900 p-5 bg-snow dark:bg-oynx opacity-60 rounded-xl flex-col gap-2 flex justify-center"
                         >
-                            <div class="flex flex-col justify-center ">
+                            <div class="flex flex-col ">
                                 <div>
                                     <h1
-                                        class="font-bold text-lg text-center lg:text-xl text-oynx dark:text-snow"
+                                        class="font-bold text-lg lg:text-xl text-oynx dark:text-snow"
                                     >
                                         Overall Rating
                                     </h1>
                                 </div>
-                                <div class="flex flex-wrap justify-center items-center my-3">
+                                <div class="flex flex-wrap items-center my-3">
                                     <div class="flex items-center my-3">
                                         
                                         <font-awesome-icon
@@ -333,7 +73,7 @@ import Loader from "@/Components/Loader.vue";
                                         >73 reviews</a
                                     >
                                 </div>
-                                <div class="">
+                                <div>
                                     <div class="flex items-center">
                                         <a
                                             href="#"
@@ -570,11 +310,8 @@ import Loader from "@/Components/Loader.vue";
                 </h1>
             </div>
 
-            <hr
-                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-            />
-        </div>
-    </div>
+</div>
+            
 </template>
 
 <script>
@@ -585,21 +322,7 @@ export default {
     },
     data() {
         return {
-            src: "",
-            isLoading: true,
-            other_src: "",
-            imagePreviews: [],
-            userId: "",
-            message: "",
-            error: "",
-            newSchedule: {
-                meal_name: "",
-                meal_time: "",
-                user_id: "",
-                start_date: "",
-                end_date: "",
-            },
-            formattedEvents: [],
+          
             rating: [],
             newEventModalVisible: false,
             isHeaderFixed: false,

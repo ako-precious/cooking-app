@@ -568,7 +568,6 @@ export default {
                 axios
                     .post("/rating", this.newRating)
                     .then((resp) => {
-                        console.log(resp);
                         this.message = resp.data.message;
                         
  
@@ -593,28 +592,10 @@ export default {
             axios
                     .get("/rating/" + meal)
                     .then((resp) => {
-                        console.log(resp);
-                        this.message = resp.data.message;
-                        
- 
-                        setTimeout(() => {
-                            this.closeModal();
-                            // Uncomment the line below if you want to toggle addingMode after the delay
-                            // this.addingMode = !this.addingMode;
-                        }, 5000);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        this.error = "Unable to add Meal !";
-                        setTimeout(() => {
-                            this.error = "";
-                        }, 10000);
-                    });
-
-            
-            this.newEventModalVisible = true;
-
-            this.newRating = {
+                        if(resp){
+                            this.newRating = resp.data.rating;
+                        }else{
+                            this.newRating = {
                 meal_id: this.meal.meal.id,
                 user_id: this.$page.props.auth.user.id,
                 presentation: 0,
@@ -625,8 +606,20 @@ export default {
                 freshness:0,
                 comment: "",
             };
+                        }
+                    })
+                    .catch((err) => {
+                        // console.log(err);
+                        this.error = "Unable to add Meal !";
+                        // setTimeout(() => {
+                        //     this.error = "";
+                        // }, 10000);
+                    });
 
-           
+            
+            this.newEventModalVisible = true;
+
+                      
         },
         closeModal() {
             // clear everything in the div and close it
