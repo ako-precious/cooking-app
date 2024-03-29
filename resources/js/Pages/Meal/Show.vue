@@ -141,10 +141,16 @@ import Loader from "@/Components/Loader.vue";
                             <div class="py-5">
                                 <div class="flex items-center">
                                     <img
-                                        class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2"
-                                        src="https://img.icons8.com/ios/50/ingredients.png"
+                                        class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2 hidden dark:block"
+                                        src="/images/icons8-ingredients-50.png"
                                         alt="ingredients"
                                     />
+                                    <img
+                                        class="w-[1.5rem] h-[1.5rem] lg:w-[2rem] lg:h-[2rem] mr-2 block dark:hidden"
+                                        src="/images/ingredients.png"
+                                        alt="ingredients"
+                                    />
+                                  
                                     <h1
                                         class="py-3 font-semibold text-2xl lg:text-3xl text-oynx dark:text-snow"
                                     >
@@ -278,6 +284,8 @@ import Loader from "@/Components/Loader.vue";
             <div 
                     class="flex flex-col  py-6 overflow-scroll disable-scrollbars"
                 >
+      
+
                 <h1
                         class="font-semibold text-3xl text-center lg:text-4xl text-oynx dark:text-snow"
                     >No Reviews
@@ -286,11 +294,38 @@ import Loader from "@/Components/Loader.vue";
                 
                 </div>
 
+                <div class="cardContainer">
+  <div class="card">
+    <p class="city">PINK CITY</p>
+    <p class="weather">PARTILY CLOUDY</p>
+  
+    <p class="temp">5.0</p>
+    <div class="minmaxContainer">
+      <div class="min">
+        <p class="minHeading">Min</p>
+        <p class="minTemp">30°</p>
+      </div>
+      <div class="max">
+        <p class="maxHeading">Max</p>
+        <p class="maxTemp">32°</p>
+      </div><div class="min">
+        <p class="minHeading">Min</p>
+        <p class="minTemp">30°</p>
+      </div>
+      <div class="max">
+        <p class="maxHeading">Max</p>
+        <p class="maxTemp">32°</p>
+      </div>
+    </div>
+  </div>
+</div>
+
             <hr
                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
             />
         </div>
     </div>
+
 </template>
 
 <script>
@@ -469,54 +504,105 @@ export default {
 };
 </script>
 <style scoped>
-button {
-    --color: #1b998b;
-    font-family: inherit;
-    display: inline-block;
-    width: 8em;
-    height: 2.6em;
-    line-height: 2.5em;
-    margin: 10px;
-    position: relative;
-    overflow: hidden;
-    border: 2px solid var(--color);
-    transition: color 0.5s;
-    z-index: 1;
-    font-size: 17px;
-    border-radius: 6px;
-    font-weight: 600;
-    color: var(--color);
+.cardContainer {
+  width: fit-content;
+  position: relative;
+  display: flex;
+overflow: hidden;
+  align-items: center;
+  justify-content: center;
 }
 
-button:before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    background: var(--color);
-    height: 150px;
-    width: 200px;
-    border-radius: 50%;
+.card {
+  position: relative;
+  width: 220px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 10px;
+  border-radius: 50px;
+  backdrop-filter: blur(30px);
+  background-color: rgba(65, 65, 65, 0.308);
+  border: 1px solid rgba(255, 255, 255, 0.089);
+  cursor: pointer;
 }
 
-button:hover {
-    color: #fff;
+.city {
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: 1.2px;
+  color: white;
 }
 
-button:before {
-    top: 100%;
-    left: 100%;
-    transition: all 0.7s;
+.weather {
+  font-weight: 500;
+  font-size: 0.7em;
+  letter-spacing: 1.2px;
+  color: rgb(197, 197, 197);
 }
 
-button:hover:before {
-    top: -30px;
-    left: -30px;
+.temp {
+  font-size: 1.8em;
+  color: white;
 }
 
-button:active:before {
-    background: #0e534b;
-    transition: background 0s;
+.minmaxContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.min,
+.max {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0px 20px;
+  gap: 4px;
+}
+
+.max {
+  align-items: flex-start;
+  border-left: 2px solid white;
+}
+
+.maxHeading,
+.minHeading {
+  font-size: 0.7em;
+  font-weight: 600;
+  color: white;
+}
+
+.maxTemp,
+.minTemp {
+  font-size: 0.6em;
+  font-weight: 500;
+  color: rgb(197, 197, 197);
+}
+
+.cardContainer::before {
+  width: 200px;
+  height: 200px;
+  content: "";
+  position: absolute;
+  background-color: rgb(5, 23, 123);
+  z-index: -1;
+  border-radius: 50%;
+  left: 50px;
+  top: 10px;
+  transition: all 1s;
+}
+
+.cardContainer:hover::before {
+  transform: translate(-50px, 50px);
+}
+
+
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
