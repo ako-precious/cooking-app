@@ -453,7 +453,7 @@ import Loader from "@/Components/Loader.vue";
                             <div class="flex flex-col ">
                                 <div>
                                     <h1
-                                        class="font-semibold text-lg lg:text-xl text-oynx dark:text-snow"
+                                        class="font-bold text-lg lg:text-xl text-oynx dark:text-snow"
                                     >
                                         Overall Rating
                                     </h1>

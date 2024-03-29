@@ -313,11 +313,61 @@ defineProps(["meal"]);
                         <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
-                                for="portion"
-                                value="Portion"
+                                for="Quantity"
+                                value="Quantity"
                             />
                             <select
                                 v-model="newRating.portion_size"
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                >
+                                    Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="1"
+                                >
+                                    1
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="2"
+                                >
+                                    2
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="3"
+                                >
+                                    3
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="4"
+                                >
+                                    4
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="5"
+                                >
+                                    5
+                                </option>
+                            </select>
+                        </div>
+                        <div class="py-4 w-[30%] relative flex flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
+                                for="Freshness"
+                                value="Freshness"
+                            />
+                            <select
+                                v-model="newRating.freshness"
                                 title="Meal Time"
                                 placeholder="Choose a meal time"
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
@@ -421,6 +471,7 @@ export default {
                 value: 0,
                 nutrition:0,
                 portion_size:0,
+                freshness:0,
                                 comment: "",
             },
         };
@@ -436,15 +487,16 @@ export default {
       const value = parseFloat(this.newRating.value);
       const nutrition = parseFloat(this.newRating.nutrition);
       const portion_size = parseFloat(this.newRating.portion_size);
+      const freshness = parseFloat(this.newRating.freshness);
 
       // Check if any rating is not a number
       if (
-        isNaN(presentation) || isNaN(taste) ||   isNaN(value) ||     isNaN(nutrition) ||       isNaN(portion_size)
+        isNaN(presentation) || isNaN(taste) ||   isNaN(value) ||     isNaN(nutrition) ||       isNaN(portion_size)||       isNaN(freshness)
       ) {
         return null; // Return null if any rating is invalid
       }
       // Calculate the total rating
-      const total = (presentation + taste + value + nutrition + portion_size) / 5;
+      const total = (presentation + taste + value + nutrition + portion_size + freshness) / 6;
       // Return the total rating rounded to two decimal places
       return Math.round(total * 100) / 100;
 
@@ -505,6 +557,7 @@ export default {
                 this.newRating.value == "Choose a rating" ||
                 this.newRating.nutrition == "Choose a rating" ||
                 this.newRating.portion_size == "Choose a rating" ||
+                this.newRating.freshness == "Choose a rating" ||
                 this.newRating.comment == "" 
             ) {
                 this.error =
@@ -515,6 +568,7 @@ export default {
                 axios
                     .post("/rating", this.newRating)
                     .then((resp) => {
+                        console.log(resp);
                         this.message = resp.data.message;
                         
  
@@ -547,6 +601,7 @@ export default {
                 value: 0,
                 nutrition:0,
                 portion_size:0,
+                freshness:0,
                 comment: "",
             };
 
@@ -563,6 +618,7 @@ export default {
                 value: 0,
                 nutrition: 0,
                 portion_size:0,
+                freshness:0,
                 comment: "",
             };
             this.message = "";
