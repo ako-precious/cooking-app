@@ -112,8 +112,8 @@ defineProps(["meal"]);
                         <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
-                                for="presentation"
-                                value="Presentation"
+                                for="package"
+                                value="Package"
                             />
                             <select
                                 title="Meal Time"
@@ -122,7 +122,7 @@ defineProps(["meal"]);
                                 class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm ] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
                             >
                                 <option
-                                    selected
+                                    selected 
                                     class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
                                 >
                                     Choose a rating

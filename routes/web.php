@@ -9,6 +9,7 @@ use App\Http\Controllers\MealPhotosController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\RatingController;
 use App\Models\Cook;
+use App\Models\Rating;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -74,6 +75,7 @@ Route::middleware([
     
     
     Route::resource('/rating', RatingController::class);
+    Route::get('ratings/{id}', [RatingController::class, 'rating' ]);    
     //photo Controller
     
     //Meal Schedule

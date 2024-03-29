@@ -8,16 +8,18 @@ use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
-    public function index(Request $request)
-    {
-        $mealId = $request->input('meal_id');
-        $rating = Rating::where('meal_id', $mealId)->get();
-    //    dd($accounts);
+   
+public function rating($mealId)
+{ 
+    // Retrieve ratings for the given mealId
+    $ratings = Rating::where('meal_id', $mealId)->get();
+
+    // Return ratings as JSON response
     return response()->json([
-        'data' => $rating,
-        'message' => $rating->wasRecentlyCreated ? 'Successfully added a new rating!' : 'Rating updated successfully!',
+        'data' => $ratings,
+        // Add any additional data or messages as needed
     ]);
-    }
+}
 
     public function store(Request $request)
     {

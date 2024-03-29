@@ -6,9 +6,6 @@ import axios from "axios";
 </script>
 
 <template>
-    <Head :title="`${meal.name}`" />
-   
-    
            <div>
 
             <div
@@ -324,41 +321,18 @@ export default {
         return {
           
             rating: [],
-            newEventModalVisible: false,
-            isHeaderFixed: false,
         };
     },
-    mounted() {
-        this.openModal();
-    },
     created() {
-        this.getPhoto();
-        this.getPhotos();
         this.getRatings();
     },
     methods: {
-        filterMeals(searchText) {
-            axios
-                .get(`/api/filtered-meals?query=${searchText}`)
-                .then((response) => {
-                    if (response.data.length != 0) {
-                        // Use Inertia to visit the directed page with the meals data as a prop
-                        const meals = response.data;
-                        console.log(meals);
-                        this.$inertia.visit(
-                            route("welcome"), // Navigate to the welcome route
-                            { f_meals: meals } // Pass meals data as a prop
-                        );
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching filtered data:", error);
-                });
-        },
-
+       
         getRatings() {
+            const mealId =  this.meal.id
+        //    console.log( mealId); 
             axios
-                .get("/rating" , this.meal.id)
+                .get("/rating/" + mealId)
                 .then((response) => {
                   console.log(response)
                 })
@@ -370,164 +344,6 @@ export default {
                     this.isLoading = false;
                 });
         },
-        getPhoto() {
-            axios
-                .get("/meal_photos/" + this.meal.id)
-                .then((response) => {
-                    this.src =
-                        `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
-                            "/public",
-                            ""
-                        );
-                })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
-                })
-                .finally(() => {
-                    // Set loading state to false when fetching completes
-                    this.isLoading = false;
-                });
-        },
-        getPhotos() {
-            axios
-                .get("/meal_photos/" + this.meal.id)
-                .then((response) => {
-                    // this.other_src = `/storage/${response.data.otherPhotos.meal_photo_path}`.replace("/public", "");
-                    this.other_src = response.data.otherPhotos.map((image) => ({
-                        src: `/storage/${image.meal_photo_path}`.replace(
-                            "/public",
-                            ""
-                        ), // Assuming your image object has a 'url' property
-                        id: image.id, // Assuming your image object has an 'id' property
-                    }));
-                })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
-                })
-                .finally(() => {
-                    // Set loading state to false when fetching completes
-                    this.isLoading = false;
-                });
-        },
-        openModal() {
-            // Get the current date
-            const currentDate = new Date();
-
-            // Add one day to the current date
-            const nextDayDate = new Date(currentDate);
-            nextDayDate.setDate(currentDate.getDate() + 1);
-
-            // Format the next day date as an ISO string without the time part
-            const nextDayISOString = nextDayDate
-                .toISOString()
-                .replace(/T.*$/, "");
-            // clear everything in the div and close it
-            this.newEventModalVisible = true;
-            if (this.$page.props.auth.user) {
-                // this.suggestedMeal = [];
-                this.newSchedule = {
-                    meal_name: this.meal.name,
-                    meal_id: this.meal.id.toString(),
-                    user_id: this.$page.props.auth.user.id.toString(),
-                    start_date: nextDayISOString,
-                    end_date: nextDayISOString,
-                    meal_time: "Choose a Meal time",
-                };
-            }
-        },
-
-        formatSchedule() {
-            this.formattedEvents = {
-                meal_id: this.newSchedule.meal_id,
-                user_id: this.newSchedule.user_id,
-                meal_time: this.newSchedule.meal_time,
-                start_date: this.newSchedule.start_date,
-                end_date: this.newSchedule.end_date,
-            };
-        },
-
-        addSchedule() {
-            const today = new Date().toISOString().replace(/T.*$/, "");
-            if (
-                this.newSchedule.start_date == "" ||
-                this.newSchedule.end_date == "" ||
-                this.newSchedule.meal_time == "" ||
-                this.newSchedule.user_id == ""
-            ) {
-                this.error =
-                    "Please fill in all  fields to create your schedule.";
-            } else if (today >= this.newSchedule.start_date) {
-                this.error =
-                    "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
-            } else if (
-                this.newSchedule.start_date > this.newSchedule.end_date
-            ) {
-                this.error =
-                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
-            } else {
-                this.formatSchedule();
-
-                axios
-                    .post("/schedule", this.formattedEvents)
-                    .then((resp) => {
-                        this.message = resp.data.message;
-                        if (this.meal.ordering_preferences == "automatic") {
-                            const MealId = resp.data.data.id;
-                            this.$inertia.visit(`/process_order/${MealId}`);
-                        } else {
-                            this.$inertia.visit(`/meal-schedule`);
-                        }
-                    })
-                    .catch((err) => {
-                        this.error = "Unable to add Meal !";
-                        setTimeout(() => {
-                            this.error = "";
-                            console.log("Unable to add Meal !", err);
-                        }, 10000);
-                    });
-            }
-        },
     },
 };
 </script>
-<style scoped>
-
-
-.bg-dots-darker {
-    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
-}
-.fixed {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000; /* Adjust z-index as needed */
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.animate-fade-in {
-    animation: fade-in 0.3s ease-in;
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        bottom: -10rem;
-    }
-    to {
-        opacity: 1;
-        bottom: 0;
-    }
-}
-
-.animate-fade-in {
-    animation: fade-in 0.7s ease-in;
-}
-</style>
