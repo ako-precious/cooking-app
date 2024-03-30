@@ -652,7 +652,7 @@ export default {
 
         openModal(meal) {
             axios
-                .get("/rating/" + meal)
+                .get("/api/rating/" + meal)
                 .then((resp) => {
                     if (resp.data) {
                         this.newRating = resp.data.rating;

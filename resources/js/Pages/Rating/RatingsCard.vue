@@ -6,7 +6,7 @@ import axios from "axios";
 <template>
   
           
-            <div class="row-span-1 w-1/2 sm:1/3  md:w-full rounded-3">
+            <div class="row-span-1 w-1/2 sm:w-[30%] flex  md:w-full rounded-3">
                 <div class="h-full m-auto md:w-1/2 rounded-3 group">
                     <div class="flex items-center">
                         <slot name="img" />

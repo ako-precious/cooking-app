@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MealScheduleController;
 
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\WelcomeController;
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('meals', [WelcomeController::class, 'meals']);
 Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
 Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
+Route::resource('/rating', RatingController::class);
+    Route::get('ratings/{id}', [RatingController::class, 'rating' ]);   

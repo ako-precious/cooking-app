@@ -28,13 +28,6 @@ export default {
             isHeaderFixed: false,
         };
     },
-    mounted() {
-        window.addEventListener("scroll", this.handleScroll);
-       
-
-           console.log(this.meals = this.f_meals); ;
-        
-    },
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
     },

@@ -226,441 +226,178 @@ import RatingsCard from "./RatingsCard.vue";
             <hr
                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
             />
-            <div
-                class="grid overflow-y-scroll max-h-[300px] lg:max-h-[500px] grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 auto-cols-fr md:px-6 lg:p-8"
-            >
-                <!--Background-->
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
+            <div class="overflow-y-scroll max-h-[300px] lg:max-h-[500px] flex flex-col py-8  md:px-6 lg:p-8 items-center">
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr "
+                >
+                    <!--Background-->
+                    <div class="col-span-1 rounded-3">
+                        <div class="m-4 block rounded-lg">
+                            <!--Testimonial-->
+                            <div class="md:flex md:flex-row">
+                                <div
+                                    class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
+                                >
+                                    <img
+                                        src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
+                                        class="rounded-full shadow-md dark:shadow-black/30"
+                                        alt="woman avatar"
                                     />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
+                                    <div class="flex items-center my-3">
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                    </div>
+                                    <p
+                                        class="mb-2 text-xs font-bold text-oynx dark:text-snow"
+                                    >
+                                        Three weeks age
+                                    </p>
                                 </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
+                                <div class="md:ms-4 flex-col">
+                                    <p
+                                        class="mb-6 text-base font-light text-oynx dark:text-snow"
+                                    >
+                                        Lorem ipsum dolor, sit amet consectetur
+                                        adipisicing elit. Id quam sapiente molestiae
+                                        numquam quas, voluptates omnis nulla ea odio
+                                        quia similique corrupti magnam.
+                                    </p>
+                                    <p
+                                        class="mb-2 text-base font-bold text-oynx dark:text-snow"
+                                    >
+                                        Anna Smith
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-span-1 rounded-3">
+                        <div class="m-4 block rounded-lg">
+                            <!--Testimonial-->
+                            <div class="md:flex md:flex-row">
+                                <div
+                                    class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
+                                >
+                                    <img
+                                        src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
+                                        class="rounded-full shadow-md dark:shadow-black/30"
+                                        alt="woman avatar"
+                                    />
+                                    <div class="flex items-center my-3">
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                    </div>
+                                    <p
+                                        class="mb-2 text-xs font-bold text-oynx dark:text-snow"
+                                    >
+                                        Three weeks age
+                                    </p>
+                                </div>
+                                <div class="md:ms-4 flex-col">
+                                    <p
+                                        class="mb-6 text-base font-light text-oynx dark:text-snow"
+                                    >
+                                        Lorem ipsum dolor, sit amet consectetur
+                                        adipisicing elit. Id quam sapiente molestiae
+                                        numquam quas, voluptates omnis nulla ea odio
+                                        quia similique corrupti magnam.
+                                    </p>
+                                    <p
+                                        class="mb-2 text-base font-bold text-oynx dark:text-snow"
+                                    >
+                                        Anna Smith
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1 rounded-3">
+                        <div class="m-4 block rounded-lg">
+                            <!--Testimonial-->
+                            <div class="md:flex md:flex-row">
+                                <div
+                                    class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
+                                >
+                                    <img
+                                        src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
+                                        class="rounded-full shadow-md dark:shadow-black/30"
+                                        alt="woman avatar"
+                                    />
+                                    <div class="flex items-center my-3">
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                        <font-awesome-icon
+                                            icon="star"
+                                            class="text-persian text-xxs"
+                                        />
+                                    </div>
+                                    <p
+                                        class="mb-2 text-xs font-bold text-oynx dark:text-snow"
+                                    >
+                                        Three weeks age
+                                    </p>
+                                </div>
+                                <div class="md:ms-4 flex-col">
+                                    <p
+                                        class="mb-6 text-base font-light text-oynx dark:text-snow"
+                                    >
+                                        Lorem ipsum dolor, sit amet consectetur
+                                        adipisicing elit. Id quam sapiente molestiae
+                                        numquam quas, voluptates omnis nulla ea odio
+                                        quia similique corrupti magnam.
+                                    </p>
+                                    <p
+                                        class="mb-2 text-base font-bold text-oynx dark:text-snow"
+                                    >
+                                        Anna Smith
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
                 </div>
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-1 rounded-3">
-                    <div class="m-4 block rounded-lg">
-                        <!--Testimonial-->
-                        <div class="md:flex md:flex-row">
-                            <div
-                                class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                            >
-                                <img
-                                    src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                    class="rounded-full shadow-md dark:shadow-black/30"
-                                    alt="woman avatar"
-                                />
-                                <div class="flex items-center my-3">
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                    <font-awesome-icon
-                                        icon="star"
-                                        class="text-persian text-xxs"
-                                    />
-                                </div>
-                                <p
-                                    class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                >
-                                    Three weeks age
-                                </p>
-                            </div>
-                            <div class="md:ms-4 flex-col">
-                                <p
-                                    class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                >
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit. Id quam sapiente molestiae
-                                    numquam quas, voluptates omnis nulla ea odio
-                                    quia similique corrupti magnam.
-                                </p>
-                                <p
-                                    class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                >
-                                    Anna Smith
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div>
+
+                    <button>Show More Review</button>
                 </div>
             </div>
         </div>
@@ -695,17 +432,45 @@ export default {
             portion_size: "",
             review: "",
             total: "",
+            page: 1, // Current page
+            perPage: 3, // Number of items per page
+            hasMoreData: true,
+            comment:[],
         };
     },
     created() {
         this.getRatings();
     },
     methods: {
+        async loadMoreData() {
+            if (this.hasMoreData) {
+                this.page++;
+                await this.fetchData();
+            }
+        },
+        async fetchData() {
+            try {
+                // const response = await axios.get(
+                //     `/api/meals?page=${this.page}&perPage=${this.perPage}`
+                // );
+            //     const newMeals = response.data;
+
+            //     // If there is no new data, set hasMoreData to false
+            //     if (newMeals.length === 0) {
+            //         this.hasMoreData = false;
+            //     }
+
+            //     // Concatenate new data to the existing meals
+            //     this.meals = [...this.meals, ...newMeals];
+            } catch (error) {
+            //     console.error("Error fetching data:", error);
+            }
+        },
         getRatings() {
             const mealId = this.meal.id;
             //    console.log( mealId);
             axios
-                .get("/ratings/" + mealId)
+                .get("/api/ratings/" + mealId)
                 .then((response) => {
                     if (response.data) {
                         console.log(response);
@@ -734,3 +499,72 @@ export default {
     },
 };
 </script>
+<style scoped>
+button {
+    --color: #1b998b;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.5em;
+    margin: 10px;
+    line-height: 2.5em;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color 0.5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: var(--color);
+}
+
+button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+button:hover {
+    color: #fff;
+}
+
+button:before {
+    top: 100%;
+    left: 100%;
+    transition: all 0.7s;
+}
+
+button:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+button:active:before {
+    background: #0e534b;
+    transition: background 0s;
+}
+.bg-dots-darker {
+    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
+}
+.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Adjust z-index as needed */
+}
+
+@keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.3s ease-in;
+    }
+</style>
