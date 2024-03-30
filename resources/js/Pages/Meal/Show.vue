@@ -3,10 +3,11 @@ import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import SettingsDropdown from "@/Components/SettingsDropdown.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
 import ShowRating from "@/Pages/Rating/Show.vue";
 import Loader from "@/Components/Loader.vue";
+
+import SocialLogin from "@/Pages/Auth/SocialLogin.vue"
+import OrderCard from '@/Pages/Order/OrderCard.vue'
 </script>
 
 <template>
@@ -42,6 +43,18 @@ import Loader from "@/Components/Loader.vue";
                 </div>
                 <div class="flex sm:items-center sm:ms-6">
                     <!-- Settings Dropdown -->
+                    <div class="w-24"  @click="openModal()"  :class="{ 'lg:absolute  lg:-right-16 relative right-0 ' : isHeaderFixed }">  <SocialLogin class="group">
+                              <template #logo>
+                                <font-awesome-icon 
+                      
+                        icon="circle-plus"
+                        class="text-xl px-2 group-hover:-ml-3 group-action-text "
+                    />
+                              </template>
+                                <template #name>
+                                    Order
+                                </template>                             
+                            </SocialLogin></div>
                     <div :class="{ 'absolute -right-16 lg:relative lg:right-0 ' : isHeaderFixed }">
                         <SettingsDropdown></SettingsDropdown>
                     </div>
@@ -177,108 +190,11 @@ import Loader from "@/Components/Loader.vue";
                                 </ul>
                             </div>
                         </div>
-                        <div class="  lg:block lg:w-1/2 ">
+                        <div class=" hidden  lg:block lg:w-1/2 ">
                             <div class="sticky max-w-md m-auto lg:p-12 top-0 z-10">
                                 <div class="shadow-reverse rounded-lg">
-                                    <form
-                                        @submit.prevent
-                                        class="p-4 md:py-8 text-center"
-                                    >
-                                        <h2
-                                            class="text-oynx dark:text-snow font-bold text-xl"
-                                        >
-                                            New Meal Schedule
-                                        </h2>
-                                        <div class="py-4 relative">
-                                            <TextInput
-                                                readonly
-                                                required
-                                                class="my-2 w-full"
-                                                v-model="newSchedule.meal_name"
-                                                placeholder="Meal Name"
-                                            />
-                                            <TextInput
-                                                readonly
-                                                hidden
-                                                required
-                                                class="my-2 w-full"
-                                                type="number"
-                                                v-model="newSchedule.meal_id"
-                                                placeholder=""
-                                            />
-                                            <TextInput
-                                                readonly
-                                                hidden
-                                                required
-                                                class="my-2 w-full"
-                                                type="number"
-                                                v-model="newSchedule.user_id"
-                                                placeholder=""
-                                            />
-                                        </div>
-
-                                        <div class="py-4 flex justify-between">
-                                            <TextInput
-                                                required
-                                                class="w-full"
-                                                v-model="newSchedule.start_date"
-                                                type="date"
-                                                placeholder=""
-                                            />
-                                            <TextInput
-                                                hidden
-                                                required
-                                                class="w-[47%]"
-                                                v-model="newSchedule.end_date"
-                                                type="date"
-                                                placeholder=""
-                                            />
-                                        </div>
-                                        <div class="py-4 flex justify-between">
-                                            <select
-                                                required
-                                                v-model="newSchedule.meal_time"
-                                                title="Meal Time"
-                                                placeholder="Choose a meal time"
-                                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow bg-gradient-to-br from-[#e3dedf] to-[#ffffff] w-full shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
-                                            >
-                                                <option
-                                                    selected
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                >
-                                                    {{ newSchedule.meal_time }}
-                                                </option>
-                                                <option
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                    value="breakfast"
-                                                >
-                                                    Breakfast
-                                                </option>
-                                                <option
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                    value="launch"
-                                                >
-                                                    Launch
-                                                </option>
-                                                <option
-                                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow"
-                                                    value="dinner"
-                                                >
-                                                    Dinner
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div
-                                            class="flex justify-center item-center"
-                                        >
-                                            <PrimaryButton
-                                                @click="addSchedule"
-                                                class="w-full"
-                                                >Order</PrimaryButton
-                                            >
-                                        </div>
-                                    </form>
-                                </div>
+                                    <OrderCard :newSchedule=newSchedule ></OrderCard>
+                                   </div>
                             </div>
                         </div>
                     </div>

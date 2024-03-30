@@ -138,6 +138,7 @@ export default {
         },
 
         addSchedule() {
+            if (this.$page.props.auth.user) {             
             const today = new Date().toISOString().replace(/T.*$/, "");
             if (
                 this.newSchedule.start_date == "" || 
@@ -180,6 +181,9 @@ export default {
                             // console.log("Unable to add Meal !", err);
                         }, 10000);
                     });
+            }
+            }else{
+                this.$inertia.visit(`/login`);
             }
         },
     },
