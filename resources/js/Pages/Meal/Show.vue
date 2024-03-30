@@ -32,7 +32,7 @@ import Loader from "@/Components/Loader.vue";
                     </a>
                     
                     <a href="#detail" class="py-2 px-3 navbar-link" >
-                        <p>Detail</p>
+                        <p>Details</p>
                     </a>
                     <a href="#rating" class="py-2 px-3 navbar-link text-nowrap" >
                         <p>Ratings</p>

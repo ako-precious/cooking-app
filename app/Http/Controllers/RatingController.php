@@ -16,6 +16,7 @@ class RatingController extends Controller
         if (Rating::firstWhere('meal_id', $mealId)) {
             $ratings = Rating::where('meal_id', $mealId)->get();
             
+         
 
             // Get all the values in the specified column (let's assume the column is 'value')
             $values = $ratings->pluck('total');
@@ -37,6 +38,7 @@ class RatingController extends Controller
             return response()->json([
                 'percentages' => $percentages,
                 'review' => $ratings->count(),
+                'comments' => Rating::where('meal_id', $mealId)->with('user')->latest()->paginate(3),
                 'taste' => $ratings->pluck('taste')->sum() / $ratings->pluck('taste')->count(),
                 'value' => $ratings->pluck('value')->sum() / $ratings->pluck('value')->count(),
                 'total' => $ratings->pluck('total')->sum() / $ratings->pluck('total')->count(),

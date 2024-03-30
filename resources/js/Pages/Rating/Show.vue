@@ -11,7 +11,7 @@ import RatingsCard from "./RatingsCard.vue";
                 class="flex flex-wrap md:grid grid-rows-3 grid-flow-col gap-5 auto-cols-fr py-8 lg:p-8"
             >
                 <div
-                    class=" w-full col-start-2 col-end-3 row-span-3 shadow-extra-small rounded-3 ..."
+                    class="w-full col-start-2 col-end-3 row-span-3 shadow-extra-small rounded-3 ..."
                 >
                     <div
                         class="cursor-pointer group overflow-hidden p-5 duration-1000 hover:duration-1000 relative h-full w4 mx-auto rounded-xl"
@@ -226,178 +226,77 @@ import RatingsCard from "./RatingsCard.vue";
             <hr
                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
             />
-            <div class="overflow-y-scroll max-h-[300px] lg:max-h-[500px] flex flex-col py-8  md:px-6 lg:p-8 items-center">
+            <div
+                class="overflow-y-scroll max-h-[300px] lg:max-h-[500px] flex flex-col py-8 md:px-6 lg:p-8 items-center"
+            >
                 <div
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr "
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr"
                 >
                     <!--Background-->
-                    <div class="col-span-1 rounded-3">
-                        <div class="m-4 block rounded-lg">
-                            <!--Testimonial-->
-                            <div class="md:flex md:flex-row">
-                                <div
-                                    class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                                >
-                                    <img
-                                        src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                        class="rounded-full shadow-md dark:shadow-black/30"
-                                        alt="woman avatar"
-                                    />
-                                    <div class="flex items-center my-3">
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
+                    <div
+                        v-for="comment in comments"
+                        :key="comment.id"
+                        class="animate-fade-in"
+                    >
+                        <div class="col-span-1 rounded-3">
+                            <div class="m-4 block rounded-lg">
+                                <!--Testimonial-->
+                                <div class="md:flex md:flex-row">
+                                    <div
+                                        class="mx-auto mb-6 flex flex-col w-36 md:w-1/3 md:mx-0 lg:mb-0"
+                                    >
+                                        <img
+                                            src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
+                                            class="rounded-full shadow-md dark:shadow-black/30"
+                                            alt="woman avatar"
                                         />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
+                                        <div class="flex items-center my-3">
+                                            <font-awesome-icon
+                                                icon="star"
+                                                class="text-persian text-xxs"
+                                            />
+                                            <font-awesome-icon
+                                                icon="star"
+                                                class="text-persian text-xxs"
+                                            />
+                                            <font-awesome-icon
+                                                icon="star"
+                                                class="text-persian text-xxs"
+                                            />
+                                            <font-awesome-icon
+                                                icon="star"
+                                                class="text-persian text-xxs"
+                                            />
+                                        </div>
+                                        <p
+                                            class="mb-2 text-xs font-bold text-oynx dark:text-snow"
+                                        >
+                                            {{
+                                                FormattedDate(
+                                                    comment.updated_at
+                                                )
+                                            }}
+                                        </p>
                                     </div>
-                                    <p
-                                        class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                    >
-                                        Three weeks age
-                                    </p>
-                                </div>
-                                <div class="md:ms-4 flex-col">
-                                    <p
-                                        class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                    >
-                                        Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing elit. Id quam sapiente molestiae
-                                        numquam quas, voluptates omnis nulla ea odio
-                                        quia similique corrupti magnam.
-                                    </p>
-                                    <p
-                                        class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                    >
-                                        Anna Smith
-                                    </p>
+                                    <div class="md:ms-5 flex-col md:w-2/3">
+                                        <p
+                                            class="mb-4 text-base font-light text-oynx dark:text-snow"
+                                        >
+                                            {{ comment.comment }}
+                                        </p>
+                                        <p
+                                            class="mb-2 text-base font-bold text-oynx dark:text-snow capitalize"
+                                        >
+                                            {{ comment.user.name }}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-1 rounded-3">
-                        <div class="m-4 block rounded-lg">
-                            <!--Testimonial-->
-                            <div class="md:flex md:flex-row">
-                                <div
-                                    class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                                >
-                                    <img
-                                        src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                        class="rounded-full shadow-md dark:shadow-black/30"
-                                        alt="woman avatar"
-                                    />
-                                    <div class="flex items-center my-3">
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                    </div>
-                                    <p
-                                        class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                    >
-                                        Three weeks age
-                                    </p>
-                                </div>
-                                <div class="md:ms-4 flex-col">
-                                    <p
-                                        class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                    >
-                                        Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing elit. Id quam sapiente molestiae
-                                        numquam quas, voluptates omnis nulla ea odio
-                                        quia similique corrupti magnam.
-                                    </p>
-                                    <p
-                                        class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                    >
-                                        Anna Smith
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-span-1 rounded-3">
-                        <div class="m-4 block rounded-lg">
-                            <!--Testimonial-->
-                            <div class="md:flex md:flex-row">
-                                <div
-                                    class="mx-auto mb-6 flex flex-col w-36 md:mx-0 md:w-96 lg:mb-0"
-                                >
-                                    <img
-                                        src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
-                                        class="rounded-full shadow-md dark:shadow-black/30"
-                                        alt="woman avatar"
-                                    />
-                                    <div class="flex items-center my-3">
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                        <font-awesome-icon
-                                            icon="star"
-                                            class="text-persian text-xxs"
-                                        />
-                                    </div>
-                                    <p
-                                        class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                    >
-                                        Three weeks age
-                                    </p>
-                                </div>
-                                <div class="md:ms-4 flex-col">
-                                    <p
-                                        class="mb-6 text-base font-light text-oynx dark:text-snow"
-                                    >
-                                        Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing elit. Id quam sapiente molestiae
-                                        numquam quas, voluptates omnis nulla ea odio
-                                        quia similique corrupti magnam.
-                                    </p>
-                                    <p
-                                        class="mb-2 text-base font-bold text-oynx dark:text-snow"
-                                    >
-                                        Anna Smith
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
                 </div>
                 <div>
-
-                    <button>Show More Review</button>
+                    <button @click="loadMoreData">Show More Reviews</button>
                 </div>
             </div>
         </div>
@@ -435,7 +334,7 @@ export default {
             page: 1, // Current page
             perPage: 3, // Number of items per page
             hasMoreData: true,
-            comment:[],
+            comments: [],
         };
     },
     created() {
@@ -448,22 +347,46 @@ export default {
                 await this.fetchData();
             }
         },
+        FormattedDate(date) {
+            const currentDate = new Date();
+            const targetDate = new Date(date);
+
+            const diffTime = Math.abs(currentDate - targetDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const diffWeeks = Math.floor(diffDays / 7);
+            const diffMonths = currentDate.getMonth() - targetDate.getMonth() +
+                12 * (currentDate.getFullYear() - targetDate.getFullYear());
+
+            if (diffDays < 7 && diffDays > 1) {
+                return `${diffDays} days ago`;
+            } else if (diffDays === 1) {
+                return "Yesterday";
+            } else if (diffDays >= 7 && diffDays < 14) {
+                return "1 week ago";
+            } else if (diffDays >= 14 && diffDays < 30 ) {
+                return `${diffWeeks} weeks ago`;
+            } else {
+                return `${targetDate.toLocaleString("default", {
+                    month: "long",
+                })}, ${targetDate.getFullYear()}`;
+            }
+        },
         async fetchData() {
             try {
-                // const response = await axios.get(
-                //     `/api/meals?page=${this.page}&perPage=${this.perPage}`
-                // );
-            //     const newMeals = response.data;
+                const response = await axios.get(
+                    `/api/rating/${this.meal.id}?page=${this.page}&perPage=${this.perPage}`
+                );
+                const newComments = response.data.comments.data;
 
-            //     // If there is no new data, set hasMoreData to false
-            //     if (newMeals.length === 0) {
-            //         this.hasMoreData = false;
-            //     }
+                //     // If there is no new data, set hasMoreData to false
+                if (newComments.length === 0) {
+                    this.hasMoreData = false;
+                }
 
-            //     // Concatenate new data to the existing meals
-            //     this.meals = [...this.meals, ...newMeals];
+                // Concatenate new data to the existing meals
+                this.comment = [...this.comment, ...newComments];
             } catch (error) {
-            //     console.error("Error fetching data:", error);
+                //     console.error("Error fetching data:", error);
             }
         },
         getRatings() {
@@ -474,7 +397,8 @@ export default {
                 .then((response) => {
                     if (response.data) {
                         console.log(response);
-                        this.rating = "yer";
+                        this.rating = "yes";
+                        this.comments = response.data.comments.data;
                         this.ratingsPercentage = response.data.percentages;
                         this.review = response.data.review;
                         this.taste = response.data.taste;
@@ -560,11 +484,15 @@ button:active:before {
 }
 
 @keyframes fade-in {
-        from { opacity: 0; }
-        to { opacity: 1; }
+    from {
+        opacity: 0;
     }
+    to {
+        opacity: 1;
+    }
+}
 
-    .animate-fade-in {
-        animation: fade-in 0.3s ease-in;
-    }
+.animate-fade-in {
+    animation: fade-in 0.3s ease-in;
+}
 </style>

@@ -16,9 +16,7 @@ defineProps({
 <script>
 export default {
     inheritAttrs: false,
-    props: {
-    f_meals: Array // Define a prop named 'meals' to receive the data
-  },
+  
     data() {
         return {
             meals: [],
