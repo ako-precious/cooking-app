@@ -20,6 +20,7 @@ export default {
                 user_id: "",
                 start_date: "",
                 end_date: "",
+                price: "",
             },
             newEventModalVisible: false,
             isHeaderFixed: false,
@@ -129,6 +130,7 @@ export default {
                     user_id: this.$page.props.auth.user.id.toString(),
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,
+                    price: meal.price,
                     meal_time: "Choose a Meal time",
                 };
             }

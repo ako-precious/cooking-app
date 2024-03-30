@@ -19,7 +19,7 @@ import TextInput from "@/Components/TextInput.vue";
 
     <form @submit.prevent class="p-4 md:py-8 text-center">
         <h2 class="text-oynx dark:text-snow font-bold text-xl">
-            New Meal Schedule
+           {{ newSchedule.price }}
         </h2>
         <div class="py-4 relative">
             <TextInput
@@ -182,9 +182,7 @@ export default {
                         }, 10000);
                     });
             }
-            }else{
-                this.$inertia.visit(`/login`);
-            }
+        }
         },
     },
 };
