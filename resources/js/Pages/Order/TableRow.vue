@@ -413,8 +413,58 @@ defineProps(["meal"]);
                         <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
+                                for="total"
+                                value="Overall Rating"
+                            />
+                            <select
+                                v-model="newRating.total"
+                                title="Meal Time"
+                                placeholder="Choose a meal time"
+                                class="border-oynx bg-snow text-oynx dark:bg-oynx dark:text-snow w-full shadow-snow-sm focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md"
+                            >
+                                <option
+                                    selected
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                >
+                                    Choose a rating
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="1"
+                                >
+                                    1
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="2"
+                                >
+                                    2
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="3"
+                                >
+                                    3
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="4"
+                                >
+                                    4
+                                </option>
+                                <option
+                                    class="bg-snow text-oynx dark:bg-oynx dark:text-snow text-center"
+                                    value="5"
+                                >
+                                    5
+                                </option>
+                            </select>
+                        </div>
+                        <div class="py-4 w-[30%] relative flex flex-col">
+                            <InputLabel
+                                class="text-lg pb-2"
                                 for="portion"
-                                value="Total Rating"
+                                value="Average Rating"
                             />
                             <TextInput
                                 readonly
@@ -490,6 +540,7 @@ export default {
             const nutrition = parseFloat(this.newRating.nutrition);
             const portion_size = parseFloat(this.newRating.portion_size);
             const freshness = parseFloat(this.newRating.freshness);
+            const overall = parseFloat(this.newRating.total);
 
             // Check if any rating is not a number
             if (
@@ -498,6 +549,7 @@ export default {
                 isNaN(value) ||
                 isNaN(nutrition) ||
                 isNaN(portion_size) ||
+                isNaN(overall) ||
                 isNaN(freshness)
             ) {
                 return null; // Return null if any rating is invalid
@@ -509,8 +561,8 @@ export default {
                     value +
                     nutrition +
                     portion_size +
-                    freshness) /
-                6;
+                    freshness + overall) /
+                7;
             // Return the total rating rounded to two decimal places
             return Math.round(total * 100) / 100;
         },
@@ -576,8 +628,7 @@ export default {
                 this.error =
                     "Please fill in all  fields to create your schedule.";
             } else {
-                this.newRating.total = ((parseFloat(this.newRating.presentation) + parseFloat(this.newRating.taste) + parseFloat(this.newRating.value) + parseFloat(this.newRating.nutrition) + parseFloat(this.newRating.portion_size) + parseFloat(this.newRating.freshness)) / 6);
-                console.log(this.newRating.total);
+                
                 axios
                     .post("/rating", this.newRating)
                     .then((resp) => {
@@ -605,6 +656,7 @@ export default {
                 .then((resp) => {
                     if (resp.data) {
                         this.newRating = resp.data.rating;
+                        // console.log(this.newRating);
                     } else {
                         this.newRating = {
                             meal_id: this.meal.meal.id,

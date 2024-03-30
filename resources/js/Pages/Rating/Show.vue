@@ -5,7 +5,8 @@ import axios from "axios";
 
 <template>
     <div>
-        <div v-if="rating" 
+    <div v-if="rating" >
+        <div
             class="flex flex-wrap md:grid grid-rows-3 grid-flow-col gap-5 auto-cols-fr md:px-6 lg:p-8"
         >
             <div
@@ -63,8 +64,8 @@ import axios from "axios";
                                 ></span>
                                 <a
                                     href="#"
-                                    class="text-lg font-bold text-gray-900 underline hover:no-underline dark:text-white"
-                                    >73 reviews</a
+                                    class=" font-bold text-gray-900 underline hover:no-underline dark:text-white"
+                                    > {{ review }} review(s)</a
                                 >
                             </div>
                             <div>
@@ -293,7 +294,13 @@ import axios from "axios";
                     </div>
                 </div>
             </div>
+            
         </div>
+        <hr
+        class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+        />
+        
+    </div>
         <div v-else class="flex flex-col py-6 overflow-scroll disable-scrollbars">
             <h1
                 class="font-semibold text-3xl text-center lg:text-4xl text-oynx dark:text-snow"
@@ -319,6 +326,7 @@ export default {
             freshness: "",
             presentation: "",
             portion_size: "",
+            review: "",
             total: "",
         };
     },
@@ -335,6 +343,7 @@ export default {
                     if (response.data) {
                         console.log(response);
                         this.rating = 'yer';
+                        this.review = response.data.review;
                         this.taste = response.data.taste;
                         this.value = response.data.value;
                         this.nutrition = response.data.nutrition;

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('ratings', function (Blueprint $table) {
-            $table->float('total')->change();
+            $table->tinyInteger('total')->change();
         });
     }
 

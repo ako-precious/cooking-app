@@ -18,14 +18,14 @@ public function rating($mealId)
 
     // Return ratings as JSON response
     return response()->json([
-        'ratings' => $ratings,
-        'taste' => $taste = $ratings->pluck('taste')->sum()/$ratings->pluck('taste')->count(),  
-        'value' => $value = $ratings->pluck('value')->sum()/$ratings->pluck('value')->count(),  
-        'total' => $total = $ratings->pluck('total')->sum()/$ratings->pluck('total')->count(),  
-        'nutrition' => $nutrition = $ratings->pluck('nutrition')->sum()/$ratings->pluck('nutrition')->count(),  
-        'freshness' => $freshness = $ratings->pluck('freshness')->sum()/$ratings->pluck('freshness')->count(),  
-        'presentation' => $presentation = $ratings->pluck('presentation')->sum()/$ratings->pluck('presentation')->count(),  
-        'portion_size' => $portion_size = $ratings->pluck('portion_size')->sum()/$ratings->pluck('portion_size')->count(),  
+        'review' => $ratings->count(),
+        'taste' => $ratings->pluck('taste')->sum()/$ratings->pluck('taste')->count(),  
+        'value' => $ratings->pluck('value')->sum()/$ratings->pluck('value')->count(),  
+        'total' => $ratings->pluck('total')->sum()/$ratings->pluck('total')->count(),  
+        'nutrition' => $ratings->pluck('nutrition')->sum()/$ratings->pluck('nutrition')->count(),  
+        'freshness' => $ratings->pluck('freshness')->sum()/$ratings->pluck('freshness')->count(),  
+        'presentation' => $ratings->pluck('presentation')->sum()/$ratings->pluck('presentation')->count(),  
+        'portion_size' => $ratings->pluck('portion_size')->sum()/$ratings->pluck('portion_size')->count(),  
         // Add any additional data or messages as needed
     ]);
 }  
