@@ -15,31 +15,12 @@ import axios from "axios";
                 <div
                     class="cursor-pointer group overflow-hidden p-5 duration-1000 hover:duration-1000 relative h-full w4 mx-auto rounded-xl"
                 >
-                    <div
-                        class="group-hover:-top-3 bg-transparent -top-12 -left-12 absolute shadow-yellow-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
-                    ></div>
-                    <div
-                        class="group-hover:top-60 bg-transparent top-44 left-14 absolute shadow-lighred shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
-                    ></div>
-                    <div
-                        class="group-hover:-left-12 bg-transparent top-24 left-56 absolute shadow-sky-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-24 h-24"
-                    ></div>
-                    <div
-                        class="group-hover:-top-44 bg-transparent top-12 left-12 absolute shadow-lighred shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-12 h-12"
-                    ></div>
-                    <div
-                        class="group-hover:left-44 bg-transparent top-12 left-12 absolute shadow-persian shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-44 h-44"
-                    ></div>
-                    <div
-                        class="group-hover:-left-2 bg-transparent -top-24 -left-12 absolute shadow-sky-800 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-64 h-64"
-                    ></div>
-                    <div
-                        class="group-hover:top-44 bg-transparent top-24 left-12 absolute shadow-sky-500 shadow-inner rounded-xl transition-all ease-in-out group-hover:duration-1000 duration-1000 w-4 h-4"
-                    ></div>
+                    
+                
                     <div
                         class="w-full h-full shadow-xl shadow-neutral-900 p-5 bg-snow dark:bg-oynx opacity-60 rounded-xl flex-col gap-2 flex justify-center"
                     >
-                        <div class="flex justify-center flex-col">
+                        <div class="flex justify-center items-center flex-col">
                             <div>
                                 <h1
                                     class="font-bold text-lg lg:text-xl text-oynx dark:text-snow"
@@ -68,8 +49,8 @@ import axios from "axios";
                                     > {{ review }} review(s)</a
                                 >
                             </div>
-                            <div>
-                                <div class="flex items-center">
+                            <div class="w-full">
+                                <div class="flex justify-center items-center">
                                     <a
                                         href="#"
                                         class="text-sm font-medium text-oynx dark:text-snow"
@@ -80,11 +61,11 @@ import axios from "axios";
                                     >
                                         <div
                                             class="h-1 bg-persian rounded"
-                                            style="width: 70%"
+                                            :style="{ width: ratingsPercentage['5'] + '%' }"
                                         ></div>
                                     </div>
                                 </div>
-                                <div class="flex items-center">
+                                <div class="flex justify-center items-center">
                                     <a
                                         href="#"
                                         class="text-sm font-medium text-oynx dark:text-snow"
@@ -95,11 +76,11 @@ import axios from "axios";
                                     >
                                         <div
                                             class="h-1 bg-persian rounded"
-                                            style="width: 17%"
+                                            :style="{ width: ratingsPercentage['4'] + '%' }"
                                         ></div>
                                     </div>
                                 </div>
-                                <div class="flex items-center">
+                                <div class="flex justify-center items-center">
                                     <a
                                         href="#"
                                         class="text-sm font-medium text-oynx dark:text-snow"
@@ -110,11 +91,11 @@ import axios from "axios";
                                     >
                                         <div
                                             class="h-1 bg-persian rounded"
-                                            style="width: 8%"
+                                            :style="{ width: ratingsPercentage['3'] + '%' }"
                                         ></div>
                                     </div>
                                 </div>
-                                <div class="flex items-center">
+                                <div class="flex justify-center items-center">
                                     <a
                                         href="#"
                                         class="text-sm font-medium text-oynx dark:text-snow"
@@ -125,11 +106,11 @@ import axios from "axios";
                                     >
                                         <div
                                             class="h-1 bg-persian rounded"
-                                            style="width: 4%"
+                                            :style="{ width: ratingsPercentage['2'] + '%' }"
                                         ></div>
                                     </div>
                                 </div>
-                                <div class="flex items-center">
+                                <div class="flex justify-center items-center">
                                     <a
                                         href="#"
                                         class="text-sm font-medium text-oynx dark:text-snow"
@@ -140,7 +121,7 @@ import axios from "axios";
                                     >
                                         <div
                                             class="h-1 bg-persian rounded"
-                                            style="width: 1%"
+                                            :style="{ width: ratingsPercentage['1'] + '%' }"
                                         ></div>
                                     </div>
                                 </div>
@@ -299,7 +280,7 @@ import axios from "axios";
         <hr
         class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
         />
-        
+
     </div>
         <div v-else class="flex flex-col py-6 overflow-scroll disable-scrollbars">
             <h1
@@ -319,6 +300,7 @@ export default {
     },
     data() {
         return {
+            ratingsPercentage: {},
             rating:'',
             taste: "",
             value: "",
@@ -343,6 +325,7 @@ export default {
                     if (response.data) {
                         console.log(response);
                         this.rating = 'yer';
+                        this.ratingsPercentage = response.data.percentages;
                         this.review = response.data.review;
                         this.taste = response.data.taste;
                         this.value = response.data.value;
