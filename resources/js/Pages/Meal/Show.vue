@@ -42,7 +42,9 @@ import Loader from "@/Components/Loader.vue";
                 </div>
                 <div class="flex sm:items-center sm:ms-6">
                     <!-- Settings Dropdown -->
-              <SettingsDropdown></SettingsDropdown>
+                    <div :class="{ 'absolute -right-16 lg:relative lg:right-0 ' : isHeaderFixed }">
+                        <SettingsDropdown></SettingsDropdown>
+                    </div>
                 </div>
             </div>
         </header>
@@ -175,8 +177,8 @@ import Loader from "@/Components/Loader.vue";
                                 </ul>
                             </div>
                         </div>
-                        <div class="lg:w-1/2 relative">
-                            <div class="sticky lg:p-12 top-0 z-10">
+                        <div class="  lg:block lg:w-1/2 ">
+                            <div class="sticky max-w-md m-auto lg:p-12 top-0 z-10">
                                 <div class="shadow-reverse rounded-lg">
                                     <form
                                         @submit.prevent
