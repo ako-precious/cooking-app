@@ -52,57 +52,7 @@
                     </a>
                 </li> -->
                 
-                <li class="navbar-link">
-                    <Dropdown class="relative group">
-                        <template #trigger>
-                            
-                            <font-awesome-icon
-                            icon="bell"
-                            class="h-4 lg:h-5 px-2 py-1 svg-inline--fa fa-user fa-w-14 fa-9x"
-                            />
-                            <div v-if="notifications" class="absolute top-[20%] right-[10%] ">
-        
-                                  <div
-                                  class="bg-lighred w-[8px] h-[8px]  rounded-full animate-ping group-hover:animate-none "><p class="opacity-0">r</p></div>
-                                </div>
-                            
-                        </template>
-
-                        <template #content>
-            <!-- Account Management -->
-            <div
-                   
-                    id="dropdown-menu"
-                    class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow  ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
-                >
-                    <div 
-                        class="py-2 p-2 max-h-[300px] disable-scrollbars overflow-y-scroll"
-                        role="menu" 
-                        aria-orientation="vertical"
-                        aria-labelledby="dropdown-button"
-                    >
-                     <div v-for="notification in notifications">  
-                        <a
-                            @click="selectTheme('light')"
-                            class=" relative flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-                            role="menuitem"
-                        >
-                        
-
-                        <p class="disable-scrollbars overflow-x-scroll text-nowrap ">
-
-                            {{ notification.message }}
-                        </p>
-
-                        </a></div> 
-                      
-                    
-                      
-                    </div>
-                </div>
-        </template>
-                    </Dropdown>
-                </li>
+                <!-- <li  -->
                 <slot name="dropdown"> </slot>
             </ul>
         </nav>

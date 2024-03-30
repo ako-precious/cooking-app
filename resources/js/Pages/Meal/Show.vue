@@ -13,7 +13,7 @@ import Loader from "@/Components/Loader.vue";
 
 <template>
     <Head :title="`${meal.name}`" />
-    <!-- <header
+    <header
         class="bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
     >
         <Navbar class="bg-snow dark:bg-oynx">
@@ -21,17 +21,14 @@ import Loader from "@/Components/Loader.vue";
                 <div
                     class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md flex items-center"
                 >
-                    <DateRangePicker
-                        @filter-meals="filterMeals"
-                        class="transition-all duration-300 delay-75 ease-in"
-                    ></DateRangePicker>
+                    
                 </div>
             </template>
             <template #dropdown>
                 <DropBarNav />
             </template>
         </Navbar>
-    </header> -->
+    </header>
     <div
         class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >

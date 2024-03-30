@@ -77,7 +77,7 @@ defineProps({
                             </div>
                         </div>
                         <hr class="my-2" />
-                        <a
+                        <!-- <a
                             @click="selectTheme('light')"
                             class="flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
                             role="menuitem"
@@ -130,7 +130,7 @@ defineProps({
                                 ></path>
                             </svg>
                             System
-                        </a>
+                        </a> -->
                     </div>
                 </div>
         </template>
