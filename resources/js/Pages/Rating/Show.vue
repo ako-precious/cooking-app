@@ -227,12 +227,13 @@ import RatingsCard from "./RatingsCard.vue";
                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
             />
             <div
-                class="overflow-y-scroll max-h-[300px] lg:max-h-[500px] flex flex-col py-8 md:px-6 lg:p-8 items-center"
+                class="overflow-y-scroll max-h-[300px] lg:max-h-[500px] flex flex-col py-8 md:px-6 lg:p-8"
             >
                 <div
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr"
                 >
                     <!--Background-->
+                  
                     <div
                         v-for="comment in comments"
                         :key="comment.id"
@@ -243,30 +244,30 @@ import RatingsCard from "./RatingsCard.vue";
                                 <!--Testimonial-->
                                 <div class="md:flex md:flex-row">
                                     <div
-                                        class="mx-auto mb-6 flex flex-col w-36 md:w-1/3 md:mx-0 lg:mb-0"
+                                        class="mx-auto mb-6 flex flex-col items-center w-36 md:w-1/3 md:mx-0 lg:mb-0"
                                     >
-                                        <img
-                                            src="https://tecdn.b-cdn.net/img/Photos/Avatars/img%20%2810%29.jpg"
+                                        <img v-if="comment.profile_photo_path"
+                                            src="comment.profile_photo_path"
+                                            class="rounded-full shadow-md dark:shadow-black/30"
+                                            alt="woman avatar"
+                                        />
+                                        <img v-else
+                                            :src="`https://ui-avatars.com/api/?name=${comment.user.name}&color=FE6D73&background=004E98`"
                                             class="rounded-full shadow-md dark:shadow-black/30"
                                             alt="woman avatar"
                                         />
                                         <div class="flex items-center my-3">
-                                            <font-awesome-icon
-                                                icon="star"
-                                                class="text-persian text-xxs"
-                                            />
-                                            <font-awesome-icon
-                                                icon="star"
-                                                class="text-persian text-xxs"
-                                            />
-                                            <font-awesome-icon
-                                                icon="star"
-                                                class="text-persian text-xxs"
-                                            />
-                                            <font-awesome-icon
-                                                icon="star"
-                                                class="text-persian text-xxs"
-                                            />
+                                            
+                                            <div
+                                                v-for="index in getStars(comment.total)"
+                                                :key="index"
+                                            >
+                                                <font-awesome-icon
+                                                    icon="star"
+                                                    class="text-persian text-xxs"
+                                                />
+                                            </div>
+                                           
                                         </div>
                                         <p
                                             class="mb-2 text-xs font-bold text-oynx dark:text-snow"
@@ -347,6 +348,9 @@ export default {
                 await this.fetchData();
             }
         },
+        getStars(num) {
+            return Array.from({ length: num }, (_, i) => i + 1);
+        },
         FormattedDate(date) {
             const currentDate = new Date();
             const targetDate = new Date(date);
@@ -354,7 +358,9 @@ export default {
             const diffTime = Math.abs(currentDate - targetDate);
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             const diffWeeks = Math.floor(diffDays / 7);
-            const diffMonths = currentDate.getMonth() - targetDate.getMonth() +
+            const diffMonths =
+                currentDate.getMonth() -
+                targetDate.getMonth() +
                 12 * (currentDate.getFullYear() - targetDate.getFullYear());
 
             if (diffDays < 7 && diffDays > 1) {
@@ -363,7 +369,7 @@ export default {
                 return "Yesterday";
             } else if (diffDays >= 7 && diffDays < 14) {
                 return "1 week ago";
-            } else if (diffDays >= 14 && diffDays < 30 ) {
+            } else if (diffDays >= 14 && diffDays < 30) {
                 return `${diffWeeks} weeks ago`;
             } else {
                 return `${targetDate.toLocaleString("default", {
@@ -396,7 +402,7 @@ export default {
                 .get("/api/ratings/" + mealId)
                 .then((response) => {
                     if (response.data) {
-                        console.log(response);
+                        // console.log(response);
                         this.rating = "yes";
                         this.comments = response.data.comments.data;
                         this.ratingsPercentage = response.data.percentages;
@@ -413,7 +419,7 @@ export default {
                     }
                 })
                 .catch((error) => {
-                    console.error("Error fetching data:", error);
+                    // console.error("Error fetching data:", error);
                 })
                 .finally(() => {
                     // Set loading state to false when fetching completes
