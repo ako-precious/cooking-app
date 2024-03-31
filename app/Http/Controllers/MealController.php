@@ -30,6 +30,7 @@ class MealController extends Controller
         $meal->save();
         return response()->json(['meal' => $meal]);
     }
+   
     public function limit(Request $request, $id )
     {
         $meal =  Meal::find($id);

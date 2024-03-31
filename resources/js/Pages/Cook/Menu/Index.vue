@@ -94,7 +94,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        status
+                                                        Limit
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp />
@@ -112,7 +112,25 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
+                                                        Ingredients
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
                                                         Quick Order
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        status
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp />
@@ -122,7 +140,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr
+                                            <tr title="Click to edit"
                                                 v-if="menu.length > 0"
                                                 v-for="meal in menu"
                                                 :key="meal.id"

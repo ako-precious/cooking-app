@@ -34,11 +34,7 @@ import BecomeCook from "./BecomeCook.vue";
                                         class="absolute top-0 right-0 z-10 bg-transparent w-full h-full cursor-pointer"
                                     >
                                 </div>
-                                        <p
-                                            class="absolute text-xs m-1 bg-lavender z-20 rounded-lg p-2"
-                                        >
-                                            Show preview
-                                        </p>
+                                        
                                         <FoodCard
                                             :meal="meal.data"
                                             class="w-full h-full"
