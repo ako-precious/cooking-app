@@ -17,9 +17,9 @@ import TextInput from "@/Components/TextInput.vue";
         </div>
     </div>
 
-    <form @submit.prevent class="p-4 md:py-8 text-center">
-        <h2 class="text-oynx dark:text-snow font-bold text-xl">
-           {{ newSchedule.price }}
+    <form @submit.prevent class="p-4 md:py-8 ">
+        <h2 class="text-oynx dark:text-snow font-extrabold text-2xl">
+           ${{ newSchedule.price }} CAD
         </h2>
         <div class="py-4 relative">
             <TextInput

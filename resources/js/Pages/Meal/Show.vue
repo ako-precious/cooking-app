@@ -7,6 +7,8 @@ import ShowRating from "@/Pages/Rating/Show.vue";
 import Loader from "@/Components/Loader.vue";
 import Login from "@/Pages/Auth/Login.vue";
 import SocialLogin from "@/Pages/Auth/SocialLogin.vue";
+import DropdownLink from "@/Components/DropdownLink.vue";
+import Dropdown from "@/Components/Dropdown.vue";
 import OrderCard from "@/Pages/Order/OrderCard.vue";
 </script>
 
@@ -21,7 +23,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
         >
             <Link
                 :href="route('welcome')"
-                :class="{ 'absolute -left-16 ': isHeaderFixed }"
+                :class="{ 'sm:absolute sm:-left-16 ': isHeaderFixed }"
                 class="transition-all duration-300 delay-75 ease-in animate-fade-in"
             >
                 <div class="w-full flex items-center">
@@ -30,7 +32,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
             </Link>
 
             <div
-                class="bg-transparent w-4/12 sm:w-4/12 capitalize font-bold text-sm mr-4 flex justify-around transition-all duration-300 delay-75 ease-in"
+                class="hidden bg-transparent w-4/12 sm:w-4/12 capitalize font-bold text-sm mr-4 sm:flex justify-around transition-all duration-300 delay-75 ease-in"
                 name=""
                 id=""
             >
@@ -74,7 +76,60 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 >
                     <SettingsDropdown></SettingsDropdown>
                 </div>
-                
+                <div class="sm:hidde flex items-center">
+                    <a
+                        mini-sidenav-burger=""
+                        href="javascript:;"
+                        class="sm:marker:hidden p-0 text-sm text-white transition-all ease-nav-brand block"
+                        aria-expanded="false"
+                    >
+                        
+                        <Dropdown align="right" width="48">
+                <template #trigger>
+                    <div class="w-4.5 overflow-hidden">
+                            <i
+                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                            ></i>
+                            <i
+                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                            ></i>
+                            <i
+                                class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                            ></i>
+                        </div>
+    
+                   
+                </template>
+    
+                <template #content class="bg-snow dark:bg-oynx">
+                    <div
+                        class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
+                    >
+    
+                        <DropdownLink
+                            href="#photo"
+                            class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        >
+                    <p>Photo</p>
+                        </DropdownLink>
+                        <DropdownLink href="#detail"
+                            class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        > 
+                    <p>Details</p>
+                        </DropdownLink>
+                        <DropdownLink href="#rating"
+                            :href="'profile.show'"
+                            class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        > <a  >
+                    <p>Ratings</p>
+                </a>
+                        </DropdownLink>
+    
+                    </div>
+                </template>
+            </Dropdown>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -224,7 +279,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                     <button
                                         @click="closeModal"
                                         type="button"
-                                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-12 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                        class="float-right z-[10000] top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-12 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                         data-modal-hide="popup-modal"
                                     >
                                         <font-awesome-icon
@@ -281,6 +336,7 @@ export default {
                 meal_time: "",
                 user_id: "",
                 start_date: "",
+                price: "",
                 end_date: "",
             },
             formattedEvents: [],
@@ -368,6 +424,7 @@ export default {
                     user_id: this.$page.props.auth.user.id.toString(),
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,
+                    price: this.meal.price,
                     meal_time: "Choose a Meal time",
                 };
             }
