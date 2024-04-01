@@ -21,7 +21,7 @@ export default {
         return {
             meals: [],
             page: 1, // Current page
-            perPage: 12, // Number of items per page
+            perPage: 1, // Number of items per page
             hasMoreData: true,
             isHeaderFixed: false,
         };
@@ -29,22 +29,17 @@ export default {
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
     },
+    
+    mounted() {
+        window.addEventListener("scroll", this.handleScroll);
+    },
     created() {
-        this.getMeals(), this.handleScroll(), this.filterMeals(), this.fetchData();
+       this.handleScroll(); this.fetchData();
     },
     methods: {
-        getMeals() {
-            axios
-                .get("/api/meals")
-                .then((response) => {
-                    this.meals = response.data;
-                })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
-                });
-        },
-        filterMeals(searchText) {
-            axios
+        
+        async   filterMeals(searchText) {
+            await  axios
                 .get(`/api/filtered-meals?query=${searchText}`)
                 .then((response) => {
                     if (response.data.length != 0) {
@@ -83,7 +78,7 @@ export default {
             // Adjust the scroll threshold as needed
             const scrollThreshold = 20;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
-        },
+        }, 
     },
 };
 </script>
@@ -92,16 +87,16 @@ export default {
     <Head title="Welcome" />
     <!-- component -->
     <header
-        :class="{ fixed: isHeaderFixed }"
-        class="bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
+        :class="{ fix: isHeaderFixed }"
+        class="bg-snow dark:bg-oynx z-990 transition-all  duration-300 delay-75 ease-in animate-fade-in"
     >
         <Navbar class="bg-snow dark:bg-oynx">
             <template #search>
                 <div
                     class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
                 >
-                    <div
-                        v-if="!isHeaderFixed"
+                    <!-- <div
+                        
                         class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
                         name=""
                         id=""
@@ -115,13 +110,12 @@ export default {
                         <a class="py-2 px-3 navbar-link" href="">
                             <p>Explore</p>
                         </a>
-                    </div>
-                    <template v-else>
+                    </div> -->
                         <DateRangePicker
                             @filter-meals="filterMeals"
                             class="transition-all duration-300 delay-75 ease-in"
                         ></DateRangePicker>
-                    </template>
+                    
                 </div>
             </template>
             <template #dropdown>
@@ -133,14 +127,14 @@ export default {
                 />
             </template>
         </Navbar>
-        <DateRangePicker
+        <!-- <DateRangePicker
             @filter-meals="filterMeals"
             v-if="!isHeaderFixed"
             class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
-        ></DateRangePicker>
+        ></DateRangePicker> -->
         <DateRangePicker
             @filter-meals="filterMeals"
-            class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in"
+            class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
         ></DateRangePicker>
     </header>
     <div
@@ -151,10 +145,8 @@ export default {
         </div>
     </div>
     <div class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce" v-if="hasMoreData">
-        <h2 class="font-bold text-lg text-oynx tracking-wider dark:text-snow">
-            Continue exploring Meals
-        </h2>
-        <button  @click="loadMoreData">Show More</button>
+        
+        <button  @click="loadMoreData">Show More </button>
     </div>
 </template>
 
@@ -210,10 +202,12 @@ button:active:before {
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
-.fixed {
+.fix  {
     position: fixed;
     top: 0;
+    right: 0;
     width: 100%;
+    padding: 0.5rem 2rem;
     z-index: 1000; /* Adjust z-index as needed */
 }
 

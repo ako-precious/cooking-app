@@ -3,7 +3,7 @@ import axios from "axios";
 import Login from "@/Pages/Auth/Login.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import Loader from "@/Components/Loader.vue";
-import OrderCard from '@/Pages/Order/OrderCard.vue'
+import OrderCard from "@/Pages/Order/OrderCard.vue";
 defineProps(["meal"]);
 </script>
 <script>
@@ -33,28 +33,18 @@ export default {
     },
     created() {
         this.getPhoto();
-        this.getMeals(),
-            this.filterMeals(),
-            this.fetchData()
+        this.fetchData();
     },
     methods: {
-        getMeals() {
-            // axios
-            //     .get("/api/meals")
-            //     .then((response) => {
-            //         this.meals = response.data;
-            //     })
-            //     .catch((error) => {
-            //         console.error("Error fetching data:", error);
-            //     })
-                
-        },
-        getPhoto() {
-            axios
+        async getPhoto() {
+            await axios
                 .get("/meal_photos/" + this.meal.id)
                 .then((response) => {
                     this.src =
-                        `/storage/${response.data.firstPhoto.meal_photo_path}`.replace("/public","");
+                        `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
+                            "/public",
+                            ""
+                        );
                     // console.log(this.src);
                 })
                 .catch((error) => {
@@ -64,20 +54,6 @@ export default {
                     // Set loading state to false when fetching completes
                     this.isLoading = false;
                 });
-        },
-        filterMeals(searchText) {
-          
-                axios
-                    .get(`/api/filtered-meals?query=${searchText}`)
-                    .then((response) => {
-                        if (response.data.length != 0) {
-                            this.meals = response.data;
-                        }
-                    })
-                    .catch((error) => {
-                        // console.error("Error fetching filtered data:", error);
-                    });                
-            
         },
         async loadMoreData() {
             if (this.hasMoreData) {
@@ -124,7 +100,7 @@ export default {
             this.newEventModalVisible = true;
             if (this.$page.props.auth.user) {
                 // this.suggestedMeal = [];
-                    this.newSchedule = {
+                this.newSchedule = {
                     meal_name: meal.title,
                     meal_id: meal.id.toString(),
                     user_id: this.$page.props.auth.user.id.toString(),
@@ -148,7 +124,6 @@ export default {
             this.message = "";
             this.error = "";
         },
-  
     },
 };
 </script>
@@ -170,7 +145,6 @@ export default {
                     :src="src"
                     alt="product image"
                 />
-                
             </div>
             <span
                 class="absolute top-0 left-0 m-2 rounded-full bg-oynx px-2 text-center text-sm font-medium text-snow"
@@ -188,7 +162,7 @@ export default {
             <div class="my-2 flex items-center justify-between">
                 <a href="#" class=" ">
                     <span
-                        class="text-xs text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
+                        class="text-sm capitalize text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
                         >{{ meal.cook.name }}</span
                     >
                 </a>
@@ -248,8 +222,8 @@ export default {
                     <span class="sr-only">Close modal</span>
                 </button>
                 <div v-if="$page.props.auth.user">
-                    <OrderCard :newSchedule=newSchedule ></OrderCard>
-                   </div>
+                    <OrderCard :newSchedule="newSchedule"></OrderCard>
+                </div>
                 <template v-else>
                     <Login></Login>
                 </template>

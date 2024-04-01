@@ -215,6 +215,7 @@ export default defineComponent({
                 this.newSchedule.start_date == "" ||
                 this.newSchedule.end_date == "" ||
                 this.newSchedule.meal_time == "" ||
+                this.newSchedule.meal_time == "Choose A meal Time" ||
                 this.newSchedule.user_id == ""
             ) {
                 this.error =

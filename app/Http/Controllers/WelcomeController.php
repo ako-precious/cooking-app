@@ -26,20 +26,20 @@ class WelcomeController extends Controller
 
     public function meals()
     {
-        $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(12);
+        $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(1);
         
         return response()->json(MealResource::collection($mealSchedules));
     }
     public function filtered_meals(){
 
         $searchText = request('query');
-        $query = Meal::query();
+        $query = Meal::where('status', 'available')->query();
         if ($searchText) {
             $query->where('name', 'like', "%$searchText%")
                   ->orWhere('description', 'like', "%$searchText%");
         }
       
-        $mealSchedules =  $query->with('user')->latest()->paginate(12);
+        $mealSchedules =  $query->with('user')->latest()->paginate(1);
         return response()->json(MealResource::collection($mealSchedules));
     }
       
