@@ -72,7 +72,18 @@ class OrdersController extends Controller
                 $confirmed = MealSchedule::where('user_id', $user_id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
         return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'transit' =>$transit, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
     }
-
+      
+    public function calendar()
+    {
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id)->pluck('user_id'); 
+        Meal::firstWhere('user_id', $user_id)->pluck('user_id'); 
+        dd( MealSchedule::where('user_id',$cook)->with('meal', 'user')->get()->toArray());
+        return inertia('Cook/Menu/Calendar', [
+          
+            'InitialEvent' => MealSchedule::where('user_id',$cook)->with('meal', 'user')->get()->toArray()
+        ]);
+    }
     // public function update(Request $request, $id){
 
     //     $mealSchedule = MealSchedule::find($id); 

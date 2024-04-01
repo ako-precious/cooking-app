@@ -76,7 +76,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 >
                     <SettingsDropdown></SettingsDropdown>
                 </div>
-                <div class="sm:hidde flex items-center">
+                <div class="sm:hidden flex items-center">
                     <a
                         mini-sidenav-burger=""
                         href="javascript:;"

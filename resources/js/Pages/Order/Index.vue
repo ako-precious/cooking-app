@@ -320,7 +320,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                     v-if="orders.length > 0"
                                                     v-for="meal in orders"
                                                     :key="meal.id"
-                                                    class="animate-fade-in border-b py-4  text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
+                                                    class="animate-fade-in border-b py-4 capitalize text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                                 >
                                                     <TableRow :meal="meal">
                                                     </TableRow>
@@ -333,7 +333,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                         <div
                                                             class="py-6 italic  text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
                                                         >
-                                                            You have nothing here. click <Link :href="`/`" class=" font-semibold ">here </Link> to add
+                                                            You have nothing here yet. click <Link :href="`/`" class=" font-semibold ">here </Link> to add
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -26,7 +26,7 @@ class WelcomeController extends Controller
 
     public function meals()
     {
-        $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(1);
+        $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(12);
         
         return response()->json(MealResource::collection($mealSchedules));
     }
@@ -39,7 +39,7 @@ class WelcomeController extends Controller
                   ->orWhere('description', 'like', "%$searchText%");
         }
       
-        $mealSchedules =  $query->with('user')->latest()->paginate(1);
+        $mealSchedules =  $query->with('user')->latest()->paginate(12);
         return response()->json(MealResource::collection($mealSchedules));
     }
       

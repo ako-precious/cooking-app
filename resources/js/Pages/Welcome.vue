@@ -21,7 +21,7 @@ export default {
         return {
             meals: [],
             page: 1, // Current page
-            perPage: 1, // Number of items per page
+            perPage: 12, // Number of items per page
             hasMoreData: true,
             isHeaderFixed: false,
         };

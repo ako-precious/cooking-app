@@ -333,7 +333,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 v-if="orders.flat().length > 0"
                                                 v-for="order in sortedOrders.flat() "
                                                 :key="order.id"
-                                                class="animate-fade-in border-b py-4  text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
+                                                class="animate-fade-in border-b py-4 capitalize text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                             >
                                                 <TableRow :order="order">
                                                 </TableRow>
