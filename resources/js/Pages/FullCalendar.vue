@@ -174,6 +174,7 @@ export default defineComponent({
                 this.newSchedule.start_date == "" ||
                 this.newSchedule.end_date == "" ||
                 this.newSchedule.meal_time == "" ||
+                this.newSchedule.meal_time == "Choose a Meal Time" ||
                 this.newSchedule.user_id == ""
             ) {
                 this.error =
@@ -277,6 +278,7 @@ export default defineComponent({
 });
 </script>
 <template>
+    
     <div
         class="container shadow-reverse rounded-lg py-6 my-2 relative text-oynx dark:text-snow"
     >

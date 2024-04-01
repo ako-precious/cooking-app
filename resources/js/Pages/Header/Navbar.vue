@@ -20,7 +20,7 @@
                 </span>
             </Link>
         </div>
-
+        
         <!-- search -->
         <slot name="search"></slot>
 
@@ -28,7 +28,7 @@
         <nav class="contents">
             <ul class="ml-4 xl:w-48 flex items-center justify-end">
                 <!-- hso -->
-
+                <div v-if="!isLoading">
                 <li v-if="check" class="text-nowrap py-2 px-4 navbar-link">
                     <Link :href="`/cook/menu`">
                         <a class="" href="">
@@ -43,6 +43,7 @@
                         </a>
                     </Link>
                 </li>
+            </div>
                 <!-- <li class="navbar-link">
                     <a class="" href="">
                         <font-awesome-icon
@@ -72,7 +73,8 @@ export default {
     data() {
         return {
             check: false,
-            notifications: '',
+            notifications: '',            
+            isLoading: true,
         };
     },
     created() {
@@ -80,8 +82,8 @@ export default {
         this.chekUser(); // Fetch images from the backend when the component is created
     },
     methods: {
-        chekUser() {
-            axios
+      async chekUser() {
+          await axios
                 .get("/checkUser")
                 .then((response) => {
                     this.check = response.data.checkUser;
@@ -89,10 +91,13 @@ export default {
                 .catch((error) => {
                     // Handle error
                     console.error("Error saving data:", error);
+                }).finally(() => {
+                    // Set loading state to false when fetching completes
+                    this.isLoading = false;
                 });
         },
-        checkNotification() {
-            axios
+      async checkNotification() {
+        await axios
                 .get("/checkUser")
                 .then((response) => {
                     this.notifications = response.data.notifications;

@@ -89,9 +89,9 @@ class OrdersController extends Controller
                     $orders[] = $mealSchedules;
                 }
             }
-            dd($orders);
+            // dd($orders);
             // dd($accept);
-            return inertia('Cook/Menu/Calendar', [ 'InitialEvent' => $orders]);
+            return inertia('Cook/Order/Calendar', [ 'orders' => $orders]);
         }
          else {
             # code...
