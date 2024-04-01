@@ -53,8 +53,8 @@ class CookController extends Controller
     public function store(Request $request)
     {
         $user_id = $request->user_id;
-        $user =  Cook::firstWhere('user_id', $user_id)->exists();
-        if ($user) {
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
             // User exists
             $newCook = Cook::where('user_id', $user_id)->get();
         } else {
@@ -104,6 +104,19 @@ class CookController extends Controller
         }
     }
     public function region($newMealId)
+    {
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            return inertia('Cook/BecomeCook/MealArea', ['Meal' => $Meal]);
+        } else {
+            # code...
+            return redirect()->route('welcome',);
+        }
+    }
+    public function stat($newMealId)
     {
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);

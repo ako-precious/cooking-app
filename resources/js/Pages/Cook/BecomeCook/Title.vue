@@ -39,7 +39,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                     for="name"
                                                     value="Meal Title (Limit 50 char)"
                                                 />
-                                                <TextInput
+                                                <TextInput @input="checkLength2"
                                                     id="name"
                                                     v-model="meal.name"
                                                     type="text"
@@ -47,18 +47,18 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                     required
                                                     autocomplete="name"
                                                 />
-                                                <!-- <InputError
-                                                    :message="form.errors.name"
-                                                    class="mt-2"
-                                                /> -->
+                                                <p class="my-3 text-oyn dark:text-snow" :class="{'text-lighred' : maxLength2 }">
+                                                    
+                                                    {{ inputLength2 }}/50 
+                                                </p>
                                             </div>
-                                            <div class="py-3">
+                                            <div class="py-5 px-1">
                                                 <InputLabel
                                                     for="name"
                                                     value="Meal Description (Limit 600 char)"
                                                 />
-                                               
-                                                <textarea
+
+                                                <textarea @input="checkLength"
                                                     autocomplete="other_info"
                                                     id="other_info"
                                                     v-model="meal.description"
@@ -66,6 +66,10 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                     rows="5"
                                                     cols="50"
                                                 ></textarea>
+                                                <p class="my-3 text-oyn dark:text-snow" :class="{'text-lighred' : maxLength }">
+                                                    
+                                                    {{ inputLength }}/600 
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -87,62 +91,97 @@ import InputLabel from "@/Components/InputLabel.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
-                <Link :href="`/become-a-cook/${Meal.id}/ingredients`" class="font-semibold">
+                <Link
+                    :href="`/become-a-cook/${Meal.id}/ingredients`"
+                    class="font-semibold"
+                >
                     <button class="relative group">
-                        <span
-                            class="hover-underline-animation"
-                        >
-                            Back
-                        </span>
+                        <span class="hover-underline-animation"> Back </span>
                     </button>
                 </Link>
             </div>
         </template>
         <template #mainbtn>
-           
-                <button @click="saveData" class="btn2span group">
-                    <span class="next-span">Next Step</span>
-                    <span class="with-span">We're with you</span>
-                </button> 
-    </template>
+            <button @click="saveData" class="btn2span group">
+                <span class="next-span">Next Step</span>
+                <span class="with-span">We're with you</span>
+            </button>
+        </template>
     </BecomeCook>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
     props: {
         Meal: Object,
     },
     data() {
         return {
-           meal:{
-           name: this.Meal.name,
-           description: this.Meal.description,
-           } 
+            meal: {
+                name: this.Meal.name,
+                description: this.Meal.description || "",
+            },
+            maxLength: false,
+            maxLength2: false,
         };
     },
+    computed: {
+        inputLength() {
+            return this.meal.description.length; // Calculate the length of the input text
+        },
+        inputLength2() {
+            return this.meal.name.length; // Calculate the length of the input text
+        },
+    },
+    
     methods: {
-        
         saveData() {
- // Log the meal data to console
-            // Send an HTTP request to your backend API to save the data            
-            const meal = this.meal;
-            // console.log({meal});            
+            // Log the meal data to console
+            // Send an HTTP request to your backend API to save the data
+            if (this.maxLength || this.mexLength2 ) {
+               
+            }else{
+                const meal = this.meal;
+                // console.log({meal});
                 axios
-                    .put("/meal/title/" + this.Meal.id, meal )
+                    .put("/meal/title/" + this.Meal.id, meal)
                     .then((response) => {
-                        
                         const MealId = response.data.meal.id;
-                        this.$inertia.visit(
-                            `/become-a-cook/${MealId}/photos`
-                        );
+                        this.$inertia.visit(`/become-a-cook/${MealId}/photos`);
                     })
                     .catch((error) => {
                         // Handle error
                         // console.error("Error saving data:", error);
                     });
-            
+
+            }
+        },
+        checkLength(event) {
+            if (this.inputLength >= 600) {
+                // If input length exceeds the maximum length, prevent further input
+                this.maxLength = true
+                event.preventDefault();
+                // Optionally, you can provide feedback to the user that the maximum length has been reached
+                console.log(
+                    "Maximum length reached. You cannot enter more characters."
+                );
+            }else{
+                this.maxLength = false
+            }
+        },
+        checkLength2(event) {
+            if (this.inputLength2 >= 50) {
+                // If input length exceeds the maximum length, prevent further input
+                this.maxLength2 = true
+                event.preventDefault();
+                // Optionally, you can provide feedback to the user that the maximum length has been reached
+                console.log(
+                    "Maximum length reached. You cannot enter more characters."
+                );
+            }else{
+                this.maxLength2 = false
+            }
         },
     },
 };
@@ -157,7 +196,6 @@ export default {
         background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
     }
 }
-
 
 /* the design for the next button */
 .button {

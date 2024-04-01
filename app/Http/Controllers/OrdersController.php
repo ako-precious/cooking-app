@@ -57,6 +57,7 @@ class OrdersController extends Controller
             return redirect()->route('welcome');
         }
     }
+    
     public function order()
     {
         $user_id = Auth::id();
@@ -75,14 +76,31 @@ class OrdersController extends Controller
       
     public function calendar()
     {
-        $user_id =   Auth::id();
-        $cook = Cook::firstWhere('user_id', $user_id)->pluck('user_id'); 
-        Meal::firstWhere('user_id', $user_id)->pluck('user_id'); 
-        dd( MealSchedule::where('user_id',$cook)->with('meal', 'user')->get()->toArray());
-        return inertia('Cook/Menu/Calendar', [
+        $user_id = Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            $orders = []; // Initialize an empty array to store all orders
+            $menu = Meal::where('cook_id', $user_id)->get();
+            foreach ($menu as $meal) {
+                // Fetch orders for each meal and add them to the $orders array 
+                $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
+                if ($mealSchedules->isNotEmpty()) {
+                    // Append the meal schedules to the $orders array
+                    $orders[] = $mealSchedules;
+                }
+            }
+            dd($orders);
+            // dd($accept);
+            return inertia('Cook/Menu/Calendar', [ 'InitialEvent' => $orders]);
+        }
+         else {
+            # code...
+            return redirect()->route('welcome');
+        }
+        // return inertia('Cook/Menu/Calendar', [
           
-            'InitialEvent' => MealSchedule::where('user_id',$cook)->with('meal', 'user')->get()->toArray()
-        ]);
+        //     => MealSchedule::where('user_id',$cook)->with('meal', 'user')->get()
+        // ]);
     }
     // public function update(Request $request, $id){
 

@@ -86,10 +86,13 @@ export default {
             },
         };
     },
+//     mounted() {
+// console.log(this.$page.props.auth.user.id);
+//     },
     methods: {
         addUserToCook() {
             axios
-                .post("/cook", this.newCook)
+                .post("/cook/menu", this.newCook)
                 .then((response) => {
                     // Handle the response and extract the ID of the newly created row
                     console.log(response.data.id);

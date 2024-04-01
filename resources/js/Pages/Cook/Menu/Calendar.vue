@@ -61,16 +61,18 @@ export default defineComponent({
             axios
                 .get("/cook/calendar")
                 .then((response) => {
+                    
+                    console.log(response.data);
                     this.schedules = response.data;
-                    this.formatSchedules();
-                    this.updateCalendarOptions();
+                    // this.formatSchedules();
+                    // this.updateCalendarOptions();
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
                 });
         },
         formatSchedules() {
-            this.formattedEvents = this.schedules.map((schedule) => {
+            this.formattedEvents = this.schedules.flat().map((schedule) => {
                 return {
                     id: schedule.id,
                     title: schedule.meal.title,
