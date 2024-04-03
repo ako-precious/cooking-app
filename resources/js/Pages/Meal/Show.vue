@@ -191,10 +191,17 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     >
                         <div class="lg:w-full">
                             <div class="flex items-center py-5">
-                                <font-awesome-icon
-                                    icon="user"
-                                    class="mr-3 p-2 bg-oynx text-snow rounded-full"
-                                />
+                                 
+                                <img v-if="meal.user.profile_photo_path"
+                                            src="comment.profile_photo_path"
+                                            class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
+                                            alt="woman avatar"
+                                        />
+                                        <img v-else
+                                            :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
+                                            class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
+                                            alt="woman avatar"
+                                        />
                                 <h1
                                     class="font-semibold text-xl text-oynx dark:text-snow"
                                 >
