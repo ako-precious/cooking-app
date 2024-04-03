@@ -112,7 +112,7 @@ const submit = () => {
                   
                    
                     <div class="block my-3">
-                        <Link :href="route('auth.google')">
+                        <Link :href="route('auth.google')" target="_blank">
                             <SocialLogin>
                                 <template #logo>
                                   <GoogleLogo />
