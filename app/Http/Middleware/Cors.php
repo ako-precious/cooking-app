@@ -14,12 +14,20 @@ class Cors
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {
-        return $next($request)
-        ->header('Access-Control-Allow-Origin', '*')
-        ->header('Access-Control-Allow-Methods', '*')
-        ->header('Access-Control-Allow-Credentials', true)
-        ->header('Access-Control-Allow-Headers', '*')
-        ->header('Accept', 'application/json');
+    { $response = $next($request);
+
+        // Check if the response is an instance of Symfony\Component\HttpFoundation\Response
+        if ($response instanceof \Symfony\Component\HttpFoundation\Response) {
+            // Add CORS headers to the response
+            $response->headers->set('Access-Control-Allow-Origin', '*');
+            $response->headers->set('Access-Control-Allow-Methods', '*');
+            $response->headers->set('Access-Control-Allow-Credentials', 'true');
+            $response->headers->set('Access-Control-Allow-Headers', '*');
+            $response->headers->set('Accept', 'application/json');
+        }
+
+        // Return the modified response
+        return $response;
+    
     }
 }

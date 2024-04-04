@@ -43,8 +43,17 @@ require __DIR__.'/../vendor/autoload.php';
 | to this client's browser, allowing them to enjoy our application.
 |
 */
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Credentials', true);
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Credentials', true);
+
+
+header("Access-Control-Allow-Origin: *");
+//header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers:*");
+
+if ($_SERVER['REQUEST_METHOD'] == "OPTIONS") {//send back preflight request response
+return "";
+}
 // header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 // header('Access-Control-Allow-Headers: Origin, Content-Type, Accept, Authorization, X-Request-With');
 
