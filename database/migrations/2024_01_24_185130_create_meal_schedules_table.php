@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('meal_time');
             $table->date('start_date');
             $table->date('end_date');
+            $table->enum('status', ['pending', 'rejected', 'accepted', 'processed', 'ready', 'in transit', 'delivered', 'confirmed'])->default('pending');
             $table->timestamps();
         });
     }
