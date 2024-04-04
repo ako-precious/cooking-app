@@ -29,8 +29,8 @@ class OrdersController extends Controller
                 // Fetch orders for each meal and add them to the $orders array 
                 $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
                 $pendingOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'pending')->with('order', 'meal', 'user')->get();
-                $rejectOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'reject')->with('order', 'meal', 'user')->get();
-                $acceptOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accept')->with('order', 'meal', 'user')->get();
+                $rejectedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'rejected')->with('order', 'meal', 'user')->get();
+                $acceptedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accepted')->with('order', 'meal', 'user')->get();
                 $processedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
                 $readyOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
                 $transitOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'in transit')->with('order', 'meal', 'user')->get();
@@ -40,8 +40,8 @@ class OrdersController extends Controller
                     // Append the meal schedules to the $orders array
                     $orders[] = $mealSchedules;
                     $pending[] = $pendingOrders;
-                    $reject[] = $rejectOrders;
-                    $accept[] = $acceptOrders;
+                    $rejected[] = $rejectedOrders;
+                    $accepted[] = $acceptedOrders;
                     $processed[] = $processedOrders;
                     $ready[] = $readyOrders;
                     $transit[] = $transitOrders;
@@ -49,8 +49,8 @@ class OrdersController extends Controller
                     $confirmed[] = $confirmedOrders;
                 }
             }
-            // dd($accept);
-            return inertia('Cook/Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'transit' => $transit, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
+            // dd($accepted);
+            return inertia('Cook/Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'rejected' => $rejected, 'accepted' => $accepted , 'processed' => $processed , 'ready' => $ready, 'transit' => $transit, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
         }
          else {
             # code...
@@ -64,14 +64,14 @@ class OrdersController extends Controller
         
                 $orders = MealSchedule::where('user_id', $user_id)->with('order', 'meal', 'user')->get(); 
                 $pending = MealSchedule::where('user_id', $user_id)->where('status', 'pending')->with('order', 'meal', 'user')->get(); 
-                $reject = MealSchedule::where('user_id', $user_id)->where('status', 'reject')->with('order', 'meal', 'user')->get(); 
-                $accept = MealSchedule::where('user_id', $user_id)->where('status', 'accept')->with('order', 'meal', 'user')->get();
+                $rejected = MealSchedule::where('user_id', $user_id)->where('status', 'rejected')->with('order', 'meal', 'user')->get(); 
+                $accepted = MealSchedule::where('user_id', $user_id)->where('status', 'accepted')->with('order', 'meal', 'user')->get();
                 $processed = MealSchedule::where('user_id', $user_id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
                 $ready = MealSchedule::where('user_id', $user_id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
                 $transit = MealSchedule::where('user_id', $user_id)->where('status', 'in transit')->with('order', 'meal', 'user')->get();
                 $delivered = MealSchedule::where('user_id', $user_id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
                 $confirmed = MealSchedule::where('user_id', $user_id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
-        return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'reject' => $reject, 'accept' => $accept , 'processed' => $processed , 'ready' => $ready, 'transit' =>$transit, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
+        return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'rejected' => $rejected, 'accepted' => $accepted , 'processed' => $processed , 'ready' => $ready, 'transit' =>$transit, 'delivered' => $delivered, 'confirmed' =>$confirmed]);
     }
       
     public function calendar()
@@ -90,7 +90,7 @@ class OrdersController extends Controller
                 }
             }
             // dd($orders);
-            // dd($accept);
+            // dd($accepted);
             return inertia('Cook/Order/Calendar', [ 'orders' => $orders]);
         }
          else {

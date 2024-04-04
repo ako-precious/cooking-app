@@ -67,23 +67,23 @@ defineProps(["order"]);
         <div class="bg text-xl z-20 flex items-center">
             <div v-if="meal.status == 'pending'" class="flex">
                 <div
-                    @click="ChangeStatus('accept')"
+                    @click="ChangeStatus('accepted')"
                     class="mr-2 p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
                 >
                     <p
                         class="text-base font-semibold group-action-text capitalize"
                     >
-                        accept
+                        accepted
                     </p>
                 </div>
                 <div
-                    @click="ChangeStatus('reject')"
+                    @click="ChangeStatus('rejected')"
                     class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
                 >
                     <p
                         class="text-base font-semibold group-action-text capitalize"
                     >
-                        reject
+                        rejected
                     </p>
                 </div>
             </div>

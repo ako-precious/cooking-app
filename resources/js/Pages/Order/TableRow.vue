@@ -36,7 +36,7 @@ defineProps(["meal"]);
 
     <td class="whitespace-nowrap px-6 py-3">
         <div class="bg text-xl z-20 flex items-center">
-            <div v-if="meal.status == 'accept'">
+            <div v-if="meal.status == 'accepted'">
                 <Link :href="`/process_order/${meal.id}`">
                     <div
                         class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"

@@ -225,7 +225,7 @@ class MealScheduleController extends Controller
 
         $meal_status = Meal::find($new_MealSchedule->meal_id);
         if ($meal_status->ordering_preferences === 'automatic') {
-            $new_MealSchedule->status = 'accept';
+            $new_MealSchedule->status = 'accepted';
             $new_MealSchedule->save();
         }
         $cook = Meal::find($new_MealSchedule->meal_id);
