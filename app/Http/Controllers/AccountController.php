@@ -15,32 +15,54 @@ class AccountController extends Controller
 {
 
     
-
-    public function return(Request $request)
+    public function return()
     {
-       return Socialite::driver("google")->redirect();
+        return Socialite::driver("google")->redirect();
     }
-    public function callback(Request $request)  
+    
+    public function callback()  
     {
-        
         $googleUser = Socialite::driver("google")->user();
         $find_user = User::firstWhere('google_id', $googleUser->id);
         if($find_user){
             Auth::login($find_user);
-        }else{
-
-            $user = User::updateOrCreate(['email' => $googleUser->email],
-            ['name' => $googleUser->name,
-            'google_id' => $googleUser->id,
-            //   'password'=> Hash::make(Str::random(12)) ,
-            'profile_photo_path' => $googleUser->avatar,
-            'email_verified_at' => now()]);
-            
+        } else {
+            $user = User::updateOrCreate(['email' => $googleUser->email], [
+                'name' => $googleUser->name,
+                'google_id' => $googleUser->id,
+                'profile_photo_path' => $googleUser->avatar,
+                'email_verified_at' => now()
+            ]);
             Auth::login($user);
         }
-         dd($googleUser);
-    
+        dd($googleUser);
     }
+    
+    // public function return(Request $request)
+    // {
+    //    return Socialite::driver("google")->redirect();
+    // }
+    // public function callback(Request $request)  
+    // {
+        
+    //     $googleUser = Socialite::driver("google")->user();
+    //     $find_user = User::firstWhere('google_id', $googleUser->id);
+    //     if($find_user){
+    //         Auth::login($find_user);
+    //     }else{
+
+    //         $user = User::updateOrCreate(['email' => $googleUser->email],
+    //         ['name' => $googleUser->name,
+    //         'google_id' => $googleUser->id,
+    //         //   'password'=> Hash::make(Str::random(12)) ,
+    //         'profile_photo_path' => $googleUser->avatar,
+    //         'email_verified_at' => now()]);
+            
+    //         Auth::login($user);
+    //     }
+    //      dd($googleUser);
+    
+    // }
     public function fb_return(Request $request)
     {
        return Socialite::driver("facebook")->redirect();

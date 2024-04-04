@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['/', 'sanctum/csrf-cookie', 'https://accounts.google.com/*'],
+    'paths' => ['*', 'sanctum/csrf-cookie', 'https://accounts.google.com/*'],
 
     'allowed_methods' => ['*'],
 

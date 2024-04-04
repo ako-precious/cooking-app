@@ -23,6 +23,7 @@ return new class extends Migration
             $table->tinyInteger('nutrition');
             $table->tinyInteger('portion_size'); 
             $table->tinyInteger('freshness');
+            $table->tinyInteger('total');
             $table->string('comment',600);
             $table->timestamps();
         });
