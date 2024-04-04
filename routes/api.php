@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 });
 
-Route::middleware(['web'])->group(function () {
+Route::middleware(['web','api'])->group(function () {
     
     // Place your routes that require session middleware here
     Route::get('/auth/google/callback', [AccountController::class, 'callback']);
