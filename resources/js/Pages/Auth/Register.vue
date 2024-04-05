@@ -1,29 +1,66 @@
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import SocialLogin from "./SocialLogin.vue"
-import Checkbox from '@/Components/Checkbox.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import AuthenticationCard from "@/Components/AuthenticationCard.vue";
+import SocialLogin from "./SocialLogin.vue";
+import Checkbox from "@/Components/Checkbox.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
 import AppleLogo from "@/Components/AppleLogo.vue";
 import GoogleLogo from "@/Components/GoogleLogo.vue";
 import FacebookLogo from "@/Components/FacebookLogo.vue";
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
     terms: false,
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+    form.post(route("register"), {
+        onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
+</script>
+
+<script>
+export default {
+  methods: {
+    openGoogleSignInPopup() {
+        // Adjust the width and height according to your requirements
+      const width = 500;
+      const height = 500;
+      const left = window.screen.width / 2 - width / 2;
+      const top = window.screen.height / 2 - height ;
+
+      // URL to your Google sign-in route
+      const googleSignInUrl = "/auth/google/return";
+
+      // Open the popup window
+      window.open(googleSignInUrl, "GoogleSignInPopup", `width=${width},height=${height},left=${left},top=${top}`);
+   
+
+    },
+    openFacebookSignInPopup() {
+        // Adjust the width and height according to your requirements
+      const width = 500;
+      const height = 500;
+      const left = window.screen.width / 2 - width / 2;
+      const top = window.screen.height / 2 - height / 2;
+
+      // URL to your Google sign-in route
+      const googleSignInUrl = "/auth/facebook/return";
+
+      // Open the popup window
+      window.open(googleSignInUrl, "GoogleSignInPopup", `width=${width},height=${height},left=${left},top=${top}`);
+   
+
+    }
+  }
+}
 </script>
 
 <template>
@@ -35,7 +72,7 @@ const submit = () => {
         </template>
 
         <form @submit.prevent="submit">
-            <div  class="mt-4 group">
+            <div class="mt-4 group">
                 <InputLabel for="name" value="Name" />
                 <TextInput
                     id="name"
@@ -61,42 +98,68 @@ const submit = () => {
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
-           <div class="flex flex-col lg:flex-row justify-between">
-               <div class="mt-4 group">
-                   <InputLabel for="password" value="Password" />
-                   <TextInput
-                       id="password"
-                       v-model="form.password"
-                       type="password"
-                       class="mt-1 block w-full"
-                       required
-                       autocomplete="new-password"
-                   />
-                   <InputError class="mt-2" :message="form.errors.password" />
-               </div>
-   
-               <div class="mt-4 group">
-                   <InputLabel for="password_confirmation" value="Confirm Password" />
-                   <TextInput
-                       id="password_confirmation"
-                       v-model="form.password_confirmation"
-                       type="password"
-                       class="mt-1 block w-full"
-                       required
-                       autocomplete="new-password"
-                   />
-                   <InputError class="mt-2" :message="form.errors.password_confirmation" />
-               </div>
+            <div class="flex flex-col lg:flex-row justify-between">
+                <div class="mt-4 group">
+                    <InputLabel for="password" value="Password" />
+                    <TextInput
+                        id="password"
+                        v-model="form.password"
+                        type="password"
+                        class="mt-1 block w-full"
+                        required
+                        autocomplete="new-password"
+                    />
+                    <InputError class="mt-2" :message="form.errors.password" />
+                </div>
 
-           </div>
+                <div class="mt-4 group">
+                    <InputLabel
+                        for="password_confirmation"
+                        value="Confirm Password"
+                    />
+                    <TextInput
+                        id="password_confirmation"
+                        v-model="form.password_confirmation"
+                        type="password"
+                        class="mt-1 block w-full"
+                        required
+                        autocomplete="new-password"
+                    />
+                    <InputError
+                        class="mt-2"
+                        :message="form.errors.password_confirmation"
+                    />
+                </div>
+            </div>
 
-            <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature" class="mt-4">
+            <div
+                v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature"
+                class="mt-4"
+            >
                 <InputLabel for="terms">
                     <div class="flex items-center">
-                        <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
+                        <Checkbox
+                            id="terms"
+                            v-model:checked="form.terms"
+                            name="terms"
+                            required
+                        />
 
-                        <div class="ms-2" >
-                            I agree to the <a target="_blank" :href="route('terms.show')" class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">Privacy Policy</a>
+                        <div class="ms-2">
+                            I agree to the
+                            <a
+                                target="_blank"
+                                :href="route('terms.show')"
+                                class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred"
+                                >Terms of Service</a
+                            >
+                            and
+                            <a
+                                target="_blank"
+                                :href="route('policy.show')"
+                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred"
+                                >Privacy Policy</a
+                            >
                         </div>
                     </div>
                     <InputError class="mt-2" :message="form.errors.terms" />
@@ -104,11 +167,18 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-between mt-4">
-                <Link :href="route('login')" class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred">
+                <Link
+                    :href="route('login')"
+                    class="underline text-sm text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-polynesian dark:focus:ring-offset-lighred"
+                >
                     Already registered?
                 </Link>
 
-                <PrimaryButton class="ms-4  text-oynx  dark:text-snow " :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton
+                    class="ms-4 text-oynx dark:text-snow"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing"
+                >
                     Register
                 </PrimaryButton>
             </div>
@@ -121,43 +191,30 @@ const submit = () => {
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                 </div>
                 <div class="flex flex-col justify-between">
-                    
-                    <div class="block my-3"> 
-                        <Link :href="route('auth.google')"  target="_blank" >
+                    <div class="block my-3">
+                        <a :href="route('auth.google')" @click.prevent="openGoogleSignInPopup">
                             <SocialLogin>
                                 <template #logo>
-                                  <GoogleLogo />
-                              </template>
+                                    <GoogleLogo />
+                                </template>
                                 <template #name>
                                     Continue with Google
-                                </template>                             
+                                </template>
                             </SocialLogin>
-                            
-                        </Link>
+                        </a>
                     </div>
                     <div class="block my-3">
-                        <Link :href="route('auth.facebook')">
+                        <a :href="route('auth.facebook')" @click.prevent="openFacebookSignInPopup()">
                             <SocialLogin>
-                              <template #logo>
-                                  <FacebookLogo title="logo"/>
-                              </template>
+                                <template #logo>
+                                    <FacebookLogo title="logo" />
+                                </template>
                                 <template #name>
                                     Continue with Facebook
-                                </template>                             
+                                </template>
                             </SocialLogin>
-                            
-                        </Link>
+                        </a>
                     </div>
-                    <!-- <div class="block">
-                        <a href="#"
-                            ><PrimaryButton disabled class="w-full flex">
-                                <p class="flex items-center text-sm text-oynx dark:text-snow">
-                                    <AppleLogo />
-                                 <span class="text-center w-full">Continue with Apple</span>  
-                                </p>
-                            </PrimaryButton></a
-                        >
-                    </div> -->
                 </div>
             </div>
         </form>

@@ -9,7 +9,7 @@ import FacebookLogo from "@/Components/FacebookLogo.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
-import SocialLogin from "./SocialLogin.vue"
+import SocialLogin from "./SocialLogin.vue";
 
 defineProps({
     canResetPassword: Boolean,
@@ -31,14 +31,48 @@ const submit = () => {
     });
 };
 </script>
+<script>
+export default {
+  methods: {
+    openGoogleSignInPopup() {
+        // Adjust the width and height according to your requirements
+      const width = 500;
+      const height = 500;
+      const left = window.screen.width / 2 - width / 2;
+      const top = window.screen.height / 2 - height ;
+
+      // URL to your Google sign-in route
+      const googleSignInUrl = "/auth/google/return";
+
+      // Open the popup window
+      window.open(googleSignInUrl, "GoogleSignInPopup", `width=${width},height=${height},left=${left},top=${top}`);
+   
+
+    },
+    openFacebookSignInPopup() {
+        // Adjust the width and height according to your requirements
+      const width = 500;
+      const height = 500;
+      const left = window.screen.width / 2 - width / 2;
+      const top = window.screen.height / 2 - height / 2;
+
+      // URL to your Google sign-in route
+      const googleSignInUrl = "/auth/facebook/return";
+
+      // Open the popup window
+      window.open(googleSignInUrl, "GoogleSignInPopup", `width=${width},height=${height},left=${left},top=${top}`);
+   
+
+    }
+  }
+}
+</script>
 
 <template>
     <Head title="Sign in" />
 
     <AuthenticationCard>
-        <!-- <template #logo> -->
-        <!-- <AuthenticationCardLogo /> -->
-        <!-- </template> -->
+       
 
         <div
             v-if="status"
@@ -109,38 +143,32 @@ const submit = () => {
                     <div class="bg-oynx dark:bg-snow w-full h-[1px]"></div>
                 </div>
                 <div class="flex flex-col justify-between">
-                  
-                   
                     <div class="block my-3">
-                        <Link :href="route('auth.google')" target="_blank">
+                        <a :href="route('auth.google')" @click.prevent="openGoogleSignInPopup">
                             <SocialLogin>
                                 <template #logo>
-                                  <GoogleLogo />
-                              </template>
+                                    <GoogleLogo />
+                                </template>
                                 <template #name>
                                     Continue with Google
-                                </template>                             
+                                </template>
                             </SocialLogin>
-                            
-                        </Link>
+                        </a>
                     </div>
                     <div class="block my-3">
-                        <Link :href="route('auth.facebook')">
+                        <a :href="route('auth.facebook')" @click.prevent="openFacebookSignInPopup()">
                             <SocialLogin>
-                              <template #logo>
-                                  <FacebookLogo title="logo"/>
-                              </template>
+                                <template #logo>
+                                    <FacebookLogo title="logo" />
+                                </template>
                                 <template #name>
                                     Continue with Facebook
-                                </template>                             
+                                </template>
                             </SocialLogin>
-                            
-                        </Link>
+                        </a>
                     </div>
-                  
                 </div>
             </div>
         </form>
     </AuthenticationCard>
 </template>
-

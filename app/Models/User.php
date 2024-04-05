@@ -33,6 +33,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'other_info',
         'google_id',
         'facebook_id',
+        'profile_photo_path',
         'email_verified_at'
     ];
 

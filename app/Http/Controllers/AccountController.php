@@ -25,20 +25,21 @@ class AccountController extends Controller
         
         $googleUser = Socialite::driver("google")->user();
         $find_user = User::firstWhere('google_id', $googleUser->id);
-        if($find_user){
-            Auth::login($find_user);
-        }else{
+        // if($find_user){
+        //     Auth::login($find_user);
+        // }else{
 
             $user = User::updateOrCreate(['email' => $googleUser->email],
             ['name' => $googleUser->name,
             'google_id' => $googleUser->id,
-            //   'password'=> Hash::make(Str::random(12)) ,
+              'password'=> Hash::make(Str::random(12)) ,
             'profile_photo_path' => $googleUser->avatar,
             'email_verified_at' => now()]);
             
             Auth::login($user);
-        }
-         dd($googleUser);
+        // }
+        return redirect('/');
+        //  dd($googleUser);
     
     }
     public function fb_return(Request $request)
