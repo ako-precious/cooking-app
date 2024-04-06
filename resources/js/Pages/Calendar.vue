@@ -114,7 +114,6 @@
 <script>
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
-import Selection from "@/Components/Selection.vue";
 import TextInput from "@/Components/TextInput.vue";
 export default {
     data() {
