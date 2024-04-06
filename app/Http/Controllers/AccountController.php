@@ -25,9 +25,10 @@ class AccountController extends Controller
         
         $googleUser = Socialite::driver("google")->user();
         $find_user = User::firstWhere('google_id', $googleUser->id);
-        // if($find_user){
-        //     Auth::login($find_user);
-        // }else{
+        if($find_user){
+            Auth::login($find_user);
+            return redirect('/');
+        }else{
 
             $user = User::updateOrCreate(['email' => $googleUser->email],
             ['name' => $googleUser->name,
@@ -37,8 +38,8 @@ class AccountController extends Controller
             'email_verified_at' => now()]);
             
             Auth::login($user);
-        // }
-        return redirect('/');
+            return redirect('/user/profile');
+        }
         //  dd($googleUser);
     
     }

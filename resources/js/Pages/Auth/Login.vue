@@ -35,33 +35,32 @@ const submit = () => {
 export default {
   methods: {
     openGoogleSignInPopup() {
-        // Adjust the width and height according to your requirements
-      const width = 500;
-      const height = 500;
-      const left = window.screen.width / 2 - width / 2;
-      const top = window.screen.height / 2 - height ;
-
-      // URL to your Google sign-in route
-      const googleSignInUrl = "/auth/google/return";
-
       // Open the popup window
-      window.open(googleSignInUrl, "GoogleSignInPopup", `width=${width},height=${height},left=${left},top=${top}`);
-   
+      const authWindow =  window.open("/auth/google/return", "GoogleSignInPopup", 'width=500,height=500' );
+     
+      // Check for successful authentication every second
+      const interval = setInterval(() => {
+        if (authWindow.closed || this.$page.props.auth.user.id) {
+          clearInterval(interval);
+          // Refresh the page after authentication is done
+          window.location.reload();
+        }
+      }, 1000);
 
     },
     openFacebookSignInPopup() {
-        // Adjust the width and height according to your requirements
-      const width = 500;
-      const height = 500;
-      const left = window.screen.width / 2 - width / 2;
-      const top = window.screen.height / 2 - height / 2;
-
-      // URL to your Google sign-in route
-      const googleSignInUrl = "/auth/facebook/return";
 
       // Open the popup window
-      window.open(googleSignInUrl, "GoogleSignInPopup", `width=${width},height=${height},left=${left},top=${top}`);
+      const authWindow =   window.open("/auth/facebook/return", "GoogleSignInPopup", 'width=500,height=500');
    
+       // Check for successful authentication every second
+       const interval = setInterval(() => {
+        if (authWindow.closed || this.$page.props.auth.user.id) {
+          clearInterval(interval);
+          // Refresh the page after authentication is done
+          window.location.reload();
+        }
+      }, 1000);
 
     }
   }
