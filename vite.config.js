@@ -8,7 +8,8 @@ export default defineConfig({
         //...
         env: {
           NODE_ENV: 'production'
-        }
+        },
+        mode: 'production'
       },
     plugins: [
         laravel({

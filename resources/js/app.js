@@ -22,6 +22,13 @@ import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 /* add icons to the library */
 library.add( faUser, faGlobe, faArrowRight, faCaretDown, faUserPlus, faRightToBracket, faDoorOpen, faCirclePlus, faHeart, faShare, faStar, faGoogle, faCalendar, faGear, faClose, faHouse, faMagnifyingGlass, faForward, faBackward, faPlus, faEarthAfrica, faEarthAmerica, faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faEarth, faImages, faDollarSign, faCaretDown, faCaretUp, faToggleOff, faToggleOn, faImage, faPepperHot, faNewspaper, faBell, faRightFromBracket   );
 
+if (process.env.MIX_ENV_MODE === 'production') {
+    Vue.config.devtools = false;
+    Vue.config.debug = false;
+    Vue.config.silent = true;
+}
+
+
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
