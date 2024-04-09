@@ -13,7 +13,9 @@
     <link rel="icon" type="image/png" href="/images/logo2.png" class="rounded-full">
     <!-- Scripts -->
     @routes
+    
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+    
     @inertiaHead
     <script src="https://js.stripe.com/v3/"></script>
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
