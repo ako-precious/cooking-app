@@ -2,15 +2,14 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import vue from "@vitejs/plugin-vue";
 
-
+VITE_ENV_MODE=production;
 
 export default defineConfig({
-    mode: 'production',
+    // mode: 'production',
     build: {
-        env: {
-            NODE_ENV: "production",
-        },
-        mode: "production",
+        mode: 'production',
+        // mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+   
     },
     plugins: [
         laravel({

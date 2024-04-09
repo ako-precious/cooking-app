@@ -39,7 +39,7 @@ createInertiaApp({
     },
 });
 
-if (process.env.MIX_ENV_MODE === "production") {
+if (import.meta.env.VITE_ENV_MODE === "production") {
     Vue.config.devtools = false;
     Vue.config.debug = false;
     Vue.config.silent = true;
