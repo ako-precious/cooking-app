@@ -5,7 +5,12 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
   mode: 'production', // Set the mode directly to 'production'
   build: {
+    manifest: true,
+    outDir: 'public/build',
     mode: 'production', // Ensure the build mode is also set to 'production'
+    rollupOptions: {
+        input: 'resources/js/app.js',
+    }
   },
   plugins: [
     laravel({

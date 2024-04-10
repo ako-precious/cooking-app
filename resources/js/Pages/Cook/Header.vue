@@ -6,9 +6,9 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
 </script>
 
 <template>
-    <div class="md:px-5">
+    <div class="container md:px-5">
 
-        <header class="py-3  bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in">
+        <header class="py-2  bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in">
             <div
                 :class="{ 'fix align-bottom shadow-sm' : isHeaderFixed }"
                 class="flex justify-between items-center w-full bg-snow dark:bg-oynx"
@@ -16,6 +16,11 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
             <Link :href="route('welcome')">
              <div class="w-full flex items-center">
                     <ApplicationMark class="block w-auto" />
+                    <span
+                        class="hidden md:block ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase text-oynx dark:text-snow"
+                    >
+                        Ounjemi
+                    </span>
                 </div>
             </Link>
     

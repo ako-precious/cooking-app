@@ -9,16 +9,14 @@
              <Link :href="route('welcome')">
              <div class="w-full flex items-center">
                     <ApplicationMark class="block w-auto" />
+                    <span
+                        class="hidden md:block ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase text-oynx dark:text-snow"
+                    >
+                        Ounjemi
+                    </span>
                 </div>
             </Link>
-                
-                <Link :href="route('welcome')">
-                    <span 
-                    class="ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase text-oynx dark:text-snow "
-                    >
-                    Ounjemi
-                </span>
-            </Link>
+               
         </div>
         
         <!-- search -->
