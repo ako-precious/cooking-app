@@ -3,6 +3,11 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+    define: {
+        'import.meta.env.VITE_APP_NAME': JSON.stringify('Ounjemi'),
+        'import.meta.env.VITE_APP_ENV ': JSON.stringify('production'),
+        // Other environment variables...
+      },
   mode: 'production', // Set the mode directly to 'production'
   build: {
     manifest: true,
