@@ -35,12 +35,12 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 document.addEventListener("DOMContentLoaded", () => {
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    // resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    resolve: async (name) => {
-        const pages = import.meta.glob('./Pages/**/*.vue');
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
+    // resolve: async (name) => {
+    //     const pages = import.meta.glob('./Pages/**/*.vue');
         
-        return (await pages[`./Pages/${name}.vue`]()).default;
-    },
+    //     return (await pages[`./Pages/${name}.vue`]()).default;
+    // },
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) }, { mode: 'production' })
             .use(plugin)
