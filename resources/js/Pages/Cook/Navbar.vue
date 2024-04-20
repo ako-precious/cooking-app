@@ -72,7 +72,7 @@ export default {
     position: fixed;
     top: 0;
     right: 0;
-    width: 100%;
+    width: 100vw;
     padding: 1rem 3rem;
     z-index: 1000; /* Adjust z-index as needed */
 }

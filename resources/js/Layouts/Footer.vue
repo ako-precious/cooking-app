@@ -109,7 +109,7 @@ export default {
         </div>
 
         <div class="col-span-2 sm:col-span-1">
-          <p class="font-medium text-gray-900">Helpful Links</p>
+          <p class="font-medium text-gray-900">Support</p>
 
           <ul class="mt-6 space-y-4 text-sm">
             <li>
