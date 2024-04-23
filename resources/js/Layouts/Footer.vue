@@ -25,14 +25,14 @@ export default {
 
 <!-- \ -->
 
-<footer class="border-t border-gray-500 bg-white">
+<footer class="border-t border-gray-500 bg-gray-50 dark:bg-oynx/10">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="lg:flex lg:items-start lg:gap-8">
       
       <div class="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16 w-full">
         <!-- <div class="col-span-2">
           <div>
-            <h2 class="text-2xl font-bold text-gray-900">Get the latest news!</h2>
+            <h2 class="text-2xl font-bold text-gray-500">Get the latest news!</h2>
 
             <p class="mt-4 text-gray-500">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non cupiditate quae nam
@@ -65,85 +65,85 @@ export default {
         </div> -->
 
         <div class="col-span-2 sm:col-span-1">
-          <p class="font-medium text-gray-900">Support</p>
+          <p class="font-bold text-gray-600">Support</p>
 
           <ul class="mt-6 space-y-4 text-sm">
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75">Help </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75">Help </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Company Review </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Company Review </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Accounts Review </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> HR Consulting </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> SEO Optimisation </a>
             </li>
           </ul>
         </div>
 
         <div class="col-span-2 sm:col-span-1">
-          <p class="font-medium text-gray-900">Company</p>
+          <p class="font-bold text-gray-600">Company</p>
 
           <ul class="mt-6 space-y-4 text-sm">
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> About </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> About </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Meet the Team </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Meet the Team </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Accounts Review </a>
             </li>
           </ul>
         </div>
 
         <div class="col-span-2 sm:col-span-1">
-          <p class="font-medium text-gray-900">Support</p>
+          <p class="font-bold text-gray-600">Support</p>
 
           <ul class="mt-6 space-y-4 text-sm">
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Contact </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Contact </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> FAQs </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> FAQs </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Live Chat </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Live Chat </a>
             </li>
           </ul>
         </div>
 
         <div class="col-span-2 sm:col-span-1">
-          <p class="font-medium text-gray-900">Legal</p>
+          <p class="font-bold text-gray-600">Legal</p>
 
           <ul class="mt-6 space-y-4 text-sm">
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Accessibility </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Accessibility </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Returns Policy </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Returns Policy </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Refund Policy </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Refund Policy </a>
             </li>
 
             <li>
-              <a href="#" class="text-gray-700 transition hover:opacity-75"> Hiring Statistics </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Hiring Statistics </a>
             </li>
           </ul>
         </div>
