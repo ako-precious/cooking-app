@@ -42,6 +42,7 @@ scroll-behavior: smooth;
 
 <body class="disable-scrollbars scroll-smooth font-sans antialiased bg-snow dark:bg-oynx">
     @inertia
+
 </body>
 
 </html>
