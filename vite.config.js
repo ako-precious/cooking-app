@@ -2,6 +2,13 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
+if (process.env.VITE_ENV_MODE === 'production') {
+  Vue.config.devtools = false;
+  Vue.config.debug = false;
+  Vue.config.silent = true;
+}
+
+
 export default defineConfig({
   define: {
     'import.meta.env.VITE_APP_NAME': JSON.stringify('Ounjemi'),

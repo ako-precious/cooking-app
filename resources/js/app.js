@@ -57,8 +57,3 @@ createInertiaApp({
 });
 });
 
-    // app.config.devtools = false;
-    // app.config.debug = false;
-    // app.config.silent = true;
-// }
-
