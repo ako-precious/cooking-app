@@ -3,9 +3,9 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 if (process.env.VITE_ENV_MODE === 'production') {
-  Vue.config.devtools = false;
-  Vue.config.debug = false;
-  Vue.config.silent = true;
+  vue.config.devtools = false;
+vue.config.debug = false;
+  vue.config.silent = true;
 }
 
 

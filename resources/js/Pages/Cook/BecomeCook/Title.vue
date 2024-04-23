@@ -119,7 +119,7 @@ export default {
     data() {
         return {
             meal: {
-                name: this.Meal.name,
+                name: this.Meal.name || "",
                 description: this.Meal.description || "",
             },
             maxLength: false,

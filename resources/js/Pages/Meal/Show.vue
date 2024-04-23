@@ -193,14 +193,14 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                             <div class="flex items-center py-5">
                                  
                                 <img v-if="meal.user.profile_photo_path"
-                                            src="comment.profile_photo_path"
+                                            :src="`/storage/${meal.user.profile_photo_path}`"
                                             class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
-                                            alt="woman avatar"
+                                            alt="avatar"
                                         />
                                         <img v-else
                                             :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
                                             class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
-                                            alt="woman avatar"
+                                            alt="avatar"
                                         />
                                 <h1
                                     class="font-semibold text-xl text-oynx dark:text-snow"

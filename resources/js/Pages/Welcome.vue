@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/vue3";
 import DropBarNav from "./Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
+import Loader from "@/Layouts/Loader.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
