@@ -60,7 +60,6 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
-import Dropdown from "@/Components/Dropdown.vue";
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 // import route from "vendor/tightenco/ziggy/src/js";
 </script>

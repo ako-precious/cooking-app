@@ -193,7 +193,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                             <div class="flex items-center py-5">
                                  
                                 <img v-if="meal.user.profile_photo_path"
-                                            :src="`/storage/${meal.user.profile_photo_path}`"
+                                            :src=" getProfilePhotoUrl(meal.user.profile_photo_path)"
                                             class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
                                             alt="avatar"
                                         />
@@ -369,6 +369,13 @@ export default {
             const scrollThreshold = 20;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
+        getProfilePhotoUrl(profilePhotoPath) {
+      if (profilePhotoPath.includes('https://lh3.googleusercontent.com')) {
+        return profilePhotoPath;
+      } else {
+        return `/storage/${profilePhotoPath}`;
+      }
+    },
 
         getPhoto() {
             axios
@@ -393,7 +400,7 @@ export default {
                 .get("/meal_photos/" + this.meal.id)
                 .then((response) => {
                     // this.other_src = `/storage/${response.data.otherPhotos.meal_photo_path}`.replace("/public", "");
-                    this.other_src = response.data.otherPhotos.map((image) => ({
+                    this.other_src = response.data.otherPhotos.slice(1).map((image) => ({
                         src: `/storage/${image.meal_photo_path}`.replace(
                             "/public",
                             ""
