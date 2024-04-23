@@ -70,20 +70,20 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 <button
                                     @click="
                                         [
-                                            chooseStatus(reject),
-                                            selectedDiv('reject'),
+                                            chooseStatus(rejected),
+                                            selectedDiv('rejected'),
                                         ]
                                     "
                                     :class="{
                                         'bg-persian text-snow':
-                                            selected === 'reject',
+                                            selected === 'rejected',
                                     }"
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Rejected [{{
-                                            reject.length
+                                            rejected.length
                                         }}]</span
                                     >
                                 </button>
@@ -92,20 +92,20 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 <button
                                     @click="
                                         [
-                                            chooseStatus(accept),
-                                            selectedDiv('accept'),
+                                            chooseStatus(accepted),
+                                            selectedDiv('accepted'),
                                         ]
                                     "
                                     :class="{
                                         'bg-persian text-snow':
-                                            selected === 'accept',
+                                            selected === 'accepted',
                                     }"
                                     class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
                                 >
                                     <span
                                         class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
                                         >Accepted [{{
-                                            accept.length
+                                            accepted.length
                                         }}]</span
                                     >
                                 </button>
@@ -356,10 +356,10 @@ import axios from "axios";
 
 export default {
     props: {
-        meal_orders: Object,
-        pending: Object,
-        reject: Object,
-        accept: Object,
+        meal_orders: Object ,
+        pending: Object ,
+        rejected: Object,
+        accepted: Object,
         processed: Object,
         ready: Object,
         transit: Object,

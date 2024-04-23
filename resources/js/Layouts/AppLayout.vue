@@ -95,8 +95,9 @@ const logout = () => {
                         <SideBarLink :class="getRouteClass('meal-schedule')">
                             <SideBarIcon class="group-hover:animate-bounce">
                                 <font-awesome-icon
-                                    icon="door-open"
-                                    class="ml-2"
+                                icon="door-open"
+                                
+                                class="text-oynx dark:text-snow"
                             /></SideBarIcon>
                             <SideBarSpan :class="{ 'opacity-0': isLinkHidden }">
                                 Meal Schedule
