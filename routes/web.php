@@ -50,6 +50,7 @@ Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
     
     Route::get('/auth/facebook/callback', [AccountController::class, 'fb_callback']);
     Route::get('/auth/facebook/return', [AccountController::class, 'fb_return'])->name('auth.facebook');
+    Route::get('meals/{id}', [MealController::class, 'meals' ]);    
 
 Route::middleware([
     'auth:sanctum',
@@ -90,7 +91,6 @@ Route::middleware([
     
     //Meal Controller
     Route::resource('/meal', MealController::class);
-    Route::get('meals/{id}', [MealController::class, 'meals' ]);    
     Route::put('meal/title/{id}', [MealController::class, 'title' ]);    
     Route::put('meal/limit/{id}', [MealController::class, 'limit' ]);
     Route::put('meal/status/{id}', [MealController::class, 'status' ]);

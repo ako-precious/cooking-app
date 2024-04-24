@@ -32,7 +32,7 @@ import BecomeCook from "./BecomeCook.vue";
             >
                 <div class="py-5 lg:py-8 lg:px-10">
                     <h1
-                        class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
+                        class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
                     >
                         Glad you're back,
                         <span class="capitalize">

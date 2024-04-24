@@ -2,7 +2,8 @@
 import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
-import SettingsDropdown from "@/Components/SettingsDropdown.vue";
+
+import DropBarNav from "@/Pages/Header/DropBarNav.vue";
 import ShowRating from "@/Pages/Rating/Show.vue";
 import Loader from "@/Components/Loader.vue";
 import Login from "@/Pages/Auth/Login.vue";
@@ -47,15 +48,13 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     <p>Ratings</p>
                 </a>
             </div>
-            <div class="flex gap-6
-             items-center sm:ms-6">
+            <div class="flex gap-6 items-center sm:ms-6">
                 <!-- Settings Dropdown -->
                 <div
-                    class="w-24 relative "
+                    class="w-24 relative"
                     @click="openModal(meal)"
                     :class="{
-                        ' right-0 ':
-                            isHeaderFixed,
+                        ' right-0 ': isHeaderFixed,
                     }"
                 >
                     <SocialLogin class="group">
@@ -70,11 +69,14 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 </div>
                 <div
                     :class="{
-                        'absolute -right-28':
-                            isHeaderFixed,
+                        'absolute -right-28': isHeaderFixed,
                     }"
-                >
-                    <SettingsDropdown></SettingsDropdown>
+                > <div
+                    >
+                    <DropBarNav class="w-10 h-10 relative"
+                   
+                    />
+                </div>
                 </div>
                 <div class="sm:hidden flex items-center">
                     <a
@@ -83,51 +85,49 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                         class="sm:marker:hidden p-0 text-sm text-white transition-all ease-nav-brand block"
                         aria-expanded="false"
                     >
-                        
                         <Dropdown align="right" width="48">
-                <template #trigger>
-                    <div class="w-4.5 overflow-hidden">
-                            <i
-                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
-                            ></i>
-                            <i
-                                class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
-                            ></i>
-                            <i
-                                class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
-                            ></i>
-                        </div>
-    
-                   
-                </template>
-    
-                <template #content class="bg-snow dark:bg-oynx">
-                    <div
-                        class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
-                    >
-    
-                        <DropdownLink
-                            href="#photo"
-                            class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                        >
-                    <p>Photo</p>
-                        </DropdownLink>
-                        <DropdownLink href="#detail"
-                            class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                        > 
-                    <p>Details</p>
-                        </DropdownLink>
-                        <DropdownLink href="#rating"
-                            :href="'profile.show'"
-                            class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                        > <a  >
-                    <p>Ratings</p>
-                </a>
-                        </DropdownLink>
-    
-                    </div>
-                </template>
-            </Dropdown>
+                            <template #trigger>
+                                <div class="w-4.5 overflow-hidden">
+                                    <i
+                                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                    ></i>
+                                    <i
+                                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                    ></i>
+                                    <i
+                                        class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                    ></i>
+                                </div>
+                            </template>
+
+                            <template #content class="bg-snow dark:bg-oynx">
+                                <div
+                                    class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
+                                >
+                                    <DropdownLink
+                                        href="#photo"
+                                        class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        <p>Photo</p>
+                                    </DropdownLink>
+                                    <DropdownLink
+                                        href="#detail"
+                                        class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        <p>Details</p>
+                                    </DropdownLink>
+                                    <DropdownLink
+                                        href="#rating"
+                                        :href="'profile.show'"
+                                        class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        <a>
+                                            <p>Ratings</p>
+                                        </a>
+                                    </DropdownLink>
+                                </div>
+                            </template>
+                        </Dropdown>
                     </a>
                 </div>
             </div>
@@ -148,7 +148,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     </h1>
                 </div>
                 <div
-                    class="flex flex-col lg:flex-row h-[20rem] overflow-scroll disable-scrollbars"
+                    class="flex flex-col lg:flex-row h-[25rem] overflow-scroll disable-scrollbars"
                 >
                     <div class="lg:w-1/2">
                         <div class="overflow-hidden px-4 pb-4 lg:p-0">
@@ -191,17 +191,22 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     >
                         <div class="lg:w-full">
                             <div class="flex items-center py-5">
-                                 
-                                <img v-if="meal.user.profile_photo_path"
-                                            :src=" getProfilePhotoUrl(meal.user.profile_photo_path)"
-                                            class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
-                                            alt="avatar"
-                                        />
-                                        <img v-else
-                                            :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
-                                            class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
-                                            alt="avatar"
-                                        />
+                                <img
+                                    v-if="meal.user.profile_photo_path"
+                                    :src="
+                                        getProfilePhotoUrl(
+                                            meal.user.profile_photo_path
+                                        )
+                                    "
+                                    class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
+                                    alt="avatar"
+                                />
+                                <img
+                                    v-else
+                                    :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
+                                    class="rounded-full shadow-md dark:shadow-black/30 mr-3 w-10"
+                                    alt="avatar"
+                                />
                                 <h1
                                     class="font-semibold text-xl text-oynx dark:text-snow"
                                 >
@@ -272,7 +277,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                 </ul>
                             </div>
                         </div>
-                       
+
                         <div
                             class="modal disable-scrollbars overflow-y-auto overflow-x-hidden pt-16 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
                             v-show="newEventModalVisible"
@@ -370,12 +375,14 @@ export default {
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
         getProfilePhotoUrl(profilePhotoPath) {
-      if (profilePhotoPath.includes('https://lh3.googleusercontent.com')) {
-        return profilePhotoPath;
-      } else {
-        return `/storage/${profilePhotoPath}`;
-      }
-    },
+            if (
+                profilePhotoPath.includes("https://lh3.googleusercontent.com")
+            ) {
+                return profilePhotoPath;
+            } else {
+                return `/storage/${profilePhotoPath}`;
+            }
+        },
 
         getPhoto() {
             axios
@@ -400,13 +407,15 @@ export default {
                 .get("/meal_photos/" + this.meal.id)
                 .then((response) => {
                     // this.other_src = `/storage/${response.data.otherPhotos.meal_photo_path}`.replace("/public", "");
-                    this.other_src = response.data.otherPhotos.slice(1).map((image) => ({
-                        src: `/storage/${image.meal_photo_path}`.replace(
-                            "/public",
-                            ""
-                        ), // Assuming your image object has a 'url' property
-                        id: image.id, // Assuming your image object has an 'id' property
-                    }));
+                    this.other_src = response.data.otherPhotos
+                        .slice(1)
+                        .map((image) => ({
+                            src: `/storage/${image.meal_photo_path}`.replace(
+                                "/public",
+                                ""
+                            ), // Assuming your image object has a 'url' property
+                            id: image.id, // Assuming your image object has an 'id' property
+                        }));
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);

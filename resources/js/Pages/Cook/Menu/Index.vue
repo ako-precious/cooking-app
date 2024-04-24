@@ -21,7 +21,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                     <div class="flex flex-col w-full">
                         <div class="py-5 lg:py-8 ">
                     <h1
-                        class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
+                        class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
                     >
                         Glad you're back,
                         <span class="capitalize">
@@ -30,7 +30,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                         </span>
                     </h1>
                 </div>
-                        <div class="flex justify-between items-center">
+                        <div class="flex flex-col md:flex-row items-start justify-between md:items-center">
 
                             <div class="py-3">
                                 <h1
@@ -73,11 +73,11 @@ import CaretUp from "@/Components/CaretUp.vue";
                         </div>
                         <div class="sm:-mx-6 lg:-mx-8">
                             <div
-                                class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                                class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
-                                <div class="overflow-x-auto">
+                                <div class="overflow-x-scroll disable-scrollbars">
                                     <table
-                                        class="min-w-full text-left text-sm font-light relative"
+                                        class="w-full px-4 text-left text-sm font-light relative"
                                     >
                                         <thead
                                             class="align-bottom shadow-sm translate-x-0 sticky top-1"
