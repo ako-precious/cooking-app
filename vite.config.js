@@ -1,24 +1,19 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-
-if (process.env.VITE_ENV_MODE === 'production') {
-  vue.config.devtools = false;
-vue.config.debug = false;
-  vue.config.silent = true;
-}
-
-
+// import vueJsx from '@vitejs/plugin-vue-jsx';
 export default defineConfig({
   define: {
     'import.meta.env.VITE_APP_NAME': JSON.stringify('Ounjemi'),
-    'import.meta.env.VITE_APP_ENV': JSON.stringify('production'), // Remove extra space
+    'import.meta.env.VITE_APP_ENV': JSON.stringify('production'), 
     // Other environment variables...
   },
   build: {
     manifest: true,
     outDir: 'public/build',
-    mode: 'production', // Ensure the build mode is set to 'production'
+    emptyOutDir: true, // Ensure the output directory is emptied before rebuilding
+    minify: 'terser', // Use terser for minification
+    cssCodeSplit: true, // Split CSS code into separate files
     rollupOptions: {
       input: 'resources/js/app.js',
     },
@@ -36,10 +31,11 @@ export default defineConfig({
         },
       },
     }),
+    // vueJsx()
   ],
-  resolve: { 
-    alias: {
-        vue: 'vue/dist/vue.esm-bundler.js',
-    },
-},
+  // resolve: { 
+  //   alias: {
+  //     'vue': 'vue/dist/vue.esm-bundler.js', // Ensure you are using the correct Vue version
+  //   },
+  // },
 });

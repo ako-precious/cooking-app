@@ -27,3 +27,41 @@ Signature dish (Requests the chef's most well-known creation)
 
 <!-- Saving for later -->
 <!-- "Indulge your taste buds and unlock a world of culinary delights with our platform, where passionate home chefs transform ordinary ingredients into extraordinary experiences. From tantalizing dishes to mouthwatering desserts, our community of food artisans invites you to savor their creations and bring the flavors of the world into your home. Whether you're seeking a gourmet feast for a special occasion or craving everyday comfort food made with love, discover your perfect match among our talented cooks who are ready to turn your cravings into unforgettable culinary adventures." -->
+
+function dragStart(ev) {
+    console.log("dragging");
+
+    var dragImage = document.getElementById("dragImage");
+    dragImage.style.display = "block"; // Show the drag image
+
+    // Calculate offset position relative to the touch point
+    var offsetX = 50; // Example offset values
+    var offsetY = 50;
+
+    // Position the drag image
+    dragImage.style.left = (ev.touches[0].clientX - offsetX) + "px";
+    dragImage.style.top = (ev.touches[0].clientY - offsetY) + "px";
+
+    ev.dataTransfer.setData("text", ev.target.dataset.tileIndex);
+}
+
+// Prevent default touch event handling
+document.addEventListener("touchmove", function (e) {
+    e.preventDefault();
+}, { passive: false });
+
+#dragImage {
+    position: absolute;
+    z-index: -1; /* Ensure it's behind the cursor */
+    /* Add any styling for your drag image */
+}
+
+<div id="dragImage" style="display: none;">
+    <!-- Your drag image content goes here -->
+</div>
+
+<div draggable="true" ondragstart="dragStart(event)">Drag me</div>
+
+When dealing with touch events on mobile devices, the behavior of the setDragImage function can be different compared to desktops. The setDragImage function is not consistently supported across all browsers and devices for touch events.
+
+To address this issue and ensure compatibility with touch devices, you can set a custom drag image using HTML and CSS rather than relying on the setDragImage function. Here's how you can do it:
