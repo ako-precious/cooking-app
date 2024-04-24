@@ -20,7 +20,7 @@ import CaretUp from "@/Components/CaretUp.vue";
             <div
                 class="m-auto flex flex-col justify-center h-full lg:pb-12 w-full"
             >
-            <div class="py-5 lg:py-8 px-4 ">
+                <div class="py-5 lg:py-8 px-4">
                     <h1
                         class="font-semibold text-2xl lg:text-4xl text-oynx dark:text-snow"
                     >
@@ -282,24 +282,65 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                         />
                                                     </template>
                                                 </TableHeadVue>
-                                                 <TableHeadVue @click="sort('customer_name')" :active="selected === 'customer_name'">
-      <template #title>
-        Customer's Name
-      </template>
-      <template #symbols>
-        <CaretUp @click="sort('customer_name', true)" />
-        <CaretDown @click="sort('customer_name', false)" />
-      </template>
-    </TableHeadVue>
-    <TableHeadVue @click="sort('meal_time')" :active="selected === 'meal_time'">
-      <template #title>
-        Meal Time
-      </template>
-      <template #symbols>
-        <CaretUp @click="sort('meal_time', true)" />
-        <CaretDown @click="sort('meal_time', false)" />
-      </template>
-    </TableHeadVue>
+                                                <TableHeadVue
+                                                    @click="
+                                                        sort('customer_name')
+                                                    "
+                                                    :active="
+                                                        selected ===
+                                                        'customer_name'
+                                                    "
+                                                >
+                                                    <template #title>
+                                                        Customer's Name
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp
+                                                            @click="
+                                                                sort(
+                                                                    'customer_name',
+                                                                    true
+                                                                )
+                                                            "
+                                                        />
+                                                        <CaretDown
+                                                            @click="
+                                                                sort(
+                                                                    'customer_name',
+                                                                    false
+                                                                )
+                                                            "
+                                                        />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue
+                                                    @click="sort('meal_time')"
+                                                    :active="
+                                                        selected === 'meal_time'
+                                                    "
+                                                >
+                                                    <template #title>
+                                                        Meal Time
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp
+                                                            @click="
+                                                                sort(
+                                                                    'meal_time',
+                                                                    true
+                                                                )
+                                                            "
+                                                        />
+                                                        <CaretDown
+                                                            @click="
+                                                                sort(
+                                                                    'meal_time',
+                                                                    false
+                                                                )
+                                                            "
+                                                        />
+                                                    </template>
+                                                </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
                                                         Meal Delivery Date
@@ -331,7 +372,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         <tbody class="relative">
                                             <tr
                                                 v-if="orders.flat().length > 0"
-                                                v-for="order in sortedOrders.flat() "
+                                                v-for="order in sortedOrders.flat()"
                                                 :key="order.id"
                                                 class="animate-fade-in border-b py-4 capitalize text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                             >
@@ -404,26 +445,30 @@ export default {
                 return ""; // Return an empty string if $page.props.auth.user.name is undefined
             }
         },
-  sortedOrders() {
-    return this.orders.flat().sort((a, b) => {
-      if (this.selected === "meal_title") {
-        return (a.meal_title || '').localeCompare(b.meal_title || '');
-      } else if (this.selected === "customer_name") {
-        return (a.customer_name || '').localeCompare(b.customer_name || '');
-      } else if (this.selected === "meal_time") {
-        const timeA = new Date(a.meal_time);
-        const timeB = new Date(b.meal_time);
-        if (!isNaN(timeA) && !isNaN(timeB)) {
-          return timeA - timeB;
-        }
-        // Handle cases where one or both meal_time values are not valid dates
-        // You can adjust the handling according to your requirements
-      }
-      // Handle cases where this.selected is not recognized
-      return 0;
-    });
-  },
-},
+        sortedOrders() {
+            return this.orders.flat().sort((a, b) => {
+                if (this.selected === "meal_title") {
+                    return (a.meal_title || "").localeCompare(
+                        b.meal_title || ""
+                    );
+                } else if (this.selected === "customer_name") {
+                    return (a.customer_name || "").localeCompare(
+                        b.customer_name || ""
+                    );
+                } else if (this.selected === "meal_time") {
+                    const timeA = new Date(a.meal_time);
+                    const timeB = new Date(b.meal_time);
+                    if (!isNaN(timeA) && !isNaN(timeB)) {
+                        return timeA - timeB;
+                    }
+                    // Handle cases where one or both meal_time values are not valid dates
+                    // You can adjust the handling according to your requirements
+                }
+                // Handle cases where this.selected is not recognized
+                return 0;
+            });
+        },
+    },
 
     methods: {
         chooseStatus(status) {

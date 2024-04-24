@@ -32,7 +32,7 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
                     <Link :href="`/cook/order`" class="py-2 px-3 navbar-link" >
                         <p>Orders</p>
                     </Link>
-                    <Link class="py-2 md:px-3 navbar-link" href="">
+                    <Link class="py-2 md:px-3 navbar-link" :href="`/cook/calendar`">
                         <p>Calendar</p>
                     </Link>
                     <Link :href="`/cook/menu`" class="py-2 px-3 navbar-link" >

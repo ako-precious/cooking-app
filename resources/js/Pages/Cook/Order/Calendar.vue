@@ -1,4 +1,5 @@
 <script setup>
+import { Head, Link } from "@inertiajs/vue3";
 import { defineComponent } from "vue";
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -53,6 +54,23 @@ export default defineComponent({
         this.getMealSchedule();
         // console.log(this.orders.flat());
     },
+    computed: {
+        firstWord() {
+            // Check if $page.props.auth.user.name is defined
+            if (
+                this.$page.props.auth &&
+                this.$page.props.auth.user &&
+                this.$page.props.auth.user.name
+            ) {
+                // Split the name string into an array of words
+                const words = this.$page.props.auth.user.name.split(" ");
+
+                // Return the first word
+                return words[0];
+            } else {
+                return ""; // Return an empty string if $page.props.auth.user.name is undefined
+            }
+        },},
    
     methods: {
         getMealSchedule() {
@@ -152,7 +170,7 @@ export default defineComponent({
                             </h1>
                         </div>
                         <div class="w-full">
-                            <FullCalendar class="demo-app-calendar" :options="calendarOptions">
+                            <FullCalendar class="demo-app-calendar  dark:text-snow" :options="calendarOptions">
             <template v-slot:eventContent="arg">
                 <b>{{ arg.timeText }}</b>
                 <b>{{ arg.mealtime }}</b>
