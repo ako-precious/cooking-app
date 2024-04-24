@@ -1,5 +1,9 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+
+import { useDark, useToggle } from "@vueuse/core";
+const isDark = useDark();
+const toggleDarkMode = useToggle(isDark);
 </script>
 
 <template>

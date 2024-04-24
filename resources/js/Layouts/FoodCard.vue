@@ -29,7 +29,7 @@ export default {
     mounted() {
         // console.log(this.meal);
         this.handleScroll();
-        this.closeModal();
+        // this.closeModal();
     },
     created() {
         this.getPhoto();
