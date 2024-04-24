@@ -32,13 +32,13 @@
         @apply ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1  hover:bg-gradient-to-br hover:from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 hover:dark:bg-gradient-to-br hover:dark:from-[#2b312e] hover:dark:to-[#333a37]   transition-all duration-250 delay-75 ease-in
     }
     .shadow-small{
-        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-md  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-md hover:dark:shadow-oynx-md transition-all duration-250 ease-in delay-75
+        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-none transition-all duration-250 ease-in delay-75
     }
     .shadow-extra-small{
         @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm transition-all duration-250 ease-in delay-75
     }
     .shadow-reverse{
-        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-md  hover:shadow-snow-sm active:shadow-none dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-md hover:dark:shadow-oynx-sm transition-all duration-350 ease-in delay-75
+        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm  hover:shadow-none active:shadow-none dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-sm hover:dark:shadow-none hover:border hover:border-gray-600 transition-all duration-350 ease-in delay-75
     }
     .group-action-text{
         @apply text-oynx dark:text-snow group-hover:text-polynesian group-hover:dark:text-lighred group-active:text-persian transition-all duration-250 delay-100

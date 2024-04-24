@@ -123,7 +123,7 @@ const toggleDarkMode = useToggle(isDark);
                                 <div class="toggle"></div>
                                 <div
                                     class="names items-center justify-between"
-                                    :class="{ 'opacity-0': isLinkHidden }"
+                                   
                                 >
                                     <p class="light">Light</p>
                                     <p class="dark">Dark</p>

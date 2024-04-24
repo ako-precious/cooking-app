@@ -24,6 +24,14 @@ class OrdersController extends Controller
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             $orders = []; // Initialize an empty array to store all orders
+            $pending =[] ;
+                    $rejected = [];
+                    $accepted = [];
+                    $processed =[];
+                    $ready =[] ;
+                    $transit= [] ;
+                    $delivered = [];
+                    $confirmed = [];
             $menu = Meal::where('cook_id', $user_id)->get();
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array 
