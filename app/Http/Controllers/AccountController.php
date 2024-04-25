@@ -24,23 +24,23 @@ class AccountController extends Controller
     {
         
         $googleUser = Socialite::driver("google")->user();
-        $find_user = User::firstWhere('google_id', $googleUser->id);
-        if($find_user){
-            Auth::login($find_user);
-            return redirect('/');
-        }else{
+        // $find_user = User::firstWhere('google_id', $googleUser->id);
+        // if($find_user){
+        //     Auth::login($find_user);
+        //     return redirect('/');
+        // }else{
 
-            $user = User::updateOrCreate(['email' => $googleUser->email],
-            ['name' => $googleUser->name,
-            'google_id' => $googleUser->id,
-              'password'=> Hash::make(Str::random(12)) ,
-            'profile_photo_path' => $googleUser->avatar,
-            'email_verified_at' => now()]);
+        //     $user = User::updateOrCreate(['email' => $googleUser->email],
+        //     ['name' => $googleUser->name,
+        //     'google_id' => $googleUser->id,
+        //       'password'=> Hash::make(Str::random(12)) ,
+        //     'profile_photo_path' => $googleUser->avatar,
+        //     'email_verified_at' => now()]);
             
-            Auth::login($user);
-            return redirect('/user/profile');
-        }
-        //  dd($googleUser);
+        //     Auth::login($user);
+        //     return redirect('/user/profile');
+        // }
+         dd($googleUser);
     
     }
     public function azure_return(Request $request)
@@ -50,7 +50,8 @@ class AccountController extends Controller
     public function azure_callback(Request $request)  
     {
         
-        $azure = Socialite::driver("azure")->user();
+        $azure =  Socialite::driver('azure')->user();
+        // $azure =  Socialite::driver('microsoft')->user();
         // $find_user = User::firstWhere('google_id', $googleUser->id);
         // if($find_user){
         //     Auth::login($find_user);

@@ -47,6 +47,19 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 <a href="#rating" class="py-2 px-3 navbar-link text-nowrap">
                     <p>Ratings</p>
                 </a>
+                <div
+                    class="items-center justify-end rounded-md flex  py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
+                >
+                    <font-awesome-icon
+                        icon="fa-regular fa-heart"
+                        class="text-xl pr-3 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                    />
+
+                    <font-awesome-icon
+                        icon="share"
+                        class="text-xl px-3 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                    />
+                </div>
             </div>
             <div class="flex gap-6 items-center sm:ms-6">
                 <!-- Settings Dropdown -->
