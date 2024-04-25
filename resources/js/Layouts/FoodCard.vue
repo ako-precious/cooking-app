@@ -84,6 +84,20 @@ export default {
             const scrollThreshold = 50;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
+        addWishList(id){
+          const wishlist = {
+              meal_id: id ,
+            user_id: this.$page.props.auth.user.id,
+          }
+             axios
+                .post("/wishlist", wishlist)
+                .then((response) => {                   
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                })
+        },
         openModal(meal) {
             // Get the current date
             const currentDate = new Date();
@@ -183,10 +197,21 @@ export default {
                 <div
                     class="items-center justify-end rounded-md flex opacity-0 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
-                    <font-awesome-icon title="Add to wishlist"
+                <div v-if="$page.props.auth.user">
+                    <font-awesome-icon title="Add to wishlist" @click="addWishList(meal.id)"
                         icon="fa-regular fa-heart"
                         class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
+                    <font-awesome-icon title="Add to wishlist" @click="addWishList(meal.id)"
+                        icon="fa-solid fa-heart"
+                        class="text-xl text-persian pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                    />
+
+                </div>
+                <font-awesome-icon v-else title="Add to wishlist"
+                    icon="fa-regular fa-heart"
+                    class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                />
 
                     <font-awesome-icon title="Add to Meal Schedule"
                         @click="openModal(meal)"

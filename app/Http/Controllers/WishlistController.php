@@ -15,4 +15,20 @@ class WishlistController extends Controller
     //    dd($accounts);
         return inertia('wishlist',['wishlist' => $wishlists] );
     }
+
+    
+    public function store(Request $request)
+    {
+        $new_Wishlist = Wishlist::create($request->all());
+        // dd($new_Wishlist);
+
+                  $new_Wishlist->save();
+        
+
+        return response()->json([
+            'data' => $new_Wishlist,
+            'message' => 'Successfully added a new Meal Schedule!',
+            // 'status' => Response::HTTP_CREATED
+        ]);
+    }
 }
