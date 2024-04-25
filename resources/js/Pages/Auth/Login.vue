@@ -6,6 +6,7 @@ import InputError from "@/Components/InputError.vue";
 import AppleLogo from "@/Components/AppleLogo.vue";
 import GoogleLogo from "@/Components/GoogleLogo.vue";
 import FacebookLogo from "@/Components/FacebookLogo.vue";
+import MicrosoftLogo from "@/Components/MicrosoftLogo.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
@@ -52,6 +53,21 @@ export default {
 
       // Open the popup window
       const authWindow =   window.open("/auth/facebook/return", "GoogleSignInPopup", 'width=500,height=500');
+   
+       // Check for successful authentication every second
+       const interval = setInterval(() => {
+        if (authWindow.closed || this.$page.props.auth.user.id) {
+          clearInterval(interval);
+          // Refresh the page after authentication is done
+          window.location.reload();
+        }
+      }, 1000);
+
+    },
+    openMicrosoftSignInPopup() {
+
+      // Open the popup window
+      const authWindow =   window.open("/auth/microsoft/return", "MicroSignInPopup", 'width=500,height=500');
    
        // Check for successful authentication every second
        const interval = setInterval(() => {
@@ -150,6 +166,18 @@ export default {
                                 </template>
                                 <template #name>
                                     Continue with Google
+                                </template>
+                            </SocialLogin>
+                        </a>
+                    </div>
+                    <div class="block my-3">
+                        <a :href="route('auth.microsoft')" target="_blank" >
+                            <SocialLogin>
+                                <template #logo>
+                                    <MicrosoftLogo title="logo" />
+                                </template>
+                                <template #name>
+                                    Continue with Microsoft
                                 </template>
                             </SocialLogin>
                         </a>
