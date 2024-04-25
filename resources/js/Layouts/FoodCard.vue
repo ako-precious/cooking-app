@@ -183,17 +183,17 @@ export default {
                 <div
                     class="items-center justify-end rounded-md flex opacity-0 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
-                    <font-awesome-icon
+                    <font-awesome-icon title="Add to wishlist"
                         icon="fa-regular fa-heart"
                         class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
 
-                    <font-awesome-icon
+                    <font-awesome-icon title="Add to Meal Schedule"
                         @click="openModal(meal)"
                         icon="circle-plus"
                         class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
-                    <font-awesome-icon
+                    <font-awesome-icon title= "Share Meal"
                         icon="share"
                         class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />

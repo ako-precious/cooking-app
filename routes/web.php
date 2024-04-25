@@ -7,6 +7,7 @@ use App\Http\Controllers\MealScheduleController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Cook;
 use App\Models\Rating;
 use Illuminate\Foundation\Application;
@@ -76,6 +77,7 @@ Route::middleware([
     
     Route::resource('cook/order',OrdersController::class);
     Route::get('cook/calendar', [OrdersController::class, 'calendar']);
+    Route::get('wishlist', [ WishlistController::class, 'index']);
     Route::get('meal-schedule', [OrdersController::class, 'order' ])->name('meal-schedule');
     
     
