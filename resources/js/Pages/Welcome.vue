@@ -92,7 +92,7 @@ export default {
 
         <header
             :class="{ fix: isHeaderFixed }"
-            class= "py-2 bg-snow dark:bg-oynx z-990 transition-all  duration-300 delay-75 ease-in animate-fade-in"
+            class= "py-3 bg-snow dark:bg-oynx z-990 transition-all  duration-300 delay-75 ease-in animate-fade-in"
         >
             <Navbar class="bg-snow dark:bg-oynx">
                 <template #search>
