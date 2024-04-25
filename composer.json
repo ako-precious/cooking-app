@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "dcblogdev/laravel-microsoft-graph": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.8",
         "laravel/framework": "^10.10",
@@ -14,7 +13,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.12",
         "laravel/tinker": "^2.8",
-        "socialiteproviders/microsoft-azure": "*",
+        "socialiteproviders/microsoft-azure": "^5.2",
         "stripe/stripe-php": "^13.13",
         "tightenco/ziggy": "^1.0"
     },
