@@ -211,8 +211,8 @@ import BecomeCook from "./BecomeCook.vue";
                 <span class="with-span">We're with you</span>
             </button>
             <button v-else @click="createNewPhotos" class="btn2span group">
-                <span class="next-span">Nextt Step</span>
-                <span class="with-span">We're with you</span>
+                <span class="next-span">Next Step</span>
+                <span class="with-span">We are with you</span>
             </button>
         </template>
     </BecomeCook>
@@ -405,7 +405,8 @@ export default {
         },
 
         createNewPhotos() {
-            if (this.imageFiles.length > 4 && this.imageFiles.length < 10) {
+           
+            if (this.imageFiles.length >= 4 && this.imageFiles.length < 10) {
                 this.storePhotos();
             } else {
                 this.error = "The number of pictures must be between 4 and 10";
@@ -415,7 +416,7 @@ export default {
         storePhotos() {
             const formData = new FormData();
             formData.append("meal_id", this.Meal.id);
-
+           
             // Calculate the starting index for newly uploaded images
             let startingIndex = 0;
             if (this.mealPhotos.length > 0) {
@@ -423,8 +424,6 @@ export default {
                     this.mealPhotos[this.mealPhotos.length - 1].order
                 );
                 startingIndex = lastImage + 1;
-                //console.log(lastImage);
-                //console.log(lastImage + 1);
             }
           
 
@@ -432,19 +431,12 @@ export default {
                 formData.append("images[]", this.imageFiles[i]);
                 const index = startingIndex + i; // Calculate the index
                 if (!isNaN(index)) {
-                    // Check if the index is a valid number
-                    //     formData.append("images[]", this.imageFiles[i]);
                     formData.append("indexes[]", index); // Append the valid index
                 } else {
                     // console.error("Invalid index:", index);
                     // Handle the case where the index is not valid
                 }
             }
-            // for (let i = 0; i < this.imageFiles.length; i++) {
-            //     formData.append("indexes[]", startingIndex + i); // Add the updated index
-            // }
-            // //console.log(formData);
-
             axios
                 .post("/meal_photos", formData, {
                     headers: {
@@ -453,7 +445,7 @@ export default {
                 })
                 .then((response) => {
                     const MealId = response.data.image.meal_id;
-                    // //console.log(response);
+                    // console.log(response);
                     this.$inertia.visit(
                         `/become-a-cook/${MealId}/finishing-up`
                     );
@@ -463,30 +455,7 @@ export default {
                     this.error = "Error uploading images";
                 });
         },
-        // storePhotos() {
-        //     const formData = new FormData();
-        //     formData.append("meal_id", this.Meal.id);
-        //     for (let i = 0; i < this.imageFiles.length; i++) {
-        //         formData.append("images[]", this.imageFiles[i]);
-        //         formData.append("indexes[]", i + 1); // Add the index
-        //     }
-        //     axios
-        //         .post("/meal_photos", formData, {
-        //             headers: {
-        //                 "Content-Type": "multipart/form-data",
-        //             },
-        //         })
-        //         .then((response) => {
-        //             const MealId = response.data.image.meal_id;
-        //             this.$inertia.visit(
-        //                 `/become-a-cook/${MealId}/finishing-up`
-        //             );
-        //         })
-        //         .catch((error) => {
-        //             console.error("Error uploading images:", error);
-        //             this.error = "Error uploading images";
-        //         });
-        // },
+       
     },
 };
 </script>

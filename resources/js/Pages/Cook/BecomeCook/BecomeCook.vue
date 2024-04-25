@@ -18,7 +18,7 @@ import ApplicationMark from "@/Components/ApplicationMark.vue";
             </Link>
 
             <div
-                class="w-32 navbar-link font-semibold shadow-extra-small p-2 text-center rounded-full text-sm"
+                class="w-32 navbar-link font-semibold border p-2 text-center rounded-full text-sm"
             >
                 <Link :href="`/cook/menu`"> Save and Exist</Link>
             </div>
@@ -29,10 +29,10 @@ import ApplicationMark from "@/Components/ApplicationMark.vue";
             <!-- <Overview /> -->
             <slot name="info" class="animate-fade-in delay-100"></slot>
 
-            <div class="fixed h-20 shadow-extra-small w-full bottom-0">
+            <div class="fixed h-20 shadow-extra-small shadow-none w-full bottom-0">
                 <slot class="animate-left-in" name="progressbar"></slot>
                 <slot name="backbtn"></slot>
-                <slot name="mainbtn"></slot>
+                <slot name="mainbtn" class="shadow-none"></slot>
             </div>
         </div>
     </div>

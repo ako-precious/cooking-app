@@ -45,7 +45,7 @@ import BecomeCook from "./BecomeCook.vue";
                                 <div class="w-full py-5 ">
                                     <div class="flex flex-col">
                                         <h1
-                                            class="font-bold pt-1 text-xl lg:text-2xl tracking-wide text-oynx dark:text-snow"
+                                            class="font-bold pt-1 text-2xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                                         >
                                             What to do next?
                                         </h1>
