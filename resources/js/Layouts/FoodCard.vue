@@ -14,6 +14,7 @@ export default {
             userId: "",
             isLoading: true,
             src: "",
+            wishlist: '',
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
@@ -29,7 +30,7 @@ export default {
     mounted() {
         // console.log(this.meal);
         this.handleScroll();
-        // this.closeModal();
+        this.WishList();
     },
     created() {
         this.getPhoto();
@@ -84,19 +85,44 @@ export default {
             const scrollThreshold = 50;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
-        addWishList(id){
-          const wishlist = {
-              meal_id: id ,
-            user_id: this.$page.props.auth.user.id,
-          }
-             axios
+        removeWishList(id) {
+            axios
+                .delete(`/wishlist/${id}`)
+                .then((response) => {
+                    // Handle successful deletion
+                    console.log("Item deleted successfully.");
+                    // Optionally, update the UI to reflect the deletion
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error deleting item:", error);
+                });
+        },
+        addWishList(id) {
+            const wishlist = {
+                meal_id: id,
+                user_id: this.$page.props.auth.user.id,
+            };
+            axios
                 .post("/wishlist", wishlist)
-                .then((response) => {                   
-                    console.log(response);
+                .then((response) => {
+                    // console.log(response);
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
+                });
+        },
+        WishList() {
+            const id = this.meal.id;
+            axios
+                .get("/wishlist/" + id)
+                .then((response) => {
+                    response.data;
+                    console.log((this.wishlist = response.data.wishlist));
                 })
+                .catch((error) => {
+                    console.error("Error fetching data:", error);
+                });
         },
         openModal(meal) {
             // Get the current date
@@ -143,7 +169,7 @@ export default {
 </script>
 <template>
     <div
-        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]   transition-all duration-250 delay-75 ease-in"
+        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] transition-all duration-250 delay-75 ease-in"
     >
         <Link
             class="relative flex h-54 overflow-hidden"
@@ -197,28 +223,37 @@ export default {
                 <div
                     class="items-center justify-end rounded-md flex opacity-0 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
-                <div v-if="$page.props.auth.user">
-                    <font-awesome-icon title="Add to wishlist" @click="addWishList(meal.id)"
+                    <div v-if="$page.props.auth.user">
+                        <font-awesome-icon
+                            v-if="wishlist == null"
+                            title="Add to wishlist"
+                            @click="addWishList(meal.id)"
+                            icon="fa-solid fa-heart"
+                            class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        />
+                        <font-awesome-icon
+                            v-else
+                            title="Added to wishlist"
+                            @click="removeWishList(wishlist.id)"
+                            icon="fa-solid fa-heart"
+                            class="text-xl text-persian pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        />
+                    </div>
+                    <font-awesome-icon
+                        v-else
+                        title="Add to wishlist"
                         icon="fa-regular fa-heart"
                         class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
-                    <font-awesome-icon title="Add to wishlist" @click="addWishList(meal.id)"
-                        icon="fa-solid fa-heart"
-                        class="text-xl text-persian pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
-                    />
 
-                </div>
-                <font-awesome-icon v-else title="Add to wishlist"
-                    icon="fa-regular fa-heart"
-                    class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
-                />
-
-                    <font-awesome-icon title="Add to Meal Schedule"
+                    <font-awesome-icon
+                        title="Add to Meal Schedule"
                         @click="openModal(meal)"
                         icon="circle-plus"
                         class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
-                    <font-awesome-icon title= "Share Meal"
+                    <font-awesome-icon
+                        title="Share Meal"
                         icon="share"
                         class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
