@@ -27,7 +27,7 @@ import BecomeCook from "./BecomeCook.vue";
                         >
                             To really make your Meal stand out, we'll be
                             adding some visual elements in this phase. By
-                            including the key ingredients and photos of the meal (3 or
+                            including the key ingredients and photos of the meal (4 or
                             more!), you'll help readers understand your meal
                             better and imagine the deliciousness firsthand.
                             Plus, creating a unique title and description will

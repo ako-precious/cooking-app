@@ -29,20 +29,20 @@ import BecomeCook from "./BecomeCook.vue";
                         <div class="flex flex-col lg:flex-row w-full">
                             <div class="relative flex lg:p-5 lg:w-1/2">
                                 <div class="relative">
-
                                     <div
                                         class="absolute top-0 right-0 z-10 bg-transparent w-full h-full cursor-pointer"
-                                    >
-                                </div>
-                                        
-                                        <FoodCard
-                                            :meal="meal.data"
-                                            class="w-full h-full"
-                                        ></FoodCard>
+                                    ></div>
+
+                                    <FoodCard
+                                        :meal="meal.data"
+                                        class="w-full h-full"
+                                    ></FoodCard>
                                 </div>
                             </div>
-                            <div class="relative flex flex-col lg:pr-10 lg:w-1/2">
-                                <div class="w-full py-5 ">
+                            <div
+                                class="relative flex flex-col lg:pr-10 lg:w-1/2"
+                            >
+                                <div class="w-full py-5">
                                     <div class="flex flex-col">
                                         <h1
                                             class="font-bold pt-1 text-2xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
@@ -56,51 +56,43 @@ import BecomeCook from "./BecomeCook.vue";
                                         <h1
                                             class="font-bold pt-1 text-lg lg:text-xl tracking-wide text-oynx dark:text-snow"
                                         >
-                                            Let's know about your meal
+                                            Stay Informed! Check Your Order
+                                            Notifications
                                         </h1>
                                         <p
-                                            class="pt-3 text-sm  text-oynx dark:text-snow"
+                                            class="pt-3 text-sm text-oynx dark:text-snow"
                                         >
-                                            Share some basic info, like who you
-                                            food is made for and how many people
-                                            you can cook for.
+                                             Our notifications
+                                            keep you in the loop, so you can
+                                            focus on what you do best: cooking
+                                            up a storm! So, take a minute to
+                                            check your notifications, your mails and get
+                                            ready to serve up a culinary
+                                            masterpiece
                                         </p>
                                     </div>
                                 </div>
-
+                                
                                 <div class="w-full py-2">
                                     <div class="flex flex-col">
                                         <h1
-                                            class="font-bold pt-1 text-lg lg:text-xl  tracking-wide text-oynx dark:text-snow"
+                                            class="font-bold pt-1 text-lg lg:text-xl tracking-wide text-oynx dark:text-snow"
                                         >
-                                            Let's take the spot light
+                                            Time to shine! Wait for the first
+                                            customers
                                         </h1>
                                         <p
-                                            class="pt-3 text-sm  text-oynx dark:text-snow"
+                                            class="pt-3 text-sm text-oynx dark:text-snow"
                                         >
-                                            Bring your meal to life! Upload 5+
-                                            photos, tell your story with a title
-                                            and description. We'll lend a hand.
+                                            This comfy tee is your reminder that
+                                            all the hard work is about to pay
+                                            off. Get ready to showcase your
+                                            amazing product or service and
+                                            create lasting customer
+                                            relationships.
                                         </p>
                                     </div>
                                 </div>
-                                <div class="w-full py-2">
-                                    <div class="flex flex-col">
-                                        <h1
-                                            class="font-bold pt-1 text-lg lg:text-xl  tracking-wide text-oynx dark:text-snow"
-                                        >
-                                            Let's take the spot light
-                                        </h1>
-                                        <p
-                                            class="pt-3 text-sm  text-oynx dark:text-snow"
-                                        >
-                                            Bring your meal to life! Upload 5+
-                                            photos, tell your story with a title
-                                            and description. We'll lend a hand.
-                                        </p>
-                                    </div>
-                                </div>
-                              
                             </div>
                         </div>
                     </div>
@@ -130,10 +122,10 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #mainbtn>
             <!-- <Link :href="`/cook/menu`" class="font-semibold"> -->
-                <button @click="saveData" class="btn2span group">
-                    <span class="next-span">Unveil</span>
-                    <span class="with-span">We are done</span>
-                </button>
+            <button @click="saveData" class="btn2span group">
+                <span class="next-span">Unveil</span>
+                <span class="with-span">We are done</span>
+            </button>
             <!-- </Link> -->
         </template>
     </BecomeCook>
@@ -152,8 +144,7 @@ export default {
     },
     methods: {
         saveData() {
-           
-            const status = 'available'
+            const status = "available";
             axios
                 .put("/meal/status/" + this.meal.data.id, { status })
                 .then((response) => {
