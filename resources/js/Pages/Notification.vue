@@ -23,7 +23,6 @@ export default {
 
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
-        console.log(this.notifications);
     },
     created() {
         this.handleScroll();
@@ -31,11 +30,27 @@ export default {
     methods: {
         loadPreviousPage() {
             // Send an Inertia request to the previous page using the `notifications.links.prev` URL
-            Inertia.visit(notifications.links.prev);
+
+            this.$inertia.visit(this.notifications.prev_page_url);
         },
         loadNextPage() {
             // Send an Inertia request to the next page using the `notifications.links.next` URL
-            Inertia.visit(notifications.links.next);
+            this.$inertia.visit(this.notifications.next_page_url);
+        },
+        loadNext(link) {
+            // Send an Inertia request to the next page using the `notifications.links.next` URL
+            this.$inertia.visit(link);
+        },
+        updateStatus(){
+            axios.put('/notifications/status', {
+                status: 'read' // or 'inactive' depending on your requirement
+            })
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
         },
 
         handleScroll() {
@@ -43,6 +58,7 @@ export default {
             const scrollThreshold = 20;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
+
     },
 };
 </script>
@@ -79,9 +95,9 @@ export default {
                         class="col-span-1 mb-5 w-full max-w-full"
                     >
                         <div
-                            class="flex min-w-0 break-words w-full items-center justify-between shadow-extra-small shadow-xxs border group rounded-2xl bg-clip-border cursor-pointer"
+                            class="relative flex min-w-0 break-words w-full items-center justify-between shadow-extra-small shadow-xxs border group rounded-2xl bg-clip-border cursor-pointer"
                         >
-                            <Link class="w4" :href="`/become-a-cook/overview`">
+                            <Link class="w4" :href="`/meal-schedule`">
                                 <div
                                     class="relative flex items-center justify-between w-full p-4 mb-0 list-none rounded-xl"
                                 >
@@ -99,53 +115,84 @@ export default {
                                     <div></div>
                                 </div>
                             </Link>
-                            <p 
-                                class="bottom-1 w-12 top-1 right-1 h-full text-xs  cursor-pointer p-2 flex justify-center"
-                            >
-                                Mark as read 
-                            </p>
+                            <div
+                        v-if="notification.status == 'unread' "
+                        class="absolute top-[20%] right-[10%]"
+                    >
+                        <div
+                            class="bg-persian  w-[22px] h-[22px] rounded-full flex items-center justify-center"
+                        >
+                            <p class="text-xs font-bold text-persian">1</p>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
                 <div v-else>No notifications found.</div>
                 <div v-if="notifications.links">
                     <!-- component -->
-<div class="flex items-center justify-center py-10 w-full lg:px-0 sm:px-6 px-4">
-<!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+                    <div
+                        class="flex items-center justify-center py-10 w-full lg:px-0 sm:px-6 px-4"
+                    >
+                        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
 
-        <div class=" w-full  flex items-center justify-between border-t border-gray-200">
-            <div class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer">
-                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.1665 4H12.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M1.1665 4L4.49984 7.33333" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M1.1665 4.00002L4.49984 0.666687" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <p class="text-sm ml-3 font-medium leading-none ">Previous</p>                    
-            </div>
-            <div class="sm:flex hidden">
-                <p class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-persian border-t border-transparent hover:border-persian pt-3 mr-4 px-2">1</p>
-                <p class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-persian border-t border-transparent hover:border-persian pt-3 mr-4 px-2">2</p>
-                <p class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-persian border-t border-transparent hover:border-persian pt-3 mr-4 px-2">3</p>
-                <p class="text-sm font-medium leading-none cursor-pointer text-persian border-t border-persian pt-3 mr-4 px-2">4</p>
-                <p class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-persian border-t border-transparent hover:border-persian pt-3 mr-4 px-2">5</p>
-                 </div>
-            <div class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer">
-                <p class="text-sm font-medium leading-none mr-3">Next</p>
-                <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1.1665 4H12.8332" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9.5 7.33333L12.8333 4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9.5 0.666687L12.8333 4.00002" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    
-            </div>
-        </div>
+                        <div
+                            class="w-full flex items-center justify-between border-t border-gray-200"
+                        >
+                            <div
+                                class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer"
+                            >
+                                <p
+                                    v-if="notifications.prev_page_url"
+                                    @click.prevent="loadPreviousPage"
+                                    class="text-sm ml-3 font-medium leading-none"
+                                >
+                                    Previous
+                                </p>
+                            </div>
 
-        
-    </div>
-      <a v-if="notifications.prev_page_url" @click.prevent="loadPreviousPage">Previous</a>
-      <span>Page {{ notifications.current_page }} of {{ notifications.last_page }}</span>
-      <a v-if="notifications.next_page_url" @click.prevent="loadNextPage">Next</a>
-    </div>
+                            <div
+                                class="sm:flex hidden"
+                                v-for="(link, index) in notifications.links"
+                            >
+                                <div
+                                    v-if="
+                                        index > 0 &&
+                                        index < notifications.links.length - 1
+                                    "
+                                >
+                                    <p
+                                        @click.prevent="loadNext(link.url)"
+                                        v-if="link.active == true"
+                                        class="text-sm font-medium leading-none cursor-pointer text-persian border-t border-persian pt-3 mr-4 px-2"
+                                    >
+                                        {{ link.label }}
+                                    </p>
+                                    <p
+                                        @click.prevent="loadNext(link.url)"
+                                        v-else
+                                        class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-persian border-t border-transparent hover:border-persian pt-3 mr-4 px-2"
+                                    >
+                                        {{ link.label }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer"
+                            >
+                                <p
+                                    v-if="notifications.next_page_url"
+                                    @click.prevent="loadNextPage"
+                                    class="text-sm font-medium leading-none mr-3"
+                                >
+                                    Next
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+               <p class="cursor-pointer "  @click="updateStatus"> Mark as read</p>
             </div>
         </div>
     </div>

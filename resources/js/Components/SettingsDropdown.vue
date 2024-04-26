@@ -78,9 +78,9 @@ const toggleDarkMode = useToggle(isDark);
                         class="absolute top-[20%] right-[10%]"
                     >
                         <div
-                            class="bg-lighred  w-[20px] h-[20px] rounded-full flex items-center justify-center"
+                            class="bg-persian  w-[22px] h-[22px] rounded-full flex items-center justify-center"
                         >
-                            <p class="text-xs font-bold">{{ notifications }}</p>
+                            <p class="text-xs font-bold text-white">{{ notifications }}</p>
                         </div>
                     </div>
                         <font-awesome-icon icon="bell" class="mr-2" />
@@ -94,9 +94,9 @@ const toggleDarkMode = useToggle(isDark);
                         class="absolute top-[20%] right-[10%]"
                     >
                         <div
-                            class="bg-lighred w-[20px] h-[20px] rounded-full flex items-center justify-center"
+                            class="bg-persian w-[22px] h-[22px] rounded-full flex items-center justify-center"
                         >
-                            <p class="text-xs font-bold">{{ wishlist }}</p>
+                            <p class="text-xs font-bold text-white">{{ wishlist }}</p>
                         </div>
                     </div>
                         <font-awesome-icon icon="heart" class="mr-2" />

@@ -80,6 +80,7 @@ Route::middleware([
     Route::get('cook/calendar', [OrdersController::class, 'calendar']);
     Route::resource('wishlist', WishlistController::class);
     Route::resource('notifications', NotificationController::class);
+    Route::put('notifications/status', [NotificationController::class, 'updateStatus']);
     Route::get('meal-schedule', [OrdersController::class, 'order' ])->name('meal-schedule');
     
     
