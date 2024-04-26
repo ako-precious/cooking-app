@@ -191,7 +191,7 @@ export default {
             axios
                 .get("/wishlist/2")
                 .then((response) => {
-                   console.log( this.wishlist = response.data.meals);
+             this.wishlist = response.data.meals;
                 })
                 .catch((error) => {
                     // Handle error

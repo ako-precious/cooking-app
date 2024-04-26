@@ -26,7 +26,7 @@ class WishlistController extends Controller
 
 
         return response()->json([
-            'data' => $new_Wishlist,
+            'wishlist' => $new_Wishlist,
             'message' => 'Successfully added a new Meal Schedule!',
             // 'status' => Response::HTTP_CREATED
         ]);
@@ -37,16 +37,23 @@ class WishlistController extends Controller
         $wishlist = Wishlist::where('user_id', $user->id)
             ->where('meal_id', $id)
             ->first();
-            $user = Auth::user();
-            $wishlists = Wishlist::where('user_id', $user->id)->count();
+        $user = Auth::user();
+        $wishlists = Wishlist::where('user_id', $user->id)->count();
         return response()->json(['wishlist' => $wishlist, 'meals' => $wishlists]);
     }
 
     public function destroy($id)
     {
-        $item = Wishlist::findOrFail($id);
-        $item->delete();
-    
-        return response()->json(['message' => 'Item deleted successfully']);
+        $user = Auth::user();
+        $wishlist = Wishlist::where('user_id', $user->id)
+            ->where('meal_id', $id)
+            ->first();
+            // $item = Wishlist::findOrFail($id);
+            $wishlist->delete();
+            $item = Wishlist::where('user_id', $user->id)
+                ->where('meal_id', $id)
+                ->first();
+            
+        return response()->json(['wishlist' => $item, 'message' => 'Item deleted successfully']);
     }
 }

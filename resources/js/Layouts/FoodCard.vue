@@ -90,7 +90,7 @@ export default {
             axios
                 .delete(`/wishlist/${id}`)
                 .then((response) => {
-                    this.wishlist = response.data.wishlists;
+                    console.log(this.wishlist = response.data.wishlist);
                     // Update UI if necessary
                 })
                 .catch((error) => {
@@ -105,7 +105,7 @@ export default {
             axios
                 .post("/wishlist", wishlistData)
                 .then((response) => {
-                    this.wishlist = response.data.wishlists;
+                   console.log(this.wishlist = response.data.wishlist);
                     // Update UI if necessary
                 })
                 .catch((error) => {
@@ -113,15 +113,17 @@ export default {
                 });
         },
         WishList() {
-            const id = this.meal.id;
-            axios
-                .get("/wishlist/" + id)
-                .then((response) => {
-                    this.wishlist = response.data.wishlist;
-                })
-                .catch((error) => {
-                    console.error("Error fetching wishlist data:", error);
-                });
+            if(this.$page.props.auth.user){
+                const id = this.meal.id;
+                axios
+                    .get("/wishlist/" + id)
+                    .then((response) => {
+                        this.wishlist = response.data.wishlist;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching wishlist data:", error);
+                    });
+            }
         },
 
         openModal(meal) {
@@ -225,7 +227,7 @@ export default {
                 >
                     <div v-if="$page.props.auth.user">
                         <font-awesome-icon
-                            v-if="wishlist == null || undefined"
+                            v-if="wishlist == null"
                             title="Add to wishlist"
                             @click="addWishList(meal.id)"
                             icon="fa-solid fa-heart"
@@ -234,17 +236,19 @@ export default {
                         <font-awesome-icon
                             v-else
                             title="Added to wishlist"
-                            @click="removeWishList(wishlist.id)"
+                            @click="removeWishList(meal.id)"
                             icon="fa-solid fa-heart"
-                            class="text-xl text-persian pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                            class="text-xl text-persian pr-2 active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                     </div>
-                    <font-awesome-icon
-                        v-else
-                        title="Add to wishlist"
-                        icon="fa-regular fa-heart"
-                        class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
-                    />
+                    <div v-else>
+                        <font-awesome-icon
+                           
+                            title="Add to wishlist"
+                            icon="fa-solid fa-heart"
+                            class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        />
+                    </div>
 
                     <font-awesome-icon
                         title="Add to Meal Schedule"

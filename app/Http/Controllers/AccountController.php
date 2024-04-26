@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Stripe\Account as StripeAccount;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
@@ -49,8 +50,13 @@ class AccountController extends Controller
     }
     public function azure_callback(Request $request)  
     {
+            // $azure = Socialite::driver('azure')->user();
+            // dd($azure);
+            $azure = Socialite::driver('azure')->user();
+
+            // Log::info('Azure User Info:', $azure->toArray());
         
-        $azure =  Socialite::driver('azure')->user();
+       
         // $azure =  Socialite::driver('microsoft')->user();
         // $find_user = User::firstWhere('google_id', $googleUser->id);
         // if($find_user){
@@ -68,7 +74,7 @@ class AccountController extends Controller
         //     Auth::login($user);
         //     return redirect('/user/profile');
         // }
-         dd($azure);
+        //  dd($azure);
     
     }
     public function fb_return(Request $request)
