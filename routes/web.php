@@ -6,6 +6,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Cook;
@@ -78,6 +79,7 @@ Route::middleware([
     Route::resource('cook/order',OrdersController::class);
     Route::get('cook/calendar', [OrdersController::class, 'calendar']);
     Route::resource('wishlist', WishlistController::class);
+    Route::resource('notifications', NotificationController::class);
     Route::get('meal-schedule', [OrdersController::class, 'order' ])->name('meal-schedule');
     
     

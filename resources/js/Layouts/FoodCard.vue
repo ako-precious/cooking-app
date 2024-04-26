@@ -14,7 +14,7 @@ export default {
             userId: "",
             isLoading: true,
             src: "",
-            wishlist: '',
+            wishlist: "",
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
@@ -90,27 +90,26 @@ export default {
             axios
                 .delete(`/wishlist/${id}`)
                 .then((response) => {
-                    // Handle successful deletion
-                    console.log((this.wishlist = response.data.wishlists));
-                    // Optionally, update the UI to reflect the deletion
+                    this.wishlist = response.data.wishlists;
+                    // Update UI if necessary
                 })
                 .catch((error) => {
-                    // Handle error
                     console.error("Error deleting item:", error);
                 });
         },
         addWishList(id) {
-            const wishlist = {
+            const wishlistData = {
                 meal_id: id,
                 user_id: this.$page.props.auth.user.id,
             };
             axios
-                .post("/wishlist", wishlist)
+                .post("/wishlist", wishlistData)
                 .then((response) => {
-                    console.log((this.wishlist = response.data.wishlists));
+                    this.wishlist = response.data.wishlists;
+                    // Update UI if necessary
                 })
                 .catch((error) => {
-                    console.error("Error fetching data:", error);
+                    console.error("Error adding to wishlist:", error);
                 });
         },
         WishList() {
@@ -118,13 +117,13 @@ export default {
             axios
                 .get("/wishlist/" + id)
                 .then((response) => {
-                    response.data;
-                     (this.wishlist = response.data.wishlist);
+                    this.wishlist = response.data.wishlist;
                 })
                 .catch((error) => {
-                    console.error("Error fetching data:", error);
+                    console.error("Error fetching wishlist data:", error);
                 });
         },
+
         openModal(meal) {
             // Get the current date
             const currentDate = new Date();

@@ -1,9 +1,8 @@
 <script setup>
-import { Head } from "@inertiajs/vue3";
-import DropBarNav from "@/Pages/Header/DropBarNav.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
+import DropBarNav from "./Header/DropBarNav.vue";
 import Footer from "@/Layouts/Footer.vue";
-import Navbar from "@/Pages/Header/Navbar.vue";
+import { Head, Link, router } from "@inertiajs/vue3";
+import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
 defineProps({
     canLogin: Boolean,
@@ -19,7 +18,7 @@ export default {
   
     data() {
         return {
-            meals: [],
+            Notifications: [],
             page: 1, // Current page
             perPage: 12, // Number of items per page
             hasMoreData: true,
@@ -34,44 +33,33 @@ export default {
         window.addEventListener("scroll", this.handleScroll);
     },
     created() {
-       this.handleScroll(); this.fetchData();
+       this.handleScroll();  this.fetchData();
     },
     methods: {
         
-        async   filterMeals(searchText) {
-            await  axios
-                .get(`/api/filtered-meals?query=${searchText}`)
-                .then((response) => {
-                    if (response.data.length != 0) {
-                        this.meals = response.data;
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching filtered data:", error);
-                });
-        },
-        async loadMoreData() {
-            if (this.hasMoreData) {
-                this.page++;
-                await this.fetchData();
-            }
-        },
+        
+        
         async fetchData() {
             try {
                 const response = await axios.get(
-                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
+                    `/notifications?page=${this.page}&perPage=${this.perPage}`
                 );
-                const newMeals = response.data;
+                const newNotifications = response.data;
 
                 // If there is no new data, set hasMoreData to false
-                if (newMeals.length === 0) {
+                if (newNotifications.length === 0) {
                     this.hasMoreData = false;
                 }
 
-                // Concatenate new data to the existing meals
-                this.meals = [...this.meals, ...newMeals];
+                // Concatenate new data to the existing Notifications
+                this.Notifications = [...this.Notifications, ...newNotifications];
             } catch (error) {
                 console.error("Error fetching data:", error);
+            }
+        }, async loadMoreData() {
+            if (this.hasMoreData) {
+                this.page++;
+                await this.fetchData();
             }
         },
         handleScroll() {
@@ -84,7 +72,7 @@ export default {
 </script>
 
 <template>
-    <Head title="Wishlist" />
+    <Head title="Notification" />
     <!-- component -->
     <div class="">
 
@@ -97,23 +85,7 @@ export default {
                     <div
                         class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
                     >
-                        <!-- <div
-                            
-                            class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
-                            name=""
-                            id=""
-                        >
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Meal Schedule</p>
-                            </a>
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Special Meal</p>
-                            </a>
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Explore</p>
-                            </a>
-                        </div> -->
-                           
+                        
                     </div>
                 </template>
                 <template #dropdown>
@@ -125,15 +97,56 @@ export default {
                     />
                 </template>
             </Navbar>
-            
+           
         </header>
     </div>
     <div
         class="container mt-4 p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in ">
-            <FoodCard :meal="meal"></FoodCard>
-        </div>
+    <div class="flex flex-col w-full">
+                        <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
+                            <div
+                                v-for="(item, index) in Notifications"
+                                :key="index"
+                                class="col-span-1 w-full max-w-full"
+                            >
+                                <div
+                                    class="flex min-w-0 break-words w-full items-center justify-between shadow-extra-small group rounded-2xl bg-clip-border cursor-pointer"
+                                >
+                                    <Link
+                                        class="w4"
+                                        :href="`/become-a-cook/overview`"
+                                    >
+                                        <div
+                                            class="relative flex items-center justify-between w-full p-4 mb-0 list-none rounded-xl"
+                                        >
+                                           
+
+                                            <div class="w-full">
+                                                <p
+                                                    class="font-semibold px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
+                                                >
+                                                    <span
+                                                       
+                                                        class="lg:text-xl leading-normal"
+                                                    >
+                                                        {{ item.message }}</span
+                                                    >
+                                                                                                    </p>
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </Link>
+                                    <p
+                                        class="bottom-1 w-12 top-1 right-1 h-full text-xl cursor-pointer p-2 flex justify-center"
+                                        @click="Read(item.id)"
+                                    >
+                                       Mark as read
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
     </div>
     <div class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce" v-if="hasMoreData">
         
