@@ -57,7 +57,7 @@ const toggleDarkMode = useToggle(isDark);
 
             <template #content class="bg-snow dark:bg-oynx">
                 <div
-                    class="origin-top-right disable-scrollbars overflow-y-scroll h-52 absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
+                    class="origin-top-right disable-scrollbars overflow-y-scroll h-60 absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
                 >
                     <!-- Account Management -->
                     <div class="block px-4 py-2 text-xs text-gray-600">
@@ -66,13 +66,13 @@ const toggleDarkMode = useToggle(isDark);
 
                     <DropdownLink
                         :href="route('profile.show')"
-                        class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        class="flex w-full items-center rounded-md px-4 py-1 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                         ><font-awesome-icon icon="user" class="mr-2" />
                         Profile
                     </DropdownLink>
                     <DropdownLink
                         :href="route('notifications.index')"
-                        class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        class="relative flex items-center rounded-md px-4 py-1 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                         >   <div
                         v-if="notifications"
                         class="absolute top-[20%] right-[10%]"
@@ -88,7 +88,7 @@ const toggleDarkMode = useToggle(isDark);
                     </DropdownLink>
                     <DropdownLink
                         :href="route('wishlist.index')"
-                        class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        class="relative flex items-center rounded-md px-4 py-1 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                     >   <div
                         v-if="wishlist"
                         class="absolute top-[20%] right-[10%]"
@@ -114,7 +114,7 @@ const toggleDarkMode = useToggle(isDark);
                     <form @submit.prevent="logout">
                         <DropdownLink
                             as="button"
-                            class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                            class="flex items-center rounded-md px-4 py-1 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                         >
                             <font-awesome-icon
                                 icon="right-from-bracket"

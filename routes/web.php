@@ -56,6 +56,7 @@ Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
     Route::get('/auth/microsoft/callback', [AccountController::class, 'azure_callback']);
     Route::get('/auth/microsoft/return', [AccountController::class, 'azure_return'])->name('auth.microsoft');
     Route::get('meals/{id}', [MealController::class, 'meals' ]);    
+    Route::get('/cook/setup', [CookController::class, 'setup']);
 
 Route::middleware([
     'auth:sanctum',
@@ -112,7 +113,6 @@ Route::middleware([
     Route::post('account-link/{id}', [AccountController::class, 'account_link']);
     //cook Controller
     Route::resource('/cook/menu', CookController::class);
-    Route::get('/cook/setup', [CookController::class, 'setup']);
     Route::get('/become-a-cook/{newMealId}/price',[CookController::class, 'price' ]);
     Route::get('/become-a-cook/{newMealId}/photos', [CookController::class, 'photos' ]);
     Route::get('/become-a-cook/{newMealId}/region', [CookController::class, 'region' ]);

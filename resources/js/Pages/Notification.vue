@@ -14,7 +14,8 @@ export default {
     },
     data() {
         return {
-            isHeaderFixed: false,
+            isHeaderFixed: false,            
+            notified: "",
         };
     },
     beforeDestroy() {
@@ -26,6 +27,7 @@ export default {
     },
     created() {
         this.handleScroll();
+        this.WishList();
     },
     methods: {
         loadPreviousPage() {
@@ -52,7 +54,57 @@ export default {
                 console.error(error);
             });
         },
+        removeWishList(id) {
+            axios
+                .delete(`/wishlist/${id}`)
+                .then((response) => {
+                    console.log(this.wishlist = response.data.wishlist);
+                    // Update UI if necessary
+                })
+                .catch((error) => {
+                    console.error("Error deleting item:", error);
+                });
+        },
+        addWishList(id) {
+            const wishlistData = {
+                meal_id: id,
+                user_id: this.$page.props.auth.user.id,
+            };
+            axios
+                .post("/wishlist", wishlistData)
+                .then((response) => {
+                   console.log(this.wishlist = response.data.wishlist);
+                    // Update UI if necessary
+                })
+                .catch((error) => {
+                    console.error("Error adding to wishlist:", error);
+                });
+        },
+        WishList() {
+            if(this.$page.props.auth.user){
+                const id = this.meal.id;
+                axios
+                    .get("/wishlist/" + id)
+                    .then((response) => {
+                        this.wishlist = response.data.wishlist;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching wishlist data:", error);
+                    });
+            }
+        },
 
+        checkNotification() {
+            axios
+                .get("/notifications/7")
+                .then((response) => {
+                   ( this.notified = response.data.count);
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error saving data:", error);
+                });
+        },
         handleScroll() {
             // Adjust the scroll threshold as needed
             const scrollThreshold = 20;
@@ -117,7 +169,7 @@ export default {
                             </Link>
                             <div
                         v-if="notification.status == 'unread' "
-                        class="absolute top-[20%] right-[10%]"
+                        class="absolute top-[10%] right-[1%]"
                     >
                         <div
                             class="bg-persian  w-[22px] h-[22px] rounded-full flex items-center justify-center"
@@ -192,7 +244,7 @@ export default {
                     </div>
                    
                 </div>
-               <p class="cursor-pointer "  @click="updateStatus"> Mark as read</p>
+               <p class="cursor-pointer" v-if="notified"  @click="updateStatus"> Mark as read</p>
             </div>
         </div>
     </div>

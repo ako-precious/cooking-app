@@ -50,10 +50,31 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 <div
                     class="items-center justify-end rounded-md flex  py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
-                    <font-awesome-icon
-                        icon="fa-regular fa-heart"
-                        class="text-xl pr-3 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
-                    />
+                <div v-if="$page.props.auth.user">
+                        <font-awesome-icon
+                            v-if="wishlist == null"
+                            title="Add to wishlist"
+                            @click="addWishList(meal.id)"
+                            icon="fa-solid fa-heart"
+                            class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        />
+                        <font-awesome-icon
+                            v-else
+                            title="Added to wishlist"
+                            @click="removeWishList(meal.id)"
+                            icon="fa-solid fa-heart"
+                            class="text-xl text-persian pr-2 cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        />
+                    </div>
+                    <div v-else>
+                        <font-awesome-icon
+                           
+                            title="Add to wishlist"
+                            icon="fa-solid fa-heart"
+                            class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        />
+                    </div>
+
 
                     <font-awesome-icon
                         icon="share"
@@ -164,7 +185,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     class="flex flex-col lg:flex-row h-[25rem] overflow-scroll disable-scrollbars"
                 >
                     <div class="lg:w-1/2">
-                        <div class="overflow-hidden px-4 pb-4 lg:p-0">
+                        <div class="overflow-hidden pb-4 lg:p-0">
                             <div v-if="isLoading" class="">
                                 <Loader class="object-cover h-fit"></Loader>
                             </div>
@@ -177,7 +198,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                         </div>
                     </div>
                     <div
-                        class="lg:w-1/2 px-4 grid grid-cols-2 md:grid-cols-3 gap-4"
+                        class="lg:w-1/2  grid grid-cols-2 md:grid-cols-3 gap-4"
                     >
                         <div v-for="(preview, index) in other_src">
                             <div

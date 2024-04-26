@@ -43,8 +43,8 @@ import Header from './Navbar.vue';
                             <br />
                             <span class="">
 
-                                Connect with Student
-                                <span class="hidden"> food enthusiasts </span> eager
+                                Connect with 
+                                <span class=""> food enthusiasts </span> eager
                                 to taste your dishes and offer your culinary
                                 expertise to those seeking homemade delights. Join
                                 us and let your cooking skills shine!
@@ -78,7 +78,7 @@ export default {
     data() {
         return {
             newCook: {
-                user_id: this.$page.props.auth.user.id,
+                user_id: null,
                 certificate: null,
                 means_of_id: null,
                 other_info: null,
@@ -91,18 +91,21 @@ export default {
 //     },
     methods: {
         addUserToCook() {
-            axios
-                .post("/cook/menu", this.newCook)
-                .then((response) => {
-                    // Handle the response and extract the ID of the newly created row
-                    console.log(response.data.id);
-
-                    // Redirect to the new route with the ID included
-                    // this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
-                })
-                .catch((error) => {
-                    console.error("Error creating new row:", error);
-                });
+            if(this.$page.props.auth.user){
+              this.newCook.user_id = this.$page.props.auth.user.id
+                axios
+                    .post("/cook/menu", this.newCook)
+                    .then((response) => {
+                        // Handle the response and extract the ID of the newly created row
+                        console.log(response.data.id);
+    
+                        // Redirect to the new route with the ID included
+                        // this.$router.push(`/become-a-cook/${newMealId}/about-your-meal`);
+                    })
+                    .catch((error) => {
+                        console.error("Error creating new row:", error);
+                    });
+            }
         },
     },
 };
