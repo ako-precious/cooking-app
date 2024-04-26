@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
+use App\Notifications\MealScheduleStatusUpdated;
 use App\Models\Account;
 use App\Models\MealPhotos;
 use App\Models\Notification;
@@ -270,8 +271,25 @@ class MealScheduleController extends Controller
         $notification->meal_schedule_id = $new_MealSchedule->id;
         $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from" . $user->name;
         $notification->status = 'unread';
+        $recipient = User::find($notification->user_id);
+        if ($recipient) {
+            $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+        }
         $notification->save();
 
+        $notification = new Notification();
+        $notification->user_id = $user->id;
+        $notification->meal_schedule_id = $new_MealSchedule->id;
+        $notification->message = "Your meal schedule  #" . $new_MealSchedule->id . " is been saved";
+        $notification->status = 'unread';
+        $recipient = User::find( $notification->user_id );
+        if ($recipient) {
+            $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+        }
+        $notification->save();
+
+
+          // Send email notification
         return response()->json([
             'data' => $new_MealSchedule,
             'message' => 'Successfully added a new Meal Schedule!',
@@ -290,22 +308,15 @@ class MealScheduleController extends Controller
             'end_date' => 'required|date',
         ]);
         $MealSchedule->update($request->all());
-        if ($MealSchedule->update($request->all())) {
-
+ 
             return response()->json([
                 'data' => new MealScheduleResource($MealSchedule),
                 'message' => 'Successfully updated Meal Schedule!',
                 // 'status' => Response::HTTP_ACCEPTED
                 'status' => Response::HTTP_OK
             ]);
-        } else {
-            return response()->json([
-                // 'data' => new MealScheduleResource($MealSchedule),
-                'message' => 'Meal Schedule was not Updated!',
-                // 'status' => Response::HTTP_ACCEPTED
-                'status' => Response::HTTP_OK
-            ]);
-        }
+        
+        
     }
 
     public function destroy($id)
