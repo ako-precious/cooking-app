@@ -71,16 +71,16 @@ const toggleDarkMode = useToggle(isDark);
                         Profile
                     </DropdownLink>
                     <DropdownLink
-                        :href="'profile.show'"
+                        :href="route('notifications.index')"
                         class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                         >   <div
                         v-if="notifications"
                         class="absolute top-[20%] right-[10%]"
                     >
                         <div
-                            class="bg-lighred w-[10px] h-[10px] rounded-full"
+                            class="bg-lighred  w-[20px] h-[20px] rounded-full flex items-center justify-center"
                         >
-                            <p class="opacity-0">r</p>
+                            <p class="text-xs font-bold">{{ notifications }}</p>
                         </div>
                     </div>
                         <font-awesome-icon icon="bell" class="mr-2" />
@@ -178,9 +178,9 @@ export default {
     methods: {
         checkNotification() {
             axios
-                .get("/checkUser")
+                .get("/notifications/7")
                 .then((response) => {
-                    this.notifications = response.data.notifications;
+                   ( this.notifications = response.data.count);
                 })
                 .catch((error) => {
                     // Handle error
