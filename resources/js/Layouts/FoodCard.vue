@@ -34,6 +34,7 @@ export default {
     },
     created() {
         this.getPhoto();
+        this.WishList();
         this.fetchData();
     },
     methods: {
@@ -90,7 +91,7 @@ export default {
                 .delete(`/wishlist/${id}`)
                 .then((response) => {
                     // Handle successful deletion
-                    console.log("Item deleted successfully.");
+                    console.log((this.wishlist = response.data.wishlists));
                     // Optionally, update the UI to reflect the deletion
                 })
                 .catch((error) => {
@@ -106,7 +107,7 @@ export default {
             axios
                 .post("/wishlist", wishlist)
                 .then((response) => {
-                    // console.log(response);
+                    console.log((this.wishlist = response.data.wishlists));
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
@@ -118,7 +119,7 @@ export default {
                 .get("/wishlist/" + id)
                 .then((response) => {
                     response.data;
-                    console.log((this.wishlist = response.data.wishlist));
+                     (this.wishlist = response.data.wishlist);
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
@@ -221,11 +222,11 @@ export default {
                     >
                 </p>
                 <div
-                    class="items-center justify-end rounded-md flex opacity-0 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
+                    class="items-center justify-end rounded-md flex opacity-60 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
                     <div v-if="$page.props.auth.user">
                         <font-awesome-icon
-                            v-if="wishlist == null"
+                            v-if="wishlist == null || undefined"
                             title="Add to wishlist"
                             @click="addWishList(meal.id)"
                             icon="fa-solid fa-heart"

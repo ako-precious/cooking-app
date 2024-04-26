@@ -13,7 +13,7 @@ class WishlistController extends Controller
         $user = Auth::user();
         $wishlists = Wishlist::where('user_id', $user->id)->get();
         //    dd($accounts);
-        return inertia('wishlist', ['wishlist' => $wishlists]);
+        return inertia('Meal/Wishlist', ['meals' => $wishlists]);
     }
 
 
@@ -37,7 +37,9 @@ class WishlistController extends Controller
         $wishlist = Wishlist::where('user_id', $user->id)
             ->where('meal_id', $id)
             ->first();
-        return response()->json(['wishlist' => $wishlist]);
+            $user = Auth::user();
+            $wishlists = Wishlist::where('user_id', $user->id)->count();
+        return response()->json(['wishlist' => $wishlist, 'meals' => $wishlists]);
     }
 
     public function destroy($id)

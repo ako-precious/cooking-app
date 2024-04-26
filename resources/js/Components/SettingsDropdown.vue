@@ -11,7 +11,6 @@ const logout = () => {
 const isDark = useDark();
 const toggleDarkMode = useToggle(isDark);
 // const attrs = useAttrs();
-
 </script>
 
 <template>
@@ -30,11 +29,16 @@ const toggleDarkMode = useToggle(isDark);
                         :src="$page.props.auth.user.profile_photo_url"
                         :alt="$page.props.auth.user.name"
                     />
-                    <div v-if="notifications" class="absolute top-[20%] right-[10%] ">
-        
-        <div
-        class="bg-lighred w-[8px] h-[8px]  rounded-full animate-ping group-hover:animate-none "><p class="opacity-0">r</p></div>
-      </div>
+                    <div
+                        v-if="notifications"
+                        class="absolute top-[20%] right-[10%]"
+                    >
+                        <div
+                            class="bg-lighred w-[8px] h-[8px] rounded-full animate-ping group-hover:animate-none"
+                        >
+                            <p class="opacity-0">r</p>
+                        </div>
+                    </div>
                 </button>
 
                 <span v-else class="inline-flex rounded-md">
@@ -63,15 +67,40 @@ const toggleDarkMode = useToggle(isDark);
                     <DropdownLink
                         :href="route('profile.show')"
                         class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                    ><font-awesome-icon icon="user" class="mr-2" />
-                        Profile 
+                        ><font-awesome-icon icon="user" class="mr-2" />
+                        Profile
                     </DropdownLink>
                     <DropdownLink
                         :href="'profile.show'"
                         class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        >   <div
+                        v-if="notifications"
+                        class="absolute top-[20%] right-[10%]"
                     >
-                    <font-awesome-icon icon="bell" class="mr-2" />
+                        <div
+                            class="bg-lighred w-[10px] h-[10px] rounded-full"
+                        >
+                            <p class="opacity-0">r</p>
+                        </div>
+                    </div>
+                        <font-awesome-icon icon="bell" class="mr-2" />
                         Notification
+                    </DropdownLink>
+                    <DropdownLink
+                        :href="route('wishlist.index')"
+                        class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                    >   <div
+                        v-if="wishlist"
+                        class="absolute top-[20%] right-[10%]"
+                    >
+                        <div
+                            class="bg-lighred w-[20px] h-[20px] rounded-full flex items-center justify-center"
+                        >
+                            <p class="text-xs font-bold">{{ wishlist }}</p>
+                        </div>
+                    </div>
+                        <font-awesome-icon icon="heart" class="mr-2" />
+                        Wishlist
                     </DropdownLink>
 
                     <DropdownLink
@@ -81,57 +110,52 @@ const toggleDarkMode = useToggle(isDark);
                         API Tokens
                     </DropdownLink>
 
-                    
-                    
                     <!-- Authentication -->
                     <form @submit.prevent="logout">
                         <DropdownLink
-                        as="button"
+                            as="button"
                             class="flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                         >
-                        <font-awesome-icon
-                            icon="right-from-bracket"
-                            class="mr-2"
+                            <font-awesome-icon
+                                icon="right-from-bracket"
+                                class="mr-2"
                             />
                             Log Out
                         </DropdownLink>
                     </form>
-                    <div
-                    class="border-t border-gray-600"
-                    />
+                    <div class="border-t border-gray-600" />
                     <!-- Add the toggle bo ttuns later -->
                     <input
-                    id="switch"
-                    type="checkbox"
-                    @click="toggleDarkMode()"
-                    dark-toggle
-                    :checked="isDark"
-                />
+                        id="switch"
+                        type="checkbox"
+                        @click="toggleDarkMode()"
+                        dark-toggle
+                        :checked="isDark"
+                    />
                     <div class="app">
-                    <div class="body">
-                        <div
-                            class="content flex flex-col m-auto text-center w-2/3 translate-y-[5%]"
-                        >
+                        <div class="body">
                             <div
-                                class="circle relative rounded-full w-[3rem] h-[3rem] m-auto"
+                                class="content flex flex-col m-auto text-center w-2/3 translate-y-[5%]"
                             >
                                 <div
-                                    class="crescent absolute rounded-full right-0 w-[2.2rem] h-[2.2rem]"
-                                ></div>
-                            </div>
-                            <label for="switch">
-                                <div class="toggle"></div>
-                                <div
-                                    class="names items-center justify-between"
-                                   
+                                    class="circle relative rounded-full w-[3rem] h-[3rem] m-auto"
                                 >
-                                    <p class="light">Light</p>
-                                    <p class="dark">Dark</p>
+                                    <div
+                                        class="crescent absolute rounded-full right-0 w-[2.2rem] h-[2.2rem]"
+                                    ></div>
                                 </div>
-                            </label>
+                                <label for="switch">
+                                    <div class="toggle"></div>
+                                    <div
+                                        class="names items-center justify-between"
+                                    >
+                                        <p class="light">Light</p>
+                                        <p class="dark">Dark</p>
+                                    </div>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </template>
         </Dropdown>
@@ -144,10 +168,12 @@ export default {
     data() {
         return {
             notifications: "",
+            wishlist: "",
         };
     },
     created() {
         this.checkNotification();
+        this.checkWishlist();
     },
     methods: {
         checkNotification() {
@@ -155,6 +181,17 @@ export default {
                 .get("/checkUser")
                 .then((response) => {
                     this.notifications = response.data.notifications;
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error saving data:", error);
+                });
+        },
+        checkWishlist() {
+            axios
+                .get("/wishlist/2")
+                .then((response) => {
+                   console.log( this.wishlist = response.data.meals);
                 })
                 .catch((error) => {
                     // Handle error

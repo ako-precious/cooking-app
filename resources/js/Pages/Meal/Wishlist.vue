@@ -1,11 +1,9 @@
 <script setup>
 import { Head } from "@inertiajs/vue3";
-import DropBarNav from "./Header/DropBarNav.vue";
+import DropBarNav from "@/Pages/Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
-import Loader from "@/Layouts/Loader.vue";
-import DateRangePicker from "./Header/DateRangePicker.vue";
-import Navbar from "./Header/Navbar.vue";
+import Navbar from "@/Pages/Header/Navbar.vue";
 import axios from "axios";
 defineProps({
     canLogin: Boolean,
@@ -115,11 +113,7 @@ export default {
                                 <p>Explore</p>
                             </a>
                         </div> -->
-                            <DateRangePicker
-                                @filter-meals="filterMeals"
-                                class="transition-all duration-300 delay-75 ease-in"
-                            ></DateRangePicker>
-                        
+                           
                     </div>
                 </template>
                 <template #dropdown>
@@ -131,15 +125,7 @@ export default {
                     />
                 </template>
             </Navbar>
-            <!-- <DateRangePicker
-                @filter-meals="filterMeals"
-                v-if="!isHeaderFixed"
-                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
-            ></DateRangePicker> -->
-            <DateRangePicker
-                @filter-meals="filterMeals"
-                class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker>
+            
         </header>
     </div>
     <div
