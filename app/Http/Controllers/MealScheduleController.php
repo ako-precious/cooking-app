@@ -269,12 +269,12 @@ class MealScheduleController extends Controller
         $notification = new Notification();
         $notification->user_id = $cook->id;
         $notification->meal_schedule_id = $new_MealSchedule->id;
-        $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from" . $user->name;
+        $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from " . $user->name;
         $notification->status = 'unread';
-        $recipient = User::find($notification->user_id);
-        if ($recipient) {
-            $recipient->notify(new MealScheduleStatusUpdated($notification->message));
-        }
+        // $recipient = User::find($notification->user_id);
+        // if ($recipient) {
+        //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+        // }
         $notification->save();
 
         $notification = new Notification();
@@ -282,17 +282,17 @@ class MealScheduleController extends Controller
         $notification->meal_schedule_id = $new_MealSchedule->id;
         $notification->message = "Your meal schedule  #" . $new_MealSchedule->id . " is been saved";
         $notification->status = 'unread';
-        $recipient = User::find( $notification->user_id );
-        if ($recipient) {
-            $recipient->notify(new MealScheduleStatusUpdated($notification->message));
-        }
+        // $recipient = User::find( $notification->user_id );
+        // if ($recipient) {
+        //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+        // }
         $notification->save();
 
 
           // Send email notification
         return response()->json([
             'data' => $new_MealSchedule,
-            'message' => 'Successfully added a new Meal Schedule!',
+            'message' => 'Successfully added to your new Meal Schedule!',
             'status' => Response::HTTP_CREATED
         ]);
     }

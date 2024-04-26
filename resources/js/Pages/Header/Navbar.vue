@@ -42,6 +42,13 @@
                     </Link>
                 </li>
             </div>
+            <li v-else class="text-nowrap py-2 px-4 navbar-link">
+                <Link :href="`/cook/setup`">
+                    <a class="" href="">
+                        <p>Be a Cook</p>
+                    </a>
+                </Link>
+            </li>
                 <!-- <li class="navbar-link">
                     <a class="" href="">
                         <font-awesome-icon

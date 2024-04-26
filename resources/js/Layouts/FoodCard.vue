@@ -223,7 +223,7 @@ export default {
                     >
                 </p>
                 <div
-                    class="items-center justify-end rounded-md flex opacity-60 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
+                    class="items-center justify-end rounded-md flex opacity-70 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
                     <div v-if="$page.props.auth.user">
                         <font-awesome-icon
@@ -231,14 +231,14 @@ export default {
                             title="Add to wishlist"
                             @click="addWishList(meal.id)"
                             icon="fa-solid fa-heart"
-                            class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                            class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                         <font-awesome-icon
                             v-else
                             title="Added to wishlist"
                             @click="removeWishList(meal.id)"
                             icon="fa-solid fa-heart"
-                            class="text-xl text-persian pr-2 active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                            class="text-xl text-persian pr-2 cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                     </div>
                     <div v-else>
@@ -246,7 +246,7 @@ export default {
                            
                             title="Add to wishlist"
                             icon="fa-solid fa-heart"
-                            class="text-xl pr-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                            class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                     </div>
 
@@ -254,12 +254,12 @@ export default {
                         title="Add to Meal Schedule"
                         @click="openModal(meal)"
                         icon="circle-plus"
-                        class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        class="text-xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                     <font-awesome-icon
                         title="Share Meal"
                         icon="share"
-                        class="text-xl px-2 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        class="text-xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                 </div>
             </div>

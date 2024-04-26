@@ -166,19 +166,21 @@ export default {
                         this.message = resp.data.message;
 
                         const MealId = resp.data.data.id;
-                        this.$inertia.visit(`/process_order/${MealId}`);
+                        console.log(resp.data.data);
+                       // check if the schedule has been accepted or not
+                        if(resp.data.data.status == 'accepted'){
+                            this.$inertia.visit(`/process_order/${MealId}`);
+                        }else{
+                            this.$inertia.visit(`/meal-schedule`)
+                        }
 
-                        // setTimeout(() => {
-                        //     this.closeModal();
-                        //     // Uncomment the line below if you want to toggle addingMode after the delay
-                        //     // this.addingMode = !this.addingMode;
-                        // }, 5000);
+                     
                     })
                     .catch((err) => {
                         this.error = "Unable to add Meal !";
                         setTimeout(() => {
                             this.error = "";
-                            // console.log("Unable to add Meal !", err);
+                            console.log("Unable to add Meal !", err);
                         }, 10000);
                     });
             }
