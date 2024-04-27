@@ -2,7 +2,7 @@
 import { Head, Link } from "@inertiajs/vue3";
 
 import ApplicationMark from '@/Components/ApplicationMark.vue';
-import SettingsDropdown from "@/Components/SettingsDropdown.vue";
+import DropBarNav from "@/Pages/Header/DropBarNav.vue";
 </script>
 
 <template>
@@ -22,7 +22,9 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
                 
                 <div class="flex sm:items-center sm:ms-6">
                     <!-- Settings Dropdown -->
-              <SettingsDropdown></SettingsDropdown>
+                    <DropBarNav class="w-10 h-10 relative"
+                   
+                   />
                 </div>
             </div>
         </header>
