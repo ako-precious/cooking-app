@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import Card from "./Card.vue";
-
+import Footer from "@/Layouts/Footer.vue";
 import Header from "./Navbar.vue";
 </script>
 
@@ -67,7 +67,7 @@ import Header from "./Navbar.vue";
     <div class="container relative mx-auto my-8">
         <Card></Card>
     </div>
-    <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
+    <section class="py-10 sm:py-16 lg:py-24">
         <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div class="max-w-2xl mx-auto text-center">
                 <h2
@@ -177,14 +177,16 @@ import Header from "./Navbar.vue";
                             from the smallest component to the largest. This is
                             an important step in ensuring that customers with
                             dietary restrictions or preferences can make
-                            informed decisions about the meals they order. <br> <br> For
-                            example, if a customer has a severe allergy to nuts,
-                            they can quickly scan the ingredient list to ensure
-                            that the meal does not contain any nuts. Providing
-                            detailed ingredient lists also helps customers with
-                            specific dietary restrictions, such as gluten-free,
-                            vegan, or halal, to make informed choices about the
-                            meals they order. 
+                            informed decisions about the meals they order.
+                            <br />
+                            <br />
+                            For example, if a customer has a severe allergy to
+                            nuts, they can quickly scan the ingredient list to
+                            ensure that the meal does not contain any nuts.
+                            Providing detailed ingredient lists also helps
+                            customers with specific dietary restrictions, such
+                            as gluten-free, vegan, or halal, to make informed
+                            choices about the meals they order.
                         </p>
                     </div>
                 </div>
@@ -208,9 +210,53 @@ import Header from "./Navbar.vue";
                         class="px-4 pb-5 sm:px-6 sm:pb-6"
                     >
                         <p>
-                            Yes, you can cancel your subscription at any time
-                            without any hidden fees. We believe in providing a
-                            hassle-free experience for our users.
+                            If you're not willing to cook a meal, you can simply
+                            reject the order and change the meal status to
+                            'unavailable' until you're ready to cook again. This
+                            means you can take breaks whenever you need to,
+                            without feeling pressured to cook meals that you're
+                            not prepared to make. You can also adjust your
+                            workload to suit your needs, ensuring you're not
+                            overwhelmed with too many orders at once. <br> <br> By having
+                            control over your schedule, you can maintain a
+                            healthy work-life balance, avoid burnout, and focus
+                            on delivering high-quality meals to your customers.
+                            This flexibility is a key benefit of being a food
+                            delivery partner, allowing you to work on your own
+                            terms and manage your workload to suit your needs.
+                        </p>
+                    </div>
+                </div>
+                <div
+                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-800 dark:hover:bg-gray-850"
+                >
+                    <button
+                        type="button"
+                        id="question4"
+                        data-state="closed"
+                        class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
+                    >
+                        <span class="flex text-lg font-semibold text-black"
+                            >What kind of packaging materials do I need to use for delivery?</span
+                        >
+                        <font-awesome-icon icon="fa-solid fa-chevron-down" />
+                    </button>
+                    <div
+                        id="answer5"
+                        style="display: none"
+                        class="px-4 pb-5 sm:px-6 sm:pb-6"
+                    >
+                        <p>You can bring your unique touch to the presentation, making each meal a visual delight for your customers.
+
+When customers receive their meals, hey'll rate your meal based on several factors, including: <br> 
+<ol class=" list-disc pl-4"> <li>Presentation: How visually appealing is the meal?</li>
+<li>Taste: How flavorful and satisfying is the food?</li>
+<li>Value: Is the meal a good value for the price?</li>
+<li>Nutrition: Is the meal nutritious and balanced?</li>
+<li>Portion size: Is the portion size generous and satisfying?</li>
+<li>Freshness: Is the food fresh and of high quality?</li> </ol> <br>
+By focusing on these factors, you can create a memorable experience for your customers.  <br>
+As you package your meals, think about how you can make each dish a work of art. Add a personal touch with a handwritten note or a small garnish. The more thought and care you put into the presentation, the more likely customers are to rave about your meals and come back for more
                         </p>
                     </div>
                 </div>
@@ -224,6 +270,7 @@ import Header from "./Navbar.vue";
             </p>
         </div>
     </section>
+    <Footer />
 </template>
 <script>
 import axios from "axios";

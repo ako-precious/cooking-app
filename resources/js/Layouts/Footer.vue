@@ -29,43 +29,10 @@ export default {
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="lg:flex lg:items-start lg:gap-8">
       
-      <div class="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-4 lg:gap-y-16 w-full">
-        <!-- <div class="col-span-2">
-          <div>
-            <h2 class="text-2xl font-bold text-gray-500">Get the latest news!</h2>
-
-            <p class="mt-4 text-gray-500">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non cupiditate quae nam
-              molestias.
-            </p>
-          </div>
-        </div>
-
-        <div class="col-span-2 lg:col-span-3 lg:flex lg:items-end">
-          <form class="w-full">
-            <label for="UserEmail" class="sr-only"> Email </label>
-
-            <div
-              class="border border-gray-500 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4"
-            >
-              <input
-                type="email"
-                id="UserEmail"
-                placeholder="john@rhcp.com"
-                class="w-full border-none focus:border-transparent focus:ring-transparent sm:text-sm"
-              />
-
-              <button
-                class="mt-1 w-full bg-teal-500 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none hover:bg-teal-600 sm:mt-0 sm:w-auto sm:shrink-0"
-              >
-                Sign Up
-              </button>
-            </div>
-          </form>
-        </div> -->
-
+      <div class="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-3 lg:gap-y-16 w-full">
+      
         <div class="col-span-2 sm:col-span-1">
-          <p class="font-bold text-gray-600">Support</p>
+          <p class="font-bold text-gray-600">Resources</p>
 
           <ul class="mt-6 space-y-4 text-sm">
             <li>
@@ -90,23 +57,7 @@ export default {
           </ul>
         </div>
 
-        <div class="col-span-2 sm:col-span-1">
-          <p class="font-bold text-gray-600">Company</p>
-
-          <ul class="mt-6 space-y-4 text-sm">
-            <li>
-              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> About </a>
-            </li>
-
-            <li>
-              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Meet the Team </a>
-            </li>
-
-            <li>
-              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> Accounts Review </a>
-            </li>
-          </ul>
-        </div>
+        
 
         <div class="col-span-2 sm:col-span-1">
           <p class="font-bold text-gray-600">Support</p>
