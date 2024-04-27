@@ -7,58 +7,64 @@ import Header from "./Navbar.vue";
 
 <template>
     <Head title="Become A Cook" />
-    <div class="md:px-5">
-        <Header> </Header>
-    </div>
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-snow"
-    >
-        <div
-            class="container relative mx-auto flex items-center overflow-hidden min-h-screen"
-        >
-            <!-- <iframe
-                src="https://my.spline.design/untitled-22ece4253c983291af7e559585416b64/"
-                frameborder="0"
-                class=" absolute w-full h-full z-0"
-            ></iframe> -->
-            <div
-                class="absolute w-[150px] h-[60px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx"
-            ></div>
+    <div class="">
 
+        <div
+        class="relative sm:flex-col sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-snow"
+        >
+         <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0 " viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#1B998B"><circle r="147" cx="26" cy="438"></circle><circle r="74" cx="825" cy="126"></circle><circle r="107" cx="468" cy="358"></circle><circle r="104" cx="208" cy="126"></circle></g></svg>
+        <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0" viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#004E98"><circle r="147" cx="326" cy="574"></circle><circle r="65" cx="802" cy="55"></circle><circle r="76" cx="824" cy="541"></circle></g></svg>
+        <div class="md:px-5">
+            <Header> </Header>
+        </div>
             <div
-                class="m-auto flex items-center h-full px-6 lg:p-8 max-w-screen-md lg:max-w-screen-lg"
+                class="container relative overflow-hidden mx-auto flex items-center  min-h-screen"
             >
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                    <div class="z-10">
-                        <p
-                            class="text-sm md:text-base mt-4 font-semibold leading-relaxed text-oynx dark:text-snow"
-                        >
-                            Discover your culinary talents and share your
-                            masterpieces with the world! Whether you're a
-                            seasoned chef or a passionate home cook, we provide
-                            the perfect stage for showcasing your delicious
-                            creations.
-                            <br />
-                            <br />
-                            <span class="">
-                                Connect with
-                                <span class=""> food enthusiasts </span> eager
-                                to taste your dishes and offer your culinary
-                                expertise to those seeking homemade delights.
-                                Join us and let your cooking skills shine!
+                <iframe
+                    src='https://my.spline.design/kitchen-87e5853ec0a36f20da7b661f4f7b18db/' 
+                    frameborder="0"
+                    class=" absolute w-full h-full z-0"
+                ></iframe>
+                <div
+                    class="absolute w-[150px] h-[60px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx"
+                ></div>
+    
+                <div
+                    class="m-auto flex items-center h-full px-6 lg:p-8 max-w-screen-md lg:max-w-screen-lg"
+                >
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        <div class="z-10">
+                            <h2
+                    data-replace="Connect with
+                                   students eager
+                                    to taste your meal and offer your culinary
+                                    expertise to those seeking homemade delights.
+                                    Join us and let your cooking skills shine!"
+                                    role="heading"
+                                class="swap font-serif text-lg hover:font-mono font-bold leading-10 mb-6 md:text-2xl mt-4  text-oynx dark:text-snow transition-all delay-75"
+                            > <span>
+    
+                                Discover your culinary talents and share your
+                                masterpieces with the world! Whether you're a
+                                seasoned chef or a passionate home cook, we provide
+                                the perfect stage for showcasing your delicious
+                                creations.
                             </span>
-                        </p>
-                        <Link :href="`/become-a-cook/overview`">
-                            <button
-                                @click="addUserToCook"
-                                class="btn2span group float-left w-[170px]"
-                            >
-                                <span class="next-span"> Start Cooking </span>
-                                <span class="with-span">
-                                    Monetize Your Passion
-                                </span>
-                            </button>
-                        </Link>
+                              
+                        </h2>
+                       
+                            <Link :href="`/become-a-cook/overview`">
+                                <button
+                                    @click="addUserToCook"
+                                    class="btn2span group float-left w-[170px]"
+                                >
+                                    <span class="next-span"> Start Cooking </span>
+                                    <span class="with-span">
+                                        Monetize Your Passion
+                                    </span>
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -339,5 +345,58 @@ export default {
     .dark\:bg-dots-lighter {
         background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(255,255,255,0.07)'/%3E%3C/svg%3E");
     }
+}
+
+/* link text swap */
+.swap {
+    
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+}
+
+.swap::before,
+.swap::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+/* .swap::before {
+    background-color: #93032e;
+    height: 2px;
+    bottom: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+    transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+} */
+
+.swap::after {
+    content: attr(data-replace);
+    height: 100%;
+    top: 0;
+    transform-origin: 100% 50%;
+    transform: translate3d(200%, 0, 0);
+    transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+    
+}
+
+.swap:hover::before {
+    transform-origin: 0% 50%;
+    transform: scaleX(1);
+}
+
+.swap:hover::after {
+    transform: translate3d(0, 0, 0);
+}
+
+.swap span {
+    display: inline-block;
+    transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.swap:hover span {
+    transform: translate3d(-200%, 0, 0);
 }
 </style>

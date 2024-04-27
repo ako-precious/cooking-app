@@ -45,7 +45,7 @@ import TextInput from "@/Components/TextInput.vue";
                                     <h1
                                         class="w-full pt-5 text-lg text-oynx dark:text-snow"
                                     >
-                                        The maximum is 20 for now
+                                        
                                     </h1>
                                 </div>
                             </div>
