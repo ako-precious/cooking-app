@@ -62,6 +62,36 @@ document.addEventListener("touchmove", function (e) {
 
 <div draggable="true" ondragstart="dragStart(event)">Drag me</div>
 
-When dealing with touch events on mobile devices, the behavior of the setDragImage function can be different compared to desktops. The setDragImage function is not consistently supported across all browsers and devices for touch events.
 
-To address this issue and ensure compatibility with touch devices, you can set a custom drag image using HTML and CSS rather than relying on the setDragImage function. Here's how you can do it:
+Frequently Asked Questions (FAQs) for Cooks Sharing Meals on a Website
+General:
+
+How does the website work? (Explain the process of listing meals, receiving orders, and delivering food)
+What are the fees associated with listing meals?
+How do I get paid for my meals?
+What is the delivery process like? (Do cooks deliver themselves, or is there a delivery service?)
+What happens if a customer cancels an order?
+How do I handle food safety and regulations?
+Is there any insurance coverage for cooks?
+What kind of support does the website offer to cooks?
+Listing Meals:
+
+What types of meals can I list? (Are there any restrictions on ingredients, cuisine types, or portion sizes?)
+How do I set the price of my meals?
+How many photos can I include for each meal listing?
+Can I offer different serving sizes or dietary options?
+How far in advance do I need to list a meal?
+Can I edit my meal listings after they are published?
+Orders and Customers:
+
+How can customers contact me with questions about my meals?
+Can I communicate directly with customers about their orders?
+What happens if a customer has a dietary restriction I didn't list?
+What is the website's policy on refunds?
+How do I know if a customer has allergies or dietary restrictions?
+Marketing and Promotion:
+
+How can I promote my meals on the website?
+Does the website offer any marketing or advertising tools for cooks?
+Can I offer discounts or promotions on my meals?
+Additional Considerations:
