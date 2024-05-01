@@ -27,8 +27,8 @@ class AccountController extends Controller
         $googleUser = Socialite::driver("google")->user();
         $find_user = User::firstWhere('google_id', $googleUser->id);
         if($find_user){
-            Auth::login($find_user);
-            return response()->json(['user' => Auth::login($find_user)]);
+           $user = Auth::login($find_user);
+            return response()->json(['user' => $googleUser ]);
         }else{
 
             $user = User::updateOrCreate(['email' => $googleUser->email],
