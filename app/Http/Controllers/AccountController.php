@@ -47,9 +47,7 @@ class AccountController extends Controller
         //  dd($googleUser);
     
     }
-    public function redirect(){
-        
-    }
+  
     public function azure_return(Request $request)
     {
        return Socialite::driver("azure")->redirect();

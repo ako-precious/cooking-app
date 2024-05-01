@@ -177,7 +177,8 @@ const removeItem = (index) => {
                         <TextInput
                             id="email"
                             v-model="form.email"
-                            type="email"
+                            type="email" 
+                            readonly
                             class="mt-1 block w-full text-sm"
                             required
                             autocomplete="username"

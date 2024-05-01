@@ -18,7 +18,7 @@ defineProps({
 <script>
 export default {
     inheritAttrs: false,
-  
+
     data() {
         return {
             meals: [],
@@ -31,17 +31,25 @@ export default {
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
     },
-    
+
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
+        if (this.$page.props.auth.user) {
+            if (
+                this.$page.props.auth.user.phone_number == null ||
+                this.$page.props.auth.user.address == null
+            ) {
+                this.$inertia.visit(`/user/profile`);
+            }
+        }
     },
     created() {
-       this.handleScroll(); this.fetchData();
+        this.handleScroll();
+        this.fetchData();
     },
     methods: {
-        
-        async   filterMeals(searchText) {
-            await  axios
+        async filterMeals(searchText) {
+            await axios
                 .get(`/api/filtered-meals?query=${searchText}`)
                 .then((response) => {
                     if (response.data.length != 0) {
@@ -80,7 +88,7 @@ export default {
             // Adjust the scroll threshold as needed
             const scrollThreshold = 20;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
-        }, 
+        },
     },
 };
 </script>
@@ -89,10 +97,9 @@ export default {
     <Head title="Welcome" />
     <!-- component -->
     <div class="">
-
         <header
             :class="{ fix: isHeaderFixed }"
-            class= "py-5 bg-snow dark:bg-oynx z-990 transition-all  duration-300 delay-75 ease-in animate-fade-in"
+            class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
         >
             <Navbar class="bg-snow dark:bg-oynx">
                 <template #search>
@@ -115,11 +122,10 @@ export default {
                                 <p>Explore</p>
                             </a>
                         </div> -->
-                            <DateRangePicker
-                                @filter-meals="filterMeals"
-                                class="transition-all duration-300 delay-75 ease-in"
-                            ></DateRangePicker>
-                        
+                        <DateRangePicker
+                            @filter-meals="filterMeals"
+                            class="transition-all duration-300 delay-75 ease-in"
+                        ></DateRangePicker>
                     </div>
                 </template>
                 <template #dropdown>
@@ -145,14 +151,18 @@ export default {
     <div
         class="container mt-4 p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in ">
+        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
             <FoodCard :meal="meal"></FoodCard>
         </div>
     </div>
-    <div class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce" v-if="hasMoreData">
-        
-        <button  @click="loadMoreData">Show More </button>
+    <div
+        class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce"
+        v-if="hasMoreData"
+    >
+        <button @click="loadMoreData">Show More</button>
     </div>
+    {{ $page.props.auth.user }}
+
     <Footer></Footer>
 </template>
 
@@ -208,7 +218,7 @@ button:active:before {
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
-.fix  {
+.fix {
     position: fixed;
     top: 0;
     right: 0;
@@ -218,11 +228,15 @@ button:active:before {
 }
 
 @keyframes fade-in {
-        from { opacity: 0; }
-        to { opacity: 1; }
+    from {
+        opacity: 0;
     }
+    to {
+        opacity: 1;
+    }
+}
 
-    .animate-fade-in {
-        animation: fade-in 0.3s ease-in;
-    }
+.animate-fade-in {
+    animation: fade-in 0.3s ease-in;
+}
 </style>
