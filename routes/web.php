@@ -57,7 +57,7 @@ Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
     Route::get('/auth/microsoft/return', [AccountController::class, 'azure_return'])->name('auth.microsoft');
     Route::get('meals/{id}', [MealController::class, 'meals' ]);    
     Route::get('/cook/setup', [CookController::class, 'setup']);
-
+    Route::get('auth/redirect',[AccountController::class, 'redirect']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

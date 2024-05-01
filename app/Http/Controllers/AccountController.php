@@ -27,8 +27,11 @@ class AccountController extends Controller
         $googleUser = Socialite::driver("google")->user();
         $find_user = User::firstWhere('google_id', $googleUser->id);
         if($find_user){
-           $user = Auth::login($find_user);
-            return response()->json(['user' => $googleUser ]);
+            Auth::login($find_user);
+            echo '<script>opener.window.close();</script>';
+//   return redirect('/user/profile');
+            return redirect()->route('login');
+
         }else{
 
             $user = User::updateOrCreate(['email' => $googleUser->email],
@@ -41,8 +44,11 @@ class AccountController extends Controller
             Auth::login($user);
             return redirect('/user/profile');
         }
-         dd($googleUser);
+        //  dd($googleUser);
     
+    }
+    public function redirect(){
+        
     }
     public function azure_return(Request $request)
     {

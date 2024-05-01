@@ -49,7 +49,7 @@ export default {
             </li>
 
             <li>
-              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> SEO Optimisation </a>
+              <a href="#" class="text-oynx dark:text-snow transition hover:opacity-75"> SEO Optimization </a>
             </li>
           </ul>
         </div>

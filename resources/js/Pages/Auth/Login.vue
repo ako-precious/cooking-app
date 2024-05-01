@@ -34,80 +34,66 @@ const submit = () => {
 </script>
 <script>
 export default {
-    data() {
-        return {
-            auth: false,
-            user: ''
+    methods: {
+        openGoogleSignInPopup() {
+            const authWindow = window.open(
+                "/auth/google/return",
+                "GoogleSignInPopup",
+                "width=500,height=500"
+            );
 
-        };
+            // Check for successful authentication every second
+            const interval = setInterval(() => {
+                if (this.$page.props.auth.user) {
+                    authWindow.close();
+                }
+                if (authWindow.closed) {
+                    clearInterval(interval);
+                    // Refresh the page after authentication is done
+                    window.location.reload();
+                }
+            }, 1000);
+        },
+        openFacebookSignInPopup() {
+            // Open the popup window
+            const authWindow = window.open(
+                "/auth/facebook/return",
+                "GoogleSignInPopup",
+                "width=500,height=500"
+            );
+
+            // Check for successful authentication every second
+            const interval = setInterval(() => {
+                if (authWindow.closed || this.$page.props.auth.user.id) {
+                    clearInterval(interval);
+                    // Refresh the page after authentication is done
+                    window.location.reload();
+                }
+            }, 1000);
+        },
+        openMicrosoftSignInPopup() {
+            // Open the popup window
+            const authWindow = window.open(
+                "/auth/microsoft/return",
+                "MicroSignInPopup",
+                "width=500,height=500"
+            );
+
+            // Check for successful authentication every second
+            const interval = setInterval(() => {
+                if (authWindow.closed || this.$page.props.auth.user.id) {
+                    clearInterval(interval);
+                    // Refresh the page after authentication is done
+                    window.location.reload();
+                }
+            }, 1000);
+        },
     },
-  methods: {
-    openGoogleSignInPopup() {
-      // Open the popup window
-      const authWindow =  window.open("/auth/google/return", "GoogleSignInPopup", 'width=500,height=500' );
-
-      axios
-                    .get("/auth/google/callback")
-                    .then((response) => {
-                       this.user =  response.data.user.id;
-
-                        this.auth = true
-                    
-                    })
-                    .catch((error) => {
-                        // Handle error
-                        // console.error("Error saving data:", error);
-                    });
-                    const interval = setInterval(() => {
-                          if (authWindow.closed || response.data.user.id) {
-                            clearInterval(interval);
-                            // Refresh the page after authentication is done
-                            window.location.reload();
-                          }
-                        }, 1000);
-                        // this.$inertia.visit(
-                        //     `/become-a-cook/${MealId}/spotlight`
-                        // );
-      // Check for successful authentication every second
-
-    },
-    openFacebookSignInPopup() {
-
-      // Open the popup window
-      const authWindow =   window.open("/auth/facebook/return", "GoogleSignInPopup", 'width=500,height=500');
-
-       // Check for successful authentication every second
-       const interval = setInterval(() => {
-        if (authWindow.closed || this.$page.props.auth.user.id) {
-          clearInterval(interval);
-          // Refresh the page after authentication is done
-          window.location.reload();
-        }
-      }, 1000);
-
-    },
-    openMicrosoftSignInPopup() {
-
-      // Open the popup window
-      const authWindow =   window.open("/auth/microsoft/return", "MicroSignInPopup", 'width=500,height=500');
-
-       // Check for successful authentication every second
-       const interval = setInterval(() => {
-        if (authWindow.closed || this.$page.props.auth.user.id) {
-          clearInterval(interval);
-          // Refresh the page after authentication is done
-          window.location.reload();
-        }
-      }, 1000);
-
-    }
-  }
-}
+};
 </script>
 
 <template>
     <Head title="Sign in" />
-
     <AuthenticationCard>
         <div
             v-if="status"
@@ -181,8 +167,8 @@ export default {
                     <div class="block my-3">
                         <a
                             :href="route('auth.google')"
-                            @click.prevent="openGoogleSignInPopup"
-                        >
+                            >
+                            <!-- @click.prevent="openGoogleSignInPopup" -->
                             <SocialLogin>
                                 <template #logo>
                                     <GoogleLogo />
@@ -204,8 +190,8 @@ export default {
                                 </template>
                             </SocialLogin>
                         </a>
-                    </div>
-                    <div class="block my-3">
+                    </div> -->
+                    <!--   <div class="block my-3">
                         <a :href="route('auth.facebook')" @click.prevent="openFacebookSignInPopup()">
                             <SocialLogin>
                                 <template #logo>
