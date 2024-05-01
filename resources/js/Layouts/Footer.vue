@@ -20,10 +20,7 @@ export default {
 </script>
 
 <template>
-   <!--
-  Heads up! 👋
-
-<!-- \ -->
+ 
 
 <footer class="border-t border-gray-500 bg-gray-50 dark:bg-oynx/10">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -78,7 +75,7 @@ export default {
         </div>
 
         <div class="col-span-2 sm:col-span-1">
-          <p class="font-bold text-gray-600">Legal</p>
+          <p class="font-bold text-gray-600">Cook</p>
 
           <ul class="mt-6 space-y-4 text-sm">
             <li>

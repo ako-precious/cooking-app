@@ -28,7 +28,7 @@ class AccountController extends Controller
         $find_user = User::firstWhere('google_id', $googleUser->id);
         if($find_user){
             Auth::login($find_user);
-            return redirect('/');
+            return response()->json(['user' => Auth::login($find_user)]);
         }else{
 
             $user = User::updateOrCreate(['email' => $googleUser->email],

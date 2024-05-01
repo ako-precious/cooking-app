@@ -170,7 +170,7 @@ export default {
                             </SocialLogin>
                         </a>
                     </div>
-                    <div class="block my-3">
+                    <!-- <div class="block my-3">
                         <a :href="route('auth.microsoft')" target="_blank" >
                             <SocialLogin>
                                 <template #logo>
@@ -193,7 +193,7 @@ export default {
                                 </template>
                             </SocialLogin>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </form>

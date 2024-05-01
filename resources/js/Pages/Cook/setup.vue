@@ -12,8 +12,8 @@ import Header from "./Navbar.vue";
         <div
         class="relative sm:flex-col sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-snow"
         >
-         <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0 " viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#1B998B"><circle r="147" cx="26" cy="438"></circle><circle r="74" cx="825" cy="126"></circle><circle r="107" cx="468" cy="358"></circle><circle r="104" cx="208" cy="126"></circle></g></svg>
-        <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0" viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#004E98"><circle r="147" cx="326" cy="574"></circle><circle r="65" cx="802" cy="55"></circle><circle r="76" cx="824" cy="541"></circle></g></svg>
+         <!-- <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0 " viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#1B998B"><circle r="147" cx="26" cy="438"></circle><circle r="74" cx="825" cy="126"></circle><circle r="107" cx="468" cy="358"></circle><circle r="104" cx="208" cy="126"></circle></g></svg>
+        <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0" viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#004E98"><circle r="147" cx="326" cy="574"></circle><circle r="65" cx="802" cy="55"></circle><circle r="76" cx="824" cy="541"></circle></g></svg> -->
         <div class="md:px-5">
             <Header> </Header>
         </div>
@@ -36,7 +36,7 @@ import Header from "./Navbar.vue";
                         <div class="z-10">
                             <h2
                     data-replace="Connect with
-                                   students eager
+                                   students eager`
                                     to taste your meal and offer your culinary
                                     expertise to those seeking homemade delights.
                                     Join us and let your cooking skills shine!"
@@ -77,14 +77,14 @@ import Header from "./Navbar.vue";
         <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
             <div class="max-w-2xl mx-auto text-center">
                 <h2
-                    class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl"
+                    class="text-3xl font-bold leading-tight text-oynx dark:text-snow sm:text-4xl lg:text-5xl"
                 >
                     Frequently Asked Questions
                 </h2>
             </div>
             <div class="max-w-3xl mx-auto mt-8 space-y-4 md:mt-16">
                 <div
-                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-800 dark:hover:bg-gray-850"
+                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-500 dark:hover:bg-oynx/50"
                 >
                     <button
                         type="button"
@@ -92,7 +92,7 @@ import Header from "./Navbar.vue";
                         data-state="closed"
                         class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
                     >
-                        <span class="flex text-lg font-semibold text-black"
+                        <span class="flex text-lg font-semibold text-oynx dark:text-snow"
                             >What are the fees associated with listing
                             meals?</span
                         >
@@ -115,7 +115,7 @@ import Header from "./Navbar.vue";
                     </div>
                 </div>
                 <div
-                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-800 dark:hover:bg-gray-850"
+                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-500 dark:hover:bg-oynx/50"
                 >
                     <button
                         type="button"
@@ -123,7 +123,7 @@ import Header from "./Navbar.vue";
                         data-state="closed"
                         class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
                     >
-                        <span class="flex text-lg font-semibold text-black"
+                        <span class="flex text-lg font-semibold text-oynx dark:text-snow"
                             >How do I get paid for my meals?</span
                         >
                         <font-awesome-icon icon="fa-solid fa-chevron-down" />
@@ -157,7 +157,7 @@ import Header from "./Navbar.vue";
                     </div>
                 </div>
                 <div
-                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-800 dark:hover:bg-gray-850"
+                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-500 dark:hover:bg-oynx/50"
                 >
                     <button
                         type="button"
@@ -165,7 +165,7 @@ import Header from "./Navbar.vue";
                         data-state="closed"
                         class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
                     >
-                        <span class="flex text-lg font-semibold text-black"
+                        <span class="flex text-lg font-semibold text-oynx dark:text-snow"
                             >How do I know if a customer has allergies or
                             dietary restrictions?</span
                         >
@@ -197,7 +197,7 @@ import Header from "./Navbar.vue";
                     </div>
                 </div>
                 <div
-                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-800 dark:hover:bg-gray-850"
+                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-500 dark:hover:bg-oynx/50"
                 >
                     <button
                         type="button"
@@ -205,7 +205,7 @@ import Header from "./Navbar.vue";
                         data-state="closed"
                         class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
                     >
-                        <span class="flex text-lg font-semibold text-black"
+                        <span class="flex text-lg font-semibold text-oynx dark:text-snow"
                             >Do I have to cook all the time?</span
                         >
                         <font-awesome-icon icon="fa-solid fa-chevron-down" />
@@ -234,7 +234,7 @@ import Header from "./Navbar.vue";
                     </div>
                 </div>
                 <div
-                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-800 dark:hover:bg-gray-850"
+                    class="transition-all duration-200 bg-snow border border-gray-200 shadow-lg cursor-pointer hover:bg-gray-50 dark:bg-oynx dark:text-snow dark:border-gray-500 dark:hover:bg-oynx/50"
                 >
                     <button
                         type="button"
@@ -242,7 +242,7 @@ import Header from "./Navbar.vue";
                         data-state="closed"
                         class="flex items-center justify-between w-full px-4 py-5 sm:p-6"
                     >
-                        <span class="flex text-lg font-semibold text-black"
+                        <span class="flex text-lg font-semibold text-oynx dark:text-snow"
                             >What kind of packaging materials do I need to use for delivery?</span
                         >
                         <font-awesome-icon icon="fa-solid fa-chevron-down" />
