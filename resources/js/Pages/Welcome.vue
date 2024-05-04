@@ -161,7 +161,7 @@ export default {
     >
         <button @click="loadMoreData">Show More</button>
     </div>
-    {{ $page.props.auth.user }}
+    <!-- {{ $page.props.auth.user }} -->
 
     <Footer></Footer>
 </template>

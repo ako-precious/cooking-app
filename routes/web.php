@@ -38,6 +38,8 @@ Route::get('/welcomed', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('users/{id}', [WelcomeController::class, 'users'])->name('user.show');
+
 
 Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
 
@@ -57,6 +59,7 @@ Route::get('/auth/microsoft/callback', [AccountController::class, 'azure_callbac
 Route::get('/auth/microsoft/return', [AccountController::class, 'azure_return'])->name('auth.microsoft');
 Route::get('meals/{id}', [MealController::class, 'meals']);
 Route::get('/cook/setup', [CookController::class, 'setup']);
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

@@ -46,6 +46,7 @@ export default {
       lavender: '#FFE9F3',
       persian: '#1B998B',
       oynx: '#303633',
+      oynx_alt: '#313638',
       lighred: '#FE6D73',
       polynesian: '#004E98',
 

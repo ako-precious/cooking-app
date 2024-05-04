@@ -22,7 +22,7 @@ export default {
 <template>
  
 
-<footer class="border-t border-gray-500 bg-gray-50 dark:bg-oynx/10">
+<footer class="border-t border-gray-500 bg-gray-50 dark:bg-oynx_alt">
   <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="lg:flex lg:items-start lg:gap-8">
       
