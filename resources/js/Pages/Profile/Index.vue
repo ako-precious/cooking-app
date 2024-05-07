@@ -78,7 +78,7 @@
         </div>
       </div>
       <div class="block lg:hidden text-center mt-6">
-        <h3 class="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+        <h3 class="text-xl font-semibold leading-normal mb-2 text-blueGray-700">
           Jenna Stones
         </h3>
         <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">

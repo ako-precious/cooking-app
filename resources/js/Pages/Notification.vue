@@ -9,13 +9,13 @@ import axios from "axios";
 <script>
 export default {
     inheritAttrs: false,
-    props: {
-        notifications: Object, // Prop to receive paginated notifications data from Inertia
-    },
+
     data() {
         return {
             isHeaderFixed: false,
             notified: "",
+            notifications: "",
+            count: "",
         };
     },
     beforeDestroy() {
@@ -28,6 +28,7 @@ export default {
     created() {
         this.handleScroll();
         this.checkNotification();
+        this.getNotification();
     },
     methods: {
         loadPreviousPage() {
@@ -43,9 +44,21 @@ export default {
             // Send an Inertia request to the next page using the `notifications.links.next` URL
             this.$inertia.visit(link);
         },
+        getNotification() {
+            axios
+                .get("/notifications/7")
+                .then((response) => {
+                    this.notifications = response.data.notifications;
+                    this.count = response.data.notifications.data.length;
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error saving data:", error);
+                });
+        },
         updateStatus() {
             axios
-                .put("/notifications/status", {
+                .put("/notifications/1", {
                     status: "read", // or 'inactive' depending on your requirement
                 })
                 .then((response) => {
@@ -55,14 +68,25 @@ export default {
                     console.error(error);
                 });
         },
-deleteNotifications(){
-
-},      
+        deleteNotifications(id) {
+            axios
+                .delete("/notifications/" + id)
+                .then((resp) => {
+                    this.notifications = resp.data.notifications;
+                    // console.log(resp.data.message);
+                })
+                .catch((err) => {
+                    this.error = "Unable to add Meal !";
+                    setTimeout(() => {
+                        this.error = "";
+                    }, 10000);
+                });
+        },
         checkNotification() {
             axios
                 .get("/notifications/7")
                 .then((response) => {
-                  console.log( this.notified = response.data.count);
+                (this.notified = response.data.count)
                 })
                 .catch((error) => {
                     // Handle error
@@ -102,15 +126,24 @@ deleteNotifications(){
         class="container mt-4 p-4 lg:p-10 mx-auto relative gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
         <div class="flex flex-col w-full">
+            <div class=" py-10 lg:p-10 ">
+                <h1
+                        class="font-bold  transition-colors ease-in-out rounded-lg group-action-text"
+                    >
+                        <span class="text-4xl lg:text-6xl ">
+                            Notifications
+                        </span>
+                    </h1>
+            </div>
             <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
-                <div v-if="notifications.data.length > 0">
+                <div v-if="count > 0">
                     <div
                         v-for="notification in notifications.data"
                         :key="notification.id"
                         class="col-span-1 mb-5 w-full max-w-full"
                     >
                         <div
-                            class="relative flex min-w-0 break-words w-full items-center justify-between border py-3 group rounded-2xl bg-clip-border cursor-pointer"
+                            class="relative flex min-w-0 break-words w-full items-center justify-between border border-gray-500 py-3 group rounded-2xl bg-clip-border cursor-pointer"
                         >
                             <Link class="w4" :href="`/meal-schedule`">
                                 <div
@@ -143,21 +176,30 @@ deleteNotifications(){
                                 </div>
                             </div>
                             <div
+                                @click="deleteNotifications(notification.id)"
                                 class="absolute top-[40%] right-[1%]"
                             >
                                 <div
-                                    class=" w-[25px] h-[25px] rounded-full flex items-center justify-center"
+                                    class="w-[25px] h-[25px] rounded-full flex items-center justify-center"
                                 >
-                                <font-awesome-icon
-                        icon="fa-solid fa-close"
-                        class="text-lighred text-2xl"
-                    />
+                                    <font-awesome-icon
+                                        icon="fa-solid fa-close"
+                                        class="text-lighred text-2xl"
+                                    />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div v-else>No notifications found.</div>
+                <div v-else>
+                    <h1
+                        class="font-semibold px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
+                    >
+                        <span class="text-xl lg:text-3xl leading-normal">
+                            No notifications found.
+                        </span>
+                    </h1>
+                </div>
                 <div v-if="notifications.links">
                     <!-- component -->
                     <div
