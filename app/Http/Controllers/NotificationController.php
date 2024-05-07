@@ -8,9 +8,26 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
+    public function notification()
+    {
+        $user = Auth::user();
+        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(4);
+        return inertia('Notification', ['notifications' => $notifications]);
+    }
     public function index()
     {
-        return inertia('Notification');
+        $user_id =   Auth::id();
+        $notifications = Notification::where('user_id', $user_id)->latest()->paginate(4);
+        $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
+        $prevPageUrl = $notifications->previousPageUrl();
+        $nextPageUrl = $notifications->nextPageUrl();
+       dd( $nextPageUrl);
+        return response()->json([
+            'notifications' => $notifications,
+            'count' => $count,
+            'prev_page_url' => $prevPageUrl,
+            'next_page_url' => $nextPageUrl,
+        ]);
     }
 
     public function show()
@@ -19,9 +36,15 @@ class NotificationController extends Controller
         $user_id =   Auth::id();
         $notifications = Notification::where('user_id', $user_id)->latest()->paginate(4);
         $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
-
-
-        return response()->json(['notifications' => $notifications, 'count' => $count]);
+        $prevPageUrl = $notifications->previousPageUrl();
+        $nextPageUrl = $notifications->nextPageUrl();
+       dd( $nextPageUrl);
+        return response()->json([
+            'notifications' => $notifications,
+            'count' => $count,
+            'prev_page_url' => $prevPageUrl,
+            'next_page_url' => $nextPageUrl,
+        ]);
     }
     public function update(Request $request)
     {

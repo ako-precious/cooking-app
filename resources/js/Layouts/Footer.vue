@@ -23,7 +23,7 @@ export default {
  
 
 <footer class="border-t border-gray-500 bg-gray-50 dark:bg-oynx_alt">
-  <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+  <div class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
     <div class="lg:flex lg:items-start lg:gap-8">
       
       <div class="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-3 lg:gap-y-16 w-full">

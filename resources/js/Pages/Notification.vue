@@ -31,34 +31,50 @@ export default {
         this.getNotification();
     },
     methods: {
+        getNotification() {
+            axios
+                .get("/api/notifications")
+                .then((response) => {
+                    console.log(
+                        (this.notifications = response.data.notifications)
+                    );
+                    this.count = response.data.notifications.data.length;
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error getting data:", error);
+                });
+        },
         loadPreviousPage() {
-            // Send an Inertia request to the previous page using the `notifications.links.prev` URL
-
-            this.$inertia.visit(this.notifications.prev_page_url);
+            axios
+                .get("/api/notifications")
+                .then((response) => {
+                    this.$inertia.visit(
+                        response.data.prevPageUrl
+                    );
+                })
+                .catch((error) => {
+                    console.error("Error getting data:", error);
+                });
         },
         loadNextPage() {
+            axios
+                .get("/api/notifications")
+                .then((response) => {
+                    this.$inertia.visit(response.data.nextPageUrl);
+                })
+                .catch((error) => {
+                    console.error("Error getting data:", error);
+                });
             // Send an Inertia request to the next page using the `notifications.links.next` URL
-            this.$inertia.visit(this.notifications.next_page_url);
         },
         loadNext(link) {
             // Send an Inertia request to the next page using the `notifications.links.next` URL
             this.$inertia.visit(link);
         },
-        getNotification() {
-            axios
-                .get("/notifications/7")
-                .then((response) => {
-                    this.notifications = response.data.notifications;
-                    this.count = response.data.notifications.data.length;
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error("Error saving data:", error);
-                });
-        },
         updateStatus() {
             axios
-                .put("/notifications/1", {
+                .put("/api/notifications", {
                     status: "read", // or 'inactive' depending on your requirement
                 })
                 .then((response) => {
@@ -84,13 +100,13 @@ export default {
         },
         checkNotification() {
             axios
-                .get("/notifications/7")
+                .get("/api/notifications")
                 .then((response) => {
-                (this.notified = response.data.count)
+                    this.notified = response.data.count;
                 })
                 .catch((error) => {
                     // Handle error
-                    console.error("Error saving data:", error);
+                    console.error("Error getting data:", error);
                 });
         },
         handleScroll() {
@@ -126,14 +142,12 @@ export default {
         class="container mt-4 p-4 lg:p-10 mx-auto relative gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
         <div class="flex flex-col w-full">
-            <div class=" py-10 lg:p-10 ">
+            <div class="py-10 lg:p-10">
                 <h1
-                        class="font-bold  transition-colors ease-in-out rounded-lg group-action-text"
-                    >
-                        <span class="text-4xl lg:text-6xl ">
-                            Notifications
-                        </span>
-                    </h1>
+                    class="font-bold transition-colors ease-in-out rounded-lg group-action-text"
+                >
+                    <span class="text-4xl lg:text-6xl"> Notifications </span>
+                </h1>
             </div>
             <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
                 <div v-if="count > 0">
