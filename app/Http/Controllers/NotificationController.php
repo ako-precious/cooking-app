@@ -42,4 +42,13 @@ class NotificationController extends Controller
     {
         // Get the rows to update\
     }
+    public function destroy($id)
+    {
+        $Notification = Notification::find($id);
+        $Notification->delete();
+       
+            return response()->json(['message' => 'Notification removed successfully!','pending' => $Notification ]);
+        
+    }
+
 }

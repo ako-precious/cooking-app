@@ -14,7 +14,7 @@ export default {
     },
     data() {
         return {
-            isHeaderFixed: false,            
+            isHeaderFixed: false,
             notified: "",
         };
     },
@@ -27,7 +27,7 @@ export default {
     },
     created() {
         this.handleScroll();
-        this.WishList();
+        this.checkNotification();
     },
     methods: {
         loadPreviousPage() {
@@ -43,62 +43,26 @@ export default {
             // Send an Inertia request to the next page using the `notifications.links.next` URL
             this.$inertia.visit(link);
         },
-        updateStatus(){
-            axios.put('/notifications/status', {
-                status: 'read' // or 'inactive' depending on your requirement
-            })
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        },
-        removeWishList(id) {
+        updateStatus() {
             axios
-                .delete(`/wishlist/${id}`)
+                .put("/notifications/status", {
+                    status: "read", // or 'inactive' depending on your requirement
+                })
                 .then((response) => {
-                    console.log(this.wishlist = response.data.wishlist);
-                    // Update UI if necessary
+                    console.log(response.data);
                 })
                 .catch((error) => {
-                    console.error("Error deleting item:", error);
+                    console.error(error);
                 });
         },
-        addWishList(id) {
-            const wishlistData = {
-                meal_id: id,
-                user_id: this.$page.props.auth.user.id,
-            };
-            axios
-                .post("/wishlist", wishlistData)
-                .then((response) => {
-                   console.log(this.wishlist = response.data.wishlist);
-                    // Update UI if necessary
-                })
-                .catch((error) => {
-                    console.error("Error adding to wishlist:", error);
-                });
-        },
-        WishList() {
-            if(this.$page.props.auth.user){
-                const id = this.meal.id;
-                axios
-                    .get("/wishlist/" + id)
-                    .then((response) => {
-                        this.wishlist = response.data.wishlist;
-                    })
-                    .catch((error) => {
-                        console.error("Error fetching wishlist data:", error);
-                    });
-            }
-        },
+deleteNotifications(){
 
+},      
         checkNotification() {
             axios
                 .get("/notifications/7")
                 .then((response) => {
-                   ( this.notified = response.data.count);
+                  console.log( this.notified = response.data.count);
                 })
                 .catch((error) => {
                     // Handle error
@@ -110,7 +74,6 @@ export default {
             const scrollThreshold = 20;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
-
     },
 };
 </script>
@@ -147,7 +110,7 @@ export default {
                         class="col-span-1 mb-5 w-full max-w-full"
                     >
                         <div
-                            class="relative flex min-w-0 break-words w-full items-center justify-between shadow-extra-small shadow-xxs border group rounded-2xl bg-clip-border cursor-pointer"
+                            class="relative flex min-w-0 break-words w-full items-center justify-between border py-3 group rounded-2xl bg-clip-border cursor-pointer"
                         >
                             <Link class="w4" :href="`/meal-schedule`">
                                 <div
@@ -168,15 +131,29 @@ export default {
                                 </div>
                             </Link>
                             <div
-                        v-if="notification.status == 'unread' "
-                        class="absolute top-[10%] right-[1%]"
-                    >
-                        <div
-                            class="bg-persian  w-[22px] h-[22px] rounded-full flex items-center justify-center"
-                        >
-                            <p class="text-xs font-bold text-persian">1</p>
-                        </div>
-                    </div>
+                                v-if="notification.status == 'unread'"
+                                class="absolute top-[10%] left-[1%]"
+                            >
+                                <div
+                                    class="bg-persian w-[15px] h-[15px] rounded-full flex items-center justify-center"
+                                >
+                                    <p class="text-xs font-bold text-persian">
+                                        1
+                                    </p>
+                                </div>
+                            </div>
+                            <div
+                                class="absolute top-[40%] right-[1%]"
+                            >
+                                <div
+                                    class=" w-[25px] h-[25px] rounded-full flex items-center justify-center"
+                                >
+                                <font-awesome-icon
+                        icon="fa-solid fa-close"
+                        class="text-lighred text-2xl"
+                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -242,9 +219,10 @@ export default {
                             </div>
                         </div>
                     </div>
-                   
                 </div>
-               <p class="cursor-pointer" v-if="notified"  @click="updateStatus"> Mark as read</p>
+                <p class="cursor-pointer" v-if="notified" @click="updateStatus">
+                    Mark as read
+                </p>
             </div>
         </div>
     </div>
