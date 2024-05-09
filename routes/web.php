@@ -88,6 +88,7 @@ Route::middleware([
 
 
     //photo Controller
+Route::resource('/notifications-messages', NotificationController::class);
     
     //Meal Schedule
     Route::resource('/schedule', MealScheduleController::class);

@@ -9,12 +9,14 @@ import axios from "axios";
 <script>
 export default {
     inheritAttrs: false,
-
+    props: {
+        messages: Object, // Prop to receive paginated notifications data from Inertia
+    },
     data() {
         return {
             isHeaderFixed: false,
             notified: "",
-            notifications: "",
+            notifications: this.messages,
             count: "",
         };
     },
@@ -24,49 +26,20 @@ export default {
 
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
+        console.log(this.notifications);
     },
     created() {
         this.handleScroll();
         this.checkNotification();
-        this.getNotification();
+        // this.getNotification();
     },
     methods: {
-        getNotification() {
-            axios
-                .get("/api/notifications")
-                .then((response) => {
-                    console.log(
-                        (this.notifications = response.data.notifications)
-                    );
-                    this.count = response.data.notifications.data.length;
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error("Error getting data:", error);
-                });
+     
+        loadPreviousPage(link) {            
+            this.$inertia.visit(link);
         },
-        loadPreviousPage() {
-            axios
-                .get("/api/notifications")
-                .then((response) => {
-                    this.$inertia.visit(
-                        response.data.prevPageUrl
-                    );
-                })
-                .catch((error) => {
-                    console.error("Error getting data:", error);
-                });
-        },
-        loadNextPage() {
-            axios
-                .get("/api/notifications")
-                .then((response) => {
-                    this.$inertia.visit(response.data.nextPageUrl);
-                })
-                .catch((error) => {
-                    console.error("Error getting data:", error);
-                });
-            // Send an Inertia request to the next page using the `notifications.links.next` URL
+        loadNextPage(link) {            
+            this.$inertia.visit(link);
         },
         loadNext(link) {
             // Send an Inertia request to the next page using the `notifications.links.next` URL
@@ -74,7 +47,7 @@ export default {
         },
         updateStatus() {
             axios
-                .put("/api/notifications", {
+                .put("/notifications-messages", {
                     status: "read", // or 'inactive' depending on your requirement
                 })
                 .then((response) => {
@@ -86,7 +59,7 @@ export default {
         },
         deleteNotifications(id) {
             axios
-                .delete("/api/notifications/" + id)
+                .delete("/notifications-messages/" + id)
                 .then((resp) => {
                     this.notifications = resp.data.notifications;
                     // console.log(resp.data.message);
@@ -100,7 +73,7 @@ export default {
         },
         checkNotification() {
             axios
-                .get("/api/notifications")
+                .get("/notifications-messages")
                 .then((response) => {
                     this.notified = response.data.count;
                 })
@@ -150,7 +123,7 @@ export default {
                 </h1>
             </div>
             <div class="grid grid-cols-1 gap-5 lg:gap-8 lg:px-10">
-                <div v-if="count > 0">
+                <div v-if="notifications.data.length > 0">
                     <div
                         v-for="notification in notifications.data"
                         :key="notification.id"
@@ -229,7 +202,7 @@ export default {
                             >
                                 <p
                                     v-if="notifications.prev_page_url"
-                                    @click.prevent="loadPreviousPage"
+                                    @click.prevent="loadPreviousPage(notifications.prev_page_url)"
                                     class="text-sm ml-3 font-medium leading-none"
                                 >
                                     Previous
@@ -267,7 +240,7 @@ export default {
                             >
                                 <p
                                     v-if="notifications.next_page_url"
-                                    @click.prevent="loadNextPage"
+                                    @click.prevent="loadNextPage(notifications.next_page_url)"
                                     class="text-sm font-medium leading-none mr-3"
                                 >
                                     Next

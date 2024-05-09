@@ -32,7 +32,6 @@ Route::middleware([
 
 });
 Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
-Route::resource('/notifications', NotificationController::class)->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
