@@ -7,8 +7,9 @@ use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\MealResource;
-use App\Models\Cook;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Cook;
+use App\Models\User;
 use App\Models\MealSchedule;
 use App\Models\Meal;
 class WelcomeController extends Controller
@@ -43,7 +44,9 @@ class WelcomeController extends Controller
         return response()->json(MealResource::collection($mealSchedules));
     }
      
-    public function users(){
+    public function users($id){
+        $user = User::find($id)->cook;
+        dd($user);
         return Inertia::render('Profile/Index');
     }
 }

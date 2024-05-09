@@ -70,7 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function Cook(): HasOne
+    public function cook(): HasOne
     {
         return $this->hasOne(Cook::class);
     }

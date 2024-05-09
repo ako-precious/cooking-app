@@ -191,7 +191,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                             </div>
                             <img
                                 v-if="!isLoading"
-                                class="h-auto max-w-full rounded-lg"
+                                class="h-auto max-w-full rounded-lg lg:px-6 "
                                 :src="src"
                                 alt=""
                             />

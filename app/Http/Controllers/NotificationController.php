@@ -35,14 +35,10 @@ class NotificationController extends Controller
         $user_id =   Auth::id();
         $notifications = Notification::where('user_id', $user_id)->latest()->paginate(4);
         $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
-        $prevPageUrl = $notifications->previousPageUrl();
-        $nextPageUrl = $notifications->nextPageUrl();
-       dd( $nextPageUrl);
+    
         return response()->json([
             'notifications' => $notifications,
             'count' => $count,
-            'prev_page_url' => $prevPageUrl,
-            'next_page_url' => $nextPageUrl,
         ]);
     }
     public function update(Request $request)
@@ -66,7 +62,8 @@ class NotificationController extends Controller
         $Notification = Notification::find($id);
         $Notification->delete();
         $user = Auth::user();
-        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(4);
+        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(4)
+        ;
 
         return response()->json(['message' => 'Notification removed successfully!', 'notifications' => $notifications]);
     }

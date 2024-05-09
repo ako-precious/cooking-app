@@ -33,7 +33,7 @@ class AccountController extends Controller
             return redirect()->route('login');
 
         }else{
-
+ 
             $user = User::updateOrCreate(['email' => $googleUser->email],
             ['name' => $googleUser->name,
             'google_id' => $googleUser->id,

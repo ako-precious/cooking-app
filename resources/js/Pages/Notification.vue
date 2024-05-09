@@ -26,7 +26,7 @@ export default {
 
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
-        console.log(this.notifications);
+        // console.log(this.notifications);
     },
     created() {
         this.handleScroll();
@@ -164,7 +164,7 @@ export default {
                             </div>
                             <div
                                 @click="deleteNotifications(notification.id)"
-                                class="absolute top-[40%] right-[1%]"
+                                class="absolute top-[40%] right-[1%] cursor-pointer"
                             >
                                 <div
                                     class="w-[25px] h-[25px] rounded-full flex items-center justify-center"
@@ -201,8 +201,8 @@ export default {
                                 class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer"
                             >
                                 <p
-                                    v-if="notifications.prev_page_url"
-                                    @click.prevent="loadPreviousPage(notifications.prev_page_url)"
+                                    v-if="messages.prev_page_url"
+                                    @click.prevent="loadPreviousPage(messages.prev_page_url)"
                                     class="text-sm ml-3 font-medium leading-none"
                                 >
                                     Previous
@@ -239,8 +239,8 @@ export default {
                                 class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer"
                             >
                                 <p
-                                    v-if="notifications.next_page_url"
-                                    @click.prevent="loadNextPage(notifications.next_page_url)"
+                                    v-if="messages.next_page_url"
+                                    @click.prevent="loadNextPage(messages.next_page_url)"
                                     class="text-sm font-medium leading-none mr-3"
                                 >
                                     Next
