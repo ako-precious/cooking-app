@@ -86,7 +86,7 @@ export default {
         },
         deleteNotifications(id) {
             axios
-                .delete("/notifications/" + id)
+                .delete("/api/notifications/" + id)
                 .then((resp) => {
                     this.notifications = resp.data.notifications;
                     // console.log(resp.data.message);
@@ -207,7 +207,7 @@ export default {
                 </div>
                 <div v-else>
                     <h1
-                        class="font-semibold px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
+                        class="font-semibold py-2 transition-colors ease-in-out rounded-lg group-action-text"
                     >
                         <span class="text-xl lg:text-3xl leading-normal">
                             No notifications found.

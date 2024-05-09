@@ -178,7 +178,7 @@ export default {
     methods: {
         checkNotification() {
             axios
-                .get("/api/notifications/7")
+                .get("/api/notifications")
                 .then((response) => {
                    ( this.notifications = response.data.count);
                 })

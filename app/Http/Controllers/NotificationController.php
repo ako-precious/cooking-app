@@ -16,18 +16,22 @@ class NotificationController extends Controller
     }
     public function index()
     {
-        $user_id =   Auth::id();
-        $notifications = Notification::where('user_id', $user_id)->latest()->paginate(4);
-        $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
-        $prevPageUrl = $notifications->previousPageUrl();
-        $nextPageUrl = $notifications->nextPageUrl();
-       dd( $nextPageUrl);
-        return response()->json([
-            'notifications' => $notifications,
-            'count' => $count,
-            'prev_page_url' => $prevPageUrl,
-            'next_page_url' => $nextPageUrl,
-        ]);
+       
+            $user_id =   Auth::id();
+            $notifications = Notification::where('user_id', $user_id)->latest()->paginate(4);
+            $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
+            $prevPageUrl = $notifications->previousPageUrl();
+            $nextPageUrl = $notifications->nextPageUrl();
+        //    dd( $nextPageUrl);
+
+            return response()->json([
+                'notifications' => $notifications,
+                'count' => $count,
+                'prev_page_url' => $prevPageUrl,
+                'next_page_url' => $nextPageUrl,
+                '$user_id' => $user_id,
+            ]);
+   
     }
 
     public function show()

@@ -22,15 +22,17 @@ Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
 Route::resource('/rating', RatingController::class);
 Route::get('ratings/{id}', [RatingController::class, 'rating']);
 
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
 
-    Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
-    Route::resource('/notifications', NotificationController::class);
 });
+Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
+Route::resource('/notifications', NotificationController::class)->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

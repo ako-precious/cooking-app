@@ -88,7 +88,7 @@ Route::middleware([
 
 
     //photo Controller
-
+    
     //Meal Schedule
     Route::resource('/schedule', MealScheduleController::class);
     Route::post('/checkout', [MealScheduleController::class, 'checkout']);
