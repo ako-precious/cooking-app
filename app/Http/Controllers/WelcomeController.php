@@ -46,7 +46,7 @@ class WelcomeController extends Controller
      
     public function users($id){
         $user = User::find($id)->cook;
-        dd($user);
-        return Inertia::render('Profile/Index');
+        // dd($user);
+        return Inertia::render('Profile/Index',['users' => $user] );
     }
 }

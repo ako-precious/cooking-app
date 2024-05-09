@@ -1,3 +1,36 @@
+
+<script>
+export default {
+    inheritAttrs: false,
+    props: {
+        user: Object, // Prop to receive paginated notifications data from Inertia
+    },
+    data() {
+        return {
+           
+            notified: "",
+            // notifications: this.messages,
+            count: "",
+        };
+    },
+    beforeDestroy() {
+        // window.removeEventListener("scroll", this.handleScroll);
+    },
+
+    mounted() {
+        // window.addEventListener("scroll", this.handleScroll);
+        // console.log(this.notifications);
+    },
+    created() {
+        // this.handleScroll();
+        // this.checkNotification();
+        // // this.getNotification();
+    },
+    methods: {},
+};
+</script>
+
+
 <template>
     <!-- component -->
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
