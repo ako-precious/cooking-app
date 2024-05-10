@@ -98,8 +98,8 @@ export default {
     <!-- component -->
     <div class="">
         <header
-            :class="{ fix: isHeaderFixed }"
-            class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
+            :class="{ 'fix align-bottom shadow-sm py-4 px-8 lg ' : isHeaderFixed }"
+            class="py-5 bg-snow dark:bg-oynx z-990  transition-all duration-300 delay-75 ease-in animate-fade-in"
         >
             <Navbar class="bg-snow dark:bg-oynx">
                 <template #search>
@@ -156,7 +156,7 @@ export default {
         </div>
     </div>
     <div
-        class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce"
+        class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
         v-if="hasMoreData"
     >
         <button @click="loadMoreData">Show More</button>
@@ -223,7 +223,7 @@ button:active:before {
     top: 0;
     right: 0;
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 0.4rem 2rem;
     z-index: 1000; /* Adjust z-index as needed */
 }
 
