@@ -10,6 +10,15 @@ vue.config.debug = false;
 
 
 export default defineConfig({
+  server: {
+    proxy: {
+      '/maps': {
+        target: 'https://maps.googleapis.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/maps/, ''),
+      },
+    },
+  },
   define: {
     'import.meta.env.VITE_APP_NAME': JSON.stringify('Ounjemi'),
     'import.meta.env.VITE_APP_ENV': JSON.stringify('production'), // Remove extra space

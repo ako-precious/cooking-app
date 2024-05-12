@@ -13,6 +13,8 @@ const props = defineProps({
     user: Object,
 });
 
+let suggestions = [];
+let debounceTimer = null;
 // const ingredients = ref([]);
 
 const form = useForm({
@@ -86,6 +88,75 @@ const addItem = () => {
 const removeItem = (index) => {
     form.dietary_restrictions_allergies.splice(index, 1);
 };
+
+const debouncedFetchSuggestions = () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        if (form.address.length >= 3) {
+            const params = {
+                input: form.address,
+                // key: "" // Replace with your API key
+            };
+            axios
+                .get("/maps/place/autocomplete", { params })
+                .then((response) => {
+                    suggestions = response.data.predictions;
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error("Error fetching suggestions:", error);
+                    suggestions = [];
+                });
+        } else {
+            suggestions = []; // Clear suggestions if input is less than 3 characters
+        }
+    }, 300); // Debounce time: 300ms
+};
+
+const fetchSuggestions = () => {
+    // Call debouncedFetchSuggestions method
+    debouncedFetchSuggestions();
+};
+
+const selectSuggestion = (suggestion) => {
+    form.address = suggestion.description;
+    suggestions = []; // Clear suggestions on selection
+    // Optionally fetch more details using the Place Details API
+    // fetchPlaceDetails(suggestion.place_id);
+};
+// const debouncedFetchSuggestions = () => {
+//       clearTimeout(this.debounceTimer);
+//       this.debounceTimer = setTimeout(() => {
+//         if (this.form.address.length >= 3) {
+//           const params = {
+//             input: this.form.address,
+//             key: "AIzaSyDdY5XR6f2xNtf89VzDQZZzLcYQQROwX5g" // Replace with your API key
+//           };
+//           axios
+//             .get("https://maps.googleapis.com/maps/api/place/autocomplete/json", { params })
+//             .then((response) => {
+//               this.suggestions = response.data.predictions;
+//             })
+//             .catch((error) => {
+//               console.error("Error fetching suggestions:", error);
+//               this.suggestions = [];
+//             });
+//         } else {
+//           this.suggestions = []; // Clear suggestions if input is less than 3 characters
+//         }
+//       }, 300); // Debounce time: 300ms
+//     };
+
+//    const fetchSuggestions = () => {
+//       // Call debouncedFetchSuggestions method
+//       this.debouncedFetchSuggestions();
+//     };
+//    const  selectSuggestion = (suggestion) =>{
+//       this.form.address = suggestion.description;
+//       this.suggestions = []; // Clear suggestions on selection
+//       // Optionally fetch more details using the Place Details API
+//       // this.fetchPlaceDetails(suggestion.place_id);
+//     }
 </script>
 
 <template>
@@ -102,61 +173,63 @@ const removeItem = (index) => {
                 v-if="$page.props.jetstream.managesProfilePhotos"
                 class="col-span-6 sm:col-span-6 flex justify-center"
             >
-            <div>
-
-                <!-- Profile Photo File Input -->
-                <input
-                    id="photo"
-                    ref="photoInput"
-                    type="file"
-                    class="hidden"
-                    @change="updatePhotoPreview"
-                />
-
-              
-
-                <!-- Current Profile Photo -->
-                <div v-show="!photoPreview" class="mt-2 flex justify-center">
-                    <img
-                        :src="user.profile_photo_url"
-                        :alt="user.name"
-                        class="rounded-full h-20 w-20 object-cover"
+                <div>
+                    <!-- Profile Photo File Input -->
+                    <input
+                        id="photo"
+                        ref="photoInput"
+                        type="file"
+                        class="hidden"
+                        @change="updatePhotoPreview"
                     />
+
+                    <!-- Current Profile Photo -->
+                    <div
+                        v-show="!photoPreview"
+                        class="mt-2 flex justify-center"
+                    >
+                        <img
+                            :src="user.profile_photo_url"
+                            :alt="user.name"
+                            class="rounded-full h-20 w-20 object-cover"
+                        />
+                    </div>
+
+                    <!-- New Profile Photo Preview -->
+                    <div v-show="photoPreview" class="mt-2">
+                        <span
+                            class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
+                            :style="
+                                'background-image: url(\'' +
+                                photoPreview +
+                                '\');'
+                            "
+                        />
+                    </div>
+
+                    <PrimaryButton
+                        class="mt-2 me-2"
+                        type="button"
+                        @click.prevent="selectNewPhoto"
+                    >
+                        Select A New Photo
+                    </PrimaryButton>
+
+                    <SecondaryButton
+                        v-if="user.profile_photo_path"
+                        type="button"
+                        class="mt-2"
+                        @click.prevent="deletePhoto"
+                    >
+                        Remove Photo
+                    </SecondaryButton>
+
+                    <InputError :message="form.errors.photo" class="mt-2" />
                 </div>
-
-                <!-- New Profile Photo Preview -->
-                <div v-show="photoPreview" class="mt-2 ">
-                    <span
-                        class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
-                        :style="
-                            'background-image: url(\'' + photoPreview + '\');'
-                        "
-                    />
-                </div>
-
-                <PrimaryButton               class="mt-2 me-2"
-                    type="button"
-                    @click.prevent="selectNewPhoto"
-                >
-                    Select A New Photo
-                </PrimaryButton>
-
-                <SecondaryButton
-                    v-if="user.profile_photo_path"
-                    type="button"
-                    class="mt-2"
-                    @click.prevent="deletePhoto"
-                >
-                    Remove Photo
-                </SecondaryButton>
-
-                <InputError :message="form.errors.photo" class="mt-2" />
-            </div>
-
             </div>
 
             <!-- Name -->
-            <div class="col-span-6 ">
+            <div class="col-span-6">
                 <InputLabel for="name" value="Name" />
                 <TextInput
                     id="name"
@@ -170,14 +243,14 @@ const removeItem = (index) => {
             </div>
 
             <!-- Email -->
-            <div class="col-span-6 ">
+            <div class="col-span-6">
                 <div class="flex flex-col lg:flex-row justify-between">
                     <div class="w-full mb-[1.5rem] lg:mb-0 lg:w-[48%]">
                         <InputLabel for="email" value="Email" />
                         <TextInput
                             id="email"
                             v-model="form.email"
-                            type="email" 
+                            type="email"
                             readonly
                             class="mt-1 block w-full text-sm"
                             required
@@ -215,7 +288,7 @@ const removeItem = (index) => {
                             </div>
                         </div>
                     </div>
-                    <!-- Address -->
+                    <!-- Phone -->
                     <div class="w-full mb-[1.5rem] lg:mb-0 lg:w-[48%]">
                         <InputLabel for="Phone Number" value="Phone Number" />
                         <TextInput
@@ -235,7 +308,7 @@ const removeItem = (index) => {
             </div>
 
             <!-- Address -->
-            <div class="col-span-6 ">
+          <div class="col-span-6 relative">
                 <InputLabel for="address" value="Address" />
                 <TextInput
                     id="address"
@@ -244,17 +317,38 @@ const removeItem = (index) => {
                     class="mt-1 block w-full"
                     required
                     autocomplete="address"
+                    @keyup.enter="fetchSuggestions"
+                    @input="debouncedFetchSuggestions"
                 />
                 <InputError :message="form.errors.address" class="mt-2" />
+                <ul class="absolute shadow-small p-2 w-full rounded-md" v-if="suggestions.length">
+                    <li class="p-1"
+                        v-for="suggestion in suggestions"
+                        :key="suggestion.place_id"
+                    >
+                        <a href="#" @click="selectSuggestion(suggestion)">
+                            {{ suggestion.description }}
+                        </a>
+                    </li>
+                </ul>
             </div>
-
             <!-- dietary_restriction_allergies -->
-            <div class="col-span-6 ">
+            <div class="col-span-6">
                 <div class="flex items-center justify-between">
-                    <InputLabel for="" value="Dietary Restriction and Allergies" />
-                    <p class=" bg-snow/50  cursor-pointer p-1 text-sm " @click="addItem" title="add Dietary Restriction and Allergies " >Add <font-awesome-icon icon="plus"  class="text-persian  "/></p>
+                    <InputLabel
+                        for=""
+                        value="Dietary Restriction and Allergies"
+                    />
+                    <p
+                        class="bg-snow/50 cursor-pointer p-1 text-sm"
+                        @click="addItem"
+                        title="add Dietary Restriction and Allergies "
+                    >
+                        Add
+                        <font-awesome-icon icon="plus" class="text-persian" />
+                    </p>
                 </div>
-               
+
                 <div class="mt-1">
                     <div class="flex flex-wrap-reverse flex-row-reverse">
                         <div
@@ -264,16 +358,21 @@ const removeItem = (index) => {
                             ) in form.dietary_restrictions_allergies"
                             :key="index"
                         >
-                        <TextInput
-                         class=" block w-full h-full text-sm "
+                            <TextInput
+                                class="block w-full h-full text-sm"
                                 v-model="
                                     form.dietary_restrictions_allergies[index]
                                 "
                             />
-                            <p class="absolute bottom-1 top-1 right-1 bg-snow/20  cursor-pointer p-2" @click="removeItem(index)"><font-awesome-icon
-                        icon="fa-solid fa-close"
-                        class="text-persian text-  "
-                    /> </p>
+                            <p
+                                class="absolute bottom-1 top-1 right-1 bg-snow/20 cursor-pointer p-2"
+                                @click="removeItem(index)"
+                            >
+                                <font-awesome-icon
+                                    icon="fa-solid fa-close"
+                                    class="text-persian text-"
+                                />
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -284,7 +383,7 @@ const removeItem = (index) => {
             </div>
 
             <!-- other info -->
-            <div class="col-span-6 ">
+            <div class="col-span-6">
                 <InputLabel
                     for="other_info"
                     value="Something Interesting about you"
@@ -320,3 +419,110 @@ const removeItem = (index) => {
         </template>
     </FormSection>
 </template>
+<!-- {/* <script>
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      suggestions: [],
+    };
+  },
+  mounted(){
+    console.log(this.form.address);
+  },
+  methods: {
+    debouncedFetchSuggestions() {
+      clearTimeout(this.debounceTimer);
+      this.debounceTimer = setTimeout(() => {
+        if (this.form.address.length >= 3) {
+          const params = {
+            input: this.form.address,
+            key: "YOUR_API_KEY" // Replace with your API key
+          };
+          axios
+            .get("https://maps.googleapis.com/maps/api/place/autocomplete/json", { params })
+            .then((response) => {
+              this.suggestions = response.data.predictions;
+            })
+            .catch((error) => {
+              console.error("Error fetching suggestions:", error);
+              this.suggestions = [];
+            });
+        } else {
+          this.suggestions = []; // Clear suggestions if input is less than 3 characters
+        }
+      }, 300); // Debounce time: 300ms
+    },
+    fetchSuggestions() {
+      // Call debouncedFetchSuggestions method
+      this.debouncedFetchSuggestions();
+    },
+    selectSuggestion(suggestion) {
+      this.form.address = suggestion.description;
+      this.suggestions = []; // Clear suggestions on selection
+      // Optionally fetch more details using the Place Details API
+      // this.fetchPlaceDetails(suggestion.place_id);
+    },
+    // fetchPlaceDetails(placeId) {
+    //   // Fetch details using Place Details API
+    // },
+  },
+};
+</script>
+ <script>
+import axios from "axios";
+
+export default {
+    data() {
+        return {
+            address: '',
+            suggestions: [],
+        };
+    },
+    methods: {
+        fetchSuggestions() {
+            if (this.form.address.length >= 3) {
+                console.log(this.form.address);
+                const params = {
+                    input: this.form.address,
+                    key: AIzaSyDdY5XR6f2xNtf89VzDQZZzLcYQQROwX5g, // Replace with your API key
+                };
+                axios
+                    .get(
+                        "https://maps.googleapis.com/maps/api/place/autocomplete/json",
+                        { params }
+                    )
+                    .then((response) => {
+                        this.suggestions = response.data.predictions;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching suggestions:", error);
+                    });
+            } else {
+                this.suggestions = []; // Clear suggestions if input is less than 3 characters
+            }
+        },
+        selectSuggestion(suggestion) {
+            this.form.address = suggestion.description;
+            this.suggestions = []; // Clear suggestions on selection
+
+            // Optional: Server-side validation/formatting
+            if (this.shouldValidateAddress) {
+                // Flag to check if server-side validation is enabled
+                this.validateAddress(this.form.address);
+            }
+        },
+        validateAddress(address) {
+            // Implement logic to send address to Laravel controller for validation
+            // (if server-side validation is enabled)
+        },
+    },
+    computed: {
+        shouldValidateAddress() {
+            // Set a flag to determine if server-side validation is enabled
+            return false; // Change to true if you want server-side validation
+        },
+    },
+};
+</script>  */} -->

@@ -12,6 +12,7 @@ use App\Models\Cook;
 use App\Models\User;
 use App\Models\MealSchedule;
 use App\Models\Meal;
+use Illuminate\Support\Facades\Http;
 class WelcomeController extends Controller
 {
     public function index() {
@@ -48,5 +49,16 @@ class WelcomeController extends Controller
         $user = User::find($id)->cook;
         // dd($user);
         return Inertia::render('Profile/Index',['users' => $user] );
+    }
+    public function autocomplete(Request $request)
+    {
+        $input = $request->input('input');
+        $apiKey = env('GOOGLE_API');
+
+        $url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&key=$apiKey";
+
+        $response = Http::get($url);
+
+        return $response->json();
     }
 }

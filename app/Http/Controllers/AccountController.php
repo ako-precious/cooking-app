@@ -28,7 +28,7 @@ class AccountController extends Controller
         $find_user = User::firstWhere('google_id', $googleUser->id);
         if($find_user){
             Auth::login($find_user);
-            echo '<script>opener.window.close();</script>';
+            // echo '<script>opener.window.close();</script>';
 //   return redirect('/user/profile');
             return redirect()->route('login');
 
