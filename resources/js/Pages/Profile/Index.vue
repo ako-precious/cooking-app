@@ -1,36 +1,4 @@
 
-<script>
-export default {
-    inheritAttrs: false,
-    props: {
-        user: Object, // Prop to receive paginated notifications data from Inertia
-    },
-    data() {
-        return {
-           
-            notified: "",
-            // notifications: this.messages,
-            count: "",
-        };
-    },
-    beforeDestroy() {
-        // window.removeEventListener("scroll", this.handleScroll);
-    },
-
-    mounted() {
-        // window.addEventListener("scroll", this.handleScroll);
-        // console.log(this.notifications);
-    },
-    created() {
-        // this.handleScroll();
-        // this.checkNotification();
-        // // this.getNotification();
-    },
-    methods: {},
-};
-</script>
-
-
 <template>
     <!-- component -->
 <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
@@ -52,37 +20,53 @@ export default {
         <div class="w-full hidden px-4 lg:flex justify-between gap-4">
             <div class=" lg:flex py-4 lg:pt-4 lg:w-4/12 ">
             <div class=" p-3 text-center">
-              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+              <span class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow">
                 222
               </span>
-              <span class="text-sm text-blueGray-400">Days Cooking</span>
+              <span class="text-sm text-oynx dark:text-snow">Days Cooking</span>
             </div>
             <div class=" p-3  text-center">
-              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+              <span class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow">
                 4.5
               </span>
-              <span class="text-sm text-blueGray-400">Rating</span>
+              <span class="text-sm text-oynx dark:text-snow">Rating</span>
             </div>
             <div class=" p-3 text-center">
-              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+              <span class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow">
                 89
               </span>
-              <span class="text-sm text-blueGray-400">Review(s)</span>
+              <span class="text-sm text-oynx dark:text-snow">Review(s)</span>
             </div>
           </div>
           <div class="">
               <div class="relative w-full   ">
-                <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px">
+                <img
+                                    v-if="user.profile_photo_path"
+                                    :src="
+                                        getProfilePhotoUrl(
+                                            user.profile_photo_path
+                                        )
+                                    "
+                                    class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                                    alt="avatar"
+                                />
+                                <img
+                                    v-else
+                                    :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
+                                    class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                                    alt="avatar"
+                                />
+                <!-- <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"> -->
               </div>
 
           </div>
           <div class=" hidden lg:block text-center lg:w-4/12 mt-6">
-        <h3 class="text-xl font-semibold leading-normal mb-2 text-blueGray-700 ">
-          Jenna Stones
+        <h3 class="text-xl font-semibold leading-normal mb-2 text-oynx dark:text-snow capitalize ">
+          {{ user.name }}
         </h3>
-        <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-          <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-          Los Angeles, California
+        <div class="text-sm leading-normal mt-0 mb-2 text-oynx dark:text-snow font-bold uppercase">
+          <i class="fas fa-map-marker-alt mr-2 text-lg text-oynx dark:text-snow"></i>
+          {{ user.address }}
         </div>
         
       </div>
@@ -90,47 +74,47 @@ export default {
         <div class="block lg:hidden w-full px-4 text-center mt-20">
           <div class="flex justify-center py-4 lg:pt-4 pt-8">
             <div class="mr-4 p-3 text-center">
-              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+              <span class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow">
                 22
               </span>
-              <span class="text-sm text-blueGray-400">Months Cooking</span>
+              <span class="text-sm text-oynx dark:text-snow">Months Cooking</span>
             </div>
             <div class="mr-4 p-3 text-center">
-              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+              <span class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow">
                 4.5
               </span>
-              <span class="text-sm text-blueGray-400">Rating</span>
+              <span class="text-sm text-oynx dark:text-snow">Rating</span>
             </div>
             <div class="lg:mr-4 p-3 text-center">
-              <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
+              <span class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow">
                 89
               </span>
-              <span class="text-sm text-blueGray-400">Review(s)</span>
+              <span class="text-sm text-oynx dark:text-snow">Review(s)</span>
             </div>
           </div>
         </div>
       </div>
       <div class="block lg:hidden text-center mt-6">
-        <h3 class="text-xl font-semibold leading-normal mb-2 text-blueGray-700">
-          Jenna Stones
+        <h3 class="text-xl font-semibold leading-normal mb-2 text-oynx dark:text-snow capitalize">
+          {{ user.name }}
         </h3>
-        <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-          <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-          Los Angeles, California
+        <div class="text-sm leading-normal mt-0 mb-2 text-oynx dark:text-snow font-bold uppercase">
+          <i class="fas fa-map-marker-alt mr-2 text-lg text-oynx dark:text-snow"></i>
+          {{ user.address }}
         </div>
-        <div class="mb-2 text-blueGray-600 mt-10">
-          <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>
+        <div class="mb-2 text-oynx dark:text-snow mt-10">
+          <i class="fas fa-briefcase mr-2 text-lg text-oynx dark:text-snow"></i>
           Solution Manager - Creative Tim Officer
         </div>
-        <div class="mb-2 text-blueGray-600">
-          <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>
-          University of Computer Science
+        <div class="mb-2 text-oynx dark:text-snow">
+          <i class="fas fa-university mr-2 text-lg text-oynx dark:text-snow"></i>
+          University of Computer Science {{ user }}
         </div>
       </div>
       <div class="mt-10 py-10 border-t  border-gray-500 text-center">
         <div class="flex flex-wrap justify-center">
           <div class="w-full lg:w-9/12 px-4">
-            <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
+            <p class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow">
               An artist of considerable range, Jenna the name taken
               by Melbourne-raised, Brooklyn-based Nick Murphy
               writes, performs and records all of his own music,
@@ -148,3 +132,41 @@ export default {
 </div>
 </section>
 </template>
+
+<script>
+export default {
+    inheritAttrs: false,
+    props: {
+        user: Object, // Prop to receive paginated notifications data from Inertia
+    },
+    data() {
+        return {
+           
+        };
+    },
+    beforeDestroy() {
+        // window.removeEventListener("scroll", this.handleScroll);
+    },
+
+    mounted() {
+        // window.addEventListener("scroll", this.handleScroll);
+        // console.log(this.user);
+    },
+    created() {
+        // this.handleScroll();
+        // this.checkNotification();
+        // // this.getNotification();
+    },
+    methods: {
+      getProfilePhotoUrl(profilePhotoPath) {
+            if (
+                profilePhotoPath.includes("https://lh3.googleusercontent.com")
+            ) {
+                return profilePhotoPath;
+            } else {
+                return `/storage/${profilePhotoPath}`;
+            }
+        },
+    },
+};
+</script>

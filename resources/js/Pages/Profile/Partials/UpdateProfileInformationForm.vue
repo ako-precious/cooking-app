@@ -357,7 +357,7 @@ const selectSuggestion = (suggestion) => {
                     value="Something Interesting about you"
                 />
 
-                <textarea
+                <textarea required
                     autocomplete="other_info"
                     id="other_info"
                     class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
