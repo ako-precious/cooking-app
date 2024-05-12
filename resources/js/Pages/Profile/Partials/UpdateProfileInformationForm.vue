@@ -19,12 +19,12 @@ let debounceTimer = null;
 
 const form = useForm({
     _method: "PUT",
-    name: props.user.name,
-    email: props.user.email,
-    phone_number: props.user.phone_number,
-    address: props.user.address,
-    dietary_restrictions_allergies: props.user.dietary_restrictions_allergies,
-    other_info: props.user.other_info,
+    name: props.user.name || '',
+    email: props.user.email || '',
+    phone_number: props.user.phone_number || '' ,
+    address: props.user.address || '',
+    dietary_restrictions_allergies: props.user.dietary_restrictions_allergies || [],
+    other_info: props.user.other_info || '',
     photo: null,
 });
 
@@ -101,7 +101,7 @@ const debouncedFetchSuggestions = () => {
                 .get("/maps/place/autocomplete", { params })
                 .then((response) => {
                     suggestions = response.data.predictions;
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch((error) => {
                     console.error("Error fetching suggestions:", error);
@@ -124,39 +124,7 @@ const selectSuggestion = (suggestion) => {
     // Optionally fetch more details using the Place Details API
     // fetchPlaceDetails(suggestion.place_id);
 };
-// const debouncedFetchSuggestions = () => {
-//       clearTimeout(this.debounceTimer);
-//       this.debounceTimer = setTimeout(() => {
-//         if (this.form.address.length >= 3) {
-//           const params = {
-//             input: this.form.address,
-//             key: "AIzaSyDdY5XR6f2xNtf89VzDQZZzLcYQQROwX5g" // Replace with your API key
-//           };
-//           axios
-//             .get("https://maps.googleapis.com/maps/api/place/autocomplete/json", { params })
-//             .then((response) => {
-//               this.suggestions = response.data.predictions;
-//             })
-//             .catch((error) => {
-//               console.error("Error fetching suggestions:", error);
-//               this.suggestions = [];
-//             });
-//         } else {
-//           this.suggestions = []; // Clear suggestions if input is less than 3 characters
-//         }
-//       }, 300); // Debounce time: 300ms
-//     };
 
-//    const fetchSuggestions = () => {
-//       // Call debouncedFetchSuggestions method
-//       this.debouncedFetchSuggestions();
-//     };
-//    const  selectSuggestion = (suggestion) =>{
-//       this.form.address = suggestion.description;
-//       this.suggestions = []; // Clear suggestions on selection
-//       // Optionally fetch more details using the Place Details API
-//       // this.fetchPlaceDetails(suggestion.place_id);
-//     }
 </script>
 
 <template>
