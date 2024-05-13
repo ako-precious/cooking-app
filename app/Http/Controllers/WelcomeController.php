@@ -48,7 +48,9 @@ class WelcomeController extends Controller
     public function users($id){
         $user = User::find($id);
         $cook = Cook::where('user_id', $id)->get();
-        return Inertia::render('Profile/Index',['user' => $user, 'cook' => $cook] );
+        $meals = Meal::where('cook_id', $id)->with('user')->where('status', 'available')->latest()->get();
+        // dd(MealResource::collection($meals));
+        return Inertia::render('Profile/Index',['user' => $user, 'cook' => $cook, 'meals' => $meals] );
     }
 
     public function autocomplete(Request $request)
