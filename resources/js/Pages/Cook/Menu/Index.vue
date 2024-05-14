@@ -19,30 +19,46 @@ import CaretUp from "@/Components/CaretUp.vue";
             >
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
-                        <div class="py-5 lg:py-8 ">
-                    <h1
-                        class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
-                    >
-                        Glad you're back,
-                        <span class="capitalize">
-                            {{ firstWord }}
-                            <!-- {{ firstWord($page.props.auth.user.name ) }} -->
-                        </span>
-                    </h1>
-                </div>
-                        <div class="flex flex-col md:flex-row items-start justify-between md:items-center">
-
+                        <div class="py-5 lg:py-8">
+                            <h1
+                                class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
+                            >
+                                Glad you're back,
+                                <span class="capitalize">
+                                    {{ firstWord }}
+                                    <!-- {{ firstWord($page.props.auth.user.name ) }} -->
+                                </span>
+                            </h1>
+                        </div>
+                        <div
+                            class="flex flex-col md:flex-row items-start justify-between md:items-center"
+                        >
+                            <div class="py-3">
+                                <h1 class="lg:text-lg text-oynx dark:text-snow">
+                                    Setup your payment account
+                                    <Link
+                                        :href="`/cook/account`"
+                                        class="text-persian underline"
+                                        >here</Link
+                                    >
+                                </h1>
+                            </div>
+                        </div>
+                        <div
+                            class="flex flex-col md:flex-row items-start justify-between md:items-center"
+                        >
                             <div class="py-3">
                                 <h1
                                     class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
                                 >
-                                  You have  {{ menu.length }} meal(s) in our menu
+                                    You have {{ menu.length }} meal(s) in our
+                                    menu
                                 </h1>
                             </div>
                             <div class="p-2 flex">
                                 <Link :href="`/become-a-cook/overview`">
                                     <button
-                                        class=" shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
+                                        class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
                                     >
                                         <span
                                             class="span-mother flex overflow-hidden"
@@ -75,7 +91,9 @@ import CaretUp from "@/Components/CaretUp.vue";
                             <div
                                 class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
-                                <div class="overflow-x-scroll disable-scrollbars">
+                                <div
+                                    class="overflow-x-scroll disable-scrollbars"
+                                >
                                     <table
                                         class="w-full px-4 text-left text-sm font-light relative"
                                     >
@@ -140,7 +158,8 @@ import CaretUp from "@/Components/CaretUp.vue";
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr title="Click to edit"
+                                            <tr
+                                                title="Click to edit"
                                                 v-if="menu.length > 0"
                                                 v-for="meal in menu"
                                                 :key="meal.id"
@@ -208,7 +227,6 @@ export default {
         },
     },
 };
-
 </script>
 
 <style scoped>

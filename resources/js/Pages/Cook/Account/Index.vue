@@ -3,74 +3,84 @@ import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
 import HeaderVue from "../Header.vue";
-import  CaretDown  from "@/Components/CaretDown.vue";
-import  CaretUp  from "@/Components/CaretUp.vue";
+import CaretDown from "@/Components/CaretDown.vue";
+import CaretUp from "@/Components/CaretUp.vue";
 </script>
 
 <template>
-      <Head title="Account Onboarding" />
+    <Head title="Account Onboarding" />
     <div
-        class="relative sm:flex sm:justify-center sm:items-center  bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
+        class="relative sm:flex sm:justify-center sm:items-center bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
         <div class="container relative mx-auto overflow-hidden">
-
-            <HeaderVue> </HeaderVue>  
+            <HeaderVue> </HeaderVue>
             <div
-                class="m-auto flex flex-col  justify-center h-full p-6 lg:pb-20 w-full"
+                class="m-auto flex flex-col justify-center h-full p-6 lg:pb-20 w-full"
             >
-            
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
-                        <div class="flex justify-between items-center">
-                            <div class="py-3">
-                                <h1
-                                class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow">                              
+                        <div class="py-5 lg:py-8">
+                            <h1
+                                class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
+                            >
+                                Glad you're back,
+                                <span class="capitalize">
+                                    {{ firstWord }}
+                                    <!-- {{ firstWord($page.props.auth.user.name ) }} -->
+                                </span>
                             </h1>
-                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            
                             <div class="p-2 flex">
-                                <Link :href="`/become-a-cook/overview`">
-                                    <button
-            class="shadow-md  rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
-        >   
-            <span class="span-mother flex overflow-hidden">
-            
-                <span>Cr</span>
-                <span>ea</span>
-                <span>t</span>
-                <span> e M</span>
-                <span>ea</span>
-                <span>l <font-awesome-icon
-                                                icon="plus"/></span>
-            </span>
-            <span class="span-mother2">
-                <span>Cr</span>
-                <span>ea</span>
-                <span>t</span>
-                <span> e M</span>
-                <span>ea</span>
-                <span>l <font-awesome-icon
-                                                icon="plus"/></span>
-            </span>
-        </button></Link>
+                                <button
+                                    @click="CookAccount"
+                                    class="shadow-md rounded-md cursor-pointer w-[250px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
+                                >
+                                    <span
+                                        class="span-mother flex overflow-hidden"
+                                    >
+                                        <span>Crea</span>
+                                        <span>te A S</span>
+                                        <span>trip</span>
+                                        <span> e Ac</span>
+                                        <span>cou</span>
+                                        <span
+                                            >nt <font-awesome-icon icon="plus"
+                                        /></span>
+                                    </span>
+                                    <span class="span-mother2">
+                                        <span>Crea </span>
+                                        <span>te A S</span>
+                                        <span>trip</span>
+                                        <span> e Ac</span>
+                                        <span>cou</span>
+                                        <span
+                                            >nt <font-awesome-icon icon="plus"
+                                        /></span>
+                                    </span>
+                                </button>
                             </div>
-
                         </div>
                         <div class="sm:-mx-6 lg:-mx-8">
                             <div
-                                class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                                class="inline-block min-w-full py-2 sm:px-6 lg:px-8"
+                            >
                                 <div class="overflow-x-auto">
                                     <table
-                                        class=" min-w-full text-left text-sm font-light relative">
+                                        class="min-w-full text-left text-sm font-light relative"
+                                    >
                                         <thead
-                                            class="align-bottom shadow-sm translate-x-0 sticky top-1 ">
+                                            class="align-bottom shadow-sm translate-x-0 sticky top-1"
+                                        >
                                             <tr>
                                                 <TableHeadVue>
                                                     <template #title>
                                                         stripe account id
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp />
+                                                        <CaretDown />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -78,8 +88,8 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         charges enabled
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp />
+                                                        <CaretDown />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -87,8 +97,8 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         transfer enabled
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp />
+                                                        <CaretDown />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
@@ -96,26 +106,28 @@ import  CaretUp  from "@/Components/CaretUp.vue";
                                                         detailed submitted
                                                     </template>
                                                     <template #symbols>
-                                                        <CaretUp/>
-                                                        <CaretDown/>
+                                                        <CaretUp />
+                                                        <CaretDown />
                                                     </template>
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        
                                                     </template>
                                                     <template #symbols>
-                                                        
                                                     </template>
                                                 </TableHeadVue>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <tr v-for="account in accounts"
+                                            <tr
+                                                v-for="account in accounts"
                                                 :key="account.id"
-                                                class="animate-fade-in border-b py-4" >
-
-                                                <TableRow :account="account" class="py-3">
+                                                class="animate-fade-in border-b py-4"
+                                            >
+                                                <TableRow
+                                                    :account="account"
+                                                    class="py-3"
+                                                >
                                                 </TableRow>
                                             </tr>
                                         </tbody>
@@ -139,10 +151,41 @@ export default {
     props: {
         accounts: Object,
     },
-  
+    computed: {
+        firstWord() {
+            // Check if $page.props.auth.user.name is defined
+            if (
+                this.$page.props.auth &&
+                this.$page.props.auth.user &&
+                this.$page.props.auth.user.name
+            ) {
+                // Split the name string into an array of words
+                const words = this.$page.props.auth.user.name.split(" ");
+
+                // Return the first word
+                return words[0];
+            } else {
+                return ""; // Return an empty string if $page.props.auth.user.name is undefined
+            }
+        },
+    },
+    methods: {
+        CookAccount() {
+            // Send an HTTP request to your backend API to save the data
+
+            axios
+                .post("/cook/account")
+                .then((response) => {
+                    window.location.href = response.data.url;
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error saving data:", error);
+                });
+        },
+    },
 };
 </script>
-
 
 <style scoped>
 button:hover .span-mother {

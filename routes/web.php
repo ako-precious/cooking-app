@@ -28,9 +28,9 @@ use function PHPUnit\Framework\callback;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-});
+// Route::get('/linkstorage', function () {
+//     Artisan::call('storage:link');
+// });
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/welcomed', function () {

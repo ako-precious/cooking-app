@@ -151,7 +151,7 @@ class AccountController extends Controller
                 'mcc' => '5814',
                 'name' => $user->name,
                 'product_description' => 'Meal from ' . $user->name,
-                'url'=>  route('cook.index', [], true)
+                'url'=>  env('APP_URL')
             ]
         ]);
         
