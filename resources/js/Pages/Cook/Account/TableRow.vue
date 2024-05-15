@@ -3,43 +3,40 @@ import { Head, Link } from "@inertiajs/vue3";
 defineProps(["account"]);
 </script>
 <template>
-    <td  class="whitespace-nowrap px-6 py-3 font-semibold  dark:text-snow text-oynx  ">
-           
-            <p class="">
-
-                {{ account.stripe_account_id }}
-            </p>
-    </td>
-   
-    <td class="whitespace-nowrap px-6 py-3 dark:text-snow text-oynx ">{{ account.charges_enabled }}</td>
-    <td class="whitespace-nowrap px-6 py-3 dark:text-snow text-oynx "> {{ account.transfer_enabled }}</td>
-    <td v-if="account.detailed_submitted == 0 " class="whitespace-nowrap px-6 py-3">
+    
+      <td class="whitespace-nowrap px-6 py-5 font-semibold dark:text-snow text-oynx">
+        {{ account.stripe_account_id }}
+      </td>
+      <td v-if="account.charges_enabled == 0" class="whitespace-nowrap px-6 py-5 dark:text-snow text-oynx capitalize">
+        false
+      </td>
+      <td v-else class="whitespace-nowrap px-6 py-5 dark:text-snow text-oynx capitalize">
+        true
+      </td>
+      <td v-if="account.transfer_enabled == 0" class="whitespace-nowrap px-6 py-5 dark:text-snow text-oynx capitalize">
+        false
+      </td>
+      <td v-else class="whitespace-nowrap px-6 py-5 dark:text-snow text-oynx capitalize">
+        true
+      </td>
+      
+      <td v-if="account.detailed_submitted == 0" class="whitespace-nowrap px-6 py-5">
         <div class="flex items-start">
-             <div
-                    @click=" Onboard(account.stripe_account_id)"
-                    class="p-2 cursor-pointer  shadow-sm rounded-sm hover:shadow-xs group"
-                >
-                    <p
-                        class="text-base font-semibold group-action-text "
-                    >
-                        Finish onboarding
-                    </p>
-                </div>
+          <div @click="Onboard(account.stripe_account_id)" class="p-2 cursor-pointer shadow-sm rounded-sm hover:shadow-xs group">
+            <p class="text-base font-semibold group-action-text">Finish onboarding</p>
+          </div>
         </div>
-        </td>
-    <td v-else=""></td>
-
+      </td>
+      <td v-else class="whitespace-nowrap px-6 py-5">True</td>
+      <td class="whitespace-nowrap px-6 py-5"></td>
+    
+  </template>
   
-    <td class="whitespace-nowrap px-6 py-3"></td>
-</template>
-
 <script>
 import axios from "axios";
 export default {
     data() {
-        return {
-           
-        };
+        return {};
     },
     mounted() {
         this.FormattedDate();
@@ -56,7 +53,7 @@ export default {
                 .padStart(2, "0")}`;
             return formattedDate;
         },
-        
+
         truncatedIng(description) {
             // Check if description exists and has more than 30 characters
             if (description && description.length > 1) {
@@ -69,18 +66,17 @@ export default {
         },
         Onboard(id) {
             // Send an HTTP request to your backend API to save the data
-            
-                axios
-                    .post("/account-link/"+ id)
-                    .then((response) => {                       
-                        window.location.href = response.data.url;
-                    })
-                    .catch((error) => {
-                        // Handle error
-                        console.error("Error saving data:", error);
-                    });
-                   },
-  
+
+            axios
+                .post("/account-link/" + id)
+                .then((response) => {
+                    window.location.href = response.data.url;
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error saving data:", error);
+                });
+        },
     },
 };
 </script>

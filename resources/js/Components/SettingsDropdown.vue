@@ -71,6 +71,12 @@ const toggleDarkMode = useToggle(isDark);
                         Profile
                     </DropdownLink>
                     <DropdownLink
+                        :href="route('meal-schedule')"
+                        class="flex w-full items-center rounded-md px-4 py-1 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                        ><font-awesome-icon icon="calendar" class="mr-2" />
+                        Meal Schedule
+                    </DropdownLink>
+                    <DropdownLink
                         :href="route('notifications.index')"
                         class="relative flex items-center rounded-md px-4 py-1 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                         >   <div

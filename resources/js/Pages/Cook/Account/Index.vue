@@ -122,11 +122,11 @@ import CaretUp from "@/Components/CaretUp.vue";
                                             <tr
                                                 v-for="account in accounts"
                                                 :key="account.id"
-                                                class="animate-fade-in border-b py-4"
+                                                class="animate-fade-in border-b py-5"
                                             >
                                                 <TableRow
                                                     :account="account"
-                                                    class="py-3"
+                                                    
                                                 >
                                                 </TableRow>
                                             </tr>
