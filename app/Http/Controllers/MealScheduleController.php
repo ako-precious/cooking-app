@@ -55,39 +55,6 @@ class MealScheduleController extends Controller
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $totalPrice = 0;
 
-        // function calculate_delivery_fee($distance, $weight, $urgency) {
-        //     $base_fee = 5; // Base delivery fee
-        //     $cost_per_mile = 1.5; // Cost per mile
-        //     $cost_per_kg = 0.5; // Cost per kilogram
-        //     $urgent_fee = 3; // Additional fee for urgent deliveries
-        
-        //     // Distance-based fee
-        //     $distance_fee = $distance * $cost_per_mile;
-        
-        //     // Weight-based fee
-        //     $weight_fee = $weight * $cost_per_kg;
-        
-        //     // Urgency fee
-        //     if ($urgency == "express") {
-        //         $urgency_fee = $urgent_fee;
-        //     } else {
-        //         $urgency_fee = 0;
-        //     }
-        
-        //     // Total fee calculation
-        //     $total_fee = $base_fee + $distance_fee + $weight_fee + $urgency_fee;
-        
-        //     return $total_fee;
-        // }
-        
-        // // Example usage
-        // $distance = 10; // miles
-        // $weight = 2; // kilograms
-        // $urgency = "standard";
-        // $delivery_fee = calculate_delivery_fee($distance, $weight, $urgency);
-        // echo "Delivery Fee: " . $delivery_fee;
-        
-
         $totalPrice += $meal_order->meal->price;
         $lineItems[] = [
             'price_data' => [
@@ -244,6 +211,7 @@ class MealScheduleController extends Controller
     public function process_order($id)
     {
         $mealSchedule = MealSchedule::find($id);
+        // dd( $mealSchedule);
         return inertia('MealSchedule/Checkout', ['mealSchedule' => $mealSchedule]);
     }
     public function getSuggestions()
@@ -336,3 +304,37 @@ class MealScheduleController extends Controller
         }
     }
 }
+
+
+        // function calculate_delivery_fee($distance, $weight, $urgency) {
+        //     $base_fee = 5; // Base delivery fee
+        //     $cost_per_mile = 1.5; // Cost per mile
+        //     $cost_per_kg = 0.5; // Cost per kilogram
+        //     $urgent_fee = 3; // Additional fee for urgent deliveries
+        
+        //     // Distance-based fee
+        //     $distance_fee = $distance * $cost_per_mile;
+        
+        //     // Weight-based fee
+        //     $weight_fee = $weight * $cost_per_kg;
+        
+        //     // Urgency fee
+        //     if ($urgency == "express") {
+        //         $urgency_fee = $urgent_fee;
+        //     } else {
+        //         $urgency_fee = 0;
+        //     }
+        
+        //     // Total fee calculation
+        //     $total_fee = $base_fee + $distance_fee + $weight_fee + $urgency_fee;
+        
+        //     return $total_fee;
+        // }
+        
+        // // Example usage
+        // $distance = 10; // miles
+        // $weight = 2; // kilograms
+        // $urgency = "standard";
+        // $delivery_fee = calculate_delivery_fee($distance, $weight, $urgency);
+        // echo "Delivery Fee: " . $delivery_fee;
+        
