@@ -55,7 +55,7 @@ class MealScheduleController extends Controller
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $totalPrice = 0;
 
-        $totalPrice += $meal_order->meal->price;
+        $totalPrice += $request->input('amount');
         $lineItems[] = [
             'price_data' => [
                 'currency' => 'cad',
@@ -64,20 +64,25 @@ class MealScheduleController extends Controller
                     'description' => $meal_order->meal->description
                     // 'image' => $photo->meal_photo_path
                 ],
-                'unit_amount' => $meal_order->meal->price * 100,
+                'unit_amount' => $totalPrice * 100,
             ],
             'quantity' => 1,
         ];
           
-        $payment_intent = \Stripe\PaymentIntent::create([
+        
+        $payment_intent = PaymentIntent::create([
             'amount' => $totalPrice * 100,
             'currency' => 'cad',
-            'payment_method_types' => [
-                'card'
-            ],
+            'payment_method_types' => ['card'],
             'setup_future_usage' => 'off_session',
+            'description' => 'Payment for meal order',
+            'metadata' => [
+                'schedule_id' => $id,
+                'user_id' => $meal_order->user->id,
+                // Add more metadata as needed
+            ],
+            // 'line_items' => $lineItems,
         ]);
-        
 
         $order = new Orders();
         $order->meal_schedule_id = $id;
@@ -211,8 +216,10 @@ class MealScheduleController extends Controller
     public function process_order($id)
     {
         $mealSchedule = MealSchedule::find($id);
+        $meal = Meal::find($mealSchedule->meal_id);
+        $firstPhoto = MealPhotos::where('meal_id', $meal->id)->orderBy('order', 'asc')->first();   
         // dd( $mealSchedule);
-        return inertia('MealSchedule/Checkout', ['mealSchedule' => $mealSchedule]);
+        return inertia('MealSchedule/Checkout', ['mealSchedule' => $mealSchedule, 'meal' => $meal, 'firstPhoto' => $firstPhoto]);
     }
     public function getSuggestions()
     {
