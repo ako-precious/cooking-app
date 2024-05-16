@@ -1,0 +1,122 @@
+<template>
+
+    <div class=" container max-w-3xl m-auto  my-10 py-10 shadow-small">
+    <form id="payment-form">
+        <div id="payment-element">
+            <!-- Elements will create form elements here -->
+        </div>
+        <button id="submit">Submit</button>
+        <div id="error-message">
+            <!-- Display error message to your customers here -->
+        </div>
+    </form></div>
+</template>
+
+<script>
+import { loadStripe } from "@stripe/stripe-js";
+
+export default {
+    data() {
+        return {
+            stripe: null,
+            elements: null,
+            clientSecret: new URLSearchParams(window.location.search).get(
+                "payment_intent_client_secret"
+            ),
+        };
+    },
+    async mounted() {
+        this.stripe = await loadStripe(
+            "pk_test_51OjplDL2JFKeogL4wsxVYfkG8zCegW66jPKapqF6QtnmakopSVRHFn2YE4tuQK4ZhZROFhJ9iTohD5dZ2wlS1H9x00zqkwyGg2"
+        );
+        const options = {
+            clientSecret: this.clientSecret,
+            appearance: { theme: "stripe" },
+        };
+        this.elements = this.stripe.elements(options);
+        const paymentElement = this.elements.create("payment");
+        paymentElement.mount("#payment-element");
+    },
+    methods: {
+        async handleSubmit() {
+            const { error } = await this.stripe.confirmPayment({
+                elements: this.elements,
+                confirmParams: {
+                    return_url: `route()`,
+                },
+            });
+            if (error) {
+                console.error(error);
+            }
+        },
+    },
+};
+</script>
+<!-- <script>
+import { loadStripe } from "@stripe/stripe-js";
+
+export default {
+    data() {
+        return {
+            stripe: null,
+            elements: null,
+            clientSecret: new URLSearchParams(window.location.search).get(
+                "payment_intent_client_secret"
+            ),
+        };
+    },
+    async mounted() {
+        console.log(this.clientSecret);
+    this.stripe = await loadStripe('pk_test_51OjplDL2JFKeogL4wsxVYfkG8zCegW66jPKapqF6QtnmakopSVRHFn2YE4tuQK4ZhZROFhJ9iTohD5dZ2wlS1H9x00zqkwyGg2');
+    if (!this.stripe) {
+      throw new Error('Stripe could not be initialized.');
+    }
+
+    const appearance = { theme: 'stripe' };
+    const clientSecret = this.clientSecret;
+    this.elements = this.stripe.elements({ clientSecret, appearance });
+    const cardElement = this.elements.create('card');
+    cardElement.mount('#payment-element');
+    
+        // if (this.clientSecret) {
+        //     this.stripe
+        //         .retrievePaymentIntent(this.clientSecret)
+        //         .then(({ paymentIntent }) => {
+        //             const message = document.querySelector("#message");
+        //             switch (paymentIntent.status) {
+        //                 case "succeeded":
+        //                     message.innerText = "Success! Payment received.";
+        //                     break;
+        //                 case "processing":
+        //                     message.innerText =
+        //                         "Payment processing. We'll update you when payment is received.";
+        //                     break;
+        //                 case "requires_payment_method":
+        //                     message.innerText =
+        //                         "Payment failed. Please try another payment method.";
+        //                     break;
+        //                 default:
+        //                     message.innerText = "Something went wrong.";
+        //                     break;
+        //             }
+        //         });
+        // }
+    },
+    // methods: {
+    //     async handleSubmit() {
+    //         const { error } = await this.stripe.confirmPayment({
+    //             elements: this.elements,
+    //             confirmParams: {
+    //                 return_url: "https://example.com/order/123/complete",
+    //             },
+    //         });
+
+    //         if (error) {
+    //             const messageContainer =
+    //                 document.querySelector("#error-message");
+    //             messageContainer.textContent = error.message;
+    //         }
+    //     },
+    // },
+};
+</script> -->

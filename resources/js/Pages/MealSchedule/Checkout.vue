@@ -1,10 +1,12 @@
 <script setup>
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import InputError from "@/Components/InputError.vue";
 </script>
 <template>
     <div class="flex flex-col justify-center items-center min-h-screen">
         <div class="shadow-reverse rounded-lg p-6">
             <h1 class="text-2xl font-bold mb-6">Payment Initialization</h1>
+            <InputError v-if="error">{{ error }}</InputError>
             <div class="flex justify-between mb-4">
                 <div class="flex items-center">
                     <img
@@ -50,7 +52,7 @@ export default {
     },
     data() {
         return {
-            message: null,
+            error: null,
         };
     },
     mounted() {
@@ -76,12 +78,13 @@ export default {
                     console.log(response);
                     const client_secret = response.data.client_secret
                     const token = response.data.token
-                    this.message = {
-                        type: "success",
-                        text: "Charge successful!",
-                    };
+                   console.log(client_secret);
+                    this.$inertia.visit(
+                            `/payment?payment_intent_client_secret=${client_secret}`
+                        );
                 })
                 .catch((error) => {
+                    this.error = 'Error processing the payment';
                     console.error("Error fetching data:", error);
                 });
         },

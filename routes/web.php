@@ -106,6 +106,7 @@ Route::resource('/notifications-messages', NotificationController::class);
     Route::get('/check-meal-status', [MealScheduleController::class, 'checkMealStatus']);
     Route::get('/api/suggestions', [MealScheduleController::class, 'getSuggestions']);
     Route::get('/process_order/{id}',  [MealScheduleController::class, 'process_order']);
+    Route::get('/payment',  [MealScheduleController::class, 'payment']);
     Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');
     Route::get('/cancel', [MealScheduleController::class, 'cancel'])->name('checkout.cancel');
 

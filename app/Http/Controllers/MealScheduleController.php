@@ -47,6 +47,11 @@ class MealScheduleController extends Controller
         return response()->json(['status' => $meal->status]);
     }
 
+    public function payment(Request $request)
+    {
+        
+        return inertia('MealSchedule/Payment', []);
+    }
     public function checkout(Request $request)
     {
         $id = $request->input('schedule_id');
