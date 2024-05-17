@@ -1,15 +1,16 @@
 <script setup>
 import Navbar from '@/Pages/Cook/Navbar.vue'
+import { Head, Link } from "@inertiajs/vue3";
 </script>
 
 <template>
     <div>
  <Navbar></Navbar>
 
- <div class="flex py-10 justify-center">
+ <div class="flex py-10 justify-center flex-col items-center">
 
      <p onclick="updateStatus()" id="message"></p>
-     <p>Track a order <Link> {{ mealSchedule }} </Link></p>
+     <p>Track your order <Link  :href="`/meal-schedule`"> herre {{ mealSchedule }} </Link></p>
  </div>
 
     </div>
@@ -53,8 +54,6 @@ export default {
 Order number: 123456
 Items: Product A, Product B
 Total: $100.00
-
-What would you like to do next?**
 
 `;
 

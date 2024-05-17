@@ -111,10 +111,10 @@ class MealScheduleController extends Controller
 
     public function return(Request $request)
     {
-        $clientSecret = $request->query('payment_intent_client_secret');
+        $clientSecret = $request->query('payment_intent');
         $order = Orders::where('session_id',  $clientSecret)->first();
         $mealSchedule = MealSchedule::find($order->meal_schedule_id);
-
+// dd($mealSchedule);
         return inertia('MealSchedule/Status', ['mealSchedule', $mealSchedule]);
     }
 
