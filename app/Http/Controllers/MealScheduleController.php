@@ -76,8 +76,8 @@ class MealScheduleController extends Controller
             ],
             'quantity' => 1,
         ];
-          
-        
+
+
         $payment_intent = PaymentIntent::create([
             'amount' => $totalPrice * 100,
             'currency' => 'cad',
@@ -111,7 +111,34 @@ class MealScheduleController extends Controller
 
     public function return(Request $request)
     {
-          dd('Payment completed');
+        // $paymentIntentClientSecret = $request->query('payment_intent_client_secret');
+        //  $sessionId = $request->get('client_secret');
+
+        //         $order = Orders::where('session_id', $sessionId)->first();
+
+        //         if (!$order) {
+        //             // throw new NotFoundHttpException();
+        //             return response('', 404);
+        //         }
+        //         if ($order->status === 'unpaid') {
+        //             $order->status = 'paid';
+        //             $order->save();
+        //         }
+
+        //         if ($order->status === 'paid') { 
+        //             // Fetch the meal schedule associated with the order
+        //             $mealSchedule = MealSchedule::find($order->meal_schedule_id);
+
+        //             if ($mealSchedule) {
+        //                 // Update the status of the meal schedule to 'processed'
+        //                 $mealSchedule->status = 'processed';
+        //                 $mealSchedule->save();
+        //             }
+        //         }
+        //         return response()->json(['order'=>$order]);
+
+        return inertia('MealSchedule/Status', []);
+
         // \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         // $sessionId = $request->get('session_id');
 
@@ -152,6 +179,33 @@ class MealScheduleController extends Controller
         //     // throw new NotFoundHttpException();
         //     return response('', 404);
         // }
+    }
+    public function processed(Request $request)
+    {
+        $sessionId = $request->get('client_secret');
+
+        $order = Orders::where('session_id', $sessionId)->first();
+
+        if (!$order) {
+            // throw new NotFoundHttpException();
+            return response('', 404);
+        }
+        if ($order->status === 'unpaid') {
+            $order->status = 'paid';
+            $order->save();
+        }
+
+        if ($order->status === 'paid') {
+            // Fetch the meal schedule associated with the order
+            $mealSchedule = MealSchedule::find($order->meal_schedule_id);
+
+            if ($mealSchedule) {
+                // Update the status of the meal schedule to 'processed'
+                $mealSchedule->status = 'processed';
+                $mealSchedule->save();
+            }
+        }
+        return response()->json(['order' => $order]);
     }
 
     public function webhook()
@@ -202,13 +256,30 @@ class MealScheduleController extends Controller
                     $mealSchedule->save();
                 }
 
+            case 'payment_intent.succeeded':
+
+                $payment_intent = $event->data->object;
+                $order = Orders::where('session_id', $payment_intent->id)->first();
+                if ($order && $order->status === 'unpaid') {
+                    $order->status = 'paid';
+                    $order->save();
+                    // Send email to customer
+                }
+                if ($order->status === 'paid') {
+                    # code...
+                    $mealSchedule = MealSchedule::find($order->meal_id);;
+                    $mealSchedule->status = 'processed';
+                    $mealSchedule->save();
+                }
+
+
             case 'account.updated':
                 $account = $event->data->object;
                 $accountModel = Account::where('stripe_account_id', $account->id)->first();
-                $accountModel->charges_enabled =$account->charges_enabled;
-        $accountModel->transfer_enabled =$account->payouts_enabled;
-        $accountModel->detailed_submitted =$account->details_submitted;
-        $accountModel->save();
+                $accountModel->charges_enabled = $account->charges_enabled;
+                $accountModel->transfer_enabled = $account->payouts_enabled;
+                $accountModel->detailed_submitted = $account->details_submitted;
+                $accountModel->save();
                 // ... handle other event types
                 return response()->json([$account]);
             default:
@@ -228,7 +299,7 @@ class MealScheduleController extends Controller
     {
         $mealSchedule = MealSchedule::find($id);
         $meal = Meal::find($mealSchedule->meal_id);
-        $firstPhoto = MealPhotos::where('meal_id', $meal->id)->orderBy('order', 'asc')->first();   
+        $firstPhoto = MealPhotos::where('meal_id', $meal->id)->orderBy('order', 'asc')->first();
         // dd( $mealSchedule);
         return inertia('MealSchedule/Checkout', ['mealSchedule' => $mealSchedule, 'meal' => $meal, 'firstPhoto' => $firstPhoto]);
     }
@@ -275,7 +346,7 @@ class MealScheduleController extends Controller
         $notification->save();
 
 
-          // Send email notification
+        // Send email notification
         return response()->json([
             'data' => $new_MealSchedule,
             'message' => 'Successfully added to your new Meal Schedule!',
@@ -294,15 +365,13 @@ class MealScheduleController extends Controller
             'end_date' => 'required|date',
         ]);
         $MealSchedule->update($request->all());
- 
-            return response()->json([
-                'data' => new MealScheduleResource($MealSchedule),
-                'message' => 'Successfully updated Meal Schedule!',
-                // 'status' => Response::HTTP_ACCEPTED
-                'status' => Response::HTTP_OK
-            ]);
-        
-        
+
+        return response()->json([
+            'data' => new MealScheduleResource($MealSchedule),
+            'message' => 'Successfully updated Meal Schedule!',
+            // 'status' => Response::HTTP_ACCEPTED
+            'status' => Response::HTTP_OK
+        ]);
     }
 
     public function destroy($id)
@@ -355,4 +424,3 @@ class MealScheduleController extends Controller
         // $urgency = "standard";
         // $delivery_fee = calculate_delivery_fee($distance, $weight, $urgency);
         // echo "Delivery Fee: " . $delivery_fee;
-        

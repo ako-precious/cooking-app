@@ -1,15 +1,18 @@
 <template>
-
-    <div class=" container max-w-3xl m-auto  my-10 py-10 shadow-small" >
-    <form id="payment-form"  @submit.prevent="handleSubmit">
-        <div id="payment-element">
-            <!-- Elements will create form elements here -->
-        </div>
-        <button id="submit">Submit</button>
-        <div id="error-message">
-            <!-- Display error message to your customers here -->
-        </div>
-    </form></div>
+    <div class="container max-w-3xl m-auto my-10 pb-10 shadow-small">
+        <form id="payment-form" @submit.prevent="handleSubmit" class=" py-10">
+            <div id="payment-element">
+                <!-- Elements will create form elements here -->
+            </div>
+            <button id="submit" class=" btn2span group float-left w-full ">
+                <span class="next-span"> Submit Details </span>
+                <span class="with-span"> Make Payment </span>
+            </button>
+            <div id="error-message">
+                <!-- Display error message to your customers here -->
+            </div>
+        </form>
+    </div>
 </template>
 
 <script>
@@ -42,7 +45,7 @@ export default {
             const { error } = await this.stripe.confirmPayment({
                 elements: this.elements,
                 confirmParams: {
-                    return_url: route('checkout.return'),
+                    return_url: route("checkout.return"),
                 },
             });
             if (error) {
