@@ -80,7 +80,7 @@ export default {
                     const token = response.data.token
                    console.log(client_secret);
                     this.$inertia.visit(
-                            `/payment?payment_intent_client_secret=${client_secret}`
+                            `/payment?client_secret=${client_secret}`
                         );
                 })
                 .catch((error) => {

@@ -25,6 +25,9 @@ use Stripe\StripeClient;
 use Stripe\PaymentIntent;
 use Illuminate\Support\Str;
 use Stripe\Stripe as StripeGateway;
+
+use function Laravel\Prompts\confirm;
+
 class MealScheduleController extends Controller
 {
     public function schedule()
@@ -49,7 +52,7 @@ class MealScheduleController extends Controller
 
     public function payment(Request $request)
     {
-        
+
         return inertia('MealSchedule/Payment', []);
     }
     public function checkout(Request $request)
@@ -86,6 +89,8 @@ class MealScheduleController extends Controller
                 'user_id' => $meal_order->user->id,
                 // Add more metadata as needed
             ],
+            // 'return_url' => route('checkout.return') ,
+            // 'confirm' => true,
             // 'line_items' => $lineItems,
         ]);
 
@@ -106,46 +111,47 @@ class MealScheduleController extends Controller
 
     public function return(Request $request)
     {
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        $sessionId = $request->get('session_id');
+          dd('Payment completed');
+        // \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        // $sessionId = $request->get('session_id');
 
-        try {
-            $session = \Stripe\Checkout\Session::retrieve($sessionId);
-            if (!$session) {
-                // throw new NotFoundHttpException;
-                return response('', 404);
-            }
-            // dd(\Stripe\Object::retrieve($session->customer_details));
-            $customer = $session->customer_details;
+        // try {
+        //     $session = \Stripe\Checkout\Session::retrieve($sessionId);
+        //     if (!$session) {
+        //         // throw new NotFoundHttpException;
+        //         return response('', 404);
+        //     }
+        //     // dd(\Stripe\Object::retrieve($session->customer_details));
+        //     $customer = $session->customer_details;
 
-            $order = Orders::where('session_id', $sessionId)->first();
+        //     $order = Orders::where('session_id', $sessionId)->first();
 
-            if (!$order) {
-                // throw new NotFoundHttpException();
-                return response('', 404);
-            }
-            if ($order->status === 'unpaid') {
-                $order->status = 'paid';
-                $order->save();
-            }
+        //     if (!$order) {
+        //         // throw new NotFoundHttpException();
+        //         return response('', 404);
+        //     }
+        //     if ($order->status === 'unpaid') {
+        //         $order->status = 'paid';
+        //         $order->save();
+        //     }
 
-            if ($order->status === 'paid') {
-                // Fetch the meal schedule associated with the order
-                $mealSchedule = MealSchedule::find($order->meal_schedule_id);
+        //     if ($order->status === 'paid') {
+        //         // Fetch the meal schedule associated with the order
+        //         $mealSchedule = MealSchedule::find($order->meal_schedule_id);
 
-                if ($mealSchedule) {
-                    // Update the status of the meal schedule to 'processed'
-                    $mealSchedule->status = 'processed';
-                    $mealSchedule->save();
-                }
-            }
+        //         if ($mealSchedule) {
+        //             // Update the status of the meal schedule to 'processed'
+        //             $mealSchedule->status = 'processed';
+        //             $mealSchedule->save();
+        //         }
+        //     }
 
 
-            return response()->json(['customer'=>$customer]);
-        } catch (\Exception $e) {
-            // throw new NotFoundHttpException();
-            return response('', 404);
-        }
+        //     return response()->json(['customer'=>$customer]);
+        // } catch (\Exception $e) {
+        //     // throw new NotFoundHttpException();
+        //     return response('', 404);
+        // }
     }
 
     public function webhook()

@@ -1,7 +1,7 @@
 <template>
 
-    <div class=" container max-w-3xl m-auto  my-10 py-10 shadow-small">
-    <form id="payment-form">
+    <div class=" container max-w-3xl m-auto  my-10 py-10 shadow-small" >
+    <form id="payment-form"  @submit.prevent="handleSubmit">
         <div id="payment-element">
             <!-- Elements will create form elements here -->
         </div>
@@ -21,7 +21,7 @@ export default {
             stripe: null,
             elements: null,
             clientSecret: new URLSearchParams(window.location.search).get(
-                "payment_intent_client_secret"
+                "client_secret"
             ),
         };
     },
@@ -42,7 +42,7 @@ export default {
             const { error } = await this.stripe.confirmPayment({
                 elements: this.elements,
                 confirmParams: {
-                    return_url: `route()`,
+                    return_url: route('checkout.return'),
                 },
             });
             if (error) {

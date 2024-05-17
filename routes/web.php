@@ -50,7 +50,6 @@ Route::get('users/{id}', [WelcomeController::class, 'users'])->name('user.show')
 Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete']);
 
 
-Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);
 Route::resource('/meal_photos', MealPhotosController::class);
@@ -69,13 +68,14 @@ Route::get('/auth/microsoft/return', [AccountController::class, 'azure_return'])
 Route::get('meals/{id}', [MealController::class, 'meals']);
 Route::get('/cook/setup', [CookController::class, 'setup']);
 
+Route::post('/webhook', [MealScheduleController::class, 'webhook'])->name('checkout.webhook');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-])->group(function () {
-
-
+    ])->group(function () {
+        
+        
     Route::get('/become-a-cook/overview', function () {
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
