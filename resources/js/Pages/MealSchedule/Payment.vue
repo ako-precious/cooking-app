@@ -1,17 +1,24 @@
+<script setup>
+import Navbar from '@/Pages/Cook/Navbar.vue'
+</script>
+
 <template>
-    <div class="container max-w-3xl m-auto my-10 pb-10 shadow-small">
-        <form id="payment-form" @submit.prevent="handleSubmit" class=" py-10">
-            <div id="payment-element">
-                <!-- Elements will create form elements here -->
-            </div>
-            <button id="submit" class=" btn2span group float-left w-full ">
-                <span class="next-span"> Submit Details </span>
-                <span class="with-span"> Make Payment </span>
-            </button>
-            <div id="error-message">
-                <!-- Display error message to your customers here -->
-            </div>
-        </form>
+    <div>
+ <Navbar></Navbar>
+        <div class="container max-w-3xl m-auto my-10 pb-10 shadow-small">
+            <form id="payment-form" @submit.prevent="handleSubmit" class=" py-10">
+                <div id="payment-element">
+                    <!-- Elements will create form elements here -->
+                </div>
+                <button id="submit" class=" btn2span group float-left w-full ">
+                    <span class="next-span"> Submit Details </span>
+                    <span class="with-span"> Make Payment </span>
+                </button>
+                <div id="error-message">
+                    <!-- Display error message to your customers here -->
+                </div>
+            </form>
+        </div>
     </div>
 </template>
 

@@ -1,18 +1,34 @@
+<script setup>
+import Navbar from '@/Pages/Cook/Navbar.vue'
+</script>
+
 <template>
     <div>
-        <p onclick="updateStatus()" id="message"></p>
+ <Navbar></Navbar>
+
+ <div class="flex py-10 justify-center">
+
+     <p onclick="updateStatus()" id="message"></p>
+     <p>Track a order <Link> {{ mealSchedule }} </Link></p>
+ </div>
+
     </div>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+    inheritAttrs: false,
+    props: {
+        mealSchedule: Object,
+    },
     data() {
         return {
             stripe: null,
             elements: null,
             clientSecret: new URLSearchParams(window.location.search).get(
-            "payment_intent_client_secret")
+                "payment_intent_client_secret"
+            ),
         };
     },
     async mounted() {
@@ -21,7 +37,7 @@ export default {
         );
 
         // Retrieve the "payment_intent_client_secret" query parameter from the return_url
-        const clientSecret = this.clientSecret
+        const clientSecret = this.clientSecret;
 
         // Retrieve the PaymentIntent
         const { paymentIntent } = await stripe.retrievePaymentIntent(
@@ -32,8 +48,16 @@ export default {
         // Display payment status to the customer
         switch (paymentIntent.status) {
             case "succeeded":
-                message.innerText = "Success! Payment received.";
-               this.updateStatus()
+                message.innerText = ` Payment Successful!
+
+Order number: 123456
+Items: Product A, Product B
+Total: $100.00
+
+What would you like to do next?**
+
+`;
+
                 break;
             case "processing":
                 message.innerText =
@@ -48,20 +72,6 @@ export default {
                 message.innerText = "Something went wrong.";
                 break;
         }
-    },
-    methods: {
-        updateStatus() {
-            axios
-                .put("/payment/processed", {
-                    client_secret: this.clientSecret,
-                })
-                .then((response) => {
-                    console.log(response);
-                })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
-                });
-        },
     },
 };
 </script>

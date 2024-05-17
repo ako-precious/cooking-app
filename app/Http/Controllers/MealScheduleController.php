@@ -111,101 +111,11 @@ class MealScheduleController extends Controller
 
     public function return(Request $request)
     {
-        // $paymentIntentClientSecret = $request->query('payment_intent_client_secret');
-        //  $sessionId = $request->get('client_secret');
+        $clientSecret = $request->query('payment_intent_client_secret');
+        $order = Orders::where('session_id',  $clientSecret)->first();
+        $mealSchedule = MealSchedule::find($order->meal_schedule_id);
 
-        //         $order = Orders::where('session_id', $sessionId)->first();
-
-        //         if (!$order) {
-        //             // throw new NotFoundHttpException();
-        //             return response('', 404);
-        //         }
-        //         if ($order->status === 'unpaid') {
-        //             $order->status = 'paid';
-        //             $order->save();
-        //         }
-
-        //         if ($order->status === 'paid') { 
-        //             // Fetch the meal schedule associated with the order
-        //             $mealSchedule = MealSchedule::find($order->meal_schedule_id);
-
-        //             if ($mealSchedule) {
-        //                 // Update the status of the meal schedule to 'processed'
-        //                 $mealSchedule->status = 'processed';
-        //                 $mealSchedule->save();
-        //             }
-        //         }
-        //         return response()->json(['order'=>$order]);
-
-        return inertia('MealSchedule/Status', []);
-
-        // \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
-        // $sessionId = $request->get('session_id');
-
-        // try {
-        //     $session = \Stripe\Checkout\Session::retrieve($sessionId);
-        //     if (!$session) {
-        //         // throw new NotFoundHttpException;
-        //         return response('', 404);
-        //     }
-        //     // dd(\Stripe\Object::retrieve($session->customer_details));
-        //     $customer = $session->customer_details;
-
-        //     $order = Orders::where('session_id', $sessionId)->first();
-
-        //     if (!$order) {
-        //         // throw new NotFoundHttpException();
-        //         return response('', 404);
-        //     }
-        //     if ($order->status === 'unpaid') {
-        //         $order->status = 'paid';
-        //         $order->save();
-        //     }
-
-        //     if ($order->status === 'paid') {
-        //         // Fetch the meal schedule associated with the order
-        //         $mealSchedule = MealSchedule::find($order->meal_schedule_id);
-
-        //         if ($mealSchedule) {
-        //             // Update the status of the meal schedule to 'processed'
-        //             $mealSchedule->status = 'processed';
-        //             $mealSchedule->save();
-        //         }
-        //     }
-
-
-        //     return response()->json(['customer'=>$customer]);
-        // } catch (\Exception $e) {
-        //     // throw new NotFoundHttpException();
-        //     return response('', 404);
-        // }
-    }
-    public function processed(Request $request)
-    {
-        $sessionId = $request->get('client_secret');
-
-        $order = Orders::where('session_id', $sessionId)->first();
-
-        if (!$order) {
-            // throw new NotFoundHttpException();
-            return response('', 404);
-        }
-        if ($order->status === 'unpaid') {
-            $order->status = 'paid';
-            $order->save();
-        }
-
-        if ($order->status === 'paid') {
-            // Fetch the meal schedule associated with the order
-            $mealSchedule = MealSchedule::find($order->meal_schedule_id);
-
-            if ($mealSchedule) {
-                // Update the status of the meal schedule to 'processed'
-                $mealSchedule->status = 'processed';
-                $mealSchedule->save();
-            }
-        }
-        return response()->json(['order' => $order]);
+        return inertia('MealSchedule/Status', ['mealSchedule', $mealSchedule]);
     }
 
     public function webhook()
@@ -251,7 +161,7 @@ class MealScheduleController extends Controller
                 }
                 if ($order->status === 'paid') {
                     # code...
-                    $mealSchedule = MealSchedule::find($order->meal_id);;
+                    $mealSchedule = MealSchedule::find($order->meal_id);
                     $mealSchedule->status = 'processed';
                     $mealSchedule->save();
                 }
@@ -263,11 +173,15 @@ class MealScheduleController extends Controller
                 if ($order && $order->status === 'unpaid') {
                     $order->status = 'paid';
                     $order->save();
+                     // $recipient = User::find($notification->user_id);
+        // if ($recipient) {
+        //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+        // }
                     // Send email to customer
                 }
                 if ($order->status === 'paid') {
                     # code...
-                    $mealSchedule = MealSchedule::find($order->meal_id);;
+                    $mealSchedule = MealSchedule::find($order->meal_schedule_id);
                     $mealSchedule->status = 'processed';
                     $mealSchedule->save();
                 }
@@ -364,6 +278,7 @@ class MealScheduleController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date',
         ]);
+
         $MealSchedule->update($request->all());
 
         return response()->json([

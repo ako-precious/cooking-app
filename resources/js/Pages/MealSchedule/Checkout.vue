@@ -1,41 +1,47 @@
 <script setup>
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import InputError from "@/Components/InputError.vue";
+
+import Navbar from '@/Pages/Cook/Navbar.vue'
 </script>
+
 <template>
-    <div class="flex flex-col justify-center items-center min-h-screen">
-        <div class="shadow-reverse rounded-lg p-6">
-            <h1 class="text-2xl font-bold mb-6">Payment Initialization</h1>
-            <InputError v-if="error">{{ error }}</InputError>
-            <div class="flex justify-between mb-4">
-                <div class="flex items-center">
-                    <img
-                        :src="getPhoto(firstPhoto.meal_photo_path)"
-                        alt="Product Image"
-                        class="mr-6 h-[130px]"
-                    />
-                    <div>
-                        <h2 class="font-bold capitalize">{{ meal.name }}</h2>
-                        <span class="font-bold">${{ meal.price }}</span>
+    <div>
+        <Navbar></Navbar>
+        <div class="flex flex-col justify-center items-center min-h-screen">
+            <div class="shadow-reverse rounded-lg p-6">
+                <h1 class="text-2xl font-bold mb-6">Payment Initialization</h1>
+                <InputError v-if="error">{{ error }}</InputError>
+                <div class="flex justify-between mb-4">
+                    <div class="flex items-center">
+                        <img
+                            :src="getPhoto(firstPhoto.meal_photo_path)"
+                            alt="Product Image"
+                            class="mr-6 h-[130px]"
+                        />
+                        <div>
+                            <h2 class="font-bold capitalize">{{ meal.name }}</h2>
+                            <span class="font-bold">${{ meal.price }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr class="my-4" />
-            <div class="flex justify-between items-center">
-                <span class="font-bold">Subtotal:</span>
-                <span class="font-bold">${{ meal.price }}</span>
-            </div>
-            <div class="flex justify-between items-center mt-4">
-                <span>Payment Charges:</span>
-                <span>$ {{ TransferFee(meal.price) }} </span>
-            </div>
-            <hr class="my-4" />
-            <div class="flex justify-between items-center">
-                <span class="font-bold">Total:</span>
-                <span class="font-bold">${{ Total(meal.price) }} </span>
-            </div>
-            <div class="flex justify-center mt-6">
-                <PrimaryButton @click="charge">Proceed to Pay</PrimaryButton>
+                <hr class="my-4" />
+                <div class="flex justify-between items-center">
+                    <span class="font-bold">Subtotal:</span>
+                    <span class="font-bold">${{ meal.price }}</span>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <span>Payment Charges:</span>
+                    <span>$ {{ TransferFee(meal.price) }} </span>
+                </div>
+                <hr class="my-4" />
+                <div class="flex justify-between items-center">
+                    <span class="font-bold">Total:</span>
+                    <span class="font-bold">${{ Total(meal.price) }} </span>
+                </div>
+                <div class="flex justify-center mt-6">
+                    <PrimaryButton @click="charge">Proceed to Pay</PrimaryButton>
+                </div>
             </div>
         </div>
     </div>

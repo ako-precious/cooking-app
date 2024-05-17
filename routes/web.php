@@ -108,7 +108,6 @@ Route::resource('/notifications-messages', NotificationController::class);
     Route::get('/process_order/{id}',  [MealScheduleController::class, 'process_order']);
     Route::get('/payment',  [MealScheduleController::class, 'payment']);
     Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');
-    // Route::put('/payment/processed', [MealScheduleController::class, 'processed'])->name('checkout.processed');
 
     //Meal Controller
     Route::resource('/meal', MealController::class);
