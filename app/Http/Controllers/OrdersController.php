@@ -158,12 +158,12 @@ class OrdersController extends Controller
              $connected_account = Account::where('user_id', $recipientId )->first()  ;
 
             $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
-            $transfer = 'ORDER' . mt_rand(100, 999999);
-             $amount = ((85/100) * $mealSchedule->meal->price);
+            $transfer = 'ORDER_' . mt_rand(100, 999999);
+            $amount = intval(round((85 / 100) * $mealSchedule->meal->price * 100)); // Convert dollars to cents
             $stripe->transfers->create([
                 'amount' => $amount ,
                 'currency' => 'cad',
-                'destination' => $connected_account,
+                'destination' => $connected_account->stripe_account_id,
                 'transfer_group' => $transfer,
             ]);
         } else {

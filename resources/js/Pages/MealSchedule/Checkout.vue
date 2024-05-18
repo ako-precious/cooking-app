@@ -84,7 +84,7 @@ export default {
                     console.log(response);
                     const client_secret = response.data.client_secret
                     const token = response.data.token
-                   console.log(client_secret);
+                //    console.log(client_secret);
                     this.$inertia.visit(
                             `/payment?client_secret=${client_secret}`
                         );
@@ -95,10 +95,10 @@ export default {
                 });
         },
         TransferFee(price) {
-            return (3 / 100) * price;
+            return ((7 / 100) * parseFloat(price)).toFixed(2);
         },
         Total(price) {
-            const total = (3 / 100) * parseFloat(price);
+            const total = (7 / 100) * parseFloat(price);
             return (parseFloat(price) + total).toFixed(2);
         },
 

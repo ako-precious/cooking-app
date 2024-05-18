@@ -33,8 +33,8 @@ defineProps(["meal"]);
             </p>
         </div>
     </td>
-
-    <td class="whitespace-nowrap px-6 py-3">
+<!--  -->
+    <td v-if="isToday(meal.created_at) || meal.status == 'confirmed' " class="whitespace-nowrap px-6 py-3">
         <div class="bg text-xl z-20 flex items-center">
             <div v-if="meal.status == 'accepted'">
                 <Link :href="`/process_order/${meal.id}`">
@@ -531,6 +531,10 @@ export default {
         this.FormattedDate();
         this.truncatedIng();
     },
+    mounted(){
+        
+        this.isToday();
+    },
     computed: {
         totalRating() {
             // Convert the individual ratings to numbers
@@ -568,6 +572,11 @@ export default {
         },
     },
     methods: {
+        isToday(dateString) {
+            const date = new Date(dateString);
+            const today = new Date();
+            return date.toDateString() <= today.toDateString();
+        },
         FormattedDate(timestamp) {
             const date = new Date(timestamp);
             const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
