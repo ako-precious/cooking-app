@@ -103,7 +103,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 </div>
                 <div
                     :class="{
-                        'absolute -right-28': isHeaderFixed,
+                        'absolute -right-50': isHeaderFixed,
                     }"
                 > <div
                     >
@@ -377,6 +377,7 @@ export default {
             userId: "",
             message: "",
             error: "",
+            wishlist: null,
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
@@ -417,7 +418,45 @@ export default {
                 return `/storage/${profilePhotoPath}`;
             }
         },
-
+        removeWishList(id) {
+            axios
+                .delete(`/wishlist/${id}`)
+                .then((response) => {
+                    this.wishlist = response.data.wishlist
+                    // Update UI if necessary
+                })
+                .catch((error) => {
+                    console.error("Error deleting item:", error);
+                });
+        },
+        addWishList(id) {
+            const wishlistData = {
+                meal_id: id,
+                user_id: this.$page.props.auth.user.id,
+            };
+            axios
+                .post("/wishlist", wishlistData)
+                .then((response) => {
+                   this.wishlist = response.data.wishlist
+                    // Update UI if necessary
+                })
+                .catch((error) => {
+                    console.error("Error adding to wishlist:", error);
+                });
+        },
+        WishList() {
+            if(this.$page.props.auth.user){
+                const id = this.meal.id;
+                axios
+                    .get("/wishlist/" + id)
+                    .then((response) => {
+                        this.wishlist = response.data.wishlist;
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching wishlist data:", error);
+                    });
+            }
+        },
         getPhoto() {
             axios
                 .get("/meal_photos/" + this.meal.id)

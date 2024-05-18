@@ -14,7 +14,7 @@ export default {
             userId: "",
             isLoading: true,
             src: "",
-            wishlist: "",
+            wishlist: null,
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
@@ -90,7 +90,7 @@ export default {
             axios
                 .delete(`/wishlist/${id}`)
                 .then((response) => {
-                    console.log(this.wishlist = response.data.wishlist);
+                    this.wishlist = response.data.wishlist
                     // Update UI if necessary
                 })
                 .catch((error) => {
@@ -105,7 +105,7 @@ export default {
             axios
                 .post("/wishlist", wishlistData)
                 .then((response) => {
-                   console.log(this.wishlist = response.data.wishlist);
+                   this.wishlist = response.data.wishlist;
                     // Update UI if necessary
                 })
                 .catch((error) => {

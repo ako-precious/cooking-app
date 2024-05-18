@@ -48,12 +48,13 @@ class WishlistController extends Controller
         $wishlist = Wishlist::where('user_id', $user->id)
             ->where('meal_id', $id)
             ->first();
-            // $item = Wishlist::findOrFail($id);
-            $wishlist->delete();
-            $item = Wishlist::where('user_id', $user->id)
-                ->where('meal_id', $id)
-                ->first();
-            
+        // $item = Wishlist::findOrFail($id);
+        $wishlist->delete();
+        
+        $item = Wishlist::where('user_id', $user->id)
+            ->where('meal_id', $id)
+            ->first();
+
         return response()->json(['wishlist' => $item, 'message' => 'Item deleted successfully']);
     }
 }
