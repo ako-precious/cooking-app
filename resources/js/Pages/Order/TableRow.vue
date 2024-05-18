@@ -33,8 +33,11 @@ defineProps(["meal"]);
             </p>
         </div>
     </td>
-<!--  -->
-    <td v-if="isToday(meal.created_at) || meal.status == 'confirmed' " class="whitespace-nowrap px-6 py-3">
+    <!--  -->
+    <td
+        v-if="isToday(meal.created_at) || meal.status == 'confirmed'"
+        class="whitespace-nowrap px-6 py-3"
+    >
         <div class="bg text-xl z-20 flex items-center">
             <div v-if="meal.status == 'accepted'">
                 <Link :href="`/process_order/${meal.id}`">
@@ -112,8 +115,8 @@ defineProps(["meal"]);
                         <div class="py-4 w-[30%] relative flex flex-col">
                             <InputLabel
                                 class="text-lg pb-2"
-                                for="package"
-                                value="Package"
+                                for="Presentation"
+                                value="Presentation"
                             />
                             <select
                                 title="Meal Time"
@@ -492,7 +495,7 @@ defineProps(["meal"]);
                     </div>
 
                     <div class="flex justify-center item-center">
-                        <PrimaryButton @click="addSchedule" class="w-full"
+                        <PrimaryButton @click="addRating" class="w-full"
                             >Save</PrimaryButton
                         >
                     </div>
@@ -531,8 +534,9 @@ export default {
         this.FormattedDate();
         this.truncatedIng();
     },
-    mounted(){
-        
+    mounted() {
+        // console.log(this.newRating);
+
         this.isToday();
     },
     computed: {
@@ -545,7 +549,6 @@ export default {
             const portion_size = parseFloat(this.newRating.portion_size);
             const freshness = parseFloat(this.newRating.freshness);
             const overall = parseFloat(this.newRating.total);
-
             // Check if any rating is not a number
             if (
                 isNaN(presentation) ||
@@ -565,7 +568,8 @@ export default {
                     value +
                     nutrition +
                     portion_size +
-                    freshness + overall) /
+                    freshness +
+                    overall) /
                 7;
             // Return the total rating rounded to two decimal places
             return Math.round(total * 100) / 100;
@@ -624,7 +628,7 @@ export default {
                 });
         },
 
-        addSchedule() {
+        addRating() {
             if (
                 this.newRating.presentation == "Choose a rating" ||
                 this.newRating.taste == "Choose a rating" ||
@@ -637,9 +641,8 @@ export default {
                 this.error =
                     "Please fill in all  fields to create your schedule.";
             } else {
-                
                 axios
-                    .post("/rating", this.newRating)
+                    .post("api/rating", this.newRating)
                     .then((resp) => {
                         this.message = resp.data.message;
 
@@ -660,12 +663,30 @@ export default {
         },
 
         openModal(meal) {
+
             axios
-                .get("/api/rating/" + meal)
+                .get("/api/rating", {params: {
+        meal_id: this.meal.id,
+        user_id: this.$page.props.auth.user.id,
+    }
+                })
                 .then((resp) => {
                     if (resp.data) {
                         this.newRating = resp.data.rating;
-                        // console.log(this.newRating);
+                        // console.log(resp);
+                        if (this.newRating == null) {
+                            this.newRating = {
+                                meal_id: this.meal.meal.id,
+                                user_id: this.$page.props.auth.user.id,
+                                presentation: 0,
+                                taste: 0,
+                                value: 0,
+                                nutrition: 0,
+                                portion_size: 0,
+                                freshness: 0,
+                                comment: "",
+                            };
+                        }
                     } else {
                         this.newRating = {
                             meal_id: this.meal.meal.id,

@@ -70,13 +70,21 @@ class RatingController extends Controller
             'message' => $rating->wasRecentlyCreated ? 'Successfully added a new rating!' : 'Rating updated successfully!',
         ]);
     }
-    public function show($meal_id)
+    public function index(Request $request)
     {
-        $user_id =   Auth::id();
-        $rating = Rating::firstWhere([
-            'meal_id' => $meal_id,
-            'user_id' => $user_id
+        $mealId = $request->input('meal_id');
+        $userId = $request->input('user_id');
+
+
+        // Perform your logic here, for example, retrieving the rating from the database
+        $rating = Rating::where('meal_id', $mealId)
+                        ->where('user_id', $userId)
+                        ->first();
+
+         return response()->json([
+            'meal_id' => $mealId,
+            'user_id' => $userId,
+            'rating' => $rating,
         ]);
-        return response()->json(['rating' => $rating]);
     }
 }

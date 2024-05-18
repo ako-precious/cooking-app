@@ -85,6 +85,9 @@ export default {
        this.checkNotification();
         this.chekUser(); // Fetch images from the backend when the component is created
     },
+    mounted(){
+        this.chekUser()
+    },
     methods: {
       async chekUser() {
           await axios
