@@ -64,7 +64,7 @@ defineProps(["order"]);
                 <span>s</span>
             </span>
         </button> -->
-        <div class="bg text-xl z-20 flex items-center">
+        <div v-if="isToday(meal.created_at) " class="bg text-xl z-20 flex items-center">
             <div v-if="meal.status == 'pending'" class="flex">
                 <div
                     @click="ChangeStatus('accepted')"
@@ -73,7 +73,7 @@ defineProps(["order"]);
                     <p
                         class="text-base font-semibold group-action-text capitalize"
                     >
-                        accepted
+                        accept
                     </p>
                 </div>
                 <div
@@ -83,7 +83,7 @@ defineProps(["order"]);
                     <p
                         class="text-base font-semibold group-action-text capitalize"
                     >
-                        rejected
+                        reject 
                     </p>
                 </div>
             </div>
@@ -139,11 +139,17 @@ export default {
     mounted() {
         this.FormattedDate();
         this.truncatedIng();
+        this.isToday();
     },
     created() {
         this.getImage();
     },
     methods: {
+        isToday(dateString) {
+      const date = new Date(dateString);
+      const today = new Date();
+      return date.toDateString() <= today.toDateString();
+    },
         getImage() {
             const id = this.meal.meal.id;
             axios

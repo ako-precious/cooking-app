@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use Inertia\Inertia;
 use App\Models\Meal;
 use App\Models\Orders;
 use Illuminate\Http\Request;
@@ -12,21 +11,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Resources\MealScheduleResource;
-use App\Notifications\MealScheduleStatusUpdated;
 use App\Models\Account;
 use App\Models\MealPhotos;
 use App\Models\Notification;
 use App\Models\User;
-use Stripe\Climate\Order;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Http\Exceptions\NotFoundHttpException;
-use Illuminate\Support\Facades\Storage;
 use Stripe\StripeClient;
 use Stripe\PaymentIntent;
 use Illuminate\Support\Str;
-use Stripe\Stripe as StripeGateway;
-
-use function Laravel\Prompts\confirm;
 
 class MealScheduleController extends Controller
 {
@@ -114,7 +106,7 @@ class MealScheduleController extends Controller
         $clientSecret = $request->query('payment_intent');
         $order = Orders::where('session_id',  $clientSecret)->first();
         $mealSchedule = MealSchedule::find($order->meal_schedule_id);
-// dd($mealSchedule);
+        // dd($mealSchedule);
         return inertia('MealSchedule/Status', ['mealSchedule', $mealSchedule]);
     }
 
@@ -173,10 +165,10 @@ class MealScheduleController extends Controller
                 if ($order && $order->status === 'unpaid') {
                     $order->status = 'paid';
                     $order->save();
-                     // $recipient = User::find($notification->user_id);
-        // if ($recipient) {
-        //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
-        // }
+                    // $recipient = User::find($notification->user_id);
+                    // if ($recipient) {
+                    //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+                    // }
                     // Send email to customer
                 }
                 if ($order->status === 'paid') {
@@ -281,6 +273,7 @@ class MealScheduleController extends Controller
 
         $MealSchedule->update($request->all());
 
+       
         return response()->json([
             'data' => new MealScheduleResource($MealSchedule),
             'message' => 'Successfully updated Meal Schedule!',
