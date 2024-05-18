@@ -128,6 +128,23 @@ class AccountController extends Controller
 
     return response()->json(['url' => $link->url]);
  }
+ public function dashboard_link($id){
+  
+    $user = Auth::user();
+
+    $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
+    $link = $stripe->accountLinks->create([
+        'account' => $id,
+        'refresh_url' => route('account.index', [], true) ,
+        'return_url' => route('account.index', [], true) ,
+        'type' => 'account_onboarding',
+        'collect' => 'eventually_due'
+    ]);
+
+    return response()->json(['url' => $link->url]);
+ }
+
+
 
     public function create(){
         return inertia('Cook/Account/Create', );

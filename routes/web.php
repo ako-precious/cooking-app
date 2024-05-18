@@ -122,6 +122,7 @@ Route::resource('/notifications-messages', NotificationController::class);
 
     Route::resource('cook/account', AccountController::class);
     Route::post('account-link/{id}', [AccountController::class, 'account_link']);
+    Route::post('dashboard-link/{id}', [AccountController::class, 'dashboard_link']);
     //cook Controller
     Route::resource('/cook/menu', CookController::class);
     Route::get('/become-a-cook/{newMealId}/price', [CookController::class, 'price']);
