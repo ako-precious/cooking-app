@@ -27,7 +27,7 @@ defineProps(["account"]);
           </div>
         </div>
       </td>
-      <td v-else class="whitespace-nowrap px-6 py-5">True</td>
+      <td v-else class="whitespace-nowrap px-6 py-5 dark:text-snow text-oynx capitalize">True</td>
       <td v-if="account.detailed_submitted == 0" class="whitespace-nowrap px-6 py-5">
        
       </td>

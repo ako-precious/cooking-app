@@ -116,6 +116,12 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                     <template #symbols>
                                                     </template>
                                                 </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                    </template>
+                                                    <template #symbols>
+                                                    </template>
+                                                </TableHeadVue>
                                             </tr>
                                         </thead>
                                         <tbody>
