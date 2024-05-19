@@ -33,9 +33,9 @@ defineProps(["account"]);
       </td>
       <td v-else class="whitespace-nowrap px-6 py-5">
         <div class="flex items-start">
-          <div @click="ViewBoard(account.stripe_account_id)" class="p-2 cursor-pointer shadow-sm rounded-sm hover:shadow-xs group">
+          <Link :href="`/account-session/${account.stripe_account_id}`" class="p-2 cursor-pointer shadow-sm rounded-sm hover:shadow-xs group">
             <p class="text-base font-semibold group-action-text">View Dashboard </p>
-          </div>
+          </Link>
         </div>
       </td>
       <td class="whitespace-nowrap px-6 py-5"></td>
@@ -86,18 +86,18 @@ export default {
                     console.error("Error saving data:", error);
                 });
         },
-        ViewBoard(id) {
-            // Send an HTTP request to your backend API to save the data
-            axios
-                .post("/account-link/" + id)
-                .then((response) => {
-                    window.location.href = response.data.url;
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error("Error saving data:", error);
-                });
-        },
+        // ViewBoard(id) {
+        //     // Send an HTTP request to your backend API to save the data
+        //     axios
+        //         .post("/account-link/" + id)
+        //         .then((response) => {
+        //             window.location.href = response.data.url;
+        //         })
+        //         .catch((error) => {
+        //             // Handle error
+        //             console.error("Error saving data:", error);
+        //         });
+        // },
     },
 };
 </script>

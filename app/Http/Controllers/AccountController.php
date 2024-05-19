@@ -128,6 +128,12 @@ class AccountController extends Controller
 
     return response()->json(['url' => $link->url]);
  }
+
+ public function account_session($id){
+    
+    return inertia('Cook/Account/Sessions',['account' => $id] );
+ }
+
  public function dashboard_link($id){
   try {
     $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
@@ -138,9 +144,6 @@ class AccountController extends Controller
     //     'type' => 'account_onboarding',
     //     'collect' => 'eventually_due'
     // ]);
-
-    
-    
     $account_session = $stripe->accountSessions->create([
     'account' => $id,
     'components' => [
