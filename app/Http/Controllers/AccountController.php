@@ -11,7 +11,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Stripe\Account as StripeAccount;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
-
+use Exception;
 class AccountController extends Controller
 {
 
@@ -129,19 +129,40 @@ class AccountController extends Controller
     return response()->json(['url' => $link->url]);
  }
  public function dashboard_link($id){
-  
-    $user = Auth::user();
-
+  try {
     $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
-    $link = $stripe->accountLinks->create([
-        'account' => $id,
-        'refresh_url' => route('account.index', [], true) ,
-        'return_url' => route('account.index', [], true) ,
-        'type' => 'account_onboarding',
-        'collect' => 'eventually_due'
-    ]);
+    // $link = $stripe->Account->create_login_link([
+    //     'account' => $id,
+    //     'refresh_url' => route('account.index', [], true) ,
+    //     'return_url' => route('account.index', [], true) ,
+    //     'type' => 'account_onboarding',
+    //     'collect' => 'eventually_due'
+    // ]);
 
-    return response()->json(['url' => $link->url]);
+    
+    
+    $account_session = $stripe->accountSessions->create([
+    'account' => $id,
+    'components' => [
+      'payments' => [
+        'enabled' => true,
+        'features' => [
+          'refund_management' => true,
+          'dispute_management' => true,
+          'capture_payments' => true,
+        ],
+    ],
+],
+]);
+
+return response()->json(['client_secret' => $account_session->client_secret]);
+} catch (Exception $e) {
+  error_log("An error occurred when calling the Stripe API to create an account session: {$e->getMessage()}");
+  http_response_code(500);
+  return response()->json(['error' => $e->getMessage()]);
+}
+
+
  }
 
 
