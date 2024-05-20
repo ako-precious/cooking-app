@@ -6,7 +6,7 @@ import TableRow from "./TableRow.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import CaretDown from "@/Components/CaretDown.vue";
 import CaretUp from "@/Components/CaretUp.vue";
-import Filter from "./Filter.vue"
+import Filters from "./Filter.vue"
 </script>
 
 <template>
@@ -244,7 +244,7 @@ import Filter from "./Filter.vue"
                                 </button>
                             </li>
                         </ul> -->
-                  <Filter></Filter>
+                        <Filters :filters="filters" />
                     </div>
                 </div>
                 <div
@@ -359,14 +359,8 @@ import axios from "axios";
 export default {
     props: {
         meal_orders: Object ,
-        pending: Object ,
-        rejected: Object,
-        accepted: Object,
-        processed: Object,
-        ready: Object,
-        transit: Object,
-        delivered: Object,
-        confirmed: Object,
+        // bowlings: Object,
+    filters: Object,
     },
  
     data() {

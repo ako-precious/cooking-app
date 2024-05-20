@@ -68,44 +68,39 @@ class OrdersController extends Controller
     }
 
     public function filter(Request $request)
-    {
-        // dd(Players::all());
-        $user_id = Auth::id();
-        $filters =  $request->only([
-            'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
-        ]);
+{
+    $user_id = Auth::id();
+    $filters = $request->only([
+        'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+    ]);
 
-        $query = MealSchedule::where('user_id', $user_id)
-            ->with('order', 'meal', 'user')
-            ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id') // Join meals table
-            ->select('meal_schedules.*'); // Ensure you select the columns from meal_schedules
+    $query = MealSchedule::where('user_id', $user_id)
+        ->with('order', 'meal', 'user')
+        ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id') // Join meals table
+        ->select('meal_schedules.*'); // Ensure you select the columns from meal_schedules
 
-        return inertia('Order/Index', [
-            'filters' => $filters,
-            'order' => $query
-                ->when($filters['name'] ?? false, function ($query) use ($filters) {
-                    $query->whereHas('player', function ($query) use ($filters) {
-                        $query->where('long_name', 'like', '%' . $filters['name'] . '%');
-                    });
-                })
-                ->when($filters['status'] ?? false, function ($query) use ($filters) {
-                    $query->whereHas('player', function ($query) use ($filters) {
-                        $query->where('status',  $filters['status']);
-                    });
-                })
-                ->when($filters['meal_time'] ?? false, function ($query) use ($filters) {
-                    $query->where('meal_time', $filters['meal_time']);
-                })
-                ->when($filters['delivery_date_from'] ?? false, function ($query) use ($filters) {
-                    $query->where('delivery_date_from', '>=', $filters['delivery_date_from']);
-                })
-                ->when($filters['delivery_date_to'] ?? false, function ($query) use ($filters) {
-                    $query->where('delivery_date_to', '<=', $filters['delivery_date_to']);
-                })
-                ->paginate(15)
-                ->withQueryString()
-        ]);
-    }
+    return inertia('Order/Index', [
+        'filters' => $filters,
+        'order' => $query
+            ->when($filters['name'] ?? false, function ($query) use ($filters) {
+                $query->where('meals.name', 'like', '%' . $filters['name'] . '%'); // Search in meals table
+            })
+            ->when($filters['status'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.status', $filters['status']);
+            })
+            ->when($filters['meal_time'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.meal_time', $filters['meal_time']);
+            })
+            ->when($filters['delivery_date_from'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.delivery_date_from', '>=', $filters['delivery_date_from']);
+            })
+            ->when($filters['delivery_date_to'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.delivery_date_to', '<=', $filters['delivery_date_to']);
+            })
+            ->paginate(15)
+            ->withQueryString()
+    ]);
+}
 
 
     public function order()
