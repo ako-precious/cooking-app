@@ -579,7 +579,7 @@ export default {
         isToday(dateString) {
             const date = new Date(dateString);
             const today = new Date();
-            return date.toDateString() <= today.toDateString();
+            return date.toDateString() < today.toDateString();
         },
         FormattedDate(timestamp) {
             const date = new Date(timestamp);

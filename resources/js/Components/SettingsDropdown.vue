@@ -119,6 +119,7 @@ const toggleDarkMode = useToggle(isDark);
                     <!-- Authentication -->
                     <form @submit.prevent="logout">
                         <DropdownLink
+                        
                             as="button"
                             class="flex items-center rounded-md px-4 py-1 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                         >

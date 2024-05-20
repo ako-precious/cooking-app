@@ -1,11 +1,12 @@
 <script setup>
 import axios from "axios";
 import { loadConnectAndInitialize } from "@stripe/connect-js";
+import { Head } from "@inertiajs/vue3";
 
 import HeaderVue from "../Header.vue";
 </script>
 <template>
-    <Head title="Account Onboarding" />
+    <Head title="Account Dashboard" />
     <div
         class="relative sm:flex sm:justify-center sm:items-center bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -111,6 +112,7 @@ export default {
                             buttonPrimaryColorText: "#FCF7F8",
                             colorText: "#8392AB",
                             colorSecondaryText: "#8392AB",
+                            headingLgFontSize: "50px",
 
                         },
                     },
