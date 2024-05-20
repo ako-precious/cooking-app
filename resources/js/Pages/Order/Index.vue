@@ -319,8 +319,8 @@ import Filters from "./Filter.vue"
 
                                             <tbody>
                                                 <tr
-                                                    v-if="orders.length > 0"
-                                                    v-for="meal in orders"
+                                                    v-if="orders.data.length > 0"
+                                                    v-for="meal in orders.data"
                                                     :key="meal.id"
                                                     class="animate-fade-in border-b py-4 capitalize text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                                 >
@@ -340,6 +340,7 @@ import Filters from "./Filter.vue"
                                                     </td>
                                                 </tr>
                                             </tbody>
+                                            <!-- {{ orders.data }} -->
                                         </table>
                                     </div>
                                 </div>

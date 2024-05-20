@@ -67,7 +67,8 @@ class OrdersController extends Controller
         }
     }
 
-    public function filter(Request $request)
+    public function order(Request $request)
+
 {
     $user_id = Auth::id();
     $filters = $request->only([
@@ -76,12 +77,13 @@ class OrdersController extends Controller
 
     $query = MealSchedule::where('user_id', $user_id)
         ->with('order', 'meal', 'user')
-        ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id') // Join meals table
-        ->select('meal_schedules.*'); // Ensure you select the columns from meal_schedules
-
+        ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id');
+        // Join meals table
+        // ; // Ensure you select the columns from meal_schedules
+    //   dd($query);
     return inertia('Order/Index', [
         'filters' => $filters,
-        'order' => $query
+        'meal_orders' => $query
             ->when($filters['name'] ?? false, function ($query) use ($filters) {
                 $query->where('meals.name', 'like', '%' . $filters['name'] . '%'); // Search in meals table
             })
@@ -103,21 +105,21 @@ class OrdersController extends Controller
 }
 
 
-    public function order()
-    {
-        $user_id = Auth::id();
+    // public function order()
+    // {
+    //     $user_id = Auth::id();
 
-        $orders = MealSchedule::where('user_id', $user_id)->with('order', 'meal', 'user')->get();
-        $pending = MealSchedule::where('user_id', $user_id)->where('status', 'pending')->with('order', 'meal', 'user')->get();
-        $rejected = MealSchedule::where('user_id', $user_id)->where('status', 'rejected')->with('order', 'meal', 'user')->get();
-        $accepted = MealSchedule::where('user_id', $user_id)->where('status', 'accepted')->with('order', 'meal', 'user')->get();
-        $processed = MealSchedule::where('user_id', $user_id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
-        $ready = MealSchedule::where('user_id', $user_id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
-        $transit = MealSchedule::where('user_id', $user_id)->where('status', 'in transit')->with('order', 'meal', 'user')->get();
-        $delivered = MealSchedule::where('user_id', $user_id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
-        $confirmed = MealSchedule::where('user_id', $user_id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
-        return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'rejected' => $rejected, 'accepted' => $accepted, 'processed' => $processed, 'ready' => $ready, 'transit' => $transit, 'delivered' => $delivered, 'confirmed' => $confirmed]);
-    }
+    //     $orders = MealSchedule::where('user_id', $user_id)->with('order', 'meal', 'user')->get();
+    //     $pending = MealSchedule::where('user_id', $user_id)->where('status', 'pending')->with('order', 'meal', 'user')->get();
+    //     $rejected = MealSchedule::where('user_id', $user_id)->where('status', 'rejected')->with('order', 'meal', 'user')->get();
+    //     $accepted = MealSchedule::where('user_id', $user_id)->where('status', 'accepted')->with('order', 'meal', 'user')->get();
+    //     $processed = MealSchedule::where('user_id', $user_id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
+    //     $ready = MealSchedule::where('user_id', $user_id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
+    //     $transit = MealSchedule::where('user_id', $user_id)->where('status', 'in transit')->with('order', 'meal', 'user')->get();
+    //     $delivered = MealSchedule::where('user_id', $user_id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
+    //     $confirmed = MealSchedule::where('user_id', $user_id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
+    //     return inertia('Order/Index', ['meal_orders' => $orders, 'pending' => $pending, 'rejected' => $rejected, 'accepted' => $accepted, 'processed' => $processed, 'ready' => $ready, 'transit' => $transit, 'delivered' => $delivered, 'confirmed' => $confirmed]);
+    // }
 
     public function calendar()
     {
