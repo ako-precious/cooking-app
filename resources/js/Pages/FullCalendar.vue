@@ -327,8 +327,8 @@ export default defineComponent({
                         <h2 class="text-oynx dark:text-snow font-bold text-xl">
                             {{
                                 newSchedule.meal_name == ""
-                                    ? "New Meal"
-                                    : "Meal"
+                                    ? "New Schedule"
+                                    : "Schedule"
                             }}
                         </h2>
                         <div class="py-4 relative">

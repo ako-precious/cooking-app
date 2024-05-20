@@ -94,10 +94,10 @@ class OrdersController extends Controller
                 $query->where('meal_schedules.meal_time', $filters['meal_time']);
             })
             ->when($filters['delivery_date_from'] ?? false, function ($query) use ($filters) {
-                $query->where('meal_schedules.delivery_date_from', '>=', $filters['delivery_date_from']);
+                $query->where('meal_schedules.start_date', '>=', $filters['delivery_date_from']);
             })
             ->when($filters['delivery_date_to'] ?? false, function ($query) use ($filters) {
-                $query->where('meal_schedules.delivery_date_to', '<=', $filters['delivery_date_to']);
+                $query->where('meal_schedules.end_date', '<=', $filters['delivery_date_to']);
             })
             ->paginate(15)
             ->withQueryString()

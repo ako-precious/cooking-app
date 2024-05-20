@@ -17,7 +17,7 @@ defineProps(["meal"]);
                     />
                 </Link>
             </div>
-            <Link :href="`/become-a-cook/${meal.id}/title`">
+            <Link :href="`/become-a-cook/${meal.id}/meal-title`">
                 <p class="pl-4 lg:pl-8">
                     {{ meal.name }}
                 </p>
@@ -37,7 +37,7 @@ defineProps(["meal"]);
                     />
                 </div>
             </Link>
-            <Link :href="`/become-a-cook/${meal.id}/title`">
+            <Link :href="`/become-a-cook/${meal.id}/meal-title`">
                 <p class="pl-4 lg:pl-8">
                     Meal created on {{ FormattedDate(meal.created_at) }}
                 </p>

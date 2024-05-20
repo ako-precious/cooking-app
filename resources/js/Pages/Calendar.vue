@@ -70,7 +70,7 @@
                     </button>
                     <div class="p-4 md:py-8 text-center">
                         <h2 class="text-oynx dark:text-snow">
-                            {{ newEventModalVisible ? "New Meal" : "Meal" }}
+                            {{ newEventModalVisible ? "New Schedule" : "Schedule" }}
                         </h2>
                         <div class="py-4">
                             <TextInput class="my-2"
