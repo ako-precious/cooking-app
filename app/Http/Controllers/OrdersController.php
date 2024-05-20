@@ -17,6 +17,7 @@ use Stripe\Climate\Order;
 use Stripe\Transfer;
 
 use Illuminate\Support\Str;
+
 class OrdersController extends Controller
 {
     public function index()
@@ -65,6 +66,47 @@ class OrdersController extends Controller
             return redirect()->route('welcome');
         }
     }
+
+    public function filter(Request $request)
+    {
+        // dd(Players::all());
+        $user_id = Auth::id();
+        $filters =  $request->only([
+            'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+        ]);
+
+        $query = MealSchedule::where('user_id', $user_id)
+            ->with('order', 'meal', 'user')
+            ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id') // Join meals table
+            ->select('meal_schedules.*'); // Ensure you select the columns from meal_schedules
+
+        return inertia('Order/Index', [
+            'filters' => $filters,
+            'order' => $query
+                ->when($filters['name'] ?? false, function ($query) use ($filters) {
+                    $query->whereHas('player', function ($query) use ($filters) {
+                        $query->where('long_name', 'like', '%' . $filters['name'] . '%');
+                    });
+                })
+                ->when($filters['status'] ?? false, function ($query) use ($filters) {
+                    $query->whereHas('player', function ($query) use ($filters) {
+                        $query->where('status',  $filters['status']);
+                    });
+                })
+                ->when($filters['meal_time'] ?? false, function ($query) use ($filters) {
+                    $query->where('meal_time', $filters['meal_time']);
+                })
+                ->when($filters['delivery_date_from'] ?? false, function ($query) use ($filters) {
+                    $query->where('delivery_date_from', '>=', $filters['delivery_date_from']);
+                })
+                ->when($filters['delivery_date_to'] ?? false, function ($query) use ($filters) {
+                    $query->where('delivery_date_to', '<=', $filters['delivery_date_to']);
+                })
+                ->paginate(15)
+                ->withQueryString()
+        ]);
+    }
+
 
     public function order()
     {
@@ -155,13 +197,13 @@ class OrdersController extends Controller
             $notificationMessage = "The meal order #" . $mealSchedule->id . " delivery has been " . $mealSchedule->status;
 
             // See your keys here: https://dashboard.stripe.com/apikeys
-             $connected_account = Account::where('user_id', $recipientId )->first()  ;
+            $connected_account = Account::where('user_id', $recipientId)->first();
 
             $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
             $transfer = 'ORDER_' . mt_rand(100, 999999);
             $amount = intval(round((85 / 100) * $mealSchedule->meal->price * 100)); // Convert dollars to cents
             $stripe->transfers->create([
-                'amount' => $amount ,
+                'amount' => $amount,
                 'currency' => 'cad',
                 'destination' => $connected_account->stripe_account_id,
                 'transfer_group' => $transfer,

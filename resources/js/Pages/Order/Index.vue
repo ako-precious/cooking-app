@@ -6,6 +6,7 @@ import TableRow from "./TableRow.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 import CaretDown from "@/Components/CaretDown.vue";
 import CaretUp from "@/Components/CaretUp.vue";
+import Filter from "./Filter.vue"
 </script>
 
 <template>
@@ -19,7 +20,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
-                        <ul
+                        <!-- <ul
                             class=" overflow-x-scroll disable-scrollbars flex  w-full p-4 mb-0 list-none rounded-xl"
                         >
                             <li class="px-2">
@@ -242,7 +243,8 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     >
                                 </button>
                             </li>
-                        </ul>
+                        </ul> -->
+                  <Filter></Filter>
                     </div>
                 </div>
                 <div
