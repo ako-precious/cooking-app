@@ -3,349 +3,218 @@ import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import TableRow from "./TableRow.vue";
-import DialogModal from "@/Components/DialogModal.vue";
+import Pagination from "@/Components/Pagination.vue";
+import SocialLogin from "@/Pages/Auth/SocialLogin.vue";
 import CaretDown from "@/Components/CaretDown.vue";
 import CaretUp from "@/Components/CaretUp.vue";
-import Filters from "./Filter.vue"
+import Filters from "./Filter.vue";
 </script>
 
 <template>
-   
     <AppLayout title="Meal Schedule">
         <div
             class="relative sm:flex sm:justify-center sm:items-center bg-center selection:bg-lighred selection:text-white"
         >
-            <div class="container py-6 relative mx-auto text-oynx dark:text-snow">
-                <div class=" py-3 ">
+            <div
+                class="container py-6 relative mx-auto text-oynx dark:text-snow"
+            >
+                <div class="py-3">
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
-                        <!-- <ul
-                            class=" overflow-x-scroll disable-scrollbars flex  w-full p-4 mb-0 list-none rounded-xl"
-                        >
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(meal_orders),
-                                            selectedDiv('meal_orders'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'meal_orders',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow  cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >ALL [{{
-                                            meal_orders.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(pending),
-                                            selectedDiv('pending'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'pending',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >Pending [{{
-                                            pending.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(rejected),
-                                            selectedDiv('rejected'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'rejected',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >Rejected [{{
-                                            rejected.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(accepted),
-                                            selectedDiv('accepted'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'accepted',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >Accepted [{{
-                                            accepted.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(processed),
-                                            selectedDiv('processed'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'processed',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >Processed [{{
-                                            processed.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(ready),
-                                            selectedDiv('ready'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'processed',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >ready [{{
-                                            ready.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(ready),
-                                            selectedDiv('ready'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'processed',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >ready [{{
-                                            ready.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(transit),
-                                            selectedDiv('transit'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'processed',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >transit [{{
-                                            transit.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(delivered),
-                                            selectedDiv('delivered'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'delivered',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >delivered [{{
-                                            delivered.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                            <li class="px-2">
-                                <button
-                                    @click="
-                                        [
-                                            chooseStatus(confirmed),
-                                            selectedDiv('confirmed'),
-                                        ]
-                                    "
-                                    :class="{
-                                        'bg-persian text-snow':
-                                            selected === 'confirmed',
-                                    }"
-                                    class="relative w-28 flex items-center justify-center rounded-lg text-oynx dark:text-snow overflow-hidden cursor-pointer border border-persian"
-                                >
-                                    <span
-                                        class="text-center w-full py-2 text-sm tracking-wider capitalize z-20 transition-all duration-300 ease-in-out"
-                                        >confirmed [{{
-                                            confirmed.length
-                                        }}]</span
-                                    >
-                                </button>
-                            </li>
-                        </ul> -->
-                        <Filters :filters="filters" />
-                    </div>
-                </div>
-                <div
-                    class="m-auto flex flex-col justify-center h-full lg:pb-10 w-full py-6 shadow-reverse rounded-lg my-2"
-                >
-                    <div class="lg:w-full">
-                        <div class="flex flex-col w-full">
-                            <div class=" ">
-                                <div class="inline-block w-full py-2">
-                                    <div
-                                        class="overflow-x-scroll disable-scrollbars">
-                                        <table
-                                            class="w-full text-left text-sm font-light relative"
-                                        >
-                                            <thead
-                                                class="align-bottom shadow-sm translate-x-0 sticky top-0 z-10 border-b"
-                                            >
-                                                <tr>
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            Meal Title
-                                                        </template>
-                                                        <template #symbols>
-                                                            <CaretUp />
-                                                            <CaretDown />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            Cook's NAme
-                                                        </template>
-                                                        <template #symbols>
-                                                            <CaretUp />
-                                                            <CaretDown />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            Meal Time
-                                                        </template>
-                                                        <template #symbols>
-                                                            <CaretUp />
-                                                            <CaretDown />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            Meal Delivery Date
-                                                        </template>
-                                                        <template #symbols>
-                                                            <CaretUp />
-                                                            <CaretDown />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                            status
-                                                        </template>
-                                                        <template #symbols>
-                                                            <CaretUp />
-                                                            <CaretDown />
-                                                        </template>
-                                                    </TableHeadVue>
-                                                    <TableHeadVue>
-                                                        <template #title>
-                                                        </template>
-                                                        <template #symbols>
-                                                        </template>
-                                                    </TableHeadVue>
-                                                </tr>
-                                            </thead>
+                        <div class="my-6 w-24 relative float-right" @click="openModal()">
+                            <SocialLogin class="group">
+                                <template #logo>
+                                    <font-awesome-icon
+                                        icon="filter"
+                                        class="text-xl px-2 group-hover:-ml-3 group-action-text"
+                                    />
+                                </template>
+                                <template #name> Filters </template>
+                            </SocialLogin>
+                        </div>
 
-                                            <tbody>
-                                                <tr
-                                                    v-if="orders.data.length > 0"
-                                                    v-for="meal in orders.data"
-                                                    :key="meal.id"
-                                                    class="animate-fade-in border-b py-4 capitalize text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
+                        <div
+                            class="m-auto flex flex-col justify-center h-full lg:pb-10 w-full py-6 shadow-reverse rounded-lg my-2 z-0"
+                        >
+                            <div class="lg:w-full">
+                                <div class="flex flex-col w-full">
+                                    <div class=" ">
+                                        <div class="w-full py-2">
+                                            <div
+                                                class="overflow-x-scroll disable-scrollbars"
+                                            >
+                                                <table
+                                                    class="w-full text-left text-sm font-light relative"
                                                 >
-                                                    <TableRow :meal="meal">
-                                                    </TableRow>
-                                                </tr>
-                                                <tr
-                                                    v-else
-                                                    class="animate-fade-in border-b py-4 mx-auto"
-                                                >
-                                                    <td colspan="6">
-                                                        <div
-                                                            class="py-6 italic  text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
+                                                    <thead
+                                                        class="align-bottom shadow-sm translate-x-0 sticky top-0 z-10 border-b"
+                                                    >
+                                                        <tr>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
+                                                                    Meal Title
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                    <CaretUp />
+                                                                    <CaretDown />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
+                                                                    Cook's NAme
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                    <CaretUp />
+                                                                    <CaretDown />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
+                                                                    Meal Time
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                    <CaretUp />
+                                                                    <CaretDown />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
+                                                                    Meal
+                                                                    Delivery
+                                                                    Date
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                    <CaretUp />
+                                                                    <CaretDown />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
+                                                                    status
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                    <CaretUp />
+                                                                    <CaretDown />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                </template>
+                                                            </TableHeadVue>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr
+                                                            v-if="
+                                                                orders.data
+                                                                    .length > 0
+                                                            "
+                                                            v-for="meal in orders.data"
+                                                            :key="meal.id"
+                                                            class="animate-fade-in border-b py-4 capitalize text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                                         >
-                                                            You have nothing here yet. click <Link :href="`/`" class=" font-semibold ">here </Link> to add
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <!-- {{ orders.data }} -->
-                                        </table>
+                                                            <TableRow
+                                                                :meal="meal"
+                                                            >
+                                                            </TableRow>
+                                                        </tr>
+                                                        <tr
+                                                            v-else
+                                                            class="animate-fade-in border-b py-4 mx-auto"
+                                                        >
+                                                            <td colspan="6">
+                                                                <div
+                                                                    class="py-6 italic text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
+                                                                >
+                                                                    You have
+                                                                    nothing here
+                                                                    yet. click
+                                                                    <Link
+                                                                        :href="`/`"
+                                                                        class="font-semibold"
+                                                                        >here
+                                                                    </Link>
+                                                                    to add
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <!-- {{ orders.data }} -->
+                                                </table>
+                                                <div
+                                                    v-if="
+                                                        orders.data.length
+                                                    "
+                                                    class="w-full flex justify-center mt-6"
+                                                >
+                                                    <Pagination
+                                                        :links="
+                                                            orders.links
+                                                        "
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-md w-full h-full"
+                            v-show="newEventModalVisible"
+                        >
+                            <div
+                                class="relative p-4 w-full max-w-xl max-h-full transition-all duration-300 ease-in delay-200"
+                            >
+                                <div class="relative shadow-reverse rounded-lg">
+                                    <button
+                                        @click="closeModal"
+                                        type="button"
+                                        class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                        data-modal-hide="popup-modal"
+                                    >
+                                        <font-awesome-icon
+                                            icon="fa-solid fa-close"
+                                            class="text-lighred text-lg"
+                                        />
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                    <div class="">
+                                        <div class="p-6 mt-1">
+                                            <Filters :filters="filters" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                          <!-- </div> -->
                         </div>
                     </div>
                 </div>
@@ -359,18 +228,19 @@ import axios from "axios";
 
 export default {
     props: {
-        meal_orders: Object ,
+        meal_orders: Object,
         // bowlings: Object,
-    filters: Object,
+        filters: Object,
     },
- 
+
     data() {
         return {
             orders: this.meal_orders,
             selected: "meal_orders",
+            newEventModalVisible: false,
         };
     },
-   
+
     methods: {
         chooseStatus(status) {
             this.orders = status;
@@ -378,58 +248,12 @@ export default {
         selectedDiv(status) {
             this.selected = status;
         },
-    
+        openModal() {
+            this.newEventModalVisible = true;
+        },
+        closeModal() {
+            this.newEventModalVisible = false;
+        },
     },
 };
 </script>
-<style scoped>
-button:after {
-    content: " ";
-    width: 0%;
-    height: 100%;
-    background: #1b998b;
-    position: absolute;
-    transition: all 0.4s ease-in-out;
-    right: 0;
-}
-
-button:hover::after {
-    right: auto;
-    left: 0;
-    width: 100%;
-}
-
-button:hover span {
-    color: white;
-    animation: scaleUp 0.3s ease-in-out;
-}
-
-@keyframes scaleUp {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(0.95);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        bottom: -10rem;
-    }
-    to {
-        opacity: 1;
-        bottom: 0;
-    }
-}
-
-.animate-fade-in {
-    animation: fade-in 0.5s ease-in;
-}
-</style>
