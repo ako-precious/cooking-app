@@ -37,7 +37,7 @@ class OrdersController extends Controller
             $menu = Meal::where('cook_id', $user_id)->get();
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array 
-                $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->get();
+                $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->orderBy('created_at','desc')->get();
                 $pendingOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'pending')->with('order', 'meal', 'user')->get();
                 $rejectedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'rejected')->with('order', 'meal', 'user')->get();
                 $acceptedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accepted')->with('order', 'meal', 'user')->get();
@@ -74,13 +74,14 @@ class OrdersController extends Controller
         $filters = $request->only([
             'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
         ]);
+        
 
         $query = MealSchedule::where('user_id', $user_id)
             ->with('order', 'meal', 'user')
             // ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id')
             ->select('meal_schedules.*')
             ->leftJoin('meals', 'meal_schedules.meal_id', '=', 'meals.id')
-            
+
             ->when($filters['name'] ?? false, function ($query) use ($filters) {
                 $query->where('meals.name', 'like', '%' . $filters['name'] . '%'); // Search in meals table
             })
@@ -98,9 +99,35 @@ class OrdersController extends Controller
             })
             ->paginate(15)
             ->withQueryString();
-        // Join meals table
-        // ; // Ensure you select the columns from meal_schedules
-        // dd($query);
+
+            // if (array_key_exists('name', $request->only([
+            //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+            // ])) ||
+            //     array_key_exists('status', $request->only([
+            //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+            // ])) ||
+            //     array_key_exists('meal_time', $request->only([
+            //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+            // ])) ||
+            //     array_key_exists('delivery_date_from', $request->only([
+            //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+            // ])) ||
+            //     array_key_exists('delivery_date_to', $request->only([
+            //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+            // ]))) {
+            //     response()->json([
+            //         'filters' => $filters,
+            //         'meal_orders' => $query
+            //     ]);
+            //     // All keys exist in the request data
+            // }
+        
+
+
+        // if ($request->ajax()) {
+        //     // dd($query);
+        //   return   response()->json(['meal_order' => $query]);
+        // }
         return inertia('Order/Index', [
             'filters' => $filters,
             'meal_orders' => $query

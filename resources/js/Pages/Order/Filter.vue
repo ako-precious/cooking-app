@@ -1,6 +1,52 @@
+
+<script setup>
+import { useForm } from '@inertiajs/vue3';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+
+// const props = defineProps({ filters: Object });
+// const emit = defineEmits(['filter-update']);
+
+// const filterForm = useForm({
+//     name: props.filters.name ?? null,
+//     status: props.filters.status ?? null,
+//     meal_time: props.filters.meal_time ?? null,
+//     delivery_date_from: props.filters.delivery_date_from ?? null,
+//     delivery_date_to: props.filters.delivery_date_to ?? null,
+// });
+
+// const filter = async () => {
+//     try {
+//         const response = await filterForm.get('/meal-schedule', {
+//             preserveScroll: true,
+//             preserveState: true,
+//             replace: true,
+//         });
+//         // console.log(response);
+//         emit('filter-update', response);
+//     } catch (error) {
+//         console.error('Error fetching filtered data:', error);
+//     }
+// };
+
+// const clear = () => {
+//     filterForm.name = null;
+//     filterForm.status = null;
+//     filterForm.meal_time = null;
+//     filterForm.delivery_date_from = null;
+//     filterForm.delivery_date_to = null;
+//     filter();
+// };
+</script>
 <template>
     <form @submit.prevent="filter">
         <div class="mb-8 mt-4 flex flex-col gap-2 justify-center m-auto">
+            <div>
+                <h2 class=" text-oynx dark:text-snow text-xl md:text-2xl">
+                    Filter Page
+                </h2>
+            </div>
             <div class="flex flex-col mt-4 group ">
                 <InputLabel class="text-lg" for="email" value="Meal Name" />
                 <TextInput
@@ -41,7 +87,7 @@
                     </select>
                 </div>
             </div>
-            <div>Delivery Date</div>
+            <div><h4 class="text-oynx dark:text-snow">Delivery Date </h4> </div>
             <div class="flex flex-nowrap items-center">
 
                 <div class="flex flex-col  rounded-lg mr-1 w-1/2">
@@ -72,44 +118,69 @@
     </form>
 </template>
 
-<script setup>
-import { useForm } from '@inertiajs/vue3';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-const props = defineProps({
+<script >
+import axios from "axios";
+export default {
+  props: {
     filters: {
-        type: Object,
-        // default: () => ({}),
+      type: Object,
+      required: true
+    }
+  },
+  emits: ['filter-update'],
+  data() {
+    return {
+      filterForm: {
+        name: this.filters.name ?? null,
+        status: this.filters.status ?? null,
+        meal_time: this.filters.meal_time ?? null,
+        delivery_date_from: this.filters.delivery_date_from ?? null,
+        delivery_date_to: this.filters.delivery_date_to ?? null,
+      }
+    };
+  },
+  methods: {
+    async filter() {
+      try {
+        axios
+                    .get("/meal-schedule", this.newRating)
+                    .then((resp) => {
+                        console.log(resp);
+
+                        this.$emit('filter-update', resp);
+                        // setTimeout(() => {
+                        //     this.closeModal();
+                        //     // Uncomment the line below if you want to toggle addingMode after the delay
+                        //     // this.addingMode = !this.addingMode;
+                        // }, 5000);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        // this.error = "Unable to add Meal !";
+                        // setTimeout(() => {
+                        //     this.error = "";
+                        // }, 10000);
+                    });
+        // const response = await this.filterFormget('/meal-schedule', {
+        //   preserveScroll: true,
+        //   preserveState: true,
+        //   replace: true,
+        // });
+      } catch (error) {
+        console.error('Error fetching filtered data:', error);
+      }
     },
-});
-
-const filterForm = useForm({
-    name: props.filters.name ?? null,
-    status: props.filters.status ?? null,
-    meal_time: props.filters.meal_time ?? null,
-    delivery_date_from: props.filters.delivery_date_from ?? null,
-    delivery_date_to: props.filters.delivery_date_to ?? null,
-});
-
-const filter = () => {
-    filterForm.get('/meal-schedule', {
-        preserveScroll: true,
-        preserveState: true,
-    })
-    ;
-};
-
-const clear = () => {
-    filterForm.name = null;
-    filterForm.status = null;
-    filterForm.meal_time = null;
-    filterForm.delivery_date_from = null;
-    filterForm.delivery_date_to = null;
-    filter();
+    clear() {
+      this.filterForm.name = null;
+      this.filterForm.status = null;
+      this.filterForm.meal_time = null;
+      this.filterForm.delivery_date_from = null;
+      this.filterForm.delivery_date_to = null;
+      this.filter();
+    }
+  }
 };
 </script>
-
 <style scoped>
 button:after {
     content: " ";

@@ -216,50 +216,91 @@ class MealScheduleController extends Controller
         return response()->json($suggestions);
     }
 
+    // public function store(Request $request)
+    // {
+    //     $new_MealSchedule = MealSchedule::create($request->all());
+    //     // dd($new_MealSchedule);
+
+    //     $meal_status = Meal::find($new_MealSchedule->meal_id);
+    //     if ($meal_status->ordering_preferences === 'automatic') {
+    //         $new_MealSchedule->status = 'accepted';
+    //         $new_MealSchedule->save();
+    //     }
+    //     $cook = Meal::find($new_MealSchedule->meal_id);
+    //     $user = User::find($new_MealSchedule->user_id);
+
+    //     $notification = new Notification();
+    //     $notification->user_id = $cook->id;
+    //     $notification->meal_schedule_id = $new_MealSchedule->id;
+    //     $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from " . $user->name;
+    //     $notification->status = 'unread';
+    //     // $recipient = User::find($notification->user_id);
+    //     // if ($recipient) {
+    //     //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+    //     // }
+    //     $notification->save();
+
+    //     $notification = new Notification();
+    //     $notification->user_id = $user->id;
+    //     $notification->meal_schedule_id = $new_MealSchedule->id;
+    //     $notification->message = "Your meal schedule  #" . $new_MealSchedule->id . " is been saved";
+    //     $notification->status = 'unread';
+    //     // $recipient = User::find( $notification->user_id );
+    //     // if ($recipient) {
+    //     //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
+    //     // }
+    //     $notification->save();
+
+
+    //     // Send email notification
+    //     return response()->json([
+    //         'data' => $new_MealSchedule,
+    //         'message' => 'Successfully added to your new Meal Schedule!',
+    //         'status' => Response::HTTP_CREATED
+    //     ]);
+    // }
     public function store(Request $request)
     {
         $new_MealSchedule = MealSchedule::create($request->all());
-        // dd($new_MealSchedule);
-
+    
         $meal_status = Meal::find($new_MealSchedule->meal_id);
         if ($meal_status->ordering_preferences === 'automatic') {
             $new_MealSchedule->status = 'accepted';
             $new_MealSchedule->save();
         }
-        $cook = Meal::find($new_MealSchedule->meal_id);
+    
+        $cook = Meal::find($new_MealSchedule->meal_id)->user; // Assuming Meal has a relationship with User
         $user = User::find($new_MealSchedule->user_id);
-
+    
+        if (!$cook) {
+            return response()->json(['error' => 'Cook not found'], 404);
+        }
+    
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+    
         $notification = new Notification();
         $notification->user_id = $cook->id;
         $notification->meal_schedule_id = $new_MealSchedule->id;
         $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from " . $user->name;
         $notification->status = 'unread';
-        // $recipient = User::find($notification->user_id);
-        // if ($recipient) {
-        //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
-        // }
         $notification->save();
-
+    
         $notification = new Notification();
         $notification->user_id = $user->id;
         $notification->meal_schedule_id = $new_MealSchedule->id;
-        $notification->message = "Your meal schedule  #" . $new_MealSchedule->id . " is been saved";
+        $notification->message = "Your meal schedule #" . $new_MealSchedule->id . " has been saved";
         $notification->status = 'unread';
-        // $recipient = User::find( $notification->user_id );
-        // if ($recipient) {
-        //     $recipient->notify(new MealScheduleStatusUpdated($notification->message));
-        // }
         $notification->save();
-
-
-        // Send email notification
+    
         return response()->json([
             'data' => $new_MealSchedule,
             'message' => 'Successfully added to your new Meal Schedule!',
             'status' => Response::HTTP_CREATED
         ]);
     }
-
+    
     public function update(Request $request, $id)
     {
         $MealSchedule = mealSchedule::find($id);

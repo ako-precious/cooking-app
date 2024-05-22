@@ -188,6 +188,7 @@ import Filters from "./Filter.vue";
                                 </div>
                             </div>
                         </div>
+
                         <div
                             class="modal disable-scrollbars overflow-y-auto overflow-x-hidden fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-md w-full h-full"
                             v-show="newEventModalVisible"
@@ -210,7 +211,7 @@ import Filters from "./Filter.vue";
                                     </button>
                                     <div class="">
                                         <div class="p-6 mt-1">
-                                            <Filters :filters="filters" />
+                                            <Filters :filters="filters" @filter-update="updateOrders"/>
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +230,6 @@ import axios from "axios";
 export default {
     props: {
         meal_orders: Object,
-        // bowlings: Object,
         filters: Object,
     },
 
@@ -242,6 +242,11 @@ export default {
     },
 
     methods: {
+        updateOrders(newOrders) {
+            this.orders = newOrders;
+            console.log(this.orders);
+        },
+
         chooseStatus(status) {
             this.orders = status;
         },
