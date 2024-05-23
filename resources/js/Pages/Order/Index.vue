@@ -60,8 +60,8 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp />
-                                                                    <CaretDown />
+                                                                    <CaretUp onclick="Sort('asc', 'name' )" />
+                                                                    <CaretDown onclick="Sort('desc','name')" />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -73,8 +73,8 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp />
-                                                                    <CaretDown />
+                                                                    <CaretUp onclick="Sort('asc', 'cook' )" />
+                                                                    <CaretDown onclick="Sort('desc', 'cook')" />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -86,8 +86,8 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp />
-                                                                    <CaretDown />
+                                                                    <CaretUp onclick="Sort('asc', 'time' )" />
+                                                                    <CaretDown onclick="Sort('desc', 'time')" />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -101,8 +101,8 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp />
-                                                                    <CaretDown />
+                                                                    <CaretUp onclick="Sort('asc', 'delivery' )" />
+                                                                    <CaretDown onclick="Sort('desc', 'delivery')" />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -114,8 +114,8 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp />
-                                                                    <CaretDown />
+                                                                    <CaretUp onclick="Sort('asc',  'status')" />
+                                                                    <CaretDown onclick="Sort('desc', 'status')" />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -250,8 +250,26 @@ export default {
         chooseStatus(status) {
             this.orders = status;
         },
-        selectedDiv(status) {
-            this.selected = status;
+        Sort(sort, name) {
+            axios.get("/filter", {
+                
+            })
+                    .then((resp) => {
+                        console.log(resp);
+                        this.$emit("filter-update", resp);
+                        // setTimeout(() => {
+                        //     this.closeModal();
+                        //     // Uncomment the line below if you want to toggle addingMode after the delay
+                        //     // this.addingMode = !this.addingMode;
+                        // }, 5000);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                        // this.error = "Unable to add Meal !";
+                        // setTimeout(() => {
+                        //     this.error = "";
+                        // }, 10000);
+                    });
         },
         openModal() {
             this.newEventModalVisible = true;

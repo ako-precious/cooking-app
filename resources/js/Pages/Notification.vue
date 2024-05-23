@@ -4,6 +4,8 @@ import Footer from "@/Layouts/Footer.vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
+
+import Pagination from "@/Components/Pagination.vue";
 </script>
 
 <script>
@@ -34,17 +36,7 @@ export default {
         // this.getNotification();
     },
     methods: {
-     
-        loadPreviousPage(link) {            
-            this.$inertia.visit(link);
-        },
-        loadNextPage(link) {            
-            this.$inertia.visit(link);
-        },
-        loadNext(link) {
-            // Send an Inertia request to the next page using the `notifications.links.next` URL
-            this.$inertia.visit(link);
-        },
+    
         updateStatus() {
             axios
                 .put("/notifications-messages", {
@@ -130,7 +122,7 @@ export default {
                         class="col-span-1 mb-5 w-full max-w-full"
                     >
                         <div
-                            class="relative flex min-w-0 break-words w-full items-center justify-between border border-gray-500 py-3 group rounded-2xl bg-clip-border cursor-pointer"
+                            class="relative flex min-w-0 break-words w-full items-center justify-between border border-gray-500 py-2 group rounded-2xl bg-clip-border cursor-pointer"
                         >
                             <Link class="w4" :href="`/meal-schedule`">
                                 <div
@@ -187,69 +179,12 @@ export default {
                         </span>
                     </h1>
                 </div>
-                <div v-if="notifications.links">
-                    <!-- component -->
-                    <div
-                        class="flex items-center justify-center py-10 w-full lg:px-0 sm:px-6 px-4"
-                    >
-                        <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
-
-                        <div
-                            class="w-full flex items-center justify-between border-t border-gray-200"
-                        >
-                            <div
-                                class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer"
-                            >
-                                <p
-                                    v-if="messages.prev_page_url"
-                                    @click.prevent="loadPreviousPage(messages.prev_page_url)"
-                                    class="text-sm ml-3 font-medium leading-none"
-                                >
-                                    Previous
-                                </p>
-                            </div>
-
-                            <div
-                                class="sm:flex hidden"
-                                v-for="(link, index) in notifications.links"
-                            >
-                                <div
-                                    v-if="
-                                        index > 0 &&
-                                        index < notifications.links.length - 1
-                                    "
-                                >
-                                    <p
-                                        @click.prevent="loadNext(link.url)"
-                                        v-if="link.active == true"
-                                        class="text-sm font-medium leading-none cursor-pointer text-persian border-t border-persian pt-3 mr-4 px-2"
-                                    >
-                                        {{ link.label }}
-                                    </p>
-                                    <p
-                                        @click.prevent="loadNext(link.url)"
-                                        v-else
-                                        class="text-sm font-medium leading-none cursor-pointer text-gray-600 hover:text-persian border-t border-transparent hover:border-persian pt-3 mr-4 px-2"
-                                    >
-                                        {{ link.label }}
-                                    </p>
-                                </div>
-                            </div>
-                            <div
-                                class="flex items-center pt-3 text-gray-600 hover:text-persian cursor-pointer"
-                            >
-                                <p
-                                    v-if="messages.next_page_url"
-                                    @click.prevent="loadNextPage(messages.next_page_url)"
-                                    class="text-sm font-medium leading-none mr-3"
-                                >
-                                    Next
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <p class="cursor-pointer" v-if="notified" @click="updateStatus">
+                <Pagination
+                                                        :links="
+                                                            notifications.links
+                                                        "
+                                                    />
+                <p class="cursor-pointer dark:text-snow text-oynx hover:text-persian" v-if="notified" @click="updateStatus">
                     Mark as read
                 </p>
             </div>

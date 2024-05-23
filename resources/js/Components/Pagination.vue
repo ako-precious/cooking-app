@@ -1,8 +1,8 @@
 <template>
-    <div class="flex justify-between px-6 w-full">
+    <div class="flex justify-center px-6 w-full">
       <Link
         v-for="(link, index) in links" 
-        :key="index" class="py-2 px-4 rounded-md text-sm" 
+        :key="index" class="py-2 px-4 rounded-md text-sm dark:text-snow text-oynx" 
         :href="link.url" 
         :class="{'bg-persian dark:text-snow text-oynx': link.active}"
         v-html="link.label"

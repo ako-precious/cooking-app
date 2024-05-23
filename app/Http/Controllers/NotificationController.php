@@ -11,14 +11,14 @@ class NotificationController extends Controller
     public function notification()
     {
         $user = Auth::user();
-        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(4);
+        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(6);
         return inertia('Notification', ['messages' => $notifications]);
     }
     public function index()
     {
        
             $user_id =   Auth::id();
-            $notifications = Notification::where('user_id', $user_id)->latest()->paginate(4);
+            $notifications = Notification::where('user_id', $user_id)->latest()->paginate(6);
             $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
 
             return response()->json([
@@ -33,7 +33,7 @@ class NotificationController extends Controller
     {
 
         $user_id =   Auth::id();
-        $notifications = Notification::where('user_id', $user_id)->latest()->paginate(4);
+        $notifications = Notification::where('user_id', $user_id)->latest()->paginate(6);
         $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
     
         return response()->json([
@@ -62,7 +62,7 @@ class NotificationController extends Controller
         $Notification = Notification::find($id);
         $Notification->delete();
         $user = Auth::user();
-        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(4)
+        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(6)
         ;
 
         return response()->json(['message' => 'Notification removed successfully!', 'notifications' => $notifications]);
