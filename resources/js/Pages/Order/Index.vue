@@ -81,7 +81,7 @@ import Filters from "./Filter.vue";
                                                                     />
                                                                 </template>
                                                             </TableHeadVue>
-                                                            <TableHeadVue>
+                                                            <!-- <TableHeadVue>
                                                                 <template
                                                                     #title
                                                                 >
@@ -107,7 +107,7 @@ import Filters from "./Filter.vue";
                                                                         "
                                                                     />
                                                                 </template>
-                                                            </TableHeadVue>
+                                                            </TableHeadVue> -->
                                                             <TableHeadVue>
                                                                 <template
                                                                     #title
@@ -325,7 +325,9 @@ export default {
         Sorting(sort, name) {
             axios
                 .get("/api/sort", {
+
                     params: {
+                        ...this.filters,
                         sort: sort,
                         column: name,
                         user: this.$page.props.auth.user,

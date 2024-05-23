@@ -216,7 +216,14 @@ export default {
         async filter() {
             try {
                 axios
-                    .get("/filter", this.newRating)
+                    .get("/api/sort", {
+                        params: {
+                            ...this.filterForm,
+                            sort: 'asc',
+                            column: 'name',
+                            user: this.$page.props.auth.user,
+                        },
+                    })
                     .then((resp) => {
                         console.log(resp);
                         this.$emit("filter-update", resp);

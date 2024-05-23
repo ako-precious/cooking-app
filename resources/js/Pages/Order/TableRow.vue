@@ -16,9 +16,9 @@ defineProps(["meal"]);
         </Link>
     </td>
     <!-- <td class="whitespace-nowrap px-6 py-3">{{  meal.meal.id }}</td> -->
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+    <!-- <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ getCook(meal.meal.id) }}
-    </td>
+    </td> -->
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ meal.meal_time }}
     </td>

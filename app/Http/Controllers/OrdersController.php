@@ -100,34 +100,7 @@ class OrdersController extends Controller
             ->paginate(15)
             ->withQueryString();
 
-        // if (array_key_exists('name', $request->only([
-        //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
-        // ])) ||
-        //     array_key_exists('status', $request->only([
-        //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
-        // ])) ||
-        //     array_key_exists('meal_time', $request->only([
-        //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
-        // ])) ||
-        //     array_key_exists('delivery_date_from', $request->only([
-        //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
-        // ])) ||
-        //     array_key_exists('delivery_date_to', $request->only([
-        //     'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
-        // ]))) {
-        //     response()->json([
-        //         'filters' => $filters,
-        //         'meal_orders' => $query
-        //     ]);
-        //     // All keys exist in the request data
-        // }
-
-
-
-        // if ($request->ajax()) {
-        //     // dd($query);
-        //   return   response()->json(['meal_order' => $query]);
-        // }
+    
         return inertia('Order/Index', [
             'filters' => $filters,
             'meal_orders' => $query
@@ -139,14 +112,30 @@ class OrdersController extends Controller
     public function sort(Request $request)
     {
         // dd($request->all);
-
+        $filters = $request->only([
+            'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
+        ]);
         $query = MealSchedule::where('user_id',  $request->query('user') )
             ->with('order', 'meal', 'user')
             // ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id')
             ->select('meal_schedules.*')
             ->leftJoin('meals', 'meal_schedules.meal_id', '=', 'meals.id')
-            ->orderBy( $request->query('column'),  $request->query('sort'))
-            
+            ->orderBy( $request->query('column'),  $request->query('sort'))            
+            ->when($filters['name'] ?? false, function ($query) use ($filters) {
+                $query->where('meals.name', 'like', '%' . $filters['name'] . '%'); // Search in meals table
+            })
+            ->when($filters['status'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.status', $filters['status']);
+            })
+            ->when($filters['meal_time'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.meal_time', $filters['meal_time']);
+            })
+            ->when($filters['delivery_date_from'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.start_date', '>=', $filters['delivery_date_from']);
+            })
+            ->when($filters['delivery_date_to'] ?? false, function ($query) use ($filters) {
+                $query->where('meal_schedules.end_date', '<=', $filters['delivery_date_to']);
+            })
             ->paginate(15)
             ->withQueryString();
             return   response()->json(['meal_orders' => $query]);
