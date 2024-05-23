@@ -8,7 +8,7 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
 <template>
     <div>
         <Navbar></Navbar>
-        <div class="flex flex-col justify-center items-center min-h-screen">
+        <div class="flex flex-col justify-center items-center min-h-screen text-oynx dark:text-snow">
             <div class="shadow-reverse rounded-lg p-6">
                 <h1 class="text-2xl font-bold mb-6">Payment Initialization</h1>
                 <InputError v-if="error">{{ error }}</InputError>

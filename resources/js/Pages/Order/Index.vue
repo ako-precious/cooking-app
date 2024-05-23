@@ -22,7 +22,10 @@ import Filters from "./Filter.vue";
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
-                        <div class="my-6 w-24 relative float-right" @click="openModal()">
+                        <div
+                            class="my-6 w-24 relative float-right"
+                            @click="openModal()"
+                        >
                             <SocialLogin class="group">
                                 <template #logo>
                                     <font-awesome-icon
@@ -60,8 +63,22 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp onclick="Sort('asc', 'name' )" />
-                                                                    <CaretDown onclick="Sort('desc','name')" />
+                                                                    <CaretUp
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'asc',
+                                                                                'name'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                    <CaretDown
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'desc',
+                                                                                'name'
+                                                                            )
+                                                                        "
+                                                                    />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -73,8 +90,22 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp onclick="Sort('asc', 'cook' )" />
-                                                                    <CaretDown onclick="Sort('desc', 'cook')" />
+                                                                    <CaretUp
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'asc',
+                                                                                'cook'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                    <CaretDown
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'desc',
+                                                                                'cook'
+                                                                            )
+                                                                        "
+                                                                    />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -86,8 +117,22 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp onclick="Sort('asc', 'time' )" />
-                                                                    <CaretDown onclick="Sort('desc', 'time')" />
+                                                                    <CaretUp
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'asc',
+                                                                                'meal_time'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                    <CaretDown
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'desc',
+                                                                                'meal_time'
+                                                                            )
+                                                                        "
+                                                                    />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -101,8 +146,22 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp onclick="Sort('asc', 'delivery' )" />
-                                                                    <CaretDown onclick="Sort('desc', 'delivery')" />
+                                                                    <CaretUp
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'asc',
+                                                                                'start_date'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                    <CaretDown
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'desc',
+                                                                                'start_date'
+                                                                            )
+                                                                        "
+                                                                    />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -114,8 +173,22 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #symbols
                                                                 >
-                                                                    <CaretUp onclick="Sort('asc',  'status')" />
-                                                                    <CaretDown onclick="Sort('desc', 'status')" />
+                                                                    <CaretUp
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'asc',
+                                                                                'status'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                    <CaretDown
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'desc',
+                                                                                'status'
+                                                                            )
+                                                                        "
+                                                                    />
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
@@ -170,15 +243,11 @@ import Filters from "./Filter.vue";
                                                     <!-- {{ orders.data }} -->
                                                 </table>
                                                 <div
-                                                    v-if="
-                                                        orders.data.length
-                                                    "
+                                                    v-if="orders.data.length"
                                                     class="w-full flex justify-center mt-6"
                                                 >
                                                     <Pagination
-                                                        :links="
-                                                            orders.links
-                                                        "
+                                                        :links="orders.links"
                                                     />
                                                 </div>
                                             </div>
@@ -211,7 +280,10 @@ import Filters from "./Filter.vue";
                                     </button>
                                     <div class="">
                                         <div class="p-6 mt-1">
-                                            <Filters :filters="filters" @filter-update="updateOrders"/>
+                                            <Filters
+                                                :filters="filters"
+                                                @filter-update="updateOrders"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -250,26 +322,22 @@ export default {
         chooseStatus(status) {
             this.orders = status;
         },
-        Sort(sort, name) {
-            axios.get("/filter", {
-                
-            })
-                    .then((resp) => {
-                        console.log(resp);
-                        this.$emit("filter-update", resp);
-                        // setTimeout(() => {
-                        //     this.closeModal();
-                        //     // Uncomment the line below if you want to toggle addingMode after the delay
-                        //     // this.addingMode = !this.addingMode;
-                        // }, 5000);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        // this.error = "Unable to add Meal !";
-                        // setTimeout(() => {
-                        //     this.error = "";
-                        // }, 10000);
-                    });
+        Sorting(sort, name) {
+            axios
+                .get("/api/sort", {
+                    params: {
+                        sort: sort,
+                        column: name,
+                        user: this.$page.props.auth.user,
+                    },
+                })
+                .then((resp) => {
+                    // console.log(resp.data.meal_orders);
+                    this.orders  = resp.data.meal_orders;
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
         },
         openModal() {
             this.newEventModalVisible = true;

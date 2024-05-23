@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MealScheduleController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\WelcomeController;
 /*
@@ -22,6 +22,7 @@ Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
 Route::resource('/rating', RatingController::class);
 Route::get('ratings/{id}', [RatingController::class, 'rating']);
 
+Route::get('/sort', [OrdersController::class, 'sort']);
 
 
 
