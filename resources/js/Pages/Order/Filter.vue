@@ -143,9 +143,9 @@ import TextInput from "@/Components/TextInput.vue";
                         </option>
                         <option
                             class="bg-snow dark:bg-oynx text-oynx dark:text-snow p-2"
-                            value="lunch"
+                            value="launch"
                         >
-                            Lunch
+                            Launch
                         </option>
                         <option
                             class="bg-snow dark:bg-oynx text-oynx dark:text-snow p-2"
