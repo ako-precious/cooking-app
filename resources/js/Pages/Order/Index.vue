@@ -316,7 +316,7 @@ export default {
     methods: {
         updateOrders(newOrders) {
             this.orders = newOrders;
-            console.log(this.orders);
+            // console.log(this.orders);
         },
 
         chooseStatus(status) {

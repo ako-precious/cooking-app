@@ -81,7 +81,7 @@ export default {
                     amount: total,
                 })
                 .then((response) => {
-                    console.log(response);
+                    // console.log(response);
                     const client_secret = response.data.client_secret
                     const token = response.data.token
                 //    console.log(client_secret);
