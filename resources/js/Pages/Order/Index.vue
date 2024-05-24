@@ -282,7 +282,7 @@ import Filters from "./Filter.vue";
                                         <div class="p-6 mt-1">
                                             <Filters
                                                 :filters="filters"
-                                                @filter-update="updateOrders"
+                                                @filter-update="updateOrders" @close-modal="closeModal"
                                             />
                                         </div>
                                     </div>
@@ -341,6 +341,7 @@ export default {
                     console.error(err);
                 });
         },
+        
         openModal() {
             this.newEventModalVisible = true;
         },

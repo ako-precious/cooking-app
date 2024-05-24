@@ -225,26 +225,15 @@ export default {
                         },
                     })
                     .then((resp) => {
-                        console.log(resp);
-                        this.$emit("filter-update", resp);
-                        // setTimeout(() => {
-                        //     this.closeModal();
-                        //     // Uncomment the line below if you want to toggle addingMode after the delay
-                        //     // this.addingMode = !this.addingMode;
-                        // }, 5000);
+                        // console.log(resp);
+                        this.$emit("filter-update", resp.data.meal_orders);
+                        
+                        this.$emit('close-modal');
                     })
                     .catch((err) => {
                         console.log(err);
-                        // this.error = "Unable to add Meal !";
-                        // setTimeout(() => {
-                        //     this.error = "";
-                        // }, 10000);
+                        
                     });
-                // const response = await this.filterFormget('/meal-schedule', {
-                //   preserveScroll: true,
-                //   preserveState: true,
-                //   replace: true,
-                // });
             } catch (error) {
                 console.error("Error fetching filtered data:", error);
             }
@@ -256,6 +245,7 @@ export default {
             this.filterForm.delivery_date_from = null;
             this.filterForm.delivery_date_to = null;
             this.filter();
+
         },
     },
 };
