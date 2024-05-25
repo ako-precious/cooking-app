@@ -110,7 +110,8 @@ class OrdersController extends Controller
     public function show($id)
     {
         $order = MealSchedule::with('order', 'meal', 'user')->find($id);
-        return inertia('Order/Show', ['order' => $order]);
+        $payment = Orders::where('meal_schedule_id', $id)->get();
+        return inertia('Order/Show', ['order' => $order, 'payments' => $payment]);
     }
 
 
