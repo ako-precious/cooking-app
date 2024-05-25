@@ -9,16 +9,13 @@ defineProps(["meal"]);
 </script>
 <template>
     <td class="whitespace-nowrap px-6 py-3 font-bold">
-        <Link :href="`//${meal.id}`" class="flex items-center j">
+        <Link :href="`/cook/order/${meal.id}`" class="flex items-center j">
             <p class="">
                 {{ meal.meal.name }}
             </p>
         </Link>
     </td>
-    <!-- <td class="whitespace-nowrap px-6 py-3">{{  meal.meal.id }}</td> -->
-    <!-- <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        {{ getCook(meal.meal.id) }}
-    </td> -->
+ 
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ meal.meal_time }}
     </td>

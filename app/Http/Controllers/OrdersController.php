@@ -100,12 +100,17 @@ class OrdersController extends Controller
             ->paginate(15)
             ->withQueryString();
 
-    
+
         return inertia('Order/Index', [
             'filters' => $filters,
             'meal_orders' => $query
 
         ]);
+    }
+    public function show($id)
+    {
+        $order = MealSchedule::with('order', 'meal', 'user')->find($id);
+        return inertia('Order/Show', ['order' => $order]);
     }
 
 
@@ -115,12 +120,12 @@ class OrdersController extends Controller
         $filters = $request->only([
             'name', 'status', 'meal_time', 'delivery_date_from', 'delivery_date_to'
         ]);
-        $query = MealSchedule::where('user_id',  $request->query('user') )
+        $query = MealSchedule::where('user_id',  $request->query('user'))
             ->with('order', 'meal', 'user')
             // ->join('meals', 'meal_schedules.meal_id', '=', 'meals.id')
             ->select('meal_schedules.*')
             ->leftJoin('meals', 'meal_schedules.meal_id', '=', 'meals.id')
-            ->orderBy( $request->query('column'),  $request->query('sort'))            
+            ->orderBy($request->query('column'),  $request->query('sort'))
             ->when($filters['name'] ?? false, function ($query) use ($filters) {
                 $query->where('meals.name', 'like', '%' . $filters['name'] . '%'); // Search in meals table
             })
@@ -138,7 +143,7 @@ class OrdersController extends Controller
             })
             ->paginate(15)
             ->withQueryString();
-            return   response()->json(['meal_orders' => $query]);
+        return   response()->json(['meal_orders' => $query]);
     }
 
     public function calendar()
@@ -168,36 +173,6 @@ class OrdersController extends Controller
         //     => MealSchedule::where('user_id',$cook)->with('meal', 'user')->get()
         // ]);
     }
-    // public function update(Request $request, $id){
-
-    //     $mealSchedule = MealSchedule::find($id); 
-    //     $mealSchedule->status =  $request->status;
-    //     $mealSchedule->save();
-    //     // Hi [Customer Name], your order # [order number] placed on December 19th, 2023 has been delivered.
-    //     $cook = Meal::find($mealSchedule->meal_id);
-    //     $message = "Your meal order #". $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
-
-    //     $notification = new Notification();
-    //     if ($mealSchedule->status = 'confirmed') {
-    //         # code...
-    //         $notification->user_id = $cook->cook_id;
-    //         $notification->message = "The meal order #". $mealSchedule->id . " delivery as been " . $mealSchedule->status;
-    //     }else{
-
-    //         $notification->user_id = $mealSchedule->user_id;
-    //         $notification->message = $message;
-    //     }
-    //     $notification->meal_schedule_id = $mealSchedule->id;
-    //     $notification->status = 'unread';
-    //     $notification->save();
-
-    //     $recipient = User::find($recipientId);
-    //     if ($recipient) {
-    //         $recipient->notify(new MealScheduleStatusUpdated($notificationMessage));
-    //     }
-
-    //     return response()->json(['order' => $mealSchedule]);
-    // }
 
     public function update(Request $request, $id)
     {

@@ -92,7 +92,6 @@ Route::middleware([
     Route::get('cook/calendar', [OrdersController::class, 'calendar']);
     Route::resource('wishlist', WishlistController::class);
     Route::get('/meal-schedule', [OrdersController::class, 'order'])->name('meal-schedule');
-    Route::get('/meal-order/${id}', [OrdersController::class]);
     Route::get('/notifications', [NotificationController::class, 'notification'])->name('notifications.index');
 
 
