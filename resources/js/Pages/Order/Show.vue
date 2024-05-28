@@ -1,133 +1,140 @@
+<script setup>
+
+import Navbar from '@/Pages/Cook/Navbar.vue'
+</script>
 <template>
-    <div class="flex justify-center items-center min-h-screen">
-        <div
-            class="relative flex w-[23rem] flex-col rounded-xl shadow-small text-oynx dark:text-snow"
-        >
+    <div>
+        <Navbar></Navbar>
+        <div class="flex justify-center items-center min-h-screen">
             <div
-                class="relative mx-4 -mt-10 h-20 flex justify-center items-center overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-polynesian to-lighred"
+                class="relative flex w-[23rem] flex-col rounded-xl shadow-small text-oynx dark:text-snow"
             >
-                <h5
-                    class="mb-2 capitalize block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-snow"
+                <div
+                    class="relative mx-4 -mt-10 h-20 flex justify-center items-center overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-polynesian to-lighred"
                 >
-                    Order ID: {{ order.id }}
-                </h5>
-            </div>
-            <div class="p-6">
-                <div class="flex justify-between">
                     <h5
+                        class="mb-2 capitalize block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased text-snow"
+                    >
+                        Order ID: {{ order.id }}
+                    </h5>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between">
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            Meal:
+                        </h5>
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            {{ order.meal.name }}
+                        </h5>
+                    </div>
+                    <div class="flex justify-between">
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            Cook:
+                        </h5>
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            {{ getCook(order.meal.id) }}
+                        </h5>
+                    </div>
+                    <div class="flex justify-between">
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            Customer:
+                        </h5>
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            {{ order.user.name }}
+                        </h5>
+                    </div>
+                    <div class="flex justify-between">
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            Delivery Date:
+                        </h5>
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            {{ order.start_date }}
+                        </h5>
+                    </div>
+                    <div class="flex justify-between">
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            Meal Time:
+                        </h5>
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            {{ order.meal_time }}
+                        </h5>
+                    </div>
+                    <div class="flex justify-between">
+                        <h5
                         class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        Meal:
+                        >
+                        Date Ordered:
                     </h5>
                     <h5
-                        class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        {{ order.meal.name }}
-                    </h5>
-                </div>
-                <div class="flex justify-between">
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        Cook:
-                    </h5>
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        {{ getCook(order.meal.id) }}
-                    </h5>
-                </div>
-                <div class="flex justify-between">
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        Customer:
-                    </h5>
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        {{ order.user.name }}
-                    </h5>
-                </div>
-                <div class="flex justify-between">
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        Delivery Date:
-                    </h5>
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        {{ order.start_date }}
-                    </h5>
-                </div>
-                <div class="flex justify-between">
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        Meal Time:
-                    </h5>
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        {{ order.meal_time }}
-                    </h5>
-                </div>
-                <div class="flex justify-between">
-                    <h5
-                    class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                    Date Ordered:
-                </h5>
-                <h5
-                        class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                    {{ formatDate(order.created_at) }}
-                    </h5>
-                </div>
-                <div class="flex justify-between">
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                        Meal Status:
-                    </h5>
-                    <h5
-                        class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                    >
-                    {{ order.status }}
-                    </h5>
-                </div>
-                <div class="flex my-1 flex-col">
-                    <p
-                        class="block font-semibold font-sans text-base leading-relaxed text-inherit antialiased"
-                    >
-                        Payment Attempt
-                    </p>
-                    <div class="">
-                        <div class="flex justify-between">
-                            <p
-                                class="block font-sans leading-relaxed text-inherit antialiased"
-                            >
-                                Payment ID
-                            </p>
-                            <p
-                                class="block font-sans leading-relaxed text-inherit antialiased"
-                            >
-                                Status
-                            </p>
-                        </div>
-                        <div   v-for="payment in payments"
-                                                             class="flex justify-between mb-1">
-                            <p
-                                class="block font-sans text-sm font-light leading-relaxed text-inherit antialiased"
-                            >
-                                {{ payment.session_id }}
-                            </p>
-                            <p
-                                class="block font-sans text-sm font-light leading-relaxed text-inherit antialiased"
-                            >
-                                {{ payment.status }}
-                            </p>
+                            class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                        {{ formatDate(order.created_at) }}
+                        </h5>
+                    </div>
+                    <div class="flex justify-between">
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                            Meal Status:
+                        </h5>
+                        <h5
+                            class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                        >
+                        {{ order.status }}
+                        </h5>
+                    </div>
+                    <div class="flex my-1 flex-col">
+                        <p
+                            class="block font-semibold font-sans text-base leading-relaxed text-inherit antialiased"
+                        >
+                            Payment Attempt
+                        </p>
+                        <div class="">
+                            <div class="flex justify-between">
+                                <p
+                                    class="block font-sans leading-relaxed text-inherit antialiased"
+                                >
+                                    Payment ID
+                                </p>
+                                <p
+                                    class="block font-sans leading-relaxed text-inherit antialiased"
+                                >
+                                    Status
+                                </p>
+                            </div>
+                            <div   v-for="payment in payments"
+                                                                 class="flex justify-between mb-1">
+                                <p
+                                    class="block font-sans text-sm font-light leading-relaxed text-inherit antialiased"
+                                >
+                                    {{ payment.session_id }}
+                                </p>
+                                <p
+                                    class="block font-sans text-sm font-light leading-relaxed text-inherit antialiased"
+                                >
+                                    {{ payment.status }}
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

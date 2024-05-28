@@ -9,8 +9,15 @@ defineProps(["meal"]);
 </script>
 <template>
     <td class="whitespace-nowrap px-6 py-3 font-bold">
-        <Link :href="`/cook/order/${meal.id}`" class="flex items-center j">
-            <p class="">
+        <Link  :href="`/cook/order/${meal.id}`"  class="flex items-center j">
+            <div class="w-16 h-16">
+                <img
+                    :src="meal_photo"
+                    :alt="meal_photo"
+                    class="w-full h-full object-cover rounded"
+                />
+            </div>
+            <p class="pl-4 lg:pl-8">
                 {{ meal.meal.name }}
             </p>
         </Link>
@@ -530,6 +537,7 @@ export default {
     created() {
         this.FormattedDate();
         this.truncatedIng();
+        this.getImage();
     },
     mounted() {
         // console.log(this.newRating);
@@ -577,6 +585,24 @@ export default {
             const date = new Date(dateString);
             const today = new Date();
             return date.toDateString() < today.toDateString();
+        },
+        getImage() {
+            const id = this.meal.meal.id;
+            axios
+                .get(`/meal_photos/${id}`)
+                .then((response) => {
+                    if (response.data.firstPhoto.meal_photo_path) {
+                        this.meal_photo =
+                            `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
+                                "/public",
+                                ""
+                            );
+                    }
+                })
+                .catch((error) => {
+                    // Handle error
+                    // console.error("Error saving data:", error);
+                });
         },
         FormattedDate(timestamp) {
             const date = new Date(timestamp);

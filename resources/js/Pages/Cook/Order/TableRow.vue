@@ -4,7 +4,7 @@ defineProps(["order"]);
 </script>
 <template>
     <td class="whitespace-nowrap px-6 py-3 font-bold">
-        <Link :href="``" class="flex items-center j">
+        <Link  :href="`/cook/order/${meal.id}`"  class="flex items-center j">
             <div class="w-16 h-16">
                 <img
                     :src="meal_photo"
@@ -44,27 +44,7 @@ defineProps(["order"]);
         </div>
     </td> -->
     <td class="whitespace-nowrap px-6 py-3 relative">
-        <!-- <button
-            class="shadow-md rounded-md cursor-pointer w-[120px] h-[40px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
-        >
-            <span class="span-mother flex overflow-hidden">
-                <span>Ch</span>
-                <span>an</span>
-                <span>ge S</span>
-                <span>ta</span>
-                <span>tu</span>
-                <span>s</span>
-            </span>
-            <span class="span-mother2">
-                <span>Ch</span>
-                <span>an</span>
-                <span>ge S </span>
-                <span>ta</span>
-                <span>tu</span>
-                <span>s</span>
-            </span>
-        </button> -->
-        <!--  -->
+      
         <div v-if="isToday(meal.created_at)"
             class="bg text-xl z-20 flex items-center"
         >
