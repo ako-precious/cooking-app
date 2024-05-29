@@ -41,7 +41,7 @@ class NotificationController extends Controller
             'count' => $count,
         ]);
     }
-    public function update(Request $request)
+    public function updateStatus()
     {
 
         $user = Auth::user();
@@ -49,9 +49,18 @@ class NotificationController extends Controller
 
         // Update the status of the rows
         foreach ($rows as $row) {
-            $row->status = $request->input('status');
+            $row->status = 'read';
             $row->save();
         }
+
+        return response()->json(['message' => 'Rows updated successfully']);
+    }
+    public function update($id)
+    {
+        $row = Notification::find($id);
+
+            $row->status = 'read';
+            $row->save();        
 
         return response()->json(['message' => 'Rows updated successfully']);
     }
