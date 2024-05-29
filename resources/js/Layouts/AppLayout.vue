@@ -6,8 +6,6 @@ import Banner from "@/Components/Banner.vue";
 import TextInput from "@/Components/TextInput.vue";
 
 import SettingsDropdown from "@/Components/SettingsDropdown.vue";
-import NavLink from "@/Components/NavLink.vue";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 
 // ? import Footer from "@/Layouts/FooterLayout.vue";
 import SideBarLink from "@/Components/Sidebar/SideBarLink.vue";
@@ -162,7 +160,7 @@ const logout = () => {
                     </SubNavBar>
                 </div>
 
-                <div class="hidden md:block w-4/12">
+                <div class="hidden  w-4/12">
                     <div class="flex items-center w-full">
                         <div
                             class="relative flex w-full transition-all rounded-lg ease group"

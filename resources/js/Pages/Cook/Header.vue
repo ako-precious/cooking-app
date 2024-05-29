@@ -6,9 +6,9 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
 </script>
 
 <template>
-    <div class="container md:px-5">
+    <div class="md:px-5">
 
-        <header class="py-2   bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in">
+        <header class="py-2  container  bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in">
             <div
                 :class="{ 'fix align-bottom shadow-sm' : isHeaderFixed }"
                 class="flex justify-between items-center w-full bg-snow dark:bg-oynx"
