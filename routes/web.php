@@ -73,9 +73,9 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
-    ])->group(function () {
-        
-        
+])->group(function () {
+
+
     Route::get('/become-a-cook/overview', function () {
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
@@ -93,11 +93,12 @@ Route::middleware([
     Route::resource('wishlist', WishlistController::class);
     Route::get('/meal-schedule', [OrdersController::class, 'order'])->name('meal-schedule');
     Route::get('/notifications', [NotificationController::class, 'notification'])->name('notifications.index');
-
+ 
+    
 
     //photo Controller
-Route::resource('/notifications-messages', NotificationController::class);
-    
+    Route::resource('/notifications-messages', NotificationController::class);
+
     //Meal Schedule
     Route::resource('/schedule', MealScheduleController::class);
     Route::post('/checkout', [MealScheduleController::class, 'checkout']);

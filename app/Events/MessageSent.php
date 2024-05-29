@@ -2,15 +2,16 @@
 
 namespace App\Events;
 
+use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Chat;
 
-class MealStatusUpdated implements ShouldBroadcast
+class MessageSent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -33,11 +34,11 @@ class MealStatusUpdated implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('my-channel');
+        return new Channel('chat');
     }
 
     public function broadcastAs()
     {
-        return 'meal-status';
+        return 'chat';
     }
 }

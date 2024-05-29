@@ -141,14 +141,14 @@ import TextInput from "@/Components/TextInput.vue";
                             <p
                                 class="block font-semibold font-sans text-base leading-relaxed text-inherit antialiased"
                             >
-                                info Attempt
+                                Payment Attempt
                             </p>
                             <div class="">
                                 <div class="flex justify-between">
                                     <p
                                         class="block font-sans leading-relaxed text-inherit antialiased"
                                     >
-                                        info ID
+                                        Payment ID
                                     </p>
                                     <p
                                         class="block font-sans leading-relaxed text-inherit antialiased"
@@ -157,18 +157,18 @@ import TextInput from "@/Components/TextInput.vue";
                                     </p>
                                 </div>
                                 <div
-                                    v-for="info in infos"
+                                    v-for="payment in payments"
                                     class="flex justify-between mb-1"
                                 >
                                     <p
                                         class="block font-sans text-sm font-light leading-relaxed text-inherit antialiased"
                                     >
-                                        {{ info.session_id }}
+                                        {{ payment.session_id }}
                                     </p>
                                     <p
                                         class="block font-sans text-sm font-light leading-relaxed text-inherit antialiased"
                                     >
-                                        {{ info.status }}
+                                        {{ payment.status }}
                                     </p>
                                 </div>
                             </div>
@@ -275,7 +275,7 @@ export default {
     inheritAttrs: false,
     props: {
         order: Object,
-        infos: Object,
+        payments: Object,
     },
     data() {
         return {
