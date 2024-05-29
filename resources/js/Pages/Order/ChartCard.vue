@@ -3,10 +3,7 @@ import axios from "axios";
 import TextInput from "@/Components/TextInput.vue";
 </script>
 <template>
-    <div
-       
-        class="flex py-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full"
-    >
+    <div class="flex py-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full">
         <div class="flex flex-col h-full overflow-x-auto simple">
             <div class="flex flex-col h-full">
                 <div class="grid grid-cols-12 gap-y-2">
@@ -101,6 +98,10 @@ export default {
             newMessage: "",
         };
     },
+    created(){
+        this.fetchMessages();
+
+    },
     mounted() {
         this.fetchMessages();
         Echo.channel("chat").listen("MessageSent", (e) => {
@@ -109,20 +110,24 @@ export default {
     },
     methods: {
         fetchMessages() {
-            axios.get("/messages").then((response) => {
+            axios.get("/messages/" +  this.order.id).then((response) => {
                 this.messages = response.data;
             });
         },
         sendMessage() {
-            axios
-                .post("/messages", {
-                    user: this.$page.props.auth.user.id,
-                    meal_schedule_id: this.order.id, // Replace with the actual user
-                    message: this.newMessage,
-                })
-                .then((response) => {
-                    this.newMessage = "";
-                });
+            if (this.newMessage == " "|| this.newMessage ==  null) {
+                return
+            } else {
+                axios
+                    .post("/messages", {
+                        user: this.$page.props.auth.user.id,
+                        meal_schedule_id: this.order.id, // Replace with the actual user
+                        message: this.newMessage,
+                    })
+                    .then((response) => {
+                        this.newMessage = "";
+                    });
+            }
         },
     },
 };

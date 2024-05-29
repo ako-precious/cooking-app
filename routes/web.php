@@ -97,7 +97,7 @@ Route::middleware([
 
 
     Route::get('chat', [ChatController::class, 'index']);
-    Route::get('messages', [ChatController::class, 'fetchMessages']);
+    Route::get('messages/{id}', [ChatController::class, 'fetchMessages']);
     Route::post('messages', [ChatController::class, 'sendMessage']);
 
 

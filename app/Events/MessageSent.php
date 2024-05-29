@@ -16,30 +16,43 @@ class MessageSent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
 
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct( Chat $message)
+    public $chat;
+
+    public function __construct(Chat $chat)
     {
-        $this->message = $message;
+        $this->chat = $chat;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return array
-     */
     public function broadcastOn()
     {
         return new Channel('chat');
     }
+    // public $message;
 
-    // public function broadcastAs()
+    // /**
+    //  * Create a new event instance.
+    //  *
+    //  * @return void
+    //  */
+    // public function __construct( Chat $message)
     // {
-    //     return 'chat';
+    //     $this->message = $message;
     // }
+
+    // /**
+    //  * Get the channels the event should broadcast on.
+    //  *
+    //  * @return array
+    //  */
+    // public function broadcastOn()
+    // {
+    //     return new Channel('chat');
+    // }
+
+    // // public function broadcastAs()
+    // // {
+    // //     return 'chat';
+    // // }
+    
 }

@@ -13,9 +13,9 @@ class ChatController extends Controller
         return view('chat');
     }
 
-    public function fetchMessages()
+    public function fetchMessages($id)
     {
-        return Chat::all();
+        return Chat::where('meal_schedule_id', $id)->get();
     }
 
     public function sendMessage(Request $request)
