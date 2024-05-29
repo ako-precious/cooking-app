@@ -3,11 +3,20 @@ import axios from "axios";
 import TextInput from "@/Components/TextInput.vue";
 </script>
 <template>
-    <div class="relative flex py-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full">
-        <div class="h-[23rem] disable-scrollbars overflow-y-scroll flex flex-col overflow-x-auto simple">
+    <div
+        class="relative flex pt-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full"
+    >
+        <div
+            class="h-[20rem]  overflow-y-scroll flex flex-col overflow-x-auto simple"
+        >
             <div class="flex flex-col h-full">
-                <div class="grid grid-cols-12 gap-y-2">
-                    <div class="col-start-4 col-end-13 p-3 rounded-lg">
+                <div
+                    v-for="message in messages"
+                    :key="message.id"
+                    class="grid grid-cols-12 gap-y-2"
+                >
+
+                    <div v-if="$page.props.auth.user.id == message.user_id  " class="col-start-4 col-end-13 py-3 px-2 rounded-lg">
                         <div
                             class="flex items-center justify-start flex-row-reverse"
                         >
@@ -15,8 +24,7 @@ import TextInput from "@/Components/TextInput.vue";
                                 class="relative mr-3 text-sm bg-persian py-2 px-4 shadow rounded-t-[2rem] rounded-l-[2rem]"
                             >
                                 <div>
-                                    Lorem ipsum dolor sit, amet consectetur
-                                    adipisicing. ?
+                                    {{ message.message }}
                                 </div>
                                 <div
                                     class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"
@@ -26,7 +34,7 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                     </div>
-                    <div class="col-start-1 col-end-9 p-3 rounded-lg">
+                    <div v-else class="col-start-1 col-end-9  py-3 px-2 rounded-lg">
                         <div class="flex flex-row items-center">
                             <div
                                 class="relative ml-3 text-sm text-oynx dark:text-snow bg-snow/40 dark:bg-oynx/40 py-2 px-4 shadow rounded-t-[2rem] rounded-r-[2rem]"
@@ -38,28 +46,15 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                     </div>
-                    <div class="col-start-1 col-end-9 p-3 rounded-lg">
-                        <div class="flex flex-row items-center">
-                            <div
-                                class="relative ml-3 text-sm text-oynx dark:text-snow bg-snow/40 dark:bg-oynx/40 py-2 px-4 shadow rounded-t-[2rem] rounded-r-[2rem]"
-                            >
-                                <div>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Perspiciatis, in.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>
-        <div v-for="message in messages" :key="message.id">
-            <strong>{{ message.user_id }}:</strong> {{ message.message }}
-        </div>
+
         <div
-            class="sticky flex flex-row items-center h-16 rounded-b-xl bg-transparent w-full p-3"
+            class="sticky flex flex-row items-center h-16 rounded-b-xl bg-snow dark:bg-oynx w-full py-4 px-3"
         >
-            <div class="flex-grow ml-4">
+            <div class="flex-grow ml-2">
                 <div class="relative w-full">
                     <!-- <input
                                         type="text"
@@ -110,9 +105,8 @@ export default {
             newMessage: "",
         };
     },
-    created(){
+    created() {
         this.fetchMessages();
-
     },
     mounted() {
         this.fetchMessages();
@@ -122,13 +116,13 @@ export default {
     },
     methods: {
         fetchMessages() {
-            axios.get("/messages/" +  this.order.id).then((response) => {
+            axios.get("/messages/" + this.order.id).then((response) => {
                 this.messages = response.data;
             });
         },
         sendMessage() {
-            if (this.newMessage == " "|| this.newMessage ==  null) {
-                return
+            if (this.newMessage == " " || this.newMessage == null) {
+                return;
             } else {
                 axios
                     .post("/messages", {
@@ -137,7 +131,9 @@ export default {
                         message: this.newMessage,
                     })
                     .then((response) => {
-                        this.newMessage = "";
+                        this.messages = response.data;
+                        this.newMessage = ''
+
                     });
             }
         },

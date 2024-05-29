@@ -109,9 +109,16 @@ class OrdersController extends Controller
     }
     public function show($id)
     {
+    
         $order = MealSchedule::with('order', 'meal', 'user')->find($id);
         $payment = Orders::where('meal_schedule_id', $id)->get();
-        return inertia('Order/Show', ['order' => $order, 'payments' => $payment]);
+        if (Auth::id() == $order->user_id || Auth::id() == $order->meal->user_id  ) {
+            # code...
+            // dd(Auth::id(), $order->user_id, $order->meal->cook_id );
+            return inertia('Order/Show', ['order' => $order, 'payments' => $payment]);
+        }else{
+            return redirect()->route('welcome');
+        }
     }
 
 

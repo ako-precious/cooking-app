@@ -15,10 +15,10 @@ class ChatController extends Controller
 
     public function fetchMessages($id)
     {
-        return Chat::where('meal_schedule_id', $id)->get();
+        return response()->json( Chat::where('meal_schedule_id', $id)->get());
     }
 
-    public function sendMessage(Request $request)
+    public function sendMessage(Request $request )
     {
         $chat = Chat::create([
             'user_id' => $request->user,
@@ -27,8 +27,8 @@ class ChatController extends Controller
         ]);
 
         broadcast(new MessageSent($chat))->toOthers();
-
-        return ['status' => 'Message Sent!'];
+        return response()->json( Chat::where('meal_schedule_id', $request->meal_schedule_id)->get());
+        // return ['status' => 'Message Sent!'];
     }
 }
 
