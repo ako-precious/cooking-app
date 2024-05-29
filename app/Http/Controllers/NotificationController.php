@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Notification;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\JsonResponse;
 class NotificationController extends Controller
 {
     public function notification()
@@ -41,9 +41,8 @@ class NotificationController extends Controller
             'count' => $count,
         ]);
     }
-    public function updateStatus()
+    public function updateStatus(): JsonResponse
     {
-
         $user = Auth::user();
         $rows = Notification::where('user_id', $user->id)->get();
 
@@ -55,6 +54,7 @@ class NotificationController extends Controller
 
         return response()->json(['message' => 'Rows updated successfully']);
     }
+    
     public function update($id)
     {
         $row = Notification::find($id);

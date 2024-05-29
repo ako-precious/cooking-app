@@ -103,7 +103,7 @@ Route::post('messages', [ChatController::class, 'sendMessage']);
 
     //photo Controller
     Route::resource('/notifications-messages', NotificationController::class);
-    Route::put('/notifications-messages/update-status', [NotificationController::class, 'updateStatus']);
+    Route::put('/notifications-messages-update-status', [NotificationController::class, 'updateStatus']);
 
     //Meal Schedule
     Route::resource('/schedule', MealScheduleController::class);

@@ -38,9 +38,9 @@ export default {
     methods: {
         updateAllStatus() {
             axios
-                .put("/notifications-messages/update-status")
+                .put("/notifications-messages-update-status")
                 .then((response) => {
-                    // console.log(response.data);
+                    console.log(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -131,7 +131,8 @@ export default {
                         <div
                             class="relative flex min-w-0 break-words w-full items-center justify-between border border-gray-500 py-2 group rounded-2xl bg-clip-border cursor-pointer"
                         >
-                            <Link  @click="updateStatus(notification.id)"
+                            <Link
+                                @click="updateStatus(notification.id)"
                                 class="w4"
                                 :href="
                                     `/cook/order/` +
@@ -197,8 +198,11 @@ export default {
                     <p
                         class="relative group cursor-pointer"
                         v-if="notified"
-                        @click="updateAllStatus">
-                        <span class="hover-underline-animation">Mark as read</span>
+                        @click="updateAllStatus"
+                    >
+                        <span class="hover-underline-animation"
+                            >Mark as read</span
+                        >
                     </p>
                 </div>
             </div>
