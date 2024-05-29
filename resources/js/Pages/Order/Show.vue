@@ -7,7 +7,7 @@ import ChartCard from './ChartCard.vue'
         <Navbar></Navbar>
         <div class="flex justify-center items-center min-h-screen">
             <div
-                class="relative flex w-[23rem] flex-col rounded-xl shadow-small text-oynx dark:text-snow"
+                class="relative flex w-[23rem] flex-col rounded-xl shadow-reverse text-oynx dark:text-snow"
             >
                 <div
                     class="relative mx-4 -mt-10 h-20 flex justify-around items-center overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r"
@@ -32,7 +32,7 @@ import ChartCard from './ChartCard.vue'
                     </h5>
                 </div>
                 <div
-                    class="h-[23rem] disable-scrollbars overflow-y-scroll relative"
+                    class="relative"
                 >
                     <div
                         class="p-6 transition-all duration-200 delay-100"
@@ -40,6 +40,8 @@ import ChartCard from './ChartCard.vue'
                             ' opacity-0 -right-100 hidden': selected !== 'info',
                         }"
                     >
+                    <div class="h-[23rem] disable-scrollbars overflow-y-scroll">
+
                         <div class="flex justify-between">
                             <h5
                                 class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
@@ -173,6 +175,7 @@ import ChartCard from './ChartCard.vue'
                             </div>
                         </div>
                     </div>
+                    </div>
                     <div
                         :class="{
                             'opacity-0 -right-100 hidden':
@@ -253,23 +256,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.simple::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-.simple::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.1);
-}
-.simple::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.2);
-}
-.simple::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.4);
-}
-.simple::-webkit-scrollbar-thumb:active {
-    background: rgba(0, 0, 0, 0.8);
-}
-</style>

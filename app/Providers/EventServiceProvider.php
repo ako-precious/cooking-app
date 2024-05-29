@@ -23,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
             // ... other providers
             \SocialiteProviders\Azure\AzureExtendSocialite::class.'@handle',
         ],
+        'App\Events\MessageSent' => [
+            // ... other providers
+            'App\Listeners\SendMessageNotification'
+        ],
         
     ];
 

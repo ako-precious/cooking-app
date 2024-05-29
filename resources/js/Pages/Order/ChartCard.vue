@@ -3,8 +3,8 @@ import axios from "axios";
 import TextInput from "@/Components/TextInput.vue";
 </script>
 <template>
-    <div class="flex py-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full">
-        <div class="flex flex-col h-full overflow-x-auto simple">
+    <div class="relative flex py-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full">
+        <div class="h-[23rem] disable-scrollbars overflow-y-scroll flex flex-col overflow-x-auto simple">
             <div class="flex flex-col h-full">
                 <div class="grid grid-cols-12 gap-y-2">
                     <div class="col-start-4 col-end-13 p-3 rounded-lg">
@@ -38,6 +38,18 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                     </div>
+                    <div class="col-start-1 col-end-9 p-3 rounded-lg">
+                        <div class="flex flex-row items-center">
+                            <div
+                                class="relative ml-3 text-sm text-oynx dark:text-snow bg-snow/40 dark:bg-oynx/40 py-2 px-4 shadow rounded-t-[2rem] rounded-r-[2rem]"
+                            >
+                                <div>
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Perspiciatis, in.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -45,7 +57,7 @@ import TextInput from "@/Components/TextInput.vue";
             <strong>{{ message.user_id }}:</strong> {{ message.message }}
         </div>
         <div
-            class="flex flex-row items-center h-16 rounded-b-xl bg-transparent w-full p-3"
+            class="sticky flex flex-row items-center h-16 rounded-b-xl bg-transparent w-full p-3"
         >
             <div class="flex-grow ml-4">
                 <div class="relative w-full">
@@ -132,3 +144,24 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.simple::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+.simple::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
+.simple::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+.simple::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+.simple::-webkit-scrollbar-thumb:active {
+    background: rgba(0, 0, 0, 0.8);
+}
+</style>

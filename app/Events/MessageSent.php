@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\Chat;
 use App\Models\User;
 
-class MessageSent
+class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -26,7 +26,7 @@ class MessageSent
 
     public function broadcastOn()
     {
-        return new Channel('chat');
+        return new PrivateChannel('chat.'.$this->chat->meal_schedule_id);
     }
     // public $message;
 
