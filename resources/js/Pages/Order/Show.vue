@@ -178,7 +178,7 @@ import ChartCard from './ChartCard.vue'
                             'opacity-0 -right-100 hidden':
                                 selected !== 'messages',
                         }">
-                        <ChartCard></ChartCard>
+                        <ChartCard :order="order" ></ChartCard>
                         
                     </div>
                 </div>

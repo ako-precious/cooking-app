@@ -21,7 +21,8 @@ class ChatController extends Controller
     public function sendMessage(Request $request)
     {
         $chat = Chat::create([
-            'user' => $request->user,
+            'user_id' => $request->user,
+            'meal_schedule_id' => $request->meal_schedule_id,
             'message' => $request->message
         ]);
 

@@ -94,11 +94,11 @@ Route::middleware([
     Route::resource('wishlist', WishlistController::class);
     Route::get('/meal-schedule', [OrdersController::class, 'order'])->name('meal-schedule');
     Route::get('/notifications', [NotificationController::class, 'notification'])->name('notifications.index');
- 
 
-Route::get('chat', [ChatController::class, 'index']);
-Route::get('messages', [ChatController::class, 'fetchMessages']);
-Route::post('messages', [ChatController::class, 'sendMessage']);
+
+    Route::get('chat', [ChatController::class, 'index']);
+    Route::get('messages', [ChatController::class, 'fetchMessages']);
+    Route::post('messages', [ChatController::class, 'sendMessage']);
 
 
     //photo Controller

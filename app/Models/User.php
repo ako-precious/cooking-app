@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
@@ -37,8 +38,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at'
     ];
 
-  
-    
+
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -50,7 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'two_factor_recovery_codes',
         'two_factor_secret',
     ];
-    
+
     /**
      * The attributes that should be cast.
      *
@@ -73,5 +74,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function cook(): HasOne
     {
         return $this->hasOne(Cook::class);
+    }
+
+    public function Chat()
+    {
+        return $this->hasMany(Chat::class);
     }
 }

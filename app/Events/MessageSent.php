@@ -10,6 +10,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Chat;
+use App\Models\User;
 
 class MessageSent
 {
@@ -22,7 +23,7 @@ class MessageSent
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct( Chat $message)
     {
         $this->message = $message;
     }
@@ -37,8 +38,8 @@ class MessageSent
         return new Channel('chat');
     }
 
-    public function broadcastAs()
-    {
-        return 'chat';
-    }
+    // public function broadcastAs()
+    // {
+    //     return 'chat';
+    // }
 }

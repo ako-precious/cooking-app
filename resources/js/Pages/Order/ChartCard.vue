@@ -45,7 +45,7 @@ import TextInput from "@/Components/TextInput.vue";
             </div>
         </div>
         <div v-for="message in messages" :key="message.id">
-            <strong>{{ message.user }}:</strong> {{ message.message }}
+            <strong>{{ message.user_id }}:</strong> {{ message.message }}
         </div>
         <div
             class="flex flex-row items-center h-16 rounded-b-xl bg-transparent w-full p-3"
@@ -92,6 +92,9 @@ import TextInput from "@/Components/TextInput.vue";
 
 <script>
 export default {
+    props: {
+        order: Object,
+    },
     data() {
         return {
             messages: [],
@@ -113,7 +116,8 @@ export default {
         sendMessage() {
             axios
                 .post("/messages", {
-                    user: "User", // Replace with the actual user
+                    user: this.$page.props.auth.user.id,
+                    meal_schedule_id: this.order.id, // Replace with the actual user
                     message: this.newMessage,
                 })
                 .then((response) => {
