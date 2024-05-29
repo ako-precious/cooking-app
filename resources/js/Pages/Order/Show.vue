@@ -195,7 +195,7 @@ import TextInput from "@/Components/TextInput.vue";
                                             class="flex items-center justify-start flex-row-reverse"
                                         >
                                             <div
-                                                class="relative mr-3 text-sm bg-persian py-2 px-4 shadow rounded-t-[2rem] rounded-r-[2rem]"
+                                                class="relative mr-3 text-sm bg-persian py-2 px-4 shadow rounded-t-[2rem] rounded-l-[2rem]"
                                             >
                                                 <div>
                                                     Lorem ipsum dolor sit, amet
@@ -228,7 +228,7 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                         <div
-                            class="flex flex-row items-center h-16 rounded-b-xl bg-transparent w-full p-4"
+                            class="flex flex-row items-center h-16 rounded-b-xl bg-transparent w-full p-3"
                         >
                             <div class="flex-grow ml-4">
                                 <div class="relative w-full">
