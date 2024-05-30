@@ -152,11 +152,6 @@ export default {
             } else if (today >= this.newSchedule.start_date) {
                 this.error =
                     "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
-            } else if (
-                this.newSchedule.start_date > this.newSchedule.end_date
-            ) {
-                this.error =
-                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
             } else {
                 this.formatSchedule();
 

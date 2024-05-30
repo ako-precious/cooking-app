@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+
 class NotificationController extends Controller
 {
     public function notification()
@@ -16,17 +17,16 @@ class NotificationController extends Controller
     }
     public function index()
     {
-       
-            $user_id =   Auth::id();
-            $notifications = Notification::where('user_id', $user_id)->latest()->paginate(6);
-            $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
 
-            return response()->json([
-                'notifications' => $notifications,
-                'count' => $count,
-                '$user_id' => $user_id,
-            ]);
-   
+        $user_id =   Auth::id();
+        $notifications = Notification::where('user_id', $user_id)->latest()->paginate(6);
+        $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
+
+        return response()->json([
+            'notifications' => $notifications,
+            'count' => $count,
+            '$user_id' => $user_id,
+        ]);
     }
 
     public function show()
@@ -35,32 +35,27 @@ class NotificationController extends Controller
         $user_id =   Auth::id();
         $notifications = Notification::where('user_id', $user_id)->latest()->paginate(6);
         $count = Notification::where('user_id', $user_id)->where('status', 'unread')->count();
-    
+
         return response()->json([
             'notifications' => $notifications,
             'count' => $count,
         ]);
     }
-    public function updateStatus(): JsonResponse
+    public function updateStatus()
     {
         $user = Auth::user();
-        $rows = Notification::where('user_id', $user->id)->get();
-
-        // Update the status of the rows
-        foreach ($rows as $row) {
-            $row->status = 'read';
-            $row->save();
-        }
+        Notification::where('user_id', $user->id)
+            ->update(['status' => 'read']);
 
         return response()->json(['message' => 'Rows updated successfully']);
     }
-    
+
     public function update($id)
     {
         $row = Notification::find($id);
 
-            $row->status = 'read';
-            $row->save();        
+        $row->status = 'read';
+        $row->save();
 
         return response()->json(['message' => 'Rows updated successfully']);
     }
@@ -71,8 +66,7 @@ class NotificationController extends Controller
         $Notification = Notification::find($id);
         $Notification->delete();
         $user = Auth::user();
-        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(6)
-        ;
+        $notifications = Notification::where('user_id', $user->id)->latest()->paginate(6);
 
         return response()->json(['message' => 'Notification removed successfully!', 'notifications' => $notifications]);
     }

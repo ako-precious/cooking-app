@@ -8,88 +8,6 @@ import axios from "axios";
 import Pagination from "@/Components/Pagination.vue";
 </script>
 
-<script>
-export default {
-    inheritAttrs: false,
-    props: {
-        messages: Object, // Prop to receive paginated notifications data from Inertia
-    },
-    data() {
-        return {
-            isHeaderFixed: false,
-            notified: "",
-            notifications: this.messages,
-            count: "",
-        };
-    },
-    beforeDestroy() {
-        window.removeEventListener("scroll", this.handleScroll);
-    },
-
-    mounted() {
-        window.addEventListener("scroll", this.handleScroll);
-        // console.log(this.notifications);
-    },
-    created() {
-        this.handleScroll();
-        this.checkNotification();
-        // this.getNotification();
-    },
-    methods: {
-        updateAllStatus() {
-            axios
-                .put("/notifications-messages-update-status")
-                .then((response) => {
-                    console.log(response.data);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        updateStatus(id) {
-            axios
-                .put("/notifications-messages/" + id)
-                .then((response) => {
-                    // console.log(response.data);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-        },
-        deleteNotifications(id) {
-            axios
-                .delete("/notifications-messages/" + id)
-                .then((resp) => {
-                    this.notifications = resp.data.notifications;
-                    // console.log(resp.data.message);
-                })
-                .catch((err) => {
-                    this.error = "Unable to add Meal !";
-                    setTimeout(() => {
-                        this.error = "";
-                    }, 10000);
-                });
-        },
-        checkNotification() {
-            axios
-                .get("/notifications-messages")
-                .then((response) => {
-                    this.notified = response.data.count;
-                })
-                .catch((error) => {
-                    // Handle error
-                    console.error("Error getting data:", error);
-                });
-        },
-        handleScroll() {
-            // Adjust the scroll threshold as needed
-            const scrollThreshold = 20;
-            this.isHeaderFixed = window.scrollY > scrollThreshold;
-        },
-    },
-};
-</script>
-
 <template>
     <Head title="Notification" />
     <!-- component -->
@@ -211,6 +129,88 @@ export default {
 
     <Footer></Footer>
 </template>
+
+<script>
+export default {
+    inheritAttrs: false,
+    props: {
+        messages: Object, // Prop to receive paginated notifications data from Inertia
+    },
+    data() {
+        return {
+            isHeaderFixed: false,
+            notified: "",
+            notifications: this.messages,
+            count: "",
+        };
+    },
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.handleScroll);
+    },
+
+    mounted() {
+        window.addEventListener("scroll", this.handleScroll);
+        // console.log(this.notifications);
+    },
+    created() {
+        this.handleScroll();
+        this.checkNotification();
+        // this.getNotification();
+    },
+    methods: {
+        updateAllStatus() {
+            axios
+                .put("/notifications-messages-update-status")
+                .then((response) => {
+                    console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+        updateStatus(id) {
+            axios
+                .put("/notifications-messages/" + id)
+                .then((response) => {
+                    // console.log(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        },
+        deleteNotifications(id) {
+            axios
+                .delete("/notifications-messages/" + id)
+                .then((resp) => {
+                    this.notifications = resp.data.notifications;
+                    // console.log(resp.data.message);
+                })
+                .catch((err) => {
+                    this.error = "Unable to add Meal !";
+                    setTimeout(() => {
+                        this.error = "";
+                    }, 10000);
+                });
+        },
+        checkNotification() {
+            axios
+                .get("/notifications-messages")
+                .then((response) => {
+                    this.notified = response.data.count;
+                })
+                .catch((error) => {
+                    // Handle error
+                    console.error("Error getting data:", error);
+                });
+        },
+        handleScroll() {
+            // Adjust the scroll threshold as needed
+            const scrollThreshold = 20;
+            this.isHeaderFixed = window.scrollY > scrollThreshold;
+        },
+    },
+};
+</script>
 
 <style scoped>
 button {

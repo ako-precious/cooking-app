@@ -7,7 +7,7 @@ import TextInput from "@/Components/TextInput.vue";
         class="relative flex pt-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full"
     >
         <div
-            class="h-[20rem]  overflow-y-scroll flex flex-col overflow-x-auto simple"
+            class="h-[20rem] overflow-y-scroll flex flex-col overflow-x-auto simple"
         >
             <div class="flex flex-col h-full">
                 <div
@@ -15,8 +15,10 @@ import TextInput from "@/Components/TextInput.vue";
                     :key="message.id"
                     class="grid grid-cols-12 gap-y-2"
                 >
-
-                    <div v-if="$page.props.auth.user.id == message.user_id  " class="col-start-4 col-end-13 py-3 px-2 rounded-lg">
+                    <div
+                        v-if="$page.props.auth.user.id == message.user_id"
+                        class="col-start-4 col-end-13 py-3 px-2 rounded-lg"
+                    >
                         <div
                             class="flex items-center justify-start flex-row-reverse"
                         >
@@ -34,7 +36,10 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                     </div>
-                    <div v-else class="col-start-1 col-end-9  py-3 px-2 rounded-lg">
+                    <div
+                        v-else
+                        class="col-start-1 col-end-9 py-3 px-2 rounded-lg"
+                    >
                         <div class="flex flex-row items-center">
                             <div
                                 class="relative ml-3 text-sm text-oynx dark:text-snow bg-snow/40 dark:bg-oynx/40 py-2 px-4 shadow rounded-t-[2rem] rounded-r-[2rem]"
@@ -46,7 +51,6 @@ import TextInput from "@/Components/TextInput.vue";
                             </div>
                         </div>
                     </div>
-                   
                 </div>
             </div>
         </div>
@@ -105,16 +109,40 @@ export default {
             newMessage: "",
         };
     },
-    created() {
-        this.fetchMessages();
-    },
+
     mounted() {
         this.fetchMessages();
-        Echo.channel("chat").listen("MessageSent", (e) => {
-            this.messages.push(e.chat);
-        });
+        this.connect();
+        // Echo.channel("chat").listen("MessageSent", (e) => {
+        //     this.messages.push(e.chat);
+        // });
     },
+    watch:{
+        currentOrder(val, oldVal){
+            if(oldVal.id){
+                this.disconnect( oldVal);
+            }
+            this.connect();
+        }
+    },
+
     methods: {
+        connect() {
+            if (this.order.id) {
+                let vm = this;
+                this.fetchMessages();
+                window.Echo.private("chat." + this.order.id).listen(
+                    "Message",
+                    (e) => {
+                        vm.fetchMessages
+                        this.messages.push(e.chat);
+                    }
+                );
+            }
+        },
+        disconnect(order){
+           window.echo.leave('chat.'+ order.id)
+        },
         fetchMessages() {
             axios.get("/messages/" + this.order.id).then((response) => {
                 this.messages = response.data;
@@ -132,8 +160,7 @@ export default {
                     })
                     .then((response) => {
                         this.messages = response.data;
-                        this.newMessage = ''
-
+                        this.newMessage = "";
                     });
             }
         },
