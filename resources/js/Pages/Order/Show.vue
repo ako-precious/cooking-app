@@ -2,6 +2,7 @@
 import Navbar from "@/Pages/Cook/Navbar.vue";
 import ChartCard from './ChartCard.vue'
 import { Head, Link } from "@inertiajs/vue3";
+import ChangeStatus from "@/Pages/Cook/Order/ChangeStatus.vue";
 </script>
 <template>
     <Head title="Order Info" />
@@ -150,17 +151,16 @@ import { Head, Link } from "@inertiajs/vue3";
                                 {{ order.status }}
                             </h5>
                         </div>
-                        <div class="flex justify-between">
+
+                        <div class="flex justify-between items-center">
                             <h5
                                 class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
                             >
                                 Change Status:
                             </h5>
-                            <h5
-                                class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
-                            >
-                                {{ order.status }}
-                            </h5>
+                            <div v-if="order.meal.id == $page.props.auth.user.id">
+                            </div>
+                            <ChangeStatus :order="order" @status-update="updateStatus"></ChangeStatus>
                         </div>
                         <div class="flex my-1 flex-col">
                             <p
@@ -205,7 +205,10 @@ import { Head, Link } from "@inertiajs/vue3";
                             'opacity-0 -right-100 hidden':
                                 selected !== 'messages',
                         }">
-                        <ChartCard :order="order" ></ChartCard>
+                        <div>
+
+                            <ChartCard :order="order" ></ChartCard>
+                        </div>
                         
                     </div>
                 </div>
@@ -230,6 +233,9 @@ export default {
         };
     },
     methods: {
+        updateStatus(newOrders) {
+            this.meal.status =  newOrders;
+        },
         selectedDiv(status) {
             this.selected = status;
         },

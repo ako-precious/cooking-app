@@ -346,6 +346,25 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                         Meal Delivery Date
                                                     </template>
                                                     <template #symbols>
+                                                        <CaretUp   @click="
+                                                                sort(
+                                                                    'start_time',
+                                                                    true
+                                                                )
+                                                            " />
+                                                        <CaretDown  @click="
+                                                                sort(
+                                                                    'start_time',
+                                                                    false
+                                                                )
+                                                            " />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                         Date Ordered
+                                                    </template>
+                                                    <template #symbols>
                                                         <CaretUp />
                                                         <CaretDown />
                                                     </template>

@@ -5,7 +5,7 @@ defineProps(["order"]);
 <template>
     
  
-        <div v-if="isToday(meal.created_at)"
+        <div v-if="isToday(meal.start_date)"
             class="bg text-xl z-20 flex items-center"
         >
             <div v-if="meal.status == 'pending'" class="flex">

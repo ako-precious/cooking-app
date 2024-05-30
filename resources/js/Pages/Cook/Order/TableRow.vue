@@ -5,6 +5,7 @@ defineProps(["order"]);
 </script>
 <template>
     <td class="whitespace-nowrap px-6 py-3 font-bold">
+      
         <Link  :href="`/cook/order/${meal.id}`"  class="flex items-center j">
             <div class="w-16 h-16">
                 <img
@@ -23,6 +24,9 @@ defineProps(["order"]);
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ meal.meal_time }}
+    </td>
+    <td class="whitespace-nowrap px-6 py-3 font-semibold">
+        {{ meal.start_date }}
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ FormattedDate(meal.created_at) }}
