@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
+import ChangeStatus from "@/Pages/Cook/Order/ChangeStatus.vue";
 defineProps(["order"]);
 </script>
 <template>
@@ -34,79 +35,10 @@ defineProps(["order"]);
             </p>
         </div>
     </td>
-    <!-- <td v-else class="whitespace-nowrap px-6 py-3 ">
-        <div class=" flex items-center ">
-            <font-awesome-icon
-                class="text-persian text-lg pr-1"
-                icon="toggle-off"
-            />
-            Off
-        </div>
-    </td> -->
+  
     <td class="whitespace-nowrap px-6 py-3 relative">
-      
-        <div v-if="isToday(meal.created_at)"
-            class="bg text-xl z-20 flex items-center"
-        >
-            <div v-if="meal.status == 'pending'" class="flex">
-                <div
-                    @click="ChangeStatus('accepted')"
-                    class="mr-2 p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
-                >
-                    <p
-                        class="text-base font-semibold group-action-text capitalize"
-                    >
-                        accept
-                    </p>
-                </div>
-                <div
-                    @click="ChangeStatus('rejected')"
-                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
-                >
-                    <p
-                        class="text-base font-semibold group-action-text capitalize"
-                    >
-                        reject
-                    </p>
-                </div>
-            </div>
-            <div v-else-if="meal.status == 'processed'">
-                <div
-                    @click="ChangeStatus('ready')"
-                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
-                >
-                    <p
-                        class="text-base font-semibold group-action-text capitalize"
-                    >
-                        ready
-                    </p>
-                </div>
-            </div>
-            <div v-else-if="meal.status == 'ready'">
-                <div
-                    @click="ChangeStatus('in transit')"
-                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
-                >
-                    <p
-                        class="text-base font-semibold group-action-text capitalize"
-                    >
-                        in transit
-                    </p>
-                </div>
-            </div>
-            <div v-else-if="meal.status == 'in transit'">
-                <div
-                    @click="ChangeStatus('delivered')"
-                    class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
-                >
-                    <p
-                        class="text-base font-semibold group-action-text capitalize"
-                    >
-                        delivered
-                    </p>
-                </div>
-            </div>
-        </div>
+      <ChangeStatus :order="order" @status-update="updateStatus"></ChangeStatus>
+       
     </td>
 </template>
 
@@ -128,6 +60,9 @@ export default {
         this.getImage();
     },
     methods: {
+        updateStatus(newOrders) {
+            this.meal.status =  newOrders;
+        },
         isToday(dateString) {
             const date = new Date(dateString);
             const today = new Date();
@@ -172,17 +107,7 @@ export default {
                 return description;
             }
         },
-        ChangeStatus(status) {
-            axios
-                .put("/cook/order/" + this.meal.id, { status })
-                .then((response) => {
-                    // console.log("Data sent successfully:", response.data.order.status);
-                    this.meal.status = response.data.order.status;
-                })
-                .catch((error) => {
-                    console.error("Error sending data:", error);
-                });
-        },
+       
     },
 };
 </script>

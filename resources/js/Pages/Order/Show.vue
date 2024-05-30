@@ -37,10 +37,7 @@ import { Head, Link } from "@inertiajs/vue3";
                     class="relative mx-4 -mt-10 h-20 flex justify-center items-center overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r"
                 >
                     <h5
-                        @click="selectedDiv('info')"
-                        :class="{
-                            ' text-persian': selected === 'info',
-                        }"
+                        
                         class="mb-2 capitalize block text-xl font-sans font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased cursor-pointer"
                     >
                         Order Info
@@ -146,6 +143,18 @@ import { Head, Link } from "@inertiajs/vue3";
                                 class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
                             >
                                 Meal Status:
+                            </h5>
+                            <h5
+                                class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"
+                            >
+                                {{ order.status }}
+                            </h5>
+                        </div>
+                        <div class="flex justify-between">
+                            <h5
+                                class="mb-2 capitalize block font-sans text-base leading-snug tracking-normal text-blue-gray-900 antialiased"
+                            >
+                                Change Status:
                             </h5>
                             <h5
                                 class="mb-2 capitalize block font-sans text-base font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased"

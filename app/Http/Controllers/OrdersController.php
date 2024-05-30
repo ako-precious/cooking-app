@@ -38,14 +38,14 @@ class OrdersController extends Controller
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array 
                 $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
-                $pendingOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'pending')->with('order', 'meal', 'user')->get();
-                $rejectedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'rejected')->with('order', 'meal', 'user')->get();
-                $acceptedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accepted')->with('order', 'meal', 'user')->get();
-                $processedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'processed')->with('order', 'meal', 'user')->get();
-                $readyOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'ready')->with('order', 'meal', 'user')->get();
-                $transitOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'in transit')->with('order', 'meal', 'user')->get();
-                $deliveredOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'delivered')->with('order', 'meal', 'user')->get();
-                $confirmedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'confirmed')->with('order', 'meal', 'user')->get();
+                $pendingOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'pending')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $rejectedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'rejected')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $acceptedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accepted')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $processedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'processed')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $readyOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'ready')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $transitOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'in transit')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $deliveredOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'delivered')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $confirmedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'confirmed')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
                 if ($mealSchedules->isNotEmpty()) {
                     // Append the meal schedules to the $orders array
                     $orders[] = $mealSchedules;
