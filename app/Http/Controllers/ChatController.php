@@ -15,7 +15,7 @@ class ChatController extends Controller
 
     public function fetchMessages($id)
     {
-        return response()->json( Chat::where('meal_schedule_id', $id)->get());
+        return response()->json( Chat::where('meal_schedule_id', $id)->orderBy('created_at', 'asc')->get());
     }
 
     public function sendMessage(Request $request )
@@ -27,7 +27,7 @@ class ChatController extends Controller
         ]);
 
         broadcast(new MessageSent($chat))->toOthers();
-        return response()->json( Chat::where('meal_schedule_id', $request->meal_schedule_id)->get());
+        return response()->json( Chat::where('meal_schedule_id', $request->meal_schedule_id)->orderBy('created_at', 'asc')->get());
         // return ['status' => 'Message Sent!'];
     }
 }

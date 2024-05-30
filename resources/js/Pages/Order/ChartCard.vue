@@ -7,53 +7,64 @@ import TextInput from "@/Components/TextInput.vue";
         class="relative flex pt-6 flex-col flex-auto flex-shrink-0 rounded-2xl h-full"
     >
         <div
-            class="h-[20rem] overflow-y-scroll flex flex-col overflow-x-auto simple"
+            class="h-[20rem] scrollDiv overflow-y-scroll flex flex-col overflow-x-auto simple"
+            id="scrollDiv"
         >
             <div class="flex flex-col h-full">
-                <div
-                    v-for="message in messages"
-                    :key="message.id"
-                    class="grid grid-cols-12 gap-y-2"
-                >
+                <div v-for="(messages, date) in groupedMessages" :key="date">
+                    <div class="text-sm text-center font-bold mt-4">{{ date }}</div>
                     <div
-                        v-if="$page.props.auth.user.id == message.user_id"
-                        class="col-start-4 col-end-13 py-3 px-2 rounded-lg"
+                        v-for="message in messages"
+                        :key="message.id"
+                        class="grid grid-cols-12 gap-y-2"
                     >
                         <div
-                            class="flex items-center justify-start flex-row-reverse"
+                            v-if="$page.props.auth.user.id == message.user_id"
+                            class="col-start-4 col-end-13 py-3.5 px-2 rounded-lg"
                         >
                             <div
-                                class="relative mr-3 text-sm bg-persian py-2 px-4 shadow rounded-t-[2rem] rounded-l-[2rem]"
+                                class="flex items-center justify-start flex-row-reverse"
                             >
-                                <div>
-                                    {{ message.message }}
-                                </div>
                                 <div
-                                    class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500"
+                                    class="relative mr-3 text-sm bg-persian py-2 px-4 shadow rounded-t-[2rem] rounded-l-[2rem]"
                                 >
-                                    Seen
+                                    <div>
+                                        {{ message.message }}
+                                    </div>
+                                    <div
+                                        class="absolute text-xxs bottom-0 right-0 -mb-5 mr-2 text-gray-500"
+                                    >
+                                        {{ formatDate(message.created_at) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div
-                        v-else
-                        class="col-start-1 col-end-9 py-3 px-2 rounded-lg"
-                    >
-                        <div class="flex flex-row items-center">
-                            <div
-                                class="relative ml-3 text-sm text-oynx dark:text-snow bg-snow/40 dark:bg-oynx/40 py-2 px-4 shadow rounded-t-[2rem] rounded-r-[2rem]"
-                            >
-                                <div>
-                                    Lorem ipsum dolor sit amet consectetur
-                                    adipisicing elit. Perspiciatis, in.
+                        <div
+                            v-else
+                            class="col-start-1 col-end-9 py-3.5 px-2 rounded-lg"
+                        >
+                            <div class="flex flex-row items-center">
+                                <div
+                                    class="relative ml-3 text-sm text-oynx dark:text-snow bg-snow/40 dark:bg-oynx/40 py-2 px-4 shadow rounded-t-[2rem] rounded-r-[2rem]"
+                                >
+                                    <div>
+                                        {{ message.message }}
+                                    </div>
+                                    <div
+                                        class="absolute text-xxs bottom-0 left-0 -mb-5 mr-2 text-gray-500"
+                                    >
+                                        {{ formatDate(message.created_at) }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div> 
+                 
+       
+    </div>
             </div>
         </div>
+        
 
         <div
             class="sticky flex flex-row items-center h-16 rounded-b-xl bg-snow dark:bg-oynx w-full py-4 px-3"
@@ -107,43 +118,66 @@ export default {
         return {
             messages: [],
             newMessage: "",
+            scrollDiv: document.getElementById("scroll"),
         };
     },
 
     mounted() {
         this.fetchMessages();
         this.connect();
-        // Echo.channel("chat").listen("MessageSent", (e) => {
-        //     this.messages.push(e.chat);
-        // });
+        this.scrollToBottom();
     },
-    watch:{
-        currentOrder(val, oldVal){
-            if(oldVal.id){
-                this.disconnect( oldVal);
+    computed: {
+        groupedMessages() {
+            
+
+            return this.messages.reduce((acc, message) => {
+                const dateKey = this.formattedDay(message.created_at);
+                if (!acc[dateKey]) {
+                    acc[dateKey] = [];
+                }
+                acc[dateKey].push(message);
+                return acc;
+            }, {});
+        },
+  },
+    watch: {
+        currentOrder(val, oldVal) {
+            if (oldVal.id) {
+                this.disconnect(oldVal);
             }
             this.connect();
-        }
+        },
     },
 
     methods: {
+        scrollToBottom() {
+            this.$nextTick(() => {
+                const scrollDiv = document.getElementById("scrollDiv");
+                if (scrollDiv) {
+                    scrollDiv.scrollTop = scrollDiv.scrollHeight;
+                }
+            });
+        },
         connect() {
+            this.scrollToBottom();
             if (this.order.id) {
                 let vm = this;
                 this.fetchMessages();
                 window.Echo.private("chat." + this.order.id).listen(
-                    "Message",
+                    "MessageSent",
                     (e) => {
-                        vm.fetchMessages
+                        vm.fetchMessages();
                         this.messages.push(e.chat);
                     }
                 );
             }
         },
-        disconnect(order){
-           window.echo.leave('chat.'+ order.id)
+        disconnect(order) {
+            window.echo.leave("chat." + order.id);
         },
         fetchMessages() {
+            this.scrollToBottom();
             axios.get("/messages/" + this.order.id).then((response) => {
                 this.messages = response.data;
             });
@@ -161,8 +195,28 @@ export default {
                     .then((response) => {
                         this.messages = response.data;
                         this.newMessage = "";
+                        // Scroll to the bottom of the div with ID 'scroll'
+                        this.scrollToBottom();
                     });
             }
+        },
+        formatDate(datetime) {
+            const date = new Date(datetime);
+            // Extracting parts of the date and time
+            const hours = String(date.getUTCHours()).padStart(2, "0");
+            const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+            // Formatting the date and time as "13:49 30/05/2024"
+            return `${hours}:${minutes}`;
+        },
+        formattedDay(datetime) {
+            const date = new Date(datetime);
+            // Extracting parts of the date and time           
+            const day = String(date.getUTCDate()).padStart(2, "0");
+            const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+            const year = date.getUTCFullYear();
+
+            // Formatting the date and time as "13:49 30/05/2024"
+            return `${day}/${month}/${year}`;
         },
     },
 };
