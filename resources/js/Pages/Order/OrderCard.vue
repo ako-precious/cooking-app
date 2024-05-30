@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
+
 import axios from "axios";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";

@@ -1,15 +1,17 @@
 <script setup>
 import Navbar from "@/Pages/Cook/Navbar.vue";
 import ChartCard from './ChartCard.vue'
+import { Head, Link } from "@inertiajs/vue3";
 </script>
 <template>
+    <Head title="Order Info" />
     <div>
         <Navbar></Navbar>
         <div class="flex justify-center items-center min-h-screen">
             <div
                 class="relative flex w-[23rem] flex-col rounded-xl shadow-reverse text-oynx dark:text-snow"
             >
-                <div
+                <div v-if="order.status === 'processed' || order.status === 'ready' || order.status === 'in transit' || order.status === 'delivered'"
                     class="relative mx-4 -mt-10 h-20 flex justify-around items-center overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r"
                 >
                     <h5
@@ -29,6 +31,19 @@ import ChartCard from './ChartCard.vue'
                         class="mb-2 capitalize block font-sans font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased cursor-pointer"
                     >
                         Messages
+                    </h5>
+                </div>
+                <div v-else
+                    class="relative mx-4 -mt-10 h-20 flex justify-center items-center overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r"
+                >
+                    <h5
+                        @click="selectedDiv('info')"
+                        :class="{
+                            ' text-persian': selected === 'info',
+                        }"
+                        class="mb-2 capitalize block text-xl font-sans font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased cursor-pointer"
+                    >
+                        Order Info
                     </h5>
                 </div>
                 <div

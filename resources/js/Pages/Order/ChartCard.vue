@@ -12,7 +12,9 @@ import TextInput from "@/Components/TextInput.vue";
         >
             <div class="flex flex-col h-full">
                 <div v-for="(messages, date) in groupedMessages" :key="date">
-                    <div class="text-sm text-center font-bold mt-4">{{ date }}</div>
+                    <div class="text-sm text-center font-bold mt-4">
+                        {{ date }}
+                    </div>
                     <div
                         v-for="message in messages"
                         :key="message.id"
@@ -58,13 +60,10 @@ import TextInput from "@/Components/TextInput.vue";
                                 </div>
                             </div>
                         </div>
-                    </div> 
-                 
-       
-    </div>
+                    </div>
+                </div>
             </div>
         </div>
-        
 
         <div
             class="sticky flex flex-row items-center h-16 rounded-b-xl bg-snow dark:bg-oynx w-full py-4 px-3"
@@ -129,8 +128,6 @@ export default {
     },
     computed: {
         groupedMessages() {
-            
-
             return this.messages.reduce((acc, message) => {
                 const dateKey = this.formattedDay(message.created_at);
                 if (!acc[dateKey]) {
@@ -140,7 +137,7 @@ export default {
                 return acc;
             }, {});
         },
-  },
+    },
     watch: {
         currentOrder(val, oldVal) {
             if (oldVal.id) {
@@ -200,21 +197,23 @@ export default {
                     });
             }
         },
+       
         formatDate(datetime) {
             const date = new Date(datetime);
+
             // Extracting parts of the date and time
-            const hours = String(date.getUTCHours()).padStart(2, "0");
-            const minutes = String(date.getUTCMinutes()).padStart(2, "0");
-            // Formatting the date and time as "13:49 30/05/2024"
+            const hours = String(date.getHours()).padStart(2, "0");
+            const minutes = String(date.getMinutes()).padStart(2, "0");
+
+            // Formatting the date and time as "13:49 30/05/2024 GMT+05:30"
             return `${hours}:${minutes}`;
         },
         formattedDay(datetime) {
             const date = new Date(datetime);
-            // Extracting parts of the date and time           
-            const day = String(date.getUTCDate()).padStart(2, "0");
-            const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are 0-indexed
-            const year = date.getUTCFullYear();
-
+            // Extracting parts of the date and time
+            const day = String(date.getDate()).padStart(2, "0");
+            const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
+            const year = date.getFullYear();
             // Formatting the date and time as "13:49 30/05/2024"
             return `${day}/${month}/${year}`;
         },
