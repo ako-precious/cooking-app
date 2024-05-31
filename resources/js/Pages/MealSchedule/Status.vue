@@ -1,23 +1,23 @@
 <script setup>
 import Navbar from '@/Pages/Cook/Navbar.vue'
 import { Head, Link } from "@inertiajs/vue3";
+defineProps(["mealSchedule"]);
 </script>
 
 <template>
     <div>
  <Navbar></Navbar>
 <!-- component -->
-<div class="flex h-screen w-full items-center justify-center bg-gray-600">
+<div class="flex h-screen w-full items-center justify-center">
   <div class="w-80 rounded bg-gray-50 px-6 pt-8 shadow-lg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="chippz" class="mx-auto w-16 py-4" />
     <div class="flex flex-col justify-center items-center gap-2">
-        <h4 class="font-semibold">Business Name</h4>
-        <p class="text-xs">Some address goes here</p>
+        <h4 class="font-bold">Ounjemi</h4>       
     </div>
     <div class="flex flex-col gap-3 border-b py-6 text-xs">
       <p class="flex justify-between">
         <span class="text-gray-400">Receipt No.:</span>
-        <span>#5033</span>
+        <span># {{ mealSchedule }}</span>
       </p>
       <p class="flex justify-between">
         <span class="text-gray-400">Order Type:</span>

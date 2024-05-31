@@ -30,6 +30,7 @@ defineProps(["meal"]);
                 >
             </div>
             <div v-else-if="meal.status == 'delivered'">
+                
                 <div
                     @click="ChangeStatus('confirmed')"
                     class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
@@ -41,9 +42,7 @@ defineProps(["meal"]);
                     </p>
                 </div>
             </div>
-        </div>
-        <div v-else class="bg text-xl z-20 flex items-center">
-            <div v-if="meal.status == 'confirmed'">
+            <div v-else-if="meal.status == 'confirmed'">{{ meal.meal.id  }}{{ meal.id }}
                 <div
                     @click="openModal(meal.meal.id)"
                     class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
@@ -602,11 +601,11 @@ export default {
             }
         },
 
-        openModal(meal) {
+        openModal() {
             axios
                 .get("/api/rating", {
                     params: {
-                        meal_id: this.meal.id,
+                        meal_id: this.meal.meal.id,
                         user_id: this.$page.props.auth.user.id,
                     },
                 })

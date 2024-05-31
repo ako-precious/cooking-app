@@ -40,7 +40,7 @@ defineProps(["order"]);
         </div>
     </td>
     
-     <UpdateStatus :meal="meal" @status-change="updateChange"> </UpdateStatus>
+     <UpdateStatus :meal="meal" @status-change="changeStatus"> </UpdateStatus>
     
 
   
@@ -67,10 +67,9 @@ export default {
    
     methods: {
 
-        ChangeStatus(newStatus) {
+        changeStatus(newStatus) {
             this.meal.status =  newStatus;
-        },
-      
+        },     
        
         getImage() {
             const id = this.meal.meal.id;

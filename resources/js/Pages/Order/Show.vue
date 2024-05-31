@@ -3,6 +3,7 @@ import Navbar from "@/Pages/Cook/Navbar.vue";
 import ChartCard from './ChartCard.vue'
 import { Head, Link } from "@inertiajs/vue3";
 import ChangeStatus from "@/Pages/Cook/Order/ChangeStatus.vue";
+import UpdateStatus from "./UpdateStatus.vue";
 </script>
 <template>
     <Head title="Order Info" />
@@ -162,7 +163,7 @@ import ChangeStatus from "@/Pages/Cook/Order/ChangeStatus.vue";
                                 <ChangeStatus :order="order" @status-update="updateStatus"></ChangeStatus>
                             </div>
                             <div v-if="order.user_id == $page.props.auth.user.id">
-                                <ChangeStatus :order="order" @status-update="updateStatus"></ChangeStatus>
+                                <UpdateStatus :meal="order" @status-change="changeStatus"> </UpdateStatus>
                             </div>
 
                         </div>
@@ -237,6 +238,10 @@ export default {
         };
     },
     methods: {
+        changeStatus(newStatus) {
+            this.meal.status =  newStatus;
+        },     
+       
         updateStatus(newOrders) {
             this.meal.status =  newOrders;
         },
