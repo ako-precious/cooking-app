@@ -8,41 +8,14 @@ import TextInput from "@/Components/TextInput.vue";
 defineProps(["meal"]);
 </script>
 <template>
-    <td class="whitespace-nowrap px-6 py-3 font-bold">
-        <Link  :href="`/cook/order/${meal.id}`"  class="flex items-center j">
-            <div class="w-16 h-16">
-                <img
-                    :src="meal_photo"
-                    :alt="meal_photo"
-                    class="w-full h-full object-cover rounded"
-                />
-            </div>
-            <p class="pl-4 lg:pl-8">
-                {{ meal.meal.name }}
-            </p>
-        </Link>
-    </td>
- 
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        {{ meal.meal_time }}
-    </td>
-    <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        {{ FormattedDate(meal.created_at) }}
-    </td>
-
-    <td class="whitespace-nowrap px-6 py-3 text-center font-semibold">
-        <div class="flex items-center">
-            <p>
-                {{ meal.status }}
-            </p>
-        </div>
-    </td>
-    <!--  -->
-    <td
-        v-if="isToday(meal.created_at) || meal.status == 'confirmed'"
-        class="whitespace-nowrap px-6 py-3"
-    >
-        <div class="bg text-xl z-20 flex items-center">
+    <td class="whitespace-nowrap px-6 py-3">
+        <div
+            v-if="
+                checkIfTodayOrAfter(meal.start_date) ||
+                meal.status == 'confirmed'
+            "
+            class="bg text-xl z-20 flex items-center"
+        >
             <div v-if="meal.status == 'accepted'">
                 <Link :href="`/process_order/${meal.id}`">
                     <div
@@ -68,7 +41,9 @@ defineProps(["meal"]);
                     </p>
                 </div>
             </div>
-            <div v-else-if="meal.status == 'confirmed'">
+        </div>
+        <div v-else class="bg text-xl z-20 flex items-center">
+            <div v-if="meal.status == 'confirmed'">
                 <div
                     @click="openModal(meal.meal.id)"
                     class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
@@ -534,16 +509,7 @@ export default {
             },
         };
     },
-    created() {
-        this.FormattedDate();
-        this.truncatedIng();
-        this.getImage();
-    },
-    mounted() {
-        // console.log(this.newRating);
 
-        this.isToday();
-    },
     computed: {
         totalRating() {
             // Convert the individual ratings to numbers
@@ -580,70 +546,21 @@ export default {
             return Math.round(total * 100) / 100;
         },
     },
+    emits: ["statusChange"],
     methods: {
-        isToday(dateString) {
-            const date = new Date(dateString);
-            const today = new Date();
-            return date.toDateString() < today.toDateString();
+        checkIfTodayOrAfter(dateString) {
+            const start_date = new Date(dateString);
+            const parsedDate = new Date(
+                start_date.getTime() + 1000 * 60 * 60 * 24
+            );
+            return parsedDate >= new Date();
         },
-        getImage() {
-            const id = this.meal.meal.id;
-            axios
-                .get(`/meal_photos/${id}`)
-                .then((response) => {
-                    if (response.data.firstPhoto.meal_photo_path) {
-                        this.meal_photo =
-                            `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
-                                "/public",
-                                ""
-                            );
-                    }
-                })
-                .catch((error) => {
-                    // Handle error
-                    // console.error("Error saving data:", error);
-                });
-        },
-        FormattedDate(timestamp) {
-            const date = new Date(timestamp);
-            const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
-                .toString()
-                .padStart(2, "0")}-${date
-                .getDate()
-                .toString()
-                .padStart(2, "0")}`;
-            return formattedDate;
-        },
-        truncatedIng(description) {
-            // Check if description exists and has more than 30 characters
-            if (description && description.length > 1) {
-                // Truncate description to 30 characters and add ellipsis
-                return description.slice(0, 1) + "...";
-            } else {
-                // Return full description if it's less than or equal to 30 characters
-                return description;
-            }
-        },
-        getCook(id) {
-            axios
-                .get("/meal/" + id)
-                .then((response) => {
-                    // console.log("Data sent successfully:", response.data.meal);
-                    this.user_name = response.data.meal.user.name;
-                })
-                .catch((error) => {
-                    console.error("Error sending data:", error);
-                });
-            return this.user_name;
-        },
-        ChangeStatus(status) {
+
+        updateChange(status) {
             axios
                 .put("/cook/order/" + this.meal.id, { status })
                 .then((response) => {
-                    console.log(
-                        "Data sent successfully:",
-                        response.data.order.status
-                    );
+                    this.$emit("status-change", response.data.order.status);
                     // this.meal.status = response.data.order.status
                 })
                 .catch((error) => {
@@ -686,12 +603,12 @@ export default {
         },
 
         openModal(meal) {
-
             axios
-                .get("/api/rating", {params: {
-        meal_id: this.meal.id,
-        user_id: this.$page.props.auth.user.id,
-    }
+                .get("/api/rating", {
+                    params: {
+                        meal_id: this.meal.id,
+                        user_id: this.$page.props.auth.user.id,
+                    },
                 })
                 .then((resp) => {
                     if (resp.data) {

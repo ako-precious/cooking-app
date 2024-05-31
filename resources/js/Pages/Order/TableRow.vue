@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-
-defineProps(["meal"]);
+import UpdateStatus from "./UpdateStatus.vue";
+defineProps(["order"]);
 </script>
 <template>
     <td class="whitespace-nowrap pl-6 py-3 font-bold">
@@ -40,6 +40,8 @@ defineProps(["meal"]);
         </div>
     </td>
     
+     <UpdateStatus :meal="meal" @status-change="updateChange"> </UpdateStatus>
+    
 
   
 </template>
@@ -49,6 +51,7 @@ import axios from "axios";
 export default {
     data() {
         return {
+            meal: this.order,
             meal_photo: "",
             user_name: "",
             message: "",
@@ -63,6 +66,11 @@ export default {
     },
    
     methods: {
+
+        ChangeStatus(newStatus) {
+            this.meal.status =  newStatus;
+        },
+      
        
         getImage() {
             const id = this.meal.meal.id;
@@ -129,106 +137,7 @@ export default {
                 });
         },
 
-        addRating() {
-            if (
-                this.newRating.presentation == "Choose a rating" ||
-                this.newRating.taste == "Choose a rating" ||
-                this.newRating.value == "Choose a rating" ||
-                this.newRating.nutrition == "Choose a rating" ||
-                this.newRating.portion_size == "Choose a rating" ||
-                this.newRating.freshness == "Choose a rating" ||
-                this.newRating.comment == ""
-            ) {
-                this.error =
-                    "Please fill in all  fields to create your schedule.";
-            } else {
-                axios
-                    .post("api/rating", this.newRating)
-                    .then((resp) => {
-                        this.message = resp.data.message;
-
-                        setTimeout(() => {
-                            this.closeModal();
-                            // Uncomment the line below if you want to toggle addingMode after the delay
-                            // this.addingMode = !this.addingMode;
-                        }, 5000);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                        this.error = "Unable to add Meal !";
-                        setTimeout(() => {
-                            this.error = "";
-                        }, 10000);
-                    });
-            }
-        },
-
-        openModal(meal) {
-
-            axios
-                .get("/api/rating", {params: {
-        meal_id: this.meal.id,
-        user_id: this.$page.props.auth.user.id,
-    }
-                })
-                .then((resp) => {
-                    if (resp.data) {
-                        this.newRating = resp.data.rating;
-                        // console.log(resp);
-                        if (this.newRating == null) {
-                            this.newRating = {
-                                meal_id: this.meal.meal.id,
-                                user_id: this.$page.props.auth.user.id,
-                                presentation: 0,
-                                taste: 0,
-                                value: 0,
-                                nutrition: 0,
-                                portion_size: 0,
-                                freshness: 0,
-                                comment: "",
-                            };
-                        }
-                    } else {
-                        this.newRating = {
-                            meal_id: this.meal.meal.id,
-                            user_id: this.$page.props.auth.user.id,
-                            presentation: 0,
-                            taste: 0,
-                            value: 0,
-                            nutrition: 0,
-                            portion_size: 0,
-                            freshness: 0,
-                            comment: "",
-                        };
-                    }
-                })
-                .catch((err) => {
-                    // console.log(err);
-                    this.error = "Unable to add Meal !";
-                    // setTimeout(() => {
-                    //     this.error = "";
-                    // }, 10000);
-                });
-
-            this.newEventModalVisible = true;
-        },
-        closeModal() {
-            // clear everything in the div and close it
-            this.newEventModalVisible = false;
-            this.newRating = {
-                meal_id: "",
-                user_id: "",
-                presentation: 0,
-                taste: 0,
-                value: 0,
-                nutrition: 0,
-                portion_size: 0,
-                freshness: 0,
-                comment: "",
-            };
-            this.message = "";
-            this.error = "";
-        },
+       
     },
 };
 </script>

@@ -259,12 +259,12 @@ import Filters from "./Filter.vue";
                                                                 orders.data
                                                                     .length > 0
                                                             "
-                                                            v-for="meal in orders.data"
-                                                            :key="meal.id"
+                                                            v-for="order in orders.data"
+                                                            :key="order.id"
                                                             class="animate-fade-in border-b py-4 capitalize text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                                         >
                                                             <TableRow
-                                                                :meal="meal"
+                                                                :order="order"
                                                             >
                                                             </TableRow>
                                                         </tr>

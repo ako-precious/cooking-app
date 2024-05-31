@@ -66,8 +66,8 @@ export default {
         this.getImage();
     },
     methods: {
-        updateStatus(newOrders) {
-            this.meal.status =  newOrders;
+        updateStatus(newStatus) {
+            this.meal.status =  newStatus;
         },
       
         getImage() {
