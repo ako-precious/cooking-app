@@ -37,7 +37,7 @@ class OrdersController extends Controller
             $menu = Meal::where('cook_id', $user_id)->get();
             foreach ($menu as $meal) {
                 // Fetch orders for each meal and add them to the $orders array 
-                $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
+                $mealSchedules = MealSchedule::where('meal_id', $meal->id)->with('order', 'meal', 'user')->orderBy('start_date', 'desc')->get();
                 $pendingOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'pending')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
                 $rejectedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'rejected')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();
                 $acceptedOrders = MealSchedule::where('meal_id', $meal->id)->where('status', 'accepted')->with('order', 'meal', 'user')->orderBy('created_at', 'desc')->get();

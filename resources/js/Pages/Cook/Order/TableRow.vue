@@ -58,7 +58,6 @@ export default {
     mounted() {
         this.FormattedDate();
         this.truncatedIng();
-        this.isToday();
     },
     created() {
         this.getImage();
@@ -67,11 +66,7 @@ export default {
         updateStatus(newOrders) {
             this.meal.status =  newOrders;
         },
-        isToday(dateString) {
-            const date = new Date(dateString);
-            const today = new Date();
-            return date.toDateString() < today.toDateString();
-        },
+      
         getImage() {
             const id = this.meal.meal.id;
             axios

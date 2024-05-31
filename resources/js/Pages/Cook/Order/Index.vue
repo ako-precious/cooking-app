@@ -343,7 +343,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Meal Delivery Date
+                                                        Delivery Date
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp   @click="
