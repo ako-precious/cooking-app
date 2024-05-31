@@ -22,10 +22,21 @@ import Filters from "./Filter.vue";
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
-                        <div
-                            class="my-6 w-24 relative float-right"
-                            @click="openModal()"
-                        >
+                        <div class="py-5 x-4">
+                            <h1
+                                class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
+                            >
+                                Great to see you,
+                                <span class="capitalize">
+                                    {{ firstWord }}
+                                    <!-- {{ firstWord($page.props.auth.user.name ) }} -->
+                                </span>
+                            </h1>
+                        </div>
+                        <div class="w-full flex justify-end">
+                            
+                        </div>
+                        <div class="my-6 w-24 relative" @click="openModal()">
                             <SocialLogin class="group">
                                 <template #logo>
                                     <font-awesome-icon
@@ -58,6 +69,33 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #title
                                                                 >
+                                                                    #Order ID
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                    <CaretUp
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'asc',
+                                                                                'name'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                    <CaretDown
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'desc',
+                                                                                'name'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
                                                                     Meal Title
                                                                 </template>
                                                                 <template
@@ -81,7 +119,7 @@ import Filters from "./Filter.vue";
                                                                     />
                                                                 </template>
                                                             </TableHeadVue>
-                                                            
+
                                                             <TableHeadVue>
                                                                 <template
                                                                     #title
@@ -293,7 +331,8 @@ import Filters from "./Filter.vue";
                                         <div class="p-6 mt-1">
                                             <Filters
                                                 :filters="filters"
-                                                @filter-update="updateOrders" @close-modal="closeModal"
+                                                @filter-update="updateOrders"
+                                                @close-modal="closeModal"
                                             />
                                         </div>
                                     </div>
@@ -323,6 +362,24 @@ export default {
             newEventModalVisible: false,
         };
     },
+    computed: {
+        firstWord() {
+            // Check if $page.props.auth.user.name is defined
+            if (
+                this.$page.props.auth &&
+                this.$page.props.auth.user &&
+                this.$page.props.auth.user.name
+            ) {
+                // Split the name string into an array of words
+                const words = this.$page.props.auth.user.name.split(" ");
+
+                // Return the first word
+                return words[0];
+            } else {
+                return ""; // Return an empty string if $page.props.auth.user.name is undefined
+            }
+        },
+    },
 
     methods: {
         updateOrders(newOrders) {
@@ -336,7 +393,6 @@ export default {
         Sorting(sort, name) {
             axios
                 .get("/api/sort", {
-
                     params: {
                         ...this.filters,
                         sort: sort,
@@ -346,13 +402,13 @@ export default {
                 })
                 .then((resp) => {
                     // console.log(resp.data.meal_orders);
-                    this.orders  = resp.data.meal_orders;
+                    this.orders = resp.data.meal_orders;
                 })
                 .catch((err) => {
                     console.error(err);
                 });
         },
-        
+
         openModal() {
             this.newEventModalVisible = true;
         },

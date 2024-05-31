@@ -1,13 +1,12 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 
-import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
 defineProps(["meal"]);
 </script>
 <template>
+    <td class="whitespace-nowrap pl-6 py-3 font-bold">
+       {{meal.id}}
+    </td>
     <td class="whitespace-nowrap px-6 py-3 font-bold">
         <Link  :href="`/cook/order/${meal.id}`"  class="flex items-center j">
             <div class="w-16 h-16">
@@ -27,10 +26,10 @@ defineProps(["meal"]);
         {{ meal.meal_time }}
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        {{ FormattedDate(meal.created_at) }}
+        {{ meal.start_date }}
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        {{ meal.start_date }}
+        {{ FormattedDate(meal.created_at) }}
     </td>
 
     <td class="whitespace-nowrap px-6 py-3 text-center font-semibold">
@@ -40,7 +39,7 @@ defineProps(["meal"]);
             </p>
         </div>
     </td>
-    <!--  -->
+    
 
   
 </template>
@@ -54,20 +53,7 @@ export default {
             user_name: "",
             message: "",
             error: "",
-            newEventModalVisible: false,
-
-            newRating: {
-                meal_id: "",
-                user_id: "",
-                presentation: 0,
-                taste: 0,
-                value: 0,
-                nutrition: 0,
-                portion_size: 0,
-                freshness: 0,
-                total: 0,
-                comment: "",
-            },
+          
         };
     },
     created() {
@@ -75,53 +61,9 @@ export default {
         this.truncatedIng();
         this.getImage();
     },
-    mounted() {
-        // console.log(this.newRating);
-
-        this.isToday();
-    },
-    computed: {
-        totalRating() {
-            // Convert the individual ratings to numbers
-            const presentation = parseFloat(this.newRating.presentation);
-            const taste = parseFloat(this.newRating.taste);
-            const value = parseFloat(this.newRating.value);
-            const nutrition = parseFloat(this.newRating.nutrition);
-            const portion_size = parseFloat(this.newRating.portion_size);
-            const freshness = parseFloat(this.newRating.freshness);
-            const overall = parseFloat(this.newRating.total);
-            // Check if any rating is not a number
-            if (
-                isNaN(presentation) ||
-                isNaN(taste) ||
-                isNaN(value) ||
-                isNaN(nutrition) ||
-                isNaN(portion_size) ||
-                isNaN(overall) ||
-                isNaN(freshness)
-            ) {
-                return null; // Return null if any rating is invalid
-            }
-            // Calculate the total rating
-            const total =
-                (presentation +
-                    taste +
-                    value +
-                    nutrition +
-                    portion_size +
-                    freshness +
-                    overall) /
-                7;
-            // Return the total rating rounded to two decimal places
-            return Math.round(total * 100) / 100;
-        },
-    },
+   
     methods: {
-        isToday(dateString) {
-            const date = new Date(dateString);
-            const today = new Date();
-            return date.toDateString() < today.toDateString();
-        },
+       
         getImage() {
             const id = this.meal.meal.id;
             axios

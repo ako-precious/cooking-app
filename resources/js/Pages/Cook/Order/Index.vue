@@ -261,6 +261,35 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                     "
                                                 >
                                                     <template #title>
+                                                        #Order ID
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp
+                                                            @click="
+                                                                sort(
+                                                                    'meal_title',
+                                                                    true
+                                                                )
+                                                            "
+                                                        />
+                                                        <CaretDown
+                                                            @click="
+                                                                sort(
+                                                                    'meal_title',
+                                                                    false
+                                                                )
+                                                            "
+                                                        />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue
+                                                    @click="sort('meal_title')"
+                                                    :active="
+                                                        selected ===
+                                                        'meal_title'
+                                                    "
+                                                >
+                                                    <template #title>
                                                         Meal Title
                                                     </template>
                                                     <template #symbols>

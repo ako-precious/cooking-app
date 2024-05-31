@@ -4,6 +4,9 @@ import ChangeStatus from "@/Pages/Cook/Order/ChangeStatus.vue";
 defineProps(["order"]);
 </script>
 <template>
+    <td class="whitespace-nowrap pl-6 py-3 font-bold">      
+        {{meal.id}}
+    </td>
     <td class="whitespace-nowrap px-6 py-3 font-bold">
       
         <Link  :href="`/cook/order/${meal.id}`"  class="flex items-center j">
