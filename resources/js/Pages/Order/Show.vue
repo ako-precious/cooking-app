@@ -158,9 +158,13 @@ import ChangeStatus from "@/Pages/Cook/Order/ChangeStatus.vue";
                             >
                                 Change Status:
                             </h5>
-                            <div v-if="order.meal.id == $page.props.auth.user.id">
+                            <div v-if="order.meal.cook_id == $page.props.auth.user.id">
+                                <ChangeStatus :order="order" @status-update="updateStatus"></ChangeStatus>
                             </div>
-                            <ChangeStatus :order="order" @status-update="updateStatus"></ChangeStatus>
+                            <div v-if="order.user_id == $page.props.auth.user.id">
+                                <ChangeStatus :order="order" @status-update="updateStatus"></ChangeStatus>
+                            </div>
+
                         </div>
                         <div class="flex my-1 flex-col">
                             <p

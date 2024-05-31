@@ -3,7 +3,7 @@ defineProps(["order"]);
 </script>
 <template>
     <div
-        v-if="  checkIfTodayOrAfter(meal.start_date)"
+        v-if="checkIfTodayOrAfter(meal.start_date)"
         class="bg text-xl z-20 flex items-center"
     >
         <div v-if="meal.status == 'pending'" class="flex">
@@ -69,8 +69,10 @@ export default {
     emits: ["statusUpdate"],
     methods: {
         checkIfTodayOrAfter(dateString) {
-             const start_date = new Date(dateString);
-            const parsedDate = new Date( start_date.getTime() + (1000 * 60 * 60 * 24));
+            const start_date = new Date(dateString);
+            const parsedDate = new Date(
+                start_date.getTime() + 1000 * 60 * 60 * 24
+            );
             return parsedDate >= new Date();
         },
         ChangeStatus(status) {

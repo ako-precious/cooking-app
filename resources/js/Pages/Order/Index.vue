@@ -81,33 +81,7 @@ import Filters from "./Filter.vue";
                                                                     />
                                                                 </template>
                                                             </TableHeadVue>
-                                                            <!-- <TableHeadVue>
-                                                                <template
-                                                                    #title
-                                                                >
-                                                                    Cook's NAme
-                                                                </template>
-                                                                <template
-                                                                    #symbols
-                                                                >
-                                                                    <CaretUp
-                                                                        @click="
-                                                                            Sorting(
-                                                                                'asc',
-                                                                                'cook'
-                                                                            )
-                                                                        "
-                                                                    />
-                                                                    <CaretDown
-                                                                        @click="
-                                                                            Sorting(
-                                                                                'desc',
-                                                                                'cook'
-                                                                            )
-                                                                        "
-                                                                    />
-                                                                </template>
-                                                            </TableHeadVue> -->
+                                                            
                                                             <TableHeadVue>
                                                                 <template
                                                                     #title
@@ -168,6 +142,33 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #title
                                                                 >
+                                                                    Date Ordered
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
+                                                                    <CaretUp
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'asc',
+                                                                                'start_date'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                    <CaretDown
+                                                                        @click="
+                                                                            Sorting(
+                                                                                'desc',
+                                                                                'start_date'
+                                                                            )
+                                                                        "
+                                                                    />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
                                                                     status
                                                                 </template>
                                                                 <template
@@ -189,6 +190,16 @@ import Filters from "./Filter.vue";
                                                                             )
                                                                         "
                                                                     />
+                                                                </template>
+                                                            </TableHeadVue>
+                                                            <TableHeadVue>
+                                                                <template
+                                                                    #title
+                                                                >
+                                                                </template>
+                                                                <template
+                                                                    #symbols
+                                                                >
                                                                 </template>
                                                             </TableHeadVue>
                                                             <TableHeadVue>
