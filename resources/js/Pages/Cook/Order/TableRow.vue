@@ -29,7 +29,7 @@ defineProps(["order"]);
         {{ meal.start_date }}
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        {{ FormattedDate(meal.created_at) }}
+        {{ FormattedDate(meal.created_at)  }}
     </td>
 
     <td class="whitespace-nowrap px-6 py-3 text-center font-semibold">

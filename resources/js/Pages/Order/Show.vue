@@ -239,11 +239,7 @@ export default {
         selectedDiv(status) {
             this.selected = status;
         },
-        isToday(dateString) {
-            const date = new Date(dateString);
-            const today = new Date();
-            return date.toDateString() < today.toDateString();
-        },
+        
         formatDate(value) {
             if (value) {
                 return new Date(value).toISOString().substring(0, 10);

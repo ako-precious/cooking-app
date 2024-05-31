@@ -2,10 +2,8 @@
 defineProps(["order"]);
 </script>
 <template>
-    {{ isToday(meal.start_date) }}
-
     <div
-        v-if="isToday(meal.start_date)"
+        v-if="  checkIfTodayOrAfter(meal.start_date)"
         class="bg text-xl z-20 flex items-center"
     >
         <div v-if="meal.status == 'pending'" class="flex">
@@ -68,16 +66,12 @@ export default {
             meal_photo: "",
         };
     },
-    mounted() {
-        this.isToday();
-    },
-    emits: ['statusUpdate'],
+    emits: ["statusUpdate"],
     methods: {
-        isToday(dateString) {
-            const date = new Date(dateString);
-            const today = new Date();
-           
-            return date.toDateString() >= today.toDateString();
+        checkIfTodayOrAfter(dateString) {
+             const start_date = new Date(dateString);
+            const parsedDate = new Date( start_date.getTime() + (1000 * 60 * 60 * 24));
+            return parsedDate >= new Date();
         },
         ChangeStatus(status) {
             axios
