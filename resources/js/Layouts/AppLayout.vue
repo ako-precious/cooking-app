@@ -213,7 +213,17 @@ const logout = () => {
             <!-- end Navbar -->
 
             <!-- cards -->
-            <div class="w-full px-6 py-6 mx-auto">
+            <div class=" w-full px-6 py-6 mx-auto">
+                <div class="pt-5 x-4 container">
+                            <h1
+                                class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
+                            >
+                                Great to see you,
+                                <span class="capitalize">
+                                    {{ firstWord }}
+                                </span>
+                            </h1>
+                        </div>
                 <slot>Default</slot>
                 <!-- <FullCalendar></FullCalendar> -->
                 <!-- footer -->
@@ -246,6 +256,25 @@ export default {
         this.updateTextBasedOnFilePath(window.location.pathname);
         this.truncatedIng();
     },
+    computed: {
+        firstWord() {
+            // Check if $page.props.auth.user.name is defined
+            if (
+                this.$page.props.auth &&
+                this.$page.props.auth.user &&
+                this.$page.props.auth.user.name
+            ) {
+                // Split the name string into an array of words
+                const words = this.$page.props.auth.user.name.split(" ");
+
+                // Return the first word
+                return words[0];
+            } else {
+                return ""; // Return an empty string if $page.props.auth.user.name is undefined
+            }
+        },
+    },
+
     methods: {
         truncatedIng(description) {
             // Check if description exists and has more than 30 characters

@@ -18,21 +18,11 @@ import Filters from "./Filter.vue";
             <div
                 class="container py-6 relative mx-auto text-oynx dark:text-snow"
             >
-                <div class="py-3">
+                <div class="">
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
-                        <div class="py-5 x-4">
-                            <h1
-                                class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
-                            >
-                                Great to see you,
-                                <span class="capitalize">
-                                    {{ firstWord }}
-                                    <!-- {{ firstWord($page.props.auth.user.name ) }} -->
-                                </span>
-                            </h1>
-                        </div>
+                        
                         <div class="w-full flex justify-end">
                             
                         </div>
@@ -362,25 +352,7 @@ export default {
             newEventModalVisible: false,
         };
     },
-    computed: {
-        firstWord() {
-            // Check if $page.props.auth.user.name is defined
-            if (
-                this.$page.props.auth &&
-                this.$page.props.auth.user &&
-                this.$page.props.auth.user.name
-            ) {
-                // Split the name string into an array of words
-                const words = this.$page.props.auth.user.name.split(" ");
-
-                // Return the first word
-                return words[0];
-            } else {
-                return ""; // Return an empty string if $page.props.auth.user.name is undefined
-            }
-        },
-    },
-
+   
     methods: {
         updateOrders(newOrders) {
             this.orders = newOrders;
