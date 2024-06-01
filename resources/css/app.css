@@ -31,6 +31,9 @@
     .navbar-link{
         @apply ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1  hover:bg-gradient-to-br hover:from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 hover:dark:bg-gradient-to-br hover:dark:from-[#2b312e] hover:dark:to-[#333a37]   transition-all duration-250 delay-75 ease-in
     }
+    .any-link{
+        @apply ml-2 relative inline-block  text-oynx active:text-persian hover:text-persian dark:text-snow dark:active:text-lighred dark:hover:text-persian dark:bg-oynx  transition-all duration-250 delay-75 ease-in
+    }
     .shadow-small{
         @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-none transition-all duration-250 ease-in delay-75
     }

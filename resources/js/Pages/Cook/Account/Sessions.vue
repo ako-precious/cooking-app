@@ -209,18 +209,11 @@ export default {
         initializeStripe();
     },
     methods: {
-        // chooseStatus(status) {
-        //     this.orders = status;
-        // },
+      
         selectedDiv(status) {
             this.selected = status;
         },
-        // sort(key, ascending) {
-        //     this.selected = key;
-        //     if (!ascending) {
-        //         this.orders = this.orders.map((order) => order.reverse());
-        //     }
-        // },
+       
     },
 };
 </script>

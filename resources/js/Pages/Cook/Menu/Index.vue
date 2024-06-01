@@ -27,7 +27,6 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 Glad you're back,
                                 <span class="capitalize">
                                     {{ firstWord }}
-                                    <!-- {{ firstWord($page.props.auth.user.name ) }} -->
                                 </span>
                             </h1>
                         </div>
@@ -38,7 +37,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 <h1 class="lg:text-lg text-oynx dark:text-snow">
                                     Verify your Account
                                     <Link
-                                        :href="`/cook/account`"
+                                        :href="`/Onboarding-verify-your-account/${$page.props.auth.user.id}`"
                                         class="text-persian underline"
                                         >here</Link
                                     >
