@@ -239,6 +239,6 @@ class AccountController extends Controller
 
     public function verify($id){
         
-        return inertia('Cook/Account/Index', []);
+        return inertia('Cook/Account/Verify', []);
     }
 }
