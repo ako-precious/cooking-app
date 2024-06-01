@@ -234,8 +234,11 @@ class AccountController extends Controller
         $accountModel->save();
 
         return response()->json(['url' => $link->url]);
-        // return redirect($link->url);
 
+    }
 
+    public function verify($id){
+        
+        return inertia('Cook/Account/Index', []);
     }
 }
