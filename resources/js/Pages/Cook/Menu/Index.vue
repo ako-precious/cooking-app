@@ -14,6 +14,7 @@ import CaretUp from "@/Components/CaretUp.vue";
     >
         <div class="container relative mx-auto overflow-hidden">
             <HeaderVue> </HeaderVue>
+            
             <div
                 class="m-auto flex flex-col justify-center h-full p-6 lg:pb-20 w-full"
             >
@@ -35,7 +36,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                         >
                             <div class="py-3">
                                 <h1 class="lg:text-lg text-oynx dark:text-snow">
-                                    Setup your payment account
+                                    Verify your Account
                                     <Link
                                         :href="`/cook/account`"
                                         class="text-persian underline"
@@ -43,7 +44,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     >
                                 </h1>
                                 <h1 class="lg:text-lg text-oynx dark:text-snow">
-                                   verify your food handling certificate 
+                                    Setup your payment account
                                     <Link
                                         :href="`/cook/account`"
                                         class="text-persian underline"
@@ -52,6 +53,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 </h1>
                             </div>
                         </div>
+
                         <div
                             class="flex flex-col md:flex-row items-start justify-between md:items-center"
                         >
@@ -71,7 +73,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         >
                                             <span
                                                 class="span-mother flex overflow-hidden"
-                                            > 
+                                            >
                                                 <span>Vi</span>
                                                 <span>ew </span>
                                                 <span>A</span>
@@ -79,10 +81,13 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 <span>ou</span>
                                                 <span
                                                     >nt
-                                                    <font-awesome-icon icon="plus"
+                                                    <font-awesome-icon
+                                                        icon="plus"
                                                 /></span>
                                             </span>
-                                            <span class="span-mother2 text-persian">
+                                            <span
+                                                class="span-mother2 text-persian"
+                                            >
                                                 <span>Cr</span>
                                                 <span>ea</span>
                                                 <span>t</span>
@@ -90,7 +95,8 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 <span>ea</span>
                                                 <span
                                                     >l
-                                                    <font-awesome-icon icon="plus"
+                                                    <font-awesome-icon
+                                                        icon="plus"
                                                 /></span>
                                             </span></button
                                     ></Link>
@@ -110,10 +116,13 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 <span>ea</span>
                                                 <span
                                                     >l
-                                                    <font-awesome-icon icon="plus"
+                                                    <font-awesome-icon
+                                                        icon="plus"
                                                 /></span>
                                             </span>
-                                            <span class="span-mother2 text-persian">
+                                            <span
+                                                class="span-mother2 text-persian"
+                                            >
                                                 <span>Cr</span>
                                                 <span>ea</span>
                                                 <span>t</span>
@@ -121,7 +130,8 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 <span>ea</span>
                                                 <span
                                                     >l
-                                                    <font-awesome-icon icon="plus"
+                                                    <font-awesome-icon
+                                                        icon="plus"
                                                 /></span>
                                             </span></button
                                     ></Link>
@@ -141,10 +151,13 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 <span>ea</span>
                                                 <span
                                                     >l
-                                                    <font-awesome-icon icon="plus"
+                                                    <font-awesome-icon
+                                                        icon="plus"
                                                 /></span>
                                             </span>
-                                            <span class="span-mother2 text-persian">
+                                            <span
+                                                class="span-mother2 text-persian"
+                                            >
                                                 <span>Cr</span>
                                                 <span>ea</span>
                                                 <span>t</span>
@@ -152,7 +165,8 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 <span>ea</span>
                                                 <span
                                                     >l
-                                                    <font-awesome-icon icon="plus"
+                                                    <font-awesome-icon
+                                                        icon="plus"
                                                 /></span>
                                             </span></button
                                     ></Link>
