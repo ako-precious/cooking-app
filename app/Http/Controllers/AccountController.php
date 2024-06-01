@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Account;
 use App\Models\User;
+use App\Models\Cook;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -52,39 +53,7 @@ class AccountController extends Controller
 
     }
 
-    public function azure_return(Request $request)
-    {
-        return Socialite::driver("azure")->redirect();
-    }
-    public function azure_callback(Request $request)
-    {
-        // $azure = Socialite::driver('azure')->user();
-        // dd($azure);
-        $azure = Socialite::driver('azure')->user();
-
-        // Log::info('Azure User Info:', $azure->toArray());
-
-
-        // $azure =  Socialite::driver('microsoft')->user();
-        // $find_user = User::firstWhere('google_id', $googleUser->id);
-        // if($find_user){
-        //     Auth::login($find_user);
-        //     return redirect('/');
-        // }else{
-
-        //     $user = User::updateOrCreate(['email' => $googleUser->email],
-        //     ['name' => $googleUser->name,
-        //     'google_id' => $googleUser->id,
-        //       'password'=> Hash::make(Str::random(12)) ,
-        //     'profile_photo_path' => $googleUser->avatar,
-        //     'email_verified_at' => now()]);
-
-        //     Auth::login($user);
-        //     return redirect('/user/profile');
-        // }
-        //  dd($azure);
-
-    }
+   
     public function fb_return(Request $request)
     {
         return Socialite::driver("facebook")->redirect();
@@ -237,8 +206,24 @@ class AccountController extends Controller
 
     }
 
-    public function verify($id){
+    public function verify( ){
         
         return inertia('Cook/Account/Verify', []);
+    }
+    public function uploadVerification(Request $request, $id ){
+        $request->validate([
+            'photo_identification' => 'required|image|max:4096', // 4MB max
+            'food_handling_certificate' => 'required|image|max:4096', // 4MB max
+        ]);
+
+        $photoPath = $request->file('photo_identification')->store('uploads', 'public');
+        $certificatePath = $request->file('food_handling_certificate')->store('uploads', 'public');
+
+        $cook = Cook::where('user_id', $id )->first();
+        $cook->means_of_id = $photoPath;
+        $cook->certificate = $certificatePath;
+        $cook->save();
+
+        return response()->json(['message' => 'Files uploaded successfully', 'data' => $cook]);
     }
 }

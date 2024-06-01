@@ -26,7 +26,6 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 Glad you're back,
                                 <span class="capitalize">
                                     {{ firstWord }}
-                                    <!-- {{ firstWord($page.props.auth.user.name ) }} -->
                                 </span>
                             </h1>
                         </div>

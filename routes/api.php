@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MealScheduleController;
@@ -23,6 +24,7 @@ Route::resource('/rating', RatingController::class);
 Route::get('ratings/{id}', [RatingController::class, 'rating']);
 
 Route::get('/sort', [OrdersController::class, 'sort']);
+Route::post('/upload-verification/{id}', [AccountController::class, 'uploadVerification']);
 
 
 

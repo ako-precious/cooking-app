@@ -3,7 +3,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 </script>
 <template>
     <div class="flex items-center justify-center min-h-screen">
-        <div class="shadow-small rounded-lg p-8 max-w-lg w-full text-oynx dark-snow">
+        <div class="shadow-small rounded-lg p-8 max-w-lg w-full text-oynx dark:text-snow">
             <div class="text-center mb-8">
                 <img src="/images/verified.png" alt="currencyfair logo" class="mx-auto mb-4" />
                 <h2 class="text-2xl font-semibold">Verify your Identity</h2>
@@ -147,7 +147,7 @@ export default {
             formData.append('photo_identification', this.$refs.fileInput.files[0]);
             formData.append('food_handling_certificate', this.$refs.fileInput2.files[0]);
 
-            axios.post('/api/upload', formData, {
+            axios.post('/api/upload-verification/'+ this.$page.props.auth.user.id, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
