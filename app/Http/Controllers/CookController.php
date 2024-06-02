@@ -20,12 +20,12 @@ class CookController extends Controller
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code.
-            $menu = Meal::where('cook_id', $user_id)->with('mealPhotos')->get();            
-            $account = Account::firstWhere('user_id', $user_id);            
+            $menu = Meal::where('cook_id', $user_id)->with('mealPhotos')->get();
+            $account = Account::firstWhere('user_id', $user_id);
             return inertia('Cook/Menu/Index', ['menu' => $menu, 'account' => $account]);
         } else {
             # code...
-            return redirect()->route('welcome');
+            return redirect()->route('cook.setup');
         }
     }
 
@@ -44,7 +44,7 @@ class CookController extends Controller
             return inertia('Cook/BecomeCook/index', ['pending' => $pending]);
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function store(Request $request)
@@ -67,7 +67,7 @@ class CookController extends Controller
     {
         $user_id =   Auth::id();
         $cook = Cook::firstWhere('user_id', $user_id);
-        $notifications = Notification::where('user_id',$user_id)->where('status', 'unread')->orderBy('created_at', 'desc')->get();
+        $notifications = Notification::where('user_id', $user_id)->where('status', 'unread')->orderBy('created_at', 'desc')->get();
 
         if ($cook !== null) {
             $checkUser =  Cook::firstWhere('user_id', $user_id)->exists();
@@ -80,11 +80,16 @@ class CookController extends Controller
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code...
+            
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/AboutYourMeal', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/AboutYourMeal', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function overview($newMealId)
@@ -94,10 +99,15 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/Overview', ['Meal' => $Meal]);
+
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/Overview', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function region($newMealId)
@@ -107,25 +117,17 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/MealArea', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/MealArea', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
-    public function stat($newMealId)
-    {
-        $user_id =   Auth::id();
-        $cook = Cook::firstWhere('user_id', $user_id);
-        if ($cook !== null) {
-            # code...
-            $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/MealArea', ['Meal' => $Meal]);
-        } else {
-            # code...
-            return redirect()->route('welcome',);
-        }
-    }
+  
     public function cook_limit($newMealId)
     {
         $user_id =   Auth::id();
@@ -133,10 +135,14 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/CookingLimit', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/CookingLimit', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function spotlight($newMealId)
@@ -146,10 +152,14 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/StealShow', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/StealShow', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function ingredients($newMealId)
@@ -159,10 +169,14 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/Ingredients', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/Ingredients', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function photos($newMealId)
@@ -171,12 +185,16 @@ class CookController extends Controller
         $cook = Cook::firstWhere('user_id', $user_id);
         if ($cook !== null) {
             # code...
-            $Meal = Meal::find($newMealId);
-            $mealPhotos = MealPhotos::where('meal_id', $newMealId)->orderBy('order', 'asc')->get();
-            return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal, 'mealPhotos' => $mealPhotos]);
+             $Meal = Meal::find($newMealId);
+            if ($user_id == $Meal->cook_id) {
+                $mealPhotos = MealPhotos::where('meal_id', $newMealId)->orderBy('order', 'asc')->get();
+                return inertia('Cook/BecomeCook/Photos', ['Meal' => $Meal, 'mealPhotos' => $mealPhotos]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup');
         }
     }
     public function title($newMealId)
@@ -186,10 +204,14 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/Title', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/Title', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function finish_up($newMealId)
@@ -199,10 +221,14 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/LetItOut', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/LetItOut', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function ordering_preference($newMealId)
@@ -212,10 +238,14 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/OrderingPreference', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/OrderingPreference', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
 
@@ -226,10 +256,14 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::find($newMealId);
-            return inertia('Cook/BecomeCook/PriceSetting', ['Meal' => $Meal]);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/PriceSetting', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
     public function final_overview($newMealId)
@@ -239,17 +273,21 @@ class CookController extends Controller
         if ($cook !== null) {
             # code...
             $Meal = Meal::with('user')->find($newMealId);
-            if ($Meal->name == Null || $Meal->region == Null || $Meal->description == Null || $Meal->price == Null || $Meal->ingredients == Null || $Meal->cooking_limit == Null || $Meal->status == Null || $Meal->ordering_preferences == Null) {
-                return redirect()->route('become-a-cook');
+            if ($user_id == $Meal->cook_id) {
+                if ($Meal->name == Null || $Meal->region == Null || $Meal->description == Null || $Meal->price == Null || $Meal->ingredients == Null || $Meal->cooking_limit == Null || $Meal->status == Null || $Meal->ordering_preferences == Null) {
+                    return redirect()->route('become-a-cook');
+                }
+    
+                $mealData = MealResource::make($Meal);
+                // dd($mealData);
+                return inertia('Cook/BecomeCook/MealOverview', ['meal' => $mealData]);
+            } else {
+                return redirect()->route('menu.index');
             }
-
-            $mealData = MealResource::make($Meal);
-            // dd($mealData);
-            return inertia('Cook/BecomeCook/MealOverview', ['meal' => $mealData]);
             // return inertia('Cook/BecomeCook/MealOverview', response()->json(['meal' => MealResource::make($Meal)]));
         } else {
             # code...
-            return redirect()->route('welcome',);
+            return redirect()->route('cook.setup',);
         }
     }
 }

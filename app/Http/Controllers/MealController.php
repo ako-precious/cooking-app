@@ -25,10 +25,14 @@ class MealController extends Controller
     }
     public function region(Request $request, $id )
     {
-      $meal =  Meal::find($id); 
-        $meal->region = $request->region; 
-        $meal->save();
-        return response()->json(['meal' => $meal]);
+        $user_id = Auth::id();
+        $meal =  Meal::find($id); 
+        if ($user_id == $meal->cook_id) {
+            # code...
+            $meal->region = $request->region; 
+            $meal->save();
+            return response()->json(['meal' => $meal]);
+        }
     }
    
     public function limit(Request $request, $id )
