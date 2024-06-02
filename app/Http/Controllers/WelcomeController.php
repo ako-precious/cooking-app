@@ -19,12 +19,12 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $mealSchedules =  Meal::whereHas('cook', function($query) {
-            $query->where('status', 'available');
-        })->where('status', 'available')
-          ->paginate(12);
+        // $mealSchedules = Meal::whereHas('cook', function($query) {
+        //     $query->where('status', 'available');
+        // })->where('status', 'available')
+        //   ->paginate(12);
         
-        dd($mealSchedules);
+        // dd($mealSchedules);
 
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
@@ -39,7 +39,7 @@ class WelcomeController extends Controller
         // $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(12);
         $mealSchedules = Meal::whereHas('cook', function ($query) {
             $query->where('status', 'available');
-        })->where('status', 'available')->latest()
+        })->with('user')->where('status', 'available')->latest()
             ->paginate(12);
 
         return response()->json(MealResource::collection($mealSchedules));

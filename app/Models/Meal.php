@@ -26,7 +26,7 @@ class Meal extends Model
     }
     public function cook(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'cook_id', 'id');
+        return $this->belongsTo(Cook::class, 'cook_id', 'user_id');
     }
 
     public function meal_schedule(): HasMany
