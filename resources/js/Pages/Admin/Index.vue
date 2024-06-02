@@ -1,0 +1,256 @@
+<script setup>
+import { Head, Link } from "@inertiajs/vue3";
+import TableHeadVue from "@/Components/Table/TableHead.vue";
+import TableRow from "./TableRow.vue";
+// import HeaderVue from "../Header.vue";
+import CaretDown from "@/Components/CaretDown.vue";
+import CaretUp from "@/Components/CaretUp.vue";
+</script>
+
+<template>
+    <Head title="Menu" />
+    <div
+        class="relative sm:flex sm:justify-center sm:items-center bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
+    >
+        <div class="container relative mx-auto overflow-hidden">
+            <HeaderVue> </HeaderVue>
+
+            <div
+                class="m-auto flex flex-col justify-center h-full p-6 lg:pb-20 w-full"
+            >
+                <div class="lg:w-full">
+                    <div class="flex flex-col w-full">
+                        
+                     
+                        <div
+                            class="flex flex-col md:flex-row items-start justify-between md:items-center"
+                        >
+                            <div class="py-3">
+                                <h1
+                                    class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
+                                >
+                                    You have {{ accounts.length }} meal(s) in our
+                                    menu
+                                </h1>
+                            </div>
+                            
+                        </div>
+                 {{ accounts }}
+                        <div class="sm:-mx-6 lg:-mx-8">
+                            <div
+                                class="inline-block w-full py-2 sm:px-6 lg:px-8"
+                            >
+                                <div
+                                    class="overflow-x-scroll disable-scrollbars"
+                                >
+                                    <table
+                                        class="w-full px-4 text-left text-sm font-light relative"
+                                    >
+                                        <thead
+                                            class="align-bottom shadow-sm translate-x-0 sticky top-1"
+                                        >
+                                            <tr>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Name
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Email
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                       Photo ID
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>                                               
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        Certificate
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        status
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr
+                                                title="Click to edit"
+                                                v-if="menu.length > 0"
+                                                v-for="meal in menu"
+                                                :key="meal.id"
+                                                class="animate-fade-in border-b py-4 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
+                                            >
+                                                <TableRow :meal="meal">
+                                                </TableRow>
+                                            </tr>
+                                            <tr
+                                                v-else
+                                                class="animate-fade-in border-b py-4 mx-auto"
+                                            >
+                                                <td colspan="6">
+                                                    <div
+                                                        class="py-6 italic text-lg text-center text-oynx dark:text-snow max-w-xl mx-auto"
+                                                    >
+                                                        You have nothing here.
+                                                        click
+                                                        <Link
+                                                            :href="`/become-a-cook`"
+                                                            class="font-semibold"
+                                                            >here
+                                                        </Link>
+                                                        to add
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+    props: {
+        accounts: Object,
+    },
+    computed: {
+        firstWord() {
+            // Check if $page.props.auth.user.name is defined
+            if (
+                this.$page.props.auth &&
+                this.$page.props.auth.user &&
+                this.$page.props.auth.user.name
+            ) {
+                // Split the name string into an array of words
+                const words = this.$page.props.auth.user.name.split(" ");
+
+                // Return the first word
+                return words[0];
+            } else {
+                return ""; // Return an empty string if $page.props.auth.user.name is undefined
+            }
+        },
+    },
+};
+</script>
+
+<style scoped>
+button:hover .span-mother {
+    position: absolute;
+}
+
+button:hover .span-mother span {
+    transform: translateY(1.3em);
+}
+
+button .span-mother span:nth-child(1) {
+    transition: 0.2s;
+}
+
+button .span-mother span:nth-child(2) {
+    transition: 0.3s;
+}
+
+button .span-mother span:nth-child(3) {
+    transition: 0.4s;
+}
+
+button .span-mother span:nth-child(4) {
+    transition: 0.5s;
+}
+
+button .span-mother span:nth-child(5) {
+    transition: 0.6s;
+}
+
+button .span-mother span:nth-child(6) {
+    transition: 0.7s;
+}
+button .span-mother2 {
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+}
+
+button .span-mother2 span {
+    transform: translateY(-1.5em);
+}
+
+button:hover .span-mother2 span {
+    transform: translateY(0);
+}
+
+button .span-mother2 span {
+    transition: 0.2s;
+}
+
+button .span-mother2 span:nth-child(2) {
+    transition: 0.3s;
+}
+
+button .span-mother2 span:nth-child(3) {
+    transition: 0.4s;
+}
+
+button .span-mother2 span:nth-child(4) {
+    transition: 0.5s;
+}
+
+button .span-mother2 span:nth-child(5) {
+    transition: 0.6s;
+}
+
+button .span-mother2 span:nth-child(6) {
+    transition: 0.7s;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        bottom: -10rem;
+    }
+    to {
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.5s ease-in;
+}
+</style>

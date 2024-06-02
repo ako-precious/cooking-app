@@ -216,8 +216,8 @@ class AccountController extends Controller
             'food_handling_certificate' => 'required|image|max:4096', // 4MB max
         ]);
 
-        $photoPath = $request->file('photo_identification')->store('uploads', 'public');
-        $certificatePath = $request->file('food_handling_certificate')->store('uploads', 'public');
+        $photoPath = $request->file('photo_identification')->store('photo_id', 'public');
+        $certificatePath = $request->file('food_handling_certificate')->store('certificates', 'public');
 
         $cook = Cook::where('user_id', $id )->first();
         $cook->means_of_id = $photoPath;

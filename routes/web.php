@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CookController;
 use App\Http\Controllers\WelcomeController;
@@ -11,7 +12,6 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Cook;
-use App\Models\Rating;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -128,8 +128,8 @@ Route::middleware([
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients']);
     
     Route::resource('cook/account', AccountController::class);
+    Route::resource('ako-precious', AdminController::class);
     Route::post('account-link/{id}', [AccountController::class, 'account_link']);
-    Route::post('/dashboard-link/{id}', [AccountController::class, 'dashboard_link']);
     Route::get('/account-session/{id}', [AccountController::class, 'account_session']);
     Route::get('/onboarding/verify-your-account', [AccountController::class, 'verify'])->name('verify_cook');
     //cook Controller
