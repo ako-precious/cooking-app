@@ -26,8 +26,12 @@ defineProps(["mealSchedule"]);
                         <span># {{ mealSchedule.id }}</span>
                     </p>
                     <p class="flex justify-between">
-                        <span class="text-gray-400">Order Time:</span>
+                        <span class="text-gray-400">Meal Time:</span>
                         <span>{{ mealSchedule.meal_time }}</span>
+                    </p>
+                    <p class="flex justify-between">
+                        <span class="text-gray-400">Order Time:</span>
+                        <span>{{   FormattedDate(mealSchedule.created_at) }}</span>
                     </p>
                     <p class="flex justify-between capitalize">
                         <span class="text-gray-400">Cook:</span>
@@ -156,6 +160,16 @@ export default {
     },
    
     methods:{
+      FormattedDate(timestamp) {
+            const date = new Date(timestamp);
+            const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+                .toString()
+                .padStart(2, "0")}-${date
+                .getDate()
+                .toString()
+                .padStart(2, "0")}`;
+            return formattedDate;
+        },
       Total(price) {
             const total = (7 / 100) * parseFloat(price);
             return (parseFloat(price) + total).toFixed(2);

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -13,12 +14,19 @@ use App\Models\User;
 use App\Models\MealSchedule;
 use App\Models\Meal;
 use Illuminate\Support\Facades\Http;
+
 class WelcomeController extends Controller
 {
-    public function index() {
+    public function index()
+    {
+        $mealSchedules =  Meal::whereHas('cook', function($query) {
+            $query->where('status', 'available');
+        })->where('status', 'available')
+          ->paginate(12);
         
-       
-          return Inertia::render('Welcome', [
+        dd($mealSchedules);
+
+        return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
@@ -28,29 +36,35 @@ class WelcomeController extends Controller
 
     public function meals()
     {
-        $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(12);
-        
+        // $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(12);
+        $mealSchedules = Meal::whereHas('cook', function ($query) {
+            $query->where('status', 'available');
+        })->where('status', 'available')->latest()
+            ->paginate(12);
+
         return response()->json(MealResource::collection($mealSchedules));
     }
-    public function filtered_meals(){
+    public function filtered_meals()
+    {
 
         $searchText = request('query');
         $query = Meal::where('status', 'available')->query();
         if ($searchText) {
             $query->where('name', 'like', "%$searchText%")
-                  ->orWhere('description', 'like', "%$searchText%");
+                ->orWhere('description', 'like', "%$searchText%");
         }
-      
+
         $mealSchedules =  $query->with('user')->latest()->paginate(12);
         return response()->json(MealResource::collection($mealSchedules));
     }
-     
-    public function users($id){
+
+    public function users($id)
+    {
         $user = User::find($id);
         $cook = Cook::where('user_id', $id)->get();
         $meals = Meal::where('cook_id', $id)->with('user')->where('status', 'available')->latest()->get();
         // dd(MealResource::collection($meals));
-        return Inertia::render('Profile/Index',['user' => $user, 'cook' => $cook, 'meals' => $meals] );
+        return Inertia::render('Profile/Index', ['user' => $user, 'cook' => $cook, 'meals' => $meals]);
     }
 
     public function autocomplete(Request $request)
