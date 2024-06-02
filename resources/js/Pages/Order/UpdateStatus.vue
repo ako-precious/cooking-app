@@ -32,7 +32,7 @@ defineProps(["meal"]);
             <div v-else-if="meal.status == 'delivered'">
                 
                 <div
-                    @click="ChangeStatus('confirmed')"
+                    @click="updateChange('confirmed')"
                     class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"
                 >
                     <p

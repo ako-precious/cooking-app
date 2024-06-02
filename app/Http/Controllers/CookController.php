@@ -22,7 +22,8 @@ class CookController extends Controller
             # code.
             $menu = Meal::where('cook_id', $user_id)->with('mealPhotos')->get();
             $account = Account::firstWhere('user_id', $user_id);
-            return inertia('Cook/Menu/Index', ['menu' => $menu, 'account' => $account]);
+            
+            return inertia('Cook/Menu/Index', ['menu' => $menu, 'account' => $account, 'cook' => $cook ]);
         } else {
             # code...
             return redirect()->route('cook.setup');
