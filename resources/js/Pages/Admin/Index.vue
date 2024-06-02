@@ -2,7 +2,6 @@
 import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
-// import HeaderVue from "../Header.vue";
 import CaretDown from "@/Components/CaretDown.vue";
 import CaretUp from "@/Components/CaretUp.vue";
 </script>
@@ -29,8 +28,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 <h1
                                     class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
                                 >
-                                    You have {{ accounts.length }} account(s) in our
-                                    accounts
+                                    You have {{ accounts.length }} cooks
                                 </h1>
                             </div>
                             

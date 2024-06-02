@@ -1,9 +1,31 @@
 <script setup>
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+
+import { Head, Link } from "@inertiajs/vue3";
+import HeaderVue from "../Header.vue";
+defineProps(["account"]);
 </script>
 <template>
-    <div class="flex items-center justify-center min-h-screen">
-        <div class="shadow-small rounded-lg p-8 max-w-lg w-full text-oynx dark:text-snow">
+    <Head title="Account Onboarding" />
+    <HeaderVue> </HeaderVue>
+    <div class="flex mt-10 items-center justify-center min-h-screen">
+        <div  v-if="account.status == 'pending' && account.certificate !== null  && account.certificate !== null " class="shadow-small rounded-lg p-8 max-w-lg w-full text-oynx dark:text-snow">
+            <div class="text-center m-8">
+                
+                <img src="/images/verified.png" alt="currencyfair logo" class="mx-auto mb-4" />
+                <h2 class="text-2xl font-semibold">Verifying your Identity</h2>
+                <p>Files uploaded successfully. Please wait patiently to be verified</p>
+            </div>
+        </div>
+        <div  v-else-if="account.status == 'available' && account.certificate !== null  && account.certificate !== null " class="shadow-small rounded-lg p-8 max-w-lg w-full text-oynx dark:text-snow">
+            <div class="text-center m-8">
+                
+                <img src="/images/verified.png" alt="currencyfair logo" class="mx-auto mb-4" />
+                <h2 class="text-2xl font-semibold"> Identity Verified </h2>
+                <p> Your Identity has been verified </p>
+            </div>
+        </div>
+        <div v-else class="shadow-small rounded-lg p-8 max-w-lg w-full text-oynx dark:text-snow">
             <div class="text-center mb-8">
                 <img src="/images/verified.png" alt="currencyfair logo" class="mx-auto mb-4" />
                 <h2 class="text-2xl font-semibold">Verify your Identity</h2>
@@ -98,16 +120,27 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 <script>
 export default {
+
     data() {
         return {
             imageSrc: null,
             imageSrc2: null,
             errorMessage: null,
             errorMessage2: null,
+            // success: '' ,
             show: "prev",
         };
     },
     methods: {
+        checkUserStatus(success){
+            if (this.account.status == 'pending' && this.account.certificate !== null  && this.account.certificate !== null ) {
+                success = 'Files uploaded successfully. Wait Patiently to be verified';
+            }
+            else if (this.account.status == 'available' && this.account.certificate !== null  && this.account.certificate !== null ) {
+                success = 'Files uploaded successfully. Wait Patiently to be verified';
+            }
+
+        },
         handleFileUpload(event) {
             const file = event.target.files[0];
             if (file) {
@@ -153,7 +186,8 @@ export default {
                 }
             })
             .then(response => {
-                console.log('Files uploaded successfully:', response.data);
+            //    this.success = 'Files uploaded successfully. Wait Patiently to be verified';
+               this.$inertia.visit(`/cook/account`);
                 // Handle success response
             })
             .catch(error => {

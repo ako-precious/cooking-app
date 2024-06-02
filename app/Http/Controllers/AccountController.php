@@ -207,8 +207,8 @@ class AccountController extends Controller
     }
 
     public function verify( ){
-        
-        return inertia('Cook/Account/Verify', []);
+        $account = Cook::where('user_id', Auth::id())->first();        
+        return inertia('Cook/Account/Verify', [ 'account'=> $account]);
     }
     public function uploadVerification(Request $request, $id ){
         $request->validate([

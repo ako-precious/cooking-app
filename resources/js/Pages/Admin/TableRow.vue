@@ -12,15 +12,15 @@ defineProps(["account"]);
       </td>
       <td class="whitespace-nowrap px-6 py-5 font-semibold dark:text-snow text-oynx">
         <img
-                        :src="truncatedImg(account.certificate)"
-                        :alt="truncatedImg(account.certificate)"
+                        :src="truncatedImg(account.means_of_id)"
+                        :alt="truncatedImg(account.means_of_id)"
                         class="w-full h-full object-cover rounded"
                     />
       </td>
       <td class="whitespace-nowrap px-6 py-5 font-semibold dark:text-snow text-oynx">
         <img
-                        :src="truncatedImg(account.means_of_id)"
-                        :alt="truncatedImg(account.means_of_id)"
+                        :src="truncatedImg(account.certificate)"
+                        :alt="truncatedImg(account.certificate)"
                         class="w-full h-full object-cover rounded"
                     />
       </td>
@@ -34,8 +34,11 @@ defineProps(["account"]);
           <div v-if="account.status == 'pending' " :href="`/account-session/${account.stripe_account_id}`" @click="Onboard(account.id, 'available')" class="p-2 cursor-pointer shadow-sm rounded-sm hover:shadow-xs group">
             <p class="text-base font-semibold group-action-text">Approve</p>
           </div>
-          <div v-if="account.status == 'available' " :href="`/account-session/${account.stripe_account_id}`" @click="Onboard(account.id, 'pending')" class="p-2 cursor-pointer shadow-sm rounded-sm hover:shadow-xs group">
+          <div v-if="account.status == 'pending' " :href="`/account-session/${account.stripe_account_id}`" @click="Onboard(account.id, 'unavailable')" class="p-2 ml-2 cursor-pointer shadow-sm rounded-sm hover:shadow-xs group">
             <p class="text-base font-semibold group-action-text">Disapprove</p>
+          </div>
+          <div v-if="account.status == 'available' " :href="`/account-session/${account.stripe_account_id}`" @click="Onboard(account.id, 'pending')" class="p-2 cursor-pointer shadow-sm rounded-sm hover:shadow-xs group">
+            <p class="text-base font-semibold group-action-text">Pending</p>
           </div>
         </div>
       </td>
