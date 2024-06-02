@@ -12,7 +12,7 @@ import InputLabel from "@/Components/InputLabel.vue";
         <template #info>
             <div class="container relative mx-auto overflow-hidden">
                 <div
-                    class="m-auto flex flex-col max-w-[1000px] justify-center h-full px-6 lg:pb-20 w-full"
+                    class="m-auto flex flex-col max-w-[1000px] justify-center h-full  lg:pb-20 w-full"
                 >
                     <div class="py-5 lg:pb-12">
                         <h1
@@ -34,7 +34,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                         <div
                                             class="m-auto flex lg:flex-col justify-center flex-wrap w-full p-4 mb-0 list-none rounded-xl"
                                         >
-                                            <div class="col-span-6">
+                                            <div class="py-5 w-full px-1">
                                                 <InputLabel
                                                     for="name"
                                                     value="Meal Title (Limit 50 char)"

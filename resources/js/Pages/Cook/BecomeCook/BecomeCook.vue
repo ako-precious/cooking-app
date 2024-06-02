@@ -24,7 +24,7 @@ import ApplicationMark from "@/Components/ApplicationMark.vue";
             </div>
         </div>
         <div
-            class="relative flex justify-center items-center min-h-screen bg-center selection:bg-red-500 selection:text-white"
+            class="relative flex mt-10 justify-center items-center min-h-screen bg-center selection:bg-red-500 selection:text-white"
         >
             <!-- <Overview /> -->
             <slot name="info" class="animate-fade-in delay-100"></slot>

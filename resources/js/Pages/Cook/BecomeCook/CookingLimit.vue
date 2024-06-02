@@ -9,18 +9,18 @@ import TextInput from "@/Components/TextInput.vue";
     <BecomeCook>
         <template #info>
             <div
-                class="container relative mx-auto overflow-hidden pb-10 lg:p-0 w-screen"
+                class="container relative mx-auto overflow-hidden w-screen"
             >
                 <div
-                    class="m-auto flex flex-col lg:flex-row items-center h-full px-6 lg:p-8"
+                    class="m-auto flex flex-col  lg:flex-row items-center h-full lg:p-8"
                 >
-                    <div class="lg:w-1/2 py-5 lg:px-5">
+                    <div class="lg:w-1/2 py-10 sm:py-5 lg:px-5">
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
                             How many people can you cook for
                         </h1>
-                        <h1 class="pt-5 text-lg text-oynx dark:text-snow">
+                        <h1 class="pt-6 text-lg text-oynx dark:text-snow">
                             Your commitment to delivering the best experience
                             for each person is admirable. To help you prioritize
                             quality, could you share your preferred number for

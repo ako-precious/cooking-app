@@ -9,7 +9,7 @@ import BecomeCook from "./BecomeCook.vue";
         <template #info>
             <div class="container relative mx-auto overflow-hidden w-screen">
                 <div
-                    class="m-auto flex flex-col items-center h-full px-6 lg:p-8"
+                    class="m-auto flex flex-col items-center h-full lg:p-8"
                 >
                     <div class="lg:w-3/4 text-center py-5">
                         <h1
