@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Cook;
 use App\Models\Meal;
+use App\Models\Account;
 use App\Models\MealPhotos;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,10 @@ class CookController extends Controller
         if ($cook !== null) {
             # code.
             $menu = Meal::where('cook_id', $user_id)->with('mealPhotos')->get();
-            // foreach ($menu as $meal) {
-            //     # code...
-            //     $mealPhoto = MealPhotos::where('meal_id', $meal->id)->orderBy('order', 'asc')->first();                
-            // }
-            // dd($mealPhoto);
-            return inertia('Cook/Menu/Index', ['menu' => $menu]);
+            
+            $account = Account::firstWhere('user_id', $user_id);
+            
+            return inertia('Cook/Menu/Index', ['menu' => $menu, 'account' => $account]);
         } else {
             # code...
             return redirect()->route('welcome');

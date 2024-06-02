@@ -14,7 +14,7 @@ import CaretUp from "@/Components/CaretUp.vue";
     >
         <div class="container relative mx-auto overflow-hidden">
             <HeaderVue> </HeaderVue>
-            
+
             <div
                 class="m-auto flex flex-col justify-center h-full p-6 lg:pb-20 w-full"
             >
@@ -42,7 +42,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         >here</Link
                                     >
                                 </h1>
-                                <h1 class="lg:text-lg text-oynx dark:text-snow">
+                                <h1  v-if="!account" class="lg:text-lg text-oynx dark:text-snow">
                                     Setup your payment account
                                     <Link
                                         :href="`/cook/account`"
@@ -54,6 +54,117 @@ import CaretUp from "@/Components/CaretUp.vue";
                         </div>
 
                         <div
+                            class="flex flex-wrap md:flex-row items-start justify-between md:items-center"
+                        >
+                                <div   v-if="account" class="p-2 flex">
+                                    <Link :href="`/cook/account`">
+                                        <button
+                                            class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
+                                        >
+                                            <span
+                                                class="span-mother flex overflow-hidden"
+                                            >
+                                                <span>Vie</span>
+                                                <span>w A</span>
+                                                <span>cc</span>
+                                                <span>ou</span>
+                                                <span>n</span>
+                                                <span>
+                                                    t
+                                                    <font-awesome-icon
+                                                        icon="eye"
+                                                /></span>
+                                            </span>
+                                            <span
+                                                class="span-mother2 text-persian"
+                                            >
+                                                <span>Vie</span>
+                                                <span>w A</span>
+                                                <span>cc</span>
+                                                <span>ou</span>
+                                                <span>n</span>
+                                                <span>
+                                                    t
+                                                    <font-awesome-icon
+                                                        icon="eye"
+                                                /></span>
+                                            </span></button
+                                    ></Link>
+                                </div>
+                                <div class="p-2 flex">
+                                    <Link :href="`/become-a-cook/overview`">
+                                        <button
+                                            class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
+                                        >
+                                            <span
+                                                class="span-mother flex overflow-hidden"
+                                            >
+                                                <span>Cr</span>
+                                                <span>ea</span>
+                                                <span>t</span>
+                                                <span> e M</span>
+                                                <span>ea</span>
+                                                <span
+                                                    >l
+                                                    <font-awesome-icon
+                                                        icon="plus"
+                                                /></span>
+                                            </span>
+                                            <span
+                                                class="span-mother2 text-persian"
+                                            >
+                                                <span>Cr</span>
+                                                <span>ea</span>
+                                                <span>t</span>
+                                                <span> e M</span>
+                                                <span>ea</span>
+                                                <span
+                                                    >l
+                                                    <font-awesome-icon
+                                                        icon="plus"
+                                                /></span>
+                                            </span></button
+                                    ></Link>
+                                </div>
+                                <div class="p-2 flex">
+                                    <Link :href="`/become-a-cook/overview`">
+                                        <button
+                                            class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
+                                        >
+                                            <span
+                                                class="span-mother flex overflow-hidden"
+                                            >
+                                                <span>Cr</span>
+                                                <span>ea</span>
+                                                <span>t</span>
+                                                <span> e M</span>
+                                                <span>ea</span>
+                                                <span
+                                                    >l
+                                                    <font-awesome-icon
+                                                        icon="plus"
+                                                /></span>
+                                            </span>
+                                            <span
+                                                class="span-mother2 text-persian"
+                                            >
+                                                <span>Cr</span>
+                                                <span>ea</span>
+                                                <span>t</span>
+                                                <span> e M</span>
+                                                <span>ea</span>
+                                                <span
+                                                    >l
+                                                    <font-awesome-icon
+                                                        icon="plus"
+                                                /></span>
+                                            </span></button
+                                    ></Link>
+                                </div>
+                            
+                        </div>
+                        
+                        <div
                             class="flex flex-col md:flex-row items-start justify-between md:items-center"
                         >
                             <div class="py-3">
@@ -64,113 +175,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                     menu
                                 </h1>
                             </div>
-                            <div class="flex">
-                                <div class="p-2 flex">
-                                    <Link :href="`/become-a-cook/overview`">
-                                        <button
-                                            class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
-                                        >
-                                            <span
-                                                class="span-mother flex overflow-hidden"
-                                            >
-                                                <span>Vi</span>
-                                                <span>ew </span>
-                                                <span>A</span>
-                                                <span> cc</span>
-                                                <span>ou</span>
-                                                <span
-                                                    >nt
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span>
-                                            <span
-                                                class="span-mother2 text-persian"
-                                            >
-                                                <span>Cr</span>
-                                                <span>ea</span>
-                                                <span>t</span>
-                                                <span> e M</span>
-                                                <span>ea</span>
-                                                <span
-                                                    >l
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span></button
-                                    ></Link>
-                                </div>
-                                <div class="p-2 flex">
-                                    <Link :href="`/become-a-cook/overview`">
-                                        <button
-                                            class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
-                                        >
-                                            <span
-                                                class="span-mother flex overflow-hidden"
-                                            >
-                                                <span>Cr</span>
-                                                <span>ea</span>
-                                                <span>t</span>
-                                                <span> e M</span>
-                                                <span>ea</span>
-                                                <span
-                                                    >l
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span>
-                                            <span
-                                                class="span-mother2 text-persian"
-                                            >
-                                                <span>Cr</span>
-                                                <span>ea</span>
-                                                <span>t</span>
-                                                <span> e M</span>
-                                                <span>ea</span>
-                                                <span
-                                                    >l
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span></button
-                                    ></Link>
-                                </div>
-                                <div class="p-2 flex">
-                                    <Link :href="`/become-a-cook/overview`">
-                                        <button
-                                            class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
-                                        >
-                                            <span
-                                                class="span-mother flex overflow-hidden"
-                                            >
-                                                <span>Cr</span>
-                                                <span>ea</span>
-                                                <span>t</span>
-                                                <span> e M</span>
-                                                <span>ea</span>
-                                                <span
-                                                    >l
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span>
-                                            <span
-                                                class="span-mother2 text-persian"
-                                            >
-                                                <span>Cr</span>
-                                                <span>ea</span>
-                                                <span>t</span>
-                                                <span> e M</span>
-                                                <span>ea</span>
-                                                <span
-                                                    >l
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span></button
-                                    ></Link>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="sm:-mx-6 lg:-mx-8">
                             <div
@@ -292,6 +297,7 @@ import axios from "axios";
 export default {
     props: {
         menu: Object,
+        account: Object,
     },
     computed: {
         firstWord() {
