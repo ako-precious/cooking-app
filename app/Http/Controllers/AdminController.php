@@ -20,4 +20,10 @@ class AdminController extends Controller
             redirect('/');
         }
     }
+    public function update(Request $request, $id){
+        $cook = Cook::find($id);
+        $cook->status = $request->status;
+        $cook->save();
+        return response()->json(['cook' => $cook]);
+    }
 }

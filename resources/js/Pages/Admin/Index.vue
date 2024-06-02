@@ -8,7 +8,7 @@ import CaretUp from "@/Components/CaretUp.vue";
 </script>
 
 <template>
-    <Head title="Menu" />
+    <Head title="accounts" />
     <div
         class="relative sm:flex sm:justify-center sm:items-center bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -29,13 +29,12 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 <h1
                                     class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
                                 >
-                                    You have {{ accounts.length }} meal(s) in our
-                                    menu
+                                    You have {{ accounts.length }} account(s) in our
+                                    accounts
                                 </h1>
                             </div>
                             
                         </div>
-                 {{ accounts }}
                         <div class="sm:-mx-6 lg:-mx-8">
                             <div
                                 class="inline-block w-full py-2 sm:px-6 lg:px-8"
@@ -100,12 +99,12 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         <tbody>
                                             <tr
                                                 title="Click to edit"
-                                                v-if="menu.length > 0"
-                                                v-for="meal in menu"
-                                                :key="meal.id"
+                                                v-if="accounts.length > 0"
+                                                v-for="account in accounts"
+                                                :key="account.id"
                                                 class="animate-fade-in border-b py-4 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:active:text-persian dark:hover:text-lighred"
                                             >
-                                                <TableRow :meal="meal">
+                                                <TableRow :account="account">
                                                 </TableRow>
                                             </tr>
                                             <tr

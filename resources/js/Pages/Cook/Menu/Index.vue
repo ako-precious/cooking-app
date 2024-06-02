@@ -171,7 +171,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 <h1
                                     class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
                                 >
-                                    You have {{ menu.length }} meal(s) in our
+                                    You have {{ menu.length }} meal(s) in your
                                     menu
                                 </h1>
                             </div>
