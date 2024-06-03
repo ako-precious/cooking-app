@@ -42,7 +42,7 @@ defineProps(["meal"]);
                     </p>
                 </div>
             </div>
-            <div v-else-if="meal.status == 'confirmed'">{{ meal.meal.id  }}{{ meal.id }}
+            <div v-else-if="meal.status == 'confirmed'">
                 <div
                     @click="openModal(meal.meal.id)"
                     class="p-2 cursor-pointer shadow-sm w-full hover:shadow-xs group"

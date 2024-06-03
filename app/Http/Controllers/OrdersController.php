@@ -198,6 +198,7 @@ class OrdersController extends Controller
 
             // See your keys here: https://dashboard.stripe.com/apikeys
             $connected_account = Account::where('user_id', $recipientId)->first();
+            $pi_id = Orders::where('meal_schedule_id', $mealSchedule->id)->orderBy('id', 'desc')->first();
 
             $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
             $transfer = 'ORDER_' . mt_rand(100, 999999);
@@ -206,6 +207,7 @@ class OrdersController extends Controller
                 'amount' => $amount,
                 'currency' => 'cad',
                 'destination' => $connected_account->stripe_account_id,
+                'source_transaction' => $pi_id->session_id,
                 'transfer_group' => $transfer,
             ]);
         } else {

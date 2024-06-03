@@ -6,6 +6,7 @@ defineProps(["mealSchedule"]);
 </script>
 
 <template>
+    <Head title="Payment Receipt" />
     <div>
         <Navbar></Navbar>
         <!-- component -->
@@ -41,6 +42,9 @@ defineProps(["mealSchedule"]);
                     <p class="flex justify-between capitalize">
                         <span class="text-gray-400">Customer:</span>
                         <span>{{ mealSchedule.user.name }}</span>
+                    </p>
+                    <p class=" ">
+                       Click <Link :href="`/cook/order/${mealSchedule.id}`" class="text-persian"> here </Link> to view order status
                     </p>
                 </div>
                 <div class="flex flex-col gap-3 pb-6 pt-2 text-xs">

@@ -261,7 +261,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                     "
                                                 >
                                                     <template #title>
-                                                        Order ID
+                                                        # ID
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp

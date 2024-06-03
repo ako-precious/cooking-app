@@ -59,7 +59,7 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #title
                                                                 >
-                                                                    #Order ID
+                                                                    #ID
                                                                 </template>
                                                                 <template
                                                                     #symbols
