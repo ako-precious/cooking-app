@@ -109,14 +109,14 @@ class OrdersController extends Controller
     }
     public function show($id)
     {
-    
+
         $order = MealSchedule::with('order', 'meal', 'user')->find($id);
         $payment = Orders::where('meal_schedule_id', $id)->get();
-        if (Auth::id() == $order->user_id || Auth::id() == $order->meal->cook_id  ) {
+        if (Auth::id() == $order->user_id || Auth::id() == $order->meal->cook_id) {
             # code...
             // dd(Auth::id(), $order->user_id, $order->meal->cook_id );
             return inertia('Order/Show', ['order' => $order, 'payments' => $payment]);
-        }else{
+        } else {
             return redirect()->route('welcome');
         }
     }
@@ -201,13 +201,14 @@ class OrdersController extends Controller
             $pi_id = Orders::where('meal_schedule_id', $mealSchedule->id)->orderBy('id', 'desc')->first();
 
             $stripe = new \Stripe\StripeClient(env('STRIPE_SECRET_KEY'));
+            $charge_id = $stripe->paymentIntents->retrieve($pi_id->session_id, []);
             $transfer = 'ORDER_' . mt_rand(100, 999999);
             $amount = intval(round((85 / 100) * $mealSchedule->meal->price * 100)); // Convert dollars to cents
             $stripe->transfers->create([
                 'amount' => $amount,
                 'currency' => 'cad',
                 'destination' => $connected_account->stripe_account_id,
-                'source_transaction' => $pi_id->session_id,
+                'source_transaction' => $charge_id->latest_charge,
                 'transfer_group' => $transfer,
             ]);
         } else {

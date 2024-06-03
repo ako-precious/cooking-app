@@ -9,7 +9,7 @@ import UpdateStatus from "./UpdateStatus.vue";
     <Head title="Order Info" />
     <div>
         <Navbar></Navbar>
-        <div class="flex justify-center items-center min-h-screen">
+        <div class="flex justify-center my-10 items-center min-h-screen">
             <div
                 class="relative flex w-[23rem] flex-col rounded-xl shadow-reverse text-oynx dark:text-snow"
             >

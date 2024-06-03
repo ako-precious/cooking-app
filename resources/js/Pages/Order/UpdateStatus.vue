@@ -473,7 +473,7 @@ defineProps(["meal"]);
                     </div>
 
                     <div class="flex justify-center item-center">
-                        <PrimaryButton @click="addRating" class="w-full"
+                        <PrimaryButton @click="addRating()" class="w-full"
                             >Save</PrimaryButton
                         >
                     </div>
@@ -581,7 +581,7 @@ export default {
                     "Please fill in all  fields to create your schedule.";
             } else {
                 axios
-                    .post("api/rating", this.newRating)
+                    .post("/api/rating", this.newRating)
                     .then((resp) => {
                         this.message = resp.data.message;
 
@@ -589,7 +589,7 @@ export default {
                             this.closeModal();
                             // Uncomment the line below if you want to toggle addingMode after the delay
                             // this.addingMode = !this.addingMode;
-                        }, 5000);
+                        }, 3000);
                     })
                     .catch((err) => {
                         console.log(err);
