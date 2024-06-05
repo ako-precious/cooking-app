@@ -24,7 +24,7 @@ export default {
 
 <footer class="border-t border-gray-500 bg-gray-50 dark:bg-oynx_alt">
   <div class="mx-auto container px-4 py-16 sm:px-6 lg:px-8">
-    <div class="lg:flex lg:items-start lg:gap-8">
+    <!-- <div class="lg:flex lg:items-start lg:gap-8">
       
       <div class="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-3 lg:gap-y-16 w-full">
       
@@ -170,11 +170,13 @@ export default {
 
         </ul>
       </div>
-    </div>
+    </div> -->
 
     <div class="mt-8 border-t border-gray-500 pt-8">
       <div class="sm:flex sm:justify-between">
         <p class="text-xs text-gray-500">&copy; {{ currentYear }}. {{ appName }} . All rights reserved.</p>
+        <p class="text-xs text-gray-500">Email: <a href="mailto:messages@ounjemi.com"> messages@ounjemi.com</a> </p>
+        <p class="text-xs text-gray-500">Phone: <a href="tel:+17052793660"> 7052793660 </a> </p>
 
         <ul class="mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end">
           <li>

@@ -46,7 +46,9 @@ Route::get('users/{id}', [WelcomeController::class, 'users'])->name('user.show')
 
 // routes/web.php
 
-
+// Route::get('/linkstorage', function () {
+//     Artisan::call('storage:link');
+// });
 
 Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete']);
 
