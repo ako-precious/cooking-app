@@ -12,13 +12,15 @@ class MealScheduleStatusUpdated extends Notification
     use Queueable;
 
     public $message;
+    public $id;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct($message)
+    public function __construct($message, $id)
     {
         $this->message = $message;
+        $this->id = $id;
     }
 
 
@@ -35,21 +37,15 @@ class MealScheduleStatusUpdated extends Notification
     /**
      * Get the mail representation of the notification.
      */
-    // public function toMail(object $notifiable): MailMessage
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
+   
     public function toMail($notifiable)
     {
         return (new MailMessage)
             ->subject('Meal Order Status Update')
             ->greeting('Hello ' . $notifiable->name . ',')
             ->line($this->message)
-            ->action('View Order', url('/orders/' )) // Assuming there's a route to view the order
-            ->line('Thank you for using our application!');
+            ->action('View Order status', url('/cook/order/'. $this->id)) // Assuming there's a route to view the order
+            ->line('You are the ingredient that makes Ounjemi special. Thanks for being amazing!');
     }
 
     /**

@@ -184,7 +184,7 @@ class OrdersController extends Controller
 
     public function update(Request $request, $id)
     {
-        $mealSchedule = MealSchedule::find($id);
+        $mealSchedule = MealSchedule::with('meal')->find($id);
         $mealSchedule->status =  $request->status;
         $mealSchedule->save();
 
@@ -211,6 +211,13 @@ class OrdersController extends Controller
                 'source_transaction' => $charge_id->latest_charge,
                 'transfer_group' => $transfer,
             ]);
+            $recipientId = $mealSchedule->meal->cook_id;
+            $recipient = User::find($recipientId);
+            if ($recipient) {
+                $recipient->notify(new MealScheduleStatusUpdated($notificationMessage, $mealSchedule->id));
+            }
+
+            return response()->json(['order' => $mealSchedule]);
         } else {
             $recipientId = $mealSchedule->user_id;
             $notificationMessage = $message;
@@ -227,7 +234,7 @@ class OrdersController extends Controller
         // Send email notification
         $recipient = User::find($recipientId);
         if ($recipient) {
-            $recipient->notify(new MealScheduleStatusUpdated($notificationMessage));
+            $recipient->notify(new MealScheduleStatusUpdated($notificationMessage, $mealSchedule->id));
         }
 
         return response()->json(['order' => $mealSchedule]);
