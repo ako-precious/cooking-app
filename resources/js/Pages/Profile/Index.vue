@@ -192,17 +192,7 @@ import Card from "./Card.vue"
                             </div>
                         </div>
                     </div>
-                    <div class="py-10 border-t border-gray-500 text-center">
-                        <div class="flex flex-wrap justify-center">
-                            <div class="w-full lg:w-9/12 px-4">
-                                <p
-                                    class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow"
-                                >
-                                    {{ user.other_info }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <div
                         class="py-10 border-t border-gray-500 text-center mx-auto relative grid s md:grid-cols-3 sm:grid-cols-2 gap-8"
                     >

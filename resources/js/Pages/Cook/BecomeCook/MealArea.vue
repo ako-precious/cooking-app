@@ -21,7 +21,7 @@ import BecomeCook from "./BecomeCook.vue";
                     <div class="lg:w-full">
                         <div class="flex flex-col w-full">
                             <div
-                                class="grid grid-cols-2 md:grid-cols-3 gap-5 lg:gap-10 lg:px-10"
+                                class="grid  sm:grid-cols-2 md:grid-cols-3 gap-5 lg:gap-10 lg:px-10"
                             >
                                 <div class="col-span-1 w-full max-w-full py-2">
                                     <div
