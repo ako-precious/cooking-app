@@ -6,6 +6,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CookController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
 use App\Http\Controllers\NotificationController;
@@ -42,7 +43,7 @@ Route::get('/welcomed', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-Route::get('user/{id}', [WelcomeController::class, 'users'])->name('user.show');
+Route::get('userweb/{id}', [WelcomeController::class, 'users'])->name('user.show');
 
 // routes/web.php
 
@@ -52,6 +53,8 @@ Route::get('user/{id}', [WelcomeController::class, 'users'])->name('user.show');
 
 Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete']);
 
+Route::post('/subscribe', [PushSubscriptionController::class, 'subscribe']);
+Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
 
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);
