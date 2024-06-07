@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use Notifiable;
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
