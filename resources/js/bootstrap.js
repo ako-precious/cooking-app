@@ -27,38 +27,47 @@ window.Echo = new Echo({
     forceTls: true
 });
 
-// import Echo from 'laravel-echo';
+// export async function subscribeUserToPush() {
+//     try {
+//         const registration = await navigator.serviceWorker.ready;
 
-// import Pusher from 'pusher-js';
-// window.Pusher = Pusher;
+//         const subscription = await registration.pushManager.subscribe({
+//             userVisibleOnly: true,
+//             applicationServerKey: urlBase64ToUint8Array(import.meta.env.VITE_VAPID_PUBLIC_KEY)
+//         });
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: import.meta.env.VITE_PUSHER_APP_KEY,
-//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-//     wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-//     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-//     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-//     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-//     enabledTransports: ['ws', 'wss'],
-// });
-import axios from 'axios';
+//         await saveSubscription(subscription);
+//         console.log('User is subscribed:', subscription);
+//     } catch (error) {
+//         console.error('Failed to subscribe the user:', error);
+//     }
+// }
 
-async function subscribeUserToPush() {
+export async function subscribeUserToPush() {
     try {
+        // Request notification permission
+        const permission = await Notification.requestPermission();
+
+        if (permission !== 'granted') {
+            console.log('You need to enable notifications in your browser settings to receive push notifications.');
+            return;
+        }
+
         const registration = await navigator.serviceWorker.ready;
 
         const subscription = await registration.pushManager.subscribe({
             userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array('your_public_key')
+            applicationServerKey: urlBase64ToUint8Array(import.meta.env.VITE_VAPID_PUBLIC_KEY)
         });
 
         await saveSubscription(subscription);
         console.log('User is subscribed:', subscription);
     } catch (error) {
         console.error('Failed to subscribe the user:', error);
+        // alert('Failed to subscribe the user for push notifications. Please check your browser settings.');
     }
 }
+
 
 function urlBase64ToUint8Array(base64String) {
     const padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -78,5 +87,11 @@ async function saveSubscription(subscription) {
     await axios.post('/api/save-subscription', subscription);
 }
 
-// Call subscribeUserToPush at the appropriate place in your app
-subscribeUserToPush();
+// Ensure service worker is registered
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(error) {
+        console.log('ServiceWorker registration failed: ', error);
+    });
+}

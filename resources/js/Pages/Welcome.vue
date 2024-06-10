@@ -1,5 +1,7 @@
 <script setup>
-import { Head } from "@inertiajs/vue3";
+
+import { onMounted } from 'vue';
+import { Head,  usePage } from "@inertiajs/vue3";
 import DropBarNav from "./Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
@@ -7,12 +9,31 @@ import Loader from "@/Layouts/Loader.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
+import { subscribeUserToPush } from '/resources/js/bootstrap.js'; // Adjust the path as necessary
+import { ref, computed } from 'vue';
+
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
 });
+
+
+const notificationPermission = ref(Notification.permission);
+
+const showEnableButton = computed(() => notificationPermission.value !== 'granted');
+
+async function requestNotificationPermission() {
+  const permission = await Notification.requestPermission();
+  
+  if (permission === 'granted') {
+    await subscribeUserToPush();
+    notificationPermission.value = permission;
+  } else {
+    alert('You need to enable notifications in your browser settings to receive push notifications.');
+  }
+}
 </script>
 
 <script>
@@ -33,6 +54,7 @@ export default {
     },
 
     mounted() {
+
         window.addEventListener("scroll", this.handleScroll);
         if (this.$page.props.auth.user) {
             if (
@@ -96,7 +118,10 @@ export default {
 <template>
     <Head title="Welcome" />
     <!-- component -->
-    <div class="">
+    <div class="  ">
+        <div  v-if="notificationPermission !== 'granted'" class="bg-gray-500 m-auto ">
+           <p @click="requestNotificationPermission"  class="text-xs  pl-10 capitalize cursor-pointer hover:underline py-1"> enable notification </p>
+        </div>
         <header
             :class="{ 'fix align-bottom shadow-sm py-4 px-8 lg ' : isHeaderFixed }"
             class="py-5 bg-snow dark:bg-oynx z-990  transition-all duration-300 delay-75 ease-in animate-fade-in"

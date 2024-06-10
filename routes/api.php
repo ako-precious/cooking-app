@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MealScheduleController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\WelcomeController;
@@ -26,7 +27,8 @@ Route::get('ratings/{id}', [RatingController::class, 'rating']);
 Route::get('/sort', [OrdersController::class, 'sort']);
 Route::post('/upload-verification/{id}', [AccountController::class, 'uploadVerification']);
 
-
+// routes/api.php
+Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
