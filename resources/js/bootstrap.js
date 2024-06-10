@@ -42,3 +42,41 @@ window.Echo = new Echo({
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+import axios from 'axios';
+
+async function subscribeUserToPush() {
+    try {
+        const registration = await navigator.serviceWorker.ready;
+
+        const subscription = await registration.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array('your_public_key')
+        });
+
+        await saveSubscription(subscription);
+        console.log('User is subscribed:', subscription);
+    } catch (error) {
+        console.error('Failed to subscribe the user:', error);
+    }
+}
+
+function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding)
+        .replace(/\-/g, '+')
+        .replace(/_/g, '/');
+    const rawData = window.atob(base64);
+    const outputArray = new Uint8Array(rawData.length);
+    for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+}
+
+async function saveSubscription(subscription) {
+    // Send the subscription object to your server to save it
+    await axios.post('/api/save-subscription', subscription);
+}
+
+// Call subscribeUserToPush at the appropriate place in your app
+subscribeUserToPush();

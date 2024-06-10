@@ -15,7 +15,7 @@ use App\Models\Account;
 use App\Models\Notification;
 use Stripe\Climate\Order;
 use Stripe\Transfer;
-
+use App\Notifications\PushNotification;
 use Illuminate\Support\Str;
 
 class OrdersController extends Controller
@@ -231,6 +231,8 @@ class OrdersController extends Controller
         $notification->status = 'unread';
         $notification->save();
 
+        $user = User::find($recipientId);
+        $user->notify(new PushNotification('You have a new order', 123));
         // Send email notification
         $recipient = User::find($recipientId);
         if ($recipient) {

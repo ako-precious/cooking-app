@@ -6,7 +6,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CookController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\MealScheduleController;
-// use App\Http\Controllers\PushSubscriptionController;
+use App\Http\Controllers\PushSubscriptionController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
 use App\Http\Controllers\NotificationController;
@@ -55,6 +55,9 @@ Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete'
 
 // Route::post('/subscribe', [PushSubscriptionController::class, 'subscribe']);
 // Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
+
+// routes/api.php
+Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);
