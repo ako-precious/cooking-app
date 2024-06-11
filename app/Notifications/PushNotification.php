@@ -12,8 +12,8 @@ class PushNotification extends Notification
 {
     use Queueable;
 
-    protected $message;
-    protected $id;
+    public $message;
+    public $id;
 
     public function __construct($message, $id)
     {

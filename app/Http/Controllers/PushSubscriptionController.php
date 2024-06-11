@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\PushSubscription;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class PushSubscriptionController extends Controller
             $request->endpoint,
             $request->keys['p256dh'],
             $request->keys['auth']
+        // 'user_id' => auth()->id(),
         );
         return response()->json(['success' => true]);
     }

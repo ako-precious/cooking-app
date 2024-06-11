@@ -57,7 +57,7 @@ Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete'
 // Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
 
 // routes/api.php
-// Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
+Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);
