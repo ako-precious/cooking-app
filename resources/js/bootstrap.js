@@ -49,7 +49,7 @@ export async function subscribeUserToPush() {
         const permission = await Notification.requestPermission();
 
         if (permission !== 'granted') {
-            console.log('You need to enable notifications in your browser settings to receive push notifications.');
+            // console.log('You need to enable notifications in your browser settings to receive push notifications.');
             return;
         }
 
@@ -62,7 +62,7 @@ export async function subscribeUserToPush() {
             
             // console.log(subscription);
         await saveSubscription(subscription);
-        console.log('User is subscribed:', subscription);
+        // console.log('User is subscribed:', subscription);
     } catch (error) {
         console.error('Failed to subscribe the user:', error);
         // alert('Failed to subscribe the user for push notifications. Please check your browser settings.');
@@ -78,7 +78,7 @@ async function saveSubscription(subscription) {
 // Ensure service worker is registered
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        // console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }).catch(function(error) {
         console.log('ServiceWorker registration failed: ', error);
     });

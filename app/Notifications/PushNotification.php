@@ -32,7 +32,7 @@ class PushNotification extends Notification
             ->title('New Notification')
             ->body($this->message)
             ->icon('./images/logo2.png')
-            ->data(['url' => '/cook/order/' . $this->id])
+            ->data(['url' => env('APP_URL') . '/cook/order/' . $this->id])
             ->action('View App', 'notification_action');
     }
 }

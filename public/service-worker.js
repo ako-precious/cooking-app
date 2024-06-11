@@ -1,4 +1,5 @@
 self.addEventListener("push", (event) => {
+    // console.log(event.data.json());
     const notification = event.data.json();
 
     event.waitUntil(

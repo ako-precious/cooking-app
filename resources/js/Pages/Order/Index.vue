@@ -23,9 +23,10 @@ import Filters from "./Filter.vue";
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
                         
-                        <div class="w-full flex justify-end">
-                            
-                        </div>
+                      
+                     <div class="sm:flex justify-between"> 
+                        
+                       
                         <div class="my-6 w-24 relative" @click="openModal()">
                             <SocialLogin class="group">
                                 <template #logo>
@@ -37,7 +38,18 @@ import Filters from "./Filter.vue";
                                 <template #name> Filters </template>
                             </SocialLogin>
                         </div>
-
+                        <Link :href="`/`" class="my-6 w-50 relative" >
+                            <SocialLogin class="group">
+                                <template #logo>
+                                    <font-awesome-icon
+                                        icon="plus"
+                                        class="text-xl px-2 group-hover:-ml-3 group-action-text"
+                                    />
+                                </template>
+                                <template #name> Add to meal Schedule </template>
+                            </SocialLogin>
+                        </Link>
+                     </div>
                         <div
                             class="m-auto flex flex-col justify-center h-full lg:pb-10 w-full py-6 shadow-reverse rounded-lg my-2 z-0"
                         >
