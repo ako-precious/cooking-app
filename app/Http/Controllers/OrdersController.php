@@ -212,10 +212,11 @@ class OrdersController extends Controller
                 'transfer_group' => $transfer,
             ]);
             $recipientId = $mealSchedule->meal->cook_id;
-            $recipient = User::find($recipientId);
-            if ($recipient) {
-                $recipient->notify(new MealScheduleStatusUpdated($notificationMessage, $mealSchedule->id));
-            }
+            $user = User::find($recipientId);
+            // if ($recipient) {
+            //     $recipient->notify(new MealScheduleStatusUpdated($notificationMessage, $mealSchedule->id));
+            // }
+            $user->notify(new PushNotification($notificationMessage, $mealSchedule->id));
 
             return response()->json(['order' => $mealSchedule]);
         } else {
@@ -232,12 +233,12 @@ class OrdersController extends Controller
         $notification->save();
 
         $user = User::find($recipientId);
-        $user->notify(new PushNotification('You have a new order', 123));
+        $user->notify(new PushNotification($notificationMessage, $mealSchedule->id));
         // Send email notification
-        $recipient = User::find($recipientId);
-        if ($recipient) {
-            $recipient->notify(new MealScheduleStatusUpdated($notificationMessage, $mealSchedule->id));
-        }
+        // $recipient = User::find($recipientId);
+        // if ($recipient) {
+        //     $recipient->notify(new MealScheduleStatusUpdated($notificationMessage, $mealSchedule->id));
+        // }
 
         return response()->json(['order' => $mealSchedule]);
     }

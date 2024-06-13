@@ -76,7 +76,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                             <span>men</span>
                                             <span>t A</span>
                                             <span>cco</span>
-                                            <span>oun</span>
+                                            <span>un</span>
                                             <span>
                                                 t
                                                 <font-awesome-icon icon="eye"

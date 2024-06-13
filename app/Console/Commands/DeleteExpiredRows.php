@@ -31,5 +31,9 @@ class DeleteExpiredRows extends Command
         ->where('created_at', '<', now()->subDays(30))
         ->delete();
 
+    DB::table('chats')
+        ->where('created_at', '<', now()->subDays(30))
+        ->delete();
+
     }
 }
