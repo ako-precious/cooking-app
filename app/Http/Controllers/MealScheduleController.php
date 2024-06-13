@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Stripe\StripeClient;
 use Stripe\PaymentIntent;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class MealScheduleController extends Controller
 {
@@ -217,31 +218,35 @@ class MealScheduleController extends Controller
         return response()->json($suggestions);
     }
 
-    
+
     public function store(Request $request)
     {
         $new_MealSchedule = MealSchedule::create($request->all());
-    
+
         $meal_status = Meal::find($new_MealSchedule->meal_id);
         if ($meal_status->ordering_preferences === 'automatic') {
             $new_MealSchedule->status = 'accepted';
             $new_MealSchedule->save();
         }
-    
+
         $cook = Meal::find($new_MealSchedule->meal_id)->user; // Assuming Meal has a relationship with User
         $user = User::find($new_MealSchedule->user_id);
-    
+
         if (!$cook) {
             return response()->json(['error' => 'Cook not found'], 404);
         }
-    
+
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
-    
+
+        // Log the URL being sent
+        $url = env('APP_URL') . '/cook/order/' . $new_MealSchedule->id;
+        Log::info("Notification URL: " . $url);
+
         $cook = User::find($cook->id);
         $cook->notify(new PushNotification("You have a meal order #" . $new_MealSchedule->id . " from " . $user->name, $new_MealSchedule->id));
-        
+
         $notification = new Notification();
         $notification->user_id = $cook->id;
         $notification->meal_schedule_id = $new_MealSchedule->id;
@@ -251,7 +256,7 @@ class MealScheduleController extends Controller
 
 
         $user = User::find($user->id);
-        $user->notify(new PushNotification( "Your meal schedule #" . $new_MealSchedule->id . " has been saved", $new_MealSchedule->id));
+        $user->notify(new PushNotification("Your meal schedule #" . $new_MealSchedule->id . " has been saved", $new_MealSchedule->id));
 
         $notification = new Notification();
         $notification->user_id = $user->id;
@@ -260,14 +265,14 @@ class MealScheduleController extends Controller
         $notification->status = 'unread';
         $notification->save();
 
-    
+
         return response()->json([
             'data' => $new_MealSchedule,
             'message' => 'Successfully added to your new Meal Schedule!',
             'status' => Response::HTTP_CREATED
         ]);
     }
-    
+
     public function update(Request $request, $id)
     {
         $MealSchedule = mealSchedule::find($id);
@@ -281,7 +286,7 @@ class MealScheduleController extends Controller
 
         $MealSchedule->update($request->all());
 
-       
+
         return response()->json([
             'data' => new MealScheduleResource($MealSchedule),
             'message' => 'Successfully updated Meal Schedule!',

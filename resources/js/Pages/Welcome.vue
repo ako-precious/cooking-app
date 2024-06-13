@@ -17,6 +17,7 @@ defineProps({
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
+    pushSub: Boolean,
 });
 
 
@@ -119,7 +120,7 @@ export default {
     <Head title="Welcome" />
     <!-- component -->
     <div class="  ">
-        <div  v-if="notificationPermission !== 'granted'" class="bg-gray-500 m-auto ">
+        <div  v-if="notificationPermission !== 'granted' && pushSub === false " class="bg-gray-500 m-auto ">
            <p @click="requestNotificationPermission"  class="text-xs  pl-10 capitalize cursor-pointer hover:underline py-1"> enable notification </p>
         </div>
         <header

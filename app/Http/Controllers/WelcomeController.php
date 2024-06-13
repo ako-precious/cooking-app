@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Models\Cook;
 use App\Models\User;
 use App\Models\MealSchedule;
+use App\Models\PushSubscription;
 use App\Models\Meal;
 use Illuminate\Support\Facades\Http;
 
@@ -19,18 +20,16 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        // $mealSchedules = Meal::whereHas('cook', function($query) {
-        //     $query->where('status', 'available');
-        // })->where('status', 'available')
-        //   ->paginate(12);
-        
-        // dd($mealSchedules);
+        $pushSub = PushSubscription::where('subscribable_id', Auth::id())->exists();
+
+        // dd( typeOf($pushSub) );
 
         return Inertia::render('Welcome', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
             'phpVersion' => PHP_VERSION,
+            'pushSub' => $pushSub
         ]);
     }
 
