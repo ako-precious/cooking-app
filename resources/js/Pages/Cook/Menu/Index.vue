@@ -96,44 +96,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 ></Link>
                             </div>
 
-                            <div
-                               onclick="open "
-                                class="p-2 flex"
-                            >
-                                <Link :href="`/onboarding/verify-your-account`">
-                                    <button
-                                        class="shadow-extra-small rounded-md cursor-pointer w-[200px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
-                                    >
-                                        <span
-                                            class="span-mother flex overflow-hidden"
-                                        >
-                                            <span>Edi</span>
-                                            <span>t Y</span>
-                                            <span>ou</span>
-                                            <span>r Pr</span>
-                                            <span>ofi</span>
-                                            <span
-                                                >le
-                                                <font-awesome-icon
-                                                    icon="pen-to-square"
-                                                />
-                                            </span>
-                                        </span>
-                                        <span class="span-mother2 text-persian">
-                                            <span>Edi</span>
-                                            <span>t Y</span>
-                                            <span>ou</span>
-                                            <span>r Pr</span>
-                                            <span>ofi</span>
-                                            <span
-                                                >le
-                                                <font-awesome-icon
-                                                    icon="pen-to-square"
-                                                />
-                                            </span>
-                                        </span></button
-                                ></Link>
-                            </div>
+                          
                             <div
                                 v-if="
                                     cook.certificate !== null &&
