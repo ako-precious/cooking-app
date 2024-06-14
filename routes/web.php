@@ -43,7 +43,7 @@ Route::get('/welcomed', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
-Route::get('userweb/{id}', [WelcomeController::class, 'users'])->name('user.show');
+Route::get('user-profile/{id}', [WelcomeController::class, 'users'])->name('user.show');
 
 // routes/web.php
 

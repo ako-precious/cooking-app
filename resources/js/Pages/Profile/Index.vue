@@ -229,7 +229,7 @@ export default {
 
     mounted() {
         // window.addEventListener("scroll", this.handleScroll);
-        console.log(this.meals);
+        
     },
     created() {
         // this.handleScroll();
