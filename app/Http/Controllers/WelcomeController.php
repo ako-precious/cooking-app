@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\MealSchedule;
 use App\Models\PushSubscription;
 use App\Models\Meal;
+use App\Models\Rating;
 use Illuminate\Support\Facades\Http;
 
 class WelcomeController extends Controller
@@ -57,14 +58,51 @@ class WelcomeController extends Controller
         return response()->json(MealResource::collection($mealSchedules));
     }
 
+    // public function users($id)
+    // {
+    //     $user = User::find($id);
+    //     $cook = Cook::where('user_id', $id)->get();
+    //     $meals = Meal::where('cook_id', $id)->with('user')->where('status', 'available')->latest()->get();
+    //     $reviews = Rating::whereHas('meal', function ($query) {
+    //         $query->where('cook_id', $id);
+    //     })->latest()->get();
+    //     $ratings = $reviews->pluck('total')->sum() / $reviews->pluck('total')->count();
+    //     // dd(MealResource::collection($meals));
+    //     return Inertia::render('Profile/Index', ['user' => $user, 'cook' => $cook, 'meals' => $meals, 'reviews' => $reviews, 'ratings' => $ratings]);
+    // }
     public function users($id)
     {
-        $user = User::find($id);
-        $cook = Cook::where('user_id', $id)->get();
-        $meals = Meal::where('cook_id', $id)->with('user')->where('status', 'available')->latest()->get();
-        // dd(MealResource::collection($meals));
-        return Inertia::render('Profile/Index', ['user' => $user, 'cook' => $cook, 'meals' => $meals]);
+        // Find the user by ID, if not found return a 404 error
+        $user = User::findOrFail($id);
+
+        // Get the cook associated with the user
+        $cook = Cook::where('user_id', $id)->first();
+
+        // Get the meals associated with the cook and with status 'available'
+        $meals = Meal::where('cook_id', $cook->id ?? 0)
+            ->with('user')
+            ->where('status', 'available')
+            ->latest()
+            ->get();
+
+        // Get the reviews associated with the cook's meals
+        $reviews = Rating::whereHas('meal', function ($query) use ($id) {
+            $query->where('cook_id', $id);
+        })->latest()->get();
+
+        // Calculate the average rating
+        $ratings = $reviews->count() > 0 ? $reviews->pluck('total')->sum() / $reviews->count() : 0;
+
+        // Render the profile with the gathered data
+        return Inertia::render('Profile/Index', [
+            'user' => $user,
+            'cook' => $cook,
+            'meals' => $meals,
+            'reviews' => $reviews,
+            'ratings' => $ratings
+        ]);
     }
+
 
     public function autocomplete(Request $request)
     {

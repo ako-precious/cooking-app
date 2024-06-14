@@ -37,6 +37,10 @@ class Meal extends Model
     {
         return $this->hasMany(MealPhotos::class);
     }
+    public function rating(): HasMany
+    {
+        return $this->hasMany(Meal::class);
+    }
 
     public static function boot()
     {

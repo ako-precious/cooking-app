@@ -1,7 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
-import Card from "./Card.vue"
+import Card from "./Card.vue";
 </script>
 <template>
     <Head title="Cook's Profile" />
@@ -55,18 +55,18 @@ import Card from "./Card.vue"
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        222
+                                        {{ timeCooking }}
                                     </span>
                                     <span
                                         class="text-sm text-oynx dark:text-snow"
-                                        >Days Cooking</span
+                                        > {{ CookingDate }} Cooking</span
                                     >
                                 </div>
                                 <div class="p-3 text-center">
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        4.5
+                                        {{ ratings }}
                                     </span>
                                     <span
                                         class="text-sm text-oynx dark:text-snow"
@@ -77,7 +77,7 @@ import Card from "./Card.vue"
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        89
+                                        {{ reviews.length }}
                                     </span>
                                     <span
                                         class="text-sm text-oynx dark:text-snow"
@@ -120,7 +120,9 @@ import Card from "./Card.vue"
                                     <i
                                         class="fas fa-map-marker-alt mr-2 text-lg text-oynx dark:text-snow"
                                     ></i>
-                                    {{ user.address }}
+                                    {{
+                                        this.extractCityAndCountry(user.address)
+                                    }}
                                 </div>
                             </div>
                         </div>
@@ -128,33 +130,33 @@ import Card from "./Card.vue"
                             class="block lg:hidden w-full px-4 text-center mt-20"
                         >
                             <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                                <div class="mr-4 p-3 text-center">
+                                <div class="p-3 text-center">
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        22
+                                        {{ timeCooking }}
                                     </span>
                                     <span
                                         class="text-sm text-oynx dark:text-snow"
-                                        >Months Cooking</span
+                                        > {{ CookingDate }} Cooking</span
                                     >
                                 </div>
-                                <div class="mr-4 p-3 text-center">
+                                <div class="p-3 text-center">
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        4.5
+                                        {{ ratings }}
                                     </span>
                                     <span
                                         class="text-sm text-oynx dark:text-snow"
                                         >Rating</span
                                     >
                                 </div>
-                                <div class="lg:mr-4 p-3 text-center">
+                                <div class="p-3 text-center">
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        89
+                                        {{ reviews.length }}
                                     </span>
                                     <span
                                         class="text-sm text-oynx dark:text-snow"
@@ -192,7 +194,7 @@ import Card from "./Card.vue"
                             </div>
                         </div>
                     </div>
-                   
+
                     <div
                         class="py-10 border-t border-gray-500 text-center mx-auto relative grid s md:grid-cols-3 sm:grid-cols-2 gap-8"
                     >
@@ -201,7 +203,7 @@ import Card from "./Card.vue"
                             :key="meal.id"
                             class="animate-fade-in"
                         >
-                          <Card :meal="meal" ></Card>
+                            <Card :meal="meal"></Card>
                         </div>
                     </div>
                 </div>
@@ -215,12 +217,17 @@ export default {
     inheritAttrs: false,
     props: {
         user: Object,
+        reviews: Object,
+        ratings: String,
+        rating: Object,
         meals: Object, // Prop to receive paginated notifications data from Inertia
     },
     data() {
         return {
             src: "",
             isLoading: true,
+            city: "",
+            country: "",
         };
     },
     beforeDestroy() {
@@ -229,15 +236,41 @@ export default {
 
     mounted() {
         // window.addEventListener("scroll", this.handleScroll);
-        
+        this.extractCityAndCountry();
     },
-    created() {
-        // this.handleScroll();
-        // this.getPhoto();
-        // // this.getNotification();
+    computed: {
+        timeCooking() {
+            const createdAt = new Date(this.user.created_at);
+            const now = new Date();
+            const diffTime = Math.abs(now - createdAt);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays < 30) {
+                return `${diffDays} `;
+            } else if (diffDays < 365) {
+                const diffMonths = Math.floor(diffDays / 30);
+                return `${diffMonths} `;
+            } else {
+                const diffYears = Math.floor(diffDays / 365);
+                return `${diffYears}`;
+            }
+        },
+        CookingDate() {
+            const createdAt = new Date(this.user.created_at);
+            const now = new Date();
+            const diffTime = Math.abs(now - createdAt);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays < 30) {
+                return `Days`;
+            } else if (diffDays < 365) {
+                return `Months`;
+            } else {
+                return `Years`;
+            }
+        },
     },
     methods: {
-      
         getProfilePhotoUrl(profilePhotoPath) {
             if (
                 profilePhotoPath.includes("https://lh3.googleusercontent.com")
@@ -246,6 +279,16 @@ export default {
             } else {
                 return `/storage/${profilePhotoPath}`;
             }
+        },
+        extractCityAndCountry(address) {
+            const parts = address.split(", ");
+            const cityAndState =
+                parts[parts.length - 3] +
+                ", " +
+                parts[parts.length - 2] +
+                ", " +
+                parts[parts.length - 1];
+            return cityAndState;
         },
     },
 };

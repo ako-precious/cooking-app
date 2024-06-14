@@ -87,7 +87,7 @@ export default {
                             "/public",
                             ""
                         );
-                    console.log(this.src);
+                    // console.log(this.src);
                 })
                 .catch((error) => {
                     console.error("Error fetching data:", error);
