@@ -58,7 +58,7 @@ import Card from "./Card.vue";
                                         {{ timeCooking }}
                                     </span>
                                     <span
-                                        class="text-sm text-oynx dark:text-snow"
+                                        class="text-xs text-oynx dark:text-snow"
                                         > {{ CookingDate }} Cooking</span
                                     >
                                 </div>
@@ -69,7 +69,7 @@ import Card from "./Card.vue";
                                         {{ ratings }}
                                     </span>
                                     <span
-                                        class="text-sm text-oynx dark:text-snow"
+                                        class="text-xs text-oynx dark:text-snow"
                                         >Rating</span
                                     >
                                 </div>
@@ -80,7 +80,7 @@ import Card from "./Card.vue";
                                         {{ reviews.length }}
                                     </span>
                                     <span
-                                        class="text-sm text-oynx dark:text-snow"
+                                        class="text-xs text-oynx dark:text-snow"
                                         >Review(s)</span
                                     >
                                 </div>
@@ -121,7 +121,7 @@ import Card from "./Card.vue";
                                         class="fas fa-map-marker-alt mr-2 text-lg text-oynx dark:text-snow"
                                     ></i>
                                     {{
-                                        this.extractCityAndCountry(user.address)
+                                        extractCityAndCountry(user.address)
                                     }}
                                 </div>
                             </div>
@@ -137,7 +137,7 @@ import Card from "./Card.vue";
                                         {{ timeCooking }}
                                     </span>
                                     <span
-                                        class="text-sm text-oynx dark:text-snow"
+                                        class="text-xs text-oynx dark:text-snow"
                                         > {{ CookingDate }} Cooking</span
                                     >
                                 </div>
@@ -145,10 +145,10 @@ import Card from "./Card.vue";
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        {{ ratings }}
+                                    {{ ratings.toFixed(1) }}
                                     </span>
                                     <span
-                                        class="text-sm text-oynx dark:text-snow"
+                                        class="text-xs text-oynx dark:text-snow"
                                         >Rating</span
                                     >
                                 </div>
@@ -159,7 +159,7 @@ import Card from "./Card.vue";
                                         {{ reviews.length }}
                                     </span>
                                     <span
-                                        class="text-sm text-oynx dark:text-snow"
+                                        class="text-xs text-oynx dark:text-snow"
                                         >Review(s)</span
                                     >
                                 </div>
@@ -185,11 +185,23 @@ import Card from "./Card.vue";
                         class="mt-10 py-10 border-t border-gray-500 text-center"
                     >
                         <div class="flex flex-wrap justify-center">
-                            <div class="w-full lg:w-9/12 px-4">
+                            <div v-if="cook.other_info == null" class="w-full px-4">
                                 <p
                                     class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow"
                                 >
                                     {{ user.other_info }}
+                                
+                                </p>
+                                <div>
+                                    Answer Questions that makes the your trust you 
+                                </div>
+                            </div>
+                            <div v-else  class="w-full px-4">
+                                <p
+                                    class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow"
+                                >
+                                    {{ cook.other_info }}
+                                
                                 </p>
                             </div>
                         </div>
@@ -217,6 +229,7 @@ export default {
     inheritAttrs: false,
     props: {
         user: Object,
+        cook: Object,
         reviews: Object,
         ratings: String,
         rating: Object,
@@ -226,8 +239,7 @@ export default {
         return {
             src: "",
             isLoading: true,
-            city: "",
-            country: "",
+            
         };
     },
     beforeDestroy() {
@@ -281,6 +293,7 @@ export default {
             }
         },
         extractCityAndCountry(address) {
+            if (!address) return { cityAndState: "", country: "" };
             const parts = address.split(", ");
             const cityAndState =
                 parts[parts.length - 3] +
