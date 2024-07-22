@@ -39,8 +39,12 @@ export default defineComponent({
                 plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
                 headerToolbar: {
                     right: "today prev next",
-                    left: "title",
+                    left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                    center:   'title',
+      
+                    
                 },
+                weekends: true,
                 editable: true,
                 selectable: true,
                 selectMirror: true,
@@ -278,7 +282,6 @@ export default defineComponent({
 });
 </script>
 <template>
-    
     <div
         class="container shadow-reverse rounded-lg p-6 my-6 relative text-oynx dark:text-snow"
     >
@@ -386,7 +389,9 @@ export default defineComponent({
                                                 suggestion.name
                                             }}</span>
                                         </div>
-                                        <span class="font-bold"> ${{  suggestion.price }}</span>
+                                        <span class="font-bold">
+                                            ${{ suggestion.price }}</span
+                                        >
                                         <div class="flex flex-col items-center">
                                             <img
                                                 class="inline-block h-8 w-8 rounded-full"
@@ -410,7 +415,8 @@ export default defineComponent({
                                 placeholder=""
                             />
                             <TextInput
-                                class="w-[47%]" hidden
+                                class="w-[47%]"
+                                hidden
                                 v-model="newSchedule.end_date"
                                 type="date"
                                 placeholder=""
@@ -480,4 +486,3 @@ export default defineComponent({
         </div>
     </div>
 </template>
-

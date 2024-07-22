@@ -26,6 +26,6 @@ class MealSchedule extends Model
     }
     public function order(): HasOne
     {
-        return $this->hasOne(orders::class);
+        return $this->hasOne(Orders::class);
     }
 }
