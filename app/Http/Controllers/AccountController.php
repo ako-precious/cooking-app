@@ -54,30 +54,7 @@ class AccountController extends Controller
     }
 
    
-    public function fb_return(Request $request)
-    {
-        return Socialite::driver("facebook")->redirect();
-    }
-    public function fb_callback(Request $request)
-    {
-
-        $facebookUser = Socialite::driver("facebook")->user();
-        // $find_user = User::firstWhere('facebook_id', $facebookUser->id);
-        // if($find_user){
-        //     Auth::login($find_user);
-        // }else{
-
-        //     $user = User::updateOrCreate(['email' => $facebookUser->email],
-        //     ['name' => $facebookUser->name,
-        //     'facebook_id' => $facebookUser->id,
-        //     //   'password'=> Hash::make(Str::random(12)) ,
-        //     'profile_photo_path' => $facebookUser->avatar,
-        //     'email_verified_at' => now()]);
-
-        //     Auth::login($user);
-        // }
-        dd($facebookUser);
-    }
+ 
     public function index()
     {
         $user = Auth::user();
@@ -182,7 +159,7 @@ class AccountController extends Controller
                 'mcc' => '5814',
                 'name' => $user->name,
                 'product_description' => 'Meal from ' . $user->name,
-                'url' =>  env('APP_URL')
+                'url' =>  'https://ounjemi.com/cook/menu'
             ]
         ]);
 
