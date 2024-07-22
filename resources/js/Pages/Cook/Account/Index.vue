@@ -31,7 +31,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                         </div>
                         <div class="flex justify-between items-center">
                             
-                            <div class="p-2 flex" v-if="accounts.length == 0">
+                            <div class="p-2 flex">
                                 <button
                                     @click="CookAccount"
                                     class="shadow-md rounded-md cursor-pointer w-[250px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"

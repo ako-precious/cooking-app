@@ -136,7 +136,7 @@ Route::middleware([
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients']);
     
     Route::resource('cook/account', AccountController::class);
-    Route::resource('ako-precious', AdminController::class);
+    Route::resource('admin', AdminController::class);
     Route::post('account-link/{id}', [AccountController::class, 'account_link']);
     Route::post('dashboard-link/{id}', [AccountController::class, 'dashboard_link']);
     Route::get('/account-session/{id}', [AccountController::class, 'account_session']);
