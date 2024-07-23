@@ -255,7 +255,8 @@ export default {
 
                         <li>
                             <a
-                                href="#"
+                                 target="_blank"
+                                :href="route('policy.show')"
                                 class="text-gray-500 transition hover:opacity-75"
                             >
                                 Privacy Policy
@@ -264,7 +265,8 @@ export default {
 
                         <li>
                             <a
-                                href="#"
+                                target="_blank"
+                                :href="route('terms.show')"
                                 class="text-gray-500 transition hover:opacity-75"
                             >
                                 Cookies

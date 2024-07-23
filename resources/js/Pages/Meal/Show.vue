@@ -49,9 +49,9 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     <p>Ratings</p>
                 </a>
                 <div
-                    class="items-center justify-end rounded-md flex  py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
+                    class="items-center justify-end rounded-md flex py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
-                <div v-if="$page.props.auth.user">
+                    <div v-if="$page.props.auth.user">
                         <font-awesome-icon
                             v-if="wishlist == null"
                             title="Add to wishlist"
@@ -69,13 +69,11 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     </div>
                     <div v-else>
                         <font-awesome-icon
-                           
                             title="Add to wishlist"
                             icon="fa-solid fa-heart"
                             class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                     </div>
-
 
                     <font-awesome-icon
                         icon="share"
@@ -106,12 +104,10 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     :class="{
                         'absolute -right-50': isHeaderFixed,
                     }"
-                > <div
-                    >
-                    <DropBarNav class="w-10 h-10 relative"
-                   
-                    />
-                </div>
+                >
+                    <div>
+                        <DropBarNav class="w-10 h-10 relative" />
+                    </div>
                 </div>
                 <div class="sm:hidden flex items-center">
                     <a
@@ -192,14 +188,14 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                             </div>
                             <img
                                 v-if="!isLoading"
-                                class="h-auto max-w-full rounded-lg lg:px-6 "
+                                class="h-auto max-w-full rounded-lg lg:px-6"
                                 :src="src"
                                 alt=""
                             />
                         </div>
                     </div>
                     <div
-                        class="lg:w-1/2  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+                        class="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
                     >
                         <div v-for="(preview, index) in other_src">
                             <div
@@ -245,7 +241,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                 <h1
                                     class="font-semibold text-xl text-oynx dark:text-snow"
                                 >
-                                    Cooked by {{ meal.user.name }}
+                                   <small>Cooked by </small> {{ meal.user.name }}
                                 </h1>
                             </div>
                             <hr
@@ -356,9 +352,113 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
             <div id="rating">
                 <ShowRating :meal="meal"></ShowRating>
             </div>
+
             <hr
                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
             />
+
+            <!-- component -->
+            <div
+                class="flex my-12 justify-centeritems-center"
+            >
+                <div
+                    class="h-56 w-72 absolute flex justify-center items-center"
+                >
+                    <img
+                        class="object-cover h-20 w-20 rounded-full"
+                        src="https://images.unsplash.com/photo-1484608856193-968d2be4080e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80"
+                        alt=""
+                    />
+                </div>
+
+                <div
+                    class="h-56 mx-4 w-5/6 bg-blue-400 rounded-3xl shadow-md sm:w-80 sm:mx-0"
+                >
+                    <div
+                        class="h-1/2 w-full flex justify-between items-baseline px-3 py-5"
+                    >
+                        <h1 class="text-white">Profile</h1>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="white"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                        </svg>
+                    </div>
+
+                    <div
+                        class="bg-white h-1/2 w-full rounded-3xl flex flex-col justify-around items-center"
+                    >
+                        <div
+                            class="w-full h-1/2 flex justify-between items-center px-3 pt-2"
+                        >
+                            <div
+                                class="flex flex-col justify-center items-center"
+                            >
+                                <h1 class="text-gray-500 text-xs">Orders</h1>
+                                <h1 class="text-gray-600 text-sm">340</h1>
+                            </div>
+                            <div
+                                class="flex flex-col justify-center items-center"
+                            >
+                                <h1 class="text-gray-500 text-xs">Spent</h1>
+                                <h1 class="text-gray-600 text-sm">$2,004</h1>
+                            </div>
+                        </div>
+                        <div
+                            class="w-full h-1/2 flex flex-col justify-center items-center"
+                        >
+                        <div
+                            class="block lg:hidden w-full px-4 text-center mt-20"
+                        >
+                            <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                                <div class="p-3 text-center">
+                                    <span
+                                        class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
+                                    >
+                                        {{ timeCooking }}
+                                    </span>
+                                    <span
+                                        class="text-xs text-oynx dark:text-snow"
+                                        > {{ CookingDate }} Cooking</span
+                                    >
+                                </div>
+                                <div class="p-3 text-center">
+                                    <span
+                                        class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
+                                    >
+                                    {{ ratings }}
+                                    </span>
+                                    <span
+                                        class="text-xs text-oynx dark:text-snow"
+                                        >Rating</span
+                                    >
+                                </div>
+                                <div class="p-3 text-center">
+                                    <span
+                                        class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
+                                    >
+                                        {{ reviews.length }}
+                                    </span>
+                                    <span
+                                        class="text-xs text-oynx dark:text-snow"
+                                        >Review(s)</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <Footer></Footer>
@@ -369,6 +469,11 @@ export default {
     inheritAttrs: false,
     props: {
         meal: Object,
+        user: Object,
+        cook: Object,
+        reviews: Object,
+        ratings: String,
+        rating: Object,
     },
     data() {
         return {
@@ -404,7 +509,38 @@ export default {
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
     },
+    computed: {
+        timeCooking() {
+            const createdAt = new Date(this.meal.user.created_at);
+            const now = new Date();
+            const diffTime = Math.abs(now - createdAt);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
+            if (diffDays < 30) {
+                return `${diffDays} `;
+            } else if (diffDays < 365) {
+                const diffMonths = Math.floor(diffDays / 30);
+                return `${diffMonths} `;
+            } else {
+                const diffYears = Math.floor(diffDays / 365);
+                return `${diffYears}`;
+            }
+        },
+        CookingDate() {
+            const createdAt = new Date(this.meal.user.created_at);
+            const now = new Date();
+            const diffTime = Math.abs(now - createdAt);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays < 30) {
+                return `Days`;
+            } else if (diffDays < 365) {
+                return `Months`;
+            } else {
+                return `Years`;
+            }
+        },
+    },
     methods: {
         handleScroll() {
             // Adjust the scroll threshold as needed
@@ -424,7 +560,7 @@ export default {
             axios
                 .delete(`/wishlist/${id}`)
                 .then((response) => {
-                    this.wishlist = response.data.wishlist
+                    this.wishlist = response.data.wishlist;
                     // Update UI if necessary
                 })
                 .catch((error) => {
@@ -439,7 +575,7 @@ export default {
             axios
                 .post("/wishlist", wishlistData)
                 .then((response) => {
-                   this.wishlist = response.data.wishlist
+                    this.wishlist = response.data.wishlist;
                     // Update UI if necessary
                 })
                 .catch((error) => {
@@ -447,7 +583,7 @@ export default {
                 });
         },
         WishList() {
-            if(this.$page.props.auth.user){
+            if (this.$page.props.auth.user) {
                 const id = this.meal.id;
                 axios
                     .get("/wishlist/" + id)

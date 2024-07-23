@@ -296,9 +296,9 @@ import RatingsCard from "./RatingsCard.vue";
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button @click="loadMoreData">Show More Reviews</button>
-                </div>
+            </div>
+            <div class="w-full flex justify-center items-center">
+                <button @click="loadMoreData">Show More Reviews</button>
             </div>
         </div>
         <div

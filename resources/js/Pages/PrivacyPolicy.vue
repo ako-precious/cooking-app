@@ -1,7 +1,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
-
+import footer from '@/Layouts/Footer.vue'
 defineProps({
     policy: String,
 });
@@ -21,4 +21,5 @@ defineProps({
             </div>
         </div>
     </div>
+    <footer></footer>
 </template>
