@@ -3,6 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 
+import Footer from "@/Layouts/Footer.vue";
 import DropBarNav from "@/Pages/Header/DropBarNav.vue";
 import ShowRating from "@/Pages/Rating/Show.vue";
 import Loader from "@/Components/Loader.vue";
@@ -198,7 +199,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                         </div>
                     </div>
                     <div
-                        class="lg:w-1/2  grid grid-cols-2 md:grid-cols-3 gap-4"
+                        class="lg:w-1/2  grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
                     >
                         <div v-for="(preview, index) in other_src">
                             <div
@@ -360,6 +361,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
             />
         </div>
     </div>
+    <Footer></Footer>
 </template>
 
 <script>

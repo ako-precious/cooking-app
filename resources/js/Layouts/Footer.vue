@@ -89,20 +89,18 @@ export default {
 
                             <li>
                                 <a
-                                    href="#"
+                                    href="tel:+17052793660"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
-                                    FAQs
+                                  Phone Number
                                 </a>
                             </li>
 
                             <li>
                                 <a
-                                    href="#"
-                                    class="text-oynx dark:text-snow transition hover:opacity-75"
-                                >
-                                    Live Chat
-                                </a>
+                                    href="mailto:messages@ounjemi.com"
+                                    class="text-oynx dark:text-snow transition hover:opacity-75">
+                                    Email Address </a>
                             </li>
                         </ul>
                     </div>
@@ -235,22 +233,12 @@ export default {
                     </ul>
                 </div>
             </div>
-            -->
 
             <div class="mt-8 border-t border-gray-500 pt-8">
                 <div class="sm:flex sm:justify-between">
                     <p class="text-xs text-gray-500">
                         &copy; {{ currentYear }}. {{ appName }} . All rights
                         reserved.
-                    </p>
-                    <p class="text-xs text-gray-500">
-                        Email:
-                        <a href="mailto:messages@ounjemi.com">
-                            messages@ounjemi.com</a
-                        >
-                    </p>
-                    <p class="text-xs text-gray-500">
-                        Phone: <a href="tel:+17052793660"> 7052793660 </a>
                     </p>
 
                     <ul
