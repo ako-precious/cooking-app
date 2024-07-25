@@ -11,6 +11,9 @@ defineProps(["account"]);
         {{ account.user.email }}
       </td>
       <td class="whitespace-nowrap px-6 py-5 font-semibold dark:text-snow text-oynx">
+        {{ account.user.phone_number }}
+      </td>
+      <td class="whitespace-nowrap px-6 py-5 font-semibold dark:text-snow text-oynx">
         <img
                         :src="truncatedImg(account.means_of_id)"
                         :alt="truncatedImg(account.means_of_id)"

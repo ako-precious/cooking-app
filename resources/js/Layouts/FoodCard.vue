@@ -27,7 +27,7 @@ defineProps(["meal"]);
                 />
             </div>
             <span
-                class="absolute top-0 left-0 m-2 rounded-full bg-oynx px-2 text-center text-sm font-medium text-snow"
+                class="absolute top-0 left-0 m-2 rounded-full bg-lighred px-2 text-center text-sm font-medium text-snow"
                 >New</span
             >
         </Link>

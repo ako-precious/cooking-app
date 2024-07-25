@@ -241,7 +241,8 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                 <h1
                                     class="font-semibold text-xl text-oynx dark:text-snow"
                                 >
-                                   <small>Cooked by </small> {{ meal.user.name }}
+                                    <small>Cooked by </small>
+                                    {{ meal.user.name }}
                                 </h1>
                             </div>
                             <hr
@@ -358,11 +359,9 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
             />
 
             <!-- component -->
-            <div
-                class="flex my-12 justify-centeritems-center"
-            >
+            <div class="flex my-12 justify-centeritems-center py-3 px-8">
                 <div
-                    class="h-56 w-72 absolute flex justify-center items-center"
+                    class="h-56 w-75 absolute flex justify-center items-center"
                 >
                     <img
                         class="object-cover h-20 w-20 rounded-full"
@@ -372,90 +371,72 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 </div>
 
                 <div
-                    class="h-56 mx-4 w-5/6 bg-blue-400 rounded-3xl shadow-md sm:w-80 sm:mx-0"
+                    class="h-56 mx-4 w-5/6 bg-polynesian dark:bg-lighred rounded-3xl shadow-md sm:w-80 sm:mx-0"
                 >
                     <div
                         class="h-1/2 w-full flex justify-between items-baseline px-3 py-5"
                     >
-                        <h1 class="text-white">Profile</h1>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="white"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                            />
-                        </svg>
+                        <div class="p-3 text-center">
+                            <span
+                                class="text-base font-bold block uppercase tracking-wide dark:text-oynx text-snow"
+                            >
+                                {{ ratings }}
+                            </span>
+                            <span class="text-xs dark:text-oynx text-snow"
+                                >Rating</span
+                            >
+                        </div>
+                        <div class="p-3 text-center">
+                            <span
+                                class="text-base font-bold block uppercase tracking-wide  dark:text-oynx text-snow"
+                            >
+                                {{ reviews.length }}
+                            </span>
+                            <span class="text-xs dark:text-oynx text-snow"
+                                >Review(s)</span
+                            >
+                        </div>
                     </div>
 
                     <div
-                        class="bg-white h-1/2 w-full rounded-3xl flex flex-col justify-around items-center"
+                        class="bg-snow dark:bg-oynx shadow-small h-1/2 w-full rounded-b-3xl flex flex-col justify-around items-center"
                     >
                         <div
                             class="w-full h-1/2 flex justify-between items-center px-3 pt-2"
                         >
                             <div
-                                class="flex flex-col justify-center items-center"
+                                class=" p-3 flex flex-col justify-center items-center"
                             >
-                                <h1 class="text-gray-500 text-xs">Orders</h1>
-                                <h1 class="text-gray-600 text-sm">340</h1>
-                            </div>
-                            <div
-                                class="flex flex-col justify-center items-center"
-                            >
-                                <h1 class="text-gray-500 text-xs">Spent</h1>
-                                <h1 class="text-gray-600 text-sm">$2,004</h1>
-                            </div>
-                        </div>
-                        <div
-                            class="w-full h-1/2 flex flex-col justify-center items-center"
-                        >
-                        <div
-                            class="block lg:hidden w-full px-4 text-center mt-20"
-                        >
-                            <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                                <div class="p-3 text-center">
+                               
                                     <span
-                                        class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
+                                        class="text-base font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
                                         {{ timeCooking }}
                                     </span>
                                     <span
                                         class="text-xs text-oynx dark:text-snow"
-                                        > {{ CookingDate }} Cooking</span
                                     >
-                                </div>
-                                <div class="p-3 text-center">
-                                    <span
-                                        class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
+                                        {{ CookingDate }} <br> Cooking</span
                                     >
-                                    {{ ratings }}
-                                    </span>
-                                    <span
-                                        class="text-xs text-oynx dark:text-snow"
-                                        >Rating</span
-                                    >
-                                </div>
-                                <div class="p-3 text-center">
-                                    <span
-                                        class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
-                                    >
-                                        {{ reviews.length }}
-                                    </span>
-                                    <span
-                                        class="text-xs text-oynx dark:text-snow"
-                                        >Review(s)</span
-                                    >
-                                </div>
+                                
+                            </div>
+                            <div
+                                class="flex flex-col justify-center items-center"
+                            >
+                                    <div class=" z-10 p-3 text-center">
+                                        <Link :href="route('user.show', { id: meal.user.id })">
+                                        
+                                            <span
+                                                class="text-sm block  tracking-wide text-oynx dark:text-snow"
+                                            >
+                                                View <br> Profile
+                                            </span>
+                                        </Link>
+                                      
+                                    </div>
                             </div>
                         </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

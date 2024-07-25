@@ -67,6 +67,15 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                 </TableHeadVue>
                                                 <TableHeadVue>
                                                     <template #title>
+                                                        Phone Numbers
+                                                    </template>
+                                                    <template #symbols>
+                                                        <CaretUp />
+                                                        <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
                                                        Photo ID
                                                     </template>
                                                     <template #symbols>
