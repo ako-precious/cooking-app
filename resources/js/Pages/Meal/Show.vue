@@ -359,27 +359,32 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
             />
 
             <!-- component -->
-            <div class="flex flex-col my-12 justify-centeritems-center py-3 px-8">
-               More about Cook
+            <div class="  my-12 ">
+            <div class=" px-12 mb-4  ">
+                    <h1 class="font-semibold text-xl text-oynx dark:text-snow">
+                        More about your cook
+                    </h1>
+                </div>
+            <div
+                class="flex    items-center py-3 px-8"
+            >
                
-               <div
+
+                <div
                     class="h-56 w-75 absolute flex justify-center items-center"
                 >
-                    <img           v-if="meal.user.profile_photo_path"
-                                    :src="
-                                        getProfilePhotoUrl(
-                                            meal.user.profile_photo_path
-                                        )
-                                    "
-                                   class="object-cover h-20 w-20 rounded-full"
-                                    alt="avatar"
-                                />
-                                <img
-                                    v-else
-                                    :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
-                                    class="object-cover h-20 w-20 rounded-full"
-                                    alt="avatar"
-                                />
+                    <img
+                        v-if="meal.user.profile_photo_path"
+                        :src="getProfilePhotoUrl(meal.user.profile_photo_path)"
+                        class="object-cover h-20 w-20 rounded-full"
+                        alt="avatar"
+                    />
+                    <img
+                        v-else
+                        :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
+                        class="object-cover h-20 w-20 rounded-full"
+                        alt="avatar"
+                    />
                 </div>
 
                 <div
@@ -400,7 +405,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                         </div>
                         <div class="p-3 text-center">
                             <span
-                                class="text-base font-bold block uppercase tracking-wide  dark:text-oynx text-snow"
+                                class="text-base font-bold block uppercase tracking-wide dark:text-oynx text-snow"
                             >
                                 {{ reviews.length }}
                             </span>
@@ -417,40 +422,47 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                             class="w-full h-1/2 flex justify-between items-center px-3 pt-2"
                         >
                             <div
-                                class=" p-3 flex flex-col justify-center items-center"
+                                class="p-3 flex flex-col justify-center items-center"
                             >
-                               
-                                    <span
-                                        class="text-base font-bold block uppercase tracking-wide text-oynx dark:text-snow"
-                                    >
-                                        {{ timeCooking }}
-                                    </span>
-                                    <span
-                                        class="text-xs text-oynx dark:text-snow"
-                                    >
-                                        {{ CookingDate }} <br> Cooking</span
-                                    >
-                                
+                                <span
+                                    class="text-base font-bold block uppercase tracking-wide text-oynx dark:text-snow"
+                                >
+                                    {{ timeCooking }}
+                                </span>
+                                <span class="text-xs text-oynx dark:text-snow">
+                                    {{ CookingDate }} <br />
+                                    Cooking</span
+                                >
                             </div>
                             <div
                                 class="flex flex-col justify-center items-center"
                             >
-                                    <div class=" z-10 p-3 text-center">
-                                        <Link :href="route('user.show', { id: meal.user.id })">
-                                        
-                                            <span
-                                                class="text-sm block  tracking-wide text-oynx dark:text-snow"
-                                            >
-                                                View <br> Profile
-                                            </span>
-                                        </Link>
-                                      
-                                    </div>
+                                <div class="z-10 p-3 text-center">
+                                    <Link
+                                        :href="
+                                            route('user.show', {
+                                                id: meal.user.id,
+                                            })
+                                        "
+                                    >
+                                        <span
+                                            class="text-sm block tracking-wide text-oynx dark:text-snow"
+                                        >
+                                            View <br />
+                                            Profile
+                                        </span>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
+                
+                <div class="px-8">
+                    
+                </div>
+            </div>
+            
             </div>
         </div>
     </div>
