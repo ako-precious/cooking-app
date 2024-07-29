@@ -359,15 +359,27 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
             />
 
             <!-- component -->
-            <div class="flex my-12 justify-centeritems-center py-3 px-8">
-                <div
+            <div class="flex flex-col my-12 justify-centeritems-center py-3 px-8">
+               More about Cook
+               
+               <div
                     class="h-56 w-75 absolute flex justify-center items-center"
                 >
-                    <img
-                        class="object-cover h-20 w-20 rounded-full"
-                        src="https://images.unsplash.com/photo-1484608856193-968d2be4080e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2134&q=80"
-                        alt=""
-                    />
+                    <img           v-if="meal.user.profile_photo_path"
+                                    :src="
+                                        getProfilePhotoUrl(
+                                            meal.user.profile_photo_path
+                                        )
+                                    "
+                                   class="object-cover h-20 w-20 rounded-full"
+                                    alt="avatar"
+                                />
+                                <img
+                                    v-else
+                                    :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
+                                    class="object-cover h-20 w-20 rounded-full"
+                                    alt="avatar"
+                                />
                 </div>
 
                 <div
