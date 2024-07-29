@@ -366,7 +366,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     </h1>
                 </div>
             <div
-                class="flex    items-center py-3 px-8"
+                class="flex flex-col lg:flex-row items-center py-3 px-8"
             >
                
 
@@ -388,7 +388,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                 </div>
 
                 <div
-                    class="h-56 mx-4 w-5/6 bg-polynesian dark:bg-lighred rounded-3xl shadow-md sm:w-80 sm:mx-0"
+                    class="h-56  mx-4 w-5/6 bg-polynesian dark:bg-lighred rounded-3xl shadow-md sm:w-80 sm:mx-0"
                 >
                     <div
                         class="h-1/2 w-full flex justify-between items-baseline px-3 py-5"
@@ -458,8 +458,15 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     </div>
                 </div>
                 
-                <div class="px-8">
-                    
+                <div class=" lg:w-2/3  p-10 text-oynx dark:text-snow">
+                    <hr
+                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+            />
+            <br>  {{ meal.user.other_info }} <br> <br>
+                    <hr
+                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+            />
+                    <font-awesome-icon icon="circle-exclamation" />    To protect your payment, do not transfer money outside of the Ounjemi website.
                 </div>
             </div>
             

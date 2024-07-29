@@ -59,7 +59,8 @@ import Card from "./Card.vue";
                                     </span>
                                     <span
                                         class="text-xs text-oynx dark:text-snow"
-                                        > {{ CookingDate }} Cooking</span
+                                    >
+                                        {{ CookingDate }} Cooking</span
                                     >
                                 </div>
                                 <div class="p-3 text-center">
@@ -120,9 +121,7 @@ import Card from "./Card.vue";
                                     <i
                                         class="fas fa-map-marker-alt mr-2 text-lg text-oynx dark:text-snow"
                                     ></i>
-                                    {{
-                                        extractCityAndCountry(user.address)
-                                    }}
+                                    {{ extractCityAndCountry(user.address) }}
                                 </div>
                             </div>
                         </div>
@@ -138,14 +137,15 @@ import Card from "./Card.vue";
                                     </span>
                                     <span
                                         class="text-xs text-oynx dark:text-snow"
-                                        > {{ CookingDate }} Cooking</span
+                                    >
+                                        {{ CookingDate }} Cooking</span
                                     >
                                 </div>
                                 <div class="p-3 text-center">
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                    {{ ratings.toFixed(1) }}
+                                        {{ ratings.toFixed(1) }}
                                     </span>
                                     <span
                                         class="text-xs text-oynx dark:text-snow"
@@ -185,23 +185,33 @@ import Card from "./Card.vue";
                         class="mt-10 py-10 border-t border-gray-500 text-center"
                     >
                         <div class="flex flex-wrap justify-center">
-                            <div v-if="cook.other_info == null" class="w-full px-4">
+                            <div
+                                v-if="cook.other_info == null"
+                                class="text-left w-full px-4"
+                            >
                                 <p
                                     class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow"
                                 >
                                     {{ user.other_info }}
-                                
                                 </p>
                                 <div>
-                                    Answer Questions that makes the your trust you 
+                                    <p
+                                        class="mt-4 text-sm leading-relaxed text-oynx dark:text-snow"
+                                    >
+                                        Click
+                                        <span class="font-bold cursor-pointer"
+                                            >here</span
+                                        >
+                                        answer questions that makes the your
+                                        customer know you more
+                                    </p>
                                 </div>
                             </div>
-                            <div v-else  class="w-full px-4">
+                            <div v-else class="w-full px-4">
                                 <p
                                     class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow"
                                 >
                                     {{ cook.other_info }}
-                                
                                 </p>
                             </div>
                         </div>
@@ -219,8 +229,10 @@ import Card from "./Card.vue";
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+       
     </section>
 </template>
 
@@ -239,7 +251,6 @@ export default {
         return {
             src: "",
             isLoading: true,
-            
         };
     },
     beforeDestroy() {
