@@ -3,7 +3,8 @@ import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 import Card from "./Card.vue";
 
-import DropBarNav from "./Header/DropBarNav.vue";
+import Navbar from "../Header/Navbar.vue";
+import DropBarNav from "../Header/DropBarNav.vue";
 import Footer from "@/Layouts/Footer.vue";
 import OtherInfo from "./Partials/OtherInfo.vue";
 </script>
@@ -16,51 +17,12 @@ import OtherInfo from "./Partials/OtherInfo.vue";
             }"
             class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
         >
-            <Navbar class="bg-snow dark:bg-oynx">
-                <template #search>
-                    <div
-                        class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
-                    >
-                        <!-- <div
-                            
-                            class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
-                            name=""
-                            id=""
-                        >
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Meal Schedule</p>
-                            </a>
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Special Meal</p>
-                            </a>
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Explore</p>
-                            </a>
-                        </div> -->
-                        <DateRangePicker
-                            @filter-meals="filterMeals"
-                            class="transition-all duration-300 delay-75 ease-in"
-                        ></DateRangePicker>
-                    </div>
-                </template>
+            <Navbar class="bg-snow dark:bg-oynx">                
                 <template #dropdown>
-                    <DropBarNav
-                        :canLogin="canLogin"
-                        :canRegister="canRegister"
-                        :laravelVersion="laravelVersion"
-                        :phpVersion="phpVersion"
-                    />
+                    <DropBarNav />
                 </template>
             </Navbar>
-            <!-- <DateRangePicker
-                @filter-meals="filterMeals"
-                v-if="!isHeaderFixed"
-                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
-            ></DateRangePicker> -->
-            <DateRangePicker
-                @filter-meals="filterMeals"
-                class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker>
+           
         </header>
 
     <section class="pt-16 bg-snow dark:bg-oynx">
@@ -280,7 +242,14 @@ import OtherInfo from "./Partials/OtherInfo.vue";
         </div>
         
     </section>
-    <OtherInfo></OtherInfo>
+    <div    class="modal disable-scrollbars pt-12 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+    > <div
+            class="relative p-4 w-full  max-h-[90%]  disable-scrollbars overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in delay-200"
+        >
+        
+        <OtherInfo></OtherInfo>
+    </div>
+    </div>
     <Footer></Footer>
 </template>
 
@@ -312,7 +281,7 @@ export default {
     },
     created() {
         this.handleScroll();
-        this.fetchData();
+        // this.fetchData();
     },
     computed: {
         timeCooking() {
@@ -345,6 +314,7 @@ export default {
                 return `Years`;
             }
         },
+        
     },
     methods: {
         getProfilePhotoUrl(profilePhotoPath) {
