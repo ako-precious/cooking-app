@@ -47,7 +47,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                     required
                                                     autocomplete="name"
                                                 />
-                                                <p class="my-3 text-oyn dark:text-snow" :class="{'text-lighred' : maxLength2 }">
+                                                <p class="my-3" :class="maxLength2 ? 'text-lighred' : 'text-oynx dark:text-snow'">
                                                     
                                                     {{ inputLength2 }}/50 
                                                 </p>
@@ -66,7 +66,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                     rows="5"
                                                     cols="50"
                                                 ></textarea>
-                                                <p class="my-3 text-oyn dark:text-snow" :class="{'text-lighred' : maxLength }">
+                                                <p class="my-3 " :class="maxLength ? 'text-lighred' : 'text-oynx dark:text-snow'">
                                                     
                                                     {{ inputLength }}/600 
                                                 </p>

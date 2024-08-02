@@ -195,7 +195,7 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                     >
                         <div class="flex flex-wrap justify-center">
                             <div
-                                v-if="cook.other_info == null"
+                               
                                 class="text-left w-full px-4"
                             >
                                 <p
@@ -203,25 +203,50 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 >
                                     {{ user.other_info }}
                                 </p>
-                                <div>
-                                    <p
+                                
+                                <p
+                                class="mb-2 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
+                                >A brief background about {{ user.name }},
+                                cooking experience, and favorite dish to
+                                prepare 
+                            </p>
+                                <p
+                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                >{{ cook.question1 }}                                
+                                   
+                                </p>
+                                <p
+                                class="mb-2 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
+                                >What makes  {{ user.name }} cooking unique, and what you can 
+                                expect from the dishes?
+                            </p>
+                                <p
+                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                >{{ cook.question2 }}                                
+                                   
+                                </p>
+                                <p
+                                class="mb-2 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
+                                >How do {{ user.name }}  ensure food safety and hygiene in your cooking
+                                process?
+                            </p>
+                                <p
+                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                >{{ cook.question2 }}                                
+                                   
+                                </p>
+                                <div v-if=" $page.props.auth.user">
+                                    <p v-if="user.id ==  $page.props.auth.user.id"
                                         class="mt-4 text-sm leading-relaxed text-oynx dark:text-snow"
                                     >
                                         Click
-                                        <span class="font-bold cursor-pointer"
+                                        <span @click="openModal"class="font-bold underline cursor-pointer hover:text-persian"
                                             >here</span
                                         >
                                         answer questions that makes the your
                                         customer know you more
                                     </p>
                                 </div>
-                            </div>
-                            <div v-else class="w-full px-4">
-                                <p
-                                    class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow"
-                                >
-                                    {{ cook.other_info }}
-                                </p>
                             </div>
                         </div>
                     </div>
@@ -242,12 +267,12 @@ import OtherInfo from "./Partials/OtherInfo.vue";
         </div>
         
     </section>
-    <div    class="modal disable-scrollbars pt-12 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+    <div v-show="newEventModalVisible" class="modal disable-scrollbars pt-12 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
     > <div
             class="relative p-4 w-full  max-h-[90%]  disable-scrollbars overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in delay-200"
         >
         
-        <OtherInfo></OtherInfo>
+        <OtherInfo @close="closeModal" :cook="cook"></OtherInfo>
     </div>
     </div>
     <Footer></Footer>
@@ -268,6 +293,7 @@ export default {
         return {
             src: "",
             isLoading: true,
+            newEventModalVisible: false,
         };
     },
     beforeDestroy() {
@@ -317,6 +343,15 @@ export default {
         
     },
     methods: {
+        openModal() {
+            
+            this.newEventModalVisible = true;
+            
+        },
+        closeModal() {
+            // clear everything in the div and close it
+            this.newEventModalVisible = false;
+        },
         getProfilePhotoUrl(profilePhotoPath) {
             if (
                 profilePhotoPath.includes("https://lh3.googleusercontent.com")

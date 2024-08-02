@@ -30,6 +30,34 @@ class CookController extends Controller
         }
     }
 
+    public function store(Request $request)
+    {
+        $user_id = $request->user_id;
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            // User exists
+            $newCook = Cook::where('user_id', $user_id)->get();
+        } else {
+            // User does not exist
+            $newCook = Cook::create($request->all());
+        }
+        // Create a new row in your table
+        // Return the ID of the newly created row
+        return response()->json(['data' => $newCook]);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $mealSchedule = Cook::find($id);
+        $mealSchedule->question1 =  $request->question1;
+        $mealSchedule->question2 =  $request->question2;
+        $mealSchedule->question3 =  $request->question3;
+        $mealSchedule->save();
+
+        // Prepare notification message
+        $message = "Your meal order #" . $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
+        return response()->json(['data' => $message]);
+    }
     public function setup()
     {
         // dd(Auth::id()) ;
@@ -47,21 +75,6 @@ class CookController extends Controller
             # code...
             return redirect()->route('cook.setup',);
         }
-    }
-    public function store(Request $request)
-    {
-        $user_id = $request->user_id;
-        $cook = Cook::firstWhere('user_id', $user_id);
-        if ($cook !== null) {
-            // User exists
-            $newCook = Cook::where('user_id', $user_id)->get();
-        } else {
-            // User does not exist
-            $newCook = Cook::create($request->all());
-        }
-        // Create a new row in your table
-        // Return the ID of the newly created row
-        return response()->json(['data' => $newCook]);
     }
 
     public function checkCook()

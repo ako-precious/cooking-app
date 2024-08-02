@@ -446,7 +446,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                         "
                                     >
                                         <span
-                                            class="text-sm block tracking-wide text-oynx dark:text-snow"
+                                            class="text-sm block tracking-wide text-oynx dark:text-snow hover:underline"
                                         >
                                             View <br />
                                             Profile
