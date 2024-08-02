@@ -397,7 +397,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                             <span
                                 class="text-base font-bold block uppercase tracking-wide dark:text-oynx text-snow"
                             >
-                                {{ ratings }}
+                                {{ ratings.toFixed(1) }}
                             </span>
                             <span class="text-xs dark:text-oynx text-snow"
                                 >Rating</span

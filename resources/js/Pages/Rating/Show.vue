@@ -227,7 +227,7 @@ import RatingsCard from "./RatingsCard.vue";
                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
             />
             <div
-                class="overflow-y-scroll max-h-[300px] lg:max-h-[500px] flex flex-col py-8 md:px-6 lg:p-8"
+                class="overflow-y-scroll max-h-[500px] lg:max-h-[1000px] flex flex-col py-8 md:px-6 lg:p-8"
             >
                 <div
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr"

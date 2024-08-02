@@ -77,7 +77,7 @@ My goal is to take customers on a culinary journey, exploring new flavors and id
                 <label
                     for="password"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >How do you ensure food safety and hygiene in your cooking
+                    >How do you ensure food safety and hygiene in your cooking and packaging
                     process?
                 </label>
                 <textarea

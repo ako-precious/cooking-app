@@ -14,10 +14,9 @@ class RatingController extends Controller
         // Retrieve ratings for the given mealId
 
         if (Rating::firstWhere('meal_id', $mealId)) {
-            $ratings = Rating::where('meal_id', $mealId)->get();
-            
+            $ratings = Rating::where('meal_id', $mealId)->get();        
          
-
+            
             // Get all the values in the specified column (let's assume the column is 'value')
             $values = $ratings->pluck('total');
 

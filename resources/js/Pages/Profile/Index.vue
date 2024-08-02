@@ -12,18 +12,17 @@ import OtherInfo from "./Partials/OtherInfo.vue";
     <Head title="Cook's Profile" />
 
     <header
-            :class="{
-                'fix align-bottom shadow-sm py-4 px-8 lg ': isHeaderFixed,
-            }"
-            class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
-        >
-            <Navbar class="bg-snow dark:bg-oynx">                
-                <template #dropdown>
-                    <DropBarNav />
-                </template>
-            </Navbar>
-           
-        </header>
+        :class="{
+            'fix align-bottom shadow-sm py-4 px-8 lg ': isHeaderFixed,
+        }"
+        class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
+    >
+        <Navbar class="bg-snow dark:bg-oynx">
+            <template #dropdown>
+                <DropBarNav />
+            </template>
+        </Navbar>
+    </header>
 
     <section class="pt-16 bg-snow dark:bg-oynx">
         <div class="lg:w-4/5 px-4 mx-auto">
@@ -76,7 +75,7 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                     <span
                                         class="text-xl font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        {{ ratings }}
+                                        {{ ratings.toFixed(1) }}
                                     </span>
                                     <span
                                         class="text-xs text-oynx dark:text-snow"
@@ -194,86 +193,212 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                         class="mt-10 py-10 border-t border-gray-500 text-center"
                     >
                         <div class="flex flex-wrap justify-center">
-                            <div
-                               
-                                class="text-left w-full px-4"
-                            >
+                            <div class="text-left w-full px-4">
                                 <p
-                                    class="mb-4 text-lg leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow"
+                                >
+                                    About {{ firstWord }}
+                                </p>
+
+                                <p
+                                    class="mb-1 text-lg font-semibold leading-relaxed text-oynx dark:text-snow"
+                                >
+                                    Interesting fact:
+                                </p>
+
+                                <p
+                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
                                 >
                                     {{ user.other_info }}
                                 </p>
-                                
+
                                 <p
-                                class="mb-2 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
-                                >A brief background about {{ user.name }},
-                                cooking experience, and favorite dish to
-                                prepare 
-                            </p>
-                                <p
-                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
-                                >{{ cook.question1 }}                                
-                                   
+                                    class="mb-1 text-lg font-semibold leading-relaxed text-oynx dark:text-snow"
+                                >
+                                    A brief background, cooking experience, and
+                                    favorite dish to prepare:
                                 </p>
                                 <p
-                                class="mb-2 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
-                                >What makes  {{ user.name }} cooking unique, and what you can 
-                                expect from the dishes?
-                            </p>
-                                <p
                                     class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
-                                >{{ cook.question2 }}                                
-                                   
+                                >
+                                    {{ cook.question1 }}
                                 </p>
                                 <p
-                                class="mb-2 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
-                                >How do {{ user.name }}  ensure food safety and hygiene in your cooking
-                                process?
-                            </p>
+                                    class="mb-1 text-lg font-semibold leading-relaxed text-oynx dark:text-snow"
+                                >
+                                    What makes {{ firstWord }} cooking unique,
+                                    and what you can expect from the dishes:
+                                </p>
                                 <p
                                     class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
-                                >{{ cook.question2 }}                                
-                                   
+                                >
+                                    {{ cook.question2 }}
                                 </p>
-                                <div v-if=" $page.props.auth.user">
-                                    <p v-if="user.id ==  $page.props.auth.user.id"
-                                        class="mt-4 text-sm leading-relaxed text-oynx dark:text-snow"
+                                <p
+                                    class="mb-1 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
+                                >
+                                    How {{ firstWord }} ensures food safety and
+                                    hygiene in the cooking and packaging
+                                    process:
+                                </p>
+                                <p
+                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                >
+                                    {{ cook.question2 }}
+                                </p>
+                                <div v-if="$page.props.auth.user">
+                                    <p
+                                        v-if="
+                                            user.id ==
+                                                $page.props.auth.user.id ||
+                                            cook.question1 == null
+                                        "
+                                        class="float-right mt-4 text-sm leading-relaxed text-oynx dark:text-snow"
                                     >
-                                        Click
-                                        <span @click="openModal"class="font-bold underline cursor-pointer hover:text-persian"
-                                            >here</span
+                                        <span
+                                            v-if="
+                                                cook.question3 == null ||
+                                                cook.question2 == null ||
+                                                cook.question1 == null
+                                            "
                                         >
-                                        answer questions that makes the your
-                                        customer know you more
+                                            Click
+                                            <span
+                                                @click="openModal"
+                                                class="font-bold underline cursor-pointer hover:text-persian"
+                                                >here</span
+                                            >
+                                            answer questions that makes the your
+                                            customer know you more
+                                        </span>
+                                        <span v-else>
+                                            Click
+                                            <span
+                                                @click="openModal"
+                                                class="font-bold underline cursor-pointer hover:text-persian"
+                                                >here</span
+                                            >
+                                            edit answers to questions
+                                        </span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div
-                        class="py-10 border-t border-gray-500 text-center mx-auto relative grid s md:grid-cols-3 sm:grid-cols-2 gap-8"
-                    >
-                        <div
-                            v-for="meal in meals"
-                            :key="meal.id"
-                            class="animate-fade-in"
+                    <div class="py-10 border-t border-gray-500 text-center mx-auto relative">
+                        <p
+                            class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow"
                         >
-                            <Card :meal="meal"></Card>
+                            {{ firstWord }}'s Meals
+                        </p>
+
+                        <div
+                            class="py-5 text-center mx-auto relative grid s md:grid-cols-3 sm:grid-cols-2 gap-8"
+                        >
+                            <div
+                                v-for="meal in meals"
+                                :key="meal.id"
+                                class="animate-fade-in"
+                            >
+                                <Card :meal="meal"></Card>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="py-10 border-t border-gray-500 text-center mx-auto relative">
+                        <p
+                            class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow"
+                        >
+                            {{ firstWord }}'s Reviews
+                        </p>
+                        <div
+                class=" flex flex-col py-8 md:px-6 lg:p-8"
+            >
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr"
+                >
+                    <!--Background-->
+                  
+                    <div
+                        v-for="comment in comments"
+                        :key="comment.id"
+                        class="animate-fade-in"
+                    >
+                        <div class="col-span-1 rounded-3">
+                            <div class="m-4 block rounded-lg">
+                                <!--Testimonial-->
+                                <div class="md:flex md:flex-row">
+                                    <div
+                                        class="mx-auto mb-6 flex flex-col items-center w-36 md:w-1/3 md:mx-0 lg:mb-0"
+                                    >
+                                        <img v-if="comment.profile_photo_path"
+                                            src="comment.profile_photo_path"
+                                            class="rounded-full shadow-md dark:shadow-black/30"
+                                            alt="woman avatar"
+                                        />
+                                        <img v-else
+                                            :src="`https://ui-avatars.com/api/?name=${comment.user.name}&color=FE6D73&background=004E98`"
+                                            class="rounded-full shadow-md dark:shadow-black/30"
+                                            alt="woman avatar"
+                                        />
+                                        <div class="flex items-center my-3">
+                                            
+                                            <div
+                                                v-for="index in getStars(comment.total)"
+                                                :key="index"
+                                            >
+                                                <font-awesome-icon
+                                                    icon="star"
+                                                    class="text-persian text-xxs"
+                                                />
+                                            </div>
+                                           
+                                        </div>
+                                        <p
+                                            class="mb-2 text-xs font-bold text-oynx dark:text-snow"
+                                        >
+                                            {{
+                                                FormattedDate(
+                                                    comment.updated_at
+                                                )
+                                            }}
+                                        </p>
+                                    </div>
+                                    <div class="md:ms-5 flex-col md:w-2/3">
+                                        <p
+                                            class="mb-4 text-base font-light text-oynx dark:text-snow"
+                                        >
+                                            {{ comment.comment }}
+                                        </p>
+                                        <p
+                                            class="mb-2 text-base font-bold text-oynx dark:text-snow capitalize"
+                                        >
+                                            {{ comment.user.name }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="w-full flex justify-center items-center">
+                <button @click="loadMoreData">Show More Reviews</button>
+            </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
     </section>
-    <div v-show="newEventModalVisible" class="modal disable-scrollbars pt-12 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
-    > <div
-            class="relative p-4 w-full  max-h-[90%]  disable-scrollbars overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in delay-200"
+    <div
+        v-show="newEventModalVisible"
+        class="modal disable-scrollbars pt-12 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+    >
+        <div
+            class="relative p-4 w-full max-h-[90%] disable-scrollbars overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in delay-200"
         >
-        
-        <OtherInfo @close="closeModal" :cook="cook"></OtherInfo>
-    </div>
+            <OtherInfo @close="closeModal" :cook="cook"></OtherInfo>
+        </div>
     </div>
     <Footer></Footer>
 </template>
@@ -293,6 +418,7 @@ export default {
         return {
             src: "",
             isLoading: true,
+            comments: [],
             newEventModalVisible: false,
         };
     },
@@ -310,6 +436,42 @@ export default {
         // this.fetchData();
     },
     computed: {
+        async loadMoreData() {
+            if (this.hasMoreData) {
+                this.page++;
+                await this.fetchData();
+            }
+        },
+        async fetchData() {
+            try {
+                const response = await axios.get(
+                    `/api/rating?page=${this.page}&perPage=${this.perPage}`
+                );
+                const newComments = response.data.comments.data;
+
+                //     // If there is no new data, set hasMoreData to false
+                if (newComments.length === 0) {
+                    this.hasMoreData = false;
+                }
+
+                // Concatenate new data to the existing meals
+                this.comment = [...this.comment, ...newComments];
+            } catch (error) {
+                //     console.error("Error fetching data:", error);
+            }
+        },
+        firstWord() {
+            // Check if $page.props.auth.user.name is defined
+            if (this.user.name) {
+                // Split the name string into an array of words
+                const words = this.user.name.split(" ");
+
+                // Return the first word
+                return words[0];
+            } else {
+                return ""; // Return an empty string if $page.props.auth.user.name is undefined
+            }
+        },
         timeCooking() {
             const createdAt = new Date(this.user.created_at);
             const now = new Date();
@@ -340,13 +502,10 @@ export default {
                 return `Years`;
             }
         },
-        
     },
     methods: {
         openModal() {
-            
             this.newEventModalVisible = true;
-            
         },
         closeModal() {
             // clear everything in the div and close it
@@ -380,3 +539,76 @@ export default {
     },
 };
 </script>
+<style scoped>
+button {
+    --color: #1b998b;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.5em;
+    margin: 10px;
+    line-height: 2.5em;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color 0.5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 600;
+    color: var(--color);
+}
+
+button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+button:hover {
+    color: #fff;
+}
+
+button:before {
+    top: 100%;
+    left: 100%;
+    transition: all 0.7s;
+}
+
+button:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+button:active:before {
+    background: #0e534b;
+    transition: background 0s;
+}
+.bg-dots-darker {
+    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
+}
+.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Adjust z-index as needed */
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-in;
+}
+</style>
