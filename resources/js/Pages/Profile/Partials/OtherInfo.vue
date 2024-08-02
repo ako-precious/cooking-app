@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-    <form class="p-10 lg:w-3/5 m-auto shadow-reverse bg-snow dark:bg-oynx">
+    <form class="p-10 lg:w-3/5 m-auto shadow-reverse bg-snow dark:bg-oynx rounded-md">
         <div class="mb-6">
             <label
                 for="password"
@@ -44,24 +44,7 @@
                 placeholder="Leave a comment..."
             ></textarea>
         </div>
-        <div class="flex items-start mb-6">
-            <div class="flex items-center h-5">
-                <input
-                    id="remember"
-                    aria-describedby="remember"
-                    type="checkbox"
-                    class="w-5 h-5 bg-transparent rounded border border-gray-300 focus:ring-0 checked:bg-dark-900"
-                    required=""
-                />
-            </div>
-            <div class="ml-3 text-sm">
-                <label
-                    for="remember"
-                    class="font-medium text-gray-900 dark:text-gray-300"
-                    >Remember me</label
-                >
-            </div>
-        </div>
+        
         <button
             type="submit"
             class="text-white bg-gradient-to-br from-pink-500 to-voilet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 text-center inline-flex items-center shadow-md shadow-gray-300 dark:shadow-gray-900 hover:scale-[1.02] transition-transform"

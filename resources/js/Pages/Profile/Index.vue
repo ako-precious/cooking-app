@@ -2,19 +2,66 @@
 import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 import Card from "./Card.vue";
+
+import DropBarNav from "./Header/DropBarNav.vue";
+import Footer from "@/Layouts/Footer.vue";
+import OtherInfo from "./Partials/OtherInfo.vue";
 </script>
 <template>
     <Head title="Cook's Profile" />
 
-    <!-- component -->
-    <link
-        rel="stylesheet"
-        href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css"
-    />
-    <link
-        rel="stylesheet"
-        href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-    />
+    <header
+            :class="{
+                'fix align-bottom shadow-sm py-4 px-8 lg ': isHeaderFixed,
+            }"
+            class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
+        >
+            <Navbar class="bg-snow dark:bg-oynx">
+                <template #search>
+                    <div
+                        class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
+                    >
+                        <!-- <div
+                            
+                            class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
+                            name=""
+                            id=""
+                        >
+                            <a class="py-2 px-3 navbar-link" href="">
+                                <p>Meal Schedule</p>
+                            </a>
+                            <a class="py-2 px-3 navbar-link" href="">
+                                <p>Special Meal</p>
+                            </a>
+                            <a class="py-2 px-3 navbar-link" href="">
+                                <p>Explore</p>
+                            </a>
+                        </div> -->
+                        <DateRangePicker
+                            @filter-meals="filterMeals"
+                            class="transition-all duration-300 delay-75 ease-in"
+                        ></DateRangePicker>
+                    </div>
+                </template>
+                <template #dropdown>
+                    <DropBarNav
+                        :canLogin="canLogin"
+                        :canRegister="canRegister"
+                        :laravelVersion="laravelVersion"
+                        :phpVersion="phpVersion"
+                    />
+                </template>
+            </Navbar>
+            <!-- <DateRangePicker
+                @filter-meals="filterMeals"
+                v-if="!isHeaderFixed"
+                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
+            ></DateRangePicker> -->
+            <DateRangePicker
+                @filter-meals="filterMeals"
+                class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
+            ></DateRangePicker>
+        </header>
 
     <section class="pt-16 bg-snow dark:bg-oynx">
         <div class="lg:w-4/5 px-4 mx-auto">
@@ -229,11 +276,12 @@ import Card from "./Card.vue";
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
-       
+        
     </section>
+    <OtherInfo></OtherInfo>
+    <Footer></Footer>
 </template>
 
 <script>
@@ -254,12 +302,17 @@ export default {
         };
     },
     beforeDestroy() {
-        // window.removeEventListener("scroll", this.handleScroll);
+        window.removeEventListener("scroll", this.handleScroll);
     },
 
     mounted() {
         // window.addEventListener("scroll", this.handleScroll);
         this.extractCityAndCountry();
+        window.addEventListener("scroll", this.handleScroll);
+    },
+    created() {
+        this.handleScroll();
+        this.fetchData();
     },
     computed: {
         timeCooking() {
@@ -313,6 +366,11 @@ export default {
                 ", " +
                 parts[parts.length - 1];
             return cityAndState;
+        },
+        handleScroll() {
+            // Adjust the scroll threshold as needed
+            const scrollThreshold = 20;
+            this.isHeaderFixed = window.scrollY > scrollThreshold;
         },
     },
 };
