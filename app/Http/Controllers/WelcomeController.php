@@ -58,18 +58,7 @@ class WelcomeController extends Controller
         return response()->json(MealResource::collection($mealSchedules));
     }
 
-    // public function users($id)
-    // {
-    //     $user = User::find($id);
-    //     $cook = Cook::where('user_id', $id)->get();
-    //     $meals = Meal::where('cook_id', $id)->with('user')->where('status', 'available')->latest()->get();
-    //     $reviews = Rating::whereHas('meal', function ($query) {
-    //         $query->where('cook_id', $id);
-    //     })->latest()->get();
-    //     $ratings = $reviews->pluck('total')->sum() / $reviews->pluck('total')->count();
-    //     // dd(MealResource::collection($meals));
-    //     return Inertia::render('Profile/Index', ['user' => $user, 'cook' => $cook, 'meals' => $meals, 'reviews' => $reviews, 'ratings' => $ratings]);
-    // }
+    
     public function users($id)
     {
         // Find the user by ID, if not found return a 404 error

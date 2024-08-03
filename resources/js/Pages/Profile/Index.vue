@@ -318,9 +318,9 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr"
                 >
                     <!--Background-->
-                  
+                  {{  reviews }}
                     <div
-                        v-for="comment in comments"
+                        v-for="comment in reviews.comment"
                         :key="comment.id"
                         class="animate-fade-in"
                     >
