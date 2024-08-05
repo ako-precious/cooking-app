@@ -77,18 +77,19 @@ class WelcomeController extends Controller
         // Get the reviews associated with the cook's meals
         $reviews = Rating::whereHas('meal', function ($query) use ($id) {
             $query->where('cook_id', $id);
-        })->latest()->get();
+        })->with('user')->latest()->get();
 
         // Calculate the average rating
         $ratings = $reviews->count() > 0 ? $reviews->pluck('total')->sum() / $reviews->count() : 0;
-
+   
         // Render the profile with the gathered data
         return Inertia::render('Profile/Index', [
             'user' => $user,
             'cook' => $cook,
             'meals' => $meals,
             'reviews' => $reviews,
-            'ratings' => $ratings
+            'ratings' => $ratings,
+            // 'comments' => Rating::where('meal_id', $meal)->with('user')->latest()->paginate(5),
         ]);
     }
 

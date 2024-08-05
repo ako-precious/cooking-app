@@ -315,12 +315,12 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                 class=" flex flex-col py-8 md:px-6 lg:p-8"
             >
                 <div
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-cols-fr"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-cols-fr"
                 >
                     <!--Background-->
-                  {{  reviews }}
+                  
                     <div
-                        v-for="comment in reviews.comment"
+                        v-for="comment in reviews"
                         :key="comment.id"
                         class="animate-fade-in"
                     >
@@ -382,9 +382,9 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                     </div>
                 </div>
             </div>
-            <div class="w-full flex justify-center items-center">
+            <!-- <div class="w-full flex justify-center items-center">
                 <button @click="loadMoreData">Show More Reviews</button>
-            </div>
+            </div> -->
                     </div>
                 </div>
             </div>
@@ -411,6 +411,7 @@ export default {
         cook: Object,
         reviews: Object,
         ratings: String,
+        // comments: Strings,
         rating: Object,
         meals: Object, // Prop to receive paginated notifications data from Inertia
     },
@@ -418,7 +419,6 @@ export default {
         return {
             src: "",
             isLoading: true,
-            comments: [],
             newEventModalVisible: false,
         };
     },
@@ -506,6 +506,36 @@ export default {
     methods: {
         openModal() {
             this.newEventModalVisible = true;
+        },
+
+        getStars(num) {
+            return Array.from({ length: num }, (_, i) => i + 1);
+        },
+        FormattedDate(date) {
+            const currentDate = new Date();
+            const targetDate = new Date(date);
+
+            const diffTime = Math.abs(currentDate - targetDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const diffWeeks = Math.floor(diffDays / 7);
+            const diffMonths =
+                currentDate.getMonth() -
+                targetDate.getMonth() +
+                12 * (currentDate.getFullYear() - targetDate.getFullYear());
+
+            if (diffDays < 7 && diffDays > 1) {
+                return `${diffDays} days ago`;
+            } else if (diffDays === 1) {
+                return "Yesterday";
+            } else if (diffDays >= 7 && diffDays < 14) {
+                return "1 week ago";
+            } else if (diffDays >= 14 && diffDays < 30) {
+                return `${diffWeeks} weeks ago`;
+            } else {
+                return `${targetDate.toLocaleString("default", {
+                    month: "long",
+                })}, ${targetDate.getFullYear()}`;
+            }
         },
         closeModal() {
             // clear everything in the div and close it
