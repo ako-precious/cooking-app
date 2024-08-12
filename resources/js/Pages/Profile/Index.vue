@@ -34,8 +34,8 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                         <div
                             class="w-full px-4 flex lg:hidden justify-center lg:justify-between gap-4"
                         >
-                            <div class="">
-                                <div class="relative w-full">
+                            <div class="w-1/2">
+                                <div class="relative w-full flex justify-center items-center">
                                     <img
                                         v-if="user.profile_photo_path"
                                         :src="
@@ -43,13 +43,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                                 user.profile_photo_path
                                             )
                                         "
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
                                         alt="avatar"
                                     />
                                     <img
                                         v-else
                                         :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
                                         alt="avatar"
                                     />
                                 </div>
@@ -94,8 +94,8 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                     >
                                 </div>
                             </div>
-                            <div class="">
-                                <div class="relative w-full">
+                            <div class="w-4/12">
+                                <div class="relative w-full flex items-center justify-center">
                                     <img
                                         v-if="user.profile_photo_path"
                                         :src="
@@ -103,13 +103,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                                 user.profile_photo_path
                                             )
                                         "
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
                                         alt="avatar"
                                     />
                                     <img
                                         v-else
                                         :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
                                         alt="avatar"
                                     />
                                     <!-- <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"> -->
@@ -329,7 +329,7 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 <!--Testimonial-->
                                 <div class="md:flex md:flex-row">
                                     <div
-                                        class="mx-auto mb-6 flex flex-col items-center w-36 md:w-1/3 md:mx-0 lg:mb-0"
+                                        class="mx-auto mb-6 flex flex-row md:flex-col justify-between items-center w-36 md:w-1/3 md:mx-0 lg:mb-0"
                                     >
                                         <img v-if="comment.profile_photo_path"
                                             src="comment.profile_photo_path"
@@ -341,28 +341,31 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                             class="rounded-full shadow-md dark:shadow-black/30"
                                             alt="woman avatar"
                                         />
-                                        <div class="flex items-center my-3">
-                                            
-                                            <div
-                                                v-for="index in getStars(comment.total)"
-                                                :key="index"
-                                            >
-                                                <font-awesome-icon
-                                                    icon="star"
-                                                    class="text-persian text-xxs"
-                                                />
+                                        <div class="">
+
+                                            <div class="flex items-center my-3">
+                                                
+                                                <div
+                                                    v-for="index in getStars(comment.total)"
+                                                    :key="index"
+                                                >
+                                                    <font-awesome-icon
+                                                        icon="star"
+                                                        class="text-persian text-xxs"
+                                                    />
+                                                </div>
+                                               
                                             </div>
-                                           
+                                            <p
+                                                class="mb-2 text-xs font-bold text-oynx dark:text-snow"
+                                            >
+                                                {{
+                                                    FormattedDate(
+                                                        comment.updated_at
+                                                    )
+                                                }}
+                                            </p>
                                         </div>
-                                        <p
-                                            class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                        >
-                                            {{
-                                                FormattedDate(
-                                                    comment.updated_at
-                                                )
-                                            }}
-                                        </p>
                                     </div>
                                     <div class="md:ms-5 flex-col md:w-2/3">
                                         <p
