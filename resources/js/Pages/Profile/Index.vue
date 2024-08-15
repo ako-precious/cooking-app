@@ -43,13 +43,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                                 user.profile_photo_path
                                             )
                                         "
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-40 "
                                         alt="avatar"
                                     />
                                     <img
                                         v-else
                                         :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-40 "
                                         alt="avatar"
                                     />
                                 </div>
@@ -430,7 +430,6 @@ export default {
     },
 
     mounted() {
-        // window.addEventListener("scroll", this.handleScroll);
         this.extractCityAndCountry();
         window.addEventListener("scroll", this.handleScroll);
     },

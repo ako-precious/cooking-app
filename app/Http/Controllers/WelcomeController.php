@@ -33,6 +33,20 @@ class WelcomeController extends Controller
             'pushSub' => $pushSub
         ]);
     }
+    public function home()
+    {
+        $pushSub = PushSubscription::where('subscribable_id', Auth::id())->exists();
+
+        // dd( typeOf($pushSub) );
+
+        return Inertia::render('Home', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+            'pushSub' => $pushSub
+        ]);
+    }
 
     public function meals()
     {
