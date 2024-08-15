@@ -33,7 +33,7 @@ class WelcomeController extends Controller
             'pushSub' => $pushSub
         ]);
     }
-    public function home()
+    public function homePage()
     {
         $pushSub = PushSubscription::where('subscribable_id', Auth::id())->exists();
 
