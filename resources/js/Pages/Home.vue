@@ -135,8 +135,64 @@ function parallax(e) {
 
   
 
-    <div class="bg-persian fixed w-screen h-screen overflow-y-auto overflow-x-hidden">
-        <img
+    <div class="bg-persian  fixed w-screen h-screen overflow-y-auto overflow-x-hidden">
+        <div class="w-screen h-screen">
+
+            <svg
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+            class="parallax layer absolute w-[35rem] -bottom-10 -left-10 -z-10"
+        >
+            <!-- Define a clipPath with the shape of the path -->
+            <defs>
+                <clipPath id="shapeClip">
+                    <path
+                        fill="none"
+                        d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
+                        transform="translate(100 100)"
+                    />
+                </clipPath>
+            </defs>
+    
+            <!-- Add the image and apply the clipPath -->
+            <image
+                href="/images/whattocook.jpg"
+                width="100%"
+                height="100%"
+                clip-path="url(#shapeClip)"
+            />
+    
+            <!-- Optional: Keep the path for visual reference (you can remove this) -->
+            <path
+                fill="#FF0066"
+                d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
+                transform="translate(100 100)"
+                opacity="0.2"
+            />
+        </svg>
+    
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"  class="mt-10 m-auto w-[45rem] -bottom-10 -right-10">
+            <defs>
+                <clipPath id="shapeClip2">
+                    <path fill="#FF0066" d="M32.9,-28.8C41.6,-15.4,46.9,-1.7,43.7,9C40.5,19.8,28.8,27.6,16.6,32.7C4.5,37.9,-8,40.3,-27,38.1C-45.9,35.8,-71.2,28.9,-75.2,15.9C-79.3,2.8,-62,-16.4,-45.9,-31.5C-29.8,-46.7,-14.9,-57.7,-1.4,-56.5C12.1,-55.4,24.2,-42.2,32.9,-28.8Z"  transform="translate(76 59)"  />
+                </clipPath>
+            </defs>
+    
+            <!-- Add the image and apply the clipPath -->
+            <image
+                href="/images/frustrated.jpeg"
+                width="60%"
+                height="60%" class=" self-center origin-center object-center place-self-center  "
+                clip-path="url(#shapeClip2)"
+            />
+      <path  fill="#FF0066" d="M32.9,-28.8C41.6,-15.4,46.9,-1.7,43.7,9C40.5,19.8,28.8,27.6,16.6,32.7C4.5,37.9,-8,40.3,-27,38.1C-45.9,35.8,-71.2,28.9,-75.2,15.9C-79.3,2.8,-62,-16.4,-45.9,-31.5C-29.8,-46.7,-14.9,-57.7,-1.4,-56.5C12.1,-55.4,24.2,-42.2,32.9,-28.8Z" transform="translate(76 59)"  opacity="0.2"
+      />
+    </svg>
+        </div>
+    
+        <div
+            class="relative grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
+        ><img
             src="/images/blob-ha.svg"
             data-speed="-5"
             class="parallax layer absolute w-[40rem] -top-16 -left-20"
@@ -150,49 +206,17 @@ function parallax(e) {
         <img
             src="/images/blob-hakei.svg"
             data-speed="-9"
-            class="parallax layer"
-        />
+            class="parallax layer absolute w-[40rem] -bottom-20 -right-[12rem]"/>
+        <img
+            src="/images/blob-hakei.svg"
+            data-speed="-9"
+            class="parallax layer absolute w-[40rem] "/>
         <img
             src="/images/blob-haikei.svg"
             data-speed="-15"
             class="parallax layer absolute h-full w-[40rem]  -bottom-2/3 "
         />
-        <svg
-        viewBox="0 0 200 200"
-        xmlns="http://www.w3.org/2000/svg"
-        class="parallax layer absolute w-[30rem] -bottom-10 -left-10"
-    >
-        <!-- Define a clipPath with the shape of the path -->
-        <defs>
-            <clipPath id="shapeClip">
-                <path
-                    fill="none"
-                    d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
-                    transform="translate(100 100)"
-                />
-            </clipPath>
-        </defs>
-
-        <!-- Add the image and apply the clipPath -->
-        <image
-            href="/images/whattocook.jpg"
-            width="200"
-            height="200"
-            clip-path="url(#shapeClip)"
-        />
-
-        <!-- Optional: Keep the path for visual reference (you can remove this) -->
-        <path
-            fill="#FF0066"
-            d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
-            transform="translate(100 100)"
-            opacity="0.2"
-        />
-    </svg>
-    
-        <div
-            class="relative grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white"
-        ></div>
+    </div>
 
         <!-- {{ $page.props.auth.user }} -->
         <Footer></Footer>
