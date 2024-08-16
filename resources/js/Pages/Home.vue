@@ -115,80 +115,37 @@ export default {
         },
     },
 };
+document.addEventListener("mousemove", parallax);
+
+function parallax(e) {
+    this.querySelectorAll(".layer").forEach((layer) => {
+        const speed = layer.getAttribute("data-speed");
+        const x = (window.innerWidth - e.pageX * speed) / 100;
+        const y = (window.innerHeight - e.pageY * speed) / 100;
+        layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
+    });
+}
 </script>
 
 <template>
     <Head title="Welcome" />
     <!-- component -->
     
-    <div class="bg-persian grain fixed ">
+    <div class="bg-persia grain fixed ">
            <div class="w-screen h-screen overflow-y-auto">
-               <div class="h-full  py-6 sm:py-8 lg:py-12">
-                   <div class="mx-auto justify-center items-center  max-w-screen-2xl">
-                       <div
-                           class="grid h-screen overflow-hidden grid-cols-3 grid-rows-3  sm:grid-cols-9 "
-                       >
-                           <!-- image - start -->
-                           <a
-                               href="#"
-                               class="group relative flex  items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg row-span-2 col-start-1 col-span-2  md:h-64"
-                           >
-                               <img
-                                   src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&q=75&fit=crop&w=600"
-                                   loading="lazy"
-                                   alt="Photo by Minh Pham"
-                                   class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-                               />
-       
-                               <div
-                                   class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"
-                               ></div>
-                           </a>
-                           <!-- image - end -->
-       
-                           <!-- image - start -->
-                           <a
-                               href="#"
-                               class="group relative flex  items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg row-span-3 col-start-4 col-span-3  md:h-[29rem] "
-                           >
-                               <img
-                                   src="https://images.unsplash.com/photo-1542759564-7ccbb6ac450a?auto=format&q=75&fit=crop&w=1000"
-                                   loading="lazy"
-                                   alt="Photo by Magicle"
-                                   class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-                               />
-       
-                               <div
-                                   class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"
-                               ></div>
-                           </a>
-                           <!-- image - end -->
-       
-                           
-       
-                           <!-- image - start -->
-                           <a
-                               href="#"
-                               class="group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-64 row-start-2 row-span-2  col-start-8 col-span-2"
-                           >
-                               <img
-                                   src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&q=75&fit=crop&w=600"
-                                   loading="lazy"
-                                   alt="Photo by Lorenzo Herrera"
-                                   class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-                               />
-       
-                               <div
-                                   class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"
-                               ></div>
-                           </a>
-                           <!-- image - end -->
-                       </div>
-                   </div>
-               </div>
+              
                <div
-                   class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white"
-               ></div>
+                   class="container  mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white"
+               >
+
+    <img src="/images/blob-ha.svg" data-speed="-5" class="parallax layer absolute w-[30rem] top-0 " />
+    <img src="/images/blob.svg" data-speed="5" class="parallax layer" />
+    <img src="/images/blob-haik.svg" data-speed="9" class="parallax layer" />
+    <img src="/images/blob-hai.svg" data-speed="15" class="parallax layer" />
+    <img src="/images/blob-hakei.svg" data-speed="-9" class="parallax layer" />
+    <img src="/images/blob-haikei.svg" data-speed="-15" class="parallax layer" />
+
+</div>
        
                <!-- {{ $page.props.auth.user }} -->
                <Footer ></Footer>
