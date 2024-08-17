@@ -136,62 +136,72 @@ function parallax(e) {
   
 
     <div class="bg-persian  fixed w-screen h-screen overflow-y-auto overflow-x-hidden">
-        <div class="w-screen h-screen">
+        
+                       <div
+                           class=" z-0 relative h-screen overflow-hidden grain  "
+                       >
+                           <!-- image - start -->
+                           <a
+                               href="#"
+                               class="group absolute  top-10 left-10  h-72 w-48  flex items-end overflow-hidden rounded-lg  shadow-lg row-span-2 col-start-1 col-span-2  md:h-72"
+                           >
+                               <img
+                                   src="/images/smile.jpeg"
+                                   loading="lazy"
+                                   alt="Photo by Minh Pham"
+                                   class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                               />
 
-            <svg
-            viewBox="0 0 200 200"
-            xmlns="http://www.w3.org/2000/svg"
-            class="parallax layer absolute w-[35rem] -bottom-10 -left-10 -z-10"
-        >
-            <!-- Define a clipPath with the shape of the path -->
-            <defs>
-                <clipPath id="shapeClip">
-                    <path
-                        fill="none"
-                        d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
-                        transform="translate(100 100)"
-                    />
-                </clipPath>
-            </defs>
-    
-            <!-- Add the image and apply the clipPath -->
-            <image
-                href="/images/whattocook.jpg"
-                width="100%"
-                height="100%"
-                clip-path="url(#shapeClip)"
-            />
-    
-            <!-- Optional: Keep the path for visual reference (you can remove this) -->
-            <path
-                fill="#FF0066"
-                d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
-                transform="translate(100 100)"
-                opacity="0.2"
-            />
-        </svg>
-    
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"  class="mt-10 m-auto w-[45rem] -bottom-10 -right-10">
-            <defs>
-                <clipPath id="shapeClip2">
-                    <path fill="#FF0066" d="M32.9,-28.8C41.6,-15.4,46.9,-1.7,43.7,9C40.5,19.8,28.8,27.6,16.6,32.7C4.5,37.9,-8,40.3,-27,38.1C-45.9,35.8,-71.2,28.9,-75.2,15.9C-79.3,2.8,-62,-16.4,-45.9,-31.5C-29.8,-46.7,-14.9,-57.7,-1.4,-56.5C12.1,-55.4,24.2,-42.2,32.9,-28.8Z"  transform="translate(76 59)"  />
-                </clipPath>
-            </defs>
-    
-            <!-- Add the image and apply the clipPath -->
-            <image
-                href="/images/frustrated.jpeg"
-                width="60%"
-                height="60%" class=" self-center origin-center object-center place-self-center  "
-                clip-path="url(#shapeClip2)"
-            />
-      <path  fill="#FF0066" d="M32.9,-28.8C41.6,-15.4,46.9,-1.7,43.7,9C40.5,19.8,28.8,27.6,16.6,32.7C4.5,37.9,-8,40.3,-27,38.1C-45.9,35.8,-71.2,28.9,-75.2,15.9C-79.3,2.8,-62,-16.4,-45.9,-31.5C-29.8,-46.7,-14.9,-57.7,-1.4,-56.5C12.1,-55.4,24.2,-42.2,32.9,-28.8Z" transform="translate(76 59)"  opacity="0.2"
-      />
-    </svg>
-        </div>
+                               <div
+                                   class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-30 bg-lighred"
+                               ></div>
+                           </a>
+                           <!-- image - end -->
+
+                           <!-- image - start -->
+                           <a
+                               href="#"
+                               class="group absolute flex  top-10 left-1/2  -translate-x-1/2 w-80   items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg row-span-3 col-start-4 col-span-3  md:h-screen "
+                           >
+                               <img
+                                   src="/images/frustrated.jpeg"
+                                   loading="lazy"
+                                   alt="Photo by Magicle"
+                                   class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                               />
+
+                               <div
+                                   class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-30 bg-lighred"
+                               ></div>
+                           </a>
+                           <!-- image - end -->
+
+                           
+
+                           <!-- image - start -->
+                           <a
+                               href="#"
+                               class="group absolute bottom-0 right-10 flex h-72 w-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-72 row-start-2 row-span-2  col-start-8 col-span-2 -z-10"
+                           >
+                               <img
+                                   src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&q=75&fit=crop&w=600"
+                                   loading="lazy"
+                                   alt="Photo by Lorenzo Herrera"
+                                   class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                               />
+
+                               <div
+                                   class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-30 bg-lighred"
+                               ></div>
+                           </a>
+                           <!-- image - end -->
+                       </div>
+                 
+               
+        
     
         <div
-            class="relative grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
+            class="relative bg-polynesian z-10 grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
         ><img
             src="/images/blob-ha.svg"
             data-speed="-5"
@@ -217,6 +227,59 @@ function parallax(e) {
             class="parallax layer absolute h-full w-[40rem]  -bottom-2/3 "
         />
     </div>
+    <div class="w-screen h-screen">
+
+<svg
+viewBox="0 0 200 200"
+xmlns="http://www.w3.org/2000/svg"
+class="parallax layer absolute w-[35rem] -bottom-10 -left-10 -z-10"
+>
+<!-- Define a clipPath with the shape of the path -->
+<defs>
+    <clipPath id="shapeClip">
+        <path
+            fill="none"
+            d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
+            transform="translate(100 100)"
+        />
+    </clipPath>
+</defs>
+
+<!-- Add the image and apply the clipPath -->
+<image
+    href="/images/whattocook.jpg"
+    width="100%"
+    height="100%"
+    clip-path="url(#shapeClip)"
+/>
+
+<!-- Optional: Keep the path for visual reference (you can remove this) -->
+<path
+    fill="#FF0066"
+    d="M56.8,-19C64.7,5.8,56,35.4,38.3,46.8C20.7,58.2,-5.8,51.3,-25.3,36.7C-44.7,22.1,-57.2,-0.2,-51.8,-21.6C-46.4,-43,-23.2,-63.4,0.6,-63.6C24.5,-63.8,48.9,-43.8,56.8,-19Z"
+    transform="translate(100 100)"
+    opacity="0.2"
+/>
+</svg>
+
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"  class="mt-10 m-auto w-[45rem] -bottom-10 -right-10">
+<defs>
+    <clipPath id="shapeClip2">
+        <path fill="#FF0066" d="M32.9,-28.8C41.6,-15.4,46.9,-1.7,43.7,9C40.5,19.8,28.8,27.6,16.6,32.7C4.5,37.9,-8,40.3,-27,38.1C-45.9,35.8,-71.2,28.9,-75.2,15.9C-79.3,2.8,-62,-16.4,-45.9,-31.5C-29.8,-46.7,-14.9,-57.7,-1.4,-56.5C12.1,-55.4,24.2,-42.2,32.9,-28.8Z"  transform="translate(76 59)"  />
+    </clipPath>
+</defs>
+
+<!-- Add the image and apply the clipPath -->
+<image
+    href="/images/frustrated.jpeg"
+    width="60%"
+    height="60%" class=" self-center origin-center object-center place-self-center  "
+    clip-path="url(#shapeClip2)"
+/>
+<path  fill="#FF0066" d="M32.9,-28.8C41.6,-15.4,46.9,-1.7,43.7,9C40.5,19.8,28.8,27.6,16.6,32.7C4.5,37.9,-8,40.3,-27,38.1C-45.9,35.8,-71.2,28.9,-75.2,15.9C-79.3,2.8,-62,-16.4,-45.9,-31.5C-29.8,-46.7,-14.9,-57.7,-1.4,-56.5C12.1,-55.4,24.2,-42.2,32.9,-28.8Z" transform="translate(76 59)"  opacity="0.2"
+/>
+</svg>
+</div>
 
         <!-- {{ $page.props.auth.user }} -->
         <Footer></Footer>
