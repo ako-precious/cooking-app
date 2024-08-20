@@ -39,7 +39,7 @@ async function requestNotificationPermission() {
 }
 </script>
 
-<script>
+<!-- <script>
 export default {
     data() {
         return {
@@ -74,9 +74,9 @@ export default {
         }, 3000); // Adjust the interval between animations as needed
     },
 };
-</script>
+</script> -->
 
-<!-- <script>
+<script>
 export default {
     inheritAttrs: false,
 
@@ -87,12 +87,24 @@ export default {
             perPage: 12, // Number of items per page
             hasMoreData: true,
             isHeaderFixed: false,
+            phrases: [
+                "Connecting People Through the Joy of Cooking",
+                "Discover homemade meals, share your own",
+                "Become part of a passionate food-loving community",
+            ],
+            currentIndex: 0,
+            isAnimating: false,
         };
     },
     beforeDestroy() {
         window.removeEventListener("scroll", this.handleScroll);
+        clearInterval(this.scrollInterval);
     },
-
+    computed: {
+        currentPhrase() {
+            return this.phrases[this.currentIndex];
+        },
+    },
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
         if (this.$page.props.auth.user) {
@@ -103,10 +115,13 @@ export default {
                 this.$inertia.visit(`/user/profile`);
             }
         }
+        this.animate();
+        setInterval(() => {
+            this.animate();
+        }, 3000); // Adjust the interval between animations as needed
     },
     created() {
         this.handleScroll();
-        this.fetchData();
     },
     methods: {
         async filterMeals(searchText) {
@@ -121,29 +136,26 @@ export default {
                     console.error("Error fetching filtered data:", error);
                 });
         },
-        async loadMoreData() {
-            if (this.hasMoreData) {
-                this.page++;
-                await this.fetchData();
-            }
+        animate() {
+            this.isAnimating = true;
+            setTimeout(() => {
+                this.currentIndex =
+                    (this.currentIndex + 1) % this.phrases.length;
+                this.isAnimating = false;
+            }, 3000); // Adjust the animation duration as needed
         },
-        async fetchData() {
-            try {
-                const response = await axios.get(
-                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
-                );
-                const newMeals = response.data;
+        startScrolling() {
+            const scrollHeight = this.$refs.scrollContainer.clientHeight;
+            const contentHeight =
+                this.$refs.scrollContainer.firstChild.clientHeight;
 
-                // If there is no new data, set hasMoreData to false
-                if (newMeals.length === 0) {
-                    this.hasMoreData = false;
+            this.scrollInterval = setInterval(() => {
+                if (this.scrollPosition < contentHeight - scrollHeight) {
+                    this.scrollPosition += 1; // Adjust speed as needed
+                } else {
+                    this.scrollPosition = 0; // Reset to the top for repeat
                 }
-
-                // Concatenate new data to the existing meals
-                this.meals = [...this.meals, ...newMeals];
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
+            }, 20); // Adjust the interval for smoothness
         },
         handleScroll() {
             // Adjust the scroll threshold as needed
@@ -162,7 +174,7 @@ function parallax(e) {
         layer.style.transform = `translateX(${x}px) translateY(${y}px)`;
     });
 }
-</script> -->
+</script>
 
 <template>
     <Head title="Welcome" />
@@ -175,13 +187,13 @@ function parallax(e) {
     >
         <div class="flex h-screen w-screen relative grain">
             <div
-                class="grid h-screen mt-6 overflow-hidden w-screen grid-cols grid-rows-3 lg:gap-x-50"
+                class="grid h-screen lg:mt-6 overflow-hidden items-center w-screen grid-cols grid-rows-3 lg:gap-x-50"
                 style="grid-template-columns: 1fr 1.5fr 1fr"
             >
                 <!-- image - start -->
                 <a
                     href="#"
-                    class="group relative flex items-end overflow-hidden rounded-3xl shadow-lg w-[19vw] h-[22vw] -z-10"
+                    class="group relative hidden lg:flex items-end overflow-hidden rounded-3xl shadow-lg w-[19vw] h-[22vw] -z-10"
                 >
                     <img
                         src="/images/smile.jpeg"
@@ -199,7 +211,7 @@ function parallax(e) {
                 <!-- image - start -->
                 <a
                     href="#"
-                    class="group relative flex items-end overflow-hidden rounded-3xl bg-gray-100 shadow-lg md:h-scree w-[29vw] h-[90vh] -z-10"
+                    class="group relative m-auto flex items-end overflow-hidden lg:rounded-3xl bg-gray-100 shadow-lg h-[100vh] w-[100vw] lg:w-[29vw] lg:h-[90vh] -z-10"
                 >
                     <img
                         src="/images/getitout.jpg"
@@ -218,7 +230,7 @@ function parallax(e) {
 
                 <a
                     href="#"
-                    class="group relative flex items-end overflow-hidden rounded-3xl bg-gray-100 shadow-lg md:h-72 w-[19vw] h-[29vw] mt-auto row-start-2 col-start-3"
+                    class="group relative hidden lg:flex items-end overflow-hidden rounded-3xl bg-gray-100 shadow-lg md:h-72 w-[19vw] h-[29vw] mt-auto row-start-2 col-start-3"
                 >
                     <img
                         src="/images/Indian.jpeg"
@@ -234,907 +246,75 @@ function parallax(e) {
                 <!-- image - end -->
             </div>
             <div
-                class="text-wrap events-none absolute w-full inset-0 h-full flex flex-col items-center justify-center Connecting People Through the Joy of Cooking"
+                class="text-wrap events-none absolute w-full inset-0 h-full flex flex-col gap-8 items-center justify-center"
             >
                 <span
-                    class="title block uppercase text-center font-black text-5xl text-white"
+                    class="title text-wrap w-2/3 block uppercase text-center font-black lg:text-6xl text-white"
                     style=""
-                    ><div
-                        class="lineParent"
-                        style="
-                            display: block;
-                            text-align: center;
-                            position: relative;
-                        "
-                    >
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            C
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            o
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            n
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            n
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            e
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            c
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            t
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            i
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            N
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            g
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        ></div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            P
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            e
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            o
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            p
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            l
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            e
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            t
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            h
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            r
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            o
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            u
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            g
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            h
-                        </div>
-                    </div>
-                    <div
-                        class="lineParent"
-                        style="
-                            display: block;
-                            text-align: center;
-                            position: relative;
-                        "
-                    >
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            T
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            h
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            E
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            J
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            o
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            y
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            O
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            f
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            M
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            e
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            a
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            l
-                        </div>
-                        <div
-                            style="
-                                position: relative;
-                                display: inline-block;
-                                translate: none;
-                                rotate: none;
-                                scale: none;
-                                transform: translate(0px, 0%);
-                            "
-                        >
-                            s
-                        </div>
-                    </div></span>
-                <a
-                    class="x-button btn --btn-border-radius-58 f-acbp-20-90 text-uppercase color-green theme-yellow events-auto js-flipbutton"
-                    href="https://threemountainscocoa.com/cocoa#flavors"
-                    target=""
-                    style="
-                        translate: none;
-                        rotate: none;
-                        scale: none;
-                        opacity: 1;
-                        visibility: inherit;
-                        transform: translate(0px, 0%);
-                    "
                 >
-                    <div class="inner-wrap">
-                        <span class="label_1 d-block js-label">
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                D
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                I
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                S
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                C
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                V
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                E
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                R
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                U
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                R
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                C
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                C
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 1;
-                                    transform: translate(0px, 0%);
-                                "
-                            >
-                                A
-                            </div></span
+                    <h1
+                        :class="{
+                            'fade-out': isAnimating,
+                            'fade-in': !isAnimating,
+                        }"
+                    >
+                        {{ currentPhrase }}
+                    </h1></span
+                >
+                <div class="flex flex-col justify-center items-center gap-4">
+                    <a
+                        class="x-button btn --btn-border-radius-58 f-acbp-20-90 text-uppercase color-green theme-yellow events-auto js-flipbutton"
+                        href=""
+                        target=""
+                    >
+                        <!-- /* From Uiverse.io by Itskrish01 */  -->
+                        <button
+                            class="relative flex items-center px-6 py-3 overflow-hidden font-medium transition-all bg-polynesian/60 rounded-md group"
                         >
-                        <span class="label_2 d-block js-label">
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
+                            <span
+                                class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-polynesian/80 rounded group-hover:-mr-4 group-hover:-mt-4"
                             >
-                                D
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
+                                <span
+                                    class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+                                ></span>
+                            </span>
+                            <span
+                                class="absolute bottom-0 rotate-180 left-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-polynesian/80 rounded group-hover:-ml-4 group-hover:-mb-4"
                             >
-                                I
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
+                                <span
+                                    class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+                                ></span>
+                            </span>
+                            <span
+                                class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full bg-polynesian rounded-md group-hover:translate-x-0"
+                            ></span>
+                            <span
+                                class="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white"
+                                >Browse Meals</span
                             >
-                                S
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                C
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                V
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                E
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                R
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                U
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                R
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                C
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                C
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                O
-                            </div>
-                            <div
-                                style="
-                                    position: relative;
-                                    display: inline-block;
-                                    translate: none;
-                                    rotate: none;
-                                    scale: none;
-                                    opacity: 0;
-                                    transform: translate(0px, 100%);
-                                "
-                            >
-                                A
-                            </div></span
+                        </button>
+                    </a>
+                    <a
+                        class="x-button btn --btn-border-radius-58 f-acbp-20-90 text-uppercase color-green theme-yellow events-auto js-flipbutton"
+                        href=""
+                        target=""
+                    >
+                        <button
+                            class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-polynesian group px-8 py-2"
                         >
-                    </div>
-                </a>
+                            <span
+                                class="relative z-10 text-polynesian group-hover:text-white text-xl duration-500"
+                                >Showcase Meal</span
+                            >
+                            <span
+                                class="absolute w-full h-full bg-polynesian -left-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:left-0 duration-500"
+                            ></span>
+                            <span
+                                class="absolute w-full h-full bg-polynesian -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"
+                            ></span>
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -1181,8 +361,121 @@ function parallax(e) {
             data-speed="-15"
             class="parallax layer absolute h-full w-[40rem]   "
         /> -->
-            
         </div>
+        <div
+            class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
+        >
+            <a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div>
+            </a>
+            <a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-2 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] col-start-4 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-3 row-start-1"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-5 row-start-1"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-6 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div>
+            </a>
+        </div>
+        <div class="scroll-container" ref="scrollContainer">
+            <div
+                class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
+                :style="{ transform: `translateY(-${scrollPosition}px)` }"
+            >
+                <a
+                    v-for="(item, index) in items"
+                    :key="index"
+                    href="#"
+                    class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10"
+                >
+                    <img
+                        src="/images/Indian.jpeg"
+                        loading="lazy"
+                        alt="Photo by Minh Pham"
+                        class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                    />
+                    <div
+                        class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                    ></div>
+                </a>
+            </div>
+        </div>
+
         <div class="w-screen h-screen">
             <!-- <svg
 viewBox="0 0 200 200"
@@ -1224,6 +517,11 @@ Optional: Keep the path for visual reference (you can remove this)
 </template>
 
 <style scoped>
+.scroll-container {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
 .fade-in {
     animation: fadeIn 3s ease-in;
 }
@@ -1242,7 +540,7 @@ Optional: Keep the path for visual reference (you can remove this)
 
     50% {
     }
-    
+
     100% {
         transform: translateY(-15%);
         opacity: 1;
@@ -1259,7 +557,7 @@ Optional: Keep the path for visual reference (you can remove this)
 
     50% {
     }
-    
+
     100% {
         transform: translateY(-50%);
         opacity: 0;

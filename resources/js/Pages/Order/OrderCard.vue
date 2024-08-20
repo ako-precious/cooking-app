@@ -67,7 +67,24 @@ import TextInput from "@/Components/TextInput.vue";
             />
         </div>
         <div class="py-4 flex justify-between">
-            <select
+            <TextInput
+                required
+                class="w-full"
+                v-model="newSchedule.address"
+                
+                placeholder=""
+            />
+            <TextInput
+                hidden
+                required
+                class="w-[47%]"
+                v-model="newSchedule.end_date"
+                type="date"
+                placeholder=""
+            />
+        </div>
+        <div class="py-4 flex justify-between">
+            <!-- <select
                 required
                 v-model="newSchedule.meal_time"
                 title="Meal Time"
@@ -98,7 +115,7 @@ import TextInput from "@/Components/TextInput.vue";
                 >
                     Dinner
                 </option>
-            </select>
+            </select> -->
         </div>
         <div class="flex justify-center item-center">
             <PrimaryButton @click="addSchedule" class="w-full"
@@ -134,6 +151,7 @@ export default {
                 meal_time: this.newSchedule.meal_time,
                 start_date: this.newSchedule.start_date,
                 end_date: this.newSchedule.end_date,
+                address: this.newSchedule.address,
             };
         },
 
