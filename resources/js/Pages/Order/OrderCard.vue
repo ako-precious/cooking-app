@@ -52,18 +52,18 @@ import TextInput from "@/Components/TextInput.vue";
         <div class="py-4 flex justify-between">
             <TextInput
                 required
-                class="w-full"
+                class="w-[47%]"
                 v-model="newSchedule.start_date"
                 type="date"
                 placeholder=""
             />
             <TextInput
-                hidden
+                
                 required
                 class="w-[47%]"
-                v-model="newSchedule.end_date"
-                type="date"
-                placeholder=""
+                v-model="newSchedule.portion"
+                type="number"
+                placeholder="Portion eg 1,2,3 "
             />
         </div>
         <div class="py-4 flex justify-between">
@@ -72,7 +72,7 @@ import TextInput from "@/Components/TextInput.vue";
                 class="w-full"
                 v-model="newSchedule.address"
                 
-                placeholder=""
+                placeholder="Address (Where you want it delivered)"
             />
             <TextInput
                 hidden
@@ -151,6 +151,7 @@ export default {
                 meal_time: this.newSchedule.meal_time,
                 start_date: this.newSchedule.start_date,
                 end_date: this.newSchedule.end_date,
+                portion: this.newSchedule.portion,
                 address: this.newSchedule.address,
             };
         },
@@ -160,9 +161,9 @@ export default {
             const today = new Date().toISOString().replace(/T.*$/, "");
             if (
                 this.newSchedule.start_date == "" || 
-                this.newSchedule.end_date == "" ||
                 this.newSchedule.meal_time == "" ||
-                this.newSchedule.meal_time == "Choose a Meal time" ||
+                this.newSchedule.portion == "" ||
+                this.newSchedule.address == "" ||
                 this.newSchedule.user_id == ""
             ) {
                 this.error =

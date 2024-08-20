@@ -23,7 +23,7 @@ defineProps(["order"]);
     </td>
  
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
-        {{ meal.meal_time }}
+        {{ meal.portion }}
     </td>
     <td class="whitespace-nowrap px-6 py-3 font-semibold">
         {{ meal.start_date }}

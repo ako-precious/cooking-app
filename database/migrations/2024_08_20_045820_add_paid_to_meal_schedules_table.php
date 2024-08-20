@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('meal_schedules', function (Blueprint $table) {
-            $table->tinyInteger('portion')->nullable();
+            $table->tinyInteger('portion')->default(1);
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('meal_schedules', function (Blueprint $table) {
-            //
+            $table->tinyInteger('portion');
         });
     }
 };

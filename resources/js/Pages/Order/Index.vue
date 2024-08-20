@@ -126,7 +126,7 @@ import Filters from "./Filter.vue";
                                                                 <template
                                                                     #title
                                                                 >
-                                                                    Meal Time
+                                                                    Meal Portion
                                                                 </template>
                                                                 <template
                                                                     #symbols
@@ -135,7 +135,7 @@ import Filters from "./Filter.vue";
                                                                         @click="
                                                                             Sorting(
                                                                                 'asc',
-                                                                                'meal_time'
+                                                                                'portion'
                                                                             )
                                                                         "
                                                                     />
