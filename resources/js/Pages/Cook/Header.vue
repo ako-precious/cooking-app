@@ -45,6 +45,11 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
                     <Link :href="`/cook/menu`" class="py-2 px-3 navbar-link">
                         <p>Menu</p>
                     </Link>
+                    <Link :href="`/cook/menu`" class="py-2 px-3 navbar-link">
+                        <p>More  <font-awesome-icon class="ml-2"
+                                                        icon="caret-down"
+                                                /></p>
+                    </Link>
                    
                 </div>
                 <div class="flex">

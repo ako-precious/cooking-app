@@ -54,8 +54,8 @@ import TextInput from "@/Components/TextInput.vue";
                 required
                 class="w-[47%]"
                 v-model="newSchedule.start_date"
-                type="date"
-                placeholder=""
+                type="date" title= "Select delivery Date"
+                placeholder="Delivery Date"
             />
             <TextInput
                 

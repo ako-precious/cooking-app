@@ -192,7 +192,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
                                 <div
-                                    class="overflow-x-scroll disable-scrollbars"
+                                    class="overflow-scroll disable-scrollbars"
                                 >
                                     <table
                                         class="w-full px-4 text-left text-sm font-light relative"

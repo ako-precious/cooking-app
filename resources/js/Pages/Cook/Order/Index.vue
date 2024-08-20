@@ -20,7 +20,7 @@ import CaretUp from "@/Components/CaretUp.vue";
             <div
                 class="m-auto flex flex-col justify-center h-full lg:pb-12 w-full"
             >
-                <div class="py-5 lg:py-8 px-4">
+                <div class="py-6 lg:py-12 px-4">
                     <h1
                         class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
                     >
@@ -31,7 +31,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                         </span>
                     </h1>
                 </div>
-                <div class="col-span-1 w-full max-w-full py-6">
+                <div class="col-span-1 w-full max-w-full py-8">
                     <div
                         class="sticky flex flex-col min-w-full break-words w-full top-1/100 dark:bg-oynx rounded-2xl bg-clip-border"
                     >
@@ -349,7 +349,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                     "
                                                 >
                                                     <template #title>
-                                                        Meal Time
+                                                        Meal Portion
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp
