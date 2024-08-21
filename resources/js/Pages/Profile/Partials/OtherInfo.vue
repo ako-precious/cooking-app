@@ -1,24 +1,14 @@
-<script setup></script>
-
+<script setup>
+ import CloseButton from '@/Components/CloseButton.vue'
+</script>
 <template>
     <div
         class="p-10 lg:w-3/5 m-auto shadow-reverse bg-snow dark:bg-oynx rounded-md relative"
     >
         <div style="display: unset">
-            <div class="sticky top-0 w-full bg-snow dark:bg-oynx">
-                <button
-                    @click="$emit('close')"
-                    type="button"
-                    title="Close Button"
-                    class="float-right top-3 right-5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-12 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-hide="popup-modal"
-                >
-                    <font-awesome-icon
-                        icon="fa-solid fa-close"
-                        class="text-lighred text-2xl"
-                    />
-                    <span class="sr-only">Close modal</span>
-                </button>
+            <div class="sticky top-0 flex justify-end w-full">
+                
+                <CloseButton  @click="$emit('close')"/>
             </div>
 
             <div class="mb-6">

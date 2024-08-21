@@ -61,7 +61,7 @@ class CookController extends Controller
     public function availability(Request $request, $id)
     {
         $mealSchedule = Cook::find($id);
-        $mealSchedule->availability =  $request->availability;
+        $mealSchedule->availability =   json_encode($request->selectedDays);
         $mealSchedule->save();
 
         // Prepare notification message

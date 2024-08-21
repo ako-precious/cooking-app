@@ -1,3 +1,7 @@
+
+<script setup>
+ import CloseButton from '@/Components/CloseButton.vue'
+</script>
 <template>
   
     <!--  -->
@@ -20,31 +24,10 @@
                         Select available days
                     </h3>
 
-                    <div    @click="$emit('close')"
-                        class="relative border-2 cursor-pointer border-oynx rounded-full dark:border-snow group hover:border-persian dark:hover:border-persian w-10 h-10 duration-500 overflow-hidden"
-                        type="button"
-                    >
-                        <p
-                            class="font-Manrope text-3xl h-full w-full flex items-center justify-center text-oynx dark:text-snow duration-500 relative z-10 group-hover:scale-0"
-                        >
-                            ×
-                        </p>
-                        <span
-                            class="absolute w-full h-full bg-persian rotate-45 group-hover:top-8 duration-500 top-12 left-0"
-                        ></span>
-                        <span
-                            class="absolute w-full h-full bg-persian rotate-45 top-0 group-hover:left-8 duration-500 left-12"
-                        ></span>
-                        <span
-                            class="absolute w-full h-full bg-persian rotate-45 top-0 group-hover:right-8 duration-500 right-12"
-                        ></span>
-                        <span
-                            class="absolute w-full h-full bg-persian rotate-45 group-hover:bottom-8 duration-500 bottom-12 right-0"
-                        ></span>
-                    </div>
+                   <CloseButton  @click="$emit('close')"/>
                 </div>
                 <!-- Modal body -->
-                <div class="h-52 overflow-y-auto py-4 space-y-6">
+                <div class="h-60 overflow-y-auto py-4 space-y-6">
                    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 lg:gap-8 lg:px-8">
         <div
             class="col-span-1 w-full max-w-full py-2"
@@ -74,19 +57,19 @@
             </div>
         </div>
     </div>
+    <div
+        class="flex items-center  justify-center rounded-b"
+    >
+        <button @click="sendData"
+            data-modal-toggle="defaultModal"
+            type="button"
+            class="text-white font-medium rounded-lg text-sm px-5 text-center flex items-center justify-center hover:scale-[1.02] transition-transform"
+        >
+            Save
+        </button>
+    </div>
     </div>
                 <!-- Modal footer -->
-                <div
-                    class="flex items-center py-2 justify-center rounded-b border-t border-gray-200 dark:border-gray-700"
-                >
-                    <button
-                        data-modal-toggle="defaultModal"
-                        type="button"
-                        class="text-white font-medium rounded-lg text-sm px-5 text-center flex items-center justify-center hover:scale-[1.02] transition-transform"
-                    >
-                        Save
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -101,7 +84,7 @@ export default {
         },
     data() {
         return {
-            selectedDiv: [], // Array to hold selected days
+            selectedDiv:  this.cook.availability || [], // Array to hold selected days
             days: [
                 "Monday",
                 "Tuesday",
@@ -122,13 +105,23 @@ export default {
             } else {
                 this.selectedDiv.push(day);
             }
-            this.sendData(); // Send the updated selection to the backend
+            // this.sendData(); // Send the updated selection to the backend
         },
         sendData() {
             // Send selected days to the backend
             // Here, you would typically make an API call to send the data
             // For example, using axios:
             // axios.post('/your-backend-endpoint', { selectedDays: this.selectedDiv });
+            axios
+                    .put("/api/availability/" + this.cook.id, { selectedDays: this.selectedDiv })
+                    .then((response) => {
+                        console.log(response.data);
+                        this.$inertia.visit(`/user-profile/${this.cook.user_id}`);
+                    })
+                    .catch((error) => {
+                        // Handle error
+                        // console.error("Error saving data:", error);
+                    });
 
             console.log("Selected days:", this.selectedDiv); // For demonstration
         },
