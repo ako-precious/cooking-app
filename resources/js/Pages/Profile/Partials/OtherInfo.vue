@@ -119,7 +119,7 @@ export default {
             maxLength: false,
             maxLength2: false,
             maxLength3: false,
-            cook:this.cook,
+            // cook: this.cook,
             question1: this.cook.question1 || '',
             question2: this.cook.question2 || '',
             question3: this.cook.question3 || '',

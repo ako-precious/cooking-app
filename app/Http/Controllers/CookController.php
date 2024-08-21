@@ -55,7 +55,17 @@ class CookController extends Controller
         $mealSchedule->save();
 
         // Prepare notification message
-        $message = "Your meal order #" . $mealSchedule->id . " status has been updated to " . $mealSchedule->status;
+        $message = "Your answers have been saved";
+        return response()->json(['data' => $message]);
+    }
+    public function availability(Request $request, $id)
+    {
+        $mealSchedule = Cook::find($id);
+        $mealSchedule->availability =  $request->availability;
+        $mealSchedule->save();
+
+        // Prepare notification message
+        $message = "Your availability has been saved ";
         return response()->json(['data' => $message]);
     }
     public function setup()

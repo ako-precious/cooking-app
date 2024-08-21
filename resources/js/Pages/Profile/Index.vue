@@ -2,7 +2,7 @@
 import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 import Card from "./Card.vue";
-
+import Availability from "./Partials/Availability.vue"
 import Navbar from "../Header/Navbar.vue";
 import DropBarNav from "../Header/DropBarNav.vue";
 import Footer from "@/Layouts/Footer.vue";
@@ -194,9 +194,10 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                         </div>
                     </div>
                     <div
-                        class="py-10 border-t border-gray-500 flex "
+                        v-if="$page.props.auth.user"
+                        class="py-10 border-t px-4 border-gray-500 flex justify-between"
                     >
-                        <div v-if="$page.props.auth.user">
+                        <div>
                             <p
                                 v-if="
                                     user.id == $page.props.auth.user.id ||
@@ -213,26 +214,37 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 >
                                     <span
                                         @click="openModal"
-                                        class="font-bold  text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                        class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                         >Answer questions that makes the your
-                                    customer know you more</span
+                                        customer know you more</span
                                     >
-                                    
                                 </span>
                                 <span v-else>
                                     <span
                                         @click="openModal"
                                         class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                     >
-                                        Edit Information provided </span
-                                    >
+                                        Edit Information Provided
+                                    </span>
                                 </span>
                             </p>
                         </div>
+                        <div>
+                            <p
+                                v-if="
+                                    user.id == $page.props.auth.user.id
+                                "
+                                class="text-sm leading-relaxed text-oynx dark:text-snow"
+                            >
+                                <span
+                                    @click="openAvailable"
+                                    class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >Select Days Available</span
+                                >
+                            </p>
+                        </div>
                     </div>
-                    <div
-                        class=" py-10 border-t border-gray-500 text-center"
-                    >
+                    <div class="py-10 border-t border-gray-500 text-center">
                         <div class="flex flex-wrap justify-center">
                             <div class="text-left w-full px-4">
                                 <p
@@ -242,50 +254,50 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 </p>
 
                                 <p
-                                    class="mb-1 text-lg font-semibold underline leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-1 text-lg font-semibold leading-relaxed text-polynesian dark:text-lighred"
                                 >
                                     Interesting fact:
                                 </p>
 
                                 <p
-                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-4 text-sm leading-relaxed text-oynx dark:text-snow"
                                 >
                                     {{ user.other_info }}
                                 </p>
 
                                 <p
-                                    class="mb-1 text-lg font-semibold leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-1 text-lg font-semibold leading-relaxed text-polynesian dark:text-lighred"
                                 >
                                     A brief background, cooking experience, and
                                     favorite dish to prepare:
                                 </p>
                                 <p
-                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-4 text-sm leading-relaxed text-oynx dark:text-snow"
                                 >
                                     {{ cook.question1 }}
                                 </p>
                                 <p
-                                    class="mb-1 text-lg font-semibold leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-1 text-lg font-semibold leading-relaxed text-polynesian dark:text-lighred"
                                 >
                                     What makes {{ firstWord }} cooking unique,
                                     and what you can expect from the dishes:
                                 </p>
                                 <p
-                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-4 text-sm leading-relaxed text-oynx dark:text-snow"
                                 >
                                     {{ cook.question2 }}
                                 </p>
                                 <p
-                                    class="mb-1 text-lg font-bold leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-1 text-lg font-semibold leading-relaxed text-polynesian dark:text-lighred"
                                 >
                                     How {{ firstWord }} ensures food safety and
                                     hygiene in the cooking and packaging
                                     process:
                                 </p>
                                 <p
-                                    class="mb-4 text-base leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-4 text-sm leading-relaxed text-oynx dark:text-snow"
                                 >
-                                    {{ cook.question2 }}
+                                    {{ cook.question3 }}
                                 </p>
                             </div>
                         </div>
@@ -417,6 +429,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
             <OtherInfo @close="closeModal" :cook="cook"></OtherInfo>
         </div>
     </div>
+    <div
+        v-show="modalVisible"
+        class="modal disable-scrollbars pt-12 fixed inset-0 flex justify-center items-center backdrop-blur-sm w-screen h-screen"
+    >
+    <Availability  @close="closeAvailable" :cook="cook"> </Availability>
+    </div>
+
     <Footer></Footer>
 </template>
 
@@ -437,6 +456,8 @@ export default {
             src: "",
             isLoading: true,
             newEventModalVisible: false,
+            modalVisible: false,
+      
         };
     },
     beforeDestroy() {
@@ -520,8 +541,12 @@ export default {
         },
     },
     methods: {
+      
         openModal() {
             this.newEventModalVisible = true;
+        },
+        openAvailable() {
+            this.modalVisible = true;
         },
 
         getStars(num) {
@@ -556,6 +581,10 @@ export default {
         closeModal() {
             // clear everything in the div and close it
             this.newEventModalVisible = false;
+        },
+        closeAvailable() {
+            // clear everything in the div and close it
+            this.modalVisible = false;
         },
         getProfilePhotoUrl(profilePhotoPath) {
             if (
