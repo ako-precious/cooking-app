@@ -3,6 +3,7 @@ import { Head, Link } from "@inertiajs/vue3";
 import TableHeadVue from "@/Components/Table/TableHead.vue";
 import TableRow from "./TableRow.vue";
 import HeaderVue from "../Header.vue";
+import WelcomeUser from "../WelcomeCook.vue";
 import CaretDown from "@/Components/CaretDown.vue";
 import CaretUp from "@/Components/CaretUp.vue";
 </script>
@@ -20,16 +21,7 @@ import CaretUp from "@/Components/CaretUp.vue";
             >
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
-                        <div class="py-5 lg:py-8">
-                            <h1
-                                class="font-semibold text-3xl lg:text-5xl text-oynx dark:text-snow"
-                            >
-                                Glad you're back,
-                                <span class="capitalize">
-                                    {{ firstWord }}
-                                </span>
-                            </h1>
-                        </div>
+                        <WelcomeUser></WelcomeUser>  
                         
                         <div
                             class="flex flex-col md:flex-row items-start justify-between md:items-center"

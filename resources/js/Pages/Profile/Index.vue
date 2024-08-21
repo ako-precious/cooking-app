@@ -35,7 +35,9 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                             class="w-full px-4 flex lg:hidden justify-center lg:justify-between gap-4"
                         >
                             <div class="w-1/2">
-                                <div class="relative w-full flex justify-center items-center">
+                                <div
+                                    class="relative w-full flex justify-center items-center"
+                                >
                                     <img
                                         v-if="user.profile_photo_path"
                                         :src="
@@ -43,13 +45,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                                 user.profile_photo_path
                                             )
                                         "
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-40 "
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-40"
                                         alt="avatar"
                                     />
                                     <img
                                         v-else
                                         :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-40 "
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-40"
                                         alt="avatar"
                                     />
                                 </div>
@@ -95,7 +97,9 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 </div>
                             </div>
                             <div class="w-4/12">
-                                <div class="relative w-full flex items-center justify-center">
+                                <div
+                                    class="relative w-full flex items-center justify-center"
+                                >
                                     <img
                                         v-if="user.profile_photo_path"
                                         :src="
@@ -103,13 +107,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                                 user.profile_photo_path
                                             )
                                         "
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-54"
                                         alt="avatar"
                                     />
                                     <img
                                         v-else
                                         :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto  max-w-54 "
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-54"
                                         alt="avatar"
                                     />
                                     <!-- <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"> -->
@@ -190,7 +194,44 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                         </div>
                     </div>
                     <div
-                        class="mt-10 py-10 border-t border-gray-500 text-center"
+                        class="py-10 border-t border-gray-500 flex "
+                    >
+                        <div v-if="$page.props.auth.user">
+                            <p
+                                v-if="
+                                    user.id == $page.props.auth.user.id ||
+                                    cook.question1 == null
+                                "
+                                class="text-sm leading-relaxed text-oynx dark:text-snow"
+                            >
+                                <span
+                                    v-if="
+                                        cook.question3 == null ||
+                                        cook.question2 == null ||
+                                        cook.question1 == null
+                                    "
+                                >
+                                    <span
+                                        @click="openModal"
+                                        class="font-bold  text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                        >Answer questions that makes the your
+                                    customer know you more</span
+                                    >
+                                    
+                                </span>
+                                <span v-else>
+                                    <span
+                                        @click="openModal"
+                                        class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        Edit Information provided </span
+                                    >
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class=" py-10 border-t border-gray-500 text-center"
                     >
                         <div class="flex flex-wrap justify-center">
                             <div class="text-left w-full px-4">
@@ -201,7 +242,7 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 </p>
 
                                 <p
-                                    class="mb-1 text-lg font-semibold leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-1 text-lg font-semibold underline leading-relaxed text-oynx dark:text-snow"
                                 >
                                     Interesting fact:
                                 </p>
@@ -246,47 +287,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 >
                                     {{ cook.question2 }}
                                 </p>
-                                <div v-if="$page.props.auth.user">
-                                    <p
-                                        v-if="
-                                            user.id ==
-                                                $page.props.auth.user.id ||
-                                            cook.question1 == null
-                                        "
-                                        class="float-right mt-4 text-sm leading-relaxed text-oynx dark:text-snow"
-                                    >
-                                        <span
-                                            v-if="
-                                                cook.question3 == null ||
-                                                cook.question2 == null ||
-                                                cook.question1 == null
-                                            "
-                                        >
-                                            Click
-                                            <span
-                                                @click="openModal"
-                                                class="font-bold underline cursor-pointer hover:text-persian"
-                                                >here</span
-                                            >
-                                            answer questions that makes the your
-                                            customer know you more
-                                        </span>
-                                        <span v-else>
-                                            Click
-                                            <span
-                                                @click="openModal"
-                                                class="font-bold underline cursor-pointer hover:text-persian"
-                                                >here</span
-                                            >
-                                            edit answers to questions
-                                        </span>
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="py-10 border-t border-gray-500 text-center mx-auto relative">
+                    <div
+                        class="py-10 border-t border-gray-500 text-center mx-auto relative"
+                    >
                         <p
                             class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow"
                         >
@@ -305,87 +312,94 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                             </div>
                         </div>
                     </div>
-                    <div class="py-10 border-t border-gray-500 text-center mx-auto relative">
+                    <div
+                        class="py-10 border-t border-gray-500 text-center mx-auto relative"
+                    >
                         <p
                             class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow"
                         >
                             {{ firstWord }}'s Reviews
                         </p>
-                        <div
-                class=" flex flex-col py-8 md:px-6 lg:p-8"
-            >
-                <div
-                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-cols-fr"
-                >
-                    <!--Background-->
-                  
-                    <div
-                        v-for="comment in reviews"
-                        :key="comment.id"
-                        class="animate-fade-in"
-                    >
-                        <div class="col-span-1 rounded-3">
-                            <div class="m-4 block rounded-lg">
-                                <!--Testimonial-->
-                                <div class="md:flex md:flex-row">
-                                    <div
-                                        class="mx-auto mb-6 flex flex-row md:flex-col justify-between items-center w-36 md:w-1/3 md:mx-0 lg:mb-0"
-                                    >
-                                        <img v-if="comment.profile_photo_path"
-                                            src="comment.profile_photo_path"
-                                            class="rounded-full shadow-md dark:shadow-black/30"
-                                            alt="woman avatar"
-                                        />
-                                        <img v-else
-                                            :src="`https://ui-avatars.com/api/?name=${comment.user.name}&color=FE6D73&background=004E98`"
-                                            class="rounded-full shadow-md dark:shadow-black/30"
-                                            alt="woman avatar"
-                                        />
-                                        <div class="">
+                        <div class="flex flex-col py-8 md:px-6 lg:p-8">
+                            <div
+                                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-cols-fr"
+                            >
+                                <!--Background-->
 
-                                            <div class="flex items-center my-3">
-                                                
+                                <div
+                                    v-for="comment in reviews"
+                                    :key="comment.id"
+                                    class="animate-fade-in"
+                                >
+                                    <div class="col-span-1 rounded-3">
+                                        <div class="m-4 block rounded-lg">
+                                            <!--Testimonial-->
+                                            <div class="md:flex md:flex-row">
                                                 <div
-                                                    v-for="index in getStars(comment.total)"
-                                                    :key="index"
+                                                    class="mx-auto mb-6 flex flex-row md:flex-col justify-between items-center w-36 md:w-1/3 md:mx-0 lg:mb-0"
                                                 >
-                                                    <font-awesome-icon
-                                                        icon="star"
-                                                        class="text-persian text-xxs"
+                                                    <img
+                                                        v-if="
+                                                            comment.profile_photo_path
+                                                        "
+                                                        src="comment.profile_photo_path"
+                                                        class="rounded-full shadow-md dark:shadow-black/30"
+                                                        alt="woman avatar"
                                                     />
+                                                    <img
+                                                        v-else
+                                                        :src="`https://ui-avatars.com/api/?name=${comment.user.name}&color=FE6D73&background=004E98`"
+                                                        class="rounded-full shadow-md dark:shadow-black/30"
+                                                        alt="woman avatar"
+                                                    />
+                                                    <div class="">
+                                                        <div
+                                                            class="flex items-center my-3"
+                                                        >
+                                                            <div
+                                                                v-for="index in getStars(
+                                                                    comment.total
+                                                                )"
+                                                                :key="index"
+                                                            >
+                                                                <font-awesome-icon
+                                                                    icon="star"
+                                                                    class="text-persian text-xxs"
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <p
+                                                            class="mb-2 text-xs font-bold text-oynx dark:text-snow"
+                                                        >
+                                                            {{
+                                                                FormattedDate(
+                                                                    comment.updated_at
+                                                                )
+                                                            }}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                               
+                                                <div
+                                                    class="md:ms-5 flex-col md:w-2/3"
+                                                >
+                                                    <p
+                                                        class="mb-4 text-base font-light text-oynx dark:text-snow"
+                                                    >
+                                                        {{ comment.comment }}
+                                                    </p>
+                                                    <p
+                                                        class="mb-2 text-base font-bold text-oynx dark:text-snow capitalize"
+                                                    >
+                                                        {{ comment.user.name }}
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <p
-                                                class="mb-2 text-xs font-bold text-oynx dark:text-snow"
-                                            >
-                                                {{
-                                                    FormattedDate(
-                                                        comment.updated_at
-                                                    )
-                                                }}
-                                            </p>
                                         </div>
-                                    </div>
-                                    <div class="md:ms-5 flex-col md:w-2/3">
-                                        <p
-                                            class="mb-4 text-base font-light text-oynx dark:text-snow"
-                                        >
-                                            {{ comment.comment }}
-                                        </p>
-                                        <p
-                                            class="mb-2 text-base font-bold text-oynx dark:text-snow capitalize"
-                                        >
-                                            {{ comment.user.name }}
-                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <div class="w-full flex justify-center items-center">
+                        <!-- <div class="w-full flex justify-center items-center">
                 <button @click="loadMoreData">Show More Reviews</button>
             </div> -->
                     </div>
@@ -395,7 +409,7 @@ import OtherInfo from "./Partials/OtherInfo.vue";
     </section>
     <div
         v-show="newEventModalVisible"
-        class="modal disable-scrollbars pt-12 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+        class="modal disable-scrollbars pt-12 fixed inset-0 flex justify-center items-center backdrop-blur-sm w-screen h-screen"
     >
         <div
             class="relative p-4 w-full max-h-[90%] disable-scrollbars overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in delay-200"
