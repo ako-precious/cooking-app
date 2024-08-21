@@ -7,7 +7,7 @@ const toggleDarkMode = useToggle(isDark);
 </script>
 
 <template>
-    <Link :href="'/'">
+    <Link :href="'/meals'">
        
        <img src="/images/logo2.png" class="rounded-full w-10 h-10" alt="">
          </Link>

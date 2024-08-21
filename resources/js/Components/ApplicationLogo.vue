@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <Link :href="'/'">
+    <Link :href="'/meals'">
        
        <img src="/images/logo2.png" class="rounded-full w-10 h-10" alt="">
          </Link>

@@ -45,11 +45,45 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
                     <Link :href="`/cook/menu`" class="py-2 px-3 navbar-link">
                         <p>Menu</p>
                     </Link>
-                    <Link :href="`/cook/menu`" class="py-2 px-3 navbar-link">
-                        <p>More  <font-awesome-icon class="ml-2"
+                    <!-- <Link :href="`/cook/menu`" class="py-2 px-3 navbar-link">
+                        <p>More  <font-awesome-icon class="ml-1"
                                                         icon="caret-down"
                                                 /></p>
-                    </Link>
+                    </Link> -->
+                    <div class="py-2 px-3 navbar-link">
+                        <a
+                            mini-sidenav-burger=""
+                            href="javascript:;"
+                            class="sm:marker:hidden p-0 text-sm text-white transition-all ease-nav-brand block"
+                            aria-expanded="false"
+                        >
+                            <Dropdown align="right" width="48">
+                                <template #trigger>
+                                    <p>More  <font-awesome-icon class="ml-1"
+                                                        icon="caret-down"
+                                                /></p>
+                                </template>
+    
+                                <template #content class="bg-snow dark:bg-oynx">
+                                    <div
+                                        class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
+                                    >
+                                        <DropdownLink
+                                        :href="`/cook/account`"
+                                            class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                        ><p>Payment Account</p>
+                                        </DropdownLink>
+                                        <DropdownLink
+                                            :href="`/onboarding/verify-your-account`"
+                                            class="relative w-full text-nowrap flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                        >
+                                        <p>Verification Status</p>
+                                        </DropdownLink>
+                                    </div>
+                                </template>
+                            </Dropdown>
+                        </a>
+                    </div>
                    
                 </div>
                 <div class="flex">
@@ -100,6 +134,17 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
                                             class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                         >
                                         <p>Menu</p>
+                                        </DropdownLink>
+                                        <DropdownLink
+                                        :href="`/cook/account`"
+                                            class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                        ><p>Payment Account</p>
+                                        </DropdownLink>
+                                        <DropdownLink
+                                            :href="`/onboarding/verify-your-account`"
+                                            class="relative w-full text-nowrap flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                        >
+                                        <p>Verification Status</p>
                                         </DropdownLink>
                                     </div>
                                 </template>
