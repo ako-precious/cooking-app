@@ -29,6 +29,7 @@ Route::get('/sort', [OrdersController::class, 'sort']);
 Route::post('/upload-verification/{id}', [AccountController::class, 'uploadVerification']);
 
 Route::put('/availability/{id}', [CookController::class, 'availability']);
+Route::get('/availability/{id}', [CookController::class, 'availability']);
 
 // routes/api.php
 Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);

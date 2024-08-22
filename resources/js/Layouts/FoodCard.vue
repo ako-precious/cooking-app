@@ -298,6 +298,7 @@ export default {
                 this.newSchedule = {
                     meal_name: meal.title,
                     meal_id: meal.id.toString(),
+                    cooK_id: meal.cooK_id.toString(),
                     user_id: this.$page.props.auth.user.id.toString(),
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,

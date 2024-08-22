@@ -30,6 +30,7 @@ class CookController extends Controller
         }
     }
 
+
     public function store(Request $request)
     {
         $user_id = $request->user_id;
@@ -45,7 +46,14 @@ class CookController extends Controller
         // Return the ID of the newly created row
         return response()->json(['data' => $newCook]);
     }
-    
+
+    // Used in the order card to mainly to get the availability of the cook
+
+    public function show( $id){
+        $cook = Cook::find($id);
+        return response()->json(['data' => $cook]);
+    }
+
     public function update(Request $request, $id)
     {
         $mealSchedule = Cook::find($id);
