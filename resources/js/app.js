@@ -6,6 +6,8 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+/* Import vue3-datepicker */
+import Datepicker from 'vue3-datepicker';
 
 /* Import fontawesome icons */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -50,9 +52,10 @@ createInertiaApp({
     
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) }, { mode: 'production' })
-            .use(plugin)
+            .use(plugin)            
             .use(ZiggyVue)
             .component("font-awesome-icon", FontAwesomeIcon)
+            .component('Datepicker', Datepicker)
             .mount(el);
     },
     progress: {

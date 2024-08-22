@@ -88,7 +88,7 @@ export default {
             hasMoreData: true,
             isHeaderFixed: false,
             phrases: [
-                "Connecting People Through the Joy of Cooking",
+                "Connecting People Through the Joy of Meals",
                 "Discover homemade meals, share your own",
                 "Become part of a passionate food-loving community",
             ],
@@ -550,8 +550,8 @@ Optional: Keep the path for visual reference (you can remove this)
 @keyframes fadeOut {
     0% {
         opacity: 1;
+        transform: translateY(0);
     }
-    transform: translateY(0);
     25% {
     }
 
