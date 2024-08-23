@@ -1,3 +1,9 @@
+<script setup>
+import axios from "axios";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+</script>
+
+
 <template>    
     <div
     id="defaultModal"
@@ -10,36 +16,19 @@
         <div class="relative bg-snow rounded-lg shadow dark:bg-oynx">
             <!-- Modal header -->
             <div
-                class="flex justify-between items-start p-5 rounded-t border-b dark:border-oynx"
+                class="flex justify-center items-start p-4 rounded-t border-b dark:border-oynx"
             >
                 <h3
-                    class="text-xl font-semibold text-oynx lg:text-2xl dark:text-snoww"
+                    class="text-xl font-semibold t text-oynx lg:text-2xl dark:text-snow"
                 >
                     Terms of Service
                 </h3>
-                <button
-                    type="button"
-                    class="text-oynx bg-transparent hover:bg-snow hover:text-oynx rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-oynx dark:hover:text-snoww"
-                    data-modal-toggle="defaultModal"
-                >
-                    <svg
-                        class="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd"
-                        ></path>
-                    </svg>
-                </button>
+                
             </div>
             <!-- Modal body -->
             <div class="h-60 overflow-y-auto p-5 space-y-6">
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
+                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
                 >
                     Ounjemi is a student-run cooking platform that connects
                     home cooks with customers. Please be aware that meals
@@ -51,7 +40,7 @@
                     handling and safety practices.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
+                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
                 >
                     While we take steps to ensure the quality and safety of
                     our meals, we want to transparently disclose this
@@ -61,7 +50,7 @@
                     community.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
+                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
                 >
                     Please note that our platform is in its early stages,
                     and many of our student cooks share apartments, making
@@ -70,7 +59,7 @@
                     and support as we grow and evolve.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
+                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
                 >
                     Please note that our platform is in its early stages,
                     and many of our student cooks share apartments, making
@@ -79,31 +68,42 @@
                     and support as we grow and evolve.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
+                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
                 >
                 We encourage you to read our disclaimer carefully before placing your order with Ounjemi. By proceeding, you confirm your understanding and acceptance of the terms."
                 </p>
             </div>
             <!-- Modal footer -->
-            <div
-                class="flex items-center p-5 space-x-2 rounded-b border-t border-snow dark:border-oynx"
+            <div  @click="Agreement"
+                class="flex items-center justify-end pb-4 px-5 space-x-2 rounded-b border-t border-snow dark:border-oynx"
             >
-                <button
-                    data-modal-toggle="defaultModal"
-                    type="button"
-                    class="text-snoww bg-gradient-to-br from-persian to-voilet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 text-center inline-flex items-center shadow-md shadow-oynx hover:scale-[1.02] transition-transform"
-                >
-                    I accept
-                </button>
-                <button
-                    data-modal-toggle="defaultModal"
-                    type="button"
-                    class="text-oynx bg-snoww hover:bg-oynx rounded-lg border border-snow text-sm font-medium px-5 py-2.5 hover:text-oynx focus:z-10 dark:bg-oynx dark:text-oynx dark:border-oynx dark:hover:text-snoww dark:hover:bg-oynx dark:focus:ring-oynx"
-                >
-                    Decline
-                </button>
+                <PrimaryButton @click="'px-2'"
+                >I Agree </PrimaryButton>
+              
             </div>
         </div>
     </div>
     </div>
 </template>
+
+<script>
+export default {
+    inheritAttrs: false,
+    props: {
+        newSchedule: Object,
+    },
+
+    data() {
+        return {
+           
+        };
+    },
+
+    methods: {
+    
+        Agreement(){
+
+        }
+    },
+};
+</script>

@@ -114,7 +114,7 @@ import { add, isBefore, getDay } from "date-fns";
         </div>
 
         <div class="flex justify-center item-center">
-            {{ newSchedule.cook_availability }}
+
             <PrimaryButton @click="addSchedule" class="w-full"
                 >Order</PrimaryButton
             >
