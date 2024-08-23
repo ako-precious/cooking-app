@@ -1,5 +1,6 @@
 <script setup>
 import Navbar from '@/Pages/Cook/Navbar.vue'
+import Disclaimer from "@/Pages/MealSchedule/Disclaimer.vue";
 </script>
 
 <template>
@@ -20,6 +21,16 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
             </form>
         </div>
     </div>
+    
+    <div
+    class="modal disable-scrollbars overflow-y-auto overflow-x-hidden pt-16 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
+   
+    >   <div
+            class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
+        >
+        <Disclaimer></Disclaimer>
+</div>
+</div>
 </template>
 
 <script>

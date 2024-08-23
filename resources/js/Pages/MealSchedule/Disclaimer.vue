@@ -7,19 +7,19 @@
     >
     <div class="relative p-4  w-full m-auto max-w-2xl h-full md:h-auto">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative bg-snow rounded-lg shadow dark:bg-oynx">
             <!-- Modal header -->
             <div
-                class="flex justify-between items-start p-5 rounded-t border-b dark:border-gray-600"
+                class="flex justify-between items-start p-5 rounded-t border-b dark:border-oynx"
             >
                 <h3
-                    class="text-xl font-semibold text-gray-900 lg:text-2xl dark:text-white"
+                    class="text-xl font-semibold text-oynx lg:text-2xl dark:text-snoww"
                 >
                     Terms of Service
                 </h3>
                 <button
                     type="button"
-                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                    class="text-oynx bg-transparent hover:bg-snow hover:text-oynx rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-oynx dark:hover:text-snoww"
                     data-modal-toggle="defaultModal"
                 >
                     <svg
@@ -37,9 +37,9 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="h-52 overflow-y-auto p-5 space-y-6">
+            <div class="h-60 overflow-y-auto p-5 space-y-6">
                 <p
-                    class="text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
                 >
                     Ounjemi is a student-run cooking platform that connects
                     home cooks with customers. Please be aware that meals
@@ -51,7 +51,7 @@
                     handling and safety practices.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
                 >
                     While we take steps to ensure the quality and safety of
                     our meals, we want to transparently disclose this
@@ -61,7 +61,7 @@
                     community.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
                 >
                     Please note that our platform is in its early stages,
                     and many of our student cooks share apartments, making
@@ -70,7 +70,7 @@
                     and support as we grow and evolve.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
                 >
                     Please note that our platform is in its early stages,
                     and many of our student cooks share apartments, making
@@ -79,26 +79,26 @@
                     and support as we grow and evolve.
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+                    class="text-sm leading-relaxed text-oynx dark:text-oynx"
                 >
                 We encourage you to read our disclaimer carefully before placing your order with Ounjemi. By proceeding, you confirm your understanding and acceptance of the terms."
                 </p>
             </div>
             <!-- Modal footer -->
             <div
-                class="flex items-center p-5 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600"
+                class="flex items-center p-5 space-x-2 rounded-b border-t border-snow dark:border-oynx"
             >
                 <button
                     data-modal-toggle="defaultModal"
                     type="button"
-                    class="text-white bg-gradient-to-br from-pink-500 to-voilet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 text-center inline-flex items-center shadow-md shadow-gray-300 hover:scale-[1.02] transition-transform"
+                    class="text-snoww bg-gradient-to-br from-persian to-voilet-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 text-center inline-flex items-center shadow-md shadow-oynx hover:scale-[1.02] transition-transform"
                 >
                     I accept
                 </button>
                 <button
                     data-modal-toggle="defaultModal"
                     type="button"
-                    class="text-gray-600 bg-white hover:bg-gray-100 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                    class="text-oynx bg-snoww hover:bg-oynx rounded-lg border border-snow text-sm font-medium px-5 py-2.5 hover:text-oynx focus:z-10 dark:bg-oynx dark:text-oynx dark:border-oynx dark:hover:text-snoww dark:hover:bg-oynx dark:focus:ring-oynx"
                 >
                     Decline
                 </button>
