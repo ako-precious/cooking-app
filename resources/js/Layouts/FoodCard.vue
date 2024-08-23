@@ -43,9 +43,10 @@ defineProps(["meal"]);
                 <a href="#" class=" ">
                     <span
                         class="text-sm capitalize text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
-                        >{{ meal.cook.name }}</span
+                        >{{ meal.cook.name }} </span
                     >
                 </a>
+
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class="text-persian" />
                     <span
@@ -87,6 +88,7 @@ defineProps(["meal"]);
                             class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                     </div>
+                  
 
                     <font-awesome-icon
                         title="Add to Meal Schedule"
@@ -148,6 +150,7 @@ export default {
                 meal_name: "",
                 meal_time: "",
                 user_id: "",
+                cook_availability: "",
                 start_date: "",
                 end_date: "",
                 price: "",
@@ -213,7 +216,7 @@ export default {
         },
         getRatings() {
             const mealId = this.meal.id;
-               console.log( mealId);
+            //    console.log( mealId);
             axios
                 .get("/api/ratings/" + mealId)
                 .then((response) => {
@@ -247,7 +250,7 @@ export default {
                     // Update UI if necessary
                 })
                 .catch((error) => {
-                    console.error("Error deleting item:", error);
+                    // console.error("Error deleting item:", error);
                 });
         },
         addWishList(id) {
@@ -262,7 +265,7 @@ export default {
                     // Update UI if necessary
                 })
                 .catch((error) => {
-                    console.error("Error adding to wishlist:", error);
+                    // console.error("Error adding to wishlist:", error);
                 });
         },
         WishList() {
@@ -274,12 +277,24 @@ export default {
                         this.wishlist = response.data.wishlist;
                     })
                     .catch((error) => {
-                        console.error("Error fetching wishlist data:", error);
+                        // console.error("Error fetching wishlist data:", error);
                     });
             }
         },
+      async  fetchAvailability(){
 
-        openModal(meal) {
+          await  axios
+           .get(`/cook/menu/` + this.meal.cook.id )
+           .then((resp) => {                         
+                         return resp.data.data.availability
+                       })
+          
+        },
+    async    openModal(meal) {
+
+        const response = await axios.get(`/cook/menu/` + this.meal.cook.id );
+        const availability =  response.data.data.availability;
+                        
             // Get the current date
             const currentDate = new Date();
 
@@ -298,7 +313,7 @@ export default {
                 this.newSchedule = {
                     meal_name: meal.title,
                     meal_id: meal.id.toString(),
-                    cooK_id: meal.cooK_id.toString(),
+                    cook_availability: availability,
                     user_id: this.$page.props.auth.user.id.toString(),
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,
@@ -306,7 +321,7 @@ export default {
                     meal_time: "Choose a Meal time",
                 };
             }
-            // console.log(this.newSchedule );
+            // console.log(meal );
         },
         closeModal() {
             // clear everything in the div and close it

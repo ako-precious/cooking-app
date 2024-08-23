@@ -131,19 +131,7 @@ export default {
             formattedEvents: [],
             newEventModalVisible: false,
             pickedDate: '',
-            
-            options: {
-                // ... other options
-                disabledDates: (date) => {
-                    const today = new Date();
-                    const isPast = date < today;
-                    const isNotSelected = !this.selectedDays.includes(
-                        date.getDay()
-                    );
-
-                    return isPast || isNotSelected;
-                },
-            },
+          
             selectedDays: [2, 3, 0], // Replace with actual selected days from database
         };
     },

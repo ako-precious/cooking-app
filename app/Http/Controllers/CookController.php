@@ -6,6 +6,7 @@ use App\Http\Resources\MealResource;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Cook;
+use App\Models\User;
 use App\Models\Meal;
 use App\Models\Account;
 use App\Models\MealPhotos;
@@ -50,7 +51,9 @@ class CookController extends Controller
     // Used in the order card to mainly to get the availability of the cook
 
     public function show( $id){
-        $cook = Cook::find($id);
+        $cid = Meal::find($id)->pluck('cook_id');
+        // $cook = User::with('cook')->find($cid);
+        $cook = Cook::firstWhere('user_id', $cid);
         return response()->json(['data' => $cook]);
     }
 
