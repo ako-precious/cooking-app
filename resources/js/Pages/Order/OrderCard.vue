@@ -55,7 +55,7 @@ import { add, isBefore, getDay } from "date-fns";
             class="gap-2 flex flex-col md:flex-row items-center justify-between"
         >
             <div
-                v-if="newSchedule.cook_availability !== null"
+                
                 class="md:w-1/2 w-full py-4"
             >
                 <Datepicker
@@ -139,7 +139,6 @@ export default {
             pickedDate: ref(new Date()),
             limit_from: ref(new Date()),
             limit_to: ref(add(new Date(), { days: 20 })),
-            selectedDays: [2, 3, 0], // Replace with actual selected days from database
         };
     },
 
@@ -211,27 +210,27 @@ export default {
                     this.formatSchedule();
                     console.log(this.formattedEvents);
 
-                    // axios
-                    //     .post("/schedule", this.formattedEvents)
-                    //     .then((resp) => {
-                    //         this.message = resp.data.message;
+                    axios
+                        .post("/schedule", this.formattedEvents)
+                        .then((resp) => {
+                            this.message = resp.data.message;
 
-                    //         const MealId = resp.data.data.id;
-                    //         console.log(resp.data.data);
-                    //         // check if the schedule has been accepted or not
-                    //         if (resp.data.data.status == "accepted") {
-                    //             this.$inertia.visit(`/process_order/${MealId}`);
-                    //         } else {
-                    //             this.$inertia.visit(`/meal-schedule`);
-                    //         }
-                    //     })
-                    //     .catch((err) => {
-                    //         this.error = "Unable to add Meal !";
-                    //         setTimeout(() => {
-                    //             this.error = "";
-                    //             console.log("Unable to add Meal !", err);
-                    //         }, 10000);
-                    //     });
+                            const MealId = resp.data.data.id;
+                            console.log(resp.data.data);
+                            // check if the schedule has been accepted or not
+                            if (resp.data.data.status == "accepted") {
+                                this.$inertia.visit(`/process_order/${MealId}`);
+                            } else {
+                                this.$inertia.visit(`/meal-schedule`);
+                            }
+                        })
+                        .catch((err) => {
+                            this.error = "Unable to add Meal !";
+                            setTimeout(() => {
+                                this.error = "";
+                                console.log("Unable to add Meal !", err);
+                            }, 10000);
+                        });
                 }
             }
         },

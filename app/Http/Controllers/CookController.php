@@ -51,9 +51,9 @@ class CookController extends Controller
     // Used in the order card to mainly to get the availability of the cook
 
     public function show( $id){
-        $cid = Meal::find($id)->pluck('cook_id');
-        // $cook = User::with('cook')->find($cid);
-        $cook = Cook::firstWhere('user_id', $cid);
+        // $cid = Meal::find($id);
+        // $cook = User::with('cook')->find($id);
+        $cook = Cook::firstWhere('user_id', $id);
         return response()->json(['data' => $cook]);
     }
 
