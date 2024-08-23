@@ -176,15 +176,23 @@ export default {
     };
 
     // Map availability day names to day numbers
-    const userSelectedDays = this.newSchedule.cook_availability.map( day => dayNameToNumber[day]);
-
-    const day = getDay(date);
-    console.log(this.newSchedule.cook_availability);
-    console.log(userSelectedDays);
     
-    // Disable past dates and dates not in userSelectedDays
-    // return !userSelectedDays.includes(day);
-    // Return a promise to handle asynchronous operation
+    const day = getDay(date);
+    console.log( typeof this.newSchedule.cook_availability);
+    console.log( this.newSchedule.cook_availability);
+    if ( this.newSchedule.cook_availability) {
+        
+        const array = JSON.parse(this.newSchedule.cook_availability);
+        console.log(array);
+        const userSelectedDays =array.map( day => dayNameToNumber[day]);
+        console.log(userSelectedDays);
+        console.log(!userSelectedDays);
+        console.log( !userSelectedDays.includes(day));
+        
+        // Disable past dates and dates not in userSelectedDays
+        return !userSelectedDays.includes(day);
+        // Return a promise to handle asynchronous operation
+    }
     
 },
 
