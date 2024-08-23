@@ -4,9 +4,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import Datepicker from "vue3-datepicker";
 import { ref } from "vue";
-import { isBefore, getDay } from "date-fns";
-
-
+import { add, isBefore, getDay } from "date-fns";
 </script>
 
 <template>
@@ -42,10 +40,6 @@ import { isBefore, getDay } from "date-fns";
                 v-model="newSchedule.meal_id"
             />
 
-           
-
-            <!--
-               -->
             <TextInput
                 readonly
                 hidden
@@ -57,28 +51,33 @@ import { isBefore, getDay } from "date-fns";
             />
         </div>
 
-        <div class=" gap-2 flex flex-col md:flex-row items-center justify-between">
-           <div v-if="newSchedule.cook_availability !== null " class=" md:w-1/2 w-full py-4">
-
-               <Datepicker
-                   class="my-2 w-full relative border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                   v-model="pickedDate"
-                   :clearable="true"
-                   placeholder="Delivery Date"
-                   :disabledDates="{ predicate: isDateDisabled }"
-                   >
-                   <template v-slot:clear="{ onClear }">
-                       <button
-                           @click="onClear"
-                           class="absolute top-0 right-0 text-lighred"
-                       >
-                           x
-                       </button>
-                   </template>
-               </Datepicker>
-           </div>
+        <div
+            class="gap-2 flex flex-col md:flex-row items-center justify-between"
+        >
+            <div
+                v-if="newSchedule.cook_availability !== null"
+                class="md:w-1/2 w-full py-4"
+            >
+                <Datepicker
+                    class="my-2 w-full relative border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+                    v-model="pickedDate"
+                    :clearable="true"
+                    :disabledDates="{ predicate: isDateDisabled }"
+                    :upper-limit="limit_to"
+                    :lower-limit="limit_from"
+                    placeholder="Delivery Date"
+                >
+                    <template v-slot:clear="{ onClear }">
+                        <button
+                            @click="onClear"
+                            class="absolute top-0 right-0 text-lighred"
+                        >
+                            x
+                        </button>
+                    </template>
+                </Datepicker>
+            </div>
             <div class="w-full py-3 md:w-1/2">
-
                 <TextInput
                     v-model="newSchedule.portion"
                     required
@@ -88,9 +87,8 @@ import { isBefore, getDay } from "date-fns";
                 />
             </div>
         </div>
-        
+
         <div class="py-3 flex justify-between">
-        
             <TextInput
                 required
                 class="w-full"
@@ -114,9 +112,9 @@ import { isBefore, getDay } from "date-fns";
                 placeholder=""
             />
         </div>
-      
+
         <div class="flex justify-center item-center">
-            <!-- {{ newSchedule.cook_availability }} -->
+            {{ newSchedule.cook_availability }}
             <PrimaryButton @click="addSchedule" class="w-full"
                 >Order</PrimaryButton
             >
@@ -139,16 +137,16 @@ export default {
             formattedEvents: [],
             newEventModalVisible: false,
             pickedDate: ref(new Date()),
-          
+            limit_from: ref(new Date()),
+            limit_to: ref(add(new Date(), { days: 20 })),
             selectedDays: [2, 3, 0], // Replace with actual selected days from database
         };
     },
 
     methods: {
-        
         formatSchedule() {
             this.newSchedule.start_date = this.pickedDate;
-            this.newSchedule.meal_time = 'Lunch'
+            this.newSchedule.meal_time = "Lunch";
             this.formattedEvents = {
                 meal_id: this.newSchedule.meal_id,
                 user_id: this.newSchedule.user_id,
@@ -159,43 +157,41 @@ export default {
                 address: this.newSchedule.address,
             };
         },
-  
-   async isDateDisabled(date) {
-    // const id = this.newSchedule;
-    // console.log(id);
 
-    // Define a mapping from day names to day numbers
-    const dayNameToNumber = {
-        "Sunday": 0,
-        "Monday": 1,
-        "Tuesday": 2,
-        "Wednesday": 3,
-        "Thursday": 4,
-        "Friday": 5,
-        "Saturday": 6
-    };
+        isDateDisabled(date) {
+            // const id = this.newSchedule;
+            // console.log(id);
 
-    // Map availability day names to day numbers
-    
-    const day = getDay(date);
-    console.log( typeof this.newSchedule.cook_availability);
-    console.log( this.newSchedule.cook_availability);
-    if ( this.newSchedule.cook_availability) {
-        
-        const array = JSON.parse(this.newSchedule.cook_availability);
-        console.log(array);
-        const userSelectedDays =array.map( day => dayNameToNumber[day]);
-        console.log(userSelectedDays);
-        console.log(!userSelectedDays);
-        console.log( !userSelectedDays.includes(day));
-        
-        // Disable past dates and dates not in userSelectedDays
-        return !userSelectedDays.includes(day);
-        // Return a promise to handle asynchronous operation
-    }
-    
-},
+            // Define a mapping from day names to day numbers
+            const dayNameToNumber = {
+                Sunday: 0,
+                Monday: 1,
+                Tuesday: 2,
+                Wednesday: 3,
+                Thursday: 4,
+                Friday: 5,
+                Saturday: 6,
+            };
 
+            // Map availability day names to day numbers
+            const today = new Date();
+            const day = getDay(date);
+            // const userSelectedDays = [0, 3, 4];
+            if (this.newSchedule.cook_availability) {
+                const array = JSON.parse(this.newSchedule.cook_availability);               
+                const userSelectedDays = array.map(
+                    (day) => dayNameToNumber[day]
+                );
+                
+
+                //     // Disable past dates and dates not in userSelectedDays
+                return !userSelectedDays.includes(day);
+                //     // Return a promise to handle asynchronous operation
+            }else{
+
+            }
+        },
+       
         addSchedule() {
             if (this.$page.props.auth.user) {
                 const today = new Date().toISOString().replace(/T.*$/, "");
@@ -211,10 +207,9 @@ export default {
                 } else if (today >= this.newSchedule.start_date) {
                     this.error =
                         "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
-                }  else {
+                } else {
                     this.formatSchedule();
-                   console.log( this.formattedEvents);
-                    ;
+                    console.log(this.formattedEvents);
 
                     // axios
                     //     .post("/schedule", this.formattedEvents)
