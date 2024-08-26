@@ -8,6 +8,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 /* Import vue3-datepicker */
 import Datepicker from 'vue3-datepicker';
+import Parallaxy from '@lucien144/vue3-parallaxy';
 
 /* Import fontawesome icons */
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -56,6 +57,7 @@ createInertiaApp({
             .use(ZiggyVue)
             .component("font-awesome-icon", FontAwesomeIcon)
             .component('Datepicker', Datepicker)
+            .component("Parallaxy", Parallaxy) 
             .mount(el);
     },
     progress: {

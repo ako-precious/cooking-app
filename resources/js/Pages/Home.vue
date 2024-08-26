@@ -10,7 +10,7 @@ import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
 import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
-
+import Parallaxy from '@lucien144/vue3-parallaxy';
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
@@ -39,42 +39,6 @@ async function requestNotificationPermission() {
 }
 </script>
 
-<!-- <script>
-export default {
-    data() {
-        return {
-            phrases: [
-                "Connecting People Through the Joy of Cooking",
-                "Discover homemade meals, share your own",
-                "Become part of a passionate food-loving community",
-            ],
-            currentIndex: 0,
-            isAnimating: false,
-        };
-    },
-    computed: {
-        currentPhrase() {
-            return this.phrases[this.currentIndex];
-        },
-    },
-    methods: {
-        animate() {
-            this.isAnimating = true;
-            setTimeout(() => {
-                this.currentIndex =
-                    (this.currentIndex + 1) % this.phrases.length;
-                this.isAnimating = false;
-            }, 3000); // Adjust the animation duration as needed
-        },
-    },
-    mounted() {
-        this.animate();
-        setInterval(() => {
-            this.animate();
-        }, 3000); // Adjust the interval between animations as needed
-    },
-};
-</script> -->
 
 <script>
 export default {
@@ -191,6 +155,7 @@ function parallax(e) {
                 style="grid-template-columns: 1fr 1.5fr 1fr"
             >
                 <!-- image - start -->
+                <Parallaxy :depth="0.5">
                 <a
                     href="#"
                     class="group relative hidden lg:flex items-end overflow-hidden rounded-3xl shadow-lg w-[19vw] h-[22vw] -z-10"
@@ -205,7 +170,7 @@ function parallax(e) {
                     <div
                         class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
                     ></div>
-                </a>
+                </a></Parallaxy>
                 <!-- image - end -->
 
                 <!-- image - start -->
@@ -249,7 +214,7 @@ function parallax(e) {
                 class="text-wrap events-none absolute w-full inset-0 h-full flex flex-col gap-8 items-center justify-center"
             >
                 <span
-                    class="title text-wrap w-2/3 block uppercase text-center font-black lg:text-6xl text-white"
+                    class="title text-wrap w-2/3 block uppercase text-center font-black lg:text-6xl text-snow"
                     style=""
                 >
                     <h1
@@ -275,26 +240,26 @@ function parallax(e) {
                                 class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-polynesian/80 rounded group-hover:-mr-4 group-hover:-mt-4"
                             >
                                 <span
-                                    class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+                                    class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-snow"
                                 ></span>
                             </span>
                             <span
                                 class="absolute bottom-0 rotate-180 left-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-polynesian/80 rounded group-hover:-ml-4 group-hover:-mb-4"
                             >
                                 <span
-                                    class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"
+                                    class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-snow"
                                 ></span>
                             </span>
                             <span
                                 class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full bg-polynesian rounded-md group-hover:translate-x-0"
                             ></span>
                             <span
-                                class="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white"
+                                class="relative w-full text-left text-snow transition-colors duration-200 ease-in-out group-hover:text-snow"
                                 >Browse Meals</span
                             >
                         </button>
                     </a>
-                    <a
+                    <!-- <a
                         class="x-button btn --btn-border-radius-58 f-acbp-20-90 text-uppercase color-green theme-yellow events-auto js-flipbutton"
                         href=""
                         target=""
@@ -303,7 +268,7 @@ function parallax(e) {
                             class="cursor-pointer font-semibold overflow-hidden relative z-100 border border-polynesian group px-8 py-2"
                         >
                             <span
-                                class="relative z-10 text-polynesian group-hover:text-white text-xl duration-500"
+                                class="relative z-10 text-polynesian group-hover:text-snow text-xl duration-500"
                                 >Showcase Meal</span
                             >
                             <span
@@ -313,13 +278,13 @@ function parallax(e) {
                                 class="absolute w-full h-full bg-polynesian -right-32 top-0 -rotate-45 group-hover:rotate-0 group-hover:right-0 duration-500"
                             ></span>
                         </button>
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>
 
         <div
-            class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
+            class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-snow"
         >
             <img
                 src="/images/blob-ha.svg"
@@ -363,7 +328,7 @@ function parallax(e) {
         /> -->
         </div>
         <div
-            class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
+            class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-snow"
         >
             <a
                 href="#"
@@ -452,9 +417,9 @@ function parallax(e) {
                 ></div>
             </a>
         </div>
-        <div class="scroll-container" ref="scrollContainer">
+        <!-- <div class="scroll-container" ref="scrollContainer">
             <div
-                class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-white"
+                class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-snow"
                 :style="{ transform: `translateY(-${scrollPosition}px)` }"
             >
                 <a
@@ -474,7 +439,7 @@ function parallax(e) {
                     ></div>
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <div class="w-screen h-screen">
             <!-- <svg

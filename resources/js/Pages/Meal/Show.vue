@@ -366,7 +366,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     </h1>
                 </div>
             <div
-                class="flex flex-col lg:flex-row items-center py-3 px-8"
+                class="flex flex-col lg:flex-row items-center py-3 md:px-8"
             >
                
 
