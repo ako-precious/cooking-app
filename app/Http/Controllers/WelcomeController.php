@@ -72,7 +72,20 @@ class WelcomeController extends Controller
         return response()->json(MealResource::collection($mealSchedules));
     }
 
-    
+    public function agree(Request $request, $id)
+    {
+        $mealSchedule = User::find($id);
+        $mealSchedule->status =  $request->agreed;      
+        $mealSchedule->save();
+        
+        // Retrieve the updated record
+$updatedMealSchedule = User::find($id);
+
+// Prepare notification message
+$message = $updatedMealSchedule->status;
+        return response()->json(['data' => $message]);
+    }
+
     public function users($id)
     {
         // Find the user by ID, if not found return a 404 error

@@ -24,11 +24,11 @@ import Disclaimer from "@/Pages/MealSchedule/Disclaimer.vue";
     
     <div
     class="modal disable-scrollbars overflow-y-auto overflow-x-hidden pt-16 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
-   
+    v-show="newEventModalVisible"
     >   <div
             class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
         >
-        <Disclaimer></Disclaimer>
+        <Disclaimer @close="closeDisclaimer"></Disclaimer>
 </div>
 </div>
 </template>
@@ -41,6 +41,7 @@ export default {
         return {
             stripe: null,
             elements: null,
+            newEventModalVisible: true,
             clientSecret: new URLSearchParams(window.location.search).get(
                 "client_secret"
             ),
@@ -70,6 +71,10 @@ export default {
                 console.error(error);
             }
         },
+        closeDisclaimer(){
+            this.newEventModalVisible = false;
+        }
+        
     },
 };
 </script>

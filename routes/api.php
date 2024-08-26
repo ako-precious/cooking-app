@@ -34,6 +34,8 @@ Route::get('/availability/{id}', [CookController::class, 'availability']);
 // routes/api.php
 Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
+Route::put('/agreement/{id}' , [WelcomeController::class, 'agree']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

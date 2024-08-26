@@ -5,6 +5,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 
 <template>    
+
     <div
     id="defaultModal"
     tabindex="-1"
@@ -74,10 +75,10 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                 </p>
             </div>
             <!-- Modal footer -->
-            <div  @click="Agreement"
+            <div   @click="$emit('close')"
                 class="flex items-center justify-end pb-4 px-5 space-x-2 rounded-b border-t border-snow dark:border-oynx"
             >
-                <PrimaryButton @click="'px-2'"
+                <PrimaryButton @click="Agreement"
                 >I Agree </PrimaryButton>
               
             </div>
@@ -102,7 +103,22 @@ export default {
     methods: {
     
         Agreement(){
+ 
 
+            // const wishlistData = {
+            //     agreed : 'agreed',
+            //     user_id: this.$page.props.auth.user.id,
+            // };
+            // axios
+            //     .put("api/agreement/" +  this.$page.props.auth.user.id, wishlistData)
+            //     .then((response) => {
+                                  
+                   
+                    
+            //     })
+            //     .catch((error) => {
+            //         // console.error("Error adding to wishlist:", error);
+            //     });
         }
     },
 };
