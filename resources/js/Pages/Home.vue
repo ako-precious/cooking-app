@@ -39,7 +39,6 @@ async function requestNotificationPermission() {
 }
 </script>
 
-
 <script>
 export default {
     inheritAttrs: false,
@@ -155,10 +154,10 @@ function parallax(e) {
                 style="grid-template-columns: 1fr 1.5fr 1fr"
             >
                 <!-- image - start -->
-                <Parallaxy :depth="0.5">
+
                 <a
                     href="#"
-                    class="group relative hidden lg:flex items-end overflow-hidden rounded-3xl shadow-lg w-[19vw] h-[22vw] -z-10"
+                    class="group relative hidden lg:flex items-end overflow-hidden rounded-3xl shadow-lg w-[19vw] h-[22vw] -z-10 row-start-1"
                 >
                     <img
                         src="/images/smile.jpeg"
@@ -170,7 +169,7 @@ function parallax(e) {
                     <div
                         class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
                     ></div>
-                </a></Parallaxy>
+                </a>
                 <!-- image - end -->
 
                 <!-- image - start -->
@@ -282,6 +281,104 @@ function parallax(e) {
                 </div>
             </div>
         </div>
+        <div class="flex min-h-screen w-screen relative grain pt-[15vw]">
+            <div class="relative w-full h-full">
+                <div style="grid-template-columns: repeat(3, minmax(0,1fr));
+    grid-template-rows: repeat(3, minmax(0, auto));
+    width: 100%;"
+                    class="grid  items-center w-screen"
+                > 
+                    <!-- image - start -->
+
+                    <a
+                        href="#"
+                        style="
+                            grid-column: 1 / 4;
+                            grid-row: 1 / 3;
+                            margin: 0 auto;
+                            max-width: 19.063vw;
+                            top: -15vw;
+                        "
+                        class="group relative lg:flex items-end overflow-hidden rounded-3xl shadow-lg w-[19vw] h-[22vw] -z-10 row-start-1"
+                    >
+                        <img
+                            src="/images/smile.jpeg"
+                            loading="lazy"
+                            alt="Photo by Minh Pham"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                        ></div>
+                    </a>
+                    <!-- image - end -->
+                    <span
+                        class="title text-wrap w-4/5 mx-auto  relative text-center font-semibold text-2xl  lg:text-6xl text-snow"
+                        style="grid-area: 1 / 1 / 3 / 4"
+                    >
+                        <h1 class=" lg:leading-[4.5rem] tracking-wide ">
+                            Ounjemi is a community-driven platform where
+                            passionate cooks can showcase their favorite meals
+                            and food lovers can discover and enjoy unique meals.
+                            Whether you're a seasoned chef or just love to cook,
+                            Ounjemi connects you with others who share your love
+                            for food.
+                        </h1></span
+                    >
+
+                    <!-- image - start -->
+                    <a
+                        style="    bottom: 19vw;
+    grid-column: 1 / 2;
+    grid-row: 3 / 3;
+    margin-top: auto;
+    max-width: 19.063vw;
+"
+                        href="#"
+                        class="group relative m-auto flex items-end overflow-hidden lg:rounded-3xl bg-gray-100 shadow-lg w-[19vw] h-[22vw] -z-10"
+                    >
+                        <img
+                            src="/images/getitout.jpg"
+                            loading="lazy"
+                            alt="Photo by Magicle"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                        ></div>
+                    </a>
+                    <!-- image - end -->
+
+                    <!-- image - start -->
+
+                    <a
+                        href="#"
+                        style="grid-column: 3 / 3;
+    grid-row: 3 / -1;
+    left: 8vw;
+    margin-top: auto;
+    max-width: 21.875vw;
+    top: -6vw;"
+                        class="group relative hidden lg:flex items-end overflow-hidden rounded-3xl bg-gray-100 shadow-lg md:h-72 w-[19vw] h-[25vw] mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/Indian.jpeg"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                        ></div>
+                    </a>
+                    <!-- image - end -->
+                </div>
+               
+            </div>
+        </div>
 
         <div
             class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-snow"
@@ -327,8 +424,17 @@ function parallax(e) {
             class="parallax layer absolute h-full w-[40rem]   "
         /> -->
         </div>
+        <div class="relative bg-lighred overflow-hidden grain selection:bg-red-500 selection:text-snow h-screen w-screen ">
+            <div class="absolute inset-0 w-full h-full flex justify-center items-center"><span
+                        class="title text-wrap w-4/5 mx-auto  relative text-center font-semibold lg:font-black text-2xl  lg:text-7xl text-snow"
+                        style="grid-area: 1 / 1 / 3 / 4"
+                    >
+                        <h1 class=" lg:leading-[4.5rem] tracking-widest  ">
+                            Meet The Cooks
+                        </h1></span
+                    ></div>
         <div
-            class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-snow"
+            class="scrolling-grid  grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center p-12"
         >
             <a
                 href="#"
@@ -345,6 +451,7 @@ function parallax(e) {
                     class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
                 ></div>
             </a>
+            
             <a
                 href="#"
                 class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-2 row-start-2"
@@ -417,30 +524,190 @@ function parallax(e) {
                 ></div>
             </a>
         </div>
-        <!-- <div class="scroll-container" ref="scrollContainer">
-            <div
-                class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-6 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-snow"
-                :style="{ transform: `translateY(-${scrollPosition}px)` }"
+        <div
+            class="scrolling-grid  grid grid-cols-1 grid-row-6 sm:grid-cols-2 md:grid-cols-6 sm:items-center p-12"
+        >
+            <a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10"
             >
-                <a
-                    v-for="(item, index) in items"
-                    :key="index"
-                    href="#"
-                    class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10"
-                >
-                    <img
-                        src="/images/Indian.jpeg"
-                        loading="lazy"
-                        alt="Photo by Minh Pham"
-                        class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-                    />
-                    <div
-                        class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
-                    ></div>
-                </a>
-            </div>
-        </div> -->
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
 
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div>
+            </a>
+            
+            <a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-2 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] col-start-4 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-3 row-start-1"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-5 row-start-1"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-6 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div>
+            </a>
+        </div>
+        <div
+            class="scrolling-grid  grid grid-cols-1 grid-row-6 sm:grid-cols-2 md:grid-cols-6 sm:items-center p-12"
+        >
+            <a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div>
+            </a>
+            
+            <a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-2 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] col-start-4 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-3 row-start-1"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-5 row-start-1"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div> </a
+            ><a
+                href="#"
+                class="group relative hidden lg:flex items-end overflow-hidden rounded-full shadow-lg w-[15vw] h-[15vw] -z-10 col-start-6 row-start-2"
+            >
+                <img
+                    src="/images/smile.jpeg"
+                    loading="lazy"
+                    alt="Photo by Minh Pham"
+                    class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                />
+
+                <div
+                    class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
+                ></div>
+            </a>
+        </div>
+    </div>
+      
         <div class="w-screen h-screen">
             <!-- <svg
 viewBox="0 0 200 200"
@@ -482,6 +749,28 @@ Optional: Keep the path for visual reference (you can remove this)
 </template>
 
 <style scoped>
+.grid-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.scrolling-grid {
+    
+    animation: scroll-up 5s linear infinite;
+}
+
+@keyframes scroll-up {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-90%);
+    }
+}
+
+/* Adjust for the specific heights of your items */
+
 .scroll-container {
     height: 100vh;
     overflow: hidden;
