@@ -500,7 +500,8 @@ export default {
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
-                user_id: "",
+                user_id: "", 
+                 cook_availability: "",
                 start_date: "",
                 price: "",
                 end_date: "",
@@ -647,11 +648,17 @@ export default {
                     // Set loading state to false when fetching completes
                     this.isLoading = false;
                 });
+                
         },
-        openModal() {
+        async     openModal() {
             // Get the current date
             const currentDate = new Date();
 
+            
+        const response = await axios.get(`/cook/menu/` + this.meal.cook_id );
+        const availability =  response.data.data.availability;
+                        console.log(response.data.data);
+                        
             // Add one day to the current date
             const nextDayDate = new Date(currentDate);
             nextDayDate.setDate(currentDate.getDate() + 1);
@@ -668,6 +675,7 @@ export default {
                     meal_name: this.meal.name,
                     meal_id: this.meal.id.toString(),
                     user_id: this.$page.props.auth.user.id.toString(),
+                    cook_availability: availability,
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,
                     price: this.meal.price,

@@ -175,20 +175,42 @@ export default {
             // Map availability day names to day numbers
             const today = new Date();
             const day = getDay(date);
-            // const userSelectedDays = [0, 3, 4];
+            // // const userSelectedDays = [0, 3, 4];
+            // console.log( typeof this.newSchedule.cook_availability);
+            // console.log( this.newSchedule.cook_availability);
+            
             if (this.newSchedule.cook_availability) {
-                const array = JSON.parse(this.newSchedule.cook_availability);               
-                const userSelectedDays = array.map(
-                    (day) => dayNameToNumber[day]
-                );
-                
+    try {
+        // Parse the JSON string into an array
+        const array1= JSON.parse(this.newSchedule.cook_availability);
+ 
+        const array= JSON.parse(array1);
 
-                //     // Disable past dates and dates not in userSelectedDays
-                return !userSelectedDays.includes(day);
-                //     // Return a promise to handle asynchronous operation
-            }else{
+        // console.log(typeof array); // Should output "object"
+        // console.log(array); // Should output the array, e.g., ["Friday", "Wednesday", "Sunday"]
 
-            }
+        // Check if array is indeed an array before proceeding
+        if (Array.isArray(array)) {
+            // Map days to their numerical values
+            const userSelectedDays = array.map(
+                (day) => dayNameToNumber[day]
+            );
+
+            // Disable past dates and dates not in userSelectedDays
+            return !userSelectedDays.includes(day);
+        } else {
+            console.error("Parsed value is not an array:", array);
+            return false; // or some default behavior
+        }
+    } catch (error) {
+        console.error("Error parsing JSON or mapping array:", error);
+        return false; // or some default behavior
+    }
+} else {
+    console.warn("cook_availability is undefined or empty.");
+    return false; // or some default behavior
+}
+
         },
        
         addSchedule() {

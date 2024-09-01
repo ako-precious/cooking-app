@@ -286,8 +286,8 @@ export default {
 
         const response = await axios.get(`/cook/menu/` + this.meal.cook.id );
         const availability =  response.data.data.availability;
-                        console.log(response.data.data);
-                        console.log(this.meal.cook.id );
+                        // console.log(response.data.data);
+                        // console.log(this.meal.cook.id );
                         
             // Get the current date
             const currentDate = new Date();
