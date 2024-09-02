@@ -91,12 +91,16 @@ import InputLabel from "@/Components/InputLabel.vue";
         </template>
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
+               
                 <Link
-                    :href="`/become-a-cook/${Meal.id}/ingredients`"
+                    :href="`/become-a-cook/${Meal.id}/spotlight`"
                     class="font-semibold"
-                >
-                    <button class="relative group">
-                        <span class="hover-underline-animation"> Back </span>
+                ><button class="relative group">
+                        <span
+                            class="hover-underline-animation"
+                        >
+                            Back
+                        </span>
                     </button>
                 </Link>
             </div>
@@ -148,7 +152,7 @@ export default {
                     .put("/meal/title/" + this.Meal.id, meal)
                     .then((response) => {
                         const MealId = response.data.meal.id;
-                        this.$inertia.visit(`/become-a-cook/${MealId}/photos`);
+                        this.$inertia.visit(`/become-a-cook/${MealId}/ingredients`);
                     })
                     .catch((error) => {
                         // Handle error

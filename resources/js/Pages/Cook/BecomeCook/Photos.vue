@@ -179,17 +179,19 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <button
+            <button :disabled="loading || imageFiles.length === 0"
                 v-if="mealPhotos.length > 0"
                 @click="updatePhotos"
                 class="btn2span group"
             >
-                <span class="next-span">Next Step</span>
-                <span class="with-span">We're with you</span>
+                <span v-if="!loading" class="next-span">Next Step</span>
+                <span v-if="!loading" class="with-span">We're with you</span>
+                <span v-if="loading" class="with-span">Uploading...</span>
             </button>
-            <button v-else @click="createNewPhotos" class="btn2span group">
-                <span class="next-span">Next Step</span>
-                <span class="with-span">We are with you</span>
+            <button :disabled="loading || imageFiles.length === 0" v-else @click="createNewPhotos" class="btn2span group">
+                <span v-if="!loading" class="next-span">Next Step</span>
+                <span v-if="!loading" class="with-span">We are with you</span>
+                <span v-if="loading" class="with-span">Uploading...</span>
             </button>
         </template>
     </BecomeCook>
@@ -210,6 +212,7 @@ export default {
             maxSize: 3000, // Maximum image size (in pixels)
             dragIndex: null, // Array to hold image preview URLs
             errors: [],
+            loading: false,
             error: "",
         };
     },
@@ -391,6 +394,7 @@ export default {
         },
 
         storePhotos() {
+            this.loading = true; // Add this line
             const formData = new FormData();
             formData.append("meal_id", this.Meal.id);
            
@@ -430,6 +434,9 @@ export default {
                 .catch((error) => {
                     // console.error("Error uploading images:", error);
                     this.error = "Error uploading images";
+                })
+                .finally(() => {
+                    this.loading = false; // Add this line to reset the loading state after the upload is complete
                 });
         },
        
