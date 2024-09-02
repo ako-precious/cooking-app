@@ -301,7 +301,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                 </div>
 
                                 <ul
-                                    class="max-w-md space-y-1 text-oynx list-disc list-inside dark:text-snow"
+                                    class="max-w-md capitalize space-y-1 text-oynx list-disc list-inside dark:text-snow"
                                     v-for="ingredient in meal.ingredients"
                                     :key="meal.id"
                                 >

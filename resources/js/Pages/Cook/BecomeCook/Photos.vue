@@ -320,8 +320,8 @@ export default {
                 axios
                     .delete(`/meal_photos/${mealPhoto.id}`)
                     .then((response) => {
-                        // //console.log(response);
-                        // Handle success if needed
+                        
+                        this.$inertia.visit(`/become-a-cook/${MealId}/photos`);
                     })
                     .catch((error) => {
                         // console.error("Error deleting meal photo:", error);

@@ -34,7 +34,7 @@ defineProps(["meal"]);
         <div class="my-2 px-5 pb-3 transition-all duration-200 ease delay-75">
             <Link :href="`/meals/${meal.id}`">
                 <h5
-                    class="text-lg font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
+                    class="text-lg capitalize font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
                 >
                     {{ meal.title }}
                 </h5>
