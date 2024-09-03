@@ -33,7 +33,6 @@
         "@fullcalendar/list": "^6.1.10",
         "@fullcalendar/timegrid": "^6.1.10",
         "@fullcalendar/vue3": "^6.1.10",
-        "@lucien144/vue3-parallaxy": "^0.1.2",
         "@stripe/connect-js": "^3.3.5",
         "@stripe/stripe-js": "^3.4.0",
         "@vitejs/plugin-vue-jsx": "^3.1.0",

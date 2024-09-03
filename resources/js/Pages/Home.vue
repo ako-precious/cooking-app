@@ -381,9 +381,68 @@ function parallax(e) {
         </div>
 
         <div
-            class="relative bg-polynesian grid grid-cols-1 grid-row-3 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:items-center min-h-screen w-screen overflow-hidden grain selection:bg-red-500 selection:text-snow"
+            class="relative bg-polynesian flex justify-center w-screen min-h-screen selection:bg-red-500 overflow-hidden selection:text-snow"
         >
-            <img
+        <!-- <div class=" border-snow border-[1.5px] rounded-3xl  row-span-2" >1</div> -->
+        
+<div class="grid grid-cols-5 py-14 grid-rows-4 container m-auto gap-4">
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 row-span-2">2</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-4">3</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl row-span-2 col-start-5 row-start-2">6</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl row-span-2 col-start-1 row-start-1"> <a
+                        href="#"
+                        class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/cooks_calendar.jpeg"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+                        <p class="z-10 p-3  text-lg text-snow">As a cook on Ounjemi, you have full control over your time. Set your availability for when you can take orders and choose the specific dates when your meals will be available. This way, you can manage your cooking around your life, ensuring you're always in control. </p>
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-oynx"
+                        ></div>
+                    </a></div>
+    <div class=" border-snow border-[1.5px] rounded-3xl row-start-3">1</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl h-[12rem] col-span-3 col-start-2 row-start-3">9</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-3 col-start-3 row-start-4">11</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-1 row-start-4"> <a
+                        href="#"
+                        class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/cooks_calendar.jpeg"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+                        <p class="z-10 p-3  text-lg text-snow">As a cook on Ounjemi, you have full control over your time. Set your availability for when you can take orders and choose the specific dates when your meals will be available. This way, you can manage your cooking around your life, ensuring you're always in control. </p>
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-oynx"
+                        ></div>
+                    </a></div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-start-4 row-start-2 "> <a
+                        href="#"
+                        class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/Indian.jpeg"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+                        <p class="z-10 font-semibold text-2xl  uppercase text-snow">Why Ounjemi</p>
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-oynx"
+                        ></div>
+                    </a></div>
+</div>
+    
+            <!-- <img
                 src="/images/blob-ha.svg"
                 data-speed="-5"
                 class="parallax layer absolute w-[40rem] -top-16 -left-20"
@@ -417,7 +476,7 @@ function parallax(e) {
                 src="/images/blob-hakei.svg"
                 data-speed="-15"
                 class="parallax layer absolute w-[40rem] -top-1/3 right-1/3"
-            />
+            /> -->
             <!-- <img
             src="/images/blob-haikei.svg"
             data-speed="-15"
