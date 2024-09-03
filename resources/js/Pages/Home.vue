@@ -386,29 +386,79 @@ function parallax(e) {
         <!-- <div class=" border-snow border-[1.5px] rounded-3xl  row-span-2" >1</div> -->
         
 <div class="grid grid-cols-5 py-14 grid-rows-4 container m-auto gap-4">
-    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 row-span-2">2</div>
-    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-4">3</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 row-span-2"> <a
+                        href="#"
+                        class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/Order_tracking.png"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+                        <p class="z-10 p-3  text-lg text-snow">Ounjemi is a community-driven platform where
+                            passionate cooks can showcase their favorite meals
+                            and food lovers can discover and enjoy unique meals.
+                            Whether you're a seasoned chef or just love to cook,
+                            Ounjemi connects you with others who share your love
+                            for food. </p>
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
+                        ></div>
+                    </a></div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-4"> <a
+                        href="#"
+                        class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/ratings.png"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+                        <p class="z-10 p-3  text-lg text-snow">Life is busy, and planning meals can be a hassle. With Ounjemi, you can set a personalized meal schedule. Choose your favorite cooks, pick the dishes you crave, and let us handle the rest. Enjoy your meals on your terms. generate a prompt for the that I can use to generate image from the information above </p>
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
+                        ></div>
+                    </a></div>
     <div class=" border-snow border-[1.5px] rounded-3xl row-span-2 col-start-5 row-start-2">6</div>
     <div class=" border-snow border-[1.5px] rounded-3xl row-span-2 col-start-1 row-start-1"> <a
                         href="#"
                         class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
                     >
                         <img
-                            src="/images/cooks_calendar.jpeg"
+                            src="/images/Order_tracking.png"
                             loading="lazy"
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3  text-lg text-snow">As a cook on Ounjemi, you have full control over your time. Set your availability for when you can take orders and choose the specific dates when your meals will be available. This way, you can manage your cooking around your life, ensuring you're always in control. </p>
+                        <p class="z-10 p-3  text-lg text-snow">From the moment you place your order to the time it arrives at your door, Ounjemi keeps you in the loop. Know exactly where your meal is at every stage—whether it's Pending, Accepted, In Transit, or Delivered. Once it's in your hands, you confirm the delivery, ensuring everything is just right. </p>
 
                         <div
-                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-oynx"
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
                         ></div>
                     </a></div>
-    <div class=" border-snow border-[1.5px] rounded-3xl row-start-3">1</div>
-    <div class=" border-snow border-[1.5px] rounded-3xl h-[12rem] col-span-3 col-start-2 row-start-3">9</div>
-    <div class=" border-snow border-[1.5px] rounded-3xl col-span-3 col-start-3 row-start-4">11</div>
-    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-1 row-start-4"> <a
+    <div class=" border-snow border-[1.5px] rounded-3xl row-start-3 col-span-2"> <a
+                        href="#"
+                        class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/getitout.jpg"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+                        <p class="z-10 p-3  text-lg text-snow">Every cook has a story, and Ounjemi is the place to tell yours. Build a profile that highlights your culinary journey, your specialties, and what makes your cooking unique. Let others get to know the person behind the food.</p>
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
+                        ></div>
+                    </a></div>
+    <div class=" border-snow border-[1.5px] rounded-3xl h-[15rem] col-span-2 col-start-3 row-start-3">9</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-4 row-start-4">11</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-2 row-start-4"> <a
                         href="#"
                         class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
                     >
@@ -421,7 +471,7 @@ function parallax(e) {
                         <p class="z-10 p-3  text-lg text-snow">As a cook on Ounjemi, you have full control over your time. Set your availability for when you can take orders and choose the specific dates when your meals will be available. This way, you can manage your cooking around your life, ensuring you're always in control. </p>
 
                         <div
-                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-oynx"
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
                         ></div>
                     </a></div>
     <div class=" border-snow border-[1.5px] rounded-3xl col-start-4 row-start-2 "> <a
@@ -429,17 +479,18 @@ function parallax(e) {
                         class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
                     >
                         <img
-                            src="/images/Indian.jpeg"
+                            src="/images/Support.png"
                             loading="lazy"
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 font-semibold text-2xl  uppercase text-snow">Why Ounjemi</p>
+                        <p class="z-10 p-3 text-lg text-snow">Got a question or need help? Our support team is just a message or call away, ensuring your Ounjemi experience is smooth and enjoyable.</p>
 
                         <div
-                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-oynx"
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
                         ></div>
                     </a></div>
+                    <div className=" border-snow border-[1.5px] rounded-3xl row-start-4">1</div>
 </div>
     
             <!-- <img
