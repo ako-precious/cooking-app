@@ -385,23 +385,18 @@ function parallax(e) {
         >
         <!-- <div class=" border-snow border-[1.5px] rounded-3xl  row-span-2" >1</div> -->
         
-<div class="grid grid-cols-5 py-14 grid-rows-4 container m-auto gap-4">
-    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 row-span-2"> <a
+<div class=" flex flex-col lg:grid grid-cols-5 py-14 grid-rows-4 container m-auto gap-4">
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 row-span-2">  <a
                         href="#"
                         class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
                     >
                         <img
-                            src="/images/Order_tracking.png"
+                            src="/images/OrderManagement.png"
                             loading="lazy"
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3  text-lg text-snow">Ounjemi is a community-driven platform where
-                            passionate cooks can showcase their favorite meals
-                            and food lovers can discover and enjoy unique meals.
-                            Whether you're a seasoned chef or just love to cook,
-                            Ounjemi connects you with others who share your love
-                            for food. </p>
+                        <p class="z-10 p-3  text-lg text-snow">Keep track of all your orders with a dedicated calendar, ensuring you never miss a delivery or a cooking session. Access a comprehensive dashboard that gives you valuable insights into your meals, orders, payments, and the customers who love your food. Get paid as soon as the user confirms your meal has been delivered, ensuring you receive your earnings promptly  </p>
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
@@ -417,13 +412,28 @@ function parallax(e) {
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3  text-lg text-snow">Life is busy, and planning meals can be a hassle. With Ounjemi, you can set a personalized meal schedule. Choose your favorite cooks, pick the dishes you crave, and let us handle the rest. Enjoy your meals on your terms. generate a prompt for the that I can use to generate image from the information above </p>
+                        <p class="z-10 p-3  text-lg text-snow">Life is busy, and planning meals can be a hassle. With Ounjemi, you can set a personalized meal schedule. Choose your favorite cooks, pick the dishes you crave, and let us handle the rest. Enjoy your meals on your terms. </p>
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
                         ></div>
                     </a></div>
-    <div class=" border-snow border-[1.5px] rounded-3xl row-span-2 col-start-5 row-start-2">6</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl row-span-2 col-start-5 row-start-2"><a
+                        href="#"
+                        class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                    >
+                        <img
+                            src="/images/OrderManagement.png"
+                            loading="lazy"
+                            alt="Photo by Lorenzo Herrera"
+                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                        />
+                        <p class="z-10 p-3  text-lg text-snow">Keep track of all your orders with a dedicated calendar, ensuring you never miss a delivery or a cooking session. Access a comprehensive dashboard that gives you valuable insights into your meals, orders, payments, and the customers who love your food. Get paid as soon as the user confirms your meal has been delivered, ensuring you receive your earnings promptly </p>
+
+                        <div
+                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
+                        ></div>
+                    </a></div>
     <div class=" border-snow border-[1.5px] rounded-3xl row-span-2 col-start-1 row-start-1"> <a
                         href="#"
                         class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
@@ -456,8 +466,38 @@ function parallax(e) {
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
                         ></div>
                     </a></div>
-    <div class=" border-snow border-[1.5px] rounded-3xl h-[15rem] col-span-2 col-start-3 row-start-3">9</div>
-    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-4 row-start-4">11</div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-3 row-start-3"> <a
+                                       href="#"
+                                       class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                                   >
+                                       <img
+                                           src="/images/secure.png"
+                                           loading="lazy"
+                                           alt="Photo by Lorenzo Herrera"
+                                           class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                                       />
+                                       <p class="z-10 p-3 text-lg text-snow"> Your payment is safe with Ounjemi. When you pay for your meal order, we hold the funds and only release them to the cook once you confirm that the meal has been delivered to you. If, for any reason, the meal isn't delivered, you'll receive a full refund. Your satisfaction and security are our top priorities.</p>
+               
+                                       <div
+                                           class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
+                                       ></div>
+                                   </a></div>
+    <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-4 row-start-4">  <a
+                                       href="#"
+                                       class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                                   >
+                                       <img
+                                           src="/images/communicate.png"
+                                           loading="lazy"
+                                           alt="Photo by Lorenzo Herrera"
+                                           class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                                       />
+                                       <p class="z-10 p-3 text-lg text-snow"> Once your order is accepted, you have the opportunity to chat directly with your cook. Whether you want to request a modification, ask for a special ingredient, or discuss how you want your meal prepared, you're just a message away from making your meal exactly how you like it.</p>
+               
+                                       <div
+                                           class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
+                                       ></div>
+                                   </a></div>
     <div class=" border-snow border-[1.5px] rounded-3xl col-span-2 col-start-2 row-start-4"> <a
                         href="#"
                         class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
@@ -474,7 +514,8 @@ function parallax(e) {
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
                         ></div>
                     </a></div>
-    <div class=" border-snow border-[1.5px] rounded-3xl col-start-4 row-start-2 "> <a
+    <div class=" border-snow border-[1.5px] rounded-3xl col-start-4 row-start-2 ">
+         <a
                         href="#"
                         class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
                     >
@@ -489,8 +530,27 @@ function parallax(e) {
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
                         ></div>
-                    </a></div>
-                    <div className=" border-snow border-[1.5px] rounded-3xl row-start-4">1</div>
+                    </a>
+                </div>
+                <div className=" border-snow border-[1.5px] rounded-3xl row-start-4">
+                        <a
+                                       href="#"
+                                       class="group relative flex items-center justify-center overflow-hidden rounded-3xl bg-gray-100 shadow-lg h-full  mt-auto row-start-2 col-start-3"
+                                   >
+                                       <img
+                                           src="/images/newletter.jpeg"
+                                           loading="lazy"
+                                           alt="Photo by Lorenzo Herrera"
+                                           class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                                       />
+                                       <p class="z-10 p-3 text-lg text-snow">Every Week, you'll receive our newsletter filled with the latest recipes, cooking hacks, and community updates—bringing a bit of culinary inspiration straight to your inbox.</p>
+               
+                                       <div
+                                           class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
+                                       ></div>
+                                   </a>
+                        
+                        </div>
 </div>
     
             <!-- <img
