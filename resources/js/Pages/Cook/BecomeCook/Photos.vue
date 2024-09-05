@@ -179,18 +179,20 @@ import BecomeCook from "./BecomeCook.vue";
             </div>
         </template>
         <template #mainbtn>
-            <button :disabled="loading || imageFiles.length === 0"
+            <button :disabled="loading "
                 v-if="mealPhotos.length > 0"
                 @click="updatePhotos"
                 class="btn2span group"
             >
                 <span v-if="!loading" class="next-span">Next Step</span>
                 <span v-if="!loading" class="with-span">We're with you</span>
+                <span v-if="loading" class="next-span">Almost done</span>
                 <span v-if="loading" class="with-span">Uploading...</span>
             </button>
-            <button :disabled="loading || imageFiles.length === 0" v-else @click="createNewPhotos" class="btn2span group">
+            <button :disabled="loading " v-else @click="createNewPhotos" class="btn2span group">
                 <span v-if="!loading" class="next-span">Next Step</span>
-                <span v-if="!loading" class="with-span">We are with you</span>
+                <span v-if="!loading" class="with-span">We are with you</span>  
+                <span v-if="loading" class="next-span">Almost done</span>
                 <span v-if="loading" class="with-span">Uploading...</span>
             </button>
         </template>

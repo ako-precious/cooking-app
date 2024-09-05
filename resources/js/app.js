@@ -63,3 +63,10 @@ createInertiaApp({
 });
 });
 
+// INSERT INTO ratings (meal_id, user_id, presentation, taste, value, nutrition, portion_size, freshness, total, comment, created_at, updated_at) 
+// VALUES 
+// (FLOOR(RAND() * 16) + 32, FLOOR(RAND() * 31) + 70, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, CONCAT("Nice meal"), CURDATE(), CURDATE()),
+
+// (FLOOR(RAND() * 16) + 32, FLOOR(RAND() * 31) + 70, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, CONCAT("Nice meal"), CURDATE(), CURDATE()),
+
+// (FLOOR(RAND() * 16) + 32, FLOOR(RAND() * 31) + 70, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, FLOOR(RAND() * 2) + 4, CONCAT("I'm so impressed "), CURDATE(), CURDATE());

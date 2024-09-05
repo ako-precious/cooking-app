@@ -38,7 +38,7 @@ import RatingsCard from "./RatingsCard.vue";
                                         <p
                                             class="ms-2 text-lg font-extrabold text-gray-900 dark:text-white"
                                         >
-                                            {{ total }}
+                                            {{ total.toFixed(1) }}
                                         </p>
                                     </div>
                                     <span
@@ -170,7 +170,7 @@ import RatingsCard from "./RatingsCard.vue";
                             alt="ingredients"
                     /></template>
                     <template #title>Package</template>
-                    <template #rating>{{ presentation }}</template>
+                    <template #rating>{{ presentation.toFixed(1) }}</template>
                 </RatingsCard>
                 <RatingsCard>
                     <template #img
@@ -180,7 +180,7 @@ import RatingsCard from "./RatingsCard.vue";
                             alt="ingredients"
                     /></template>
                     <template #title>Freshness</template>
-                    <template #rating>{{ freshness }}</template>
+                    <template #rating>{{ freshness.toFixed(1) }}</template>
                 </RatingsCard>
                 <RatingsCard>
                     <template #img
@@ -190,7 +190,7 @@ import RatingsCard from "./RatingsCard.vue";
                             alt="ingredients"
                     /></template>
                     <template #title>Taste</template>
-                    <template #rating>{{ taste }}</template>
+                    <template #rating>{{ taste.toFixed(1) }}</template>
                 </RatingsCard>
                 <RatingsCard>
                     <template #img
@@ -200,7 +200,7 @@ import RatingsCard from "./RatingsCard.vue";
                             alt="ingredients"
                     /></template>
                     <template #title>Nutrition</template>
-                    <template #rating>{{ nutrition }}</template>
+                    <template #rating>{{ nutrition.toFixed(1) }}</template>
                 </RatingsCard>
                 <RatingsCard>
                     <template #img
@@ -210,7 +210,7 @@ import RatingsCard from "./RatingsCard.vue";
                             alt="ingredients"
                     /></template>
                     <template #title>Quantity</template>
-                    <template #rating>{{ portion_size }}</template>
+                    <template #rating>{{ portion_size.toFixed(1) }}</template>
                 </RatingsCard>
                 <RatingsCard>
                     <template #img
@@ -220,7 +220,7 @@ import RatingsCard from "./RatingsCard.vue";
                             alt="ingredients"
                     /></template>
                     <template #title>Value</template>
-                    <template #rating>{{ value }}</template>
+                    <template #rating>{{ value.toFixed(1) }}</template>
                 </RatingsCard>
             </div>
             <hr
