@@ -27,8 +27,12 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between items-center">
-                    <span class="font-bold">Subtotal:</span>
+                    <span class="font-bold">Meal Price:</span>
                     <span class="font-bold">${{ meal.price }}</span>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <span>Portion Number:</span>
+                    <span> {{ mealSchedule.portion }} </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span>Payment Charges:</span>
@@ -73,7 +77,7 @@ export default {
         async charge() {
             const total = (
                 parseFloat(this.meal.price) +
-                (3 / 100) * parseFloat(this.meal.price)
+                (3 / 100) * parseFloat(this.meal.price) * this.mealSchedule.portion 
             ).toFixed(2);
             await axios
                 .post("/checkout", {
@@ -95,10 +99,10 @@ export default {
                 });
         },
         TransferFee(price) {
-            return ((7 / 100) * parseFloat(price)).toFixed(2);
+            return ((7 / 100) * parseFloat(price) * this.mealSchedule.portion).toFixed(2) ;
         },
         Total(price) {
-            const total = (7 / 100) * parseFloat(price);
+            const total = (7 / 100) * parseFloat(price) * this.mealSchedule.portion ;
             return (parseFloat(price) + total).toFixed(2);
         },
 

@@ -28,39 +28,53 @@
     .whitebtn {
         @apply inline-block w-full px-3 py-2.5 mb-2 font-bold leading-normal text-center text-snow capitalize align-middle transition-all bg-persian border border-transparent border-solid rounded-lg cursor-pointer text-sm xl-max:cursor-not-allowed xl-max:opacity-65 xl-max:pointer-events-none xl-max:bg-gradient-to-tl xl-max:from-green-500 xl-max:to-persian xl-max:text-snow xl-max:border-0 hover:-translate-y-px dark:cursor-not-allowed dark:opacity-65 dark:pointer-events-none dark:bg-gradient-to-tl dark:from-green-500 dark:to-persian dark:text-snow dark:border-0 hover:shadow-xs active:opacity-85 ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-green-500 to-persian hover:border-persian;
     }
-    .navbar-link{
-        @apply ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1  hover:bg-gradient-to-br hover:from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 hover:dark:bg-gradient-to-br hover:dark:from-[#2b312e] hover:dark:to-[#333a37]   transition-all duration-250 delay-75 ease-in
+    .navbar-link {
+        @apply ml-2 relative inline-block bg-snow text-oynx active:text-polynesian hover:text-polynesian dark:text-snow dark:active:text-lighred dark:hover:text-lighred dark:bg-oynx rounded-full p-1  hover:bg-gradient-to-br hover:from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 hover:dark:bg-gradient-to-br hover:dark:from-[#2b312e] hover:dark:to-[#333a37]   transition-all duration-250 delay-75 ease-in;
     }
-    .any-link{
-        @apply ml-2 relative inline-block  text-oynx active:text-persian hover:text-persian dark:text-snow dark:active:text-lighred dark:hover:text-persian transition-all duration-250 delay-75 ease-in
+    .any-link {
+        @apply ml-2 relative inline-block  text-oynx active:text-persian hover:text-persian dark:text-snow dark:active:text-lighred dark:hover:text-persian transition-all duration-250 delay-75 ease-in;
     }
-    .shadow-small{
-        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-none transition-all duration-250 ease-in delay-75
+    .shadow-small {
+        @apply bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-md dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-none transition-all duration-250 ease-in delay-75;
     }
-    .shadow-extra-small{
-        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm transition-all duration-250 ease-in delay-75
+    .shadow-extra-small {
+        @apply bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm  hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm transition-all duration-250 ease-in delay-75;
     }
-    .shadow-reverse{
-        @apply  bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm  hover:shadow-none active:shadow-none dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-sm hover:dark:shadow-none hover:border hover:border-gray-600 transition-all duration-350 ease-in delay-75
+    .shadow-reverse {
+        @apply bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm  hover:shadow-none active:shadow-none dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  dark:shadow-oynx-sm hover:dark:shadow-none hover:border hover:border-gray-600 transition-all duration-350 ease-in delay-75;
     }
-    .group-action-text{
-        @apply text-oynx dark:text-snow group-hover:text-polynesian group-hover:dark:text-lighred group-active:text-persian transition-all duration-250 delay-100
+    .group-action-text {
+        @apply text-oynx dark:text-snow group-hover:text-polynesian group-hover:dark:text-lighred group-active:text-persian transition-all duration-250 delay-100;
     }
-    .hover-underline-animation{
-        @apply  z-10 relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow after:absolute after:w-full after:h-[2px] after:bottom-0 after:left-0 after:scale-x-0 after:origin-bottom-right   after:transition-transform after:ease-out after:duration-300 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left
-                      
+    .hover-underline-animation {
+        @apply z-10 relative tracking-wide text-oynx dark:text-snow pb-1 after:bg-oynx after:dark:bg-snow after:absolute after:w-full after:h-[2px] after:bottom-0 after:left-0 after:scale-x-0 after:origin-bottom-right   after:transition-transform after:ease-out after:duration-300 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left;
     }
-    .btn2span{
-        @apply   float-right mr-8  mt-5 text-xs relative overflow-hidden transition-all duration-500 ease-in-out transform bg-gradient-to-br from-[#e3dedf] to-[#ffffff] dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  shadow-snow-sm dark:shadow-oynx-sm rounded-lg h-[45px] w-40
-                      
+    .btn2span {
+        @apply float-right mr-8  mt-5 text-xs relative overflow-hidden transition-all duration-500 ease-in-out transform bg-gradient-to-br from-[#e3dedf] to-[#ffffff] dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37]  shadow-snow-sm dark:shadow-oynx-sm rounded-lg h-[45px] w-40;
     }
-    .next-span{
-        @apply   absolute top-0 left-0 w-full h-full flex items-center justify-center text-persian translate-y-0 scale-125 transition-all duration-500 ease-in-out group-hover:-translate-y-[50px]  group-hover:scale-0 group-hover:rotate-[120deg]
-                      
+    .next-span {
+        @apply absolute top-0 left-0 w-full h-full flex items-center justify-center text-persian translate-y-0 scale-125 transition-all duration-500 ease-in-out group-hover:-translate-y-[50px]  group-hover:scale-0 group-hover:rotate-[120deg];
     }
-    .with-span{
-        @apply   absolute top-0 left-0 w-full h-full flex items-center justify-center text-snow dark:text-oynx bg-persian translate-y-[50px] transition-all duration-500 ease-in-out transform group-hover:translate-y-0 group-hover:scale-125 
-                      
+    .with-span {
+        @apply absolute top-0 left-0 w-full h-full flex items-center justify-center text-snow dark:text-oynx bg-persian translate-y-[50px] transition-all duration-500 ease-in-out transform group-hover:translate-y-0 group-hover:scale-125;
     }
-       
+    .contentBox {
+        @apply absolute top-0 left-0 w-full h-full before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-lighred before:scale-x-0 before:transition-transform before:duration-700 before:origin-right before:delay-75 group-hover:before:scale-x-100 group-hover:before:transition-transform group-hover:before:duration-700 group-hover:before:origin-left group-hover:flex group-hover:justify-center group-hover:items-center;
+    }
+    .Content {
+        @apply relative p-8 z-10 transition-transform -translate-x-80 delay-75 group-hover:translate-x-0 group-hover:delay-75;
+    }
+    .work-description {
+        @apply absolute right-0 mt-[200px] mb-[40px] p-10 bg-persian z-10 max-w-[400px] text-white shadow-xl ease-in-out before:absolute before:w-full before:h-3 before:bg-lighred before:bottom-0 before:right-0 before:origin-right before:scale-x-0 before:transition-transform before:delay-200 before:duration-500 hover:before:origin-left hover:before:scale-x-100 after:absolute after:w-full after:h-3 after:bg-lighred after:top-0 after:right-0 after:origin-right after:scale-x-0 after:transition-transform after:delay-75 after:duration-500 hover:after:origin-left hover:after:scale-x-100;
+    }
+    .work-description-2 {
+        @apply absolute left-0 mt-[200px] mb-[40px] p-10 bg-persian z-10 max-w-[400px] text-white shadow-xl ease-in-out before:absolute before:w-full before:h-3 before:bg-lighred before:bottom-0 before:right-0 before:origin-right before:scale-x-0 before:transition-transform before:delay-200 before:duration-500 hover:before:origin-left hover:before:scale-x-100 after:absolute after:w-full after:h-3 after:bg-lighred after:top-0 after:right-0 after:origin-right after:scale-x-0 after:transition-transform after:delay-75 after:duration-500 hover:after:origin-left hover:after:scale-x-100;
+    }
+
+    .input {
+        @apply block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-white appearance-none focus:outline-none focus:ring-0 focus:border-lighred;
+    }
+    .label {
+        @apply peer-focus:font-medium absolute text-sm text-white duration-500 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-lighred peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6;
+    }
 }
