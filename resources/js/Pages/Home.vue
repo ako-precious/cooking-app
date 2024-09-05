@@ -2,7 +2,7 @@
 import { onMounted } from "vue";
 import { Head, usePage } from "@inertiajs/vue3";
 import DropBarNav from "./Header/DropBarNav.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
+import Sliders from "./Sliders.vue";
 import Footer from "@/Layouts/Footer.vue";
 import Loader from "@/Layouts/Loader.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
@@ -10,7 +10,6 @@ import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
 import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
-import Parallaxy from '@lucien144/vue3-parallaxy';
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
@@ -281,6 +280,7 @@ function parallax(e) {
                 </div>
             </div>
         </div>
+        <Sliders> </Sliders>
         <div class="flex min-h-screen w-screen relative grain pt-[15vw]">
             <div class="relative w-full h-full">
                 <div style="grid-template-columns: repeat(3, minmax(0,1fr));
