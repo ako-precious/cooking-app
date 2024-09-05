@@ -281,104 +281,163 @@ function parallax(e) {
             </div>
         </div>
         <Sliders> </Sliders>
-        <div class="flex min-h-screen w-screen relative grain pt-[15vw]">
-            <div class="relative w-full h-full">
-                <div style="grid-template-columns: repeat(3, minmax(0,1fr));
-    grid-template-rows: repeat(3, minmax(0, auto));
-    width: 100%;"
-                    class="grid  items-center w-screen"
-                > 
-                    <!-- image - start -->
-
-                    <a
-                        href="#"
-                        style="
-                            grid-column: 1 / 4;
-                            grid-row: 1 / 3;
-                            margin: 0 auto;
-                            max-width: 19.063vw;
-                            top: -15vw;
-                        "
-                        class="group relative lg:flex items-end overflow-hidden rounded-3xl shadow-lg w-[19vw] h-[22vw] -z-10 row-start-1"
+        <div
+            class="container relative hidden lg:flex flex-col justify-center items-center m-auto"
+        >
+            <div class="my-[60px]">
+                <h1
+                    data-jarallax-element="0 -200"
+                    class="hover-3 leading-10 text-right mb-6 md:text-4xl text-white text-2xl font-bold capitalize transition-all delay-75"
+                >
+                    <span>A Room Reservation System. </span>
+                </h1>
+                <div
+                    class="box relative flex justify-between w-[1000px] items-center"
+                >
+                    <div
+                        class="imgBx group relative w-[800px] h-[400px] overflow-hidden shadow-xl jarallax"
                     >
                         <img
-                            src="/images/smile.jpeg"
-                            loading="lazy"
-                            alt="Photo by Minh Pham"
-                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+                            class="absolute top-0 left-0 w-full h-full object-cover jarallax-image rotate-12 scale-150 transition-transform delay-75 ease-in-out duration-500 group-hover:rotate-0 group-hover:scale-100"
+                            src="/images/booking.png"
+                            alt=""
                         />
-
-                        <div
-                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
-                        ></div>
-                    </a>
-                    <!-- image - end -->
-                    <span
-                        class="title text-wrap w-4/5 mx-auto  relative text-center font-semibold text-2xl  lg:text-6xl text-snow"
-                        style="grid-area: 1 / 1 / 3 / 4"
-                    >
-                        <h1 class=" lg:leading-[4.5rem] tracking-wide ">
-                            Ounjemi is a community-driven platform where
-                            passionate cooks can showcase their favorite meals
-                            and food lovers can discover and enjoy unique meals.
-                            Whether you're a seasoned chef or just love to cook,
-                            Ounjemi connects you with others who share your love
-                            for food.
-                        </h1></span
-                    >
-
-                    <!-- image - start -->
-                    <a
-                        style="    bottom: 19vw;
-    grid-column: 1 / 2;
-    grid-row: 3 / 3;
-    margin-top: auto;
-    max-width: 19.063vw;
-"
-                        href="#"
-                        class="group relative m-auto flex items-end overflow-hidden lg:rounded-3xl bg-gray-100 shadow-lg w-[19vw] h-[22vw] -z-10"
-                    >
-                        <img
-                            src="/images/getitout.jpg"
-                            loading="lazy"
-                            alt="Photo by Magicle"
-                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-                        />
-
-                        <div
-                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
-                        ></div>
-                    </a>
-                    <!-- image - end -->
-
-                    <!-- image - start -->
-
-                    <a
-                        href="#"
-                        style="grid-column: 3 / 3;
-    grid-row: 3 / -1;
-    left: 8vw;
-    margin-top: auto;
-    max-width: 21.875vw;
-    top: -6vw;"
-                        class="group relative hidden lg:flex items-end overflow-hidden rounded-3xl bg-gray-100 shadow-lg md:h-72 w-[19vw] h-[25vw] mt-auto row-start-2 col-start-3"
-                    >
-                        <img
-                            src="/images/Indian.jpeg"
-                            loading="lazy"
-                            alt="Photo by Lorenzo Herrera"
-                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
-                        />
-
-                        <div
-                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50 bg-lighred"
-                        ></div>
-                    </a>
-                    <!-- image - end -->
+                    </div>
+                    <div class="content work-description">
+                        <p>
+                            I created a room reservation system that allows
+                            users to reserve rooms for various purposes such as
+                            conferences, meetings, events, and accommodations.
+                            The system typically consists of several modules
+                            that work together to manage the entire reservation
+                            process. <br />
+                            Users select a specific room from the list of
+                            available rooms and view its details. They provide
+                            their personal information and reservation details
+                            such as the purpose of the reservation, the number
+                            of guests, and any additional requirements. They
+                            then proceed to make payment after which the
+                            reservation is made
+                        </p>
+                    </div>
                 </div>
-               
+            </div>
+            <div class="my-[60px]">
+                <h1
+                    data-jarallax-element="0 -200"
+                    class="hover-3 my-4 leading-10 text-left mb-6 md:text-4xl text-white text-2xl font-bold capitalize transition-all delay-75"
+                >
+                    <span>A Medical Registration System. </span>
+                </h1>
+                <div
+                    class="box relative flex flex-row-reverse justify-between w-[1000px] items-center"
+                >
+                    <div
+                        class="imgBx group relative w-[800px] h-[400px] overflow-hidden shadow-xl jarallax"
+                    >
+                        <img
+                            class="absolute top-0 left-0 w-full h-full object-cover jarallax-image rotate-12 scale-150 transition-transform delay-75 ease-in-out duration-500 group-hover:rotate-0 group-hover:scale-100"
+                            src="/images/registration.png"
+                            alt=""
+                        />
+                    </div>
+                    <div class="content work-description-2">
+                        <p>
+                            I created a medical registration system manages the
+                            registration and tracking of patients,and medical
+                            professionals. The system typically includes a
+                            database that stores information about patients, for
+                            a medical NGO. <br />
+                            The system allows new patients to register
+                            themselves by filling out a registration form with
+                            their personal and medical information such as their
+                            name, address, age, gender, medical history, and
+                            other related details. The system then assigns a
+                            unique identification number to the patient which
+                            helps the medical professionals track the the
+                            patients health
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="my-[60px]">
+                <h1
+                    data-jarallax-element="0 -200"
+                    class="hover-3 leading-10 text-right mb-6 md:text-4xl text-white text-2xl font-bold capitalize transition-all delay-75"
+                >
+                    <span> A Loan Processing System </span>
+                </h1>
+                <div
+                    class="box relative flex justify-between w-[1000px] items-center"
+                >
+                    <div
+                        class="imgBx group relative w-[800px] h-[400px] overflow-hidden shadow-xl jarallax"
+                    >
+                        <img
+                            class="absolute top-0 left-0 w-full h-full object-cover jarallax-image rotate-12 scale-150 transition-transform delay-75 ease-in-out duration-500 group-hover:rotate-0 group-hover:scale-100"
+                            src="/images/loan.png"
+                            alt=""
+                        />
+                    </div>
+                    <div class="content work-description">
+                        <p>
+                            I built loan processing system is that automates the
+                            loan application, approval, and disbursal process.
+                            It allows lenders to manage loan applications and
+                            borrowers to apply for loans online, providing a
+                            more efficient and convenient experience for both
+                            parties. <br />
+                            Borrowers submit their loan applications online,
+                            filling out a form that asks for personal
+                            information, employment details, and loan
+                            requirements. This information is captured and
+                            stored in a database, the system checks if they are
+                            eligible and then tells the borrower to accept the
+                            terms. After which the money will be sent them.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="my-[60px]">
+                <h1
+                    data-jarallax-element="0 -200"
+                    class="hover-3 my-4 leading-10 text-left mb-6 md:text-4xl text-white text-2xl font-bold capitalize transition-all delay-75"
+                >
+                    <span>A QR Code Attendance System. </span>
+                </h1>
+                <div
+                    class="box relative flex flex-row-reverse justify-between w-[1000px] items-center"
+                >
+                    <div
+                        class="imgBx group relative w-[800px] h-[400px] overflow-hidden shadow-xl jarallax"
+                    >
+                        <img
+                            class="absolute top-0 left-0 w-full h-full object-cover jarallax-image rotate-12 scale-150 transition-transform delay-75 ease-in-out duration-500 group-hover:rotate-0 group-hover:scale-100"
+                            src="/images/qr-code.png"
+                            alt=""
+                        />
+                    </div>
+                    <div class="content work-description-2">
+                        <p>
+                            I created a QR code attendance system that allows
+                            individuals to check in to a class by scanning a
+                            unique QR code using a mobile device or scanner. The
+                            system records attendance information automatically,
+                            providing an accurate and efficient way to track
+                            attendance and manage records. <br />
+                            An administrator creates a unique QR code. The QR
+                            code is displayed in a visible location, such as
+                            screen in a classroom.Attendees scan the QR code
+                            using their mobile devices. Once the QR code is
+                            scanned, attendance information is recorded
+                            automatically in a digital system, which can be
+                            accessed and managed by an administrator.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
+    
 
         <div
             class="relative bg-polynesian flex justify-center w-screen min-h-screen selection:bg-red-500 overflow-hidden selection:text-snow"
