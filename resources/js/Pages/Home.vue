@@ -337,21 +337,13 @@ function parallax(e) {
                     >
                         <img
                             class="absolute top-0 left-0 w-full h-full object-cover jarallax-image rotate-12 scale-150 transition-transform delay-75 ease-in-out duration-500 group-hover:rotate-0 group-hover:scale-100"
-                            src="/images/registration.png"
+                            src="/images/secure.png"
                             alt=""
                         />
                     </div>
                     <div class="content work-description-2">
                         <p>
-                            I created a medical registration system manages the
-                            registration and tracking of patients,and medical
-                            professionals. The system typically includes a
-                            database that stores information about patients, for
-                            a medical NGO. <br />
-                            The system allows new patients to register
-                            themselves by filling out a registration form with
-                            their personal and medical information such as their
-                            name, address, age, gender, medical history, and
+                           
                             other related details. The system then assigns a
                             unique identification number to the patient which
                             helps the medical professionals track the the
@@ -374,7 +366,7 @@ function parallax(e) {
                         class="imgBx group relative w-[800px] h-[400px] overflow-hidden shadow-xl jarallax"
                     >
                         <img
-                            class="absolute top-0 left-0 w-full h-full object-cover jarallax-image rotate-12 scale-150 transition-transform delay-75 ease-in-out duration-500 group-hover:rotate-0 group-hover:scale-100"
+                            class="absolute top-0 left-0 w-full h-full object-cover jarallax-image scale-150 transition-transform delay-75 ease-in-out duration-500 group-hover:rotate-0 group-hover:scale-100"
                             src="/images/loan.png"
                             alt=""
                         />

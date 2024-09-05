@@ -51,7 +51,7 @@ defineProps(["meal"]);
                     <font-awesome-icon icon="star" class="text-persian" />
                     <span
                         class="mr-2 ml-3 rounded bg-persian px-1 py-0.5 text-xs font-semibold"
-                        >{{ rating }}</span
+                        >{{ rating.toFixed(1) }}</span
                     >
                 </div>
             </div>

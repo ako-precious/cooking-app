@@ -121,7 +121,7 @@ export default {
     <Head title="Welcome" />
     <!-- component -->
     <div class="  ">
-        <div
+        <!-- <div
             v-if="notificationPermission !== 'granted' && pushSub === false"
             class="bg-gray-500 m-auto"
         >
@@ -131,7 +131,7 @@ export default {
             >
                 enable notification
             </p>
-        </div>
+        </div> -->
         <header
             :class="{
                 'fix align-bottom shadow-sm py-4 px-8 lg ': isHeaderFixed,

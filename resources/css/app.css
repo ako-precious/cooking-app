@@ -65,10 +65,10 @@
         @apply relative p-8 z-10 transition-transform -translate-x-80 delay-75 group-hover:translate-x-0 group-hover:delay-75;
     }
     .work-description {
-        @apply absolute right-0 mt-[200px] mb-[40px] p-10 bg-persian z-10 max-w-[400px] text-white shadow-xl ease-in-out before:absolute before:w-full before:h-3 before:bg-lighred before:bottom-0 before:right-0 before:origin-right before:scale-x-0 before:transition-transform before:delay-200 before:duration-500 hover:before:origin-left hover:before:scale-x-100 after:absolute after:w-full after:h-3 after:bg-lighred after:top-0 after:right-0 after:origin-right after:scale-x-0 after:transition-transform after:delay-75 after:duration-500 hover:after:origin-left hover:after:scale-x-100;
+        @apply absolute right-0 mt-[200px] mb-[40px] p-10 bg-oynx z-10 max-w-[400px] text-white shadow-xl ease-in-out before:absolute before:w-full before:h-3 before:bg-lighred before:bottom-0 before:right-0 before:origin-right before:scale-x-0 before:transition-transform before:delay-200 before:duration-500 hover:before:origin-left hover:before:scale-x-100 after:absolute after:w-full after:h-3 after:bg-lighred after:top-0 after:right-0 after:origin-right after:scale-x-0 after:transition-transform after:delay-75 after:duration-500 hover:after:origin-left hover:after:scale-x-100;
     }
     .work-description-2 {
-        @apply absolute left-0 mt-[200px] mb-[40px] p-10 bg-persian z-10 max-w-[400px] text-white shadow-xl ease-in-out before:absolute before:w-full before:h-3 before:bg-lighred before:bottom-0 before:right-0 before:origin-right before:scale-x-0 before:transition-transform before:delay-200 before:duration-500 hover:before:origin-left hover:before:scale-x-100 after:absolute after:w-full after:h-3 after:bg-lighred after:top-0 after:right-0 after:origin-right after:scale-x-0 after:transition-transform after:delay-75 after:duration-500 hover:after:origin-left hover:after:scale-x-100;
+        @apply absolute left-0 mt-[200px] mb-[40px] p-10 bg-oynx z-10 max-w-[400px] text-white shadow-xl ease-in-out before:absolute before:w-full before:h-3 before:bg-lighred before:bottom-0 before:right-0 before:origin-right before:scale-x-0 before:transition-transform before:delay-200 before:duration-500 hover:before:origin-left hover:before:scale-x-100 after:absolute after:w-full after:h-3 after:bg-lighred after:top-0 after:right-0 after:origin-right after:scale-x-0 after:transition-transform after:delay-75 after:duration-500 hover:after:origin-left hover:after:scale-x-100;
     }
 
     .input {
