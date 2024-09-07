@@ -200,8 +200,7 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                         <div>
                             <p
                                 v-if="
-                                    user.id == $page.props.auth.user.id ||
-                                    cook.question1 == null
+                                    user.id == $page.props.auth.user.id 
                                 "
                                 class="text-sm leading-relaxed text-oynx dark:text-snow"
                             >

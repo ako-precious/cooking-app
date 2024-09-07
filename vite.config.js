@@ -56,3 +56,6 @@ export default defineConfig({
         },
     },
 });
+// "pusher-js": "^8.4.0-rc2",
+// "pusher/pusher-php-server": "^7.2",
+// "laravel-notification-channels/webpush": "^8.0",
