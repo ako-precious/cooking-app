@@ -51,7 +51,7 @@ defineProps(["meal"]);
                     <font-awesome-icon icon="star" class="text-persian" />
                     <span
                         class="mr-2 ml-3 rounded bg-persian px-1 py-0.5 text-xs font-semibold"
-                        >{{ rating.toFixed(1) }}</span
+                        >{{ rating }}</span
                     >
                 </div>
             </div>
@@ -222,7 +222,7 @@ export default {
                 .then((response) => {
                     if (response.data) {
                         // console.log(response);
-                        this.rating =  response.data.total;
+                        this.rating =  (response.data.total).toFixed(1);
                      
                         // this.total = response.data.total;
                     } else {
