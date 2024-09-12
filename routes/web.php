@@ -34,8 +34,8 @@ use function PHPUnit\Framework\callback;
 //     Artisan::call('storage:link');
 // });
 
-Route::get('/', [WelcomeController::class, 'homePage'])->name('Home');
-// Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+// Route::get('/', [WelcomeController::class, 'homePage'])->name('Home');
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/meals', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/welcomed', function () {
     return Inertia::render('Welcomed', [
@@ -59,7 +59,7 @@ Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete'
 // Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
 
 // routes/api.php
-Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
+// Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);

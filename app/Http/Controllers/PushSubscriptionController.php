@@ -10,13 +10,13 @@ class PushSubscriptionController extends Controller
 
     public function store(Request $request)
     {
-        $request->user()->updatePushSubscription(
-            $request->endpoint,
-            $request->keys['p256dh'],
-            $request->keys['auth']
-        // 'user_id' => auth()->id(),
-        );
-        return response()->json(['success' => true]);
+        // $request->user()->updatePushSubscription(
+        //     $request->endpoint,
+        //     $request->keys['p256dh'],
+        //     $request->keys['auth']
+        // // 'user_id' => auth()->id(),
+        // );
+        // return response()->json(['success' => true]);
     }
     // public function subscribe(Request $request)
     // {
