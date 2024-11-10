@@ -301,7 +301,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #mainbtn>
             
-            <Link :href="`/become-a-cook/${Meal.id}/cook-limit`" class="">
+            <Link :href="`/become-a-cook/${Meal.id}/serving-style`" class="">
                 <button class="btn2span group">
                     <span class="next-span">
                         Next Step

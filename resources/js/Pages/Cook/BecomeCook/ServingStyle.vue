@@ -122,15 +122,16 @@ import BecomeCook from "./BecomeCook.vue";
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
                 <Link
-                    :href="`/become-a-cook/${Meal.id}/photos`"
+                    :href="`/become-a-cook/${Meal.id}/region`"
                     class="font-semibold"
                 >
-                    <button class="relative group">
+                <button class="relative group">
                         <span
                             class="hover-underline-animation"
-                        >Back</span>
+                        >
+                            Back
+                        </span>
                     </button>
-                    
                 </Link>
             </div>
         </template>
