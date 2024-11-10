@@ -143,27 +143,30 @@ export default {
                     <div
                         class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
                     >
-                        <!-- <div
+                        <div
+                        v-if="!isHeaderFixed"
                             
                             class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
                             name=""
                             id=""
                         >
+                        <a class="py-2 px-3 navbar-link" href="">
+                            <p>Explore</p>
+                        </a>
                             <a class="py-2 px-3 navbar-link" href="">
-                                <p>Meal Schedule</p>
+                                <p>Bulk Meal </p>
                             </a>
                             <a class="py-2 px-3 navbar-link" href="">
                                 <p>Special Meal</p>
                             </a>
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Explore</p>
-                            </a>
-                        </div> -->
+                        </div>
                         <DateRangePicker
                             @filter-meals="filterMeals"
+                              v-if="isHeaderFixed"
                             class="transition-all duration-300 delay-75 ease-in"
                         ></DateRangePicker>
                     </div>
+                    
                 </template>
                 <template #dropdown>
                     <DropBarNav
@@ -174,11 +177,11 @@ export default {
                     />
                 </template>
             </Navbar>
-            <!-- <DateRangePicker
+            <DateRangePicker
                 @filter-meals="filterMeals"
                 v-if="!isHeaderFixed"
                 class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
-            ></DateRangePicker> -->
+            ></DateRangePicker>
             <DateRangePicker
                 @filter-meals="filterMeals"
                 class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
