@@ -34,8 +34,9 @@ use function PHPUnit\Framework\callback;
 //     Artisan::call('storage:link');
 // });
 
-// Route::get('/', [WelcomeController::class, 'homePage'])->name('Home');
+// Route::get('/home', [WelcomeController::class, 'homePage'])->name('Home');
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/bulk-meals', [WelcomeController::class, 'bulkMeal'])->name('bulk-meals');
 Route::get('/meals', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/welcomed', function () {
     return Inertia::render('Welcomed', [

@@ -96,7 +96,7 @@
                                         href="#detail"
                                         class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                     >
-                                        <p>Bulk Meals</p>
+                                        <p>Bulk Meal</p>
                                     </DropdownLink>
                                     <DropdownLink
                                         href="#rating"
@@ -104,7 +104,7 @@
                                         class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                     >
                                         <a>
-                                            <p>Special Meals</p>
+                                            <p>Special Meal</p>
                                         </a>
                                     </DropdownLink>
                                 </div>
