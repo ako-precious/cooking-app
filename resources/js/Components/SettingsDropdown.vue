@@ -26,7 +26,7 @@ const toggleDarkMode = useToggle(isDark);
                 >
                     <img
                         class="h-full w-full rounded-full object-cover"
-                        :src="$page.props.auth.user.profile_photo_url"
+                        :src=" getProfilePhotoUrl($page.props.auth.user.profile_photo_url) "
                         :alt="$page.props.auth.user.name"
                     />
                     <div
@@ -183,6 +183,15 @@ export default {
         this.checkWishlist();
     },
     methods: {
+        getProfilePhotoUrl(profilePhotoPath) {
+            if (
+                profilePhotoPath.includes("https://lh3.googleusercontent.com")
+            ) {
+                return profilePhotoPath;
+            } else {
+                return `${profilePhotoPath}`;
+            }
+        },
         checkNotification() {
             axios
                 .get("/notifications-messages")
