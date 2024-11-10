@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted } from "vue";
-import { Head, Link, usePage } from "@inertiajs/vue3";
+import { Head, usePage } from "@inertiajs/vue3";
 import DropBarNav from "./Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
@@ -10,7 +10,6 @@ import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
 import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
-import route from "vendor/tightenco/ziggy/src/js";
 
 defineProps({
     canLogin: Boolean,
@@ -145,36 +144,29 @@ export default {
                         class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
                     >
                         <div
-                            v-if="!isHeaderFixed"
+                        v-if="!isHeaderFixed"
+                            
                             class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
                             name=""
                             id=""
                         >
-                            <Link
-                                class="py-2 px-3 navbar-link"
-                                :href="route('welcome')"
-                            >
-                                <p>Explore</p>
-                            </Link>
-                            <Link
-                                class="py-2 px-3 navbar-link"
-                                :href="route('bulk-meal')"
-                            >
-                                <p>Bulk Meal</p>
-                            </Link>
-                            <Link
-                                class="py-2 px-3 navbar-link"
-                                :href="route('special-order')"
-                            >
-                                <p>Special Order</p>
-                            </Link>
+                        <a class="py-2 px-3 navbar-link" href="">
+                            <p>Explore</p>
+                        </a>
+                            <a class="py-2 px-3 navbar-link" href="">
+                                <p>Bulk Meal </p>
+                            </a>
+                            <a class="py-2 px-3 navbar-link" href="">
+                                <p>Special Meal</p>
+                            </a>
                         </div>
                         <DateRangePicker
                             @filter-meals="filterMeals"
-                            v-if="isHeaderFixed"
+                              v-if="isHeaderFixed"
                             class="transition-all duration-300 delay-75 ease-in"
                         ></DateRangePicker>
                     </div>
+                    
                 </template>
                 <template #dropdown>
                     <DropBarNav
@@ -198,8 +190,9 @@ export default {
     </div>
     <div
         class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
-    >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
+    > Special Order
+        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
+
             <FoodCard :meal="meal"></FoodCard>
         </div>
     </div>
@@ -210,7 +203,7 @@ export default {
         <button @click="loadMoreData" class="button">Show More</button>
     </div>
     <!-- {{ $page.props.auth.user }} -->
-
+   
     <Footer></Footer>
 </template>
 

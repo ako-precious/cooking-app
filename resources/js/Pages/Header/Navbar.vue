@@ -87,25 +87,24 @@
                                     class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
                                 >
                                     <DropdownLink
-                                        href="#photo"
+                                        :href="route('welcome')"
                                         class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                     >
                                         <p>Explore</p>
                                     </DropdownLink>
                                     <DropdownLink
-                                        href="#detail"
+                                        :href="route('bulk-meal')"
                                         class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                     >
                                         <p>Bulk Meal</p>
                                     </DropdownLink>
                                     <DropdownLink
-                                        href="#rating"
-                                        :href="'profile.show'"
+                                         :href="route('special-order')"
                                         class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
                                     >
-                                        <a>
-                                            <p>Special Meal</p>
-                                        </a>
+                                        
+                                            <p>Special Order</p>
+                                        
                                     </DropdownLink>
                                 </div>
                              
