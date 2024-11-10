@@ -35,6 +35,17 @@ class MealController extends Controller
             return response()->json(['meal' => $meal]);
         }
     }
+    public function serve(Request $request, $id)
+    {
+        $user_id = Auth::id();
+        $meal =  Meal::find($id);
+        if ($user_id == $meal->cook_id) {
+            # code...
+            $meal->serving_style = $request->serve;
+            $meal->save();
+            return response()->json(['meal' => $meal]);
+        }
+    }
 
     public function limit(Request $request, $id)
     {
@@ -113,8 +124,8 @@ class MealController extends Controller
     }
     public function destroy($id)
     {
-        $MealSchedule = Meal::find($id);
-        $MealSchedule->delete();
+        $Meal = Meal::find($id);
+        $Meal->delete();
 
         $user_id =   Auth::id();
         $pending = Meal::where('status', 'pending')->where('cook_id', $user_id)->get();

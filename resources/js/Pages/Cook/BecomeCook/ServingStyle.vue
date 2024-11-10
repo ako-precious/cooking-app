@@ -15,7 +15,7 @@ import BecomeCook from "./BecomeCook.vue";
                         <h1
                             class="font-semibold text-2xl text-center lg:text-4xl text-oynx dark:text-snow"
                         >
-                            Choose your Serving Size (Specify how your meal is portioned).
+                            Choose your Serving Size (Specify your meal is portion).
                         </h1>
                     </div>
                     <div class="lg:w-full">
@@ -115,7 +115,7 @@ import BecomeCook from "./BecomeCook.vue";
             <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
                 <div
                     class="h-1 bg-persian transition-all duration-250 delay-75"
-                    style="width: 80%"
+                    style="width: 15%"
                 ></div>
             </div>
         </template>
@@ -137,7 +137,7 @@ import BecomeCook from "./BecomeCook.vue";
         </template>
         <template #mainbtn>
             
-            <Link :href="`/become-a-cook/${Meal.id}/price`" class="">
+            <Link :href="`/become-a-cook/${Meal.id}/cook-limit`" class="">
                 <button class="btn2span group">
                     <span class="next-span">
                         Next Step
@@ -159,15 +159,15 @@ export default {
     },
     data() {
         return {
-            selectedDiv: this.Meal.ordering_preferences,
+            selectedDiv: this.Meal.serving_style,
         };
     },
    
     methods: {
-        sendData(preference) {
+        sendData(serve) {
             // Perform an HTTP request to send the data to the server
             axios
-                .put("/meal/preference/" + this.Meal.id, { preference })
+                .put("/meal/serve/" + this.Meal.id, { serve })
                 .then((response) => {
                 //    console.log(response.data);
                 })

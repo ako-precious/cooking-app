@@ -134,6 +134,7 @@ Route::middleware([
     Route::put('meal/limit/{id}', [MealController::class, 'limit']);
     Route::put('meal/status/{id}', [MealController::class, 'status']);
     Route::put('meal/price/{id}', [MealController::class, 'price']);
+    Route::put('meal/serve/{id}', [MealController::class, 'serve']);
     Route::put('meal/status/{id}', [MealController::class, 'status']);
     Route::put('meal/region/{id}', [MealController::class, 'region']);
     Route::put('meal/preference/{id}', [MealController::class, 'preference']);
