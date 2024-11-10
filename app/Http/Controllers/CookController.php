@@ -163,6 +163,23 @@ class CookController extends Controller
         }
     }
   
+    public function serving_style($newMealId)
+    {
+        $user_id =   Auth::id();
+        $cook = Cook::firstWhere('user_id', $user_id);
+        if ($cook !== null) {
+            # code...
+            $Meal = Meal::find($newMealId);
+            if ($user_id == $Meal->cook_id) {
+                return inertia('Cook/BecomeCook/ServingStyle', ['Meal' => $Meal]);
+            } else {
+                return redirect()->route('menu.index');
+            }
+        } else {
+            # code...
+            return redirect()->route('cook.setup',);
+        }
+    }
     public function cook_limit($newMealId)
     {
         $user_id =   Auth::id();

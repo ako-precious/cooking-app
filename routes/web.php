@@ -157,6 +157,7 @@ Route::middleware([
     Route::get('/become-a-cook/{newMealId}/finishing-up', [CookController::class, 'finish_up']);
     Route::get('/become-a-cook', [CookController::class, 'pending_meal'])->name('become-a-cook');
     Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients']);
+    Route::get('/become-a-cook/{newMealId}/serving-style', [CookController::class, 'serving_style']);
     Route::get('/become-a-cook/{newMealId}/final-overview', [CookController::class, 'final_overview']);
     Route::get('/become-a-cook/{newMealId}/about-your-meal', [CookController::class, 'about_your_meal']);
     Route::get('/become-a-cook/{newMealId}/ordering-preference', [CookController::class, 'ordering_preference']);
