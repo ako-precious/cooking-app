@@ -24,9 +24,11 @@ const form = useForm({
     phone_number: props.user.phone_number || '' ,
     address: props.user.address || '',
     dietary_restrictions_allergies: props.user.dietary_restrictions_allergies || [],
+    continent: props.user.continent || '',
     other_info: props.user.other_info || '',
     photo: null,
 });
+console.log(form.data());
 
 const verificationLinkSent = ref(null);
 const photoPreview = ref(null);
@@ -350,6 +352,42 @@ const selectSuggestion = (suggestion) => {
                 />
             </div>
 
+            <!-- Continent -->
+            <div class="col-span-6">
+                <InputLabel
+                    for="continent"
+                    value="Which Continent are you from?"
+                />
+
+                <!-- <TextInput
+                    id="address"
+                    v-model="form.continent"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="continent"
+                /> -->
+                <select
+      id="continent"       
+      v-model="form.continent"
+      required
+      autocomplete=""
+      class="mt-1 block w-full disable-scrollbars border-oynx bg-[#e3dedf] shadow-snow-sm dark:bg-gradient-to-br dark:bg-oynx  focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
+    >
+      <option value=""  disabled selected>Select a continent</option>
+      <option value="Africa">Africa</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+      <option value="Australia/Oceania">Oceania</option>
+      <option value="Antarctica">Antarctica</option>
+    </select>
+
+                <InputError :message="form.errors.continent" class="mt-2" />
+            </div>
+
+
             <!-- other info -->
             <div class="col-span-6">
                 <InputLabel
@@ -365,6 +403,8 @@ const selectSuggestion = (suggestion) => {
                     cols="50"
                     v-model="form.other_info"
                 ></textarea>
+
+                
                 <InputError :message="form.errors.other_info" class="mt-2" />
             </div>
 

@@ -157,7 +157,7 @@ export default {
                                 <p>Bulk Meal </p>
                             </a>
                             <a class="py-2 px-3 navbar-link" href="">
-                                <p>Special Meal</p>
+                                <p>Special Order</p>
                             </a>
                         </div>
                         <DateRangePicker
