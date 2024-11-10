@@ -36,7 +36,7 @@ use function PHPUnit\Framework\callback;
 
 // Route::get('/home', [WelcomeController::class, 'homePage'])->name('Home');
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/bulk-meals', [WelcomeController::class, 'bulkMeal'])->name('bulk-meals');
+Route::get('/bulk-meals', [WelcomeController::class, 'bulkMeal'])->name('bulk-meal');
 Route::get('/special-order', [WelcomeController::class, 'specialOrder'])->name('special-order');
 Route::get('/meals', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/welcomed', function () {

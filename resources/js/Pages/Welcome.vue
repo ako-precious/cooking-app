@@ -9,8 +9,8 @@ import DateRangePicker from "./Header/DateRangePicker.vue";
 import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
 import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
-import { ref, computed } from "vue";
-import route from "vendor/tightenco/ziggy/src/js";
+import { route } from 'ziggy-js';
+
 
 defineProps({
     canLogin: Boolean,
