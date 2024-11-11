@@ -10,6 +10,7 @@ import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
 import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
+import { route } from "ziggy-js";
 
 defineProps({
     canLogin: Boolean,
@@ -189,7 +190,7 @@ export default {
     <div
         class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div class="card relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group">
+        <div class="card md:w-[600px] relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group">
             <div class="flex flex-col justify-center items-center gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx  overflow-hidden transition-all duration-480 ease-in-out">
                 <p class=" font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out">Unlock Special Orders       </p>
                 <p class="z-index-1 opacity-80 text-lg transition-all duration-480 ease-in-out">
@@ -208,7 +209,7 @@ export default {
 
                 
 
-                    <!-- <button @click="loadMoreData" class="button">Show More</button> -->
+                  <Link :href="route('welcome') " class="button items-center flex ">View Meals</Link>  
                 
             </div>
         </div>
@@ -233,7 +234,7 @@ export default {
     --color: #1b998b;
     font-family: inherit;
     display: inline-block;
-    width: 8em;
+    padding: 0rem 1.5rem;
     height: 2.6em;
     line-height: 2.5em;
     margin: 10px;
@@ -242,7 +243,7 @@ export default {
     border: 2px solid var(--color);
     transition: color 0.5s;
     z-index: 1;
-    font-size: 17px;
+    font-size: 15px;
     border-radius: 6px;
     font-weight: 600;
     color: var(--color);
@@ -308,8 +309,8 @@ export default {
 .card::before {
     content: "";
     position: absolute;
-    height: 200%;
-    width: 200%;
+    height: 250%;
+    width: 250%;
     border-radius: inherit;
     background: #1B998B;
     background: linear-gradient(to right, #1B998B, #1B998B);
