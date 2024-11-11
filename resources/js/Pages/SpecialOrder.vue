@@ -1,15 +1,10 @@
 <script setup>
 import { onMounted } from "vue";
 import { Head, usePage, Link } from "@inertiajs/vue3";
-import DropBarNav from "./Header/DropBarNav.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
-import Loader from "@/Layouts/Loader.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
-import Navbar from "./Header/Navbar.vue";
+import Header from "./Header/Index.vue";
 import axios from "axios";
-import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
-import { ref, computed } from "vue";
 import { route } from "ziggy-js";
 
 defineProps({
@@ -121,72 +116,31 @@ export default {
 <template>
     <Head title="Welcome" />
     <!-- component -->
-    <div class="  ">
-        <!-- <div
-            v-if="notificationPermission !== 'granted' && pushSub === false"
-            class="bg-gray-500 m-auto"
-        >
-            <p
-                @click="requestNotificationPermission"
-                class="text-xs pl-10 capitalize cursor-pointer hover:underline py-1"
-            >
-                enable notification
-            </p>
-        </div> -->
-        <header
-            :class="{
-                'fix align-bottom shadow-sm py-4 px-8 lg ': isHeaderFixed,
-            }"
-            class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
-        >
-            <Navbar class="bg-snow dark:bg-oynx">
-                <template #search>
-                    <div
-                        class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
-                    >
-                        <div
-                            v-if="!isHeaderFixed"
-                            class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
-                            name=""
-                            id=""
-                        >
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Explore</p>
-                            </a>
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Bulk Meal</p>
-                            </a>
-                            <a class="py-2 px-3 navbar-link" href="">
-                                <p>Special Order</p>
-                            </a>
-                        </div>
-                        <DateRangePicker
+    <Header  @filter-meals="filterMeals"   :isHeaderFixed="isHeaderFixed"
+    :canLogin="canLogin"
+    :canRegister="canRegister"
+    :laravelVersion="laravelVersion"
+    :phpVersion="phpVersion"
+  >   <template v-slot:search-content>
+    <DateRangePicker
                             @filter-meals="filterMeals"
                             v-if="isHeaderFixed"
                             class="transition-all duration-300 delay-75 ease-in"
                         ></DateRangePicker>
-                    </div>
-                </template>
-                <template #dropdown>
-                    <DropBarNav
-                        :canLogin="canLogin"
-                        :canRegister="canRegister"
-                        :laravelVersion="laravelVersion"
-                        :phpVersion="phpVersion"
-                    />
-                </template>
-            </Navbar>
-            <DateRangePicker
-                @filter-meals="filterMeals"
+    </template>
+    <template v-slot:extra-content>
+        <DateRangePicker
                 v-if="!isHeaderFixed"
+                @filter-meals="filterMeals"
                 class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
             ></DateRangePicker>
             <DateRangePicker
                 @filter-meals="filterMeals"
                 class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker>
-        </header>
-    </div>
+            ></DateRangePicker> 
+    </template>
+        
+    </Header>
     <div
         class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >

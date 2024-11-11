@@ -165,11 +165,12 @@ export default {
                                 <p>Special Order</p>
                             </Link>
                         </div>
-                        <DateRangePicker
+                        <slot  name="search-content"></slot>
+                        <!-- <DateRangePicker
                             @filter-meals="filterMeals"
                             v-if="isHeaderFixed"
                             class="transition-all duration-300 delay-75 ease-in"
-                        ></DateRangePicker>
+                        ></DateRangePicker> -->
                     </div>
                 </template>
                 <template #dropdown>
@@ -181,15 +182,17 @@ export default {
                     />
                 </template>
             </Navbar>
-            <DateRangePicker
-                @filter-meals="filterMeals"
+            <!-- @filter-meals="emits('filterMeals')" -->
+             <slot  name="extra-content"></slot>
+            <!-- <DateRangePicker
                 v-if="!isHeaderFixed"
+                @filter-meals="filterMeals"
                 class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
             ></DateRangePicker>
             <DateRangePicker
                 @filter-meals="filterMeals"
                 class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker>
+            ></DateRangePicker> -->
         </header>
     </div>
 </template>

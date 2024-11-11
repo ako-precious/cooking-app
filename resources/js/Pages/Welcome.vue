@@ -2,15 +2,10 @@
 import { onMounted } from "vue";
 import { Head, Link, usePage } from "@inertiajs/vue3";
 import Header from "./Header/Index.vue";
-import DropBarNav from "./Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
-import Loader from "@/Layouts/Loader.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
-import Navbar from "./Header/Navbar.vue";
 import axios from "axios";
-import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
-import { route } from 'ziggy-js';
 
 
 defineProps({
@@ -122,7 +117,31 @@ export default {
 <template>
     <Head title="Welcome" />
     <!-- component -->
-    <Header  @filter-meals="filterMeals"></Header>
+    <Header  @filter-meals="filterMeals"   :isHeaderFixed="isHeaderFixed"
+    :canLogin="canLogin"
+    :canRegister="canRegister"
+    :laravelVersion="laravelVersion"
+    :phpVersion="phpVersion"
+  >   <template v-slot:search-content>
+    <DateRangePicker
+                            @filter-meals="filterMeals"
+                            v-if="isHeaderFixed"
+                            class="transition-all duration-300 delay-75 ease-in"
+                        ></DateRangePicker>
+    </template>
+    <template v-slot:extra-content>
+        <DateRangePicker
+                v-if="!isHeaderFixed"
+                @filter-meals="filterMeals"
+                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
+            ></DateRangePicker>
+            <DateRangePicker
+                @filter-meals="filterMeals"
+                class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
+            ></DateRangePicker> 
+    </template>
+        
+    </Header>
     <div
         class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
