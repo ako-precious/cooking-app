@@ -1,6 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { Head, Link, usePage } from "@inertiajs/vue3";
+import Header from "./Header/Index.vue";
 import DropBarNav from "./Header/DropBarNav.vue";
 import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
@@ -121,81 +122,7 @@ export default {
 <template>
     <Head title="Welcome" />
     <!-- component -->
-    <div class="  ">
-        <!-- <div
-            v-if="notificationPermission !== 'granted' && pushSub === false"
-            class="bg-gray-500 m-auto"
-        >
-            <p
-                @click="requestNotificationPermission"
-                class="text-xs pl-10 capitalize cursor-pointer hover:underline py-1"
-            >
-                enable notification
-            </p>
-        </div> -->
-        <header
-            :class="{
-                'fix align-bottom shadow-sm py-4 px-8 lg ': isHeaderFixed,
-            }"
-            class="py-5 bg-snow dark:bg-oynx z-990 transition-all duration-300 delay-75 ease-in animate-fade-in"
-        >
-            <Navbar class="bg-snow dark:bg-oynx">
-                <template #search>
-                    <div
-                        class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
-                    >
-                        <div
-                            v-if="!isHeaderFixed"
-                            class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
-                            name=""
-                            id=""
-                        >
-                            <Link
-                                class="py-2 px-3 navbar-link"
-                                :href="route('welcome')"
-                            >
-                                <p>Explore</p>
-                            </Link>
-                            <Link
-                                class="py-2 px-3 navbar-link"
-                                :href="route('bulk-meal')"
-                            >
-                                <p>Bulk Meal</p>
-                            </Link>
-                            <Link
-                                class="py-2 px-3 navbar-link"
-                                :href="route('special-order')"
-                            >
-                                <p>Special Order</p>
-                            </Link>
-                        </div>
-                        <DateRangePicker
-                            @filter-meals="filterMeals"
-                            v-if="isHeaderFixed"
-                            class="transition-all duration-300 delay-75 ease-in"
-                        ></DateRangePicker>
-                    </div>
-                </template>
-                <template #dropdown>
-                    <DropBarNav
-                        :canLogin="canLogin"
-                        :canRegister="canRegister"
-                        :laravelVersion="laravelVersion"
-                        :phpVersion="phpVersion"
-                    />
-                </template>
-            </Navbar>
-            <DateRangePicker
-                @filter-meals="filterMeals"
-                v-if="!isHeaderFixed"
-                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
-            ></DateRangePicker>
-            <DateRangePicker
-                @filter-meals="filterMeals"
-                class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker>
-        </header>
-    </div>
+    <Header  @filter-meals="filterMeals"></Header>
     <div
         class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
@@ -266,14 +193,7 @@ export default {
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
-.fix {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100%;
-    padding: 0.4rem 2rem;
-    z-index: 1000; /* Adjust z-index as needed */
-}
+
 
 @keyframes fade-in {
     from {

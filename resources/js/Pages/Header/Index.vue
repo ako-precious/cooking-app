@@ -1,12 +1,9 @@
 <script setup>
 import { onMounted } from "vue";
 import { Head, Link, usePage } from "@inertiajs/vue3";
-import DropBarNav from "./Header/DropBarNav.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
-import Footer from "@/Layouts/Footer.vue";
-import Loader from "@/Layouts/Loader.vue";
-import DateRangePicker from "./Header/DateRangePicker.vue";
-import Navbar from "./Header/Navbar.vue";
+import DropBarNav from "./DropBarNav.vue";
+import DateRangePicker from "./DateRangePicker.vue";
+import Navbar from "./Navbar.vue";
 import axios from "axios";
 import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { route } from 'ziggy-js';
@@ -196,3 +193,15 @@ export default {
         </header>
     </div>
 </template>
+
+<style scoped>
+.fix {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 0.4rem 2rem;
+    z-index: 1000; /* Adjust z-index as needed */
+}
+
+</style>
