@@ -144,17 +144,16 @@ export default {
                         class="w-full p-4 max-w-xs lg:max-w-lg 2xl:max-w-2xl bg-snow dark:bg-oynx rounded-md hidden lg:flex items-center"
                     >
                         <div
-                        v-if="!isHeaderFixed"
-                            
+                            v-if="!isHeaderFixed"
                             class="bg-transparent capitalize font-bold text-sm mr-4 flex justify-around w-full transition-all duration-300 delay-75 ease-in"
                             name=""
                             id=""
                         >
-                        <a class="py-2 px-3 navbar-link" href="">
-                            <p>Explore</p>
-                        </a>
                             <a class="py-2 px-3 navbar-link" href="">
-                                <p>Bulk Meal </p>
+                                <p>Explore</p>
+                            </a>
+                            <a class="py-2 px-3 navbar-link" href="">
+                                <p>Bulk Meal</p>
                             </a>
                             <a class="py-2 px-3 navbar-link" href="">
                                 <p>Special Order</p>
@@ -162,11 +161,10 @@ export default {
                         </div>
                         <DateRangePicker
                             @filter-meals="filterMeals"
-                              v-if="isHeaderFixed"
+                            v-if="isHeaderFixed"
                             class="transition-all duration-300 delay-75 ease-in"
                         ></DateRangePicker>
                     </div>
-                    
                 </template>
                 <template #dropdown>
                     <DropBarNav
@@ -189,12 +187,27 @@ export default {
         </header>
     </div>
     <div
-        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
-    > Special Order
+        class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+    >
+        <div class="card group">
+            <div class="content">
+                <p class=" text-snow group-hover:text-oynx font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out">Unlock Special Orders       </p>
+                <p class="z-index-1 group-hover:text-oynx opacity-80 text-base transition-all duration-480 ease-in-out">
+                    To access special orders, please complete a minimum of [X]
+                    orders from our talented cooks. This helps us understand
+                    your preferences and serve you better. Browse Our Cooks &
+                    Start Ordering! - 
+                    Explore our platform to discover new cooks
+                    - Try their delicious dishes and earn loyalty points -
+                    Unlock special orders and tailor meals to your taste
+                </p>
+            </div>
+        </div>
+        <!-- Special Order
         <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
 
             <FoodCard :meal="meal"></FoodCard>
-        </div>
+        </div> -->
     </div>
     <div
         class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
@@ -203,7 +216,7 @@ export default {
         <button @click="loadMoreData" class="button">Show More</button>
     </div>
     <!-- {{ $page.props.auth.user }} -->
-   
+
     <Footer></Footer>
 </template>
 
@@ -279,5 +292,77 @@ export default {
 
 .animate-fade-in {
     animation: fade-in 0.3s ease-in;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    padding: 2px;
+    border-radius: 24px;
+    overflow: hidden;
+    line-height: 1.6;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 34px;
+    border-radius: 22px;
+    color: #ffffff;
+    overflow: hidden;
+    background: #ffffff;
+    transition: all 0.48s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+
+.card::before {
+    content: "";
+    position: absolute;
+    height: 200%;
+    width: 160%;
+    border-radius: inherit;
+    background: #0a3cff;
+    background: linear-gradient(to right, #0a3cff, #0a3cff);
+    transform-origin: center;
+    animation: moving 4.8s linear infinite paused;
+    transition: all 0.88s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card:hover::before {
+    animation-play-state: running;
+    z-index: -1;
+    width: 20%;
+}
+
+.card:hover .content .heading,
+.card:hover .content .para {
+    color: #000000;
+}
+
+.card:hover {
+    box-shadow: 0rem 6px 13px rgba(10, 60, 255, 0.1),
+        0rem 24px 24px rgba(10, 60, 255, 0.09),
+        0rem 55px 33px rgba(10, 60, 255, 0.05),
+        0rem 97px 39px rgba(10, 60, 255, 0.01),
+        0rem 152px 43px rgba(10, 60, 255, 0);
+    scale: 1.05;
+    color: #000000;
+}
+
+@keyframes moving {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 </style>
