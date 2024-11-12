@@ -1,2 +1,2 @@
 # cooking-app
-a cookin]g app for student
+a cooking app for EVERYONE 
