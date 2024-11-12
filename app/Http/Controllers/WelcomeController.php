@@ -78,13 +78,34 @@ class WelcomeController extends Controller
 
     public function meals()
     {
-        // $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(12);
-        $mealSchedules = Meal::whereHas('cook', function ($query) {
-            $query->where('status', 'available');
-        })->with('user')->where('status', 'available')->latest()
-            ->paginate(12);
 
-        return response()->json(MealResource::collection($mealSchedules));
+        dd(Auth::check());
+        // if (Auth::check()) {
+        //     $userContinent = auth()->user()->continent;
+        
+        //     $meal = Meal::whereHas('cook', function ($query) {
+        //         $query->where('status', 'available');
+        //     })
+        //     ->with('user')
+        //     ->where('status', 'available')
+        //     ->where('region', $userContinent) // Add continent filter
+        //     ->latest()
+        //     ->paginate(12);
+            
+        //     return response()->json(MealResource::collection($meal));
+        // } else {
+        //     $meal = Meal::whereHas('cook', function ($query) {
+        //         $query->where('status', 'available');
+        //     })
+        //     ->with('user')
+        //     ->where('status', 'available')
+        //     ->latest()
+        //     ->paginate(12);
+        
+        //     return response()->json(MealResource::collection($meal));
+        // }
+        
+        
     }
     public function filtered_meals()
     {
@@ -103,14 +124,14 @@ class WelcomeController extends Controller
     public function agree(Request $request, $id)
     {
         $mealSchedule = User::find($id);
-        $mealSchedule->status =  $request->agreed;      
+        $mealSchedule->status =  $request->agreed;
         $mealSchedule->save();
-        
-        // Retrieve the updated record
-$updatedMealSchedule = User::find($id);
 
-// Prepare notification message
-$message = $updatedMealSchedule->status;
+        // Retrieve the updated record
+        $updatedMealSchedule = User::find($id);
+
+        // Prepare notification message
+        $message = $updatedMealSchedule->status;
         return response()->json(['data' => $message]);
     }
 
@@ -136,7 +157,7 @@ $message = $updatedMealSchedule->status;
 
         // Calculate the average rating
         $ratings = $reviews->count() > 0 ? $reviews->pluck('total')->sum() / $reviews->count() : 0;
-   
+
         // Render the profile with the gathered data
         return Inertia::render('Profile/Index', [
             'user' => $user,
