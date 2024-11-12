@@ -90,7 +90,7 @@ class WelcomeController extends Controller
     {
 
         $searchText = request('query');
-        $query = Meal::where('status', 'available')->query();
+        $query = Meal::where('status', 'available');
         if ($searchText) {
             $query->where('name', 'like', "%$searchText%")
                 ->orWhere('description', 'like', "%$searchText%");

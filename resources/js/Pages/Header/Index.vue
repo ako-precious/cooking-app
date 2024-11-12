@@ -85,7 +85,6 @@ export default {
             // Adjust the scroll threshold as needed
             const scrollThreshold = 20;
             this.isHeaderFixed = window.scrollY > scrollThreshold;
-            console.log( route().current('special-order'));
         },
         
     },
