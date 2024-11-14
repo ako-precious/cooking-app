@@ -90,7 +90,7 @@ export default {
         async fetchData() {
             try {
                 const response = await axios.get(
-                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
+                    `/meals?page=${this.page}&perPage=${this.perPage}`
                 );
                 const newMeals = response.data;
 

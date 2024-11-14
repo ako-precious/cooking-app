@@ -27,7 +27,8 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Other authenticated API routes here
 });
-Route::get('meals', [WelcomeController::class, 'meals']);
+
+// Route::get('meals', [WelcomeController::class, 'meals']);
 
 Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
 Route::resource('/rating', RatingController::class);

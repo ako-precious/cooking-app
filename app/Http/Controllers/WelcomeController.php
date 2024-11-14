@@ -79,31 +79,31 @@ class WelcomeController extends Controller
     public function meals()
     {
 
-        dd(Auth::check());
-        // if (Auth::check()) {
-        //     $userContinent = auth()->user()->continent;
+        // dd(Auth::check());
+        if (Auth::check()) {
+            $userContinent = auth()->user()->continent;
         
-        //     $meal = Meal::whereHas('cook', function ($query) {
-        //         $query->where('status', 'available');
-        //     })
-        //     ->with('user')
-        //     ->where('status', 'available')
-        //     ->where('region', $userContinent) // Add continent filter
-        //     ->latest()
-        //     ->paginate(12);
+            $meal = Meal::whereHas('cook', function ($query) {
+                $query->where('status', 'available');
+            })
+            ->with('user')
+            ->where('status', 'available')
+            ->where('region', $userContinent) // Add continent filter
+            ->latest()
+            ->paginate(12);
             
-        //     return response()->json(MealResource::collection($meal));
-        // } else {
-        //     $meal = Meal::whereHas('cook', function ($query) {
-        //         $query->where('status', 'available');
-        //     })
-        //     ->with('user')
-        //     ->where('status', 'available')
-        //     ->latest()
-        //     ->paginate(12);
+            return response()->json(MealResource::collection($meal));
+        } else {
+            $meal = Meal::whereHas('cook', function ($query) {
+                $query->where('status', 'available');
+            })
+            ->with('user')
+            ->where('status', 'available')
+            ->latest()
+            ->paginate(12);
         
-        //     return response()->json(MealResource::collection($meal));
-        // }
+            return response()->json(MealResource::collection($meal));
+        }
         
         
     }
