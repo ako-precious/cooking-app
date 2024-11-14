@@ -14,7 +14,8 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, HasPushSubscriptions;
+    // use HasFactory, Notifiable, HasPushSubscriptions;
+    use HasFactory, Notifiable;
     use HasFactory;
     use HasProfilePhoto;
     use TwoFactorAuthenticatable;

@@ -89,7 +89,7 @@ class WelcomeController extends Controller
             ->with('user')
             ->where('status', 'available')
             ->where('region', $userContinent) // Add continent filter
-            ->latest()
+            ->inRandomOrder() 
             ->paginate(12);
             
             return response()->json(MealResource::collection($meal));
@@ -99,7 +99,7 @@ class WelcomeController extends Controller
             })
             ->with('user')
             ->where('status', 'available')
-            ->latest()
+            ->inRandomOrder() 
             ->paginate(12);
         
             return response()->json(MealResource::collection($meal));
