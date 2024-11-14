@@ -48,7 +48,9 @@
                         <p>Be a Cook</p>
                     </a>
                 </Link>
+
             </li>
+          
                 <!-- <li class="navbar-link">
                     <a class="" href="">
                         <font-awesome-icon
@@ -57,9 +59,62 @@
                         />
                     </a>
                 </li> -->
+                  <slot name="dropdown"> </slot>
+                <div class="sm:hidden px-4 flex items-center">
+                    <a
+                        mini-sidenav-burger=""
+                        href="javascript:;"
+                        class="sm:marker:hidden p-0 text-sm text-white transition-all ease-nav-brand block"
+                        aria-expanded="false"
+                    >
+                        <Dropdown align="right" width="48">
+                            <template #trigger>
+                                <div class="w-4.5 overflow-hidden">
+                                    <i
+                                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                    ></i>
+                                    <i
+                                        class="ease mb-0.75 relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                    ></i>
+                                    <i
+                                        class="ease relative block h-0.5 rounded-sm bg-persian group-hover:bg-polynesian dark:group-hover:bg-lighred transition-all"
+                                    ></i>
+                                </div>
+                            </template>
+
+                            <template #content class="bg-snow dark:bg-oynx">
+                                <div
+                                    class="origin-top-right absolute right-0 mt-2 w-48 delay-75 rounded-md border-snow ring-1 bg-gradient-to-br from-[#e3dedf] to-[#ffffff] -shadow-snow-sm hover:shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] dark:-shadow-oynx-sm hover:dark:shadow-oynx-sm z-20 transition-all duration-250 ease-in dark:border-oynx"
+                                >
+                                    <DropdownLink
+                                        :href="route('welcome')"
+                                        class="flex w-full items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        <p>Explore</p>
+                                    </DropdownLink>
+                                    <DropdownLink
+                                        :href="route('bulk-meal')"
+                                        class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        <p>Bulk Meal</p>
+                                    </DropdownLink>
+                                    <DropdownLink
+                                         :href="route('special-order')"
+                                        class="relative flex items-center rounded-md px-4 py-2 text-sm text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        
+                                            <p>Special Order</p>
+                                        
+                                    </DropdownLink>
+                                </div>
+                             
+                            </template>
+                        </Dropdown>
+                    </a>
+                </div>
+              
                 
                 <!-- <li  -->
-                <slot name="dropdown"> </slot>
             </ul>
         </nav>
     </div>
@@ -69,6 +124,9 @@
 import { Link } from "@inertiajs/vue3";
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 // import route from "vendor/tightenco/ziggy/src/js";
+
+import DropdownLink from "@/Components/DropdownLink.vue";
+import Dropdown from "@/Components/Dropdown.vue";
 </script>
 
 <script>

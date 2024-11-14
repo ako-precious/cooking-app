@@ -51,10 +51,10 @@ import SettingsDropdown from "@/Components/SettingsDropdown.vue";
                                                 /></p>
                     </Link> -->
                     <div class="py-2 px-3 navbar-link">
+                        <!-- class="sm:marker:hidden p-0 text-sm text-white transition-all ease-nav-brand block" -->
                         <a
                             mini-sidenav-burger=""
                             href="javascript:;"
-                            class="sm:marker:hidden p-0 text-sm text-white transition-all ease-nav-brand block"
                             aria-expanded="false"
                         >
                             <Dropdown align="right" width="48">

@@ -34,9 +34,14 @@ use function PHPUnit\Framework\callback;
 //     Artisan::call('storage:link');
 // });
 
-Route::get('/', [WelcomeController::class, 'homePage'])->name('Home');
-// Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/meals', [WelcomeController::class, 'index'])->name('welcome');
+// Route::get('/home', [WelcomeController::class, 'homePage'])->name('Home');
+
+Route::get('/meals', [WelcomeController::class, 'meals']);
+
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/bulk-meals', [WelcomeController::class, 'bulkMeal'])->name('bulk-meal');
+Route::get('/special-order', [WelcomeController::class, 'specialOrder'])->name('special-order');
+// Route::get('/meals', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/welcomed', function () {
     return Inertia::render('Welcomed', [
         'canLogin' => Route::has('login'),
@@ -59,7 +64,7 @@ Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete'
 // Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
 
 // routes/api.php
-Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
+// Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);
@@ -132,6 +137,7 @@ Route::middleware([
     Route::put('meal/limit/{id}', [MealController::class, 'limit']);
     Route::put('meal/status/{id}', [MealController::class, 'status']);
     Route::put('meal/price/{id}', [MealController::class, 'price']);
+    Route::put('meal/serve/{id}', [MealController::class, 'serve']);
     Route::put('meal/status/{id}', [MealController::class, 'status']);
     Route::put('meal/region/{id}', [MealController::class, 'region']);
     Route::put('meal/preference/{id}', [MealController::class, 'preference']);
@@ -155,6 +161,7 @@ Route::middleware([
     Route::get('/become-a-cook/{newMealId}/finishing-up', [CookController::class, 'finish_up']);
     Route::get('/become-a-cook', [CookController::class, 'pending_meal'])->name('become-a-cook');
     Route::get('/become-a-cook/{newMealId}/ingredients', [CookController::class, 'ingredients']);
+    Route::get('/become-a-cook/{newMealId}/serving-style', [CookController::class, 'serving_style']);
     Route::get('/become-a-cook/{newMealId}/final-overview', [CookController::class, 'final_overview']);
     Route::get('/become-a-cook/{newMealId}/about-your-meal', [CookController::class, 'about_your_meal']);
     Route::get('/become-a-cook/{newMealId}/ordering-preference', [CookController::class, 'ordering_preference']);

@@ -51,7 +51,8 @@ defineProps(["meal"]);
                     <font-awesome-icon icon="star" class="text-persian" />
                     <span
                         class="mr-2 ml-3 rounded bg-persian px-1 py-0.5 text-xs font-semibold"
-                        >{{ rating}}</span
+
+                        >{{ rating }}</span
                     >
                 </div>
             </div>
@@ -199,7 +200,7 @@ export default {
         async fetchData() {
             try {
                 const response = await axios.get(
-                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
+                    `/meals?page=${this.page}&perPage=${this.perPage}`
                 );
                 const newMeals = response.data;
 
@@ -222,8 +223,9 @@ export default {
                 .then((response) => {
                     if (response.data) {
                         // console.log(response);
-                        this.rating =  (response.data.total).toFixed(1) ;
-                     
+
+                        this.rating =  (response.data.total).toFixed(1);
+
                         // this.total = response.data.total;
                     } else {
                         this.rating = "";

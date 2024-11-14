@@ -66,7 +66,7 @@ import TextInput from "@/Components/TextInput.vue";
         <template #backbtn>
             <div class="float-left ml-8 h-full flex items-center">
                 <Link
-                    :href="`/become-a-cook/${Meal.id}/region`"
+                    :href="`/become-a-cook/${Meal.id}/serving-style`"
                     class="font-semibold"
                 >
                 <button class="relative group">

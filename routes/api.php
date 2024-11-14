@@ -20,7 +20,16 @@ use App\Http\Controllers\WelcomeController;
 |
 */
 
-Route::get('meals', [WelcomeController::class, 'meals']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    
+    // Other authenticated API routes here
+});
+
+// Route::get('meals', [WelcomeController::class, 'meals']);
+
 Route::get('filtered-meals', [WelcomeController::class, 'filtered_meals']);
 Route::resource('/rating', RatingController::class);
 Route::get('ratings/{id}', [RatingController::class, 'rating']);

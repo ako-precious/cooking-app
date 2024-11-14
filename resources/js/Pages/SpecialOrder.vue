@@ -1,22 +1,18 @@
 <script setup>
 import { onMounted } from "vue";
-import { Head, Link, usePage } from "@inertiajs/vue3";
-import Header from "./Header/Index.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
+import { Head, usePage, Link } from "@inertiajs/vue3";
 import Footer from "@/Layouts/Footer.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
+import Header from "./Header/Index.vue";
 import axios from "axios";
-// import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
-import { ref, computed } from "vue";
-
-
+import { route } from "ziggy-js";
 
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    // pushSub: Boolean,
+    pushSub: Boolean,
 });
 
 // const notificationPermission = ref(Notification.permission);
@@ -93,7 +89,7 @@ export default {
         async fetchData() {
             try {
                 const response = await axios.get(
-                    `/meals?page=${this.page}&perPage=${this.perPage}`
+                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
                 );
                 const newMeals = response.data;
 
@@ -146,17 +142,41 @@ export default {
         
     </Header>
     <div
-        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+        class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
-            <FoodCard :meal="meal"></FoodCard>
+        <div class="card md:w-[600px] relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group">
+            <div class="flex flex-col justify-center items-center gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx  overflow-hidden transition-all duration-480 ease-in-out">
+                <p class=" font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out">Unlock Special Orders       </p>
+                <p class="z-index-1 opacity-80 text-lg transition-all duration-480 ease-in-out">
+                   <span class="text-base"> To access special orders, please complete a minimum of 5
+                    orders from our talented cooks. This helps us understand
+                    your preferences and serve you better.</span><br>
+                    <b> Browse Our Cooks &
+                    Start Ordering!</b>
+                    <span class="text-base">
+<br>
+                        -  Explore our platform to discover new cooks <br>
+                        - Try their delicious dishes and earn loyalty points <br> -
+                        Unlock special orders and tailor meals to your taste
+                    </span>
+                </p>
+
+                
+
+                  <Link :href="route('welcome') " class="button items-center flex ">View Meals</Link>  
+                
+            </div>
         </div>
+        <!-- Special Order
+        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
+
+            <FoodCard :meal="meal"></FoodCard>
+        </div> -->
     </div>
     <div
         class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
         v-if="hasMoreData"
     >
-        <button @click="loadMoreData" class="button">Show More</button>
     </div>
     <!-- {{ $page.props.auth.user }} -->
 
@@ -168,7 +188,7 @@ export default {
     --color: #1b998b;
     font-family: inherit;
     display: inline-block;
-    width: 8em;
+    padding: 0rem 1.5rem;
     height: 2.6em;
     line-height: 2.5em;
     margin: 10px;
@@ -177,7 +197,7 @@ export default {
     border: 2px solid var(--color);
     transition: color 0.5s;
     z-index: 1;
-    font-size: 17px;
+    font-size: 15px;
     border-radius: 6px;
     font-weight: 600;
     color: var(--color);
@@ -215,7 +235,14 @@ export default {
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
-
+.fix {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 0.4rem 2rem;
+    z-index: 1000; /* Adjust z-index as needed */
+}
 
 @keyframes fade-in {
     from {
@@ -228,5 +255,48 @@ export default {
 
 .animate-fade-in {
     animation: fade-in 0.3s ease-in;
+}
+
+
+
+
+.card::before {
+    content: "";
+    position: absolute;
+    height: 250%;
+    width: 250%;
+    border-radius: inherit;
+    background: #1B998B;
+    background: linear-gradient(to right, #1B998B, #1B998B);
+    transform-origin: center;
+    animation: moving 4.8s linear infinite paused;
+    transition: all 0.88s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card:hover::before {
+    animation-play-state: running;
+    z-index: -1;
+    width: 20%;
+}
+
+
+.card:hover {
+    box-shadow: 0rem 6px 13px rgba(10, 255, 116, 0.1),
+        0rem 24px 24px rgba(4, 163, 78, 0.09),
+        0rem 55px 33px rgba(10, 60, 255, 0.05),
+        0rem 97px 39px rgba(10, 255, 132, 0.01),
+        0rem 152px 43px rgba(10, 255, 210, 0);
+    scale: 1.05;
+    color: #000000;
+}
+
+@keyframes moving {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 </style>

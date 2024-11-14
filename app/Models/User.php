@@ -31,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone_number',
         'address',
         'dietary_restrictions_allergies',
+        'continent',
         'other_info',
         'google_id',
         'facebook_id',

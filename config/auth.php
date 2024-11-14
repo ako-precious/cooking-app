@@ -41,6 +41,12 @@ return [
             'provider' => 'users',
         ],
     ],
+    
+    'api' => [
+        'driver' => 'sanctum', // or 'passport' if using Passport
+        'provider' => 'users',
+        'hash' => false,
+    ],
 
     /*
     |--------------------------------------------------------------------------

@@ -1,22 +1,19 @@
 <script setup>
 import { onMounted } from "vue";
-import { Head, Link, usePage } from "@inertiajs/vue3";
-import Header from "./Header/Index.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
+import { Head, usePage } from "@inertiajs/vue3";
 import Footer from "@/Layouts/Footer.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
+import Header from "./Header/Index.vue";
 import axios from "axios";
-// import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
+import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
-
-
 
 defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
-    // pushSub: Boolean,
+    pushSub: Boolean,
 });
 
 // const notificationPermission = ref(Notification.permission);
@@ -93,7 +90,7 @@ export default {
         async fetchData() {
             try {
                 const response = await axios.get(
-                    `/meals?page=${this.page}&perPage=${this.perPage}`
+                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
                 );
                 const newMeals = response.data;
 
@@ -148,7 +145,9 @@ export default {
     <div
         class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
+        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
+
+            Bulk Meal Page
             <FoodCard :meal="meal"></FoodCard>
         </div>
     </div>
@@ -159,7 +158,7 @@ export default {
         <button @click="loadMoreData" class="button">Show More</button>
     </div>
     <!-- {{ $page.props.auth.user }} -->
-
+   
     <Footer></Footer>
 </template>
 
@@ -215,7 +214,14 @@ export default {
 .bg-dots-darker {
     background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E");
 }
-
+.fix {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 0.4rem 2rem;
+    z-index: 1000; /* Adjust z-index as needed */
+}
 
 @keyframes fade-in {
     from {

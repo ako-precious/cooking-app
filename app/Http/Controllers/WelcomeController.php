@@ -47,22 +47,71 @@ class WelcomeController extends Controller
             'pushSub' => $pushSub
         ]);
     }
+    public function bulkMeal()
+    {
+        // $pushSub = PushSubscription::where('subscribable_id', Auth::id())->exists();
+
+        // dd( typeOf($pushSub) );
+
+        return Inertia::render('BulkMeal', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+            // 'pushSub' => $pushSub
+        ]);
+    }
+    public function specialOrder()
+    {
+        // $pushSub = PushSubscription::where('subscribable_id', Auth::id())->exists();
+
+        // dd( typeOf($pushSub) );
+
+        return Inertia::render('SpecialOrder', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+            // 'pushSub' => $pushSub
+        ]);
+    }
 
     public function meals()
     {
-        // $mealSchedules = Meal::with('user')->where('status', 'available')->latest()->paginate(12);
-        $mealSchedules = Meal::whereHas('cook', function ($query) {
-            $query->where('status', 'available');
-        })->with('user')->where('status', 'available')->latest()
-            ->paginate(12);
 
-        return response()->json(MealResource::collection($mealSchedules));
+        // dd(Auth::check());
+        if (Auth::check()) {
+            $userContinent = auth()->user()->continent;
+        
+            $meal = Meal::whereHas('cook', function ($query) {
+                $query->where('status', 'available');
+            })
+            ->with('user')
+            ->where('status', 'available')
+            ->where('region', $userContinent) // Add continent filter
+            ->latest()
+            ->paginate(12);
+            
+            return response()->json(MealResource::collection($meal));
+        } else {
+            $meal = Meal::whereHas('cook', function ($query) {
+                $query->where('status', 'available');
+            })
+            ->with('user')
+            ->where('status', 'available')
+            ->latest()
+            ->paginate(12);
+        
+            return response()->json(MealResource::collection($meal));
+        }
+        
+        
     }
     public function filtered_meals()
     {
 
         $searchText = request('query');
-        $query = Meal::where('status', 'available')->query();
+        $query = Meal::where('status', 'available');
         if ($searchText) {
             $query->where('name', 'like', "%$searchText%")
                 ->orWhere('description', 'like', "%$searchText%");
@@ -75,14 +124,14 @@ class WelcomeController extends Controller
     public function agree(Request $request, $id)
     {
         $mealSchedule = User::find($id);
-        $mealSchedule->status =  $request->agreed;      
+        $mealSchedule->status =  $request->agreed;
         $mealSchedule->save();
-        
-        // Retrieve the updated record
-$updatedMealSchedule = User::find($id);
 
-// Prepare notification message
-$message = $updatedMealSchedule->status;
+        // Retrieve the updated record
+        $updatedMealSchedule = User::find($id);
+
+        // Prepare notification message
+        $message = $updatedMealSchedule->status;
         return response()->json(['data' => $message]);
     }
 
@@ -108,7 +157,7 @@ $message = $updatedMealSchedule->status;
 
         // Calculate the average rating
         $ratings = $reviews->count() > 0 ? $reviews->pluck('total')->sum() / $reviews->count() : 0;
-   
+
         // Render the profile with the gathered data
         return Inertia::render('Profile/Index', [
             'user' => $user,
