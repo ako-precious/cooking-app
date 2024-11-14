@@ -82,30 +82,40 @@ class WelcomeController extends Controller
         // dd(Auth::check());
         if (Auth::check()) {
             $userContinent = auth()->user()->continent;
-        
+
             $meal = Meal::whereHas('cook', function ($query) {
                 $query->where('status', 'available');
             })
-            ->with('user')
-            ->where('status', 'available')
-            ->where('region', $userContinent) // Add continent filter
-            ->inRandomOrder() 
-            ->paginate(12);
-            
+                ->with('user')
+                ->where('status', 'available')
+                ->where('region', $userContinent); // Add continent filter
+            // Check the route name and add the condition if the route is 'bulk-meal'
+            if (Route::currentRouteName() === 'bulk-meal') {
+                $meal->where('serving_style', 'bulk');
+            }
+            if (Route::currentRouteName() === 'special-order') {
+                $meal->where('serving_style', 'special');
+            }
+            // Randomize order and paginate
+            $meal = $meal->inRandomOrder()->paginate(12);
             return response()->json(MealResource::collection($meal));
         } else {
             $meal = Meal::whereHas('cook', function ($query) {
                 $query->where('status', 'available');
             })
-            ->with('user')
-            ->where('status', 'available')
-            ->inRandomOrder() 
-            ->paginate(12);
-        
+                ->with('user')
+                ->where('status', 'available');
+            if (Route::currentRouteName() === 'bulk-meal') {
+                $meal->where('serving_style', 'bulk');
+            }
+            if (Route::currentRouteName() === 'special-order') {
+                $meal->where('serving_style', 'special');
+            }
+            // Randomize order and paginate
+            $meal = $meal->inRandomOrder()->paginate(12);
+
             return response()->json(MealResource::collection($meal));
         }
-        
-        
     }
     public function filtered_meals()
     {
