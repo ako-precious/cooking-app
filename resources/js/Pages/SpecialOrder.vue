@@ -4,6 +4,7 @@ import { Head, usePage, Link } from "@inertiajs/vue3";
 import Footer from "@/Layouts/Footer.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import Header from "./Header/Index.vue";
+import FoodCard from "@/Layouts/FoodCard.vue";
 import axios from "axios";
 import { route } from "ziggy-js";
 
@@ -47,7 +48,6 @@ export default {
             hasMoreData: true,
             hasSpecialOffer: false,
             isHeaderFixed: false,
-            newMeals: ' '
         };
     },
     beforeDestroy() {
@@ -107,16 +107,20 @@ export default {
             }
         },
 
-       async QualifyUser() {
-            const response = await axios.get(
-                    `/special-user`
-                );
-                this.newMeals = response.data;
-
-                // If there is no new data, set hasMoreData to false
-                if (newMeals.length > 5) {
-                    this.hasSpecialOffer = true;
-                }
+        async QualifyUser() {
+            try {
+            const response = await axios.get(`/special-user`);
+            newMes = response;
+            console.log(newMes);
+            
+            // If there is no new data, set hasMoreData to false
+            if (newMeals.length > 5) {
+                this.hasSpecialOffer = true;
+            }
+            console.log( this.hasSpecialOffer);
+        } catch (error) {
+                console.error("Error fetching data:", error);
+            }
         },
 
         handleScroll() {
@@ -158,18 +162,56 @@ export default {
             ></DateRangePicker>
         </template>
     </Header>
-    <div  v-if="hasSpecialOffer"
+    <div
+        v-if="hasSpecialOffer"
         class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
-
+        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
             Bulk Meal Page
             <FoodCard :meal="meal"></FoodCard>
         </div>
-    </div> 
-   
-  {{newMeals   }}
-  
+    </div>
+    <div
+        v-else
+        class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+    >
+        <div
+            class="card md:w-[600px] relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group"
+        >
+            <div
+                class="flex flex-col justify-center items-center gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx overflow-hidden transition-all duration-480 ease-in-out"
+            >
+                <p
+                    class="font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out"
+                >
+                    Unlock Special Orders
+                </p>
+                <p
+                    class="z-index-1 opacity-80 text-lg transition-all duration-480 ease-in-out"
+                >
+                    <span class="text-base">
+                        To access special orders, please complete a minimum of 5
+                        orders from our talented cooks. This helps us understand
+                        your preferences and serve you better.</span
+                    ><br />
+                    <b> Browse Our Cooks & Start Ordering!</b>
+                    <span class="text-base">
+                        <br />
+                        - Explore our platform to discover new cooks
+                        <br />
+                        - Try their delicious dishes and earn loyalty points
+                        <br />
+                        - Unlock special orders and tailor meals to your taste
+                    </span>
+                </p>
+
+                <Link :href="route('welcome')" class="button items-center flex"
+                    >View Meals</Link
+                >
+            </div>
+        </div>
+    </div>
+    {{}}
     <div
         class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
         v-if="hasMoreData"

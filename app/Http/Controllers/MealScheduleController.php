@@ -50,7 +50,7 @@ class MealScheduleController extends Controller
         // Count the number of times the user's ID appears in the mealschedule table
         $userMealScheduleCount = MealSchedule::where('user_id', $userId)->count();
 
-        dd($userId, $userMealScheduleCount);
+        // dd($userId, $userMealScheduleCount);
         
         return response()->json(['meal_schedule_count' => $userMealScheduleCount]);
     }

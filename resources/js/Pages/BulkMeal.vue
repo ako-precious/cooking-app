@@ -5,6 +5,8 @@ import Footer from "@/Layouts/Footer.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import Header from "./Header/Index.vue";
 import axios from "axios";
+
+import FoodCard from "@/Layouts/FoodCard.vue";
 import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
 
@@ -147,7 +149,6 @@ export default {
     >
         <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
 
-            Bulk Meal Page
             <FoodCard :meal="meal"></FoodCard>
         </div>
     </div>
