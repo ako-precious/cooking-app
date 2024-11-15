@@ -13,6 +13,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Cook;
+use App\Models\MealSchedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -38,6 +39,7 @@ use function PHPUnit\Framework\callback;
 
 Route::get('/meals', [WelcomeController::class, 'meals']);
 
+Route::get('/special-user', [MealScheduleController::class, 'checkMealSt']);
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/bulk-meals', [WelcomeController::class, 'bulkMeal'])->name('bulk-meal');
 Route::get('/special-order', [WelcomeController::class, 'specialOrder'])->name('special-order');

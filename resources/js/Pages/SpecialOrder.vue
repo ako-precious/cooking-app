@@ -45,7 +45,9 @@ export default {
             page: 1, // Current page
             perPage: 12, // Number of items per page
             hasMoreData: true,
+            hasSpecialOffer: false,
             isHeaderFixed: false,
+            newMeals: ' '
         };
     },
     beforeDestroy() {
@@ -89,7 +91,7 @@ export default {
         async fetchData() {
             try {
                 const response = await axios.get(
-                    `/api/meals?page=${this.page}&perPage=${this.perPage}`
+                    `/meals?page=${this.page}&perPage=${this.perPage}`
                 );
                 const newMeals = response.data;
 
@@ -104,6 +106,19 @@ export default {
                 console.error("Error fetching data:", error);
             }
         },
+
+       async QualifyUser() {
+            const response = await axios.get(
+                    `/special-user`
+                );
+                this.newMeals = response.data;
+
+                // If there is no new data, set hasMoreData to false
+                if (newMeals.length > 5) {
+                    this.hasSpecialOffer = true;
+                }
+        },
+
         handleScroll() {
             // Adjust the scroll threshold as needed
             const scrollThreshold = 20;
@@ -116,68 +131,49 @@ export default {
 <template>
     <Head title="Welcome" />
     <!-- component -->
-    <Header  @filter-meals="filterMeals"   :isHeaderFixed="isHeaderFixed"
-    :canLogin="canLogin"
-    :canRegister="canRegister"
-    :laravelVersion="laravelVersion"
-    :phpVersion="phpVersion"
-  >   <template v-slot:search-content>
-    <DateRangePicker
-                            @filter-meals="filterMeals"
-                            v-if="isHeaderFixed"
-                            class="transition-all duration-300 delay-75 ease-in"
-                        ></DateRangePicker>
-    </template>
-    <template v-slot:extra-content>
-        <DateRangePicker
+    <Header
+        @filter-meals="filterMeals"
+        :isHeaderFixed="isHeaderFixed"
+        :canLogin="canLogin"
+        :canRegister="canRegister"
+        :laravelVersion="laravelVersion"
+        :phpVersion="phpVersion"
+    >
+        <template v-slot:search-content>
+            <DateRangePicker
+                @filter-meals="filterMeals"
+                v-if="isHeaderFixed"
+                class="transition-all duration-300 delay-75 ease-in"
+            ></DateRangePicker>
+        </template>
+        <template v-slot:extra-content>
+            <DateRangePicker
                 v-if="!isHeaderFixed"
                 @filter-meals="filterMeals"
-                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
+                class="hidden lg:flex transition-all duration-300 delay-75 ease-in w-full animate-fade-in"
             ></DateRangePicker>
             <DateRangePicker
                 @filter-meals="filterMeals"
                 class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker> 
-    </template>
-        
+            ></DateRangePicker>
+        </template>
     </Header>
-    <div
-        class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+    <div  v-if="hasSpecialOffer"
+        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div class="card md:w-[600px] relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group">
-            <div class="flex flex-col justify-center items-center gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx  overflow-hidden transition-all duration-480 ease-in-out">
-                <p class=" font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out">Unlock Special Orders       </p>
-                <p class="z-index-1 opacity-80 text-lg transition-all duration-480 ease-in-out">
-                   <span class="text-base"> To access special orders, please complete a minimum of 5
-                    orders from our talented cooks. This helps us understand
-                    your preferences and serve you better.</span><br>
-                    <b> Browse Our Cooks &
-                    Start Ordering!</b>
-                    <span class="text-base">
-<br>
-                        -  Explore our platform to discover new cooks <br>
-                        - Try their delicious dishes and earn loyalty points <br> -
-                        Unlock special orders and tailor meals to your taste
-                    </span>
-                </p>
-
-                
-
-                  <Link :href="route('welcome') " class="button items-center flex ">View Meals</Link>  
-                
-            </div>
-        </div>
-        <!-- Special Order
         <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
 
+            Bulk Meal Page
             <FoodCard :meal="meal"></FoodCard>
-        </div> -->
-    </div>
+        </div>
+    </div> 
+   
+  {{newMeals   }}
+  
     <div
         class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
         v-if="hasMoreData"
-    >
-    </div>
+    ></div>
     <!-- {{ $page.props.auth.user }} -->
 
     <Footer></Footer>
@@ -257,17 +253,14 @@ export default {
     animation: fade-in 0.3s ease-in;
 }
 
-
-
-
 .card::before {
     content: "";
     position: absolute;
     height: 250%;
     width: 250%;
     border-radius: inherit;
-    background: #1B998B;
-    background: linear-gradient(to right, #1B998B, #1B998B);
+    background: #1b998b;
+    background: linear-gradient(to right, #1b998b, #1b998b);
     transform-origin: center;
     animation: moving 4.8s linear infinite paused;
     transition: all 0.88s cubic-bezier(0.23, 1, 0.32, 1);
@@ -278,7 +271,6 @@ export default {
     z-index: -1;
     width: 20%;
 }
-
 
 .card:hover {
     box-shadow: 0rem 6px 13px rgba(10, 255, 116, 0.1),

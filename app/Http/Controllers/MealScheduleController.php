@@ -43,6 +43,17 @@ class MealScheduleController extends Controller
         $meal = MealSchedule::findOrFail($mealId);
         return response()->json(['status' => $meal->status]);
     }
+    public function checkMealSt(Request $request)
+    {
+        $userId = auth()->id(); // Get the authenticated user's ID
+
+        // Count the number of times the user's ID appears in the mealschedule table
+        $userMealScheduleCount = MealSchedule::where('user_id', $userId)->count();
+
+        dd($userId, $userMealScheduleCount);
+        
+        return response()->json(['meal_schedule_count' => $userMealScheduleCount]);
+    }
 
     public function payment(Request $request)
     {

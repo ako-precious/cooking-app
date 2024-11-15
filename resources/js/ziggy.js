@@ -3,3 +3,43 @@ if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
   Object.assign(Ziggy.routes, window.Ziggy.routes);
 }
 export { Ziggy };
+{/* <div v-else
+class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+>
+<div
+    class="card md:w-[600px] relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group"
+>
+    <div
+        class="flex flex-col justify-center items-center gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx overflow-hidden transition-all duration-480 ease-in-out"
+    >
+        <p
+            class="font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out"
+        >
+            Unlock Special Orders
+        </p>
+        <p
+            class="z-index-1 opacity-80 text-lg transition-all duration-480 ease-in-out"
+        >
+            <span class="text-base">
+                To access special orders, please complete a minimum of 5
+                orders from our talented cooks. This helps us understand
+                your preferences and serve you better.</span
+            ><br />
+            <b> Browse Our Cooks & Start Ordering!</b>
+            <span class="text-base">
+                <br />
+                - Explore our platform to discover new cooks 
+                <br />
+                - Try their delicious dishes and earn loyalty points
+                <br />
+                - Unlock special orders and tailor meals to your taste
+            </span>
+        </p>
+
+        <Link :href="route('welcome')" class="button items-center flex"
+            >View Meals</Link
+        >
+    </div>
+</div>
+
+</div> */}
