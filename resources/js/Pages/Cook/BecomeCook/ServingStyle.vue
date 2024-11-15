@@ -62,6 +62,7 @@ import BecomeCook from "./BecomeCook.vue";
                                         </div>
                                     </div>
                                 </div>
+                                
                                 <div class="col-span-1 h-full w-full max-w-full ">
                                     <div
                                         :class="{
@@ -103,7 +104,47 @@ import BecomeCook from "./BecomeCook.vue";
                                     </div>
                                 </div>
                               
-                               
+                                <!-- <div class="col-span-1 h-full w-full max-w-full ">
+                                    <div
+                                        :class="{
+                                            'border-persian border-2 ':
+                                                selectedDiv === 'special',
+                                        }"
+                                        @click="
+                                            [
+                                                sendData('special'),
+                                                selectDiv('special'),
+                                            ]
+                                        "
+                                        class="flex min-w-0 break-words w-full shadow-reverse group rounded-2xl bg-clip-border cursor-pointer"
+                                    >
+                                    
+                                    <div
+                                            class="flex  justify-between h-  w-full p-4 mb-0 list-none rounded-xl"
+                                        >
+                                        <div class=" w-full">
+                                            <p
+                                                class="font-semibold px-4 py-2 transition-colors ease-in-out rounded-lg group-action-text"
+                                            >
+                                                <span
+                                                    class="lg:text-xl leading-normal"
+                                                    > Special Order </span
+                                                >
+                                            </p>
+                                            <p
+                                                class="px-4  transition-colors ease-in-out rounded-lg group-action-text"
+                                            >
+                                                <span
+                                                    class="text-sm lg:text-lg leading-normal"
+                                                    >Customize your meal for special  </span
+                                                >
+                                            </p>
+                                        </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                              
                             </div>
                         </div>
                     </div>

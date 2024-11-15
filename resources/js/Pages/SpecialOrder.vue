@@ -163,13 +163,43 @@ export default {
             ></DateRangePicker>
         </template>
     </Header>
-    <div
-        v-if="hasSpecialOffer"
+    <!-- <div
+       
         class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
         <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
             Bulk Meal Page
             <FoodCard :meal="meal"></FoodCard>
+        </div>
+    </div> -->
+    <div v-if="hasSpecialOffer"
+        
+        class="container p-4 lg:p-10 mx-auto relative flex justify-center gap-8 items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+    >
+        <div
+            class="card md:w-[600px] relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group"
+        >
+            <div
+                class="flex flex-col justify-center items-center w-full gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx overflow-hidden transition-all duration-480 ease-in-out"
+            >
+                <p
+                    class="font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out"
+                >
+                     Special Meal
+                </p>
+                <p
+                    class="z-index-1 opacity-80 text-lg transition-all duration-480 ease-in-out"
+                >
+                    <span class="text-base">
+                        Customize your meal for special occasions or dietary needs</span
+                    ><br />
+                   
+                </p>
+
+                <Link :href="route('welcome')" class="button items-center flex"
+                    ></Link
+                >
+            </div>
         </div>
     </div>
     <div
@@ -180,7 +210,7 @@ export default {
             class="card md:w-[600px] relative flex justify-center items-center w-[420px] p-[2px] rounded-[22px] overflow-hidden leading-6 transition-all duration-[4800] ease-in-out group"
         >
             <div
-                class="flex flex-col justify-center items-center gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx overflow-hidden transition-all duration-480 ease-in-out"
+                class="flex flex-col justify-center items-center w-full gap-[24px] p-[20px] rounded-[22px] bg-snow dark:bg-oynx text-snow dark:group-hover:text-snow group-hover:text-oynx overflow-hidden transition-all duration-480 ease-in-out"
             >
                 <p
                     class="font-bold text-4xl leading-tight z-10 transition-all duration-480 ease-in-out"
@@ -212,11 +242,11 @@ export default {
             </div>
         </div>
     </div>
-    {{}}
-    <div
+    <!-- {{}} -->
+    <!-- <div
         class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
         v-if="hasMoreData"
-    ></div>
+    ></div> -->
     <!-- {{ $page.props.auth.user }} -->
 
     <Footer></Footer>
@@ -299,8 +329,8 @@ export default {
 .card::before {
     content: "";
     position: absolute;
-    height: 250%;
-    width: 250%;
+    height:350%;
+    width: 350%;
     border-radius: inherit;
     background: #1b998b;
     background: linear-gradient(to right, #1b998b, #1b998b);

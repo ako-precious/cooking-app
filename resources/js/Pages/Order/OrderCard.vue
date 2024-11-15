@@ -54,10 +54,7 @@ import { add, isBefore, getDay } from "date-fns";
         <div
             class="gap-2 flex flex-col md:flex-row items-center justify-between"
         >
-            <div
-                
-                class="md:w-1/2 w-full py-4"
-            >
+            <div class="md:w-1/2 w-full py-4">
                 <Datepicker
                     class="my-2 w-full relative border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
                     v-model="pickedDate"
@@ -114,7 +111,6 @@ import { add, isBefore, getDay } from "date-fns";
         </div>
 
         <div class="flex justify-center item-center">
-
             <PrimaryButton @click="addSchedule" class="w-full"
                 >Order</PrimaryButton
             >
@@ -178,41 +174,75 @@ export default {
             // // const userSelectedDays = [0, 3, 4];
             // console.log( typeof this.newSchedule.cook_availability);
             // console.log( this.newSchedule.cook_availability);
-            
+
             if (this.newSchedule.cook_availability) {
-    try {
-        // Parse the JSON string into an array
-        const array1= JSON.parse(this.newSchedule.cook_availability);
- 
-        const array= JSON.parse(array1);
+                console.log(this.newSchedule.cook_availability);
 
-        // console.log(typeof array); // Should output "object"
-        // console.log(array); // Should output the array, e.g., ["Friday", "Wednesday", "Sunday"]
+                // Check if cook_availability is an empty string
+                if (this.newSchedule.cook_availability.trim() === "") {
+                    console.warn("cook_availability is an empty string.");
+                    return false; // or some default behavior
+                }
 
-        // Check if array is indeed an array before proceeding
-        if (Array.isArray(array)) {
-            // Map days to their numerical values
-            const userSelectedDays = array.map(
-                (day) => dayNameToNumber[day]
-            );
+                try {
+                    // Parse cook_availability JSON string into an array
+                    const array1 = JSON.parse(
+                        this.newSchedule.cook_availability
+                    );
+                    let array = Array.isArray(array1)
+                        ? array1
+                        : JSON.parse(array1);
 
-            // Disable past dates and dates not in userSelectedDays
-            return !userSelectedDays.includes(day);
-        } else {
-            console.error("Parsed value is not an array:", array);
-            return false; // or some default behavior
-        }
-    } catch (error) {
-        console.error("Error parsing JSON or mapping array:", error);
-        return false; // or some default behavior
-    }
-} else {
-    console.warn("cook_availability is undefined or empty.");
-    return false; // or some default behavior
-}
+                    // If array is empty or not parsed correctly, use all days of the week as a default
+                    if (!Array.isArray(array) || array.length === 0) {
+                        console.warn("Using default days of the week.");
+                        array = [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                            "Saturday",
+                            "Sunday",
+                        ];
+                    }
 
+                    // Map days to their numerical values using a predefined mapping object
+                    const userSelectedDays = array.map(
+                        (day) => dayNameToNumber[day]
+                    );
+
+                    // Disable past dates and dates not in userSelectedDays
+                    return !userSelectedDays.includes(day);
+                } catch (error) {
+                    console.error(
+                        "Error parsing JSON or mapping array:",
+                        error
+                    );
+                    return false; // or some default behavior
+                }
+            } else {
+                // console.warn("cook_availability is undefined or empty.");
+                // console.warn(this.newSchedule.cook_availability);
+
+                // Use default array with all days of the week
+                const array = [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday",
+                ];
+                const userSelectedDays = array.map(
+                    (day) => dayNameToNumber[day]
+                );
+
+                return !userSelectedDays.includes(day); // Based on userSelectedDays
+            }
         },
-       
+
         addSchedule() {
             if (this.$page.props.auth.user) {
                 const today = new Date().toISOString().replace(/T.*$/, "");

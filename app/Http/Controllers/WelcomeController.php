@@ -93,9 +93,9 @@ class WelcomeController extends Controller
             if (Route::currentRouteName() === 'bulk-meal') {
                 $meal->where('serving_style', 'bulk');
             }
-            if (Route::currentRouteName() === 'special-order') {
-                $meal->where('serving_style', 'special');
-            }
+            // if (Route::currentRouteName() === 'special-order') {
+            //     $meal->where('serving_style', 'special');
+            // }
             // Randomize order and paginate
             $meal = $meal->inRandomOrder()->paginate(12);
             return response()->json(MealResource::collection($meal));
@@ -108,9 +108,9 @@ class WelcomeController extends Controller
             if (Route::currentRouteName() === 'bulk-meal') {
                 $meal->where('serving_style', 'bulk');
             }
-            if (Route::currentRouteName() === 'special-order') {
-                $meal->where('serving_style', 'special');
-            }
+            // if (Route::currentRouteName() === 'special-order') {
+            //     $meal->where('serving_style', 'special');
+            // }
             // Randomize order and paginate
             $meal = $meal->inRandomOrder()->paginate(12);
 
