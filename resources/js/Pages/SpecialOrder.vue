@@ -68,6 +68,7 @@ export default {
     created() {
         this.handleScroll();
         this.fetchData();
+        this.QualifyUser()
     },
     methods: {
         async filterMeals(searchText) {
@@ -110,11 +111,11 @@ export default {
         async QualifyUser() {
             try {
             const response = await axios.get(`/special-user`);
-            newMes = response;
-            console.log(newMes);
+            const newMeals = parseInt(response.data.special_count);
+            console.log(newMeals);
             
             // If there is no new data, set hasMoreData to false
-            if (newMeals.length > 5) {
+            if (newMeals > 5) {
                 this.hasSpecialOffer = true;
             }
             console.log( this.hasSpecialOffer);

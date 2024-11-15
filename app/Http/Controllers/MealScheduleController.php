@@ -52,7 +52,7 @@ class MealScheduleController extends Controller
 
         // dd($userId, $userMealScheduleCount);
         
-        return response()->json(['meal_schedule_count' => $userMealScheduleCount]);
+        return response()->json(['special_count' => $userMealScheduleCount]);
     }
 
     public function payment(Request $request)
