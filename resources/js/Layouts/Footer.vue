@@ -79,11 +79,19 @@ export default {
 
                         <ul class="mt-6 space-y-4 text-sm">
                             <li>
-                                <a
-                                    href="#"
+                                <a target="_blank"
+                                    href="https://www.instagram.com/mymealni/"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
-                                    Contact
+                                    Instagram
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank"
+                                    href="https://www.facebook.com/profile.php?id=61568191215998"
+                                    class="text-oynx dark:text-snow transition hover:opacity-75"
+                                >
+                                    Facebook
                                 </a>
                             </li>
 

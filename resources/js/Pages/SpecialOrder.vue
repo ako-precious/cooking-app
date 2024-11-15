@@ -197,7 +197,7 @@ export default {
                 </p>
 
                 <Link :href="route('welcome')" class="button items-center flex"
-                    ></Link
+                    >hhj</Link
                 >
             </div>
         </div>
