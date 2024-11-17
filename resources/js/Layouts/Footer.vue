@@ -56,7 +56,7 @@ export default {
 
                             <li>
                                 <a
-                                    href="#"
+                                    :href="route('resources.return')"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
                                     Returns Policy

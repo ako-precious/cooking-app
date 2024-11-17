@@ -90,29 +90,7 @@ export default {
                 await this.fetchData();
             }
         },
-        async fetchData() {
-            try {
-                const response = await axios.get(
-                    `/meals?page=${this.page}&perPage=${this.perPage}`
-                );
-                const newMeals = response.data;
-
-                // If there is no new data, set hasMoreData to false
-                if (newMeals.length === 0) {
-                    this.hasMoreData = false;
-                }
-
-                // Concatenate new data to the existing meals
-                this.meals = [...this.meals, ...newMeals];
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        },
-        handleScroll() {
-            // Adjust the scroll threshold as needed
-            const scrollThreshold = 20;
-            this.isHeaderFixed = window.scrollY > scrollThreshold;
-        },
+       
     },
 };
 </script>
@@ -125,40 +103,15 @@ export default {
     :canRegister="canRegister"
     :laravelVersion="laravelVersion"
     :phpVersion="phpVersion"
-  >   <template v-slot:search-content>
-    <DateRangePicker
-                            @filter-meals="filterMeals"
-                            v-if="isHeaderFixed"
-                            class="transition-all duration-300 delay-75 ease-in"
-                        ></DateRangePicker>
-    </template>
-    <template v-slot:extra-content>
-        <DateRangePicker
-                v-if="!isHeaderFixed"
-                @filter-meals="filterMeals"
-                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
-            ></DateRangePicker>
-            <DateRangePicker
-                @filter-meals="filterMeals"
-                class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker> 
-    </template>
+  >  
         
     </Header>
     <div
-        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
     >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
-            <FoodCard :meal="meal"></FoodCard>
-        </div>
+        
     </div>
-    <div
-        class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
-        v-if="hasMoreData"
-    >
-        <button @click="loadMoreData" class="button">Show More</button>
-    </div>
-    <!-- {{ $page.props.auth.user }} -->
+   
 
     <Footer></Footer>
 </template>
