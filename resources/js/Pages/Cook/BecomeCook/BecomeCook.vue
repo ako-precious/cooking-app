@@ -20,7 +20,7 @@ import ApplicationMark from "@/Components/ApplicationMark.vue";
             <div
                 class="w-32 navbar-link font-semibold border p-2 text-center rounded-full text-sm"
             >
-                <Link :href="`/cook/menu`"> Save and Exist</Link>
+                <Link :href="`/cook/menu`"> Continue Later</Link>
             </div>
         </div>
         <div

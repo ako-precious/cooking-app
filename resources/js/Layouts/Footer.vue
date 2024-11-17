@@ -32,7 +32,7 @@ export default {
                                 <a
                                     href="#"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
-                                    >Help
+                                    >Features 
                                 </a>
                             </li>
 
@@ -41,7 +41,7 @@ export default {
                                     href="#"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
-                                    Company Review
+                                   Career
                                 </a>
                             </li>
 
@@ -50,7 +50,7 @@ export default {
                                     href="#"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
-                                    Accounts Review
+                                    FAQ
                                 </a>
                             </li>
 
@@ -59,7 +59,7 @@ export default {
                                     href="#"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
-                                    HR Consulting
+                                    Returns Policy
                                 </a>
                             </li>
 
@@ -68,9 +68,10 @@ export default {
                                     href="#"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
-                                    SEO Optimization
+                                    Refund Policy
                                 </a>
                             </li>
+                           
                         </ul>
                     </div>
 
@@ -131,25 +132,7 @@ export default {
                                     href="#"
                                     class="text-oynx dark:text-snow transition hover:opacity-75"
                                 >
-                                    Returns Policy
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#"
-                                    class="text-oynx dark:text-snow transition hover:opacity-75"
-                                >
-                                    Refund Policy
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                    href="#"
-                                    class="text-oynx dark:text-snow transition hover:opacity-75"
-                                >
-                                    Hiring Statistics
+                                   Cook Resources
                                 </a>
                             </li>
                         </ul>
