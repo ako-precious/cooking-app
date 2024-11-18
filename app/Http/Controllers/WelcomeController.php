@@ -67,7 +67,7 @@ class WelcomeController extends Controller
 
         // dd( typeOf($pushSub) );
 
-        return Inertia::render('Resource/General/ReturnPolicy', [
+        return Inertia::render('Resources/General/ReturnPolicy', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,

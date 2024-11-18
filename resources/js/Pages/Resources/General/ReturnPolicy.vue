@@ -1,10 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
 import { Head, Link, usePage } from "@inertiajs/vue3";
-import Header from "./Header/Index.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
-import DateRangePicker from "./Header/DateRangePicker.vue";
 import axios from "axios";
 // import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
@@ -53,43 +50,17 @@ export default {
         };
     },
     beforeDestroy() {
-        window.removeEventListener("scroll", this.handleScroll);
+       
     },
 
     mounted() {
-        window.addEventListener("scroll", this.handleScroll);
-        if (this.$page.props.auth.user) {
-            if (
-                this.$page.props.auth.user.phone_number == null ||
-                this.$page.props.auth.user.address == null
-            ) {
-                this.$inertia.visit(`/user/profile`);
-            }
-        }
+      
     },
     created() {
-        this.handleScroll();
-        this.fetchData();
+       
     },
     methods: {
-        async filterMeals(searchText) {
-            await axios
-                .get(`/api/filtered-meals?query=${searchText}`)
-                .then((response) => {
-                    if (response.data.length != 0) {
-                        this.meals = response.data;
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching filtered data:", error);
-                });
-        },
-        async loadMoreData() {
-            if (this.hasMoreData) {
-                this.page++;
-                await this.fetchData();
-            }
-        },
+       
        
     },
 };
@@ -98,17 +69,10 @@ export default {
 <template>
     <Head title="Welcome" />
     <!-- component -->
-    <Header  @filter-meals="filterMeals"   :isHeaderFixed="isHeaderFixed"
-    :canLogin="canLogin"
-    :canRegister="canRegister"
-    :laravelVersion="laravelVersion"
-    :phpVersion="phpVersion"
-  >  
-        
-    </Header>
+    
     <div
         class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
-    >
+    >mnnnnnnnnnnnnnn
         
     </div>
    
