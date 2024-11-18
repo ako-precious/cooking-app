@@ -14,12 +14,10 @@ import HeaderVue from "../Header.vue";
             <HeaderVue> </HeaderVue>
 
             <div
-                class="m-auto flex flex-col justify-center h-full p-6 lg:pb-20 w-full"
+                class="m-auto flex flex-col justify-center h-full p-6 lg:pb-10 w-full"
             >
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
-                     
-                        
                         <div
                             class="flex flex-col md:flex-row items-start justify-between md:items-center"
                         >
@@ -27,72 +25,128 @@ import HeaderVue from "../Header.vue";
                                 <h1
                                     class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
                                 >
-                                    You have meal(s) in your
-                                    menu
+                                    <nav class="flex" aria-label="Breadcrumb">
+                                        <ol
+                                            class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
+                                        >
+                                            <li
+                                                class="inline-flex items-center"
+                                            >
+                                                <a
+                                                    href="#"
+                                                    class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+                                                >
+                                                    <svg
+                                                        class="w-3 h-3 me-2.5"
+                                                        aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="currentColor"
+                                                        viewBox="0 0 20 20"
+                                                    >
+                                                        <path
+                                                            d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+                                                        />
+                                                    </svg>
+                                                    Resources
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <div class="flex items-center">
+                                                    <svg
+                                                        class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+                                                        aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 6 10"
+                                                    >
+                                                        <path
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="m1 9 4-4-4-4"
+                                                        />
+                                                    </svg>
+                                                    <a
+                                                        href="#"
+                                                        class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+                                                        >General</a
+                                                    >
+                                                </div>
+                                            </li>
+                                            <li aria-current="page">
+                                                <div class="flex items-center">
+                                                    <svg
+                                                        class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+                                                        aria-hidden="true"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        fill="none"
+                                                        viewBox="0 0 6 10"
+                                                    >
+                                                        <path
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="m1 9 4-4-4-4"
+                                                        />
+                                                    </svg>
+                                                    <span
+                                                        class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400"
+                                                        >Return Policy
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ol>
+                                    </nav>
                                 </h1>
                             </div>
                             <div
                                 class="flex flex-wrap md:flex-row items-start justify-between md:items-center"
-                            >
-                                <div class="p-2 flex">
-                                    <Link :href="`/become-a-cook/overview`">
-                                        <button
-                                            class="shadow-extra-small rounded-md cursor-pointer w-[150px] h-[50px] text-oynx dark:text-snow font-semibold border-none flex justify-center items-center"
-                                        >
-                                            <span
-                                                class="span-mother flex overflow-hidden"
-                                            >
-                                                <span>Cr</span>
-                                                <span>ea</span>
-                                                <span>t</span>
-                                                <span> e M</span>
-                                                <span>ea</span>
-                                                <span
-                                                    >l
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span>
-                                            <span
-                                                class="span-mother2 text-persian"
-                                            >
-                                                <span>Cr</span>
-                                                <span>ea</span>
-                                                <span>t</span>
-                                                <span> e M</span>
-                                                <span>ea</span>
-                                                <span
-                                                    >l
-                                                    <font-awesome-icon
-                                                        icon="plus"
-                                                /></span>
-                                            </span></button
-                                    ></Link>
-                                </div>
-                            </div>
+                            ></div>
                         </div>
-                    
                     </div>
                 </div>
             </div>
 
             <div
-        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
-    >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in"> 
+                class="container p-4 lg:p-8 mx-auto relative grid grid-cols-1 lg:grid-cols-3 min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+            >
+            <div class="col-span-2">
 
-            <FoodCard :meal="meal"></FoodCard>
-        </div>
-    </div>
-    <div
-        class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
-        v-if="hasMoreData"
-    >
-        <button @click="loadMoreData" class="button">Show More</button>
-    </div>
-    <!-- {{ $page.props.auth.user }} -->
-   
-    <Footer></Footer>
+                <div class="py-3  ">
+                    <h1
+                        class="font-semibold text-2xl lg:text-5xl text-oynx dark:text-snow"
+                    >
+                    Why Our Return Policy Exists
+                    </h1>
+                </div>
+                <div class="py-3"  >  <h1 class="text-lg text-oynx dark:text-snow">
+                    At Ounjemi, we are committed to ensuring every meal shared through our platform brings joy and satisfaction. Our return policy is designed to address any concerns you may have, uphold the quality of our services, and maintain trust between cooks and customers.
+    <br><br>
+                    <span class=" font-semibold text-xl">
+                        Our Core Values
+                    </span><br><br>
+                    <ul><li>
+                  
+                      <b> Fairness: </b> We believe in creating a balanced system that protects both our cooks and customers.
+                    </li>
+                    <li> <b>Transparency:</b>  Clear and honest communication is at the heart of our return process.</li>
+                    <li> <b>Customer Satisfaction: </b> Your happiness matters to us, and we aim to make every experience a positive one.</li>
+                    <li> <br><br>
+                  This policy reflects our dedication to creating a platform where homemade meals are enjoyed with confidence and peace of mind.</li></ul>
+                  
+                  
+                  
+                                                  </h1></div>
+            </div>
+
+            </div>
+
+
+            <!-- {{ $page.props.auth.user }} -->
+
+            <Footer></Footer>
         </div>
     </div>
 </template>
@@ -100,10 +154,7 @@ import HeaderVue from "../Header.vue";
 <script>
 import axios from "axios";
 
-export default {
-    
-    
-};
+export default {};
 </script>
 
 <style scoped>
