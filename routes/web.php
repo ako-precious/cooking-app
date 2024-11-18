@@ -11,9 +11,11 @@ use App\Http\Controllers\MealController;
 use App\Http\Controllers\MealPhotosController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\WishlistController;
 use App\Models\Cook;
 use App\Models\MealSchedule;
+use App\Models\Resource;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -71,6 +73,9 @@ Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete'
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);
 Route::resource('/meal_photos', MealPhotosController::class);
+Route::resource('/resources', ResourceController::class);
+
+
 Route::get('/checkUser', [CookController::class, "checkCook"]);
 Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
 

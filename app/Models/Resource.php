@@ -9,7 +9,7 @@ class Resource extends Model
 {
     use HasFactory;
 
-    protected $table = 'resource';
+    protected $table = 'resources';
 
-    protected $fillable = ['title', 'author', 'content', 'category',  'post_photo_path', 'read_time'];
+    protected $fillable = ['title', 'author', 'content', 'category',  'post_photo_path', 'read_time', 'slug', 'useful', 'useless'];
 }

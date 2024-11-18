@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resource', function (Blueprint $table) {
+        Schema::create('resources', function (Blueprint $table) {
             $table->id();
 
             $table->string('title');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id', 'user_post')->references('id')->on('users');
+            $table->foreign('user_id', 'user_resource')->references('id')->on('users');
             $table->longText('content');
             $table->string('category');
             $table->string("post_photo_path", 2048)->nullable();
             $table->string('read_time');
+            $table->string('slug');
+            $table->integer('useful');
+            $table->integer('useless');
             
             $table->timestamps();
         });
@@ -31,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resource');
+        Schema::dropIfExists('resources');
     }
 };

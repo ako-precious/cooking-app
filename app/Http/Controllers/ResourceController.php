@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Resource;
 class ResourceController extends Controller
 {
@@ -20,7 +24,7 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Resources/Create');
     }
 
     /**
