@@ -112,37 +112,53 @@ import HeaderVue from "../Header.vue";
             <div
                 class="container p-4 lg:p-8 mx-auto relative grid grid-cols-1 lg:grid-cols-3 min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
             >
-            <div class="col-span-2">
-
-                <div class="py-3  ">
-                    <h1
-                        class="font-semibold text-2xl lg:text-5xl text-oynx dark:text-snow"
-                    >
-                    Why Our Return Policy Exists
-                    </h1>
+                <div class="col-span-2">
+                    <div class="py-3">
+                        <h1
+                            class="font-semibold text-2xl lg:text-5xl text-oynx dark:text-snow"
+                        >
+                            Why Our Return Policy Exists
+                        </h1>
+                    </div>
+                    <div class="py-3">
+                        <h1 class="text-lg text-oynx dark:text-snow">
+                            At Ounjemi, we are committed to ensuring every meal
+                            shared through our platform brings joy and
+                            satisfaction. Our return policy is designed to
+                            address any concerns you may have, uphold the
+                            quality of our services, and maintain trust between
+                            cooks and customers.
+                            <br /><br />
+                            <span class="font-semibold text-xl">
+                                Our Core Values </span
+                            ><br /><br />
+                            <ul>
+                                <li>
+                                    <b> Fairness: </b> We believe in creating a
+                                    balanced system that protects both our cooks
+                                    and customers.
+                                </li>
+                                <li>
+                                    <b>Transparency:</b> Clear and honest
+                                    communication is at the heart of our return
+                                    process.
+                                </li>
+                                <li>
+                                    <b>Customer Satisfaction: </b> Your
+                                    happiness matters to us, and we aim to make
+                                    every experience a positive one.
+                                </li>
+                                <li>
+                                    <br /><br />
+                                    This policy reflects our dedication to
+                                    creating a platform where homemade meals are
+                                    enjoyed with confidence and peace of mind.
+                                </li>
+                            </ul>
+                        </h1>
+                    </div>
                 </div>
-                <div class="py-3"  >  <h1 class="text-lg text-oynx dark:text-snow">
-                    At Ounjemi, we are committed to ensuring every meal shared through our platform brings joy and satisfaction. Our return policy is designed to address any concerns you may have, uphold the quality of our services, and maintain trust between cooks and customers.
-    <br><br>
-                    <span class=" font-semibold text-xl">
-                        Our Core Values
-                    </span><br><br>
-                    <ul><li>
-                  
-                      <b> Fairness: </b> We believe in creating a balanced system that protects both our cooks and customers.
-                    </li>
-                    <li> <b>Transparency:</b>  Clear and honest communication is at the heart of our return process.</li>
-                    <li> <b>Customer Satisfaction: </b> Your happiness matters to us, and we aim to make every experience a positive one.</li>
-                    <li> <br><br>
-                  This policy reflects our dedication to creating a platform where homemade meals are enjoyed with confidence and peace of mind.</li></ul>
-                  
-                  
-                  
-                                                  </h1></div>
             </div>
-
-            </div>
-
 
             <!-- {{ $page.props.auth.user }} -->
 
