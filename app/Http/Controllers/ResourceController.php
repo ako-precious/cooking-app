@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use HTMLPurifier;
+use HTMLPurifier_Config;
 use Illuminate\Http\Request;
-
-class ResourcesController extends Controller
+use App\Models\Resource;
+class ResourceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,17 @@ class ResourcesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($config); 
+    
+        $sanitizedContent = $purifier->purify($request->input('content'));
+    
+        Resource::create([
+            'title' => $request->input('title'),
+            'content' => $sanitizedContent,
+        ]);
+    
+        return redirect()->route('posts.index');
     }
 
     /**

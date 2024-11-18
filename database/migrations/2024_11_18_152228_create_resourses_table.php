@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resourses', function (Blueprint $table) {
+        Schema::create('resource', function (Blueprint $table) {
             $table->id();
 
             $table->string('title');
             $table->string('author');
-
             $table->longText('content');
-            $table->string('categories');
+            $table->string('category');
+            $table->string("post_photo_path", 2048);
+            $table->string('read_time');
             
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resourses');
+        Schema::dropIfExists('resource');
     }
 };

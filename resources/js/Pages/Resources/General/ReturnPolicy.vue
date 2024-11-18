@@ -162,9 +162,9 @@ import HeaderVue from "../Header.vue";
 
             <!-- {{ $page.props.auth.user }} -->
 
-            <Footer></Footer>
         </div>
     </div>
+    <Footer></Footer>
 </template>
 
 <script>
