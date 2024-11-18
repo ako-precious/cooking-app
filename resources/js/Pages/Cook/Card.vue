@@ -45,7 +45,7 @@
                     src="/images/cook.png"
                     alt=""
                 />
-                <span
+                <!-- <span
                     class="text-sm md:text-base p-6 text-oynx dark:text-snow relative w-full md:w-[60%] z-[1] -translate-x-3 transition-all duration-[0.8s] group-hover:translate-x-3"
                     >Remember to check the date of the confirmed orders. Prepare
                     each dish by the customer's selected date. Don't forget to
@@ -53,9 +53,23 @@
                 >
                 <span
                     class="circle bg-lighred dark:bg-polynesian absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-[0.8s] opacity-0 group-hover:w-[250px] group-hover:h-[250px] group-hover:opacity-100"
+                ></span> -->
+                <img
+                    class="relative hidden md:block h-full md:absolute z-[9] transition-all duration-[0.8s] md:-left-1/2 group-hover:left-0"
+                    src="/images/cook.png"
+                    alt=""
+                />
+                <span
+                    class="text-sm md:text-base p-8 z-10 bottom-0 text-oynx bg-oynx bg-opacity-50 dark:text-snow absolute md:relative w-[110%] md:w-[60%] md:z-[1] -translate-x-3 transition-all duration-[0.8s] group-hover:translate-x-3"
+                    >Remember to check the date of the confirmed orders. Prepare
+                    each dish by the customer's selected date. Don't forget to
+                    let them know when their food is prepared!.</span
+                >
+                <span
+                    class="circle  bg-lighred dark:bg-polynesian absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full transition-all duration-[0.8s] opacity-0 group-hover:w-[250px] group-hover:h-[250px] group-hover:opacity-100"
                 ></span>
                 <img
-                    class="relative h-full md:absolute z-[9] transition-all duration-[0.8s] md:-left-1/2 group-hover:left-0"
+                    class="relative object-cover md:hidden md:absolute z-[9] transition-all duration-[0.8s] md:-left-1/2 group-hover:left-0"
                     src="/images/cook.png"
                     alt=""
                 />

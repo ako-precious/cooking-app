@@ -121,6 +121,23 @@ import HeaderVue from "../Header.vue";
                         </h1>
                     </div>
                     <div class="py-3">
+                        <h1 class="text-sm opacity-70 text-oynx flex justify-between dark:text-snow">
+                           <span> By Airbnb on Dec 18, 2019 </span> <span>3 min read </span> 
+                        </h1>
+                        <h1 class="text-sm py-2 italic opacity-65 text-oynx dark:text-snow">
+Updated Sep 2, 2021
+                        </h1>
+                    </div>
+                    <div class="py-3 h-96 max-w-full overflow-y-scroll disable-scrollbars">
+                        <!-- class="relative object-cover  transition-all duration-[0.8s]  group-hover:left-0" -->
+                        <img
+                     class="w-full h-auto"
+                    src="/images/cook.png"
+                    alt=""
+                />
+                    </div>
+                    
+                    <div class="py-3">
                         <h1 class="text-lg text-oynx dark:text-snow">
                             At Ounjemi, we are committed to ensuring every meal
                             shared through our platform brings joy and

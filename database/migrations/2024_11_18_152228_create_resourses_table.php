@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->string('author');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id', 'user_post')->references('id')->on('users');
             $table->longText('content');
             $table->string('category');
-            $table->string("post_photo_path", 2048);
+            $table->string("post_photo_path", 2048)->nullable();
             $table->string('read_time');
             
             $table->timestamps();
