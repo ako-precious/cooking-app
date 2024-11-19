@@ -6,10 +6,20 @@ import Footer from "@/Layouts/Footer.vue";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import HeaderVue from "./Header.vue";
+import { route } from "ziggy-js";
+import { useForm } from "@inertiajs/vue3";
+import ErrorMessage from "@/Layout/Component/ErrorMessage.vue";
+const form = useForm({
+    name: null,
+    email: null,
+    password: null,
+    password_confirmation: null,
+});
+const register = () => form.post(route("register.store"));
 </script>
 
 <template>
-    <Head title="Menu" />
+    <Head title="Resources" />
     <div
         class="relative sm:flex sm:justify-center sm:items-center bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-white"
     >
@@ -121,7 +131,7 @@ import HeaderVue from "./Header.vue";
                                 class="flex justify-center item-center lg:gap-10 lg:px-10"
                             >
                                 <div class="w-full max-w-full py-2">
-                                    <form
+                                    <form  @submit.prevent="resources.store" 
                                         class="relative flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                         <div
@@ -130,7 +140,7 @@ import HeaderVue from "./Header.vue";
                                             <div class="py-5 w-full px-1">
                                                 <InputLabel
                                                     for="name"
-                                                    value="Meal Title (Limit 50 char)"
+                                                    value="Title"
                                                 />
                                                 <TextInput
                                                     id="name"
@@ -138,14 +148,14 @@ import HeaderVue from "./Header.vue";
                                                     type="text"
                                                     class="mt-1 block w-full"
                                                     required
-                                                    autocomplete="name"
+                                                    autocomplete=""
                                                 />
                                               
                                             </div>
                                             <div class="py-5 w-full px-1">
                                                 <InputLabel
                                                     for="name"
-                                                    value="Meal Title (Limit 50 char)"
+                                                    value="Slug"
                                                 />
                                                 <TextInput
                                                     id="name"
@@ -157,10 +167,76 @@ import HeaderVue from "./Header.vue";
                                                 />
                                               
                                             </div>
+                                            <div class="flex">
+                                                <div class="py-5 w-full px-1">
+                                                    <InputLabel
+                                                        for="name"
+                                                        value="Category"
+                                                    />
+                                                    <TextInput
+                                                        id="name"
+                                                      
+                                                        type="text"
+                                                        class="mt-1 block w-full"
+                                                        required
+                                                        autocomplete="name"
+                                                    />
+                                                  
+                                                </div>
+                                                <div class="py-5 w-full px-1">
+                                                    <InputLabel
+                                                        for="name"
+                                                        value="Reading Time"
+                                                    />
+                                                    <TextInput
+                                                        id="name"
+                                                      
+                                                        type="text"
+                                                        class="mt-1 block w-full"
+                                                        required
+                                                        autocomplete="name"
+                                                    />
+                                                  
+                                                </div>  
+
+                                            </div>
+                                            <div class="flex">
+                                                <div class="py-5 w-full px-1">
+                                                    <InputLabel
+                                                        for="name"
+                                                        value="Category"
+                                                    />
+                                                    <TextInput
+                                                        id="name"
+                                                      
+                                                        type="text"
+                                                        class="mt-1 block w-full"
+                                                        required
+                                                        autocomplete="name"
+                                                    />
+                                                  
+                                                </div>
+                                                <div class="py-5 w-full px-1">
+                                                    <InputLabel
+                                                        for="name"
+                                                        value="Picture"
+                                                    />
+                                                    <TextInput
+                                                        id="name"
+                                                      
+                                                        type="file"
+                                                        class="mt-1 py-2 block w-full"
+                                                        required
+                                                        autocomplete="name"
+                                                    />
+                                                  
+                                                </div>  
+
+                                            </div>
                                             <div class="py-5 px-1">
                                                 <InputLabel
                                                     for="name"
-                                                    value="Meal Description (Limit 600 char)"
+                                                    value="Content"
                                                 />
 
                                                 <textarea @input="checkLength"
@@ -171,9 +247,20 @@ import HeaderVue from "./Header.vue";
                                                     rows="5"
                                                     cols="50"
                                                 ></textarea>
+
                                                 
                                             </div>
+                                            <div>
+
+                                                <button class="btn-17  " submit>
+                                                  <span class="text-container">
+                                                    <span class="text  bg-transparent ">Button</span>
+                                                  </span>
+                                                </button>
+                                            </div>
+
                                         </div>
+
                                     </form>
                                 </div>
                             </div>
@@ -189,94 +276,146 @@ import HeaderVue from "./Header.vue";
     <Footer></Footer>
 </template>
 
-<script>
-import axios from "axios";
-
-export default {};
-</script>
 
 <style scoped>
-button:hover .span-mother {
-    position: absolute;
+/* From Uiverse.io by doniaskima */ 
+.btn-17,
+.btn-17 *,
+.btn-17 :after,
+.btn-17 :before,
+.btn-17:after,
+.btn-17:before {
+  border: 0 solid;
+  box-sizing: border-box;
 }
 
-button:hover .span-mother span {
-    transform: translateY(1.3em);
+.btn-17 {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: button;
+  background-color: transparent;
+  background-image: none;
+  color: #1B998B;
+  cursor: pointer;
+
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
 }
 
-button .span-mother span:nth-child(1) {
-    transition: 0.2s;
+.btn-17:disabled {
+  cursor: default;
 }
 
-button .span-mother span:nth-child(2) {
-    transition: 0.3s;
+.btn-17:-moz-focusring {
+  outline: auto;
 }
 
-button .span-mother span:nth-child(3) {
-    transition: 0.4s;
+.btn-17 svg {
+  display: block;
+  vertical-align: middle;
 }
 
-button .span-mother span:nth-child(4) {
-    transition: 0.5s;
+.btn-17 [hidden] {
+  display: none;
 }
 
-button .span-mother span:nth-child(5) {
-    transition: 0.6s;
+.btn-17 {
+  border-radius: 99rem;
+  border-width: 2px;
+  padding: 0.8rem 3rem;
+  z-index: 0;
 }
 
-button .span-mother span:nth-child(6) {
-    transition: 0.7s;
-}
-button .span-mother2 {
-    display: flex;
-    position: absolute;
-    overflow: hidden;
+.btn-17,
+.btn-17 .text-container {
+  overflow: hidden;
+  position: relative;
 }
 
-button .span-mother2 span {
-    transform: translateY(-1.5em);
+.btn-17 .text-container {
+  display: block;
+  mix-blend-mode: difference;
 }
 
-button:hover .span-mother2 span {
+.btn-17 .text {
+  display: block;
+  position: relative;
+}
+
+.btn-17:hover .text {
+  -webkit-animation: move-up-alternate 0.3s forwards;
+  animation: move-up-alternate 0.3s forwards;
+  color: #fff;
+
+}
+
+@-webkit-keyframes move-up-alternate {
+  0% {
     transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
-button .span-mother2 span {
-    transition: 0.2s;
+@keyframes move-up-alternate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(80%);
+  }
+
+  51% {
+    transform: translateY(-80%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
-button .span-mother2 span:nth-child(2) {
-    transition: 0.3s;
+.btn-17:after,
+.btn-17:before {
+  --skew: 0.2;
+  background: #1B998B;
+  content: "";
+  display: block;
+  height: 102%;
+  left: calc(-50% - 50% * var(--skew));
+  pointer-events: none;
+  position: absolute;
+  top: -104%;
+  transform: skew(calc(150deg * var(--skew))) translateY(var(--progress, 0));
+  transition: transform 0.2s ease;
+  width: 100%;
 }
 
-button .span-mother2 span:nth-child(3) {
-    transition: 0.4s;
+.btn-17:after {
+  --progress: 0%;
+  left: calc(50% + 50% * var(--skew));
+  top: 102%;
+  z-index: -1;
 }
 
-button .span-mother2 span:nth-child(4) {
-    transition: 0.5s;
+.btn-17:hover:before {
+  --progress: 100%;
 }
 
-button .span-mother2 span:nth-child(5) {
-    transition: 0.6s;
-}
-
-button .span-mother2 span:nth-child(6) {
-    transition: 0.7s;
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        bottom: -10rem;
-    }
-    to {
-        opacity: 1;
-        bottom: 0;
-    }
-}
-
-.animate-fade-in {
-    animation: fade-in 0.5s ease-in;
+.btn-17:hover:after {
+  --progress: -102%;
 }
 </style>
