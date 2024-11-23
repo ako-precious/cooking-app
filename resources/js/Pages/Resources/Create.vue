@@ -8,14 +8,16 @@ import InputLabel from "@/Components/InputLabel.vue";
 import HeaderVue from "./Header.vue";
 import { route } from "ziggy-js";
 import { useForm } from "@inertiajs/vue3";
-import ErrorMessage from "@/Layout/Component/ErrorMessage.vue";
+// import ErrorMessage from "@/Layout/Component/ErrorMessage.vue";
 const form = useForm({
-    name: null,
-    email: null,
-    password: null,
-    password_confirmation: null,
+    title: null,
+    slug: null,
+    category: null,
+    reading_time: null,
+    post_photo_path: null,
+    read_time: null,
 });
-const register = () => form.post(route("register.store"));
+const register = () => form.post(route("resources.store"));
 </script>
 
 <template>
