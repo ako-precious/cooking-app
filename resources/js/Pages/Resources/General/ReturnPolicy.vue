@@ -22,9 +22,7 @@ import HeaderVue from "../Header.vue";
                             class="flex flex-col md:flex-row items-start justify-between md:items-center"
                         >
                             <div class="py-3">
-                                <h1
-                                    class="font-semibold text-xl lg:text-2xl "
-                                >
+                                <h1 class="font-semibold text-xl lg:text-2xl">
                                     <nav class="flex" aria-label="Breadcrumb">
                                         <ol
                                             class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse"
@@ -110,99 +108,53 @@ import HeaderVue from "../Header.vue";
             </div>
 
             <div
-                class="container p-4 lg:p-8 mx-auto relative grid grid-cols-1 lg:grid-cols-3 min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx  text-oynx dark:text-snow"
+                class="container p-4 lg:p-8 mx-auto relative grid grid-cols-1 lg:grid-cols-3 min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx text-oynx dark:text-snow"
             >
                 <div class="col-span-2">
                     <div class="py-3">
-                        <h1
-                            class="font-semibold text-2xl lg:text-5xl "
-                        >
+                        <h1 class="font-semibold text-2xl lg:text-5xl">
                             Return Policy
                         </h1>
                     </div>
                     <div class="py-3">
-                        <h1 class="text-sm opacity-70 text-oynx flex justify-between dark:text-snow">
-                           <span> By Airbnb on Dec 18, 2019 </span> <span>3 min read </span> 
+                        <h1
+                            class="text-sm opacity-70 text-oynx flex justify-between dark:text-snow"
+                        >
+                            <span> By Airbnb on Dec 18, 2019 </span>
+                            <span>3 min read </span>
                         </h1>
-                        <h1 class="text-sm py-2 italic opacity-65 ">
-Updated Sep 2, 2021
+                        <h1 class="text-sm py-2 italic opacity-65">
+                            Updated Sep 2, 2021
                         </h1>
                     </div>
-                    <div class="py-3 h-96 max-w-full overflow-y-scroll disable-scrollbars">
+                    <div
+                        class="py-3 h-96 max-w-full overflow-y-scroll disable-scrollbars"
+                    >
                         <!-- class="relative object-cover  transition-all duration-[0.8s]  group-hover:left-0" -->
                         <img
-                     class="w-full h-auto"
-                    src="/images/cook.png"
-                    alt=""
-                />
+                            class="w-full h-auto"
+                            src="/images/cook.png"
+                            alt=""
+                        />
                     </div>
-                    
-                   
+
                     <div class="py-3">
-                      
-                        <h1
-                            class="py-4 font-semibold text-xl lg:text-3xl "
-                        >
+                        <h1 class="py-4 font-semibold text-xl lg:text-3xl">
                             Why Our Return Policy Exists
                         </h1>
-                  
-                        <h1 class="text-base ">
+
+                        <h1 class="text-base">
                             At Ounjemi, we are committed to ensuring every meal
                             shared through our platform brings joy and
                             satisfaction. Our return policy is designed to
                             address any concerns you may have, uphold the
                             quality of our services, and maintain trust between
                             cooks and customers.
-                            
-                            <h1
-                            class="font-semibold text-xl lg:text-2xl py-3"
-                        > Our Core Values 
-                        
-                        </h1>
+
+                            <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                                Our Core Values
+                            </h1>
                             <ul class="flex flex-col gap-2">
-                                <li >
-                                    <b> Fairness: </b> We believe in creating a
-                                    balanced system that protects both our cooks
-                                    and customers.
-                                </li>
-                                <li>
-                                    <b>Transparency:</b> Clear and honest
-                                    communication is at the heart of our return
-                                    process.
-                                </li>
-                                <li>
-                                    <b>Customer Satisfaction: </b> Your
-                                    happiness matters to us, and we aim to make
-                                    every experience a positive one.
-                                </li>
-                                <li>
-                                   
-                                    This policy reflects our dedication to
-                                    creating a platform where homemade meals are
-                                    enjoyed with confidence and peace of mind.
-                                </li>
-                            </ul>
-                        </h1>
-                    </div> <div class="py-3">
-                        
-                        <h1
-                            class="py-4 font-semibold text-2xl lg:text-3xl "
-                        >
-                        Eligibility for Returns/Refunds
-                        </h1>
-                   
-                        <h1
-                            class="font-semibold text-xl lg:text-2xl py-3"
-                        >
-                        Timeframe
-                        </h1>
-                        <h1 class="text-base ">
-                            Customers can request a refund or replacement within 24 hours of receiving their meal. This ensures issues are addressed promptly while maintaining food safety standards
-                            <br /><br />
-                            <span class="font-semibold text-xl">
-                                Our Core Values </span
-                            ><br /><br />
-                            <ul>
                                 <li>
                                     <b> Fairness: </b> We believe in creating a
                                     balanced system that protects both our cooks
@@ -219,7 +171,6 @@ Updated Sep 2, 2021
                                     every experience a positive one.
                                 </li>
                                 <li>
-                                    <br />
                                     This policy reflects our dedication to
                                     creating a platform where homemade meals are
                                     enjoyed with confidence and peace of mind.
@@ -227,11 +178,83 @@ Updated Sep 2, 2021
                             </ul>
                         </h1>
                     </div>
+                    <div class="py-3">
+                        <h1 class="py-4 font-semibold text-2xl lg:text-3xl">
+                            Eligibility for Returns/Refunds
+                        </h1>
+
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            Timeframe
+                        </h1>
+                        <h1 class="text-base">
+                            Customers can request a refund or replacement within
+                            12 hours of receiving their meal. This ensures
+                            issues are addressed promptly while maintaining food
+                            safety standards
+                        </h1>
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            Conditions for Returns/Refunds
+                        </h1>
+                        <span class="text-base">
+                            Refunds or replacements are valid under the
+                            following circumstances:
+                        </span>
+                        <br /><br />
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                                <b>Poor Quality or Spoiled Food:</b> The meal is
+                                of unacceptable quality, such as being
+                                undercooked, spoiled, or inedible.
+                            </li>
+                            <li>
+                                <b> Incorrect Order Delivered:</b> The meal
+                                received does not match the order placed (e.g.,
+                                wrong dish or quantity).
+                            </li>
+                            <li>
+                                <b> Missing Items:</b> Parts of the order are
+                                missing (e.g., side dishes, sauces, or extras).
+                            </li>
+                        </ul>
+                        <br>
+                        <span class="font-semibold text-base ">
+                            Requests outside these conditions or timeframe may
+                            not be eligible for resolution unless there are
+                            exceptional circumstances.
+                        </span>
+                    </div>
+                    <div class="py-3">
+                        <h1 class="py-4 font-semibold text-xl lg:text-3xl">
+                            Non-Eligible Scenarios
+                        </h1>
+
+                        <span class="text-base">
+                            Refunds or returns will not be granted in the following cases:
+                        </span>
+                        <br /><br />
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                               <b> Meal is Partially or Completely Consumed: </b>Refunds cannot be processed for meals that have already been partially eaten or finished, as this compromises the ability to verify the issue.
+                            </li>
+                            <li>
+                               <b> Complaint Beyond the Specified Timeframe: </b> Requests made after the 24-hour window from the time of delivery will not be considered.
+                            </li>
+                            <li>
+                               <b>Change of Mind:</b>  If the customer simply changes their mind after receiving the meal but before consuming it, a refund will not be processed.
+                            </li>
+                        </ul>
+                        <br>
+                    </div>
                 </div>
             </div>
 
             <!-- {{ $page.props.auth.user }} -->
-
         </div>
     </div>
     <Footer></Footer>
