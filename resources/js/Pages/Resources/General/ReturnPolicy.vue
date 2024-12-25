@@ -17,13 +17,13 @@ import HeaderVue from "../Header.vue";
                 class="m-auto flex flex-col justify-center h-full p-6 lg:pb-10 w-full"
             >
                 <div class="lg:w-full">
-                    <div class="flex flex-col w-full">
+                    <div class="flex flex-col w-full text-oynx dark:text-snow">
                         <div
                             class="flex flex-col md:flex-row items-start justify-between md:items-center"
                         >
                             <div class="py-3">
                                 <h1
-                                    class="font-semibold text-xl lg:text-2xl text-oynx dark:text-snow"
+                                    class="font-semibold text-xl lg:text-2xl "
                                 >
                                     <nav class="flex" aria-label="Breadcrumb">
                                         <ol
@@ -110,21 +110,21 @@ import HeaderVue from "../Header.vue";
             </div>
 
             <div
-                class="container p-4 lg:p-8 mx-auto relative grid grid-cols-1 lg:grid-cols-3 min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
+                class="container p-4 lg:p-8 mx-auto relative grid grid-cols-1 lg:grid-cols-3 min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx  text-oynx dark:text-snow"
             >
                 <div class="col-span-2">
                     <div class="py-3">
                         <h1
-                            class="font-semibold text-2xl lg:text-5xl text-oynx dark:text-snow"
+                            class="font-semibold text-2xl lg:text-5xl "
                         >
-                            Why Our Return Policy Exists
+                            Return Policy
                         </h1>
                     </div>
                     <div class="py-3">
                         <h1 class="text-sm opacity-70 text-oynx flex justify-between dark:text-snow">
                            <span> By Airbnb on Dec 18, 2019 </span> <span>3 min read </span> 
                         </h1>
-                        <h1 class="text-sm py-2 italic opacity-65 text-oynx dark:text-snow">
+                        <h1 class="text-sm py-2 italic opacity-65 ">
 Updated Sep 2, 2021
                         </h1>
                     </div>
@@ -137,14 +137,67 @@ Updated Sep 2, 2021
                 />
                     </div>
                     
+                   
                     <div class="py-3">
-                        <h1 class="text-lg text-oynx dark:text-snow">
+                      
+                        <h1
+                            class="py-4 font-semibold text-xl lg:text-3xl "
+                        >
+                            Why Our Return Policy Exists
+                        </h1>
+                  
+                        <h1 class="text-base ">
                             At Ounjemi, we are committed to ensuring every meal
                             shared through our platform brings joy and
                             satisfaction. Our return policy is designed to
                             address any concerns you may have, uphold the
                             quality of our services, and maintain trust between
                             cooks and customers.
+                            
+                            <h1
+                            class="font-semibold text-xl lg:text-2xl py-3"
+                        > Our Core Values 
+                        
+                        </h1>
+                            <ul class="flex flex-col gap-2">
+                                <li >
+                                    <b> Fairness: </b> We believe in creating a
+                                    balanced system that protects both our cooks
+                                    and customers.
+                                </li>
+                                <li>
+                                    <b>Transparency:</b> Clear and honest
+                                    communication is at the heart of our return
+                                    process.
+                                </li>
+                                <li>
+                                    <b>Customer Satisfaction: </b> Your
+                                    happiness matters to us, and we aim to make
+                                    every experience a positive one.
+                                </li>
+                                <li>
+                                   
+                                    This policy reflects our dedication to
+                                    creating a platform where homemade meals are
+                                    enjoyed with confidence and peace of mind.
+                                </li>
+                            </ul>
+                        </h1>
+                    </div> <div class="py-3">
+                        
+                        <h1
+                            class="py-4 font-semibold text-2xl lg:text-3xl "
+                        >
+                        Eligibility for Returns/Refunds
+                        </h1>
+                   
+                        <h1
+                            class="font-semibold text-xl lg:text-2xl py-3"
+                        >
+                        Timeframe
+                        </h1>
+                        <h1 class="text-base ">
+                            Customers can request a refund or replacement within 24 hours of receiving their meal. This ensures issues are addressed promptly while maintaining food safety standards
                             <br /><br />
                             <span class="font-semibold text-xl">
                                 Our Core Values </span
@@ -166,7 +219,7 @@ Updated Sep 2, 2021
                                     every experience a positive one.
                                 </li>
                                 <li>
-                                    <br /><br />
+                                    <br />
                                     This policy reflects our dedication to
                                     creating a platform where homemade meals are
                                     enjoyed with confidence and peace of mind.
