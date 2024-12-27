@@ -133,7 +133,7 @@ import HeaderVue from "../Header.vue";
                         <!-- class="relative object-cover  transition-all duration-[0.8s]  group-hover:left-0" -->
                         <img
                             class="w-full h-auto"
-                            src="/images/cook.png"
+                            src="/images/returnpolicy.png"
                             alt=""
                         />
                     </div>
@@ -247,6 +247,110 @@ import HeaderVue from "../Header.vue";
                             </li>
                             <li>
                                <b>Change of Mind:</b>  If the customer simply changes their mind after receiving the meal but before consuming it, a refund will not be processed.
+                            </li>
+                        </ul>
+                        <br>
+                    </div>
+                    <div class="py-3">
+                        <h1 class="py-4 font-semibold text-xl lg:text-3xl">
+                            Resolution Options
+                        </h1>
+
+                        <span class="text-base">
+                            At Ounjemi, we aim to resolve issues in a way that satisfies our customers while being fair to our cooks. Depending on the nature of the problem, we offer the following resolution options:
+                        </span>
+                        <!-- <br /><br /> -->
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            Timeframe
+                        </h1>
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                               <b> Full Refund: </b> Provided if the issue is severe, such as completely spoiled food or an entirely incorrect order  </li>
+                            <li>
+                              <b>  Partial Refund: </b> Offered if the issue affects only part of the order (e.g., one missing item in a multi-item order).
+                            </li>
+                        </ul>
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            Replacement
+                        </h1>
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                             If feasible, we will arrange for a replacement meal to be prepared and delivered.  </li>
+                            <li>
+                                Replacement availability depends on cook availability and delivery logistics, and it may take additional time to process.
+                            </li>
+                        </ul>
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            Platform Credits
+                        </h1>
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                                In certain cases, we may issue Ounjemi Credits as a goodwill gesture.  </li>
+                            <li>
+                                These credits can be used toward future orders on the platform and are valid for a specified timeframe
+                            </li>
+                        </ul>
+                        <br>
+                    </div>
+                    <div class="py-3">
+                        <h1 class="py-4 font-semibold text-xl lg:text-3xl">
+                            Responsibility for Resolving Issues
+                        </h1>
+
+                        <span class="text-base">
+                            At Ounjemi, we take a collaborative approach to resolving issues to ensure fairness for both customers and cooks. Responsibility is outlined as follows:   </span>
+                        <!-- <br /><br /> -->
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            The Platform (Ounjemi)
+                        </h1>
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                              <b> Handling Complaints: </b> Ounjemi serves as the primary point of contact for all return/refund requests and ensures clear communication between the customer and the cook. </li>
+                            <li>
+                              <b> Dispute Resolution:  </b> If there is a disagreement about an issue, Ounjemi will mediate to reach a fair resolution.
+                            </li>
+                            <li>
+                              <b> Quality Monitoring:</b>  The platform performs periodic quality checks and reviews cook profiles to maintain high standards across all meals.
+
+                            </li>
+                        </ul>
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            The Cook
+                        </h1>
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                              <b> Meal Quality:</b>   Cooks are responsible for ensuring the quality, accuracy, and safety of the meals they prepare. </li>
+                            <li>
+                             <b>Prompt Issue Resolution:</b>    Cooks are expected to cooperate with Ounjemi in resolving any verified complaints related to their meals.
+                            </li>
+                        </ul>
+                        <h1 class="font-semibold text-xl lg:text-2xl py-3">
+                            Dispute Resolution Process
+                        </h1>
+                        <ul
+                            style="list-style-type: disc"
+                            class="flex flex-col gap-2"
+                        >
+                            <li>
+                              <b>Investigation: </b>  Ounjemi reviews all complaints, including customer-provided evidence (e.g., photos, descriptions). </li>
+                            <li>
+                               <b>Fair Assessment: </b>  Both the customer and the cook are given an opportunity to share their side of the issue.</li>
+                            <li><b> Outcome: </b> A decision is made based on the evidence, and the appropriate resolution is implemented (refund, replacement, or credit).  These credits can be used toward future orders on the platform and are valid for a specified timeframe
                             </li>
                         </ul>
                         <br>
