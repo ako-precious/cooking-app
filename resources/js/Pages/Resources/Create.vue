@@ -146,7 +146,7 @@ const register = () => form.post(route("resources.store"));
                                                 />
                                                 <TextInput
                                                     id="name"
-                                                  
+                                                  v-model="resources.title"
                                                     type="text"
                                                     class="mt-1 block w-full"
                                                     required
@@ -161,7 +161,7 @@ const register = () => form.post(route("resources.store"));
                                                 />
                                                 <TextInput
                                                     id="name"
-                                                  
+                                                  v-model="resources.slug"
                                                     type="text"
                                                     class="mt-1 block w-full"
                                                     required
@@ -177,7 +177,7 @@ const register = () => form.post(route("resources.store"));
                                                     />
                                                     <TextInput
                                                         id="name"
-                                                      
+                                                      v-model="resources.category"
                                                         type="text"
                                                         class="mt-1 block w-full"
                                                         required
@@ -192,7 +192,7 @@ const register = () => form.post(route("resources.store"));
                                                     />
                                                     <TextInput
                                                         id="name"
-                                                      
+                                                      v-model="resources.read_time"
                                                         type="text"
                                                         class="mt-1 block w-full"
                                                         required
@@ -225,7 +225,7 @@ const register = () => form.post(route("resources.store"));
                                                     />
                                                     <TextInput
                                                         id="name"
-                                                      
+                                                      v-model="post_photo_path"
                                                         type="file"
                                                         class="mt-1 py-2 block w-full"
                                                         required
@@ -243,7 +243,7 @@ const register = () => form.post(route("resources.store"));
 
                                                 <textarea @input="checkLength"
                                                     autocomplete="other_info"
-                                                    id="other_info"
+                                                    v-model="resources.content"
                                                    
                                                     class="mt-1 block w-full disable-scrollbars border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
                                                     rows="5"
@@ -278,6 +278,42 @@ const register = () => form.post(route("resources.store"));
     <Footer></Footer>
 </template>
 
+<script>
+import axios from 'axios';
+
+export default {
+    data() {
+        return {
+           resources:{
+            title: '',
+            user_id: 1,
+            content:'',
+            post_photo_path:'',
+            read_time:'',
+            slug:'',
+            useful: 0,
+            useless:0,
+
+           }
+        };
+    },
+    methods: {
+        async saveHtmlContent() {
+            try {
+                // const response = await axios.post('/resource/store', {
+                //     content: this.htmlContent,
+                // });
+                // alert(response.data.message);
+                console.log(this.resources);
+                
+            } catch (error) {
+                console.error(error.response.data);
+                alert('Failed to save HTML content');
+            }
+        },
+    },
+};
+</script>
 
 <style scoped>
 /* From Uiverse.io by doniaskima */ 
