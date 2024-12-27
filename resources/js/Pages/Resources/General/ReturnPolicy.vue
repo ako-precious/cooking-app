@@ -133,7 +133,7 @@ import HeaderVue from "../Header.vue";
                         <!-- class="relative object-cover  transition-all duration-[0.8s]  group-hover:left-0" -->
                         <img
                             class="w-full h-auto"
-                            src="/images/returnpolicy.png"
+                            src="/images/returnpolicy.jpg"
                             alt=""
                         />
                     </div>
