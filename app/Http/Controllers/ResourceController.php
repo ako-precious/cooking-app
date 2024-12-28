@@ -37,12 +37,18 @@ class ResourceController extends Controller
     
         $sanitizedContent = $purifier->purify($request->input('content'));
     
-        Resource::create([
+       $resources= Resource::create([
             'title' => $request->input('title'),
+            'user_id' => $request->input('user_id'),
             'content' => $sanitizedContent,
+            'post_photo_path' => $request->input('post_photo_path'),
+            'read_time' => $request->input('read_time'),
+            'slug'=> $request->input('slug'),
+            'useful' => $request->input('useful'),
+            'useless' => $request->input('useless'),
         ]);
-    
-        return redirect()->route('posts.index');
+     
+        return redirect()->route('resources.index');
     }
 
     /**

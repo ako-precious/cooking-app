@@ -133,7 +133,7 @@ const register = () => form.post(route("resources.store"));
                                 class="flex justify-center item-center lg:gap-10 lg:px-10"
                             >
                                 <div class="w-full max-w-full py-2">
-                                    <form  @submit.prevent="resources.store" 
+                                    <form  @submit.prevent="saveResources" 
                                         class="relative flex min-w-0 break-words w-full py-4 shadow-reverse group rounded-2xl bg-clip-border"
                                     >
                                         <div
@@ -210,7 +210,7 @@ const register = () => form.post(route("resources.store"));
                                                     />
                                                     <TextInput
                                                         id="name"
-                                                      
+                                                      v-model="resources.category"
                                                         type="text"
                                                         class="mt-1 block w-full"
                                                         required
@@ -225,7 +225,7 @@ const register = () => form.post(route("resources.store"));
                                                     />
                                                     <TextInput
                                                         id="name"
-                                                      v-model="post_photo_path"
+                                                      v-model="resources.post_photo_path"
                                                         type="file"
                                                         class="mt-1 py-2 block w-full"
                                                         required
@@ -298,7 +298,7 @@ export default {
         };
     },
     methods: {
-        async saveHtmlContent() {
+        async saveResources() {
             try {
                 // const response = await axios.post('/resource/store', {
                 //     content: this.htmlContent,
