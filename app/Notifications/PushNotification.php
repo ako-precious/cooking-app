@@ -23,6 +23,10 @@ class PushNotification extends Notification
 
     public function via($notifiable)
     {
+        // Ensure the user has at least one valid subscription before sending
+    if ($notifiable->pushSubscriptions->isEmpty()) {
+        return [];
+    }
         return [WebPushChannel::class];
     }
 

@@ -34,7 +34,6 @@ import { add, isBefore, getDay } from "date-fns";
             <TextInput
                 readonly
                 hidden
-                required
                 class=""
                 type="number"
                 v-model="newSchedule.meal_id"
@@ -43,7 +42,6 @@ import { add, isBefore, getDay } from "date-fns";
             <TextInput
                 readonly
                 hidden
-                required
                 class="my-2 w-full"
                 type="number"
                 v-model="newSchedule.user_id"
@@ -94,7 +92,7 @@ import { add, isBefore, getDay } from "date-fns";
             />
             <TextInput
                 hidden
-                required
+                
                 class="w-[47%]"
                 v-model="newSchedule.cook_id"
                 type="date"
@@ -102,7 +100,7 @@ import { add, isBefore, getDay } from "date-fns";
             />
             <TextInput
                 hidden
-                required
+            
                 class="w-[47%]"
                 v-model="newSchedule.end_date"
                 type="date"

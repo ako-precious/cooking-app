@@ -19,24 +19,24 @@ defineProps({
     // pushSub: Boolean,
 });
 
-// const notificationPermission = ref(Notification.permission);
+const notificationPermission = ref(Notification.permission);
 
-// const showEnableButton = computed(
-//     () => notificationPermission.value !== "granted"
-// );
+const showEnableButton = computed(
+    () => notificationPermission.value !== "granted"
+);
 
-// async function requestNotificationPermission() {
-//     const permission = await Notification.requestPermission();
+async function requestNotificationPermission() {
+    const permission = await Notification.requestPermission();
 
-//     if (permission === "granted") {
-//         await subscribeUserToPush();
-//         notificationPermission.value = permission;
-//     } else {
-//         alert(
-//             "You need to enable notifications in your browser settings to receive push notifications."
-//         );
-//     }
-// }
+    if (permission === "granted") {
+        await subscribeUserToPush();
+        notificationPermission.value = permission;
+    } else {
+        alert(
+            "You need to enable notifications in your browser settings to receive push notifications."
+        );
+    }
+}
 </script>
 
 <script>
