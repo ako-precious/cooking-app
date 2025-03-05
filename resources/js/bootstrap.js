@@ -56,32 +56,36 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     }
 // }
 
+function urlBase64ToUint8Array(base64String) {
+    const padding = "=".repeat((4 - base64String.length % 4) % 4);
+    const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+    const rawData = atob(base64);
+    return new Uint8Array([...rawData].map((char) => char.charCodeAt(0)));
+}
+
 export async function subscribeUserToPush() {
     try {
-        // Request notification permission
         const permission = await Notification.requestPermission();
-
-        if (permission !== 'granted') {
-            // console.log('You need to enable notifications in your browser settings to receive push notifications.');
+        if (permission !== "granted") {
+            console.log("User denied push notification permission.");
             return;
         }
 
         const registration = await navigator.serviceWorker.ready;
-        
+
+        const applicationServerKey = urlBase64ToUint8Array(import.meta.env.VITE_VAPID_PUBLIC_KEY);
+
         const subscription = await registration.pushManager.subscribe({
             userVisibleOnly: true,
-            applicationServerKey: import.meta.env.VITE_VAPID_PUBLIC_KEY
-            });
-            
-            // console.log(subscription);
+            applicationServerKey
+        });
+
         await saveSubscription(subscription);
-        // console.log('User is subscribed:', subscription);
+        console.log("User is subscribed:", subscription);
     } catch (error) {
-        console.error('Failed to subscribe the user:', error);
-        // alert('Failed to subscribe the user for push notifications. Please check your browser settings.');
+        console.error("Failed to subscribe the user:", error);
     }
 }
-
 
 async function saveSubscription(subscription) {
     // Send the subscription object to your server to save it

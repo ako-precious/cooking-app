@@ -10,40 +10,40 @@ class PushSubscriptionController extends Controller
 
     public function store(Request $request)
     {
-        // $request->user()->updatePushSubscription(
-        //     $request->endpoint,
-        //     $request->keys['p256dh'],
-        //     $request->keys['auth']
-        // // 'user_id' => auth()->id(),
-        // );
-        // return response()->json(['success' => true]);
+        $request->user()->updatePushSubscription(
+            $request->endpoint,
+            $request->keys['p256dh'],
+            $request->keys['auth']
+        // 'user_id' => auth()->id(),
+        );
+        return response()->json(['success' => true]);
     }
-    // public function subscribe(Request $request)
-    // {
-    //     $data = $request->validate([
-    //         'endpoint' => 'required|string',
-    //         'public_key' => 'required|string',
-    //         'auth_token' => 'required|string',
-    //     ]);
+    public function subscribe(Request $request)
+    {
+        $data = $request->validate([
+            'endpoint' => 'required|string',
+            'public_key' => 'required|string',
+            'auth_token' => 'required|string',
+        ]);
 
-    //     $subscription = PushSubscription::updateOrCreate(
-    //         ['endpoint' => $data['endpoint']],
-    //         [
-    //             'public_key' => $data['public_key'],
-    //             'auth_token' => $data['auth_token'],
-    //             'user_id' => auth()->id(),
-    //         ]
-    //     );
+        $subscription = PushSubscription::updateOrCreate(
+            ['endpoint' => $data['endpoint']],
+            [
+                'public_key' => $data['public_key'],
+                'auth_token' => $data['auth_token'],
+                'user_id' => auth()->id(),
+            ]
+        );
 
-    //     return response()->json(['success' => true]);
-    // }
+        return response()->json(['success' => true]);
+    }
 
-    // public function unsubscribe(Request $request)
-    // {
-    //     $request->validate(['endpoint' => 'required|string']);
+    public function unsubscribe(Request $request)
+    {
+        $request->validate(['endpoint' => 'required|string']);
 
-    //     PushSubscription::where('endpoint', $request->endpoint)->delete();
+        PushSubscription::where('endpoint', $request->endpoint)->delete();
 
-    //     return response()->json(['success' => true]);
-    // }
+        return response()->json(['success' => true]);
+    }
 }

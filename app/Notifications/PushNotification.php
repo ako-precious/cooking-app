@@ -32,6 +32,13 @@ class PushNotification extends Notification
 
     public function toWebPush($notifiable, $notification)
     {
+        $subscriptions = $notifiable->routeNotificationFor('webpush');
+
+        if (!$subscriptions || $subscriptions->isEmpty()) {
+            \Log::error('No WebPush subscriptions found for user: ' . $notifiable->id);
+            return null; // Prevent error if no subscription exists
+        }
+        
         return (new WebPushMessage)
             ->title('New Notification')
             ->body($this->message)

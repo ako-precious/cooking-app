@@ -6,7 +6,7 @@ import FoodCard from "@/Layouts/FoodCard.vue";
 import Footer from "@/Layouts/Footer.vue";
 import DateRangePicker from "./Header/DateRangePicker.vue";
 import axios from "axios";
-// import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
+import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
 import { ref, computed } from "vue";
 
 

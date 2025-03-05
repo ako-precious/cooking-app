@@ -252,8 +252,8 @@ class MealScheduleController extends Controller
         }
 
         // Log the URL being sent
-        $url = env('APP_URL') . '/cook/order/' . $new_MealSchedule->id;
-        Log::info("Notification URL: " . $url);
+        // $url = env('APP_URL') . '/cook/order/' . $new_MealSchedule->id;
+        // Log::info("Notification URL: " . $url);
 
         $cook = User::find($cook->id);
         $cook->notify(new PushNotification("You have a meal order #" . $new_MealSchedule->id . " from " . $user->name, $new_MealSchedule->id));

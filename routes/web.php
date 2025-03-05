@@ -64,11 +64,11 @@ Route::get('user-profile/{id}', [WelcomeController::class, 'users'])->name('user
 
 Route::get('/maps/place/autocomplete', [WelcomeController::class, 'autocomplete']);
 
-// Route::post('/subscribe', [PushSubscriptionController::class, 'subscribe']);
-// Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
+Route::post('/subscribe', [PushSubscriptionController::class, 'subscribe']);
+Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
 
 // routes/api.php
-// Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
+Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
 
 // Route::get('api/meals', [WelcomeController::class, 'meals']);
