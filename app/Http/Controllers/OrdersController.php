@@ -225,15 +225,15 @@ class OrdersController extends Controller
         }
 
         // Save notification
-        $notification = new Notification();
-        $notification->user_id = $recipientId;
-        $notification->meal_schedule_id = $mealSchedule->id;
-        $notification->message = $notificationMessage;
-        $notification->status = 'unread';
-        $notification->save();
+        // $notification = new Notification();
+        // $notification->user_id = $recipientId;
+        // $notification->meal_schedule_id = $mealSchedule->id;
+        // $notification->message = $notificationMessage;
+        // $notification->status = 'unread';
+        // $notification->save();
 
-        $user = User::find($recipientId);
-        $user->notify(new PushNotification($notificationMessage, $mealSchedule->id));
+        // $user = User::find($recipientId);
+        // $user->notify(new PushNotification($notificationMessage, $mealSchedule->id));
         // Send email notification
         // $recipient = User::find($recipientId);
         // if ($recipient) {

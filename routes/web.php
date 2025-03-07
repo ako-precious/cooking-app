@@ -83,11 +83,11 @@ Route::get('api/filtered-meals', [WelcomeController::class, 'filtered_meals']);
 Route::get('/auth/google/callback', [AccountController::class, 'callback']);
 Route::get('/auth/google/return', [AccountController::class, 'return'])->name('auth.google');
 
-Route::get('/auth/facebook/callback', [AccountController::class, 'fb_callback']);
-Route::get('/auth/facebook/return', [AccountController::class, 'fb_return'])->name('auth.facebook');
+// Route::get('/auth/facebook/callback', [AccountController::class, 'fb_callback']);
+// Route::get('/auth/facebook/return', [AccountController::class, 'fb_return'])->name('auth.facebook');
 
-Route::get('/auth/microsoft/callback', [AccountController::class, 'azure_callback']);
-Route::get('/auth/microsoft/return', [AccountController::class, 'azure_return'])->name('auth.microsoft');
+// Route::get('/auth/microsoft/callback', [AccountController::class, 'azure_callback']);
+// Route::get('/auth/microsoft/return', [AccountController::class, 'azure_return'])->name('auth.microsoft');
 Route::get('meals/{id}', [MealController::class, 'meals']);
 Route::get('/cook/setup', [CookController::class, 'setup'])->name('cook-setup');
 

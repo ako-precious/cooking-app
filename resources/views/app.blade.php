@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -13,34 +15,36 @@
     <link rel="icon" type="image/png" href="/images/logo2.png" style="border-radius: 999px;" class="rounded-full">
     <!-- Scripts -->
     @routes
-    
+
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
-    
-    @inertiaHead
     <script src="https://js.stripe.com/v3/"></script>
+    @inertiaHead
     <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <style>
-        
         .disable-scrollbars {
             scrollbar-width: none;
             /* Firefox */
             -ms-overflow-style: none;
             /* IE 10+ */
         }
+
         html {
-scroll-behavior: smooth;
-}
+            scroll-behavior: smooth;
+        }
 
         .disable-scrollbars::-webkit-scrollbar {
             display: none;
             /* Chrome/Safari/Webkit */
         }
     </style>
-    
+
 </head>
 
 <body class="disable-scrollbars scroll-smooth font-sans antialiased bg-snow dark:bg-oynx">
+    <script nonce="{{ request()->attributes->get('csp_nonce') }}">
+        // Your inline script here
+    </script>
     @inertia
 
 </body>

@@ -255,26 +255,26 @@ class MealScheduleController extends Controller
         // $url = env('APP_URL') . '/cook/order/' . $new_MealSchedule->id;
         // Log::info("Notification URL: " . $url);
 
-        $cook = User::find($cook->id);
-        $cook->notify(new PushNotification("You have a meal order #" . $new_MealSchedule->id . " from " . $user->name, $new_MealSchedule->id));
+        // $cook = User::find($cook->id);
+        // $cook->notify(new PushNotification("You have a meal order #" . $new_MealSchedule->id . " from " . $user->name, $new_MealSchedule->id));
 
-        $notification = new Notification();
-        $notification->user_id = $cook->id;
-        $notification->meal_schedule_id = $new_MealSchedule->id;
-        $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from " . $user->name;
-        $notification->status = 'unread';
-        $notification->save();
+        // $notification = new Notification();
+        // $notification->user_id = $cook->id;
+        // $notification->meal_schedule_id = $new_MealSchedule->id;
+        // $notification->message = "You have a meal order #" . $new_MealSchedule->id . " from " . $user->name;
+        // $notification->status = 'unread';
+        // $notification->save();
 
 
-        $user = User::find($user->id);
-        $user->notify(new PushNotification("Your meal schedule #" . $new_MealSchedule->id . " has been saved", $new_MealSchedule->id));
+        // $user = User::find($user->id);
+        // $user->notify(new PushNotification("Your meal schedule #" . $new_MealSchedule->id . " has been saved", $new_MealSchedule->id));
 
-        $notification = new Notification();
-        $notification->user_id = $user->id;
-        $notification->meal_schedule_id = $new_MealSchedule->id;
-        $notification->message = "Your meal schedule #" . $new_MealSchedule->id . " has been saved";
-        $notification->status = 'unread';
-        $notification->save();
+        // $notification = new Notification();
+        // $notification->user_id = $user->id;
+        // $notification->meal_schedule_id = $new_MealSchedule->id;
+        // $notification->message = "Your meal schedule #" . $new_MealSchedule->id . " has been saved";
+        // $notification->status = 'unread';
+        // $notification->save();
 
 
         return response()->json([
