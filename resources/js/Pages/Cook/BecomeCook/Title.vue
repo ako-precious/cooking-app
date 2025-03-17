@@ -55,7 +55,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                             <div class="py-5 px-1">
                                                 <InputLabel
                                                     for="name"
-                                                    value="Meal Description (Limit 600 char)"
+                                                    value="Meal Description (Limit 1000 char)"
                                                 />
 
                                                 <textarea @input="checkLength"
@@ -68,7 +68,7 @@ import InputLabel from "@/Components/InputLabel.vue";
                                                 ></textarea>
                                                 <p class="my-3 " :class="maxLength ? 'text-lighred' : 'text-oynx dark:text-snow'">
                                                     
-                                                    {{ inputLength }}/600 
+                                                    {{ inputLength }}/1000 
                                                 </p>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@ export default {
             }
         },
         checkLength(event) {
-            if (this.inputLength >= 600) {
+            if (this.inputLength >= 1000) {
                 // If input length exceeds the maximum length, prevent further input
                 this.maxLength = true
                 event.preventDefault();

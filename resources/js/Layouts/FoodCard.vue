@@ -4,6 +4,7 @@ import Login from "@/Pages/Auth/Login.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import Loader from "@/Components/Loader.vue";
 import OrderCard from "@/Pages/Order/OrderCard.vue";
+import BulkIcon from "@/Components/Icons/BulkIcon.vue";
 defineProps(["meal"]);
 </script>
 
@@ -61,7 +62,8 @@ defineProps(["meal"]);
                     <span class="text-lg font-bold text-oynx dark:text-snow "
                         >${{ meal.price }}</span
                     >
-                </p>
+                    <BulkIcon></BulkIcon>
+    </p>
                 <div
                     class="items-center justify-end rounded-md flex opacity-70 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
@@ -80,6 +82,8 @@ defineProps(["meal"]);
                             icon="fa-solid fa-heart"
                             class="text-xl text-persian pr-2 cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
+
+                        
                     </div>
                     <div v-else>
                         <font-awesome-icon
