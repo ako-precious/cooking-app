@@ -12,7 +12,7 @@
                     <span
                         class="hidden md:block ml-2 font-bold transition-all duration-200 ease-in-out text-2xl uppercase text-oynx dark:text-snow"
                     >
-                        Ounjemi
+                        Mymealni
                     </span>
                 </div>
             </Link>

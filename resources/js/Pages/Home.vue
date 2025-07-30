@@ -505,7 +505,7 @@ function parallax(e) {
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3  text-lg text-snow">Life is busy, and planning meals can be a hassle. With Ounjemi, you can set a personalized meal schedule. Choose your favorite cooks, pick the dishes you crave, and let us handle the rest. Enjoy your meals on your terms. </p>
+                        <p class="z-10 p-3  text-lg text-snow">Life is busy, and planning meals can be a hassle. With Mymealni, you can set a personalized meal schedule. Choose your favorite cooks, pick the dishes you crave, and let us handle the rest. Enjoy your meals on your terms. </p>
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
@@ -537,7 +537,7 @@ function parallax(e) {
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3  text-lg text-snow">From the moment you place your order to the time it arrives at your door, Ounjemi keeps you in the loop. Know exactly where your meal is at every stage—whether it's Pending, Accepted, In Transit, or Delivered. Once it's in your hands, you confirm the delivery, ensuring everything is just right. </p>
+                        <p class="z-10 p-3  text-lg text-snow">From the moment you place your order to the time it arrives at your door, Mymealni keeps you in the loop. Know exactly where your meal is at every stage—whether it's Pending, Accepted, In Transit, or Delivered. Once it's in your hands, you confirm the delivery, ensuring everything is just right. </p>
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
@@ -553,7 +553,7 @@ function parallax(e) {
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3  text-lg text-snow">Every cook has a story, and Ounjemi is the place to tell yours. Build a profile that highlights your culinary journey, your specialties, and what makes your cooking unique. Let others get to know the person behind the food.</p>
+                        <p class="z-10 p-3  text-lg text-snow">Every cook has a story, and Mymealni is the place to tell yours. Build a profile that highlights your culinary journey, your specialties, and what makes your cooking unique. Let others get to know the person behind the food.</p>
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
@@ -569,7 +569,7 @@ function parallax(e) {
                                            alt="Photo by Lorenzo Herrera"
                                            class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                                        />
-                                       <p class="z-10 p-3 text-lg text-snow"> Your payment is safe with Ounjemi. When you pay for your meal order, we hold the funds and only release them to the cook once you confirm that the meal has been delivered to you. If, for any reason, the meal isn't delivered, you'll receive a full refund. Your satisfaction and security are our top priorities.</p>
+                                       <p class="z-10 p-3 text-lg text-snow"> Your payment is safe with Mymealni. When you pay for your meal order, we hold the funds and only release them to the cook once you confirm that the meal has been delivered to you. If, for any reason, the meal isn't delivered, you'll receive a full refund. Your satisfaction and security are our top priorities.</p>
                
                                        <div
                                            class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
@@ -601,7 +601,7 @@ function parallax(e) {
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3  text-lg text-snow">As a cook on Ounjemi, you have full control over your time. Set your availability for when you can take orders and choose the specific dates when your meals will be available. This way, you can manage your cooking around your life, ensuring you're always in control. </p>
+                        <p class="z-10 p-3  text-lg text-snow">As a cook on Mymealni, you have full control over your time. Set your availability for when you can take orders and choose the specific dates when your meals will be available. This way, you can manage your cooking around your life, ensuring you're always in control. </p>
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"
@@ -618,7 +618,7 @@ function parallax(e) {
                             alt="Photo by Lorenzo Herrera"
                             class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
                         />
-                        <p class="z-10 p-3 text-lg text-snow">Got a question or need help? Our support team is just a message or call away, ensuring your Ounjemi experience is smooth and enjoyable.</p>
+                        <p class="z-10 p-3 text-lg text-snow">Got a question or need help? Our support team is just a message or call away, ensuring your Mymealni experience is smooth and enjoyable.</p>
 
                         <div
                             class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-80 bg-oynx"

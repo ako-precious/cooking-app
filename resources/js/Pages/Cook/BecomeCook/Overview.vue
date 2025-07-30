@@ -15,7 +15,7 @@ import BecomeCook from "./BecomeCook.vue";
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
-                            Experience Simplicity with Ounjemi
+                            Experience Simplicity with Mymealni
                         </h1>
                         <h1
                             class="pt-1 lg:text-lg tracking-wide text-oynx dark:text-snow"

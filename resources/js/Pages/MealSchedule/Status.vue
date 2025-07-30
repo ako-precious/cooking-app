@@ -18,7 +18,7 @@ defineProps(["mealSchedule"]);
                     <ApplicationMark class=""></ApplicationMark>
                 </div>
                 <div class="flex flex-col pt-2 justify-center items-center gap-2">
-                    <h4 class="font-bold">Ounjemi</h4>
+                    <h4 class="font-bold">Mymealni</h4>
                     <p onclick="updateStatus()" id="message"></p>
                 </div>
                 <div class="flex flex-col gap-3 border-b py-6 text-xs">
@@ -87,7 +87,7 @@ defineProps(["mealSchedule"]);
                                     fill="#000"
                                 ></path>
                             </svg>
-                            messages@ounjemi.com
+                            messages@mymealni.com
                         </p>
                         <p class="flex gap-2">
                             <svg

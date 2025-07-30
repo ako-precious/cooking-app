@@ -1,10 +1,10 @@
 # Terms of Service
 
-Welcome to Ounjemi! We are excited to have you join our student-run cooking platform, where home cooks connect with customers to share delicious, homemade meals. Before you begin, please read and agree to the following policy:
+Welcome to Mymealni! We are excited to have you join our student-run cooking platform, where home cooks connect with customers to share delicious, homemade meals. Before you begin, please read and agree to the following policy:
 
 <h2>
-1. About Ounjemi </h2>
-Ounjemi is a student-run cooking platform that connects home cooks with customers. Our goal is to create a vibrant community where passionate cooks can share their culinary talents, and food enthusiasts can enjoy diverse and homemade meals.
+1. About Mymealni </h2>
+Mymealni is a student-run cooking platform that connects home cooks with customers. Our goal is to create a vibrant community where passionate cooks can share their culinary talents, and food enthusiasts can enjoy diverse and homemade meals.
 
 <br> 
 <h2>
@@ -22,11 +22,11 @@ Please note that our platform is in its early stages, and many of our student co
 <br> 
 <h2>5. Disclaimer </h2>
 
-We encourage you to read our disclaimer carefully before placing your order with Ounjemi. By proceeding, you confirm your understanding and acceptance of the terms:
+We encourage you to read our disclaimer carefully before placing your order with Mymealni. By proceeding, you confirm your understanding and acceptance of the terms:
 
 <ul>
 <li>
-Ounjemi is a student-run cooking platform that connects home cooks with customers.
+Mymealni is a student-run cooking platform that connects home cooks with customers.
 </li>
 <li>
 Meals prepared by our student cooks are typically made in their personal homes, which may not have been inspected by public health officials.
@@ -44,12 +44,12 @@ We encourage customers to rate their meals after each order to help us maintain 
 </ul>
 
 Our platform is in its early stages, and many of our student cooks share apartments, making it challenging to meet traditional commercial kitchen inspection standards.
-By placing an order with Ounjemi, you confirm your understanding and acceptance of these terms.
+By placing an order with Mymealni, you confirm your understanding and acceptance of these terms.
 
 <br> 
 <h2>6. Contact and Support</h2>
 
 If you have any questions, concerns, or feedback, please do not hesitate to contact us at this <a
-                                    href="mailto:messages@ounjemi.com"
+                                    href="mailto:messages@Mymealni.com"
                                     class="text-oynx dark:text-snow transition hover:opacity-75">
-Email Address </a> We are here to help and ensure you have a great experience with Ounjemi.
+Email Address </a> We are here to help and ensure you have a great experience with Mymealni.

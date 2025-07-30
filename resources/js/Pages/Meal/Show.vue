@@ -466,7 +466,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                     <hr
                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
             />
-                    <font-awesome-icon icon="circle-exclamation" />    To protect your payment, do not transfer money outside of the Ounjemi website.
+                    <font-awesome-icon icon="circle-exclamation" />    To protect your payment, do not transfer money outside of the Mymealni website.
                 </div>
             </div>
             

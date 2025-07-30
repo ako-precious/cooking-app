@@ -3,7 +3,7 @@ export default {
     data() {
         return {
             currentYear: new Date().getFullYear(), // Get the current year using Date object
-            appName: "Ounjemi", // Get the current year using Date object
+            appName: "Mymealni", // Get the current year using Date object
         };
     },
     mounted() {
@@ -107,7 +107,7 @@ export default {
 
                             <li>
                                 <a
-                                    href="mailto:messages@ounjemi.com"
+                                    href="mailto:messages@mymealni.com"
                                     class="text-oynx dark:text-snow transition hover:opacity-75">
                                     Email Address </a>
                             </li>

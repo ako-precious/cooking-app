@@ -31,9 +31,9 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                 <p
                     class="text-sm leading-relaxed text-oynx dark:text-gray-400"
                 >
-                    Ounjemi is a student-run cooking platform that connects
-                    home cooks with customers. Please be aware that meals
-                    prepared by our student cooks are typically made in
+                    Mymealni is a  cooking platform that connects
+                    home cooks with food lovers. Please be aware that meals
+                    prepared by our home cooks are typically made in
                     their personal homes, which may not have been inspected
                     by public health officials. However, we ensure that all
                     our cooks hold a valid Food Handling Certificate,
@@ -71,7 +71,7 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                 <p
                     class="text-sm leading-relaxed text-oynx dark:text-gray-400"
                 >
-                We encourage you to read our disclaimer carefully before placing your order with Ounjemi. By proceeding, you confirm your understanding and acceptance of the terms."
+                We encourage you to read our disclaimer carefully before placing your order with Mymealni. By proceeding, you confirm your understanding and acceptance of the terms."
                 </p>
             </div>
             <!-- Modal footer -->
