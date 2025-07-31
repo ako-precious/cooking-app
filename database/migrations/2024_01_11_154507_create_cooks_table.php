@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('means_of_id')->nullable();
             $table->longText('other_info')->nullable();
             $table->enum('status', ['pending','unavailable', 'available'])->default('pending');
+            $table->json('availability')->nullable();
+            $table->string('question1', 600)->nullable();
+            $table->string('question2', 600)->nullable();
+            $table->string('question3', 600)->nullable();
             $table->timestamps();
         });
     }

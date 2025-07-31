@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('cooking_limit')->default(10);
             $table->enum('status', ['pending','unavailable', 'available'])->default('pending');
             $table->enum('ordering_preferences', ['manual', 'automatic'])->default('manual');
+            $table->string('serving_style')->default('single');
+
             $table->timestamps();
         });
     }

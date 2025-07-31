@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('user_id', 'user_meal_schedule')->references('id')->on('users');
             $table->string('meal_time');
             $table->date('start_date');
+             $table->string('address')->nullable();
             $table->date('end_date');
             $table->enum('status', ['pending', 'rejected', 'accepted', 'processed', 'ready', 'in transit', 'delivered', 'confirmed'])->default('pending');
             $table->timestamps();
