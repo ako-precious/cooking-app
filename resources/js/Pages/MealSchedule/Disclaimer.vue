@@ -22,56 +22,31 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
                 <h3
                     class="text-xl font-semibold t text-oynx lg:text-2xl dark:text-snow"
                 >
-                    Terms of Service
+                    MyMealni Checkout Consent
                 </h3>
                 
             </div>
             <!-- Modal body -->
             <div class="h-60 overflow-y-auto p-5 space-y-6">
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
+                    class="text-lg leading-relaxed text-oynx dark:text-gray-400"
                 >
-                    Mymealni is a  cooking platform that connects
-                    home cooks with food lovers. Please be aware that meals
-                    prepared by our home cooks are typically made in
-                    their personal homes, which may not have been inspected
-                    by public health officials. However, we ensure that all
-                    our cooks hold a valid Food Handling Certificate,
-                    demonstrating their understanding of proper food
-                    handling and safety practices.
+                   Before completing your order, please read and agree to the following:
                 </p>
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
+                    class="text-base leading-relaxed text-oynx dark:text-gray-400"
                 >
-                    While we take steps to ensure the quality and safety of
-                    our meals, we want to transparently disclose this
-                    information to our customers. Additionally, we encourage
-                    customers to rate their meals after each order, helping
-                    us maintain high standards and accountability within our
-                    community.
+                    <ol class=" list-decimal  list-inside  text-oynx dark:text-gray-400 "><li>Meals are prepared by independent cooks, not MyMealni.</li>
+                    <li>Allergen & dietary information must be reviewed carefully before ordering.</li>
+                    <li>MyMealni is a facilitator: we handle payments and delivery but do not cook or produce meals.</li>
+                    <li>By paying, you release MyMealni from liability for issues related to meal preparation, within the limits of applicable law.</li>
+                    <li>Refunds are only provided for missing items, non-delivery, or proven safety concerns.</li></ol>
                 </p>
+              
                 <p
-                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
+                    class="text-base leading-relaxed text-oynx dark:text-gray-400"
                 >
-                    Please note that our platform is in its early stages,
-                    and many of our student cooks share apartments, making
-                    it challenging to meet traditional commercial kitchen
-                    inspection standards. We appreciate your understanding
-                    and support as we grow and evolve.
-                </p>
-                <p
-                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
-                >
-                    Please note that our platform is in its early stages,
-                    and many of our student cooks share apartments, making
-                    it challenging to meet traditional commercial kitchen
-                    inspection standards. We appreciate your understanding
-                    and support as we grow and evolve.
-                </p>
-                <p
-                    class="text-sm leading-relaxed text-oynx dark:text-gray-400"
-                >
-                We encourage you to read our disclaimer carefully before placing your order with Mymealni. By proceeding, you confirm your understanding and acceptance of the terms."
+                We encourage you to read carefully before placing your order with Mymealni. By proceeding, you confirm your understanding and acceptance of the terms."
                 </p>
             </div>
             <!-- Modal footer -->

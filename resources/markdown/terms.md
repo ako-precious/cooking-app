@@ -1,55 +1,159 @@
 # Terms of Service
 
-Welcome to Mymealni! We are excited to have you join our student-run cooking platform, where home cooks connect with customers to share delicious, homemade meals. Before you begin, please read and agree to the following policy:
+Welcome to MyMealni! By using our platform, you agree to the following Terms & Conditions designed to ensure safety, clarity, and compliance for both users and cooks.
 
 <h2>
-1. About Mymealni </h2>
-Mymealni is a student-run cooking platform that connects home cooks with customers. Our goal is to create a vibrant community where passionate cooks can share their culinary talents, and food enthusiasts can enjoy diverse and homemade meals.
+1. Definitions </h2>
+<ol> 
 
-<br> 
-<h2>
-2. Food Safety and Handling </h2>
-All meals prepared by our student cooks are typically made in their personal homes, which may not have been inspected by public health officials. However, we ensure that all our cooks hold a valid Food Handling Certificate, demonstrating their understanding of proper food handling and safety practices.
-
-<h2> <br> 
-3. Quality Assurance </h2>
-While we take steps to ensure the quality and safety of our meals, we want to transparently disclose this information to our customers. We encourage customers to rate their meals after each order, helping us maintain high standards and accountability within our community.
-
-<h2> 
-<br> 
-4. Platform Stage</h2>
-Please note that our platform is in its early stages, and many of our student cooks share apartments, making it challenging to meet traditional commercial kitchen inspection standards. We appreciate your understanding and support as we grow and evolve.
-<br> 
-<h2>5. Disclaimer </h2>
-
-We encourage you to read our disclaimer carefully before placing your order with Mymealni. By proceeding, you confirm your understanding and acceptance of the terms:
-
-<ul>
 <li>
-Mymealni is a student-run cooking platform that connects home cooks with customers.
+"Platform": MyMealni mobile/web application and related services
 </li>
 <li>
-Meals prepared by our student cooks are typically made in their personal homes, which may not have been inspected by public health officials.
+"User": Any individual ordering meals via MyMealni
+</li>
+<li>
+"Cook": Independent vendor who prepares meals listed on MyMealni
+</li>
+<li>
+"Meal": Any food item listed by a cook and delivered through MyMealni
+</li>
+</ol>
+<br> 
+<br> 
+<h2>
+2. User Agreement </h2>
+
+<li>
+Users acknowledge that meals are prepared by independent cooks, not MyMealni.
+</li>
+<li>
+Users must provide accurate allergy and dietary information when placing orders.
+</li>
+<li>
+Users understand that MyMealni facilitates orders and delivery only, and does not produce meals.
+</li>
+<li>
+Users release MyMealni from liability for issues related to meal preparation, within the limits of applicable law.
+</li>
+<li>
+Users agree to abide by payment and cancellation policies displayed at checkout.
+</li>
+<h2>
+ <br> 
+ <br> 
+3. Quality Assurance </h2>
+While we take steps to ensure the quality and safety of the meals, we want to transparently disclose this information to our customers. We encourage customers to rate their meals after each order, helping us maintain high standards and accountability within our community.
+<h2> 
+<br> 
+<br> 
+4. Cook Agreement</h2>
+
+<li>
+Cooks are independent vendors, not employees or contractors of MyMealni.
+</li>
+
+Cooks must:
+<li>
+Maintain valid Food Handler Certification
+</li>
+<li>
+Follow local health regulations for meal preparation
+</li>
+<li>
+Provide safe meals with accurate allergen disclosure
+</li>
+<li>
+Ensure truthful and accurate descriptions of meals
+</li>
+
+Cooks accept that failure to comply may result in account suspension or removal.
+<br> 
+<br> 
+<h2>5.  Platform Role & Liability </h2>
+
+MyMealni:
+
+<ol>
+<li>
+Facilitates orders, payment, and delivery
+</li>
+<li>
+Coordinates logistics but does not prepare meals
 </li>
 <li>
 All our cooks hold a valid Food Handling Certificate, demonstrating their understanding of proper food handling and safety practices.
 </li>
 <li>
-While we take steps to ensure the quality and safety of our meals, we want to transparently disclose this information to our customers.
+Maintains liability and delivery insurance, but is not liable for negligence or unsafe practices by cooks
 </li>
 <li>
-We encourage customers to rate their meals after each order to help us maintain high standards and accountability within our community.
+May suspend or remove users/cooks violating platform rules
 </li>
 
-</ul>
+</ol>
 
-Our platform is in its early stages, and many of our student cooks share apartments, making it challenging to meet traditional commercial kitchen inspection standards.
-By placing an order with Mymealni, you confirm your understanding and acceptance of these terms.
+
 
 <br> 
-<h2>6. Contact and Support</h2>
 
-If you have any questions, concerns, or feedback, please do not hesitate to contact us at this <a
-                                    href="mailto:messages@Mymealni.com"
-                                    class="text-oynx dark:text-snow transition hover:opacity-75">
-Email Address </a> We are here to help and ensure you have a great experience with Mymealni.
+<h2>6.   Payments & Refunds </h2>
+
+<ol>
+<li>
+Payments are processed through secure third-party payment gateways.
+</li>
+<li>
+Refunds are handled case-by-case, typically for:
+<ol>
+<li>
+Missing or undelivered meals
+</li>
+<li>
+Wrong items
+</li>
+<li>
+Proven safety concerns
+</li>
+</ol>
+</li>
+MyMealni reserves the right to hold cook payouts if there is an active dispute.
+<li>
+</li>
+
+</ol>
+
+
+<h2>7.   Dispute Resolution </h2>
+
+<ol>
+<li>
+Users and cooks should attempt to resolve disputes via the app's support first.
+</li>
+<li>MyMealni acts as a neutral facilitator and may mediate disputes but does not guarantee compensation unless policy conditions are met.
+</li>
+
+</ol>
+
+<h2>8.   Acceptance</h2>
+
+<ol>
+<li>
+By using MyMealni, you agree to these Terms & Conditions.
+</li>
+<li>MyMealni acts as a neutral facilitator and may mediate disputes but does not guarantee compensation unless policy conditions are met.
+
+<ol>
+<li>
+Users accept terms at sign-up and checkout
+
+</li>
+<li>
+Cooks accept terms before listing meals
+</li>
+</li>
+
+</ol>
+
+
+
