@@ -18,14 +18,16 @@ return new class extends Migration
             $table->string('name', 50)->nullable();
             $table->string('region', 30)->nullable();
             $table->string('description',600)->nullable();
-            $table->float('price', 8, 2)->default(10.00);
+            $table->json('prices')->nullable();
             $table->json('ingredients')->nullable();
+            $table->json('tags')->nullable();
             $table->integer('cooking_limit')->default(10);
             $table->enum('status', ['pending','unavailable', 'available'])->default('pending');
             $table->enum('ordering_preferences', ['manual', 'automatic'])->default('manual');
-            $table->string('serving_style')->default('single');
+            $table->enum('serving_style',  ['single', 'bulk'])->default('single');
 
             $table->timestamps();
+        
         });
     }
 
