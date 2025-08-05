@@ -26,6 +26,165 @@ import TextInput from "@/Components/TextInput.vue";
                     </div>
                     <div class="w-full lg:w-1/2">
                         <div class="flex flex-col w-full">
+                            
+                            <div v-for="(price_set, index) in prices" :key="index" class="flex lg:p-5 items-center">
+                                <div class="w-full p-3 lg:px-10 lg:ml-8 flex items-center space-x-4">
+                                    
+                                    <div class="flex-grow flex items-center space-x-2">
+                                        <input 
+                                            type="text" 
+                                            placeholder="e.g., 2 liters, Small"
+                                            class="border-2 rounded-lg bg-transparent border-gray-300 w-1/2 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" 
+                                            v-model="price_set.size"
+                                        >
+                                        
+                                        <font-awesome-icon icon="dollar-sign" />
+                                        <input 
+                                            type="number" 
+                                            placeholder="Price"
+                                            class="border-2 rounded-lg bg-transparent border-gray-300 w-1/2 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" 
+                                            v-model="price_set.value"
+                                        >
+                                    </div>
+                                    
+                                    <button 
+                                        type="button" 
+                                        v-show="prices.length > 1"
+                                        @click="removePriceField(index)" 
+                                        class="text-red-500 hover:text-red-700"
+                                    >
+                                        <font-awesome-icon icon="trash" />
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="flex justify-center p-5">
+                                <button 
+                                    type="button" 
+                                    @click="addPriceField"
+                                    class="text-persian hover:text-persian-dark font-semibold transition-colors duration-200"
+                                >
+                                    + Add another size and price
+                                </button>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template #progressbar>
+            <div class="h-1 w-full bg-neutral-400 dark:bg-neutral-600">
+                <div
+                    class="h-1 bg-persian transition-all duration-250 delay-75"
+                    style="width: 90%"
+                ></div>
+            </div>
+        </template>
+        <template #backbtn>
+            <div class="float-left ml-8 h-full flex items-center">
+                <Link
+                    :href="`/become-a-cook/${Meal.id}/ordering-preference`"
+                    class="font-semibold"
+                >
+                <button class="relative group">
+                        <span
+                            class="hover-underline-animation"
+                        >
+                            Back
+                        </span>
+                    </button>
+                </Link>
+            </div>
+        </template>
+        <template #mainbtn>
+            
+            <button @click="saveData" class="btn2span group">
+                <span class="next-span">Next Step</span>
+                <span class="with-span">We're with you</span>
+            </button>
+        </template>
+    </BecomeCook>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+    props: {
+        Meal: Object,
+    },
+    data() {
+        return {
+            prices: [
+                { size: '', value: null }, // Start with one empty field
+            ],
+        };
+    },
+    created() {
+        // Load existing data if available
+        if (this.Meal && this.Meal.prices) {
+            try {
+                const existingPrices = JSON.parse(this.Meal.prices);
+                if (existingPrices && existingPrices.length > 0) {
+                    this.prices = existingPrices;
+                }
+            } catch (error) {
+                console.error("Error parsing Meal.prices JSON:", error);
+                // Fallback to the default single empty field if parsing fails
+                this.prices = [{ size: '', value: null }];
+            }
+        }
+    },
+    methods: {
+        addPriceField() {
+            // Add a new object to the prices array
+            this.prices.push({ size: '', value: null });
+        },
+        removePriceField(index) {
+            // Remove the object at the specified index from the prices array
+            this.prices.splice(index, 1);
+        },
+        saveData() {
+            // Filter out any empty price fields before saving
+            const validPrices = this.prices.filter(p => p.size && p.value !== null);
+
+            axios
+                .put("/meal/price/" + this.Meal.id, { prices: validPrices }) // Send the filtered prices array
+                .then((response) => {
+                    const MealId = response.data.meal.id;
+                    this.$inertia.visit(
+                        `/become-a-cook/${MealId}/final-overview`
+                    );
+                })
+                .catch((error) => {
+                    console.error("Error saving data:", error);
+                });
+        },
+    },
+};
+</script>>
+
+<!-- <template>
+    <BecomeCook>
+        <template #info>
+            <div
+                class="container relative mx-auto overflow-hidden pb-10 lg:p-0 w-screen"
+            >
+                <div
+                    class="m-auto flex flex-col lg:flex-row items-center h-full lg:p-8"
+                >
+                    <div class="lg:w-1/2 py-5 lg:px-5">
+                        <h1
+                            class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
+                        >
+                            Set the price for the meal
+                        </h1>
+                        <h1 class="pt-5 text-lg text-oynx dark:text-snow">
+                            Craft a price that reflects the unique joy of enjoying your culinary creation
+                        </h1>
+                    </div>
+                    <div class="w-full lg:w-1/2">
+                        <div class="flex flex-col w-full">
                             <div class="flex lg:p-5">
                                 <div
                                     class="w-full lg:w-2/3 p-3 lg:p-10 lg:ml-8"
@@ -110,7 +269,7 @@ export default {
         },
     },
 };
-</script>
+</script> -->
 
 <style scoped>
 .bg-dots-darker {

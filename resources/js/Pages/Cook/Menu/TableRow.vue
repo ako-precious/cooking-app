@@ -52,7 +52,7 @@ defineProps(["meal"]);
 
     <td class="whitespace-nowrap px-6 py-3">
         <Link :href="`/become-a-cook/${meal.id}/price`"
-            >$ {{ meal.price }}</Link
+            >$ {{ meal.prices }}</Link
         >
     </td>
     <td v-if="meal.ingredients"  class="whitespace-nowrap px-6 py-3">

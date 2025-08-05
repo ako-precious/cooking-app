@@ -71,7 +71,7 @@ class MealController extends Controller
     public function price(Request $request, $id)
     {
         $meal =  Meal::find($id);
-        $meal->price = $request->price;
+        $meal->prices = $request->prices;
         $meal->save();
         return response()->json(['meal' => $meal]);
     }
