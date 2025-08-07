@@ -14,10 +14,12 @@ class Meal extends Model
 
     protected $table = 'meals';
 
-    protected $fillable = ['cook_id', 'name', 'region', 'description',  'price', 'ingredients', 'cooking_limit', 'status', 'ordering_preferences'];
+    protected $fillable = ['cook_id', 'name', 'region', 'description',  'prices', 'ingredients', 'cooking_limit', 'status', 'ordering_preferences'];
 
     protected $casts = [
-        'ingredients' => 'json',
+        'ingredients' => 'json', 
+        'prices' => 'json', 
+        'tags' => 'json', 
     ];
     
     public function user(): BelongsTo

@@ -97,12 +97,12 @@ namespace App\Models{
  * @property string|null $means_of_id
  * @property string|null $other_info
  * @property string $status
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $availability
  * @property string|null $question1
  * @property string|null $question2
  * @property string|null $question3
- * @property string|null $availability
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Meal> $meals
  * @property-read int|null $meals_count
  * @property-read \App\Models\User $user
@@ -135,14 +135,15 @@ namespace App\Models{
  * @property string|null $name
  * @property string|null $region
  * @property string|null $description
- * @property float $price
+ * @property array|null $prices
  * @property array|null $ingredients
+ * @property array|null $tags
  * @property int $cooking_limit
  * @property string $status
  * @property string $ordering_preferences
+ * @property string $serving_style
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string $serving_style
  * @property-read \App\Models\Cook $cook
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MealPhotos> $mealPhotos
  * @property-read int|null $meal_photos_count
@@ -163,10 +164,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereIngredients($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereOrderingPreferences($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Meal wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Meal wherePrices($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereServingStyle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Meal whereTags($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Meal whereUpdatedAt($value)
  */
 	class Meal extends \Eloquent {}
@@ -205,11 +207,11 @@ namespace App\Models{
  * @property int $user_id
  * @property string $meal_time
  * @property string $start_date
+ * @property string|null $address
  * @property string $end_date
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $address
  * @property int $portion
  * @property-read \App\Models\Meal $meal
  * @property-read \App\Models\orders|null $order
@@ -451,6 +453,9 @@ namespace App\Models{
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
+ * @property string|null $two_factor_secret
+ * @property string|null $two_factor_recovery_codes
+ * @property string|null $two_factor_confirmed_at
  * @property string|null $remember_token
  * @property int|null $current_team_id
  * @property string|null $profile_photo_path
@@ -463,10 +468,6 @@ namespace App\Models{
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $two_factor_secret
- * @property string|null $two_factor_recovery_codes
- * @property string|null $two_factor_confirmed_at
- * @property string|null $microsoft_id
  * @property string|null $continent
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Chat> $Chat
  * @property-read int|null $chat_count
@@ -492,7 +493,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereGoogleId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereMeansOfId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereMicrosoftId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereOtherInfo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
@@ -535,6 +535,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $meal_schedule_id
+ * @property int $user_id
  * @property float $total_price
  * @property string $status
  * @property string $session_id
@@ -551,6 +552,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|orders whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|orders whereTotalPrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|orders whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|orders whereUserId($value)
  */
 	class orders extends \Eloquent {}
 }

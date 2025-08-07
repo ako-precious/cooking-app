@@ -98,7 +98,7 @@ defineProps(["meal"]);
                     />
                     <font-awesome-icon
                         title="Share Meal"
-                        icon="share"
+                        icon="share" @click="shareMeal"
                         class="text-xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                 </div>
@@ -206,6 +206,40 @@ export default {
                 await this.fetchData();
             }
         },
+        async shareMeal() {
+   const shareUrl = `/meals/${this.meal.id}`;
+    const shareData = {
+        title: this.meal.name,
+        text: `Check out this delicious meal: ${this.meal.name}`,
+        url: shareUrl
+    };
+
+    try {
+        // Check if the Web Share API is supported
+        if (navigator.share) {
+            await navigator.share(shareData);
+        } else {
+            // Fallback: Copy to clipboard
+            await navigator.clipboard.writeText(shareUrl);
+            
+            // You can show a toast/notification here
+            alert('Link copied to clipboard!');
+            // Or if you have a toast system:
+            // this.showToast('Link copied to clipboard!');
+        }
+    } catch (error) {
+        if (error.name !== 'AbortError') {
+            // Fallback: Copy to clipboard if share was cancelled or failed
+            try {
+                await navigator.clipboard.writeText(shareUrl);
+                alert('Link copied to clipboard!');
+            } catch (clipboardError) {
+                // Final fallback: Show the URL for manual copying
+                prompt('Copy this link to share:', shareUrl);
+            }
+        }
+    }
+},
         async fetchData() {
             try {
                 const response = await axios.get(

@@ -32,7 +32,7 @@ library.add(
     faMagnifyingGlass, faForward, faBackward, faPlus, faEarthAfrica, faEarthAmerica, 
     faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faEarth, faImages, 
     faDollarSign, faCaretDown, faCaretUp, faToggleOff, faToggleOn, faImage, faPepperHot, 
-    faNewspaper, faBell, faRightFromBracket, faChevronDown, faFilter, faEye, faPenToSquare, faExclamationCircle
+    faNewspaper, faBell, faRightFromBracket, faChevronDown, faFilter, faEye, faPenToSquare, faExclamationCircle,
 );
 
 const appName = import.meta.env.VITE_APP_NAME || 'ounjemi';

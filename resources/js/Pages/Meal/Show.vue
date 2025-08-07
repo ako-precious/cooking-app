@@ -77,6 +77,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
 
                     <font-awesome-icon
                         icon="share"
+                        @click="shareMeal"
                         class="text-xl px-3 text-oynx active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                 </div>
@@ -242,23 +243,68 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                     class="font-semibold text-xl text-oynx dark:text-snow"
                                 >
                                     <small>Cooked by </small>
-                                 <span class=" uppercase"> {{ meal.user.name }} </span>  
+                                    <span class="uppercase">
+                                        {{ meal.user.name }}
+                                    </span>
                                 </h1>
                             </div>
                             <hr
                                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
                             />
                             <div class="flex flex-col py-8">
-                                <h1 class="text-lg text-oynx dark:text-snow">
+                                <h1 class="text-xl text-oynx dark:text-snow">
                                     <font-awesome-icon
                                         icon="globe"
                                         class="mr-3"
                                     />
                                     This meal is popular in certain regions of
-                                    {{ meal.region }}
+                                    {{ meal.region }} 
                                 </h1>
                             </div>
 
+                            <hr
+                                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+                            />
+                            <div class="flex flex-col py-8">
+                                <h1
+                                    class="font-semibold text-2xl lg:text-3xl pb-4 text-oynx dark:text-snow"
+                                >
+                                    <font-awesome-icon
+                                        icon="fa-solid fa-dollar-sign"
+                                        class="mr-2"
+                                    />
+                                    Price and Quantity  {{ typeof meal.prices }}
+                                </h1>
+                                <div id="app" class="w-full max-w-screen-lg p-4">
+        <h1 class="text-center text-3xl font-bold mb-6 text-oynx dark:text-snow">Select a price option</h1>
+        
+        <!-- The form is now managed by Vue -->
+        <form class="grid grid-cols-3 md:grid-cols-6 gap-2 w-full max-w-screen-lg mx-auto">
+    <div v-for="(priceOption, index) in meal.prices" :key="index">
+      <input
+        class="hidden peer"
+        :id="'radio_' + index"
+        type="radio"
+        name="radio"
+        :value="priceOption"
+        v-model="selectedPrice"
+      />
+      <label
+        class="flex flex-col p-4 border-2 border-gray-400 cursor-pointer peer-checked:border-polynesian peer-checked:shadow-lg"
+        :for="'radio_' + index"
+      >
+        <span class="text-xs font-semibold uppercase">{{ priceOption.size }}</span>
+        <span class="text-xl font-bold mt-2">${{ priceOption.price }}</span>
+        
+      </label>
+    </div>
+  </form>
+        <div class="mt-8 text-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
+            <p class="text-gray-600 dark:text-gray-300">Selected OPtion:</p>
+            <p class="text-3xl font-bold text-polynesian dark:text-lighred  "> <span class="mr-6"> {{ selectedPrice.size }}</span>  <span>   ${{ selectedPrice.price }}</span></p>
+        </div>
+    </div>
+                            </div>
                             <hr
                                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
                             />
@@ -359,117 +405,122 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
             />
 
             <!-- component -->
-            <div class="  my-12 ">
-            <div class=" px-12 mb-4  ">
+            <div class="my-12">
+                <div class="px-12 mb-4">
                     <h1 class="font-semibold text-xl text-oynx dark:text-snow">
                         More about your cook
                     </h1>
                 </div>
-            <div
-                class="flex flex-col lg:flex-row items-center py-3 md:px-8"
-            >
-               
-
                 <div
-                    class="h-56 w-75 absolute flex justify-center items-center"
-                >
-                    <img
-                        v-if="meal.user.profile_photo_path"
-                        :src="getProfilePhotoUrl(meal.user.profile_photo_path)"
-                        class="object-cover h-20 w-20 rounded-full"
-                        alt="avatar"
-                    />
-                    <img
-                        v-else
-                        :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
-                        class="object-cover h-20 w-20 rounded-full"
-                        alt="avatar"
-                    />
-                </div>
-
-                <div
-                    class="h-56  mx-4 w-5/6 bg-polynesian dark:bg-lighred rounded-3xl shadow-md sm:w-80 sm:mx-0"
+                    class="flex flex-col lg:flex-row items-center py-3 md:px-8"
                 >
                     <div
-                        class="h-1/2 w-full flex justify-between items-baseline px-3 py-5"
+                        class="h-56 w-75 absolute flex justify-center items-center"
                     >
-                        <div class="p-3 text-center">
-                            <span
-                                class="text-base font-bold block uppercase tracking-wide dark:text-oynx text-snow"
-                            >
-                                {{ ratings.toFixed(1) }}
-                            </span>
-                            <span class="text-xs dark:text-oynx text-snow"
-                                >Rating</span
-                            >
-                        </div>
-                        <div class="p-3 text-center">
-                            <span
-                                class="text-base font-bold block uppercase tracking-wide dark:text-oynx text-snow"
-                            >
-                                {{ reviews.length }}
-                            </span>
-                            <span class="text-xs dark:text-oynx text-snow"
-                                >Review(s)</span
-                            >
-                        </div>
+                        <img
+                            v-if="meal.user.profile_photo_path"
+                            :src="
+                                getProfilePhotoUrl(meal.user.profile_photo_path)
+                            "
+                            class="object-cover h-20 w-20 rounded-full"
+                            alt="avatar"
+                        />
+                        <img
+                            v-else
+                            :src="`https://ui-avatars.com/api/?name=${meal.user.name}&color=FE6D73&background=004E98`"
+                            class="object-cover h-20 w-20 rounded-full"
+                            alt="avatar"
+                        />
                     </div>
 
                     <div
-                        class="bg-snow dark:bg-oynx shadow-small h-1/2 w-full rounded-b-3xl flex flex-col justify-around items-center"
+                        class="h-56 mx-4 w-5/6 bg-polynesian dark:bg-lighred rounded-3xl shadow-md sm:w-80 sm:mx-0"
                     >
                         <div
-                            class="w-full h-1/2 flex justify-between items-center px-3 pt-2"
+                            class="h-1/2 w-full flex justify-between items-baseline px-3 py-5"
                         >
-                            <div
-                                class="p-3 flex flex-col justify-center items-center"
-                            >
+                            <div class="p-3 text-center">
                                 <span
-                                    class="text-base font-bold block uppercase tracking-wide text-oynx dark:text-snow"
+                                    class="text-base font-bold block uppercase tracking-wide dark:text-oynx text-snow"
                                 >
-                                    {{ timeCooking }}
+                                    {{ ratings.toFixed(1) }}
                                 </span>
-                                <span class="text-xs text-oynx dark:text-snow">
-                                    {{ CookingDate }} <br />
-                                    Cooking</span
+                                <span class="text-xs dark:text-oynx text-snow"
+                                    >Rating</span
                                 >
                             </div>
+                            <div class="p-3 text-center">
+                                <span
+                                    class="text-base font-bold block uppercase tracking-wide dark:text-oynx text-snow"
+                                >
+                                    {{ reviews.length }}
+                                </span>
+                                <span class="text-xs dark:text-oynx text-snow"
+                                    >Review(s)</span
+                                >
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-snow dark:bg-oynx shadow-small h-1/2 w-full rounded-b-3xl flex flex-col justify-around items-center"
+                        >
                             <div
-                                class="flex flex-col justify-center items-center"
+                                class="w-full h-1/2 flex justify-between items-center px-3 pt-2"
                             >
-                                <div class="z-10 p-3 text-center">
-                                    <Link
-                                        :href="
-                                            route('user.show', {
-                                                id: meal.user.id,
-                                            })
-                                        "
+                                <div
+                                    class="p-3 flex flex-col justify-center items-center"
+                                >
+                                    <span
+                                        class="text-base font-bold block uppercase tracking-wide text-oynx dark:text-snow"
                                     >
-                                        <span
-                                            class="text-sm block tracking-wide text-oynx dark:text-snow hover:underline"
+                                        {{ timeCooking }}
+                                    </span>
+                                    <span
+                                        class="text-xs text-oynx dark:text-snow"
+                                    >
+                                        {{ CookingDate }} <br />
+                                        Cooking</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex flex-col justify-center items-center"
+                                >
+                                    <div class="z-10 p-3 text-center">
+                                        <Link
+                                            :href="
+                                                route('user.show', {
+                                                    id: meal.user.id,
+                                                })
+                                            "
                                         >
-                                            View <br />
-                                            Profile
-                                        </span>
-                                    </Link>
+                                            <span
+                                                class="text-sm block tracking-wide text-oynx dark:text-snow hover:underline"
+                                            >
+                                                View <br />
+                                                Profile
+                                            </span>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="lg:w-2/3 p-10 text-oynx dark:text-snow">
+                        <hr
+                            class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+                        />
+                        <br />
+                        {{ meal.user.other_info }} <br />
+                        <br />
+                        <hr
+                            class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
+                        />
+                        <font-awesome-icon icon="circle-exclamation" /> To
+                        protect your payment, do not transfer money outside of
+                        the Mymealni website.
+                    </div>
                 </div>
-                
-                <div class=" lg:w-2/3  p-10 text-oynx dark:text-snow">
-                    <hr
-                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-            />
-            <br>  {{ meal.user.other_info }} <br> <br>
-                    <hr
-                class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
-            />
-                    <font-awesome-icon icon="circle-exclamation" />    To protect your payment, do not transfer money outside of the Mymealni website.
-                </div>
-            </div>
-            
             </div>
         </div>
     </div>
@@ -486,6 +537,7 @@ export default {
         reviews: Object,
         ratings: String,
         rating: Object,
+        
     },
     data() {
         return {
@@ -496,12 +548,13 @@ export default {
             userId: "",
             message: "",
             error: "",
+            selectedPrice: null,
             wishlist: null,
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
-                user_id: "", 
-                 cook_availability: "",
+                user_id: "",
+                cook_availability: "",
                 start_date: "",
                 price: "",
                 end_date: "",
@@ -514,6 +567,10 @@ export default {
     },
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
+          // Set the first price option as default selected
+    if (this.meal.prices && this.meal.prices.length > 0) {
+        this.selectedPrice = this.meal.prices[0].price;
+    }
     },
     created() {
         this.getPhoto();
@@ -539,6 +596,7 @@ export default {
                 return `${diffYears}`;
             }
         },
+
         CookingDate() {
             const createdAt = new Date(this.meal.user.created_at);
             const now = new Date();
@@ -567,6 +625,41 @@ export default {
                 return profilePhotoPath;
             } else {
                 return `/storage/${profilePhotoPath}`;
+            }
+        },
+        // Add this method to your Vue component
+        async shareMeal() {
+            const shareUrl = `/meals/${this.meal.id}`;
+            const shareData = {
+                title: this.meal.name,
+                text: `Check out this delicious meal: ${this.meal.name}`,
+                url: shareUrl,
+            };
+
+            try {
+                // Check if the Web Share API is supported
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    // Fallback: Copy to clipboard
+                    await navigator.clipboard.writeText(shareUrl);
+
+                    // You can show a toast/notification here
+                    alert("Link copied to clipboard!");
+                    // Or if you have a toast system:
+                    // this.showToast('Link copied to clipboard!');
+                }
+            } catch (error) {
+                if (error.name !== "AbortError") {
+                    // Fallback: Copy to clipboard if share was cancelled or failed
+                    try {
+                        await navigator.clipboard.writeText(shareUrl);
+                        alert("Link copied to clipboard!");
+                    } catch (clipboardError) {
+                        // Final fallback: Show the URL for manual copying
+                        prompt("Copy this link to share:", shareUrl);
+                    }
+                }
             }
         },
         removeWishList(id) {
@@ -618,7 +711,7 @@ export default {
                             ""
                         );
                 })
-               .catch((error) => {
+                .catch((error) => {
                     // console.error("Error fetching data:", error);
                     // Set default image on error as well
                     this.src = "/images/imagenotfound.png";
@@ -652,48 +745,47 @@ export default {
                     // Set loading state to false when fetching completes
                     this.isLoading = false;
                 });
-                
         },
-       async openModal() {
-    // Check if user is authenticated
-    if (!this.$page.props.auth.user) {
-        // Redirect to sign in page if not authenticated
-        this.$inertia.visit('/login'); // or whatever your sign-in route is
-        return;
-    }
+        async openModal() {
+            // Check if user is authenticated
+            if (!this.$page.props.auth.user) {
+                // Redirect to sign in page if not authenticated
+                this.$inertia.visit("/login"); // or whatever your sign-in route is
+                return;
+            }
 
-    // Get the current date
-    const currentDate = new Date();
-                  
-    const response = await axios.get(`/cook/menu/` + this.meal.cook_id);
-    const availability = response.data.data.availability;
-                    
-    console.log(response.data.data);
-                                 
-    // Add one day to the current date
-    const nextDayDate = new Date(currentDate);
-    nextDayDate.setDate(currentDate.getDate() + 1);
-     
-    // Format the next day date as an ISO string without the time part
-    const nextDayISOString = nextDayDate
-        .toISOString()
-        .replace(/T.*$/, "");
-    
-    // clear everything in the div and close it
-    this.newEventModalVisible = true;
-    
-    // this.suggestedMeal = [];
-    this.newSchedule = {
-        meal_name: this.meal.name,
-        meal_id: this.meal.id.toString(),
-        user_id: this.$page.props.auth.user.id.toString(),
-        cook_availability: availability,
-        start_date: nextDayISOString,
-        end_date: nextDayISOString,
-        price: this.meal.price,
-        meal_time: "Choose a Meal time",
-    };
-},
+            // Get the current date
+            const currentDate = new Date();
+
+            const response = await axios.get(`/cook/menu/` + this.meal.cook_id);
+            const availability = response.data.data.availability;
+
+            console.log(response.data.data);
+
+            // Add one day to the current date
+            const nextDayDate = new Date(currentDate);
+            nextDayDate.setDate(currentDate.getDate() + 1);
+
+            // Format the next day date as an ISO string without the time part
+            const nextDayISOString = nextDayDate
+                .toISOString()
+                .replace(/T.*$/, "");
+
+            // clear everything in the div and close it
+            this.newEventModalVisible = true;
+
+            // this.suggestedMeal = [];
+            this.newSchedule = {
+                meal_name: this.meal.name,
+                meal_id: this.meal.id.toString(),
+                user_id: this.$page.props.auth.user.id.toString(),
+                cook_availability: availability,
+                start_date: nextDayISOString,
+                end_date: nextDayISOString,
+                price: this.meal.price,
+                meal_time: "Choose a Meal time",
+            };
+        },
         closeModal() {
             // clear everything in the div and close it
             this.newEventModalVisible = false;
