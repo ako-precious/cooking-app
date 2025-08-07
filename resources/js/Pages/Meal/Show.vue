@@ -273,7 +273,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                         icon="fa-solid fa-dollar-sign"
                                         class="mr-2"
                                     />
-                                    Price and Quantity  {{ typeof meal.prices }}
+                                    Price and Quantity 
                                 </h1>
                                 <div id="app" class="w-full max-w-screen-lg p-4">
         <h1 class="text-center text-3xl font-bold mb-6 text-oynx dark:text-snow">Select a price option</h1>
@@ -782,7 +782,7 @@ export default {
                 cook_availability: availability,
                 start_date: nextDayISOString,
                 end_date: nextDayISOString,
-                price: this.meal.price,
+                price: this.selectedPrice.price,
                 meal_time: "Choose a Meal time",
             };
         },

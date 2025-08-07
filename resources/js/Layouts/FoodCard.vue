@@ -56,16 +56,40 @@ defineProps(["meal"]);
                     >
                 </div>
             </div>
+            <p>
+                <form class="w-full max-w-screen-xs mx-auto">
+  <select 
+    v-model="selectedPrice" 
+    name="price" 
+    class="w-full p-1.5 border-1.5 text border-gray-400 rounded-lg cursor-pointer focus:border-polynesian bg-snow text-oynx dark:text-snow dark:bg-oynx focus:outline-none focus:shadow-lg"
+  >
+    <option value="" disabled>Choose a size and price</option>
+    <option 
+      v-for="(priceOption, index) in meal.prices" 
+      :key="index" 
+      :value="priceOption"
+    >
+      {{ priceOption.size }} - ${{ priceOption.price }}
+    </option>
+  </select>
+</form>
+
+
+                </p>
             <div class="flex items-center justify-between">
-                <p>
-                    <span class="text-lg font-bold text-oynx dark:text-snow"
-                        >${{ meal.price }}</span
+                
+                <div
+                class="items-center justify-end rounded-md flex opacity-70 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease animate-fade-up"
+                >
+                <p class="flex items-center">
+                    <span
+                        class="text-sm font-medium text-gray-500 dark:text-gray-400 opacity-0"
+                        >Bulk
+      
+    </span
                     >
                     <BulkIcon></BulkIcon>
                 </p>
-                <div
-                    class="items-center justify-end rounded-md flex opacity-70 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
-                >
                     <div v-if="$page.props.auth.user">
                         <font-awesome-icon
                             v-if="wishlist == null"
@@ -94,7 +118,7 @@ defineProps(["meal"]);
                         title="Add to Meal Schedule"
                         @click="openModal(meal)"
                         icon="circle-plus"
-                        class="text-xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        class="text-5xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                     <font-awesome-icon
                         title="Share Meal"
@@ -146,11 +170,13 @@ export default {
             src: "",
             rating: "",
             wishlist: null,
+            selectedPrice: null,
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
                 user_id: "",
                 cook_availability: "",
+                selectedPrice: null,
                 start_date: "",
                 end_date: "",
                 price: "",
@@ -328,6 +354,11 @@ export default {
         },
 
         async openModal(meal) {
+             if (!this.$page.props.auth.user) {
+                // Redirect to sign in page if not authenticated
+                this.$inertia.visit("/login"); // or whatever your sign-in route is
+                return;
+            }
             const response = await axios.get(`/cook/menu/` + this.meal.cook.id);
             const availability = response.data.data.availability;
             // console.log(response.data.data);
@@ -355,10 +386,11 @@ export default {
                     user_id: this.$page.props.auth.user.id.toString(),
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,
-                    price: meal.price,
+                    price: this.selectedPrice.price,
                     meal_time: "Choose a Meal time",
                 };
             }
+            
             // console.log(meal );
         },
         closeModal() {
