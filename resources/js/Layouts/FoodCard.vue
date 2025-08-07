@@ -386,7 +386,7 @@ export default {
                     user_id: this.$page.props.auth.user.id.toString(),
                     start_date: nextDayISOString,
                     end_date: nextDayISOString,
-                    price: this.selectedPrice.price,
+                    prices: this.selectedPrice,
                     meal_time: "Choose a Meal time",
                 };
             }

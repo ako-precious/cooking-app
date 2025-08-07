@@ -13,8 +13,14 @@ class MealSchedule extends Model
 
     protected $table = 'meal_schedules';
 
-    protected $fillable = ['meal_id', 'user_id', 'meal_time', 'start_date', 'end_date'];
+    protected $fillable = ['meal_id', 'user_id', 'meal_time', 'start_date', 'end_date', 'portion', 'address', 'prices'];
 
+    protected $casts = [
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
+        'prices' => 'array', // Cast the JSON column to an array
+    ];
+    
 
     public function meal(): BelongsTo
     {

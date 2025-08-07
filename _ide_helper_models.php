@@ -206,13 +206,14 @@ namespace App\Models{
  * @property int $meal_id
  * @property int $user_id
  * @property string $meal_time
- * @property string $start_date
+ * @property \Illuminate\Support\Carbon $start_date
  * @property string|null $address
- * @property string $end_date
+ * @property \Illuminate\Support\Carbon $end_date
  * @property string $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int $portion
+ * @property array|null $prices
  * @property-read \App\Models\Meal $meal
  * @property-read \App\Models\orders|null $order
  * @property-read \App\Models\User $user
@@ -227,6 +228,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|MealSchedule whereMealId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MealSchedule whereMealTime($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MealSchedule wherePortion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MealSchedule wherePrices($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MealSchedule whereStartDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MealSchedule whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MealSchedule whereUpdatedAt($value)

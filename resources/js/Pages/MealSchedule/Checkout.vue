@@ -9,39 +9,46 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
     <div>
         <Navbar></Navbar>
         <div class="flex flex-col justify-center items-center min-h-screen text-oynx dark:text-snow">
-            <div class="shadow-reverse rounded-lg p-6">
+            <div class="shadow-reverse rounded-lg p-6" v-for="(priceOption, index) in mealSchedule.prices" :key="index">
                 <h1 class="text-2xl font-bold mb-6">Payment Initialization</h1>
                 <InputError v-if="error">{{ error }}</InputError>
                 <div class="flex justify-between mb-4">
-                    <div class="flex items-center">
-                        <img
+                    <div class="flex items-center justify-center m-auto">
+                        <img v-if="firstPhoto"
                             :src="getPhoto(firstPhoto.meal_photo_path)"
                             alt="Product Image"
-                            class="mr-6 h-[130px]"
+                            class="mr-6 h-[130px] rounded-lg object-cover"
                         />
+                        <img v-else src="/images/imagenotfound.png" alt=""  class="mr-6 h-[130px]">
                         <div>
-                            <h2 class="font-bold capitalize">{{ meal.name }}</h2>
-                            <span class="font-bold">${{ meal.price }}</span>
                         </div>
                     </div>
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between items-center">
+                    <span class="font-bold">Meal Name:</span>
+                    <h2 class="font-bold capitalize">{{ meal.name }}</h2>
+                </div>
+                <div class="flex justify-between items-center mt-4">
                     <span class="font-bold">Meal Price:</span>
-                    <span class="font-bold">${{ meal.price }}</span>
+                    <span class="font-bold">${{ priceOption.price }}</span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span>Portion Number:</span>
                     <span> {{ mealSchedule.portion }} </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
+                    <span>Meal Size:</span>
+                    <span> {{ priceOption.size}} </span>
+                </div>
+                <div class="flex justify-between items-center mt-4">
                     <span>Payment Charges:</span>
-                    <span>$ {{ TransferFee(meal.price) }} </span>
+                    <span>$ {{ TransferFee(priceOption.price) }} </span>
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between items-center">
                     <span class="font-bold">Total:</span>
-                    <span class="font-bold">${{ Total(meal.price) }} </span>
+                    <span class="font-bold">${{ Total(priceOption.price) }} </span>
                 </div>
                 <div class="flex justify-center mt-6">
                     <PrimaryButton @click="charge">Proceed to Pay</PrimaryButton>
@@ -76,8 +83,8 @@ export default {
     methods: {
         async charge() {
             const total = (
-                parseFloat(this.meal.price) +
-                (3 / 100) * parseFloat(this.meal.price) * this.mealSchedule.portion 
+                parseFloat(this.mealSchedule.prices[0].price) +
+                (3 / 100) * parseFloat(this.mealSchedule.prices[0].price) * this.mealSchedule.portion 
             ).toFixed(2);
             await axios
                 .post("/checkout", {

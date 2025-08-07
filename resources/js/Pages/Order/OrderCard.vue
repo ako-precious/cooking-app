@@ -137,6 +137,18 @@ export default {
     },
 
     methods: {
+
+        formatForMySQL(datetime) {
+  const date = new Date(datetime);
+
+  // Pad to 2 digits
+  const pad = (n) => n.toString().padStart(2, '0');
+
+  const formatted = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ` +
+                    `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+
+  return formatted;
+},
         formatSchedule() {
             this.newSchedule.start_date = this.pickedDate;
             this.newSchedule.meal_time = "Lunch";
@@ -144,9 +156,10 @@ export default {
                 meal_id: this.newSchedule.meal_id,
                 user_id: this.newSchedule.user_id,
                 meal_time: this.newSchedule.meal_time,
-                start_date: this.newSchedule.start_date,
-                end_date: this.newSchedule.end_date,
+                start_date: this.formatForMySQL(this.newSchedule.start_date),
+                end_date: this.formatForMySQL(this.newSchedule.end_date),
                 portion: this.newSchedule.portion,
+                prices: this.newSchedule.prices,
                 address: this.newSchedule.address,
             };
         },

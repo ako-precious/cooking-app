@@ -300,8 +300,8 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
     </div>
   </form>
         <div class="mt-8 text-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
-            <p class="text-gray-600 dark:text-gray-300">Selected OPtion:</p>
-            <p class="text-3xl font-bold text-polynesian dark:text-lighred  "> <span class="mr-6"> {{ selectedPrice.size }}</span>  <span>   ${{ selectedPrice.price }}</span></p>
+            <p class="text-gray-600 dark:text-gray-300">Selected Option:</p>
+            <p class="text-3xl font-bold text-polynesian dark:text-lighred  " v-if="selectedPrice" > <span class="mr-6"> {{ selectedPrice.size }}</span>  <span>   ${{ selectedPrice.price }}</span></p>
         </div>
     </div>
                             </div>
@@ -782,7 +782,7 @@ export default {
                 cook_availability: availability,
                 start_date: nextDayISOString,
                 end_date: nextDayISOString,
-                price: this.selectedPrice.price,
+                prices: this.selectedPrice,
                 meal_time: "Choose a Meal time",
             };
         },
