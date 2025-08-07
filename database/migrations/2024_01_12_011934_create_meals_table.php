@@ -23,7 +23,7 @@ return new class extends Migration
             $table->json('tags')->nullable();
             $table->integer('cooking_limit')->default(10);
             $table->enum('status', ['pending','unavailable', 'available'])->default('pending');
-            $table->enum('ordering_preferences', ['manual', 'automatic'])->default('manual');
+            $table->enum('ordering_preferences', ['manual', 'automatic'])->default('automatic');
             $table->enum('serving_style',  ['single', 'bulk'])->default('single');
 
             $table->timestamps();

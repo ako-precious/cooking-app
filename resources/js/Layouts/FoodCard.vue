@@ -44,26 +44,25 @@ defineProps(["meal"]);
                 <a href="#" class=" ">
                     <span
                         class="text-sm capitalize text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
-                        >{{ meal.cook.name }} </span
-                    >
+                        >{{ meal.cook.name }}
+                    </span>
                 </a>
 
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class="text-persian" />
                     <span
                         class="mr-2 ml-3 rounded bg-persian px-1 py-0.5 text-xs font-semibold"
-
                         >{{ rating }}</span
                     >
                 </div>
             </div>
             <div class="flex items-center justify-between">
                 <p>
-                    <span class="text-lg font-bold text-oynx dark:text-snow "
+                    <span class="text-lg font-bold text-oynx dark:text-snow"
                         >${{ meal.price }}</span
                     >
                     <BulkIcon></BulkIcon>
-    </p>
+                </p>
                 <div
                     class="items-center justify-end rounded-md flex opacity-70 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease"
                 >
@@ -82,18 +81,14 @@ defineProps(["meal"]);
                             icon="fa-solid fa-heart"
                             class="text-xl text-persian pr-2 cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
-
-                        
                     </div>
                     <div v-else>
                         <font-awesome-icon
-                           
                             title="Add to wishlist"
                             icon="fa-solid fa-heart"
                             class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                     </div>
-                  
 
                     <font-awesome-icon
                         title="Add to Meal Schedule"
@@ -180,15 +175,25 @@ export default {
             await axios
                 .get("/meal_photos/" + this.meal.id)
                 .then((response) => {
-                    this.src =
-                        `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
-                            "/public",
-                            ""
-                        );
+                    if (
+                        response.data.firstPhoto &&
+                        response.data.firstPhoto.meal_photo_path
+                    ) {
+                        this.src =
+                            `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
+                                "/public",
+                                ""
+                            );
+                    } else {
+                        this.src = "/images/imagenotfound.png";
+                    }
+                    // cons
                     // console.log(this.src);
                 })
                 .catch((error) => {
                     // console.error("Error fetching data:", error);
+                    // Set default image on error as well
+                    this.src = "/images/imagenotfound.png";
                 })
                 .finally(() => {
                     // Set loading state to false when fetching completes
@@ -228,7 +233,7 @@ export default {
                     if (response.data) {
                         // console.log(response);
 
-                        this.rating =  (response.data.total).toFixed(1);
+                        this.rating = response.data.total.toFixed(1);
 
                         // this.total = response.data.total;
                     } else {
@@ -252,7 +257,7 @@ export default {
             axios
                 .delete(`/wishlist/${id}`)
                 .then((response) => {
-                    this.wishlist = response.data.wishlist
+                    this.wishlist = response.data.wishlist;
                     // Update UI if necessary
                 })
                 .catch((error) => {
@@ -267,7 +272,7 @@ export default {
             axios
                 .post("/wishlist", wishlistData)
                 .then((response) => {
-                   this.wishlist = response.data.wishlist;
+                    this.wishlist = response.data.wishlist;
                     // Update UI if necessary
                 })
                 .catch((error) => {
@@ -275,7 +280,7 @@ export default {
                 });
         },
         WishList() {
-            if(this.$page.props.auth.user){
+            if (this.$page.props.auth.user) {
                 const id = this.meal.id;
                 axios
                     .get("/wishlist/" + id)
@@ -287,14 +292,13 @@ export default {
                     });
             }
         },
-      
-    async    openModal(meal) {
 
-        const response = await axios.get(`/cook/menu/` + this.meal.cook.id );
-        const availability =  response.data.data.availability;
-                        // console.log(response.data.data);
-                        // console.log(this.meal.cook.id );
-                        
+        async openModal(meal) {
+            const response = await axios.get(`/cook/menu/` + this.meal.cook.id);
+            const availability = response.data.data.availability;
+            // console.log(response.data.data);
+            // console.log(this.meal.cook.id );
+
             // Get the current date
             const currentDate = new Date();
 

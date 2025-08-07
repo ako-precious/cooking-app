@@ -242,7 +242,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                     class="font-semibold text-xl text-oynx dark:text-snow"
                                 >
                                     <small>Cooked by </small>
-                                    {{ meal.user.name }}
+                                 <span class=" uppercase"> {{ meal.user.name }} </span>  
                                 </h1>
                             </div>
                             <hr
@@ -618,8 +618,10 @@ export default {
                             ""
                         );
                 })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
+               .catch((error) => {
+                    // console.error("Error fetching data:", error);
+                    // Set default image on error as well
+                    this.src = "/images/imagenotfound.png";
                 })
                 .finally(() => {
                     // Set loading state to false when fetching completes
@@ -642,7 +644,9 @@ export default {
                         }));
                 })
                 .catch((error) => {
-                    console.error("Error fetching data:", error);
+                    // console.error("Error fetching data:", error);
+                    // Set default image on error as well
+                    this.src = "/images/imagenotfound.png";
                 })
                 .finally(() => {
                     // Set loading state to false when fetching completes
@@ -650,39 +654,46 @@ export default {
                 });
                 
         },
-        async     openModal() {
-            // Get the current date
-            const currentDate = new Date();
+       async openModal() {
+    // Check if user is authenticated
+    if (!this.$page.props.auth.user) {
+        // Redirect to sign in page if not authenticated
+        this.$inertia.visit('/login'); // or whatever your sign-in route is
+        return;
+    }
 
-            
-        const response = await axios.get(`/cook/menu/` + this.meal.cook_id );
-        const availability =  response.data.data.availability;
-                        console.log(response.data.data);
-                        
-            // Add one day to the current date
-            const nextDayDate = new Date(currentDate);
-            nextDayDate.setDate(currentDate.getDate() + 1);
-
-            // Format the next day date as an ISO string without the time part
-            const nextDayISOString = nextDayDate
-                .toISOString()
-                .replace(/T.*$/, "");
-            // clear everything in the div and close it
-            this.newEventModalVisible = true;
-            if (this.$page.props.auth.user) {
-                // this.suggestedMeal = [];
-                this.newSchedule = {
-                    meal_name: this.meal.name,
-                    meal_id: this.meal.id.toString(),
-                    user_id: this.$page.props.auth.user.id.toString(),
-                    cook_availability: availability,
-                    start_date: nextDayISOString,
-                    end_date: nextDayISOString,
-                    price: this.meal.price,
-                    meal_time: "Choose a Meal time",
-                };
-            }
-        },
+    // Get the current date
+    const currentDate = new Date();
+                  
+    const response = await axios.get(`/cook/menu/` + this.meal.cook_id);
+    const availability = response.data.data.availability;
+                    
+    console.log(response.data.data);
+                                 
+    // Add one day to the current date
+    const nextDayDate = new Date(currentDate);
+    nextDayDate.setDate(currentDate.getDate() + 1);
+     
+    // Format the next day date as an ISO string without the time part
+    const nextDayISOString = nextDayDate
+        .toISOString()
+        .replace(/T.*$/, "");
+    
+    // clear everything in the div and close it
+    this.newEventModalVisible = true;
+    
+    // this.suggestedMeal = [];
+    this.newSchedule = {
+        meal_name: this.meal.name,
+        meal_id: this.meal.id.toString(),
+        user_id: this.$page.props.auth.user.id.toString(),
+        cook_availability: availability,
+        start_date: nextDayISOString,
+        end_date: nextDayISOString,
+        price: this.meal.price,
+        meal_time: "Choose a Meal time",
+    };
+},
         closeModal() {
             // clear everything in the div and close it
             this.newEventModalVisible = false;
