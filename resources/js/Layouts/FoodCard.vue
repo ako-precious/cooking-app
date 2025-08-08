@@ -41,11 +41,21 @@ defineProps(["meal"]);
                 </h5>
             </Link>
             <div class="my-2 flex items-center justify-between">
-                <a href="#" class=" ">
-                    <span
+                <Link
+                                            :href="
+                                                route('user.show', {
+                                                    id: meal.cook.id,
+                                                })
+                                            "
+                                        ><span
                         class="text-sm capitalize text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
                         >{{ meal.cook.name }}
                     </span>
+                                           
+                                        </Link>
+                                
+                                     <a href="#" class=" ">
+                    
                 </a>
 
                 <div class="flex items-center">
@@ -118,7 +128,7 @@ defineProps(["meal"]);
                         title="Add to Meal Schedule"
                         @click="openModal(meal)"
                         icon="circle-plus"
-                        class="text-5xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        class="text-4xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                     <font-awesome-icon
                         title="Share Meal"

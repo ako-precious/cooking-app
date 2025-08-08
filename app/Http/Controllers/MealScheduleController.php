@@ -121,7 +121,7 @@ class MealScheduleController extends Controller
         $order = Orders::where('session_id',  $clientSecret)->first();
         $mealSchedule = MealSchedule::with('user')->with('meal')->find($order->meal_schedule_id);
         // dd($mealSchedule);
-        return inertia('MealSchedule/Status', ['mealSchedule' => $mealSchedule]);
+        return inertia('MealSchedule/Status', ['order' => $order, 'mealSchedule' => $mealSchedule]);
     }
 
     public function webhook()

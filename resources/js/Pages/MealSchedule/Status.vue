@@ -2,7 +2,7 @@
 import Navbar from "@/Pages/Cook/Navbar.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
-defineProps(["mealSchedule"]);
+defineProps(["order","mealSchedule"]);
 </script>
 
 <template>
@@ -23,24 +23,24 @@ defineProps(["mealSchedule"]);
                 </div>
                 <div class="flex flex-col gap-3 border-b py-6 text-xs">
                     <p class="flex justify-between">
-                        <span class="text-gray-400">Receipt No.:</span>
+                        <span class="text-gray-600 font-semibold">Receipt No.:</span>
                         <span># {{ mealSchedule.id }}</span>
                     </p>
                     <p class="flex justify-between">
-                        <span class="text-gray-400">Meal Time:</span>
+                        <span class="text-gray-600 font-semibold">Meal Time:</span>
                         <span>{{ mealSchedule.meal_time }}</span>
                     </p>
                     <p class="flex justify-between">
-                        <span class="text-gray-400">Order Time:</span>
+                        <span class="text-gray-600 font-semibold">Order Time:</span>
                         <span>{{   FormattedDate(mealSchedule.created_at) }}</span>
                     </p>
                     <p class="flex justify-between capitalize">
-                        <span class="text-gray-400">Cook:</span>
+                        <span class="text-gray-600 font-semibold">Cook:</span>
                         <!-- <span>{{ mealSchedule.meal.cook_id }}</span> -->
                         <span>{{ getCook(mealSchedule.meal.id) }}</span>
                     </p>
                     <p class="flex justify-between capitalize">
-                        <span class="text-gray-400">Customer:</span>
+                        <span class="text-gray-600 font-semibold">Customer:</span>
                         <span>{{ mealSchedule.user.name }}</span>
                     </p>
                     <p class=" ">
@@ -60,8 +60,8 @@ defineProps(["mealSchedule"]);
                             <tr class="flex">
                                 <td class="flex-1 py-1 capitalize">{{ mealSchedule.meal.name }}</td>
                              
-                                <td class="min-w-[44px]">1</td>
-                                <td class="min-w-[44px]">{{ Total(mealSchedule.meal.price) }}</td>
+                                <td class="min-w-[44px]">{{ mealSchedule.portion }}</td>
+                                <td class="min-w-[44px]">{{ order.total_price }}</td>
                             </tr>
                            
                         </tbody>

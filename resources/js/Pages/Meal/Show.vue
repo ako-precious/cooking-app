@@ -273,7 +273,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                         icon="fa-solid fa-dollar-sign"
                                         class="mr-2"
                                     />
-                                    Price and Quantity 
+                                    Price and Size
                                 </h1>
                                 <div id="app" class="w-full max-w-screen-lg p-4">
         <h1 class="text-center text-3xl font-bold mb-6 text-oynx dark:text-snow">Select a price option</h1>

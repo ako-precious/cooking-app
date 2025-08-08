@@ -34,7 +34,7 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
                     <span class="font-bold">${{ priceOption.price }}</span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
-                    <span>Portion Number:</span>
+                    <span>Meal Quanlity:</span>
                     <span> {{ mealSchedule.portion }} </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
