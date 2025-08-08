@@ -13,7 +13,7 @@ defineProps(["meal"]);
         class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] transition-all duration-250 delay-75 ease-in"
     >
         <Link
-            class="relative flex h-54 overflow-hidden"
+            class="relative flex h-56 overflow-hidden"
             :href="`/meals/${meal.id}`"
         >
             <div v-if="isLoading" class="">
@@ -66,13 +66,14 @@ defineProps(["meal"]);
                     >
                 </div>
             </div>
+           
             <p>
                 <form class="w-full max-w-screen-xs mx-auto">
   <select 
     v-model="selectedPrice" 
     name="price" 
     class="w-full p-1.5 border-1.5 text border-gray-400 rounded-lg cursor-pointer focus:border-polynesian bg-snow text-oynx dark:text-snow dark:bg-oynx focus:outline-none focus:shadow-lg"
-  >
+  >Choose a size and price
     <option value="" disabled>Choose a size and price</option>
     <option 
       v-for="(priceOption, index) in meal.prices" 

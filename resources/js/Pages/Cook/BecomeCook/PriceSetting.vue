@@ -27,33 +27,43 @@ import TextInput from "@/Components/TextInput.vue";
                     <div class="w-full lg:w-1/2">
                         <div class="flex flex-col w-full">
                             
-                            <div v-for="(price_set, index) in prices" :key="index" class="flex lg:p-5 items-center">
+                            <div v-for="(price_set, index) in Meal.prices" :key="index" class="flex lg:p-5 items-center">
                                 <div class="w-full p-3 lg:px-10 lg:ml-8 flex items-center space-x-4">
                                     
                                     <div class="flex-grow flex items-center space-x-2">
+                                        <label for="units" class=" col-span-2">Select a unit:</label>
                                         <input 
-                                            type="text" 
-                                            placeholder="e.g., 2 liters, Small"
-                                            class="border-2 rounded-lg bg-transparent border-gray-300 w-1/2 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" 
+                                            type="number" 
+                                            placeholder=""
+                                            class="border-2 rounded-lg bg-transparent border-gray-300 w-1/4 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow " 
                                             v-model="price_set.size"
                                         >
-                                        
+<select  class="border-2 rounded-lg bg-transparent border-gray-300 w-1/3 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" name="units" id="units">
+  <option value="ounce">Ounce (oz)</option>
+  <option value="pound">Pound (lb)</option>
+  <option value="milliliter">Milliliter (mL)</option>
+  <option value="liter">Liter (L)</option>
+  <option value="gram">Gram (g)</option>
+  <option value="kilogram">Kilogram (kg)</option>
+  <option value="small">Small (sm)</option>
+  <option value="medium">Medium (md)</option>
+  <option value="large"> Large (lg)</option>
+</select> 
                                         <font-awesome-icon icon="dollar-sign" />
                                         <input 
                                             type="number" 
                                             placeholder="Price"
-                                            class="border-2 rounded-lg bg-transparent border-gray-300 w-1/2 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" 
-                                            v-model="price_set.value"
+                                            class="border-2 rounded-lg bg-transparent border-gray-300 w-1/4 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" 
+                                            v-model="price_set.price"
                                         >
                                     </div>
-                                    
-                                    <button 
+                                       <button 
                                         type="button" 
                                         v-show="prices.length > 1"
                                         @click="removePriceField(index)" 
                                         class="text-red-500 hover:text-red-700"
-                                    >
-                                        <font-awesome-icon icon="trash" />
+                                    > 
+                                        <font-awesome-icon icon="fa-solid fa-trash" />
                                     </button>
                                 </div>
                             </div>
