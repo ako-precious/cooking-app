@@ -31,14 +31,14 @@ import TextInput from "@/Components/TextInput.vue";
                                 <div class="w-full p-3 lg:px-10 lg:ml-8 flex items-center space-x-4">
                                     
                                     <div class="flex-grow flex items-center space-x-2">
-                                        <label for="units" class=" col-span-2">Select a unit:</label>
                                         <input 
                                             type="number" 
                                             placeholder=""
                                             class="border-2 rounded-lg bg-transparent border-gray-300 w-1/4 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow " 
                                             v-model="price_set.size"
                                         >
-<select  class="border-2 rounded-lg bg-transparent border-gray-300 w-1/3 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" name="units" id="units">
+<select  class="border-2 rounded-lg bg-transparent border-gray-300 w-1/2 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" name="units" id="units">
+  <option value="" disabled>Select a unit:</option>
   <option value="ounce">Ounce (oz)</option>
   <option value="pound">Pound (lb)</option>
   <option value="milliliter">Milliliter (mL)</option>
