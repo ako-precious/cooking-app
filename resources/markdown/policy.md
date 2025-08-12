@@ -1,224 +1,112 @@
 # Privacy Policy
 
-Edit this file to define the privacy policy for your application.
-<script setup>
-import axios from "axios";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
-import TextInput from "@/Components/TextInput.vue";
-import Datepicker from "vue3-datepicker";
-import { ref } from "vue";
-import { isBefore, getDay } from "date-fns";
+MyMealni (“we,” “our,” “us”) values your privacy. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website, mobile app, and related services (collectively, the “Platform”).
+
+By using MyMealni, you agree to the practices described in this policy.
+
+<h1>1. Information We Collect</h1> 
+We collect the following types of information:
+
+<h3>a) Information You Provide to Us</h3>
+<ul>
+<li>
+Name, email address, phone number, and password when you create an account.
+</li>
+<li>
+Address or location (for meal delivery or pickup).
+</li>
+<li>
+Payment information (processed securely by third-party payment processors — we do not store your credit card details).
+</li>
+<li>
+Details about your meals, recipes, photos, and descriptions you share.
+</li>
+<li>
+Food safety certificate details (for cooks).
+</li>
+<li>
+Messages or feedback you send to us.
+</li>
+</ul>
+
+<h3>b) Information Collected Automatically</h3>
+
+<ul>
+<li>
+IP address, browser type, operating system, and device information.
+</li>
+<li>
+Pages you visit, time spent on our site, and interactions with features
+</li>
+<li>
+Location data (if you enable location services).
+
+</li>
+
+</ul>
 
 
-</script>
+2. How We Use Your Information
+We use your information to:
 
-<template>
-    <div class="" v-if="message">
-        <div class="px-6 py-3 mt-1 bg-persian/20 rounded-lg text-persian">
-            <span class="font-bold"> {{ message }} </span>
-        </div>
-    </div>
-    <div class="" v-if="error">
-        <div class="px-6 py-3 mt-1 bg-lighred/20 rounded-lg text-lighred">
-            <span class="font-bold">{{ error }}</span>
-        </div>
-    </div>
+Create and manage your account.
 
-    <form @submit.prevent class="p-4 md:py-8">
-        <h2 class="text-oynx dark:text-snow font-extrabold text-2xl">
-            ${{ newSchedule.price }} CAD
-        </h2>
-        <div class="py-3 relative">
-            <TextInput
-                readonly
-                required
-                class="my-2 w-full"
-                v-model="newSchedule.meal_name"
-                placeholder="Meal Name"
-            />
-            <TextInput
-                readonly
-                hidden
-                required
-                class=""
-                type="number"
-                v-model="newSchedule.meal_id"
-            />
+Connect customers with local cooks.
 
-           
+Process orders, payments, and deliveries.
 
-            <!--
-               -->
-            <TextInput
-                readonly
-                hidden
-                required
-                class="my-2 w-full"
-                type="number"
-                v-model="newSchedule.user_id"
-                placeholder=""
-            />
-        </div>
+Communicate with you about your account, orders, and updates.
 
-        <div class=" gap-2 flex flex-col md:flex-row items-center justify-between">
-           <div class=" md:w-1/2 w-full py-4">
+Improve our website, app, and services.
 
-               <Datepicker
-                   class="my-2 w-full relative border-oynx bg-gradient-to-br from-[#e3dedf] to-[#ffffff] shadow-snow-sm dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] focus:shadow-none dark:focus:shadow-none dark:shadow-oynx-sm dark:border-snow focus:border-polynesian dark:focus:border-lighred focus:ring-polynesian dark:focus:ring-lighred rounded-md text-oynx dark:text-snow"
-                   v-model="pickedDate"
-                   :clearable="true"
-                   placeholder="Delivery Date"
-                   :disabledDates="{ predicate: isDateDisabled }"
-               >
-                   <template v-slot:clear="{ onClear }">
-                       <button
-                           @click="onClear"
-                           class="absolute top-0 right-0 text-lighred"
-                       >
-                           x
-                       </button>
-                   </template>
-               </Datepicker>
-           </div>
-            <div class="w-full py-3 md:w-1/2">
+Ensure safety and compliance with food regulations.
 
-                <TextInput
-                    v-model="newSchedule.portion"
-                    required
-                    class="w-full"
-                    type="number"
-                    placeholder="Portion eg 1,2,3 "
-                />
-            </div>
-        </div>
-        <div class="py-3 flex justify-between">
-            <TextInput
-                required
-                class="w-full"
-                v-model="newSchedule.address"
-                placeholder="Address (Where you want it delivered)"
-            />
-            <TextInput
-                hidden
-                required
-                class="w-[47%]"
-                v-model="newSchedule.end_date"
-                type="date"
-                placeholder=""
-            />
-        </div>
-      
-        <div class="flex justify-center item-center">
-            <PrimaryButton @click="addSchedule" class="w-full"
-                >Order</PrimaryButton
-            >
-        </div>
-    </form>
-</template>
+Respond to support requests and inquiries.
 
-<script>
-export default {
-    inheritAttrs: false,
-    props: {
-        newSchedule: Object,
-    },
+3. How We Share Your Information
+We do not sell your personal information.
+We may share your information with:
 
-    data() {
-        return {
-            userId: "",
-            message: "",
-            error: "",
-            formattedEvents: [],
-            newEventModalVisible: false,
-            pickedDate: '',
-          
-            selectedDays: [2, 3, 0], // Replace with actual selected days from database
-        };
-    },
+Other users: When you post meals, your name, profile, and meal details may be visible to customers.
 
-    methods: {
-        
-        formatSchedule() {
-            this.newSchedule.start_date = this.pickedDate;
-            this.newSchedule.meal_time = 'Lunch'
-            this.formattedEvents = {
-                meal_id: this.newSchedule.meal_id,
-                user_id: this.newSchedule.user_id,
-                meal_time: this.newSchedule.meal_time,
-                start_date: this.newSchedule.start_date,
-                end_date: this.newSchedule.end_date,
-                portion: this.newSchedule.portion,
-                address: this.newSchedule.address,
-            };
-        },
-        isDateDisabled(date) {
-              const id = this.newSchedule.cook_id
-            axios
-                        .get(`/cook/menu/` + id )
-                        .then((resp) => {
-                            this.message = resp.data.message;
+Service providers: Payment processors, delivery partners, hosting services.
 
-                            const MealId = resp.data.data.id;
-                            console.log(resp.data.data);
-                            // check if the schedule has been accepted or not
-                            if (resp.data.data.status == "accepted") {
-                                this.$inertia.visit(`/process_order/${MealId}`);
-                            } else {
-                                this.$inertia.visit(`/meal-schedule`);
-                            }
-                        })
-            const today = new Date();
-            const day = getDay(date);
-            const userSelectedDays = [0, 3, 4]; // Sunday (0), Wednesday (3), Thursday (4)
+Legal authorities: If required by law or to protect our rights and users’ safety.
 
-            // Disable past dates and dates not in userSelectedDays
-            return isBefore(date, today) || !userSelectedDays.includes(day);
-        },
+4. Cookies & Tracking Technologies
+We use cookies and similar tools to:
 
-        addSchedule() {
-            if (this.$page.props.auth.user) {
-                const today = new Date().toISOString().replace(/T.*$/, "");
-                if (
-                    this.newSchedule.start_date == "" ||
-                    this.newSchedule.meal_time == "" ||
-                    this.newSchedule.portion == "" ||
-                    this.newSchedule.address == "" ||
-                    this.newSchedule.user_id == ""
-                ) {
-                    this.error =
-                        "Please fill in all  fields to create your schedule.";
-                } else if (today >= this.newSchedule.start_date) {
-                    this.error =
-                        "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
-                }  else {
-                    this.formatSchedule();
-                   console.log( this.formattedEvents);
-                    ;
+Keep you logged in.
 
-                    // axios
-                    //     .post("/schedule", this.formattedEvents)
-                    //     .then((resp) => {
-                    //         this.message = resp.data.message;
+Remember your preferences.
 
-                    //         const MealId = resp.data.data.id;
-                    //         console.log(resp.data.data);
-                    //         // check if the schedule has been accepted or not
-                    //         if (resp.data.data.status == "accepted") {
-                    //             this.$inertia.visit(`/process_order/${MealId}`);
-                    //         } else {
-                    //             this.$inertia.visit(`/meal-schedule`);
-                    //         }
-                    //     })
-                    //     .catch((err) => {
-                    //         this.error = "Unable to add Meal !";
-                    //         setTimeout(() => {
-                    //             this.error = "";
-                    //             console.log("Unable to add Meal !", err);
-                    //         }, 10000);
-                    //     });
-                }
-            }
-        },
-    },
-};
-</script>
+Analyze site traffic and performance.
+
+You can disable cookies in your browser settings, but some features may not work properly.
+
+5. Data Security
+We take reasonable steps to protect your data using encryption, secure servers, and access controls. However, no method of transmission over the internet is 100% secure.
+
+6. Your Rights
+Depending on where you live, you may have the right to:
+
+Access the personal data we hold about you.
+
+Correct or update your information.
+
+Delete your account and data.
+
+Withdraw consent for certain uses of your data.
+
+To exercise these rights, contact us at [support@mymealni.com].
+
+7. Children’s Privacy
+MyMealni is not intended for children under 16. We do not knowingly collect personal information from children.
+
+8. Changes to This Policy
+We may update this policy from time to time. Changes will be posted on this page with a new “Last Updated” date.
+
+9. Contact Us
+If you have questions about this Privacy Policy, email us at:
+📧 support@mymealni.com
+
