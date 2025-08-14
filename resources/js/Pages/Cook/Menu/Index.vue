@@ -21,8 +21,8 @@ import CaretUp from "@/Components/CaretUp.vue";
             >
                 <div class="lg:w-full">
                     <div class="flex flex-col w-full">
-                        <WelcomeUser></WelcomeUser>  
-                        
+                        <WelcomeUser></WelcomeUser>
+
                         <div
                             class="flex flex-col md:flex-row items-start justify-between md:items-center"
                         >
@@ -78,14 +78,12 @@ import CaretUp from "@/Components/CaretUp.vue";
                             <div
                                 class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
-                                <div
-                                    class="overflow-scroll "
-                                >
+                                <div class="table-container glass-scroll">
                                     <table
                                         class="w-full px-4 text-left text-sm font-light relative"
                                     >
                                         <thead
-                                            class="align-bottom shadow-sm translate-x-0 sticky top-1"
+                                            class="align-bottom shadow-sm translate-x-0 sticky top-0 bg-snow dark:bg-oynx_alt p-2 z-10"
                                         >
                                             <tr>
                                                 <TableHeadVue>
@@ -140,6 +138,14 @@ import CaretUp from "@/Components/CaretUp.vue";
                                                     <template #symbols>
                                                         <CaretUp />
                                                         <CaretDown />
+                                                    </template>
+                                                </TableHeadVue>
+                                                <TableHeadVue>
+                                                    <template #title>
+                                                        
+                                                    </template>
+                                                    <template #symbols>
+                                                    
                                                     </template>
                                                 </TableHeadVue>
                                             </tr>
@@ -303,36 +309,38 @@ button .span-mother2 span:nth-child(6) {
     animation: fade-in 0.5s ease-in;
 }
 
-  .glass-scroll::-webkit-scrollbar {
-            width: 8px;
-        }
+.glass-scroll::-webkit-scrollbar {
+    width: 8px;
+}
 
-        .glass-scroll::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.05);
-            border-radius: 4px;
-        }
+.glass-scroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
 
-        .glass-scroll::-webkit-scrollbar-thumb {
-            background: rgba(102, 126, 234, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 4px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-        }
+.glass-scroll::-webkit-scrollbar-thumb {
+    background: #004f98fb;
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
 
-        .glass-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(102, 126, 234, 0.8);
-        }
+.glass-scroll::-webkit-scrollbar-thumb:hover {
+    background: #004f98fb;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
-        /* Firefox */
-        .glass-scroll {
-            scrollbar-width: thin;
-            scrollbar-color: rgba(102, 126, 234, 0.6) transparent;
-        }
-         .table-container {
-            max-height: 150px; /* Set your desired height */
-            overflow-y: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+/* Firefox */
+.glass-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #004f98fb transparent;
+}
+.table-container {
+    max-height: 90vh; /* Set your desired height */
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 </style>

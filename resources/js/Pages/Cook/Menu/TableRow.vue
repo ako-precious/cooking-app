@@ -55,7 +55,7 @@ defineProps(["meal"]);
     <div class="table-container glass-scroll">
       <table class="min-w-full bg-snow dark:bg-oynx_alt rounded-lg shadow-md">
         <thead>
-          <tr class="bg-gray-200 dark:bg-gray-700 sticky top-0">
+          <tr class="bg-gray-200 dark:bg-gray-700 sticky top-0 z-0">
             <th class="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider">Size</th>
             <th class="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider">Unit</th>
             <th class="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider">Price</th>
@@ -260,7 +260,7 @@ export default {
         }
 
         .glass-scroll::-webkit-scrollbar-thumb {
-            background: rgba(102, 126, 234, 0.6);
+            background: #004f9893;
             backdrop-filter: blur(10px);
             border-radius: 4px;
             border: 1px solid rgba(255,255,255,0.2);
@@ -274,7 +274,7 @@ export default {
         /* Firefox */
         .glass-scroll {
             scrollbar-width: thin;
-            scrollbar-color: rgba(102, 126, 234, 0.6) transparent;
+            scrollbar-color: #004E98 transparent;
         }
          .table-container {
             max-height: 150px; /* Set your desired height */
