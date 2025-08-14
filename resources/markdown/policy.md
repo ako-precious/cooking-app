@@ -120,16 +120,3 @@ MyMealni is not intended for children under 13. We do not knowingly collect pers
 <p>If you have questions about this Privacy Policy, email us at:
 📧 support@mymealni.com
 </p>
-
-
-
-
-
-
-
-
-
-
-
-
-
