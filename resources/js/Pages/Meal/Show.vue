@@ -258,7 +258,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                         class="mr-3"
                                     />
                                     This meal is popular in certain regions of
-                                    {{ meal.region }} 
+                                    {{ meal.region }}
                                 </h1>
                             </div>
 
@@ -275,35 +275,85 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                     />
                                     Price and Size
                                 </h1>
-                                <div id="app" class="w-full max-w-screen-lg p-4">
-        <h1 class="text-center text-3xl font-bold mb-6 text-oynx dark:text-snow">Select a price option</h1>
-        
-        <!-- The form is now managed by Vue -->
-        <form class="grid grid-cols-3 md:grid-cols-6 gap-2 w-full max-w-screen-lg mx-auto">
-    <div v-for="(priceOption, index) in meal.prices" :key="index">
-      <input
-        class="hidden peer  text-oynx dark:text-snow"
-        :id="'radio_' + index"
-        type="radio"
-        name="radio"
-        :value="priceOption"
-        v-model="selectedPrice"
-      />
-      <label
-        class="flex flex-col p-4 border-2 border-gray-400 cursor-pointer peer-checked:border-polynesian peer-checked:shadow-lg  text-oynx dark:text-snow rounded-lg hover:border-polynesian hover:shadow-md transition-all duration-200 ease-in-out"
-        :for="'radio_' + index"
-      >
-        <span class="text-xs font-semibold uppercase">  {{ priceOption.size }} {{ priceOption.size === priceOption.unit ? '' : priceOption.unit }} </span>
-        <span class="text-xl font-bold mt-2">${{ priceOption.price }}</span>
-        
-      </label>
-    </div>
-  </form>
-        <div class="mt-8 text-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
-            <p class="text-gray-600 dark:text-gray-300">Selected Option:</p>
-            <p class="text-3xl font-bold text-polynesian dark:text-lighred  " v-if="selectedPrice" > <span class="mr-6"> {{ selectedPrice.size }} {{selectedPrice.size === selectedPrice.unit ? '' : selectedPrice.unit }}</span>  <span>   ${{ selectedPrice.price }}</span></p>
-        </div>
-    </div>
+                                <div
+                                    id="app"
+                                    class="w-full max-w-screen-lg p-4"
+                                >
+                                    <h1
+                                        class="text-center text-3xl font-bold mb-6 text-oynx dark:text-snow"
+                                    >
+                                        Select a price option
+                                    </h1>
+
+                                    <!-- The form is now managed by Vue -->
+                                    <form
+                                        class="grid grid-cols-3 md:grid-cols-6 gap-2 w-full max-w-screen-lg mx-auto"
+                                    >
+                                        <div
+                                            v-for="(
+                                                priceOption, index
+                                            ) in meal.prices"
+                                            :key="index"
+                                        >
+                                            <input
+                                                class="hidden peer text-oynx dark:text-snow"
+                                                :id="'radio_' + index"
+                                                type="radio"
+                                                name="radio"
+                                                :value="priceOption"
+                                                v-model="selectedPrice"
+                                            />
+                                            <label
+                                                class="flex flex-col p-4 border-2 border-gray-400 cursor-pointer peer-checked:border-polynesian peer-checked:shadow-lg text-oynx dark:text-snow rounded-lg hover:border-polynesian hover:shadow-md transition-all duration-200 ease-in-out"
+                                                :for="'radio_' + index"
+                                            >
+                                                <span
+                                                    class="text-xs font-semibold uppercase"
+                                                >
+                                                    {{ priceOption.size }}
+                                                    {{
+                                                        priceOption.size ===
+                                                        priceOption.unit
+                                                            ? ""
+                                                            : priceOption.unit
+                                                    }}
+                                                </span>
+                                                <span
+                                                    class="text-xl font-bold mt-2"
+                                                    >${{
+                                                        priceOption.price
+                                                    }}</span
+                                                >
+                                            </label>
+                                        </div>
+                                    </form>
+                                    <div
+                                        class="mt-8 text-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md"
+                                    >
+                                        <p
+                                            class="text-gray-600 dark:text-gray-300"
+                                        >
+                                            Selected Option:
+                                        </p>
+                                        <p
+                                            class="text-3xl font-bold text-polynesian dark:text-lighred"
+                                            v-if="selectedPrice"
+                                        >
+                                            <span class="mr-6">
+                                                {{ selectedPrice.size }}
+                                                {{
+                                                    selectedPrice.size ===
+                                                    selectedPrice.unit
+                                                        ? ""
+                                                        : selectedPrice.unit
+                                                }}</span
+                                            >
+                                            <span>
+                                                ${{ selectedPrice.price }}</span
+                                            >
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                             <hr
                                 class="h-px mb-2 bg-transparent bg-gradient-to-r from-transparent via-oynx/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-snow dark:to-transparent"
@@ -537,7 +587,6 @@ export default {
         reviews: Object,
         ratings: String,
         rating: Object,
-        
     },
     data() {
         return {
@@ -567,10 +616,10 @@ export default {
     },
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
-          // Set the first price option as default selected
-    if (this.meal.prices && this.meal.prices.length > 0) {
-        this.selectedPrice = this.meal.prices[0].price;
-    }
+        // Set the first price option as default selected
+        if (this.meal.prices && this.meal.prices.length > 0) {
+            this.selectedPrice = this.meal.prices[0].price;
+        }
     },
     created() {
         this.getPhoto();
@@ -760,21 +809,21 @@ export default {
             const response = await axios.get(`/cook/menu/` + this.meal.cook_id);
             const availability = response.data.data.availability;
 
-            console.log(response.data.data);
+            // console.log(response.data.data);
 
-            // Add one day to the current date
+            // // Add one day to the current date
             const nextDayDate = new Date(currentDate);
             nextDayDate.setDate(currentDate.getDate() + 1);
 
-            // Format the next day date as an ISO string without the time part
+            // // Format the next day date as an ISO string without the time part
             const nextDayISOString = nextDayDate
                 .toISOString()
                 .replace(/T.*$/, "");
 
-            // clear everything in the div and close it
+            // // clear everything in the div and close it
             this.newEventModalVisible = true;
 
-            // this.suggestedMeal = [];
+            // // this.suggestedMeal = [];
             this.newSchedule = {
                 meal_name: this.meal.name,
                 meal_id: this.meal.id.toString(),
@@ -785,6 +834,8 @@ export default {
                 prices: this.selectedPrice,
                 meal_time: "Choose a Meal time",
             };
+            console.log(this.newSchedule);
+            
         },
         closeModal() {
             // clear everything in the div and close it

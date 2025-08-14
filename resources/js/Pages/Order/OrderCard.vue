@@ -21,7 +21,7 @@ import { add, isBefore, getDay } from "date-fns";
 
     <form @submit.prevent class="p-4 md:py-8">
         <h2 class="text-oynx dark:text-snow font-extrabold text-2xl">
-            ${{ newSchedule.price }} CAD
+            ${{ newSchedule.prices }} CAD
         </h2>
         <div class="py-3 relative">
             <TextInput
@@ -92,7 +92,6 @@ import { add, isBefore, getDay } from "date-fns";
             />
             <TextInput
                 hidden
-                
                 class="w-[47%]"
                 v-model="newSchedule.cook_id"
                 type="date"
@@ -100,7 +99,6 @@ import { add, isBefore, getDay } from "date-fns";
             />
             <TextInput
                 hidden
-            
                 class="w-[47%]"
                 v-model="newSchedule.end_date"
                 type="date"
@@ -137,18 +135,22 @@ export default {
     },
 
     methods: {
-
         formatForMySQL(datetime) {
-  const date = new Date(datetime);
+            const date = new Date(datetime);
 
-  // Pad to 2 digits
-  const pad = (n) => n.toString().padStart(2, '0');
+            // Pad to 2 digits
+            const pad = (n) => n.toString().padStart(2, "0");
 
-  const formatted = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ` +
-                    `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+            const formatted =
+                `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
+                    date.getDate()
+                )} ` +
+                `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(
+                    date.getSeconds()
+                )}`;
 
-  return formatted;
-},
+            return formatted;
+        },
         formatSchedule() {
             this.newSchedule.start_date = this.pickedDate;
             this.newSchedule.meal_time = "Lunch";
