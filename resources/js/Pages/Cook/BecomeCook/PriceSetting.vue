@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-
+import LIghtModePortion from "@/Components/Icons/LIghtModePortion.vue";
+import DarkModePortion from "@/Components/Icons/DarkModePortion.vue";
 import BecomeCook from "./BecomeCook.vue";
 import TextInput from "@/Components/TextInput.vue";
 </script>
@@ -18,10 +19,10 @@ import TextInput from "@/Components/TextInput.vue";
                         <h1
                             class="font-semibold text-3xl lg:text-4xl tracking-wide text-oynx dark:text-snow"
                         >
-                            Set the price for the meal
+                            Set the size and the price for the meal
                         </h1>
                         <h1 class="pt-5 text-lg text-oynx dark:text-snow">
-                            Craft a price that reflects the unique joy of enjoying your culinary creation
+                            Craft a price that reflects the size and the unique joy of enjoying your culinary creation
                         </h1>
                     </div>
                     <div class="w-full lg:w-1/2">
@@ -37,17 +38,17 @@ import TextInput from "@/Components/TextInput.vue";
                                             class="border-2 rounded-lg bg-transparent border-gray-300 w-1/4 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow " 
                                             v-model="price_set.size"
                                         >
-<select  class="border-2 rounded-lg bg-transparent border-gray-300 w-1/2 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow" name="units" id="units">
-  <option value="" disabled>Select a unit:</option>
-  <option value="ounce">Ounce (oz)</option>
-  <option value="pound">Pound (lb)</option>
-  <option value="milliliter">Milliliter (mL)</option>
-  <option value="liter">Liter (L)</option>
-  <option value="gram">Gram (g)</option>
-  <option value="kilogram">Kilogram (kg)</option>
-  <option value="small">Small (sm)</option>
-  <option value="medium">Medium (md)</option>
-  <option value="large"> Large (lg)</option>
+<select  class="border-2 rounded-lg bg-transparent border-gray-300 w-1/2 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow " name="units" id="units">
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="" disabled>Select a unit:</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="ounce">Ounce (oz)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="pound">Pound (lb)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="milliliter">Milliliter (mL)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="liter">Liter (L)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="gram">Gram (g)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="kilogram">Kilogram (kg)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="small">Small (sm)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="medium">Medium (md)</option>
+  <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="large"> Large (lg)</option>
 </select> 
                                         <font-awesome-icon icon="dollar-sign" />
                                         <input 
