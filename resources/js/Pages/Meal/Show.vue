@@ -282,7 +282,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
         <form class="grid grid-cols-3 md:grid-cols-6 gap-2 w-full max-w-screen-lg mx-auto">
     <div v-for="(priceOption, index) in meal.prices" :key="index">
       <input
-        class="hidden peer"
+        class="hidden peer  text-oynx dark:text-snow"
         :id="'radio_' + index"
         type="radio"
         name="radio"
@@ -290,10 +290,10 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
         v-model="selectedPrice"
       />
       <label
-        class="flex flex-col p-4 border-2 border-gray-400 cursor-pointer peer-checked:border-polynesian peer-checked:shadow-lg"
+        class="flex flex-col p-4 border-2 border-gray-400 cursor-pointer peer-checked:border-polynesian peer-checked:shadow-lg  text-oynx dark:text-snow rounded-lg hover:border-polynesian hover:shadow-md transition-all duration-200 ease-in-out"
         :for="'radio_' + index"
       >
-        <span class="text-xs font-semibold uppercase">{{ priceOption.size }}</span>
+        <span class="text-xs font-semibold uppercase">  {{ priceOption.size }} {{ priceOption.size === priceOption.unit ? '' : priceOption.unit }} </span>
         <span class="text-xl font-bold mt-2">${{ priceOption.price }}</span>
         
       </label>
@@ -301,7 +301,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
   </form>
         <div class="mt-8 text-center bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md">
             <p class="text-gray-600 dark:text-gray-300">Selected Option:</p>
-            <p class="text-3xl font-bold text-polynesian dark:text-lighred  " v-if="selectedPrice" > <span class="mr-6"> {{ selectedPrice.size }}</span>  <span>   ${{ selectedPrice.price }}</span></p>
+            <p class="text-3xl font-bold text-polynesian dark:text-lighred  " v-if="selectedPrice" > <span class="mr-6"> {{ selectedPrice.size }} {{selectedPrice.size === selectedPrice.unit ? '' : selectedPrice.unit }}</span>  <span>   ${{ selectedPrice.price }}</span></p>
         </div>
     </div>
                             </div>

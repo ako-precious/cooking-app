@@ -46,97 +46,112 @@ import TextInput from "@/Components/TextInput.vue";
                                             class="hidden dark:block h-8 mr-2"
                                         />
                                         <input
-    type="text"
-    placeholder="Enter number"
-    v-model="prices[index].size"
-    :readonly="['small','medium','large','xl'].includes(prices[index].unit)"
-    class="border-2 rounded-lg bg-transparent border-gray-300 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow w-20 text-sm"
-                                    
-  /> 
-  <div class="relative w-full">
-    <span
-      v-if="!prices[index].unit || prices[index].unit === 'Select a Unit'"
-      v-show="!isDropdownOpen"
-      class="absolute text-sm text-oynx dark:text-snow pl-2.5 top-1/2 -translate-y-1/2 left-0 pointer-events-none"
-    >
-      Choose a size and price
-    </span>
-                                        <select  v-model="prices[index].unit"
-                                            class="border-2 rounded-lg bg-transparent border-gray-300 w-2/4 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow text-sm"
-                                            name="units"
-                                            id="units"
-                                        >
-                                            
-                                            <option class="border-2 rounded-lg bg-snow dark:bg-oynx p-2 " value="" disabled>Select a unit:</option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="ounce"
+                                            type="text"
+                                            placeholder="Enter number"
+                                            v-model="prices[index].size"
+                                            :readonly="
+                                                [
+                                                    'small',
+                                                    'medium',
+                                                    'large',
+                                                    'xl',
+                                                ].includes(prices[index].unit)
+                                            "
+                                            class="border-2 rounded-lg bg-transparent border-gray-300 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow w-20 text-sm"
+                                        />
+                                        <div class="relative w-full">
+                                            <span
+                                                v-if="
+                                                    !prices[index].unit ||
+                                                    prices[index].unit ===
+                                                        'Select a Unit'
+                                                "
+                                                v-show="!isDropdownOpen"
+                                                class="absolute text-sm text-oynx dark:text-snow pl-2.5 top-1/2 -translate-y-1/2 left-0 pointer-events-none"
                                             >
-                                                Ounce (oz)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="pound"
+                                                Choose a size and price
+                                            </span>
+                                            <select
+                                                v-model="prices[index].unit"
+                                                class="border-2 rounded-lg bg-transparent border-gray-300  p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow text-sm w-full"
+                                                name="units"
+                                                id="units"
                                             >
-                                                Pound (lb)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="milliliter"
-                                            >
-                                                Milliliter (mL)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="liter"
-                                            >
-                                                Liter (L)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="gram"
-                                            >
-                                                Gram (g)
-                                            </option>
-                                            <option 
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="kilogram"
-                                            >
-                                                Kilogram (kg)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="piece"
-                                            >
-                                                Piece (pc)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="small"
-                                            >
-                                                Small (sm)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="medium"
-                                            >
-                                                Medium (md)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="large"
-                                            >
-                                                Large (lg)
-                                            </option>
-                                            <option
-                                                class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="xl"
-                                            >
-                                                Extra Large (xl)
-                                            </option>
-                                        </select>
-  </div>
-  
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value=""
+                                                    disabled
+                                                >
+                                                    Select a unit:
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="ounce"
+                                                >
+                                                    Ounce (oz)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="pound"
+                                                >
+                                                    Pound (lb)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="milliliter"
+                                                >
+                                                    Milliliter (mL)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="liter"
+                                                >
+                                                    Liter (L)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="gram"
+                                                >
+                                                    Gram (g)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="kilogram"
+                                                >
+                                                    Kilogram (kg)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="piece"
+                                                >
+                                                    Piece (pc)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="small"
+                                                >
+                                                    Small (sm)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="medium"
+                                                >
+                                                    Medium (md)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="large"
+                                                >
+                                                    Large (lg)
+                                                </option>
+                                                <option
+                                                    class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
+                                                    value="xl"
+                                                >
+                                                    Extra Large (xl)
+                                                </option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="flex items-center px-2 w-1/4">
                                         <font-awesome-icon
@@ -145,10 +160,11 @@ import TextInput from "@/Components/TextInput.vue";
                                         />
                                         <input
                                             type="number"
-                                            placeholder="Price"min="0"
+                                            placeholder="Price"
+                                            min="0"
                                             step="0.01"
                                             class="border-2 rounded-lg bg-transparent border-gray-300 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow w-20 text-sm"
-                                           v-model.number="prices[index].price"
+                                            v-model.number="prices[index].price"
                                         />
                                     </div>
                                     <div class="flex items-center px-2 w-8">
@@ -219,30 +235,33 @@ export default {
     },
     data() {
         return {
-            prices: [
-                { size: "", unit: "Select a Unit", price: null },
-            ],
+            prices: [{ size: "", unit: "Select a Unit", price: null }],
         };
     },
     watch: {
-  prices: {
-    deep: true,
-    handler(newPrices) {
-      newPrices.forEach(price => {
-        if (['small','medium','large','xl'].includes(price.unit)) {
-          price.size = price.unit; // automatically set size
-        }
-      });
-    }
-  }
-},
+        prices: {
+            deep: true,
+            handler(newPrices) {
+                newPrices.forEach((price) => {
+                    if (
+                        ["small", "medium", "large", "xl"].includes(price.unit)
+                    ) {
+                        price.size = price.unit; // automatically set size
+                    }
+                });
+            },
+        },
+    },
     created() {
         if (this.Meal && this.Meal.prices) {
-            if (Array.isArray(this.Meal.prices) && this.Meal.prices.length > 0) {
-                this.prices = this.Meal.prices.map(p => ({
+            if (
+                Array.isArray(this.Meal.prices) &&
+                this.Meal.prices.length > 0
+            ) {
+                this.prices = this.Meal.prices.map((p) => ({
                     size: p.size || "",
                     unit: p.unit || "Select a Unit",
-                    price: p.price ?? null
+                    price: p.price ?? null,
                 }));
             }
         }
@@ -256,15 +275,15 @@ export default {
             this.prices.splice(index, 1);
         },
         saveData() {
-
-         console.log(this.prices);
-         
+            console.log(this.prices);
 
             axios
                 .put(`/meal/price/${this.Meal.id}`, { prices: this.prices })
                 .then((response) => {
                     const MealId = response.data.meal.id;
-                    this.$inertia.visit(`/become-a-cook/${MealId}/final-overview`);
+                    this.$inertia.visit(
+                        `/become-a-cook/${MealId}/final-overview`
+                    );
                 })
                 .catch((error) => {
                     console.error("Error saving data:", error);
