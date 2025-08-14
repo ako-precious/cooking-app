@@ -50,9 +50,24 @@ defineProps(["meal"]);
         }}</Link>
     </td>
 
-    <td class="whitespace-nowrap px-6 py-3">
+    <td class="whitespace-nowrap px-6 py-3 ">
         <Link :href="`/become-a-cook/${meal.id}/price`"
-            >$ {{ meal.prices }}</Link
+            > <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <thead>
+          <tr class="bg-gray-200 dark:bg-gray-700">
+            <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Size</th>
+            <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Unit</th>
+            <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(mealPrice, index) in  meal.prices" :key="index" class="border-b ">
+            <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.size }}</td>
+            <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.unit }}</td>
+            <td class="py-4 px-6 whitespace-nowrap">${{ mealPrice.price }}</td>
+          </tr>
+        </tbody>
+      </table></Link
         >
     </td>
     <td v-if="meal.ingredients"  class="whitespace-nowrap px-6 py-3">
