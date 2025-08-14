@@ -50,9 +50,9 @@ defineProps(["meal"]);
         }}</Link>
     </td>
 
-    <td class="whitespace-nowrap px-6 py-3  overflow-y-scroll max-h-24">
+    <td class="whitespace-nowrap px-6 py-3   ">
         <Link :href="`/become-a-cook/${meal.id}/price`"
-            > <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-md">
+            > <table class="min-w-full bg-snow dark:bg-oynx_alt rounded-lg shadow-md">
         <thead>
           <tr class="bg-gray-200 dark:bg-gray-700">
             <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Size</th>
@@ -60,8 +60,8 @@ defineProps(["meal"]);
             <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Price</th>
           </tr>
         </thead>
-        <tbody>
-          <tr v-for="(mealPrice, index) in  meal.prices" :key="index" class="border-b ">
+        <tbody class=" overflow-y-scroll scroll-container glass-scroll h-20">
+          <tr v-for="(mealPrice, index) in  meal.prices" :key="index" class="border-b bg-transparent">
             <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.size }}</td>
             <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.unit }}</td>
             <td class="py-4 px-6 whitespace-nowrap">${{ mealPrice.price }}</td>
@@ -244,3 +244,28 @@ export default {
     },
 };
 </script>
+<style scoped>
+/* Glass Morphism Scrollbar */
+        .glass-scroll::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .glass-scroll::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .glass-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .glass-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(255,255,255,0.5);
+        }
+        </style>

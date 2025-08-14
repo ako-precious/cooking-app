@@ -430,26 +430,4 @@ export default {
 </script>
 
 <style scoped>
-/* Glass Morphism Scrollbar */
-        .glass-scroll::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        .glass-scroll::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .glass-scroll::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.4);
-            transition: all 0.3s ease;
-        }
-
-        .glass-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.5);
-        }</style>
+</style>
