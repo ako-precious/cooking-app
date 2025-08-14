@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import lightModePortion from '@/assets';
+// No script logic needed for this component
 </script>

@@ -18,7 +18,13 @@ class MealController extends Controller
         // Create a new row in your table
         $newRow = Meal::create([
             'cook_id' => $request->user_id,
-            'name', 'region', 'description',  'price', 'ingredients', 'cooking_limit', 'status'
+            'name',
+            'region',
+            'description',
+            'price',
+            'ingredients',
+            'cooking_limit',
+            'status'
         ]);
 
         // Return the ID of the newly created row
@@ -71,7 +77,14 @@ class MealController extends Controller
     public function price(Request $request, $id)
     {
         $meal =  Meal::find($id);
-        $meal->prices = $request->prices;
+        $validated = $request->validate([
+            'prices' => 'required|array|min:1',
+            'prices.*.size' => 'required|string|max:255',
+            'prices.*.unit' => 'required|string|max:255',
+            'prices.*.price' => 'required|numeric|min:0',
+        ]);
+
+        $meal->prices = $validated['prices'];
         $meal->save();
         return response()->json(['meal' => $meal]);
     }
@@ -100,9 +113,9 @@ class MealController extends Controller
     {
         $Meal = Meal::with('user', 'mealPhotos')->find($id);
         $ratings = Rating::where('meal_id', $id)->get();
-      
-       
-         $cid = $Meal->user->id;
+
+
+        $cid = $Meal->user->id;
         // Get the reviews associated with the cook's meals
         $reviews = Rating::whereHas('meal', function ($query) use ($cid) {
             $query->where('cook_id', $cid);
@@ -116,9 +129,11 @@ class MealController extends Controller
         //     'user' => $user,
         //     'cook' => $cook,
         //     'meals' => $meals,
-          
+
         // ]);
-        return inertia('Meal/Show', ['meal' => $Meal,  'reviews' => $reviews,
+        return inertia('Meal/Show', [
+            'meal' => $Meal,
+            'reviews' => $reviews,
             'ratings' => $ratings
         ]);
     }
