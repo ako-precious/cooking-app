@@ -122,7 +122,7 @@ import TextInput from "@/Components/TextInput.vue";
                                             </option>
                                             <option
                                                 class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
-                                                value="extra-large"
+                                                value="xl"
                                             >
                                                 Extra Large (xl)
                                             </option>

@@ -50,7 +50,7 @@ defineProps(["meal"]);
         }}</Link>
     </td>
 
-    <td class="whitespace-nowrap px-6 py-3 ">
+    <td class="whitespace-nowrap px-6 py-3  overflow-y-scroll max-h-24">
         <Link :href="`/become-a-cook/${meal.id}/price`"
             > <table class="min-w-full bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <thead>
