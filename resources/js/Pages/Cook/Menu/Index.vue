@@ -83,12 +83,12 @@ import CaretUp from "@/Components/CaretUp.vue";
                                         class="w-full px-4 text-left text-sm font-light relative"
                                     >
                                         <thead
-                                            class="align-bottom shadow-sm translate-x-0 sticky top-0 bg-snow dark:bg-oynx_alt p-2 z-10"
+                                            class="align-bottom shadow-sm translate-x-0 sticky top-0 bg-snow dark:bg-oynx_alt py-4  z-10"
                                         >
                                             <tr>
                                                 <TableHeadVue>
                                                     <template #title>
-                                                        Title
+                                                        Name
                                                     </template>
                                                     <template #symbols>
                                                         <CaretUp />
