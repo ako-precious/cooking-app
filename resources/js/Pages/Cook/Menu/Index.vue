@@ -35,7 +35,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 </h1>
                             </div>
                             <div
-                                class="flex flex-wrap md:flex-row items-start justify-between md:items-center"
+                                class="flex flex-wrap md:flex-row items-start justify-between md:items-center overflow-scroll disable-scrollbars"
                             >
                                 <div class="p-2 flex">
                                     <Link :href="`/become-a-cook/overview`">
@@ -79,7 +79,7 @@ import CaretUp from "@/Components/CaretUp.vue";
                                 class="inline-block w-full py-2 sm:px-6 lg:px-8"
                             >
                                 <div
-                                    class="overflow-scroll disable-scrollbars"
+                                    class="overflow-scroll "
                                 >
                                     <table
                                         class="w-full px-4 text-left text-sm font-light relative"
@@ -302,4 +302,37 @@ button .span-mother2 span:nth-child(6) {
 .animate-fade-in {
     animation: fade-in 0.5s ease-in;
 }
+
+  .glass-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .glass-scroll::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .glass-scroll::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.8);
+        }
+
+        /* Firefox */
+        .glass-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(102, 126, 234, 0.6) transparent;
+        }
+         .table-container {
+            max-height: 150px; /* Set your desired height */
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
 </style>

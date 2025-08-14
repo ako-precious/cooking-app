@@ -50,26 +50,30 @@ defineProps(["meal"]);
         }}</Link>
     </td>
 
-    <td class="whitespace-nowrap px-6 py-3   ">
-        <Link :href="`/become-a-cook/${meal.id}/price`"
-            > <table class="min-w-full bg-snow dark:bg-oynx_alt rounded-lg shadow-md">
+    <td class="whitespace-nowrap px-6 py-3">
+  <Link :href="`/become-a-cook/${meal.id}/price`">
+    <div class="table-container glass-scroll">
+      <table class="min-w-full bg-snow dark:bg-oynx_alt rounded-lg shadow-md">
         <thead>
-          <tr class="bg-gray-200 dark:bg-gray-700">
-            <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Size</th>
-            <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Unit</th>
-            <th class="py-3 px-6 text-left text-xs font-medium  uppercase tracking-wider">Price</th>
+          <tr class="bg-gray-200 dark:bg-gray-700 sticky top-0">
+            <th class="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider">Size</th>
+            <th class="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider">Unit</th>
+            <th class="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider">Price</th>
           </tr>
         </thead>
-        <tbody class=" overflow-y-scroll scroll-container glass-scroll h-20">
-          <tr v-for="(mealPrice, index) in  meal.prices" :key="index" class="border-b bg-transparent">
+        <tbody>
+          <tr v-for="(mealPrice, index) in meal.prices" 
+              :key="index" 
+              class="border-b bg-transparent">
             <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.size }}</td>
             <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.unit }}</td>
             <td class="py-4 px-6 whitespace-nowrap">${{ mealPrice.price }}</td>
           </tr>
         </tbody>
-      </table></Link
-        >
-    </td>
+      </table>
+    </div>
+  </Link>
+</td>
     <td v-if="meal.ingredients"  class="whitespace-nowrap px-6 py-3">
         <Link :href="`/become-a-cook/${meal.id}/ingredients`"
             >
@@ -247,25 +251,35 @@ export default {
 <style scoped>
 /* Glass Morphism Scrollbar */
         .glass-scroll::-webkit-scrollbar {
-            width: 12px;
+            width: 8px;
         }
 
         .glass-scroll::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.05);
+            border-radius: 4px;
         }
 
         .glass-scroll::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
+            background: rgba(102, 126, 234, 0.6);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
             transition: all 0.3s ease;
         }
 
         .glass-scroll::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.5);
+            background: rgba(102, 126, 234, 0.8);
+        }
+
+        /* Firefox */
+        .glass-scroll {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(102, 126, 234, 0.6) transparent;
+        }
+         .table-container {
+            max-height: 150px; /* Set your desired height */
+            overflow-y: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         </style>
