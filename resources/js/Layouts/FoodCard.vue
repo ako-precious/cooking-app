@@ -77,7 +77,7 @@ defineProps(["meal"]);
       Choose a size and price
     </span>
 
-    <select
+    <select 
       v-model="selectedPrice"
       name="price"
       @focus="isDropdownOpen = true"
@@ -85,12 +85,12 @@ defineProps(["meal"]);
       class="w-full p-1.5 border-1.5 text border-gray-400 rounded-lg cursor-pointer focus:border-polynesian bg-snow text-oynx dark:text-snow dark:bg-oynx focus:outline-none focus:shadow-lg"
     >
       <option value="" disabled selected>Choose a size and price</option>
-      <option
+      <option 
         v-for="(priceOption, index) in meal.prices"
         :key="index"
         :value="priceOption"
-      >
-        {{ priceOption.size }} - ${{ priceOption.price }}
+      > 
+       {{ priceOption.size }} {{ priceOption.size === priceOption.unit ? '' : priceOption.unit }} - ${{ priceOption.price }}
       </option>
     </select>
   </form>
