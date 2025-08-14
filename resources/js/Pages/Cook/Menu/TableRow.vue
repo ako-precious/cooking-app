@@ -64,10 +64,10 @@ defineProps(["meal"]);
         <tbody>
           <tr v-for="(mealPrice, index) in meal.prices" 
               :key="index" 
-              class="border-b bg-transparent">
+              class="border-b bg-transparent capitalize">
             <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.size }}</td>
             <td class="py-4 px-6 whitespace-nowrap">{{ mealPrice.unit }}</td>
-            <td class="py-4 px-6 whitespace-nowrap">${{ mealPrice.price }}</td>
+            <td class="py-4 px-6 whitespace-nowrap">$ {{ mealPrice.price }}</td>
           </tr>
         </tbody>
       </table>

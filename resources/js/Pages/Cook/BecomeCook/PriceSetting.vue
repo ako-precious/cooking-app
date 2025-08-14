@@ -52,7 +52,15 @@ import TextInput from "@/Components/TextInput.vue";
     :readonly="['small','medium','large','xl'].includes(prices[index].unit)"
     class="border-2 rounded-lg bg-transparent border-gray-300 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow w-20 text-sm"
                                     
-  />
+  /> 
+  <div class="relative w-full">
+    <span
+      v-if="!prices[index].unit || prices[index].unit === 'Select a Unit'"
+      v-show="!isDropdownOpen"
+      class="absolute text-sm text-oynx dark:text-snow pl-2.5 top-1/2 -translate-y-1/2 left-0 pointer-events-none"
+    >
+      Choose a size and price
+    </span>
                                         <select  v-model="prices[index].unit"
                                             class="border-2 rounded-lg bg-transparent border-gray-300 w-2/4 p-2 focus:ring-persian focus:border-persian text-oynx dark:text-snow text-sm"
                                             name="units"
@@ -90,7 +98,7 @@ import TextInput from "@/Components/TextInput.vue";
                                             >
                                                 Gram (g)
                                             </option>
-                                            <option
+                                            <option 
                                                 class="border-2 rounded-lg bg-snow dark:bg-oynx p-2"
                                                 value="kilogram"
                                             >
@@ -127,6 +135,8 @@ import TextInput from "@/Components/TextInput.vue";
                                                 Extra Large (xl)
                                             </option>
                                         </select>
+  </div>
+  
                                     </div>
                                     <div class="flex items-center px-2 w-1/4">
                                         <font-awesome-icon
