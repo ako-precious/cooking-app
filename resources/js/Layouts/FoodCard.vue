@@ -68,24 +68,32 @@ defineProps(["meal"]);
             </div>
            
             <p>
-                <form class="w-full max-w-screen-xs mx-auto">
-  <select 
-    v-model="selectedPrice" 
-    name="price" 
-    class="w-full p-1.5 border-1.5 text border-gray-400 rounded-lg cursor-pointer focus:border-polynesian bg-snow text-oynx dark:text-snow dark:bg-oynx focus:outline-none focus:shadow-lg"
-  >Choose a size and price
-    <option value="" disabled>Choose a size and price</option>
-    <option 
-      v-for="(priceOption, index) in meal.prices" 
-      :key="index" 
-      :value="priceOption"
+              <form class="relative w-full max-w-screen-xs mx-auto">
+    <span
+      v-if="!selectedPrice"
+      v-show="!isDropdownOpen"
+      class="absolute text-sm text-oynx dark:text-snow pl-2.5 top-1/2 -translate-y-1/2 left-0 pointer-events-none"
     >
-      {{ priceOption.size }} - ${{ priceOption.price }}
-    </option>
-  </select>
-</form>
+      Choose a size and price
+    </span>
 
-
+    <select
+      v-model="selectedPrice"
+      name="price"
+      @focus="isDropdownOpen = true"
+      @blur="isDropdownOpen = false"
+      class="w-full p-1.5 border-1.5 text border-gray-400 rounded-lg cursor-pointer focus:border-polynesian bg-snow text-oynx dark:text-snow dark:bg-oynx focus:outline-none focus:shadow-lg"
+    >
+      <option value="" disabled selected>Choose a size and price</option>
+      <option
+        v-for="(priceOption, index) in meal.prices"
+        :key="index"
+        :value="priceOption"
+      >
+        {{ priceOption.size }} - ${{ priceOption.price }}
+      </option>
+    </select>
+  </form>
                 </p>
             <div class="flex items-center justify-between">
                 
@@ -181,7 +189,8 @@ export default {
             src: "",
             rating: "",
             wishlist: null,
-            selectedPrice: null,
+            selectedPrice: null, // Initialize with an empty value
+      isDropdownOpen: false, // Tracks if the dropdown is focused
             newSchedule: {
                 meal_name: "",
                 meal_time: "",
