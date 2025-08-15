@@ -161,7 +161,7 @@ export default {
                 start_date: this.formatForMySQL(this.newSchedule.start_date),
                 end_date: this.formatForMySQL(this.newSchedule.end_date),
                 portion: this.newSchedule.portion,
-                prices: this.newSchedule.prices,
+                prices: this.newSchedule.prices.price,
                 address: this.newSchedule.address,
             };
         },
