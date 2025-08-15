@@ -339,7 +339,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                             class="text-3xl font-bold text-polynesian dark:text-lighred"
                                             v-if="selectedPrice"
                                         >
-                                            <span class="mr-6">
+                                            <!-- <span class="mr-6">
                                                 {{ selectedPrice.size }}
                                                 {{
                                                     selectedPrice.size ===
@@ -347,7 +347,7 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
                                                         ? ""
                                                         : selectedPrice.unit
                                                 }}</span
-                                            >
+                                            > -->
                                             <span>
                                                 ${{ selectedPrice.price }}</span
                                             >
