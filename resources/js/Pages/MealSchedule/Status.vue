@@ -12,7 +12,7 @@ defineProps(["order","mealSchedule"]);
         <!-- component -->
         <div class="flex h-screen w-full items-center justify-center">
             <div
-                class="w-80 rounded shadow-small text-oynx dark:text-snow px-6 pt-8 shadow-lg"
+                class=" rounded shadow-small text-oynx dark:text-snow px-6 pt-8 shadow-lg w-full max-w-sm bg-snow dark:bg-oynx"
             >
                 <div class="flex justify-center">
                     <ApplicationMark class=""></ApplicationMark>
@@ -21,33 +21,33 @@ defineProps(["order","mealSchedule"]);
                     <h4 class="font-bold">Mymealni</h4>
                     <p onclick="updateStatus()" id="message"></p>
                 </div>
-                <div class="flex flex-col gap-3 border-b py-6 text-xs">
+                <div class="flex flex-col gap-3 border-b py-6 ">
                     <p class="flex justify-between">
-                        <span class="text-gray-600 font-semibold">Receipt No.:</span>
+                        <span class=" font-semibold">Receipt No.:</span>
                         <span># {{ mealSchedule.id }}</span>
                     </p>
                     <p class="flex justify-between">
-                        <span class="text-gray-600 font-semibold">Meal Time:</span>
+                        <span class=" font-semibold">Meal Time:</span>
                         <span>{{ mealSchedule.meal_time }}</span>
                     </p>
                     <p class="flex justify-between">
-                        <span class="text-gray-600 font-semibold">Order Time:</span>
+                        <span class=" font-semibold">Order Time:</span>
                         <span>{{   FormattedDate(mealSchedule.created_at) }}</span>
                     </p>
                     <p class="flex justify-between capitalize">
-                        <span class="text-gray-600 font-semibold">Cook:</span>
+                        <span class=" font-semibold">Cook:</span>
                         <!-- <span>{{ mealSchedule.meal.cook_id }}</span> -->
                         <span>{{ getCook(mealSchedule.meal.id) }}</span>
                     </p>
                     <p class="flex justify-between capitalize">
-                        <span class="text-gray-600 font-semibold">Customer:</span>
+                        <span class=" font-semibold">Customer:</span>
                         <span>{{ mealSchedule.user.name }}</span>
                     </p>
                     <p class=" ">
                        Click <Link :href="`/cook/order/${mealSchedule.id}`" class="text-persian"> here </Link> to view order status
                     </p>
                 </div>
-                <div class="flex flex-col gap-3 pb-6 pt-2 text-xs">
+                <div class="flex flex-col gap-3 pb-6 pt-2 ">
                     <table class="w-full text-left">
                         <thead>
                             <tr class="flex">
@@ -58,10 +58,9 @@ defineProps(["order","mealSchedule"]);
                         </thead>
                         <tbody>
                             <tr class="flex">
-                                <td class="flex-1 py-1 capitalize">{{ mealSchedule.meal.name }}</td>
-                             
+                                <td class="flex-1 py-1 capitalize">{{ mealSchedule.meal.name }}</td>                             
                                 <td class="min-w-[44px]">{{ mealSchedule.portion }}</td>
-                                <td class="min-w-[44px]">{{ order.total_price }}</td>
+                                <td class="min-w-[44px]">$ {{ order.total_price }}</td>
                             </tr>
                            
                         </tbody>

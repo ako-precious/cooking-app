@@ -8,9 +8,9 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
 <template>
     <div>
         <Navbar></Navbar>
-        <div class="flex flex-col justify-center items-center min-h-screen text-oynx dark:text-snow">
-            <div class="shadow-reverse rounded-lg p-6" v-for="(priceOption, index) in mealSchedule.prices" :key="index">
-                <h1 class="text-2xl font-bold mb-6">Payment Initialization</h1>
+        <div class="flex flex-col justify-center items-center min-h-screen  text-oynx dark:text-snow"> 
+            <div class="shadow-reverse rounded-lg p-6 max-w-md w-full bg-snow dark:bg-oynx">
+                <h1 class="text-2xl font-bold mb-6 text-center">Payment Initialization</h1>
                 <InputError v-if="error">{{ error }}</InputError>
                 <div class="flex justify-between mb-4">
                     <div class="flex items-center justify-center m-auto">
@@ -31,24 +31,24 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span class="font-bold">Meal Price:</span>
-                    <span class="font-bold">${{ priceOption.price }}</span>
+                    <span class="font-bold">${{ mealSchedule.prices.price }}</span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
-                    <span>Meal Quanlity:</span>
+                    <span>Meal Quantity:</span>
                     <span> {{ mealSchedule.portion }} </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span>Meal Size:</span>
-                    <span> {{ priceOption.size}} </span>
+                    <span> {{ mealSchedule.prices.size}} {{ mealSchedule.prices.unit}}(s) </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span>Payment Charges:</span>
-                    <span>$ {{ TransferFee(priceOption.price) }} </span>
+                    <span>$ {{ TransferFee( mealSchedule.prices.price) }} </span>
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between items-center">
                     <span class="font-bold">Total:</span>
-                    <span class="font-bold">${{ Total(priceOption.price) }} </span>
+                    <span class="font-bold">${{ Total( mealSchedule.prices.price) }} </span>
                 </div>
                 <div class="flex justify-center mt-6">
                     <PrimaryButton @click="charge">Proceed to Pay</PrimaryButton>
@@ -83,8 +83,8 @@ export default {
     methods: {
         async charge() {
             const total = (
-                parseFloat(this.mealSchedule.prices[0].price) +
-                (3 / 100) * parseFloat(this.mealSchedule.prices[0].price) * this.mealSchedule.portion 
+                parseFloat(this.mealSchedule.prices.price) +
+                (3 / 100) * parseFloat(this.mealSchedule.prices.price) * this.mealSchedule.portion 
             ).toFixed(2);
             await axios
                 .post("/checkout", {
