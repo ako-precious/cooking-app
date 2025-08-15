@@ -114,7 +114,120 @@ import { add, isBefore, getDay } from "date-fns";
     </form>
 </template>
 
+
 <script>
+import axios from "axios";
+
+
+const dayNameToNumber = {
+    Sunday: 0, Monday: 1, Tuesday: 2,
+    Wednesday: 3, Thursday: 4, Friday: 5, Saturday: 6
+};
+
+export default {
+    props: { newSchedule: Object },
+
+    data() {
+        return {
+            userId: "",
+            message: "",
+            error: "",
+            formattedEvents: [],
+            newEventModalVisible: false,
+            pickedDate: new Date(),
+            limit_from: new Date(),
+            limit_to: add(new Date(), { days: 20 }),
+        };
+    },
+
+    methods: {
+        pad(n) { return n.toString().padStart(2, "0"); },
+
+        formatForMySQL(date) {
+            const d = new Date(date);
+            return `${d.getFullYear()}-${this.pad(d.getMonth() + 1)}-${this.pad(d.getDate())} ` +
+                   `${this.pad(d.getHours())}:${this.pad(d.getMinutes())}:${this.pad(d.getSeconds())}`;
+        },
+
+        formatSchedule() {
+            this.newSchedule.start_date = this.pickedDate;
+            this.newSchedule.meal_time = "Lunch";
+
+            this.formattedEvents = {
+                meal_id: this.newSchedule.meal_id,
+                user_id: this.newSchedule.user_id,
+                meal_time: this.newSchedule.meal_time,
+                start_date: this.formatForMySQL(this.newSchedule.start_date),
+                end_date: this.formatForMySQL(this.newSchedule.end_date),
+                portion: this.newSchedule.portion,
+                prices: this.newSchedule.prices,
+                address: this.newSchedule.address,
+            };
+        },
+
+        isDateDisabled(date) {
+            let availability = this.newSchedule.cook_availability;
+
+            try {
+                if (!availability || availability.trim() === "") {
+                    availability = Object.keys(dayNameToNumber);
+                } else {
+                    availability = JSON.parse(availability);
+                    if (!Array.isArray(availability)) {
+                        availability = JSON.parse(availability);
+                    }
+                    if (!availability.length) {
+                        availability = Object.keys(dayNameToNumber);
+                    }
+                }
+            } catch {
+                availability = Object.keys(dayNameToNumber);
+            }
+
+            const allowedDays = availability.map(day => dayNameToNumber[day]);
+            return !allowedDays.includes(getDay(date));
+        },
+
+        async addSchedule() {
+            if (!this.$page.props.auth.user) return;
+
+            const today = new Date().toISOString().split("T")[0];
+            const { start_date, meal_time, portion, address, user_id } = this.newSchedule;
+
+            if (!start_date || !meal_time || !portion || !address || !user_id) {
+                return this.showError("Please fill in all fields to create your schedule.");
+            }
+            if (today >= start_date) {
+                return this.showError("Schedules can only be created for future dates.");
+            }
+
+            this.formatSchedule();
+
+            try {
+                const resp = await axios.post("/schedule", this.formattedEvents);
+                this.message = resp.data.message;
+
+                const mealId = resp.data.data.id;
+                this.$inertia.visit(
+                    resp.data.data.status === "accepted" 
+                        ? `/process_order/${mealId}`
+                        : `/meal-schedule`
+                );
+            } catch (err) {
+                this.showError("Unable to add Meal !");
+                console.error("Error adding meal:", err);
+            }
+        },
+
+        showError(msg) {
+            this.error = msg;
+            setTimeout(() => this.error = "", 10000);
+        }
+    }
+};
+</script>
+
+<!-- <script>
 export default {
     inheritAttrs: false,
     props: {
@@ -301,4 +414,4 @@ export default {
         },
     },
 };
-</script>
+</script> -->
