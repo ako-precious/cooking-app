@@ -21,7 +21,7 @@ import { add, isBefore, getDay } from "date-fns";
 
     <form @submit.prevent class="p-4 md:py-8">
         <h2 class="text-oynx dark:text-snow font-extrabold text-2xl">
-            ${{ newSchedule.prices }} CAD
+            ${{ newSchedule.prices.price }} CAD
         </h2>
         <div class="py-3 relative">
             <TextInput
