@@ -17,23 +17,19 @@ import {
     faEarthAsia, faEarthEurope, faEarthOceania, faForward, faGear, faGlobe, faHouse, 
     faMagnifyingGlass, faPlus, faRightToBracket, faShare, faStar, faUser, faUserPlus, 
     faDollarSign, faCaretUp, faToggleOff, faToggleOn, faImage, faPepperHot, faNewspaper, 
-    faBell, faRightFromBracket, faHeart, faChevronDown,
-    faFilter,
-    faEye,
-    faPenToSquare,
-    faExclamationCircle,
-    faTrash
+    faBell, faRightFromBracket, faHeart, faChevronDown, faFilter, faEye, faPenToSquare,
+    faExclamationCircle, faTrash, faPhone, faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 /* Add icons to the library */
 library.add( 
-    faUser, faGlobe, faArrowRight, faUserPlus, faRightToBracket, faDoorOpen, 
+    faUser, faGlobe, faArrowRight, faUserPlus, faRightToBracket, faDoorOpen,  faTrash,
     faCirclePlus, faHeart, faShare, faStar, faGoogle, faCalendar, faGear, faClose, faHouse, 
-    faMagnifyingGlass, faForward, faBackward, faPlus, faEarthAfrica, faEarthAmerica, 
-    faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faEarth, faImages, 
+    faMagnifyingGlass, faForward, faBackward, faPlus, faEarthAfrica, faEarthAmerica,  faEnvelope,
+    faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faEarth, faImages, faPhone,
     faDollarSign, faCaretDown, faCaretUp, faToggleOff, faToggleOn, faImage, faPepperHot, 
-    faNewspaper, faBell, faRightFromBracket, faChevronDown, faFilter, faEye, faPenToSquare, faExclamationCircle, faTrash
+    faNewspaper, faBell, faRightFromBracket, faChevronDown, faFilter, faEye, faPenToSquare, faExclamationCircle, 
 );
 
 const appName = import.meta.env.VITE_APP_NAME || 'ounjemi';
