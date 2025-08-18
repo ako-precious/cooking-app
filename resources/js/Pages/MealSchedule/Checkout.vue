@@ -35,7 +35,7 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span>Meal Quantity:</span>
-                    <span> {{ mealSchedule.portion }} </span>
+                    <span> {{ mealSchedule.portion * mealSchedule.prices.price}} </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span>Meal Size:</span>
@@ -43,12 +43,12 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
                 </div>
                 <div class="flex justify-between items-center mt-4">
                     <span>Payment Charges:</span>
-                    <span>$ {{ TransferFee( mealSchedule.prices.price) }} </span>
+                    <span>$ {{ transferFee }} </span>
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between items-center">
                     <span class="font-bold">Total:</span>
-                    <span class="font-bold">${{ Total( mealSchedule.prices.price) }} </span>
+                    <span class="font-bold">${{ total}} </span>
                 </div>
                 <div class="flex justify-center mt-6">
                     <PrimaryButton @click="charge">Proceed to Pay</PrimaryButton>
@@ -59,6 +59,63 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
 </template>
 
 <script>
+import axios from "axios";
+
+export default {
+    props: {
+        mealSchedule: { type: Object, required: true },
+        meal: { type: Object, required: true },
+        firstPhoto: { type: Object, default: null },
+    },
+
+    data() {
+        return { error: null };
+    },
+
+    computed: {
+        price() {
+            return parseFloat(this.mealSchedule.prices.price) || 0;
+            
+        },
+        portion() {
+            return parseInt(this.mealSchedule.portion) || 1;
+        },
+        transferFee() {
+            return (this.price * this.portion * 0.07).toFixed(2);
+            console.log();
+        },
+        total() {
+            return (this.price + parseFloat(this.transferFee)).toFixed(2);
+        },
+        photoUrl() {
+            if (this.firstPhoto?.meal_photo_path) {
+                return `/storage/${this.firstPhoto.meal_photo_path}`.replace("/public", "");
+            }
+            return "/images/imagenotfound.png";
+        }
+    },
+
+    methods: {
+        async charge() {
+            try {
+                const response = await axios.post("/checkout", {
+                    schedule_id: this.mealSchedule.id,
+                    amount: this.total,
+                });
+
+                const { client_secret } = response.data;
+                this.$inertia.visit(`/payment?client_secret=${client_secret}`);
+            } catch (error) {
+                this.error = "Error processing the payment";
+                console.error("Payment error:", error);
+            }
+        }
+    }
+};
+</script>
+
+
+<!-- <script>
 import axios from "axios";
 export default {
     inheritAttrs: false,
@@ -119,7 +176,7 @@ export default {
         },
     },
 };
-</script>
+</script> -->
 
 <style>
 .error {
