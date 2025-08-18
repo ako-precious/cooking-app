@@ -1,179 +1,175 @@
 <script setup>
 import axios from "axios";
-import Login from "@/Pages/Auth/Login.vue";
 import { Head, Link } from "@inertiajs/vue3";
 import Loader from "@/Components/Loader.vue";
 import OrderCard from "@/Pages/Order/OrderCard.vue";
 import BulkIcon from "@/Components/Icons/BulkIcon.vue";
+import Login from "@/Pages/Auth/Login.vue";
+
 defineProps(["meal"]);
 </script>
 
 <template>
     <div
-        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 dark:bg-gradient-to-br dark:from-[#2b312e] dark:to-[#333a37] transition-all duration-250 delay-75 ease-in"
+        class="group relative m-auto flex w-full max-w-xs flex-col overflow-hidden rounded-xl bg-gradient-to-br from-[#e3dedf] to-[#ffffff] hover:border hover:border-gray-500 dark:from-[#2b312e] dark:to-[#333a37] transition-all duration-250 delay-75 ease-in"
     >
+        <!-- Image & Badge -->
         <Link
-            class="relative flex h-56 overflow-hidden"
             :href="`/meals/${meal.id}`"
+            class="relative flex h-56 overflow-hidden"
         >
-            <div v-if="isLoading" class="">
-                <Loader class="object-cover h-fit"></Loader>
-            </div>
-
-            <div v-if="!isLoading">
-                <img
-                    class="object-cover h-fit"
-                    :src="src"
-                    alt="product image"
-                />
-            </div>
+            <div v-if="isLoading"><Loader /></div>
+            <img
+                v-else
+                :src="src"
+                alt="product image"
+                class="object-cover h-fit"
+            />
             <span
-                class="absolute top-0 left-0 m-2 rounded-full bg-lighred px-2 text-center text-sm font-medium text-snow"
-                >New</span
+                class="absolute top-0 left-0 m-2 rounded-full bg-lighred px-2 text-sm font-medium text-snow"
             >
+                New
+            </span>
         </Link>
-        <div class="my-2 px-5 pb-3 transition-all duration-200 ease delay-75">
+
+        <!-- Meal Info -->
+        <div class="my-2 px-5 pb-3 transition-all duration-200">
             <Link :href="`/meals/${meal.id}`">
                 <h5
-                    class="text-lg capitalize font-bold tracking-tight text-oynx dark:text-snow text-nowrap"
+                    class="text-lg font-bold capitalize tracking-tight text-oynx dark:text-snow truncate"
                 >
                     {{ meal.title }}
                 </h5>
             </Link>
-            <div class="my-2 flex items-center justify-between">
-                <Link
-                                            :href="
-                                                route('user.show', {
-                                                    id: meal.cook.id,
-                                                })
-                                            "
-                                        ><span
-                        class="text-sm capitalize text-oynx dark:text-snow hover:text-polynesian hover:dark:text-lighred"
-                        >{{ meal.cook.name }}
-                    </span>
-                                           
-                                        </Link>
-                                
-                                     <a href="#" class=" ">
-                    
-                </a>
 
+            <div class="my-2 flex items-center justify-between">
+                <!-- Cook Name -->
+                <Link
+                    :href="route('user.show', { id: meal.cook.id })"
+                    class="text-sm capitalize text-oynx dark:text-snow hover:text-polynesian dark:hover:text-lighred"
+                >
+                    {{ meal.cook.name }}
+                </Link>
+
+                <!-- Rating -->
                 <div class="flex items-center">
                     <font-awesome-icon icon="star" class="text-persian" />
                     <span
-                        class="mr-2 ml-3 rounded bg-persian px-1 py-0.5 text-xs font-semibold"
-                        >{{ rating }}</span
+                        class="ml-2 rounded bg-persian px-1 py-0.5 text-xs font-semibold"
                     >
+                        {{ rating }}
+                    </span>
                 </div>
             </div>
-           
-            <p>
-              <form class="relative w-full max-w-screen-xs mx-auto">
-    <span
-      v-if="!selectedPrice"
-      v-show="!isDropdownOpen"
-      class="absolute text-sm text-oynx dark:text-snow pl-2.5 top-1/2 -translate-y-1/2 left-0 pointer-events-none"
-    >
-      Choose a size and price
-    </span>
 
-    <select 
-      v-model="selectedPrice"
-      name="price"
-      @focus="isDropdownOpen = true"
-      @blur="isDropdownOpen = false"
-      class="w-full p-1.5 border-1.5 text border-gray-400 rounded-lg cursor-pointer focus:border-polynesian bg-snow text-oynx dark:text-snow dark:bg-oynx focus:outline-none focus:shadow-lg"
-    >
-      <option value="" disabled selected>Choose a size and price</option>
-      <option 
-        v-for="(priceOption, index) in meal.prices"
-        :key="index"
-        :value="priceOption"
-      > 
-       {{ priceOption.size }} {{ priceOption.size === priceOption.unit ? '' : priceOption.unit }} - ${{ priceOption.price }}
-      </option>
-    </select>
-  </form>
-                </p>
-            <div class="flex items-center justify-between">
-                
-                <div
-                class="items-center justify-end rounded-md flex opacity-70 group-hover:opacity-100 py-2 group-hover:m-0 text-center text-sm font-medium text-snow focus:outline-none transition-all duration-200 delay-75 ease animate-fade-up"
+            <!-- Price Selector -->
+            <form class="relative w-full">
+                <span
+                    v-if="!selectedPrice && !isDropdownOpen"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 pl-2.5 text-sm text-oynx dark:text-snow pointer-events-none"
                 >
-                <p class="flex items-center">
-                    <span
-                        class="text-sm font-medium text-gray-500 dark:text-gray-400 opacity-0"
-                        >Bulk
-      
-    </span
+                    Choose a size and price
+                </span>
+
+                <select
+                    v-model="selectedPrice"
+                    name="price"
+                    @focus="isDropdownOpen = true"
+                    @blur="isDropdownOpen = false"
+                    class="w-full p-1.5 border border-gray-400 rounded-lg cursor-pointer bg-snow text-oynx dark:bg-oynx dark:text-snow focus:border-polynesian focus:shadow-lg"
+                >
+                    <option value="" disabled>Choose a size and price</option>
+                    <option
+                        v-for="(priceOption, i) in meal.prices"
+                        :key="i"
+                        :value="priceOption"
                     >
-                    <BulkIcon></BulkIcon>
-                </p>
-                    <div v-if="$page.props.auth.user">
+                        {{ priceOption.size }}
+                        {{
+                            priceOption.size === priceOption.unit
+                                ? ""
+                                : priceOption.unit
+                        }}
+                        - ${{ priceOption.price }}
+                    </option>
+                </select>
+            </form>
+            <div class=" text-xs capitalize text-lighred py-2">
+                {{ error }}
+            </div>
+            <!-- Actions -->
+            <div class="flex items-center justify-between mt-2">
+                <div
+                    class="flex items-center opacity-70 group-hover:opacity-100 transition-all duration-200"
+                >
+                    <p class="flex items-center">
+                        <BulkIcon />
+                    </p>
+
+                    <!-- Wishlist -->
+                    <template v-if="$page.props.auth.user">
                         <font-awesome-icon
-                            v-if="wishlist == null"
+                            v-if="!wishlist"
                             title="Add to wishlist"
                             @click="addWishList(meal.id)"
                             icon="fa-solid fa-heart"
-                            class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                            class="text-xl pr-2 text-oynx cursor-pointer hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
                         <font-awesome-icon
                             v-else
                             title="Added to wishlist"
                             @click="removeWishList(meal.id)"
                             icon="fa-solid fa-heart"
-                            class="text-xl text-persian pr-2 cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                            class="text-xl pr-2 text-persian cursor-pointer"
                         />
-                    </div>
-                    <div v-else>
+                    </template>
+                    <template v-else>
                         <font-awesome-icon
                             title="Add to wishlist"
                             icon="fa-solid fa-heart"
-                            class="text-xl pr-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                            class="text-xl pr-2 text-oynx cursor-pointer hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                         />
-                    </div>
+                    </template>
 
+                    <!-- Schedule & Share -->
                     <font-awesome-icon
                         title="Add to Meal Schedule"
                         @click="openModal(meal)"
                         icon="circle-plus"
-                        class="text-4xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        class="text-3xl px-2 cursor-pointer text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                     <font-awesome-icon
                         title="Share Meal"
-                        icon="share" @click="shareMeal"
-                        class="text-xl px-2 text-oynx cursor-pointer active:text-persian hover:text-polynesian dark:text-snow dark:hover:text-lighred"
+                        @click="shareMeal"
+                        icon="share"
+                        class="text-xl px-2 cursor-pointer text-oynx hover:text-polynesian dark:text-snow dark:hover:text-lighred"
                     />
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
     <div
-        class="modal disable-scrollbars overflow-y-auto overflow-x-hidden pt-16 fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-[100] flex justify-center items-center backdrop-blur-sm w-full h-full"
         v-show="newEventModalVisible"
+        class="fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-sm"
     >
-        <div
-            class="relative p-4 w-full max-w-md max-h-full transition-all duration-300 ease-in delay-200"
-        >
-            <div class="relative rounded-lg shadow shadow-small">
+        <div class="relative w-full max-w-md p-4">
+            <div class="relative rounded-lg shadow-small shadow">
                 <button
                     @click="closeModal"
                     type="button"
-                    class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-12 h-12 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-hide="popup-modal"
+                    class="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-lg text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600"
                 >
                     <font-awesome-icon
                         icon="fa-solid fa-close"
-                        class="text-lighred text-2xl"
+                        class="text-lighred text-xl"
                     />
-                    <span class="sr-only">Close modal</span>
                 </button>
                 <div v-if="$page.props.auth.user">
-                    <OrderCard :newSchedule="newSchedule"></OrderCard>
+                    <OrderCard :newSchedule="newSchedule" />
                 </div>
-                <template v-else>
-                    <Login></Login>
-                </template>
+                <Login v-else />
             </div>
         </div>
     </div>
@@ -181,253 +177,128 @@ defineProps(["meal"]);
 
 <script>
 export default {
-    inheritAttrs: false,
     data() {
         return {
-            userId: "",
-            isLoading: true,
             src: "",
             rating: "",
             wishlist: null,
-            selectedPrice: null, // Initialize with an empty value
-      isDropdownOpen: false, // Tracks if the dropdown is focused
-            newSchedule: {
-                meal_name: "",
-                meal_time: "",
-                user_id: "",
-                cook_availability: "",
-                selectedPrice: null,
-                start_date: "",
-                end_date: "",
-                price: "",
-            },
+            selectedPrice: null,
+            isDropdownOpen: false,
+            isLoading: true,
+            newSchedule: {},
+            error: null,
             newEventModalVisible: false,
-            isHeaderFixed: false,
         };
     },
-    mounted() {
-        // console.log(this.meal);
-        this.handleScroll();
-        this.WishList();
-    },
+
     created() {
         this.getPhoto();
-        this.WishList();
-        this.fetchData();
         this.getRatings();
+        this.WishList();
     },
+
     methods: {
         async getPhoto() {
-            await axios
-                .get("/meal_photos/" + this.meal.id)
-                .then((response) => {
-                    if (
-                        response.data.firstPhoto &&
-                        response.data.firstPhoto.meal_photo_path
-                    ) {
-                        this.src =
-                            `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
-                                "/public",
-                                ""
-                            );
-                    } else {
-                        this.src = "/images/imagenotfound.png";
-                    }
-                    // cons
-                    // console.log(this.src);
-                })
-                .catch((error) => {
-                    // console.error("Error fetching data:", error);
-                    // Set default image on error as well
-                    this.src = "/images/imagenotfound.png";
-                })
-                .finally(() => {
-                    // Set loading state to false when fetching completes
-                    this.isLoading = false;
-                });
-        },
-        async loadMoreData() {
-            if (this.hasMoreData) {
-                this.page++;
-                await this.fetchData();
-            }
-        },
-        async shareMeal() {
-   const shareUrl = `/meals/${this.meal.id}`;
-    const shareData = {
-        title: this.meal.name,
-        text: `Check out this delicious meal: ${this.meal.name}`,
-        url: shareUrl
-    };
-
-    try {
-        // Check if the Web Share API is supported
-        if (navigator.share) {
-            await navigator.share(shareData);
-        } else {
-            // Fallback: Copy to clipboard
-            await navigator.clipboard.writeText(shareUrl);
-            
-            // You can show a toast/notification here
-            alert('Link copied to clipboard!');
-            // Or if you have a toast system:
-            // this.showToast('Link copied to clipboard!');
-        }
-    } catch (error) {
-        if (error.name !== 'AbortError') {
-            // Fallback: Copy to clipboard if share was cancelled or failed
             try {
-                await navigator.clipboard.writeText(shareUrl);
-                alert('Link copied to clipboard!');
-            } catch (clipboardError) {
-                // Final fallback: Show the URL for manual copying
-                prompt('Copy this link to share:', shareUrl);
-            }
-        }
-    }
-},
-        async fetchData() {
-            try {
-                const response = await axios.get(
-                    `/meals?page=${this.page}&perPage=${this.perPage}`
+                const { data } = await axios.get(
+                    `/meal_photos/${this.meal.id}`
                 );
-                const newMeals = response.data;
-
-                // If there is no new data, set hasMoreData to false
-                if (newMeals.length === 0) {
-                    this.hasMoreData = false;
-                }
-
-                // Concatenate new data to the existing meals
-                this.meals = [...this.meals, ...newMeals];
-            } catch (error) {
-                // console.error("Error fetching data:", error);
+                this.src = data.firstPhoto?.meal_photo_path
+                    ? `/storage/${data.firstPhoto.meal_photo_path}`.replace(
+                          "/public",
+                          ""
+                      )
+                    : "/images/imagenotfound.png";
+            } catch {
+                this.src = "/images/imagenotfound.png";
+            } finally {
+                this.isLoading = false;
             }
         },
-        getRatings() {
-            const mealId = this.meal.id;
-            //    console.log( mealId);
+
+        async getRatings() {
+            try {
+                const { data } = await axios.get(
+                    `/api/ratings/${this.meal.id}`
+                );
+                this.rating = data?.total ? data.total.toFixed(1) : "";
+            } finally {
+                this.isLoading = false;
+            }
+        },
+
+        async shareMeal() {
+            const shareUrl = `/meals/${this.meal.id}`;
+            const shareData = {
+                title: this.meal.title,
+                text: `Check out this delicious meal: ${this.meal.title}`,
+                url: shareUrl,
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else {
+                    await navigator.clipboard.writeText(shareUrl);
+                    alert("Link copied to clipboard!");
+                }
+            } catch {
+                prompt("Copy this link to share:", shareUrl);
+            }
+        },
+
+        addWishList(id) {
             axios
-                .get("/api/ratings/" + mealId)
-                .then((response) => {
-                    if (response.data) {
-                        // console.log(response);
-
-                        this.rating = response.data.total.toFixed(1);
-
-                        // this.total = response.data.total;
-                    } else {
-                        this.rating = "";
-                    }
+                .post("/wishlist", {
+                    meal_id: id,
+                    user_id: this.$page.props.auth.user.id,
                 })
-                .catch((error) => {
-                    // console.error("Error fetching data:", error);
-                })
-                .finally(() => {
-                    // Set loading state to false when fetching completes
-                    this.isLoading = false;
-                });
+                .then((res) => (this.wishlist = res.data.wishlist));
         },
-        handleScroll() {
-            // Adjust the scroll threshold as needed
-            const scrollThreshold = 50;
-            this.isHeaderFixed = window.scrollY > scrollThreshold;
-        },
+
         removeWishList(id) {
             axios
                 .delete(`/wishlist/${id}`)
-                .then((response) => {
-                    this.wishlist = response.data.wishlist;
-                    // Update UI if necessary
-                })
-                .catch((error) => {
-                    // console.error("Error deleting item:", error);
-                });
+                .then((res) => (this.wishlist = res.data.wishlist));
         },
-        addWishList(id) {
-            const wishlistData = {
-                meal_id: id,
-                user_id: this.$page.props.auth.user.id,
-            };
-            axios
-                .post("/wishlist", wishlistData)
-                .then((response) => {
-                    this.wishlist = response.data.wishlist;
-                    // Update UI if necessary
-                })
-                .catch((error) => {
-                    // console.error("Error adding to wishlist:", error);
-                });
-        },
+
         WishList() {
-            if (this.$page.props.auth.user) {
-                const id = this.meal.id;
-                axios
-                    .get("/wishlist/" + id)
-                    .then((response) => {
-                        this.wishlist = response.data.wishlist;
-                    })
-                    .catch((error) => {
-                        // console.error("Error fetching wishlist data:", error);
-                    });
-            }
+            if (!this.$page.props.auth.user) return;
+            axios
+                .get(`/wishlist/${this.meal.id}`)
+                .then((res) => (this.wishlist = res.data.wishlist));
         },
 
         async openModal(meal) {
-             if (!this.$page.props.auth.user) {
-                // Redirect to sign in page if not authenticated
-                this.$inertia.visit("/login"); // or whatever your sign-in route is
+            if (!this.$page.props.auth.user)
+                return this.$inertia.visit("/login");
+            if (!this.selectedPrice) {
+                this.error = "Please select a price option before scheduling.";
                 return;
             }
-            const response = await axios.get(`/cook/menu/` + this.meal.cook.id);
-            const availability = response.data.data.availability;
-            // console.log(response.data.data);
-            // console.log(this.meal.cook.id );
+            const { data } = await axios.get(`/cook/menu/${meal.cook.id}`);
+            const nextDay = new Date();
+            nextDay.setDate(nextDay.getDate() + 1);
 
-            // Get the current date
-            const currentDate = new Date();
-
-            // Add one day to the current date
-            const nextDayDate = new Date(currentDate);
-            nextDayDate.setDate(currentDate.getDate() + 1);
-
-            // Format the next day date as an ISO string without the time part
-            const nextDayISOString = nextDayDate
-                .toISOString()
-                .replace(/T.*$/, "");
-            // clear everything in the div and close it
-            this.newEventModalVisible = true;
-            if (this.$page.props.auth.user) {
-                // this.suggestedMeal = [];
-                this.newSchedule = {
-                    meal_name: meal.title,
-                    meal_id: meal.id.toString(),
-                    cook_availability: availability,
-                    user_id: this.$page.props.auth.user.id.toString(),
-                    start_date: nextDayISOString,
-                    end_date: nextDayISOString,
-                    prices: this.selectedPrice,
-                    meal_time: "Choose a Meal time",
-                };
-            }
-            
-            // console.log(meal );
-        },
-        closeModal() {
-            // clear everything in the div and close it
-            this.newEventModalVisible = false;
             this.newSchedule = {
-                meal_name: "",
-                start_date: "",
-                end_date: "",
-                meal_time: "",
+                meal_name: meal.title,
+                meal_id: meal.id.toString(),
+                cook_availability: data.data.availability,
+                user_id: this.$page.props.auth.user.id.toString(),
+                start_date: nextDay.toISOString().split("T")[0],
+                end_date: nextDay.toISOString().split("T")[0],
+                prices: this.selectedPrice,
+                meal_time: "Choose a Meal time",
             };
-            this.message = "";
-            this.error = "";
+
+            this.newEventModalVisible = true;
+        },
+
+        closeModal() {
+            this.newEventModalVisible = false;
+            this.newSchedule = {};
         },
     },
 };
 </script>
-
-<style scoped>
-</style>
+<style scoped></style>
