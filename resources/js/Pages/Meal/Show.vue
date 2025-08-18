@@ -579,7 +579,6 @@ import OrderCard from "@/Pages/Order/OrderCard.vue";
 
 <script>
 export default {
-    inheritAttrs: false,
     props: {
         meal: Object,
         user: Object,
@@ -591,92 +590,60 @@ export default {
     data() {
         return {
             src: "",
+            other_src: [],
             isLoading: true,
-            other_src: "",
-            imagePreviews: [],
-            userId: "",
-            message: "",
-            error: "",
             selectedPrice: null,
             wishlist: null,
+            message: "",
+            error: "",
             newSchedule: {
                 meal_name: "",
-                meal_time: "",
+                meal_id: "",
                 user_id: "",
                 cook_availability: "",
                 start_date: "",
-                price: "",
                 end_date: "",
+                prices: null,
+                meal_time: "",
             },
-            formattedEvents: [],
-            rating: [],
             newEventModalVisible: false,
             isHeaderFixed: false,
         };
     },
     mounted() {
         window.addEventListener("scroll", this.handleScroll);
-        // Set the first price option as default selected
-        if (this.meal.prices && this.meal.prices.length > 0) {
-            this.selectedPrice = this.meal.prices[0].price;
+        if (this.meal.prices?.length > 0) {
+            this.selectedPrice = this.meal.prices[0];
         }
+        this.fetchMealPhotos();
+        this.WishList();
     },
-    created() {
-        this.getPhoto();
-        this.getPhotos();
-    },
-    beforeDestroy() {
+    beforeUnmount() {
         window.removeEventListener("scroll", this.handleScroll);
     },
     computed: {
         timeCooking() {
             const createdAt = new Date(this.meal.user.created_at);
-            const now = new Date();
-            const diffTime = Math.abs(now - createdAt);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-            if (diffDays < 30) {
-                return `${diffDays} `;
-            } else if (diffDays < 365) {
-                const diffMonths = Math.floor(diffDays / 30);
-                return `${diffMonths} `;
-            } else {
-                const diffYears = Math.floor(diffDays / 365);
-                return `${diffYears}`;
-            }
+            const diffDays = Math.ceil((Date.now() - createdAt) / (1000 * 60 * 60 * 24));
+            if (diffDays < 30) return `${diffDays}`;
+            if (diffDays < 365) return `${Math.floor(diffDays / 30)}`;
+            return `${Math.floor(diffDays / 365)}`;
         },
-
         CookingDate() {
             const createdAt = new Date(this.meal.user.created_at);
-            const now = new Date();
-            const diffTime = Math.abs(now - createdAt);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-            if (diffDays < 30) {
-                return `Days`;
-            } else if (diffDays < 365) {
-                return `Months`;
-            } else {
-                return `Years`;
-            }
+            const diffDays = Math.ceil((Date.now() - createdAt) / (1000 * 60 * 60 * 24));
+            if (diffDays < 30) return "Days";
+            if (diffDays < 365) return "Months";
+            return "Years";
         },
     },
     methods: {
         handleScroll() {
-            // Adjust the scroll threshold as needed
-            const scrollThreshold = 20;
-            this.isHeaderFixed = window.scrollY > scrollThreshold;
+            this.isHeaderFixed = window.scrollY > 20;
         },
-        getProfilePhotoUrl(profilePhotoPath) {
-            if (
-                profilePhotoPath.includes("https://lh3.googleusercontent.com")
-            ) {
-                return profilePhotoPath;
-            } else {
-                return `/storage/${profilePhotoPath}`;
-            }
+        getProfilePhotoUrl(path) {
+            return path.includes("googleusercontent.com") ? path : `/storage/${path}`;
         },
-        // Add this method to your Vue component
         async shareMeal() {
             const shareUrl = `/meals/${this.meal.id}`;
             const shareData = {
@@ -684,173 +651,105 @@ export default {
                 text: `Check out this delicious meal: ${this.meal.name}`,
                 url: shareUrl,
             };
-
             try {
-                // Check if the Web Share API is supported
-                if (navigator.share) {
-                    await navigator.share(shareData);
-                } else {
-                    // Fallback: Copy to clipboard
+                if (navigator.share) await navigator.share(shareData);
+                else {
                     await navigator.clipboard.writeText(shareUrl);
-
-                    // You can show a toast/notification here
                     alert("Link copied to clipboard!");
-                    // Or if you have a toast system:
-                    // this.showToast('Link copied to clipboard!');
                 }
             } catch (error) {
                 if (error.name !== "AbortError") {
-                    // Fallback: Copy to clipboard if share was cancelled or failed
                     try {
                         await navigator.clipboard.writeText(shareUrl);
                         alert("Link copied to clipboard!");
-                    } catch (clipboardError) {
-                        // Final fallback: Show the URL for manual copying
+                    } catch {
                         prompt("Copy this link to share:", shareUrl);
                     }
                 }
             }
         },
-        removeWishList(id) {
-            axios
-                .delete(`/wishlist/${id}`)
-                .then((response) => {
-                    this.wishlist = response.data.wishlist;
-                    // Update UI if necessary
-                })
-                .catch((error) => {
-                    console.error("Error deleting item:", error);
-                });
-        },
-        addWishList(id) {
-            const wishlistData = {
-                meal_id: id,
-                user_id: this.$page.props.auth.user.id,
-            };
-            axios
-                .post("/wishlist", wishlistData)
-                .then((response) => {
-                    this.wishlist = response.data.wishlist;
-                    // Update UI if necessary
-                })
-                .catch((error) => {
-                    console.error("Error adding to wishlist:", error);
-                });
-        },
-        WishList() {
-            if (this.$page.props.auth.user) {
-                const id = this.meal.id;
-                axios
-                    .get("/wishlist/" + id)
-                    .then((response) => {
-                        this.wishlist = response.data.wishlist;
-                    })
-                    .catch((error) => {
-                        console.error("Error fetching wishlist data:", error);
-                    });
+        async removeWishList(id) {
+            try {
+                const { data } = await axios.delete(`/wishlist/${id}`);
+                this.wishlist = data.wishlist;
+            } catch (err) {
+                console.error("Error deleting item:", err);
             }
         },
-        getPhoto() {
-            axios
-                .get("/meal_photos/" + this.meal.id)
-                .then((response) => {
-                    this.src =
-                        `/storage/${response.data.firstPhoto.meal_photo_path}`.replace(
-                            "/public",
-                            ""
-                        );
-                })
-                .catch((error) => {
-                    // console.error("Error fetching data:", error);
-                    // Set default image on error as well
-                    this.src = "/images/imagenotfound.png";
-                })
-                .finally(() => {
-                    // Set loading state to false when fetching completes
-                    this.isLoading = false;
+        async addWishList(id) {
+            try {
+                const { data } = await axios.post("/wishlist", {
+                    meal_id: id,
+                    user_id: this.$page.props.auth.user.id,
                 });
+                this.wishlist = data.wishlist;
+            } catch (err) {
+                console.error("Error adding to wishlist:", err);
+            }
         },
-        getPhotos() {
-            axios
-                .get("/meal_photos/" + this.meal.id)
-                .then((response) => {
-                    // this.other_src = `/storage/${response.data.otherPhotos.meal_photo_path}`.replace("/public", "");
-                    this.other_src = response.data.otherPhotos
-                        .slice(1)
-                        .map((image) => ({
-                            src: `/storage/${image.meal_photo_path}`.replace(
-                                "/public",
-                                ""
-                            ), // Assuming your image object has a 'url' property
-                            id: image.id, // Assuming your image object has an 'id' property
-                        }));
-                })
-                .catch((error) => {
-                    // console.error("Error fetching data:", error);
-                    // Set default image on error as well
-                    this.src = "/images/imagenotfound.png";
-                })
-                .finally(() => {
-                    // Set loading state to false when fetching completes
-                    this.isLoading = false;
-                });
+        async WishList() {
+            if (!this.$page.props.auth.user) return;
+            try {
+                const { data } = await axios.get(`/wishlist/${this.meal.id}`);
+                this.wishlist = data.wishlist;
+            } catch (err) {
+                console.error("Error fetching wishlist:", err);
+            }
+        },
+        async fetchMealPhotos() {
+            try {
+                const { data } = await axios.get(`/meal_photos/${this.meal.id}`);
+                this.src = `/storage/${data.firstPhoto.meal_photo_path}`.replace("/public", "");
+                this.other_src = data.otherPhotos.slice(1).map(img => ({
+                    id: img.id,
+                    src: `/storage/${img.meal_photo_path}`.replace("/public", ""),
+                }));
+            } catch {
+                this.src = "/images/imagenotfound.png";
+            } finally {
+                this.isLoading = false;
+            }
         },
         async openModal() {
-            // Check if user is authenticated
             if (!this.$page.props.auth.user) {
-                // Redirect to sign in page if not authenticated
-                this.$inertia.visit("/login"); // or whatever your sign-in route is
+                this.$inertia.visit("/login");
+                return;
+            }
+            if (!this.selectedPrice) {
+                this.error = "Please select a price option before scheduling.";
                 return;
             }
 
-            // Get the current date
             const currentDate = new Date();
+            const nextDay = new Date(currentDate);
+            nextDay.setDate(currentDate.getDate() + 1);
+            const nextDayISOString = nextDay.toISOString().split("T")[0];
 
-            const response = await axios.get(`/cook/menu/` + this.meal.cook_id);
-            const availability = response.data.data.availability;
-
-            // console.log(response.data.data);
-
-            // // Add one day to the current date
-            const nextDayDate = new Date(currentDate);
-            nextDayDate.setDate(currentDate.getDate() + 1);
-
-            // // Format the next day date as an ISO string without the time part
-            const nextDayISOString = nextDayDate
-                .toISOString()
-                .replace(/T.*$/, "");
-
-            // // clear everything in the div and close it
-            this.newEventModalVisible = true;
-
-            // // this.suggestedMeal = [];
-            this.newSchedule = {
-                meal_name: this.meal.name,
-                meal_id: this.meal.id.toString(),
-                user_id: this.$page.props.auth.user.id.toString(),
-                cook_availability: availability,
-                start_date: nextDayISOString,
-                end_date: nextDayISOString,
-                prices: this.selectedPrice,
-                meal_time: "Choose a Meal time",
-            };
-            console.log(this.newSchedule);
-            
+            try {
+                const { data } = await axios.get(`/cook/menu/${this.meal.cook_id}`);
+                this.newEventModalVisible = true;
+                this.newSchedule = {
+                    meal_name: this.meal.name,
+                    meal_id: this.meal.id.toString(),
+                    user_id: this.$page.props.auth.user.id.toString(),
+                    cook_availability: data.data.availability,
+                    start_date: nextDayISOString,
+                    end_date: nextDayISOString,
+                    prices: this.selectedPrice,
+                    meal_time: "Choose a Meal time",
+                };
+            } catch (err) {
+                console.error("Error fetching cook availability:", err);
+            }
         },
         closeModal() {
-            // clear everything in the div and close it
             this.newEventModalVisible = false;
-            this.newSchedule = {
-                meal_name: "",
-                start_date: "",
-                end_date: "",
-                meal_time: "",
-            };
+            this.newSchedule = { meal_name: "", start_date: "", end_date: "", meal_time: "" };
             this.message = "";
             this.error = "";
         },
         formatSchedule() {
-            this.formattedEvents = {
+            return {
                 meal_id: this.newSchedule.meal_id,
                 user_id: this.newSchedule.user_id,
                 meal_time: this.newSchedule.meal_time,
@@ -858,46 +757,34 @@ export default {
                 end_date: this.newSchedule.end_date,
             };
         },
+        async addSchedule() {
+            const today = new Date().toISOString().split("T")[0];
+            const s = this.newSchedule;
 
-        addSchedule() {
-            const today = new Date().toISOString().replace(/T.*$/, "");
-            if (
-                this.newSchedule.start_date == "" ||
-                this.newSchedule.end_date == "" ||
-                this.newSchedule.meal_time == "" ||
-                this.newSchedule.user_id == ""
-            ) {
-                this.error =
-                    "Please fill in all  fields to create your schedule.";
-            } else if (today >= this.newSchedule.start_date) {
-                this.error =
-                    "Schedules can only be created for future dates. Would you like to choose a future date for the start, or cancel this schedule? ";
-            } else if (
-                this.newSchedule.start_date > this.newSchedule.end_date
-            ) {
-                this.error =
-                    "The start date cannot be later than the end date. Please choose a start date that comes before the end date.";
-            } else {
-                this.formatSchedule();
+            if (!s.start_date || !s.end_date || !s.meal_time || !s.user_id) {
+                this.error = "Please fill in all fields to create your schedule.";
+                return;
+            }
+            if (today >= s.start_date) {
+                this.error = "Schedules can only be created for future dates.";
+                return;
+            }
+            if (s.start_date > s.end_date) {
+                this.error = "The start date cannot be later than the end date.";
+                return;
+            }
 
-                axios
-                    .post("/schedule", this.formattedEvents)
-                    .then((resp) => {
-                        this.message = resp.data.message;
-                        if (this.meal.ordering_preferences == "automatic") {
-                            const MealId = resp.data.data.id;
-                            this.$inertia.visit(`/process_order/${MealId}`);
-                        } else {
-                            this.$inertia.visit(`/meal-schedule`);
-                        }
-                    })
-                    .catch((err) => {
-                        this.error = "Unable to add Meal !";
-                        setTimeout(() => {
-                            this.error = "";
-                            console.log("Unable to add Meal !", err);
-                        }, 10000);
-                    });
+            try {
+                const { data } = await axios.post("/schedule", this.formatSchedule());
+                this.message = data.message;
+                if (this.meal.ordering_preferences === "automatic") {
+                    this.$inertia.visit(`/process_order/${data.data.id}`);
+                } else {
+                    this.$inertia.visit("/meal-schedule");
+                }
+            } catch (err) {
+                this.error = "Unable to add Meal!";
+                console.error(err);
             }
         },
     },
