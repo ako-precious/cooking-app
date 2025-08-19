@@ -18,7 +18,8 @@ import {
     faMagnifyingGlass, faPlus, faRightToBracket, faShare, faStar, faUser, faUserPlus, 
     faDollarSign, faCaretUp, faToggleOff, faToggleOn, faImage, faPepperHot, faNewspaper, 
     faBell, faRightFromBracket, faHeart, faChevronDown, faFilter, faEye, faPenToSquare,
-    faExclamationCircle, faTrash, faPhone, faEnvelope
+    faExclamationCircle, faTrash, faPhone, faEnvelope,
+    faCircleInfo
 } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
@@ -29,7 +30,7 @@ library.add(
     faMagnifyingGlass, faForward, faBackward, faPlus, faEarthAfrica, faEarthAmerica,  faEnvelope,
     faEarthAmericas, faEarthAsia, faEarthEurope, faEarthOceania, faEarth, faImages, faPhone,
     faDollarSign, faCaretDown, faCaretUp, faToggleOff, faToggleOn, faImage, faPepperHot, 
-    faNewspaper, faBell, faRightFromBracket, faChevronDown, faFilter, faEye, faPenToSquare, faExclamationCircle, 
+    faNewspaper, faBell, faRightFromBracket, faChevronDown, faFilter, faEye, faPenToSquare, faExclamationCircle, faCircleInfo
 );
 
 const appName = import.meta.env.VITE_APP_NAME || 'ounjemi';

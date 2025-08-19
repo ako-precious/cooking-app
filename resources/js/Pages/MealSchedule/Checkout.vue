@@ -26,24 +26,24 @@ import Navbar from '@/Pages/Cook/Navbar.vue'
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between items-center">
-                    <span class="font-bold">Meal Name:</span>
+                    <span class="font-bold">Meal Name</span>
                     <h2 class="font-bold capitalize">{{ meal.name }}</h2>
                 </div>
                 <div class="flex justify-between items-center mt-4">
-                    <span class="font-bold">Meal Price:</span>
-                    <span class="font-bold">${{ mealSchedule.prices.price }}</span>
+                    <span class="font-bold">Meal Price <font-awesome-icon icon="fa-solid fa-circle-info" title="The meal price multiplies by the quantity" /></span>
+                    <span class="font-bold">${{ (mealSchedule.prices.price * this.mealSchedule.portion).toFixed(2) }}</span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
-                    <span>Meal Quantity:</span>
-                    <span> {{ mealSchedule.portion * mealSchedule.prices.price}} </span>
+                    <span>Meal Quantity </span>
+                    <span> {{ mealSchedule.portion }} </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
-                    <span>Meal Size:</span>
-                    <span> {{ mealSchedule.prices.size}} {{ mealSchedule.prices.unit}}(s) </span>
+                    <span>Meal Size</span>
+                    <span> {{ mealSchedule.prices.size}}  {{mealSchedule.prices.size === mealSchedule.prices.unit? "" : mealSchedule.prices.unit}}(s) </span>
                 </div>
                 <div class="flex justify-between items-center mt-4">
-                    <span>Payment Charges:</span>
-                    <span>$ {{ transferFee }} </span>
+                    <span>Payment Charges <font-awesome-icon icon="fa-solid fa-circle-info" title="We charge 7% tranfer fee" /></span>
+                    <span>$ {{ transferFee }}  </span>
                 </div>
                 <hr class="my-4" />
                 <div class="flex justify-between items-center">
@@ -82,10 +82,10 @@ export default {
         },
         transferFee() {
             return (this.price * this.portion * 0.07).toFixed(2);
-            console.log();
+            
         },
         total() {
-            return (this.price + parseFloat(this.transferFee)).toFixed(2);
+            return ((this.price * this.portion) + parseFloat(this.transferFee)).toFixed(2);
         },
         photoUrl() {
             if (this.firstPhoto?.meal_photo_path) {
