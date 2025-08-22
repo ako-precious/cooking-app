@@ -45,13 +45,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                                 user.profile_photo_path
                                             )
                                         "
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-40"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-40 w-28"
                                         alt="avatar"
                                     />
                                     <img
                                         v-else
                                         :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-40"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-40 w-28"
                                         alt="avatar"
                                     />
                                 </div>
@@ -107,13 +107,13 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                                 user.profile_photo_path
                                             )
                                         "
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-54"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-54 w-28"
                                         alt="avatar"
                                     />
                                     <img
                                         v-else
                                         :src="`https://ui-avatars.com/api/?name=${user.name}&color=FE6D73&background=004E98`"
-                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-54"
+                                        class="shadow-xl rounded-full h-auto align-middle border-none absolute -my-20 mx-auto max-w-54 w-28"
                                         alt="avatar"
                                     />
                                     <!-- <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"> -->
@@ -193,61 +193,34 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                             {{ user.address }}
                         </div>
                     </div>
-                    <div
-                        v-if="$page.props.auth.user"
-                        class="py-10 border-t px-4 border-gray-500 flex justify-between"
+                  
+                  
+                     <div
+                        class="py-10 border-t border-gray-500 text-center mx-auto relative"
                     >
-                        <div>
-                            <p
-                                v-if="
-                                    user.id == $page.props.auth.user.id 
-                                "
-                                class="text-sm leading-relaxed text-oynx dark:text-snow"
+                        <p
+                            class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow capitalize"
+                        >
+                            {{ firstWord }}'s Meals
+                        </p>
+
+                        <div
+                            class="py-5 text-center mx-auto relative grid s md:grid-cols-3 sm:grid-cols-2 gap-8"
+                        >
+                            <div
+                                v-for="meal in meals"
+                                :key="meal.id"
+                                class="animate-fade-in"
                             >
-                                <span
-                                    v-if="
-                                        cook.question3 == null ||
-                                        cook.question2 == null ||
-                                        cook.question1 == null
-                                    "
-                                >
-                                    <span
-                                        @click="openModal"
-                                        class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                                        >Answer questions that makes the your
-                                        customer know you more</span
-                                    >
-                                </span>
-                                <span v-else>
-                                    <span
-                                        @click="openModal"
-                                        class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                                    >
-                                        Edit Information Provided
-                                    </span>
-                                </span>
-                            </p>
+                                <Card :meal="meal"></Card>
+                            </div>
                         </div>
-                        <div>
-                            <p
-                                v-if="
-                                    user.id == $page.props.auth.user.id
-                                "
-                                class="text-sm leading-relaxed text-oynx dark:text-snow"
-                            >
-                                <span
-                                    @click="openAvailable"
-                                    class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
-                                    >Select Days Available</span
-                                >
-                            </p>
-                        </div>
-                    </div>
+                    </div> 
                     <div class="py-10 border-t border-gray-500 text-center">
                         <div class="flex flex-wrap justify-center">
                             <div class="text-left w-full px-4">
                                 <p
-                                    class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow"
+                                    class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow capitalize"
                                 >
                                     About {{ firstWord }}
                                 </p>
@@ -300,29 +273,57 @@ import OtherInfo from "./Partials/OtherInfo.vue";
                                 </p>
                             </div>
                         </div>
-                    </div>
-
-                    <div
-                        class="py-10 border-t border-gray-500 text-center mx-auto relative"
+                    </div>  <div
+                        v-if="$page.props.auth.user"
+                        class="py-10 border-t px-4 border-gray-500 flex justify-between"
                     >
-                        <p
-                            class="mb-4 text-xl font-bold text-center leading-relaxed text-oynx dark:text-snow"
-                        >
-                            {{ firstWord }}'s Meals
-                        </p>
-
-                        <div
-                            class="py-5 text-center mx-auto relative grid s md:grid-cols-3 sm:grid-cols-2 gap-8"
-                        >
-                            <div
-                                v-for="meal in meals"
-                                :key="meal.id"
-                                class="animate-fade-in"
+                        <div>
+                            <p
+                                v-if="
+                                    user.id == $page.props.auth.user.id 
+                                "
+                                class="text-sm leading-relaxed text-oynx dark:text-snow"
                             >
-                                <Card :meal="meal"></Card>
-                            </div>
+                                <span
+                                    v-if="
+                                        cook.question3 == null ||
+                                        cook.question2 == null ||
+                                        cook.question1 == null
+                                    "
+                                >
+                                    <span
+                                        @click="openModal"
+                                        class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                        >Answer questions that makes the your
+                                        customer know you more</span
+                                    >
+                                </span>
+                                <span v-else>
+                                    <span
+                                        @click="openModal"
+                                        class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >
+                                        Edit Information Provided
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                        <div>
+                            <p
+                                v-if="
+                                    user.id == $page.props.auth.user.id
+                                "
+                                class="text-sm leading-relaxed text-oynx dark:text-snow"
+                            >
+                                <span
+                                    @click="openAvailable"
+                                    class="font-bold text-persian hover:text-polynesian dark:hover:text-lighred cursor-pointer transition-all duration-200 ease-in-out"
+                                    >Select Days Available</span
+                                >
+                            </p>
                         </div>
                     </div>
+                  
                     <div
                         class="py-10 border-t border-gray-500 text-center mx-auto relative"
                     >
