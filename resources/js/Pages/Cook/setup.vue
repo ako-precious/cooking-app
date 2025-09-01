@@ -20,11 +20,7 @@ import Header from "./Navbar.vue";
             <div
                 class="container relative overflow-hidden mx-auto flex items-center  min-h-screen"
             >
-                <iframe
-                    src='https://my.spline.design/kitchen-87e5853ec0a36f20da7b661f4f7b18db/' 
-                    frameborder="0"
-                    class=" absolute w-full h-full z-0"
-                ></iframe>
+              
                 <div
                     class="absolute w-[150px] h-[60px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx"
                 ></div>
