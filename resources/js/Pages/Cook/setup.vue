@@ -2,6 +2,7 @@
 import { Head, Link } from "@inertiajs/vue3";
 import Card from "./Card.vue";
 import Footer from "@/Layouts/Footer.vue";
+import AppleWatchStyle from "./AppleWatchStyle.vue";
 import Header from "./Navbar.vue";
 </script>
 
@@ -65,6 +66,9 @@ import Header from "./Navbar.vue";
                 </div>
             </div>
         </div>
+    </div>
+    <div class="container overflow-hidden relative mx-auto my-8">
+        <AppleWatchStyle></AppleWatchStyle>
     </div>
     <div class="container relative mx-auto my-8">
         <Card></Card>
@@ -276,6 +280,7 @@ As you package your meals, think about how you can make each dish a work of art.
 </template>
 <script>
 import axios from "axios";
+import AppleWatchStyle from "./AppleWatchStyle.vue";
 export default {
     data() {
         return {
