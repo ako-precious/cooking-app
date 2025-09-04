@@ -4,21 +4,16 @@
       <!-- Digital Crown -->
       <div class="digital-crown"></div>
       
-      <!-- App Grid Container with Motion integration -->
-      <motion.div
+      <!-- App Grid Container -->
+      <div 
         ref="appContainer"
         class="app-container"
-        :drag="isMobile ? false : 'x'"
-        :dragConstraints="{ left: -350, right: 350 }"
-        :dragElastic="0.1"
-        :dragTransition="{ power: 0.2, timeConstant: 200 }"
-        :style="{ y: verticalScroll }"
+        @mousedown="startDrag"
+        @touchstart="startDrag"
         @wheel="handleWheel"
-        @touchstart="handleTouchStart"
-        @touchmove.passive="handleTouchMove"
-        @touchend="handleTouchEnd"
+        :style="{ cursor: isDragging ? 'grabbing' : 'grab' }"
       >
-        <motion.div
+        <div
           v-for="app in apps"
           :key="app.id"
           :ref="el => { if (el) appRefs[app.id] = el }"
@@ -26,300 +21,380 @@
           :style="getAppStyle(app)"
           @click="selectApp(app)"
           :title="app.name"
-          :initial="{ scale: 0, opacity: 0 }"
-          :animate="{
-            scale: 1,
-            opacity: getAppOpacity(app),
-            transition: { 
-              type: 'spring',
-              stiffness: 300,
-              damping: 20,
-              delay: calculateStaggerDelay(app)
-            }
-          }"
-          :whileHover="{ scale: 1.1, zIndex: 100 }"
-          :whileTap="{ scale: 0.95 }"
-          :layoutId="`app-${app.id}`"
         >
           {{ app.icon }}
-        </motion.div>
-      </motion.div>
-      
-      <!-- Page Indicators -->
-      <div class="page-indicators">
-        <div
-          v-for="page in pageCount"
-          :key="page"
-          class="page-dot"
-          :class="{ active: isActivePage(page - 3) }"
-        ></div>
-      </div>
-
-      <!-- Vertical Scroll Indicator -->
-      <motion.div 
-        class="scroll-indicator"
-        :animate="{ opacity: showScrollIndicator ? 1 : 0 }"
-        transition={{ duration: 0.3 }}
-      >
-        <div class="scroll-dots">
-          <div v-for="n in 3" :key="n" class="scroll-dot"></div>
         </div>
-      </motion.div>
+      </div>
+      
+      
     </div>
     
     <!-- Instructions -->
     <div class="instructions">
-      <p>Drag or scroll to navigate</p>
-      <p>Icons scale based on distance from center</p>
+      <p>Drag horizontally to navigate between app clusters</p>
+      <p>Center apps are largest, outer ring apps are smallest</p>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, reactive, onMounted, onUnmounted, nextTick, computed } from 'vue'
-import { motion, useMotionValue, useSpring, useTransform, useScroll, animate } from 'motion-v'
+import { ref, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { animate } from 'motion-v'
 
 export default {
   name: 'AppleWatchHomeScreen',
-  components: {
-    motion
-  },
   setup() {
     const appContainer = ref(null)
     const appRefs = ref({})
-    
-    // Motion values for horizontal and vertical scrolling
-    const horizontalScroll = useMotionValue(0)
-    const verticalScroll = useMotionValue(0)
-    const smoothHorizontalScroll = useSpring(horizontalScroll, {
-      damping: 30,
-      stiffness: 200
-    })
-    const smoothVerticalScroll = useSpring(verticalScroll, {
-      damping: 30,
-      stiffness: 200
-    })
-    
     const isDragging = ref(false)
     const startX = ref(0)
-    const startY = ref(0)
-    const showScrollIndicator = ref(true)
+    const currentTranslateX = ref(0)
+    const velocity = ref(0)
+    const lastMoveTime = ref(0)
+    const animationId = ref(null)
     
-    const hexSpacing = 80
-    const baseSize = 60
-    const maxSize = 80
-    const minSize = 30
-    const pageCount = 5
-    const isMobile = ref(window.innerWidth < 768)
+    const clusterSpacing = 220  // Distance between cluster centers
+    const pageCountX = 5
 
-    // Transform horizontal scroll to page index
-    const currentPage = useTransform(
-      smoothHorizontalScroll,
-      [-350, 0, 350],
-      [-2, 0, 2]
-    )
-
-    // App data arranged in hexagonal grid
+    // App clusters following the honeycomb pattern
     const apps = ref([
-      // Center group (page 0)
-      { id: 1, icon: '⏰', color: '#000000', gridX: 0, gridY: 0, name: 'Clock' },
-      { id: 2, icon: '📱', color: '#007AFF', gridX: -1, gridY: -1, name: 'Phone' },
-      { id: 3, icon: '💌', color: '#FF3B30', gridX: 0, gridY: -1, name: 'Messages' },
-      { id: 4, icon: '🎵', color: '#FF9500', gridX: 1, gridY: -1, name: 'Music' },
-      { id: 5, icon: '📊', color: '#34C759', gridX: -1, gridY: 0, name: 'Stocks' },
-      { id: 6, icon: '📷', color: '#8E8E93', gridX: 1, gridY: 0, name: 'Camera' },
-      { id: 7, icon: '⚙️', color: '#8E8E93', gridX: 0, gridY: 1, name: 'Settings' },
+      // CENTER CLUSTER (Page 0) - Exact honeycomb layout
+      { id: 1, icon: '⏰', color: '#1C1C1E', clusterX: 0, ring: 'center', position: 'center', name: 'Clock' },
+      { id: 18, icon: '📖', color: '#FF9F0A', clusterX: 0, ring: 'outer', position: 'top-left-2', name: 'Books' },
+      { id: 10, icon: '📝', color: '#FFD60A', clusterX: 0, ring: 'outer', position: 'top-right-2', name: 'Notes' },
       
-      // Additional apps for vertical scrolling
-      { id: 8, icon: '🌤️', color: '#5AC8FA', gridX: -2, gridY: -1, name: 'Weather' },
-      { id: 9, icon: '🗺️', color: '#007AFF', gridX: -2, gridY: 0, name: 'Maps' },
-      { id: 10, icon: '📝', color: '#FFCC02', gridX: -2, gridY: 1, name: 'Notes' },
-      { id: 11, icon: '🏃', color: '#FF3B30', gridX: -3, gridY: 0, name: 'Fitness' },
-      { id: 12, icon: '💳', color: '#000000', gridX: 2, gridY: -1, name: 'Wallet' },
-      { id: 13, icon: '📞', color: '#34C759', gridX: 2, gridY: 0, name: 'FaceTime' },
-      { id: 14, icon: '🎮', color: '#FF3B30', gridX: 2, gridY: 1, name: 'Games' },
-      { id: 15, icon: '📺', color: '#000000', gridX: 3, gridY: 0, name: 'TV' },
-      { id: 16, icon: '📧', color: '#007AFF', gridX: -4, gridY: 0, name: 'Mail' },
-      { id: 17, icon: '📖', color: '#FF9500', gridX: -3, gridY: -1, name: 'Books' },
-      { id: 18, icon: '🎨', color: '#5AC8FA', gridX: -3, gridY: 1, name: 'Art' },
-      { id: 19, icon: '🔒', color: '#8E8E93', gridX: 4, gridY: 0, name: 'Security' },
-      { id: 20, icon: '📱', color: '#34C759', gridX: 3, gridY: -1, name: 'Apps' },
-      { id: 21, icon: '🌐', color: '#007AFF', gridX: 3, gridY: 1, name: 'Safari' },
+      // Inner ring (6 apps around center)
+      { id: 2, icon: '📱', color: '#007AFF', clusterX: 0, ring: 'inner', position: 'top', name: 'Phone' },
+      { id: 3, icon: '💬', color: '#34C759', clusterX: 0, ring: 'inner', position: 'top-right', name: 'Messages' },
+      { id: 4, icon: '📷', color: '#8E8E93', clusterX: 0, ring: 'inner', position: 'bottom-right', name: 'Camera' },
+      { id: 5, icon: '⚙️', color: '#8E8E93', clusterX: 0, ring: 'inner', position: 'bottom', name: 'Settings' },
+      { id: 6, icon: '🎵', color: '#FF3B30', clusterX: 0, ring: 'inner', position: 'bottom-left', name: 'Music' },
+      { id: 7, icon: '📊', color: '#5856D6', clusterX: 0, ring: 'inner', position: 'top-left', name: 'Stocks' },
       
-      // Additional apps for vertical content
-      { id: 22, icon: '📅', color: '#FF2D55', gridX: 0, gridY: 2, name: 'Calendar' },
-      { id: 23, icon: '⏱️', color: '#4CD964', gridX: -1, gridY: 2, name: 'Stopwatch' },
-      { id: 24, icon: '🎤', color: '#FF3B30', gridX: 1, gridY: 2, name: 'Voice Memos' },
-      { id: 25, icon: '🧠', color: '#5AC8FA', gridX: 0, gridY: 3, name: 'Mindfulness' },
-      { id: 26, icon: '📻', color: '#FF9500', gridX: -1, gridY: 3, name: 'Podcasts' },
-      { id: 27, icon: '🔍', color: '#8E8E93', gridX: 1, gridY: 3, name: 'Find My' }
+      // Outer ring (12 apps on outer edge)
+      { id: 8, icon: '🌤️', color: '#30B0C7', clusterX: 0, ring: 'outer', position: 'top', name: 'Weather' },
+      { id: 9, icon: '🗺️', color: '#007AFF', clusterX: 0, ring: 'outer', position: 'top-right-1', name: 'Maps' },
+      { id: 11, icon: '💳', color: '#1C1C1E', clusterX: 0, ring: 'outer', position: 'right', name: 'Wallet' },
+      { id: 12, icon: '📞', color: '#32D74B', clusterX: 0, ring: 'outer', position: 'bottom-right-2', name: 'FaceTime' },
+      { id: 13, icon: '🎮', color: '#5E5CE6', clusterX: 0, ring: 'outer', position: 'bottom-right-1', name: 'Games' },
+      { id: 14, icon: '📧', color: '#007AFF', clusterX: 0, ring: 'outer', position: 'bottom', name: 'Mail' },
+      { id: 15, icon: '🌐', color: '#007AFF', clusterX: 0, ring: 'outer', position: 'bottom-left-1', name: 'Safari' },
+      { id: 16, icon: '💊', color: '#32D74B', clusterX: 0, ring: 'outer', position: 'bottom-left-2', name: 'Health' },
+      { id: 17, icon: '🔒', color: '#8E8E93', clusterX: 0, ring: 'outer', position: 'left', name: 'Security' },
+      { id: 19, icon: '🎨', color: '#5AC8FA', clusterX: 0, ring: 'outer', position: 'top-left-1', name: 'Art' },
+
+      // LEFT CLUSTER (Page -1)
+      { id: 20, icon: '🏃', color: '#FF453A', clusterX: -1, ring: 'center', position: 'center', name: 'Fitness' },
+      { id: 21, icon: '🎯', color: '#FF453A', clusterX: -1, ring: 'inner', position: 'top', name: 'Focus' },
+      { id: 22, icon: '☁️', color: '#007AFF', clusterX: -1, ring: 'inner', position: 'top-right', name: 'iCloud' },
+      { id: 23, icon: '🛒', color: '#FF9F0A', clusterX: -1, ring: 'inner', position: 'bottom-right', name: 'Shopping' },
+      { id: 24, icon: '🚗', color: '#34C759', clusterX: -1, ring: 'inner', position: 'bottom', name: 'Travel' },
+      { id: 25, icon: '🎪', color: '#AF52DE', clusterX: -1, ring: 'inner', position: 'bottom-left', name: 'Fun' },
+      { id: 26, icon: '🧠', color: '#AF52DE', clusterX: -1, ring: 'inner', position: 'top-left', name: 'Mind' },
+
+      // RIGHT CLUSTER (Page +1)
+      { id: 27, icon: '📺', color: '#1C1C1E', clusterX: 1, ring: 'center', position: 'center', name: 'TV' },
+      { id: 28, icon: '🚀', color: '#FFD60A', clusterX: 1, ring: 'inner', position: 'top', name: 'Launch' },
+      { id: 29, icon: '🎸', color: '#FF3B30', clusterX: 1, ring: 'inner', position: 'top-right', name: 'Music Pro' },
+      { id: 30, icon: '📐', color: '#5856D6', clusterX: 1, ring: 'inner', position: 'bottom-right', name: 'Utilities' },
+      { id: 31, icon: '🌟', color: '#FFCC02', clusterX: 1, ring: 'inner', position: 'bottom', name: 'Favorites' },
+      { id: 32, icon: '🎭', color: '#AF52DE', clusterX: 1, ring: 'inner', position: 'bottom-left', name: 'Theater' },
+      
+      // FAR LEFT CLUSTER (Page -2)
+      { id: 34, icon: '🎲', color: '#FF9F0A', clusterX: -2, ring: 'center', position: 'center', name: 'Games' },
+      { id: 35, icon: '🎨', color: '#5AC8FA', clusterX: -2, ring: 'inner', position: 'top', name: 'Art' },
+      { id: 36, icon: '📚', color: '#FF3B30', clusterX: -2, ring: 'inner', position: 'top-right', name: 'Library' },
+      { id: 37, icon: '🔧', color: '#8E8E93', clusterX: -2, ring: 'inner', position: 'bottom-right', name: 'Tools' },
+      
+      // FAR RIGHT CLUSTER (Page +2)
+      { id: 33, icon: '🔬', color: '#32D74B', clusterX: 1, ring: 'inner', position: 'top-left', name: 'Science' },
+      { id: 38, icon: '💎', color: '#AF52DE', clusterX: 2, ring: 'center', position: 'center', name: 'Premium' },
+      { id: 39, icon: '🌟', color: '#FFD60A', clusterX: 2, ring: 'inner', position: 'top', name: 'Star' },
+      { id: 40, icon: '🔥', color: '#FF453A', clusterX: 2, ring: 'inner', position: 'top-right', name: 'Hot' },
+      { id: 41, icon: '⚡', color: '#FFCC02', clusterX: 2, ring: 'inner', position: 'bottom-right', name: 'Power' }
     ])
 
-    // Calculate app opacity based on distance from center
-    const getAppOpacity = (app) => {
-      const x = app.gridX * hexSpacing * 0.87 + horizontalScroll.get()
-      const distanceFromCenter = Math.abs(x) / 120
-      const sizeFactor = Math.max(0.3, 1 - Math.pow(distanceFromCenter, 1.5) * 0.4)
-      return Math.max(0.2, sizeFactor)
-    }
-
-    // Calculate stagger delay for entrance animation
-    const calculateStaggerDelay = (app) => {
-      const distanceFromCenter = Math.sqrt(app.gridX ** 2 + app.gridY ** 2)
-      return distanceFromCenter * 0.05
-    }
-
-    // Calculate app position and size based on distance from center
-    const calculateAppTransform = (app) => {
-      const x = app.gridX * hexSpacing * 0.87 + horizontalScroll.get()
-      const y = app.gridY * hexSpacing * 0.75 + (app.gridX % 2 === 0 ? 0 : hexSpacing * 0.375) + verticalScroll.get()
+    // Position mapping for honeycomb layout
+    const getAppPosition = (app) => {
+      const clusterCenterX = app.clusterX * clusterSpacing
       
-      // Distance from screen center
-      const distanceFromCenter = Math.abs(x) / 120
-      const sizeFactor = Math.max(0.3, 1 - Math.pow(distanceFromCenter, 1.5) * 0.4)
-      const size = minSize + (maxSize - minSize) * sizeFactor
+      // Define ring sizes and positions
+      const ringConfig = {
+        center: { radius: 0, size: 75 },
+        inner: { radius: 85, size: 60 },
+        outer: { radius: 140, size: 35 }
+      }
+      
+      const config = ringConfig[app.ring]
+      let angle = 0
+      
+      // Calculate angle based on position
+      switch (app.position) {
+        case 'center': return { x: clusterCenterX, y: 0, size: config.size }
+        
+        // Inner ring positions (6 positions)
+        case 'top': angle = -Math.PI/2; break
+        case 'top-right': angle = -Math.PI/6; break
+        case 'bottom-right': angle = Math.PI/6; break
+        case 'bottom': angle = Math.PI/2; break
+        case 'bottom-left': angle = 5*Math.PI/6; break
+        case 'top-left': angle = -5*Math.PI/6; break
+        
+        // Outer ring positions (12 positions)
+        case 'top-right-1': angle = -Math.PI/3; break
+        case 'top-right-2': angle = 0; break
+        case 'right': angle = Math.PI/3; break
+        case 'bottom-right-2': angle = 2*Math.PI/3; break
+        case 'bottom-right-1': angle = Math.PI/3; break
+        case 'bottom-left-1': angle = 2*Math.PI/3; break
+        case 'bottom-left-2': angle = Math.PI; break
+        case 'left': angle = -2*Math.PI/3; break
+        case 'top-left-2': angle = -Math.PI; break
+        case 'top-left-1': angle = -2*Math.PI/3; break
+        
+        default: angle = 0
+      }
+      
+      const x = clusterCenterX + Math.cos(angle) * config.radius
+      const y = Math.sin(angle) * config.radius
+      
+      return { x, y, size: config.size }
+    }
+
+    // Calculate app transform based on current scroll position
+    const calculateAppTransform = (app) => {
+      const position = getAppPosition(app)
+      const finalX = position.x + currentTranslateX.value
+      const finalY = position.y
+      
+      // Calculate distance from screen center for scaling
+      const distanceFromCenter = Math.abs(finalX) / 150
+      
+      // Scale based on distance
+      const scaleFactor = Math.max(0.25, 1 - Math.pow(distanceFromCenter, 1.2) * 0.6)
+      const finalSize = position.size * scaleFactor
+      
+      // Opacity falloff
+      const opacity = Math.max(0.3, 1 - distanceFromCenter * 0.4)
+      
+      // Blur for depth
+      const blur = Math.min(2.5, distanceFromCenter * 1.2)
       
       return {
-        x,
-        y,
-        size,
-        opacity: Math.max(0.2, sizeFactor),
-        zIndex: Math.round(sizeFactor * 100)
+        x: finalX,
+        y: finalY,
+        size: finalSize,
+        opacity,
+        blur,
+        zIndex: Math.round(scaleFactor * 100)
       }
     }
 
-    // Get app styles
+    // Get computed style for each app
     const getAppStyle = (app) => {
       const transform = calculateAppTransform(app)
       return {
         backgroundColor: app.color,
         width: `${transform.size}px`,
         height: `${transform.size}px`,
-        transform: `translate(calc(-50% + ${transform.x}px), calc(-50% + ${transform.y}px)) scale(${transform.size / baseSize})`,
+        transform: `translate(calc(-50% + ${transform.x}px), calc(-50% + ${transform.y}px))`,
         opacity: transform.opacity,
-        fontSize: `${Math.max(16, transform.size * 0.35)}px`,
+        fontSize: `${Math.max(12, transform.size * 0.4)}px`,
         zIndex: transform.zIndex,
-        boxShadow: `0 ${transform.size * 0.1}px ${transform.size * 0.3}px rgba(0,0,0,${0.3 * transform.opacity})`
+        filter: `blur(${transform.blur}px)`,
+        boxShadow: `0 ${transform.size * 0.08}px ${transform.size * 0.25}px rgba(0,0,0,${0.3 * transform.opacity})`
       }
     }
 
-    // Handle wheel events for vertical scrolling
-    const handleWheel = (e) => {
-      e.preventDefault()
-      
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-        // Vertical scrolling
-        const newScrollY = verticalScroll.get() - e.deltaY * 0.5
-        const maxVerticalScroll = 200
-        verticalScroll.set(Math.max(-maxVerticalScroll, Math.min(maxVerticalScroll, newScrollY)))
-      } else {
-        // Horizontal scrolling
-        const newScrollX = horizontalScroll.get() - e.deltaX * 0.5
-        const maxScroll = 350
-        horizontalScroll.set(Math.max(-maxScroll, Math.min(maxScroll, newScrollX)))
-      }
+    // Page indicator helper
+    const isActivePage = (pageIndex) => {
+      const currentPage = Math.round(-currentTranslateX.value / clusterSpacing)
+      return Math.abs(currentPage - pageIndex) < 0.5
     }
 
-    // Touch event handlers for mobile devices
-    const handleTouchStart = (e) => {
+    // Touch and mouse event handlers
+    const startDrag = (e) => {
       isDragging.value = true
-      startX.value = e.touches[0].clientX
-      startY.value = e.touches[0].clientY
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX
+      startX.value = clientX
+      velocity.value = 0
+      lastMoveTime.value = Date.now()
+      
+      if (animationId.value) {
+        cancelAnimationFrame(animationId.value)
+        animationId.value = null
+      }
     }
 
-    const handleTouchMove = (e) => {
+    const handleMove = (e) => {
       if (!isDragging.value) return
       
-      const deltaX = e.touches[0].clientX - startX.value
-      const deltaY = e.touches[0].clientY - startY.value
+      e.preventDefault()
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX
+      const deltaX = clientX - startX.value
+      const currentTime = Date.now()
+      const deltaTime = currentTime - lastMoveTime.value
       
-      // Determine scroll direction based on initial movement
-      if (Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
-        // Horizontal scrolling
-        const newScrollX = horizontalScroll.get() + deltaX
-        const maxScroll = 350
-        horizontalScroll.set(Math.max(-maxScroll, Math.min(maxScroll, newScrollX)))
-      } else if (Math.abs(deltaY) > Math.abs(deltaX) * 1.5) {
-        // Vertical scrolling
-        const newScrollY = verticalScroll.get() + deltaY
-        const maxVerticalScroll = 200
-        verticalScroll.set(Math.max(-maxVerticalScroll, Math.min(maxVerticalScroll, newScrollY)))
+      if (deltaTime > 0) {
+        velocity.value = deltaX / deltaTime * 16
       }
       
-      startX.value = e.touches[0].clientX
-      startY.value = e.touches[0].clientY
+      const newTranslateX = currentTranslateX.value + deltaX
+      const maxScroll = 500
+      const minScroll = -500
+      
+      // Apply elastic resistance
+      let clampedX
+      if (newTranslateX > maxScroll) {
+        const overshoot = newTranslateX - maxScroll
+        clampedX = maxScroll + overshoot * 0.2
+      } else if (newTranslateX < minScroll) {
+        const overshoot = minScroll - newTranslateX
+        clampedX = minScroll - overshoot * 0.2
+      } else {
+        clampedX = newTranslateX
+      }
+      
+      currentTranslateX.value = clampedX
+      startX.value = clientX
+      lastMoveTime.value = currentTime
     }
 
-    const handleTouchEnd = () => {
+    const endDrag = () => {
+      if (!isDragging.value) return
       isDragging.value = false
       
-      // Hide scroll indicator temporarily
-      showScrollIndicator.value = false
-      setTimeout(() => {
-        showScrollIndicator.value = true
-      }, 2000)
+      // Apply momentum
+      const applyMomentum = () => {
+        if (Math.abs(velocity.value) > 0.1) {
+          currentTranslateX.value += velocity.value
+          velocity.value *= 0.95
+          
+          const maxScroll = 500
+          const minScroll = -500
+          
+          if (currentTranslateX.value > maxScroll) {
+            currentTranslateX.value = maxScroll
+            velocity.value = 0
+          } else if (currentTranslateX.value < minScroll) {
+            currentTranslateX.value = minScroll
+            velocity.value = 0
+          }
+          
+          animationId.value = requestAnimationFrame(applyMomentum)
+        } else {
+          // Snap to nearest cluster
+          const nearestCluster = Math.round(currentTranslateX.value / clusterSpacing)
+          const targetX = nearestCluster * clusterSpacing
+          
+          animate(
+            (progress) => {
+              currentTranslateX.value = currentTranslateX.value + (targetX - currentTranslateX.value) * progress
+            },
+            { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }
+          )
+        }
+      }
+      
+      applyMomentum()
     }
 
-    // Page indicator helpers
-    const isActivePage = (pageIndex) => {
-      const currentPageValue = Math.round(-horizontalScroll.get() / 100)
-      return Math.abs(currentPageValue - pageIndex) < 0.5
+    const handleWheel = (e) => {
+      e.preventDefault()
+      const deltaX = e.deltaX || e.deltaY
+      const newTranslateX = currentTranslateX.value - deltaX * 0.8
+      
+      const maxScroll = 500
+      const minScroll = -500
+      currentTranslateX.value = Math.max(minScroll, Math.min(maxScroll, newTranslateX))
     }
 
-    // App selection with animation
+    // App selection
     const selectApp = (app) => {
       const appEl = appRefs.value[app.id]
       if (appEl) {
         animate(appEl, 
           { 
-            scale: [1, 1.3, 1],
+            scale: [1, 1.4, 1],
             rotate: [0, 360, 0]
           }, 
           { 
-            duration: 0.6,
-            easing: [0.68, -0.55, 0.265, 1.55]
+            duration: 0.7,
+            ease: [0.68, -0.55, 0.265, 1.55]
           }
         )
       }
     }
 
-    // Lifecycle hooks
-    onMounted(() => {
-      // Hide scroll indicator after initial display
-      setTimeout(() => {
-        showScrollIndicator.value = false
-      }, 3000)
+    // Entrance animation with honeycomb wave
+    const entranceAnimation = () => {
+      const rings = ['center', 'inner', 'outer']
       
-      // Handle window resize
-      window.addEventListener('resize', handleResize)
-    })
-
-    onUnmounted(() => {
-      window.removeEventListener('resize', handleResize)
-    })
-
-    const handleResize = () => {
-      isMobile.value = window.innerWidth < 768
+      rings.forEach((ring, ringIndex) => {
+        const ringApps = apps.value.filter(app => app.ring === ring)
+        
+        ringApps.forEach((app, appIndex) => {
+          const appEl = appRefs.value[app.id]
+          if (appEl) {
+            animate(appEl, 
+              { 
+                scale: [0, 1.3, 1],
+                opacity: [0, 1],
+                rotate: [180, 0]
+              }, 
+              { 
+                duration: 0.8,
+                delay: ringIndex * 0.15 + appIndex * 0.06,
+                ease: [0.68, -0.55, 0.265, 1.55]
+              }
+            )
+          }
+        })
+      })
     }
+
+    // Event listeners
+    let mouseMoveHandler, mouseUpHandler, touchMoveHandler, touchEndHandler
+
+    onMounted(() => {
+      mouseMoveHandler = handleMove
+      mouseUpHandler = endDrag
+      touchMoveHandler = handleMove
+      touchEndHandler = endDrag
+      
+      document.addEventListener('mousemove', mouseMoveHandler, { passive: false })
+      document.addEventListener('mouseup', mouseUpHandler)
+      document.addEventListener('touchmove', touchMoveHandler, { passive: false })
+      document.addEventListener('touchend', touchEndHandler)
+      
+      nextTick(() => {
+        setTimeout(entranceAnimation, 400)
+      })
+    })
+
+    onBeforeUnmount(() => {
+      document.removeEventListener('mousemove', mouseMoveHandler)
+      document.removeEventListener('mouseup', mouseUpHandler)
+      document.removeEventListener('touchmove', touchMoveHandler)
+      document.removeEventListener('touchend', touchEndHandler)
+      
+      if (animationId.value) {
+        cancelAnimationFrame(animationId.value)
+      }
+    })
 
     return {
       appContainer,
       appRefs,
       apps,
-      horizontalScroll,
-      verticalScroll,
-      pageCount,
+      isDragging,
+      currentTranslateX,
+      pageCountX,
       getAppStyle,
-      getAppOpacity,
-      calculateStaggerDelay,
+      startDrag,
       handleWheel,
-      handleTouchStart,
-      handleTouchMove,
-      handleTouchEnd,
       isActivePage,
-      selectApp,
-      showScrollIndicator,
-      isMobile
+      selectApp
     }
   }
 }
@@ -332,83 +407,66 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #000000 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   padding: 2rem;
-  overflow: hidden;
 }
 
 .watch-frame {
   position: relative;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.3) 100%);
-  border-radius: 50%;
+  width: 420px;
+  height: 420px;
+  background: 
+    radial-gradient(circle at 35% 25%, rgba(255,255,255,0.08) 0%, transparent 50%),
+    radial-gradient(circle at center, rgba(20,20,20,1) 0%, rgba(0,0,0,1) 100%);
+  border-radius: 35%;
   box-shadow: 
-    inset 0 0 50px rgba(255,255,255,0.05),
-    0 20px 40px rgba(0,0,0,0.3),
-    0 0 0 4px rgba(255,255,255,0.1);
+    inset 0 0 60px rgba(255,255,255,0.03),
+    inset 0 0 2px rgba(255,255,255,0.1),
+    0 25px 50px rgba(0,0,0,0.4),
+    0 0 0 3px rgba(255,255,255,0.08);
   overflow: hidden;
 }
 
-.digital-crown {
-  position: absolute;
-  right: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 60px;
-  background: linear-gradient(90deg, #666, #999, #666);
-  border-radius: 12px;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-}
 
-.digital-crown::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 16px;
-  height: 16px;
-  background: radial-gradient(circle, #bbb, #777);
-  border-radius: 50%;
-}
 
 .app-container {
   position: absolute;
   inset: 0;
   user-select: none;
-  touch-action: pan-y pinch-zoom;
+  touch-action: pan-y;
 }
 
 .app-icon {
   position: absolute;
   left: 50%;
   top: 50%;
-  border-radius: 20%;
+  border-radius: 22%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: filter 0.2s ease;
-  backdrop-filter: blur(1px);
+  transition: all 0.1s ease;
   transform-origin: center;
 }
 
 .app-icon:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.15) !important;
+}
+
+.app-icon:active {
+  transform: scale(0.95) !important;
 }
 
 .page-indicators {
   position: absolute;
-  bottom: 20px;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 10px;
   z-index: 100;
 }
 
@@ -417,66 +475,29 @@ export default {
   height: 8px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .page-dot.active {
-  background: rgba(255, 255, 255, 0.9);
-  transform: scale(1.2);
-}
-
-.scroll-indicator {
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 100;
-}
-
-.scroll-dots {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.scroll-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.95);
+  transform: scale(1.4);
 }
 
 .instructions {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   text-align: center;
-  color: #888;
+  color: #999;
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
 .instructions p {
-  margin: 0.25rem 0;
-  font-size: 0.875rem;
-}
-
-.instructions p:first-child {
-  color: #aaa;
+  margin: 0.3rem 0;
 }
 
 .instructions p:last-child {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .watch-frame {
-    width: 350px;
-    height: 350px;
-  }
-  
-  .digital-crown {
-    right: -10px;
-    width: 20px;
-    height: 50px;
-  }
+  font-size: 0.8rem;
+  color: #777;
 }
 </style>
