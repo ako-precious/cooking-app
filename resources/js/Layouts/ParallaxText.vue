@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from "vue";
 import {
   useMotionValue,
@@ -7,17 +7,20 @@ import {
   useScroll,
   useVelocity,
   useAnimationFrame,
-  motion,wrap 
+  motion
 } from "motion-v";
-// import { } from "@motionone/utils";
+import { wrap } from "@motionone/utils";
 
-interface Props {
-  children: string;
-  baseVelocity?: number;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  baseVelocity: 100
+// props
+const props = defineProps({
+  children: {
+    type: String,
+    required: true
+  },
+  baseVelocity: {
+    type: Number,
+    default: 100
+  }
 });
 
 const baseX = useMotionValue(0);
@@ -57,9 +60,9 @@ useAnimationFrame((time, delta) => {
 
 <template>
   <div class="parallax overflow-hidden w-full">
-    <motion.div class="scroller flex whitespace-nowrap" :style="{ x }">
+    <motion.div class="scroller flex whitespace-nowrap text-snow " :style="{ x }">
       <span v-for="i in 4" :key="i" class="mr-4">
-        {{ props.children }}
+        <!-- {{ children }} dsddsdddddddddddddddddddssssssssssssssssssssss -->Food made with love, not factories. Try authentic meals from real cooks nearby
       </span>
     </motion.div>
   </div>
@@ -76,5 +79,8 @@ useAnimationFrame((time, delta) => {
   display: inline-block;
   font-size: 2rem;
   font-weight: bold;
+    font-family: "Plaster", sans-serif;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
 }
 </style>

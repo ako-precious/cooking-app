@@ -1,15 +1,8 @@
 <script setup>
-import { onMounted } from "vue";
-import { Head, Link, usePage } from "@inertiajs/vue3";
-import Header from "./Header/Index.vue";
-import FoodCard from "@/Layouts/FoodCard.vue";
+import { Head } from "@inertiajs/vue3";
+// import Header from "@/Layouts/Header/Index.vue";
 import Footer from "@/Layouts/Footer.vue";
-import DateRangePicker from "./Header/DateRangePicker.vue";
-import axios from "axios";
-import { subscribeUserToPush } from "/resources/js/bootstrap.js"; // Adjust the path as necessary
-import { ref, computed } from "vue";
-
-
+import ParallaxText from '@/Layouts/ParallaxText.vue';
 
 defineProps({
     canLogin: Boolean,
@@ -18,103 +11,10 @@ defineProps({
     phpVersion: String,
     // pushSub: Boolean,
 });
-
-const notificationPermission = ref(Notification.permission);
-
-const showEnableButton = computed(
-    () => notificationPermission.value !== "granted"
-);
-
-async function requestNotificationPermission() {
-    const permission = await Notification.requestPermission();
-
-    if (permission === "granted") {
-        await subscribeUserToPush();
-        notificationPermission.value = permission;
-    } else {
-        alert(
-            "You need to enable notifications in your browser settings to receive push notifications."
-        );
-    }
-}
 </script>
 
 <script>
-export default {
-    inheritAttrs: false,
 
-    data() {
-        return {
-            meals: [],
-            page: 1, // Current page
-            perPage: 12, // Number of items per page
-            hasMoreData: true,
-            isHeaderFixed: false,
-        };
-    },
-    beforeDestroy() {
-        window.removeEventListener("scroll", this.handleScroll);
-    },
-
-    mounted() {
-        window.addEventListener("scroll", this.handleScroll);
-        if (this.$page.props.auth.user) {
-            if (
-                this.$page.props.auth.user.phone_number == null ||
-                this.$page.props.auth.user.address == null
-            ) {
-                this.$inertia.visit(`/user/profile`);
-            }
-        }
-    },
-    created() {
-        this.handleScroll();
-        this.fetchData();
-    },
-    methods: {
-        async filterMeals(searchText) {
-            await axios
-                .get(`/api/filtered-meals?query=${searchText}`)
-                .then((response) => {
-                    if (response.data.length != 0) {
-                        this.meals = response.data;
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching filtered data:", error);
-                });
-        },
-        async loadMoreData() {
-            if (this.hasMoreData) {
-                this.page++;
-                await this.fetchData();
-            }
-        },
-        async fetchData() {
-            try {
-                const response = await axios.get(
-                    `/meals?page=${this.page}&perPage=${this.perPage}`
-                );
-                const newMeals = response.data;
-
-                // If there is no new data, set hasMoreData to false
-                if (newMeals.length === 0) {
-                    this.hasMoreData = false;
-                }
-
-                // Concatenate new data to the existing meals
-                this.meals = [...this.meals, ...newMeals];
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        },
-        handleScroll() {
-            // Adjust the scroll threshold as needed
-            const scrollThreshold = 20;
-            this.isHeaderFixed = window.scrollY > scrollThreshold;
-        },
-    },
-};
 </script>
 
 <template>
@@ -128,10 +28,16 @@ export default {
             type="video/mp4" autoplay muted loop></video>
     </div>
     <div class="video-content space-y-2 z-10">
-        <h1 class="font-extrabold  text-6xl uppercase loos leading-relaxed ">Your personal <br> chefs await</h1>
-        <h3 class="font-light text-3xl capitalize">Just pick what you want</h3>
+        <h1 class="font-extrabold  text-6xl uppercase  ">Your personal <br> chefs await</h1>
+        <h3 class="font-semibold text-3xl capitalize">Just pick what you want</h3>
     </div>
+    
 </section>
+<div class="space-y-10 absolute bottom-5 w-full z-10">
+<ParallaxText :baseVelocity="-4">Framer Motion</ParallaxText>
+<ParallaxText :baseVelocity="4">Scroll velocity</ParallaxText>
+
+</div>
 
    
 
