@@ -8,7 +8,7 @@ import Header from "./Navbar.vue";
 
 <template>
     <Head title="Become A Cook" />
-    <div class="">
+    <div class=" overflow-x-hidden">
 
         <div
         class="relative sm:flex-col sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-snow"
@@ -18,22 +18,14 @@ import Header from "./Navbar.vue";
         <div class="md:px-5">
             <Header> </Header>
         </div>
-            <div
-                class="container relative overflow-hidden mx-auto flex items-center  min-h-screen"
-            >
-              
-                <div
-                    class="absolute w-[150px] h-[60px] z-0 right-0 bottom-0 bg-snow dark:bg-oynx"
-                ></div>
-    
-                <div
-                    class="m-auto flex items-center h-full px-6 lg:p-8 max-w-screen-md lg:max-w-screen-lg"
-                >
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                        <div class="z-10">
+        <!-- Hero Section -->
+    <main class="hero-section py-16 md:py-24">
+        <div class="mx-auto max-w-7xl px-6 md:px-12 flex flex-col md:flex-row justify-around ">
+            <!-- Left Content Block -->
+            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                  <div class="z-10">
                             <h2
-                    data-replace="Connect with
-                                   students eager`
+                    data-replace="Connect with students eager`
                                     to taste your meal and offer your culinary
                                     expertise to those seeking homemade delights.
                                     Join us and let your cooking skills shine!"
@@ -56,15 +48,52 @@ import Header from "./Navbar.vue";
                                     class="btn2span group float-left w-[170px]"
                                 >
                                     <span class="next-span"> Start Cooking </span>
-                                    <span class="with-span">
+                                    <span class="with-span text-snow">
                                         Monetize Your Passion
                                     </span>
                                 </button>
                             </Link>
                         </div>
+            </div>
+
+            <!-- Right Image Block -->
+            <div class="md:w-1/2 flex justify-center md:justify-end relative h-screen min-w-50  ">
+                <div class=" h-[60rem] min-w-60 w-[25rem] absolute rotate-[20deg] -top-120 bg-lavender dark:bg-oynx_alt shadow-lg rounded-full flex items-end overflow-hidden   "> 
+
+                    <img src="/images/cook-removebg.png" alt="A smiling chef holding a tray of food" class="w-full max-w-lg h-auto rounded-lg  -rotate-[20deg] ">
+                </div>
+            </div>
+        </div>
+
+        <!-- Lower Section with Small Chef and Stats -->
+        <div class="mx-auto max-w-7xl px-6 md:px-12 mt-16 md:mt-24 flex flex-col md:flex-row items-center justify-between">
+            <!-- Small Chef Image -->
+            <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
+                <img src=" " alt="A second smiling chef" class="w-full max-w-xs h-auto rounded-lg">
+            </div>
+
+            <!-- Text and Stats -->
+            <div class="md:w-2/3 flex flex-col md:flex-row items-center md:items-start justify-between space-y-8 md:space-y-0 md:space-x-12">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <p class="text-lg text-gray-600">
+                        Learn the art of cooking with expert guidance and hands-on experience.
+                    </p>
+                </div>
+                <div class="md:w-1/2 flex flex-col sm:flex-row items-center justify-around md:justify-start space-y-8 sm:space-y-0 sm:space-x-12">
+                    <div class="text-center">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-800">500+</h2>
+                        <p class="text-sm text-gray-500">Students made</p>
+                    </div>
+                    <div class="text-center">
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-800">50+</h2>
+                        <p class="text-sm text-gray-500">Institutes cover</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </main>
+    
+            
         </div>
     </div>
     <div class="container overflow-hidden relative mx-auto my-8">
