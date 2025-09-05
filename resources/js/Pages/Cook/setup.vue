@@ -100,7 +100,7 @@ import Header from "./Navbar.vue";
         </div>
     </div>
     <div class="container overflow-hidden relative mx-auto my-8">
-        <AppleWatchStyle></AppleWatchStyle>
+        <!-- <AppleWatchStyle></AppleWatchStyle> -->
     </div>
     <div class="container relative mx-auto my-8">
         <Card></Card>
