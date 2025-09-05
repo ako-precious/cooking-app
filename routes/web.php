@@ -71,7 +71,7 @@ Route::post('/unsubscribe', [PushSubscriptionController::class, 'unsubscribe']);
 Route::post('/save-subscription', [PushSubscriptionController::class, 'store']);
 
 
-// Route::get('api/meals', [WelcomeController::class, 'meals']);
+Route::get('api/meals', [WelcomeController::class, 'meals']);
 Route::resource('/meal_photos', MealPhotosController::class);
 Route::resource('/resources', ResourceController::class);
 
@@ -136,8 +136,8 @@ Route::middleware([
     Route::get('/process_order/{id}',  [MealScheduleController::class, 'process_order']);
     Route::get('/payment',  [MealScheduleController::class, 'payment']);
     Route::get('/return', [MealScheduleController::class, 'return'])->name('checkout.return');
-    
-    
+
+
     //Meal Controller
     Route::resource('/meal', MealController::class);
     Route::put('meal/title/{id}', [MealController::class, 'title']);
@@ -149,7 +149,7 @@ Route::middleware([
     Route::put('meal/region/{id}', [MealController::class, 'region']);
     Route::put('meal/preference/{id}', [MealController::class, 'preference']);
     Route::put('meal/ingredients/{id}', [MealController::class, 'ingredients']);
-    
+
     Route::resource('cook/account', AccountController::class);
     Route::resource('admin', AdminController::class);
     Route::post('account-link/{id}', [AccountController::class, 'account_link']);

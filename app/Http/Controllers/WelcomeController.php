@@ -25,7 +25,7 @@ class WelcomeController extends Controller
 
         // dd( typeOf($pushSub) );
 
-        return Inertia::render('Welcome', [
+        return Inertia::render('Meal/Index', [
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
             'laravelVersion' => Application::VERSION,
