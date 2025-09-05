@@ -66,7 +66,7 @@ import Header from "./Navbar.vue";
         </div>
 
         <!-- Lower Section with Small Chef and Stats -->
-        <div class="mx-auto max-w-7xl px-6 md:px-12 mt-16 md:-mt-12 flex flex-col md:flex-row items-center justify-between">
+        <div class="mx-auto max-w-7xl px-6 md:px-12 mt-16 md:-mt-12 flex flex-col md:flex-row md:items-start justify-between">
             <!-- Small Chef Image -->
             <div class="md:w-1/3 flex justify-center mb-8 md:mb-0 relative">
                <div class=" h-[30rem] min-w-60 w-[17rem] md:absolute -top-60  bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 

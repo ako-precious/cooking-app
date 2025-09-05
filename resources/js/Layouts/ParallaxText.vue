@@ -61,8 +61,8 @@ useAnimationFrame((time, delta) => {
 <template>
   <div class="parallax overflow-hidden w-full">
     <motion.div class="scroller flex whitespace-nowrap text-snow " :style="{ x }">
-      <span v-for="i in 4" :key="i" class="mr-4">
-        <!-- {{ children }} dsddsdddddddddddddddddddssssssssssssssssssssss -->Food made with love, not factories. Try authentic meals from real cooks nearby
+      <span v-for="i in 4" :key="i" class="mr-4"> <slot />
+        <!-- {{ children }} dsddsdddddddddddddddddddssssssssssssssssssssss Food made with love, not factories. Try authentic meals from real cooks nearby -->
       </span>
     </motion.div>
   </div>
@@ -77,7 +77,7 @@ useAnimationFrame((time, delta) => {
 
 .scroller span {
   display: inline-block;
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: bold;
     font-family: "Plaster", sans-serif;
   font-style: normal;
