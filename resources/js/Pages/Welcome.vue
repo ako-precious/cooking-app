@@ -119,51 +119,46 @@ export default {
 
 <template>
     <Head title="Welcome" />
-    <!-- component -->
-    <Header  @filter-meals="filterMeals"   :isHeaderFixed="isHeaderFixed"
-    :canLogin="canLogin"
-    :canRegister="canRegister"
-    :laravelVersion="laravelVersion"
-    :phpVersion="phpVersion"
-  >   <template v-slot:search-content>
-    <DateRangePicker
-                            @filter-meals="filterMeals"
-                            v-if="isHeaderFixed"
-                            class="transition-all duration-300 delay-75 ease-in"
-                        ></DateRangePicker>
-    </template>
-    <template v-slot:extra-content>
-        <DateRangePicker
-                v-if="!isHeaderFixed"
-                @filter-meals="filterMeals"
-                class="hidden lg:flex transition-all duration-300 delay-75 ease-in animate-fade-in"
-            ></DateRangePicker>
-            <DateRangePicker
-                @filter-meals="filterMeals"
-                class="lg:hidden transition-all duration-300 delay-75 ease-in animate-fade-in w-full"
-            ></DateRangePicker> 
-    </template>
-        
-    </Header>
-    <div
-        class="container p-4 lg:p-10 mx-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 sm:items-center min-h-screen selection:bg-red-500 selection:text-white bg-snow dark:bg-oynx"
-    >
-        <div v-for="meal in meals" :key="meal.id" class="animate-fade-in">
-            <FoodCard :meal="meal"></FoodCard>
-        </div>
+   
+
+<section class="relative h-screen flex flex-col items-center justify-center text-center text-white ">
+    <div class="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
+        <video class="min-w-full min-h-full absolute object-cover"
+            src="images/cookingvideo.mp4"
+            type="video/mp4" autoplay muted loop></video>
     </div>
-    <div
-        class="flex justify-center items-center flex-col transition-all duration-250 delay-75 ease-bounce sha"
-        v-if="hasMoreData"
-    >
-        <button @click="loadMoreData" class="button">Show More</button>
+    <div class="video-content space-y-2 z-10">
+        <h1 class="font-light text-6xl">full Hero Video</h1>
+        <h3 class="font-light text-3xl">with TailwindCSS</h3>
     </div>
-    <!-- {{ $page.props.auth.user }} -->
+</section>
+
+   
 
     <Footer></Footer>
 </template>
 
+
 <style scoped>
+    .video-docker video {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .video-docker::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+    }
+</style>
+
+<!-- <style scoped>
 .button {
     --color: #1b998b;
     font-family: inherit;
@@ -229,4 +224,4 @@ export default {
 .animate-fade-in {
     animation: fade-in 0.3s ease-in;
 }
-</style>
+</style> -->

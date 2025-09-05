@@ -19,6 +19,20 @@ use Illuminate\Support\Facades\Http;
 
 class WelcomeController extends Controller
 {
+    public function welcome()
+    {
+        $pushSub = PushSubscription::where('subscribable_id', Auth::id())->exists();
+
+        // dd( typeOf($pushSub) );
+
+        return Inertia::render('Welcome', [
+            'canLogin' => Route::has('login'),
+            'canRegister' => Route::has('register'),
+            'laravelVersion' => Application::VERSION,
+            'phpVersion' => PHP_VERSION,
+            'pushSub' => $pushSub
+        ]);
+    }
     public function index()
     {
         $pushSub = PushSubscription::where('subscribable_id', Auth::id())->exists();

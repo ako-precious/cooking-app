@@ -22,7 +22,7 @@ import Header from "./Navbar.vue";
     <main class="py-16 md:py-24 conainer mx-auto">
         <div class="mx-auto max-w-7xl px-6 md:px-12 flex flex-col md:flex-row justify-around ">
             <!-- Left Content Block -->
-            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 z-10">
                   <div class="z-10">
                             <h2
                     data-replace="Connect with students eager`
@@ -58,7 +58,7 @@ import Header from "./Navbar.vue";
 
             <!-- Right Image Block -->
             <div class="md:w-1/2 flex justify-center md:justify-end relative max-h-screen min-h-160 min-w-50  ">
-                <div class=" h-[60rem] min-w-60 w-[25rem] absolute rotate-[20deg] -top-120 bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
+                <div class=" h-[70rem] min-w-60 w-[25rem] absolute rotate-[20deg] -top-160 bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
 
                     <img src="/images/cook-removebg.png" alt="A smiling chef holding a tray of food" class="w-full max-w-lg h-auto rounded-lg  -rotate-[20deg] ">
                 </div>
@@ -69,21 +69,21 @@ import Header from "./Navbar.vue";
         <div class="mx-auto max-w-7xl px-6 md:px-12 mt-16 md:-mt-12 flex flex-col md:flex-row items-center justify-between">
             <!-- Small Chef Image -->
             <div class="md:w-1/3 flex justify-center mb-8 md:mb-0 relative">
-               <div class=" h-[30rem] min-w-60 w-[17rem] absolute -top-60  bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
+               <div class=" h-[30rem] min-w-60 w-[17rem] md:absolute -top-60  bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
 
                     <img src="/images/emediong-umoh.png" alt="A smiling chef holding a tray of food" class="w-full max-w-lg h-auto rounded-lg  ">
                 </div>
             </div>
 
             <!-- Text and Stats -->
-            <div class="md:w-2/3 flex flex-col md:flex-row items-center justify-center p-10 bg-polynesian dark:bg-lighred  space-y-6 md:space-y-0 md:space-x-12 rounded-3xl">
+            <div class="md:w-2/3 flex flex-col md:flex-row items-center justify-center p-12 bg-polynesian dark:bg-lighred  space-y-6 md:space-y-0 md:space-x-12 rounded-3xl">
                 <div class="md:w-1/2 text-center md:text-left">
                     <p class="text-lg text-snow">
                         Share your passion for cooking and turn your kitchen into a business
                     </p>
                 </div>
                 <div class="md:w-2/3 flex flex-col sm:flex-row items-center justify-around md:justify-start space-y-6 sm:space-y-0 sm:space-x-12">
-                    <div class="text-center border-x-2 px-10">
+                    <div class="text-center border-y-2 md:border-x-2 md:border-y-0 py-10 md:py-0  md:px-10">
                         <h2 class="text-4xl md:text-5xl font-bold text-persian">50+</h2>
                         <p class="text-sm text-snow">Culinary creations</p>
                     </div>
