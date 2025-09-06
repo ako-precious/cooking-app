@@ -3,6 +3,7 @@ import { Head } from "@inertiajs/vue3";
 // import Header from "@/Layouts/Header/Index.vue";
 import Footer from "@/Layouts/Footer.vue";
 import ParallaxText from '@/Layouts/ParallaxText.vue';
+import ScrollMask from "@/Layouts/ScrollMask.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -28,8 +29,8 @@ defineProps({
             type="video/mp4" autoplay muted loop></video>
     </div>
     <div class="video-content space-y-10 z-10">
-        <h1 class="font-extrabold  text-4xl uppercase  ">Your personal <br> chefs await</h1>
-        <h3 class="font-semibold text-xl capitalize">Just pick what you want</h3>
+        <h2 class="font-extrabold  text-4xl uppercase  ">Your personal <br> chefs await</h2>
+        <h3 class="font-semibold text-xl capitalize">pick what to eat</h3>
     </div>
 
     <!-- From Uiverse.io by andrei0x309 --> 
@@ -81,7 +82,9 @@ defineProps({
 </div>
 </section>
 
-   
+   <section class="my-20 flex items-center justify-center container">
+    <ScrollMask></ScrollMask>
+   </section>
 
     <Footer></Footer>
 </template>
