@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
-const testimonialActive = ref(2);
+const testimonialActive = ref(1);
 
 const testimonials = [
     {
@@ -132,6 +132,9 @@ const next = () => {
                         class="text-gray-600 serif font-normal italic px-6 py-6 md:px-16 md:py-10 text-xl md:text-2xl transition-opacity duration-300"
                     >
                         {{ t.text }}
+                        
+                        {{ t.name }}
+                        {{ t.location }}
                     </p>
                 </div>
 
@@ -153,22 +156,41 @@ const next = () => {
                 </div>
 
                 <!-- User Info -->
-               <div class="flex justify-center px-6 pt-2 pb-6 md:py-6">
-  <div
-    v-for="t in testimonials"
-    :key="t.id + '-info'"
-    v-show="testimonialActive === t.id"
-    class="text-center"
-  >
-    <h2 class="text-sm md:text-base font-bold text-gray-700 leading-tight">
-      {{ t.name }}
-    </h2>
-    <small class="text-gray-500 text-xs md:text-sm truncate">
-      {{ t.location }}
-    </small>
-  </div>
-</div>
 
+                <!-- User Info -->
+                <div class="flex flex-col items-center justify-center px-6 pt-2 pb-6 md:py-6"> 
+                    <p  v-for="t in testimonials"
+                        :key="t.id"
+                        v-show="testimonialActive === t.id"
+                         class="text-sm md:text-base font-bold text-gray-700 leading-tight">                    
+                        
+                        {{ t.name }}                        
+                    </p>
+                    <p  v-for="t in testimonials"
+                        :key="t.id"
+                        v-show="testimonialActive === t.id"
+                          class="text-gray-500 text-xs md:text-sm truncate">                    
+                        
+                        {{ t.location }}                        
+                    </p>
+                    <!-- <div
+                         v-for="t in testimonials"
+                        :key="t.id"
+                        v-show="testimonialActive === t.id"
+                        class="text-center"
+                    >
+                        <h2
+                            class="text-sm md:text-base font-bold text-gray-700 leading-tight"
+                        >
+                            {{ t.name }}
+                        </h2>
+                        <small
+                            class="text-gray-500 text-xs md:text-sm truncate"
+                        >
+                            {{ t.location }}
+                        </small>
+                    </div> -->
+                </div>
             </div>
         </div>
     </div>
