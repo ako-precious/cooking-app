@@ -71,7 +71,7 @@ const circle: CSSProperties = {
 }
 
 const indicator: CSSProperties = {
-  stroke: '#1b998a76',
+  stroke: '#1B998B',
 }
 
 const list: CSSProperties = {

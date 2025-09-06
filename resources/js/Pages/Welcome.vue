@@ -2,8 +2,9 @@
 import { Head } from "@inertiajs/vue3";
 // import Header from "@/Layouts/Header/Index.vue";
 import Footer from "@/Layouts/Footer.vue";
-import ParallaxText from '@/Layouts/ParallaxText.vue';
+import ParallaxText from "@/Layouts/ParallaxText.vue";
 import ScrollMask from "@/Layouts/ScrollMask.vue";
+import TestimonialCarousel from "@/Layouts/TestimonialCarousel.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -14,99 +15,118 @@ defineProps({
 });
 </script>
 
-<script>
-
-</script>
+<script></script>
 
 <template>
     <Head title="Welcome" />
-   
 
-<section class="relative  h-[45rem] flex flex-col items-center justify-center text-center text-white ">
-    <div class="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
-        <video class="min-w-full min-h-full absolute object-cover"
-            src="images/cookingvideo.mp4"
-            type="video/mp4" autoplay muted loop></video>
-    </div>
-    <div class="video-content space-y-10 z-10">
-        <h2 class="font-extrabold  text-4xl uppercase  ">Your personal <br> chefs await</h2>
-        <h3 class="font-semibold text-xl capitalize">pick what to eat</h3>
-    </div>
-
-    <!-- From Uiverse.io by andrei0x309 --> 
-<div
-  class="w-[22rem]  absolute bottom-10 z-10 bg-persian p-6 [transition:1s_ease-in-out] [clip-path:polygon(_30px_0%,_100%_0,_100%_calc(100%_-_30px),_calc(100%_-_30px)_100%,_0_100%,_0%_30px_)] rounded-tr-[20px] rounded-bl-[20px] flex flex-col"
->
- 
-  <p
-    class=" text-[white] block text-center text-base font-semibold mb-2 mx-2"
-  >
-    Delicious meals made by local chefs, delivered weekly from $34
-  </p>
-
-  <a  href="https://nowpayments.io/donation/andrei0x309"    
-    class="group/button poin relative inline-flex items-center justify-center overflow-hidden rounded-md bg-gray-800/30 backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-gray-600/15 border border-white/20 w-[90%] mx-auto mb-[0.5rem]"
-  >
-    <span
-      class="group/link font-bold text-[white] text-center block text-sm group-hover/button:text-[rgb(145,_206,_46)]"
-      >Set up your weekly meal plan </span
+    <section
+        class="relative h-[45rem] flex flex-col items-center justify-center text-center text-white"
     >
-    <div
-      class="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)] ]"
-    >
-      <div class="relative h-full w-10 bg-white/20"></div>
-    </div>
-  </a>
+        <div
+            class="video-docker absolute top-0 left-0 w-full h-full overflow-hidden"
+        >
+            <video
+                class="min-w-full min-h-full absolute object-cover"
+                src="images/cookingvideo.mp4"
+                type="video/mp4"
+                autoplay
+                muted
+                loop
+            ></video>
+        </div>
+        <div class="video-content space-y-10 z-10">
+            <h2 class="font-extrabold text-4xl uppercase">
+                Your personal <br />
+                chefs await
+            </h2>
+            <h3 class="font-semibold text-xl capitalize">pick what to eat</h3>
+        </div>
 
-  <a
-    href="https://nowpayments.io/donation/andrei0x309"
-    class="group/button relative inline-flex items-center justify-center overflow-hidden rounded-md  backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-gray-600/15 border-b border-white/20 w-[90%] mx-auto mb-[0.5rem]"
-  >
-    <span
-      class="font-bold text-[white] text-center block text-sm group-hover/button:text-[rgb(145,_206,_46)]"
-      >Try a single meal experience</span
-    >
-    <div
-      class="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]"
-    >
-      <div class="relative h-full w-10 bg-white/20"></div>
-    </div>
-  </a>
-</div>
+        <!-- From Uiverse.io by andrei0x309 -->
+        <div
+            class="w-[22rem] absolute bottom-10 z-10 bg-persian p-6 [transition:1s_ease-in-out] [clip-path:polygon(_30px_0%,_100%_0,_100%_calc(100%_-_30px),_calc(100%_-_30px)_100%,_0_100%,_0%_30px_)] rounded-tr-[20px] rounded-bl-[20px] flex flex-col"
+        >
+            <p
+                class="text-[white] block text-center text-base font-semibold mb-2 mx-2"
+            >
+                Delicious meals made by local chefs, delivered weekly from $34
+            </p>
 
+            <a
+                href="https://nowpayments.io/donation/andrei0x309"
+                class="group/button poin relative inline-flex items-center justify-center overflow-hidden rounded-md bg-gray-800/30 backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-gray-600/15 border border-white/20 w-[90%] mx-auto mb-[0.5rem]"
+            >
+                <span
+                    class="group/link font-bold text-[white] text-center block text-sm group-hover/button:text-[rgb(145,_206,_46)]"
+                    >Set up your weekly meal plan
+                </span>
+                <div
+                    class="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)] ]"
+                >
+                    <div class="relative h-full w-10 bg-white/20"></div>
+                </div>
+            </a>
 
-<div class="space-y-10   absolute bottom-0 w-full bg-polynesian dark:bg-lighred ">
-<ParallaxText :baseVelocity="-3"> Food made with love, not factories. Try authentic meals from real cooks nearby. Food made with love, not factories. Try authentic meals from real cooks nearby.  </ParallaxText>
-<ParallaxText :baseVelocity="3">Try authentic food from another culture. Eat something made with care. Try authentic food from another culture. Eat something made with care.</ParallaxText>
+            <a
+                href="https://nowpayments.io/donation/andrei0x309"
+                class="group/button relative inline-flex items-center justify-center overflow-hidden rounded-md backdrop-blur-lg px-6 py-2 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-gray-600/15 border-b border-white/20 w-[90%] mx-auto mb-[0.5rem]"
+            >
+                <span
+                    class="font-bold text-[white] text-center block text-sm group-hover/button:text-[rgb(145,_206,_46)]"
+                    >Try a single meal experience</span
+                >
+                <div
+                    class="absolute inset-0 flex h-full w-full justify-center [transform:skew(-13deg)_translateX(-100%)] group-hover/button:duration-1000 group-hover/button:[transform:skew(-13deg)_translateX(100%)]"
+                >
+                    <div class="relative h-full w-10 bg-white/20"></div>
+                </div>
+            </a>
+        </div>
 
-</div>
-</section>
+        <div
+            class="space-y-10 absolute bottom-0 w-full bg-polynesian dark:bg-lighred"
+        >
+            <ParallaxText :baseVelocity="-3">
+                Food made with love, not factories. Try authentic meals from
+                real cooks nearby. Food made with love, not factories. Try
+                authentic meals from real cooks nearby.
+            </ParallaxText>
+            <ParallaxText :baseVelocity="3"
+                >Try authentic food from another culture. Eat something made
+                with care. Try authentic food from another culture. Eat
+                something made with care.</ParallaxText
+            >
+        </div>
+    </section>
 
-   <section class="my-20 flex items-center justify-center container">
-    <ScrollMask></ScrollMask>
-   </section>
+    <section class="my-20 flex  items-center justify-center container">      
+        <ScrollMask></ScrollMask>
+    </section>
+    <section class="my-20 flex  items-center justify-center container">      
+        <TestimonialCarousel></TestimonialCarousel>
+    </section>
 
     <Footer></Footer>
 </template>
 
-
 <style scoped>
-    .video-docker video {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+.video-docker video {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
-    .video-docker::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 1;
-    }
+.video-docker::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
 </style>
 
 <!-- <style scoped>
