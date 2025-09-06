@@ -100,12 +100,11 @@ defineProps({
         </div>
     </section>
 
-    <section class="my-20 flex  items-center justify-center container">      
+    <section class="my-20 flex items-center justify-center container">
         <ScrollMask></ScrollMask>
     </section>
-    <section class="my-20 flex  items-center justify-center container">      
-        <TestimonialCarousel></TestimonialCarousel>
-    </section>
+
+    <TestimonialCarousel></TestimonialCarousel>
 
     <Footer></Footer>
 </template>
