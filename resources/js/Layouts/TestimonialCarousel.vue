@@ -83,10 +83,10 @@ const next = () => {
             ></div>
 
             <div
-                class="relative text-2xl md:text-5xl py-2 px-6 md:py-6 md:px-1 md:w-64 md:mx-auto text-indigo-100 font-semibold leading-tight tracking-tight mb-0 z-20"
+                class="relative text-2xl md:text-5xl py-2 px-6 md:py-6 md:px-1 md:w-72 md:mx-auto text-indigo-100 font-semibold leading-tight tracking-tight mb-0 z-20 uppercase text-center"
             >
-                <span class="md:block">What Our</span>
-                <span class="md:block">Customers</span>
+                <span class="md:block">What Trusting</span>
+                <span class="md:block">Households</span>
                 <span class="block">Are Saying!</span>
             </div>
 
@@ -173,24 +173,7 @@ const next = () => {
                         
                         {{ t.location }}                        
                     </p>
-                    <!-- <div
-                         v-for="t in testimonials"
-                        :key="t.id"
-                        v-show="testimonialActive === t.id"
-                        class="text-center"
-                    >
-                        <h2
-                            class="text-sm md:text-base font-bold text-gray-700 leading-tight"
-                        >
-                            {{ t.name }}
-                        </h2>
-                        <small
-                            class="text-gray-500 text-xs md:text-sm truncate"
-                        >
-                            {{ t.location }}
-                        </small>
-                    </div> -->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
