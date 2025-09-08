@@ -40,7 +40,7 @@ defineProps({
                 Your personal <br />
                 chefs await
             </h2>
-            <h3 class="font-semibold text-xl capitalize">pick what to eat</h3>
+            <h3 class="font-semibold text-xl ">A way to enjoy the taste of home <br> without the stress of cooking</h3>
         </div>
 
         <!-- From Uiverse.io by andrei0x309 -->
@@ -50,7 +50,7 @@ defineProps({
             <p
                 class="text-[white] block text-center text-base font-semibold mb-2 mx-2"
             >
-                Delicious meals made by local chefs, delivered weekly from $34
+                Delicious meals made by local chefs, delivered weekly from $44
             </p>
 
             <a
@@ -88,9 +88,7 @@ defineProps({
             class="space-y-10 absolute bottom-0 w-full bg-polynesian dark:bg-lighred"
         >
             <ParallaxText :baseVelocity="-3">
-                Food made with love, not factories. Try authentic meals from
-                real cooks nearby. Food made with love, not factories. Try
-                authentic meals from real cooks nearby.
+                We connect you with trusted local cooks who prepare authentic dishes from your culture — delivered straight to your door.
             </ParallaxText>
             <ParallaxText :baseVelocity="3"
                 >Try authentic food from another culture. Eat something made
