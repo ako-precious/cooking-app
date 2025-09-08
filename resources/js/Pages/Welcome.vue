@@ -90,11 +90,7 @@ defineProps({
             <ParallaxText :baseVelocity="-3">
                 We connect you with trusted local cooks who prepare authentic dishes from your culture — delivered straight to your door.
             </ParallaxText>
-            <ParallaxText :baseVelocity="3"
-                >Try authentic food from another culture. Eat something made
-                with care. Try authentic food from another culture. Eat
-                something made with care.</ParallaxText
-            >
+           
         </div>
     </section>
 

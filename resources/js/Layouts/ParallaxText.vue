@@ -77,7 +77,7 @@ useAnimationFrame((time, delta) => {
 
 .scroller span {
   display: inline-block;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: bold;
     font-family: "Plaster", sans-serif;
   font-style: normal;
