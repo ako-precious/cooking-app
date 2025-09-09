@@ -58,21 +58,21 @@
         <div class="relative flex flex-col mt-4 ">
             <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
                 <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full ">
-                  <img src="images/icons8-quality.png" alt="">
-              
-              </div>
-              <h6 class="text-xl mb-1 font-semibold">Taste and Quality Checks</h6>
-              <p class="mb-4  text-oynx dark:text-snow">
-                Our team samples and tests meals before cooks are approved. Only those who meet our high standards for taste, freshness, and authenticity are accepted. This ensures that every dish is one you’ll want to come back to again and again.
-              </p>
+                  <img src="images/icons8-quality-100.png" alt="">
+                  
+                </div>
+                <h6 class="text-xl mb-1 font-semibold">Taste and Quality Checks</h6>
+                <p class="mb-4  text-oynx dark:text-snow">
+                    Our team samples and tests meals before cooks are approved. Only those who meet our high standards for taste, freshness, and authenticity are accepted. This ensures that every dish is one you’ll want to come back to again and again.
+                </p>
             </div>
-          </div>        
-        </div>
+        </div>        
+    </div>
         <div class="w-full md:w-6/12 px-4">
-          <div class="relative flex flex-col mt-4 ">
-            <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
-              <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full ">
-                <i class="fas fa-sitemap"></i>
+            <div class="relative flex flex-col mt-4 ">
+                <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
+                    <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full ">
+                  <img src="images/icons8-reviews-100.png" alt="">
               </div>
               <h6 class="text-xl mb-1 font-semibold">Ongoing Reviews from Real Customers</h6>
               <p class="mb-4  text-oynx dark:text-snow">
