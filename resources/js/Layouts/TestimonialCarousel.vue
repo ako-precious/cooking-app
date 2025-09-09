@@ -83,10 +83,10 @@ const next = () => {
             ></div>
 
             <div
-                class="relative text-2xl md:text-5xl py-2 px-6 md:py-6 md:px-1 md:w-72 md:mx-auto text-indigo-100 font-semibold leading-tight tracking-tight mb-0 z-20 uppercase text-center"
+                class="relative text-4xl md:text-5xl py-2 px-6 md:py-6 md:px-1 md:w-72 md:mx-auto text-indigo-100 font-semibold leading-tight tracking-tight mb-0 z-20 uppercase text-center"
             >
-                <span class="md:block">What Trusting</span>
-                <span class="md:block">Households</span>
+                <span class="md:block">What Trusting </span>
+                <span class="md:block">Households </span>
                 <span class="block">Are Saying!</span>
             </div>
 
