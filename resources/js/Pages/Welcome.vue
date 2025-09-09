@@ -6,6 +6,7 @@ import ParallaxText from "@/Layouts/ParallaxText.vue";
 import ScrollMask from "@/Layouts/ScrollMask.vue";
 import TestimonialCarousel from "@/Layouts/TestimonialCarousel.vue";
 import MeetCook from "@/Layouts/MeetCook.vue";
+import StackedCard from "@/Layouts/StackedCard.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -96,11 +97,12 @@ defineProps({
     </section>
 
     <section class="my-20 flex items-center justify-center container">
-        <ScrollMask></ScrollMask>
+      <ScrollMask></ScrollMask>
     </section>
-   <MeetCook></MeetCook>
+    <MeetCook></MeetCook>
+    <StackedCard></StackedCard>
     <TestimonialCarousel></TestimonialCarousel>
-
+    
     <Footer></Footer>
 </template>
 

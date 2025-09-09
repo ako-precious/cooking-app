@@ -78,66 +78,125 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="container">
-    <div class="instructions">👆 Click any card to cycle through</div>
-
-    <div
-      v-for="card in cards"
-      :key="card.id"
-      class="card"
-      :data-layer="card.layer"
-      :class="{ 'moving-to-back': card.moving }"
-      :style="card.style"
-      @click="handleCardClick(card)"
-    >
+    <section class="my-20 flex items-center justify-center container relative">
+     <div class="contain flex flex-col items-center justify-center gap-10 ">
+         <div class="instructions">👆 Click any card to cycle through</div>
+         
+         <div
+         v-for="card in cards"
+         :key="card.id"
+         class="card"
+         :data-layer="card.layer"
+         :class="{ 'moving-to-back': card.moving }"
+         :style="card.style"
+         @click="handleCardClick(card)"
+         >
       <div class="card-number">{{ card.id }}</div>
       {{ card.text }}
     </div>
-  </div>
+</div>   
+    </section>
+  
 </template>
 
 <style scoped>
-.container {
-  position: relative;
-  width: 300px;
-  margin: auto;
-  perspective: 1000px;
-}
-.instructions {
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #555;
-}
-.card {
-  position: absolute;
-  width: 100%;
-  padding: 20px;
-  border-radius: 10px;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-.card[data-layer="0"] {
-  z-index: 3;
-}
-.card[data-layer="1"] {
-  z-index: 2;
-  transform: translateY(10px) scale(0.95);
-  opacity: 0.9;
-}
-.card[data-layer="2"] {
-  z-index: 1;
-  transform: translateY(20px) scale(0.9);
-  opacity: 0.8;
-}
-.moving-to-back {
-  transform: translateY(40px) scale(0.8) rotateZ(-5deg);
-  opacity: 0.5;
-}
-.card-number {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
+
+        .contain {
+            position: relative;
+            margin-top: -100px;
+            width: 360px;
+            height: 200px;
+        }
+
+        .card {
+            width: 540px;
+            height: 300px;
+            border: solid 1px #bebebe;
+            background-color: #1f1f1f;
+            position: absolute;
+            border-radius: 10px;
+            padding: 10px;
+            color: #fff;
+            box-shadow: 0px 8px 20px -10px #bbbbbb;
+            text-shadow: 0px 0px 5px #fff;
+            letter-spacing: 1px;
+            background-image: radial-gradient(circle 160px at 50% 120%, #353535, #1f1f1f);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 12px 25px -10px #bbbbbb;
+        }
+
+        .card:active {
+            transform: translateY(0px);
+        }
+
+        /* Layer positions */
+        .card[data-layer="0"] {
+            z-index: 3;
+            width: 340px;
+            margin: 0px 0px 0px 0px;
+            transform: translateX(0px) translateY(0px) scale(1);
+        }
+
+        .card[data-layer="1"] {
+            z-index: 2;
+            width: 320px;
+            margin: -10px 0px 0px 10px;
+            transform: translateX(0px) translateY(0px) scale(0.95);
+        }
+
+        .card[data-layer="2"] {
+            z-index: 1;
+            width: 300px;
+            margin: -20px 0px 0px 20px;
+            transform: translateX(0px) translateY(0px) scale(0.9);
+        }
+
+        /* Animation for moving to back */
+        .card.moving-to-back {
+            z-index: 0;
+            transform: translateX(-50px) translateY(20px) scale(0.8) rotateY(15deg);
+            opacity: 0.7;
+        }
+
+        /* Reset hover effect during animation */
+        .card.moving-to-back:hover {
+            transform: translateX(-50px) translateY(20px) scale(0.8) rotateY(15deg);
+            box-shadow: 0px 8px 20px -10px #bbbbbb;
+        }
+
+        .instructions {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card-number {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            opacity: 0.7;
+        }
 </style>
