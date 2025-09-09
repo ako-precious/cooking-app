@@ -31,12 +31,11 @@
           <div class="relative flex flex-col mt-4 ">
             <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
               <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
-                <i class="fas fa-sitemap"></i>
+                <img src="images/icons8-facial-recognition-100.png" alt="">
               </div>
-              <h6 class="text-xl mb-1 font-semibold">CSS Components</h6>
+              <h6 class="text-xl mb-1 font-semibold">Identity Verification</h6>
               <p class="mb-4  text-oynx dark:text-snow">
-                Notus JS comes with a huge number of Fully Coded CSS
-                components.
+                We make sure every cook is exactly who they say they are. Each one provides government-issued ID and proof of address before they’re allowed to serve meals. This keeps the platform safe, accountable, and trustworthy.
               </p>
             </div>
           </div>        
@@ -47,10 +46,9 @@
               <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
                 <i class="fas fa-sitemap"></i>
               </div>
-              <h6 class="text-xl mb-1 font-semibold">CSS Components</h6>
+              <h6 class="text-xl mb-1 font-semibold">Kitchen Inspection & Food-Safety Certification</h6>
               <p class="mb-4  text-oynx dark:text-snow">
-                Notus JS comes with a huge number of Fully Coded CSS
-                components.
+                Before joining MyMealni, every cook’s kitchen is reviewed for cleanliness and safety. We require food-handling certificates and compliance with local health regulations. That means your meals are prepared in a safe, hygienic environment.
               </p>
             </div>
           </div>        
@@ -61,10 +59,9 @@
               <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
                 <i class="fas fa-sitemap"></i>
               </div>
-              <h6 class="text-xl mb-1 font-semibold">CSS Components</h6>
+              <h6 class="text-xl mb-1 font-semibold">Taste and Quality Checks</h6>
               <p class="mb-4  text-oynx dark:text-snow">
-                Notus JS comes with a huge number of Fully Coded CSS
-                components.
+                Our team samples and tests meals before cooks are approved. Only those who meet our high standards for taste, freshness, and authenticity are accepted. This ensures that every dish is one you’ll want to come back to again and again.
               </p>
             </div>
           </div>        
@@ -75,10 +72,9 @@
               <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
                 <i class="fas fa-sitemap"></i>
               </div>
-              <h6 class="text-xl mb-1 font-semibold">CSS Components</h6>
+              <h6 class="text-xl mb-1 font-semibold">Ongoing Reviews from Real Customers</h6>
               <p class="mb-4  text-oynx dark:text-snow">
-                Notus JS comes with a huge number of Fully Coded CSS
-                components.
+                Quality doesn’t stop after approval. Every meal is rated and reviewed by customers like you. Cooks must maintain strong reviews to stay on MyMealni — so the best always rise to the top.
               </p>
             </div>
           </div>        
