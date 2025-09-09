@@ -7,7 +7,7 @@
   <div class="flex flex-col items-center"text-center >
     
  <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-78">
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-500">
+      <div class="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-pink-500">
         <img alt="..." src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" class="w-full align-middle rounded-t-lg">
         <blockquote class="relative p-8 mb-4">
           <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="absolute left-0 w-full block h-95-px -top-94-px">
@@ -30,34 +30,36 @@
         <div class="w-full md:w-6/12 px-4">
           <div class="relative flex flex-col mt-4 ">
             <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
-              <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
+              <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full ">
                 <img src="images/icons8-facial-recognition-100.png" alt="">
-              </div>
-              <h6 class="text-xl mb-1 font-semibold">Identity Verification</h6>
-              <p class="mb-4  text-oynx dark:text-snow">
+            </div>
+            <h6 class="text-xl mb-1 font-semibold">Identity Verification</h6>
+            <p class="mb-4  text-oynx dark:text-snow">
                 We make sure every cook is exactly who they say they are. Each one provides government-issued ID and proof of address before they’re allowed to serve meals. This keeps the platform safe, accountable, and trustworthy.
-              </p>
-            </div>
-          </div>        
+            </p>
+        </div>
+    </div>        
         </div>
         <div class="w-full md:w-6/12 px-4">
-          <div class="relative flex flex-col mt-4 ">
-            <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
-              <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
-                <i class="fas fa-sitemap"></i>
-              </div>
-              <h6 class="text-xl mb-1 font-semibold">Kitchen Inspection & Food-Safety Certification</h6>
-              <p class="mb-4  text-oynx dark:text-snow">
-                Before joining MyMealni, every cook’s kitchen is reviewed for cleanliness and safety. We require food-handling certificates and compliance with local health regulations. That means your meals are prepared in a safe, hygienic environment.
-              </p>
+            <div class="relative flex flex-col mt-4 ">
+                <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
+                    <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full ">
+                  <img src="images/icons8-certification-100.png" alt="">
+                  
+                </div>
+                <h6 class="text-xl mb-1 font-semibold">Kitchen Inspection & Food-Safety Certification</h6>
+                <p class="mb-4  text-oynx dark:text-snow">
+                    Before joining MyMealni, every cook’s kitchen is reviewed for cleanliness and safety. We require food-handling certificates and compliance with local health regulations. That means your meals are prepared in a safe, hygienic environment.
+                </p>
             </div>
-          </div>        
-        </div>
-        <div class="w-full md:w-6/12 px-4">
-          <div class="relative flex flex-col mt-4 ">
+        </div>        
+    </div>
+    <div class="w-full md:w-6/12 px-4">
+        <div class="relative flex flex-col mt-4 ">
             <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
-              <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
-                <i class="fas fa-sitemap"></i>
+                <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full ">
+                  <img src="images/icons8-quality.png" alt="">
+              
               </div>
               <h6 class="text-xl mb-1 font-semibold">Taste and Quality Checks</h6>
               <p class="mb-4  text-oynx dark:text-snow">
@@ -69,7 +71,7 @@
         <div class="w-full md:w-6/12 px-4">
           <div class="relative flex flex-col mt-4 ">
             <div class="px-4 py-5 flex flex-col items-center text-center justify-center">
-              <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full bg-white">
+              <div class=" text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 mb-5 shadow-lg rounded-full ">
                 <i class="fas fa-sitemap"></i>
               </div>
               <h6 class="text-xl mb-1 font-semibold">Ongoing Reviews from Real Customers</h6>
@@ -95,7 +97,7 @@
 <div class="container mx-auto">
   <div class="flex flex-wrap items-center">
     <div class="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-78">
-      <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-pink-500">
+      <div class="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-pink-500">
         <img alt="..." src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" class="w-full align-middle rounded-t-lg">
         <blockquote class="relative p-8 mb-4">
           <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 583 95" class="absolute left-0 w-full block h-95-px -top-94-px">
@@ -114,7 +116,7 @@
         <div class="w-full md:w-6/12 px-4">
           <div class="relative flex flex-col mt-4">
             <div class="px-4 py-5 flex-auto">
-              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full ">
                 <i class="fas fa-sitemap"></i>
               </div>
               <h6 class="text-xl mb-1 font-semibold">CSS Components</h6>
@@ -126,7 +128,7 @@
           </div>
           <div class="relative flex flex-col min-w-0">
             <div class="px-4 py-5 flex-auto">
-              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full ">
                 <i class="fas fa-drafting-compass"></i>
               </div>
               <h6 class="text-xl mb-1 font-semibold">
@@ -142,7 +144,7 @@
         <div class="w-full md:w-6/12 px-4">
           <div class="relative flex flex-col min-w-0 mt-4">
             <div class="px-4 py-5 flex-auto">
-              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full ">
                 <i class="fas fa-newspaper"></i>
               </div>
               <h6 class="text-xl mb-1 font-semibold">Pages</h6>
@@ -154,7 +156,7 @@
           </div>
           <div class="relative flex flex-col min-w-0">
             <div class="px-4 py-5 flex-auto">
-              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+              <div class="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full ">
                 <i class="fas fa-file-alt"></i>
               </div>
               <h6 class="text-xl mb-1 font-semibold">Documentation</h6>
