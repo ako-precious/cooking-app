@@ -5,6 +5,7 @@ import Footer from "@/Layouts/Footer.vue";
 import ParallaxText from "@/Layouts/ParallaxText.vue";
 import ScrollMask from "@/Layouts/ScrollMask.vue";
 import TestimonialCarousel from "@/Layouts/TestimonialCarousel.vue";
+import MeetCook from "@/Layouts/MeetCook.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -97,7 +98,7 @@ defineProps({
     <section class="my-20 flex items-center justify-center container">
         <ScrollMask></ScrollMask>
     </section>
-
+   <MeetCook></MeetCook>
     <TestimonialCarousel></TestimonialCarousel>
 
     <Footer></Footer>
