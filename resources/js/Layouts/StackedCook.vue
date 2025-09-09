@@ -23,7 +23,7 @@ img {
 }
 
 .stack {
-  width: 80%;
+  width: 100%;
   max-width: 400px;
   transition: 0.25s ease;
   &:hover {

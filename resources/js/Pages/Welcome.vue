@@ -93,14 +93,14 @@ defineProps({
                 We connect you with trusted local cooks who prepare authentic dishes from your culture — delivered straight to your door.
             </ParallaxText>
            
-        </div>
-    </section>
-
+          </div>
+        </section>
+        <StackedCard></StackedCard>
+        
     <section class="my-20 flex items-center justify-center container">
       <ScrollMask></ScrollMask>
     </section>
     <MeetCook></MeetCook>
-    <StackedCard></StackedCard>
     <TestimonialCarousel></TestimonialCarousel>
     
     <Footer></Footer>

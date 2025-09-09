@@ -15,6 +15,7 @@ const cards = ref([
     {
         id: 3,
         layer: 0,
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
         text: "Card stacks are awesome and inspired by real card stacks at your table. Interactive and smooth!",
     },
 ]);
@@ -105,15 +106,15 @@ onBeforeUnmount(() => {
                 @click="handleCardClick(card)"
             >
               <!-- From Uiverse.io by Javierrocadev --> 
-<div class="relative group duration-500 cursor-pointer group overflow-hidden relative text-gray-50 h-72 w-56  rounded-2xl hover:duration-700 duration-700">
-  <div class="w-56 h-72 bg-lime-400 text-gray-800">
+<div class="group cursor-pointer group overflow-hidden relative text-gray-50 h-72 w-full  rounded-2xl hover:duration-700 duration-700">
+  <div class="w-full h-72 bg-lime-400 text-gray-800">
      <img alt="..." src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" class="hfull w-auto align-middle rounded-t-lg">
        
   </div>
-  <div class="absolute bg-gray-50 -bottom-24 w-56 p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500">
+  <div class="absolute bg-gray-50 -bottom-24 w-full p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500">
     <span class="text-lime-400 font-bold text-xs">TAILWIND</span>
     <span class="text-gray-800 font-bold text-3xl">Cheat Sheet</span>
-    <p class="text-neutral-800">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p class="text-neutral-800">{{ card.text }}</p>
   </div>
   
 
@@ -127,13 +128,13 @@ onBeforeUnmount(() => {
 .contain {
     position: relative;
     margin-top: -100px;
-    width: 360px;
+    width: 560px;
     height: 200px;
 }
 
 .card {
-    /* width: 540px;
-            height: 300px; */
+    width: 540px;
+     /*        height: 300px; */
     border: solid 1px #bebebe;
     background-color: #1f1f1f;
     position: absolute;
