@@ -95,7 +95,9 @@ onBeforeUnmount(() => {
         class="my-20 flex items-center justify-center container relative h-[450px]"
     >
         <div class="contain flex flex-col items-center justify-center gap-10">
-            <div class="instructions">👆 Click any card to cycle through</div>
+            <div class="instructions absolute top-10 text-oynx dark:text-snow">
+                👆 Click any card to cycle through
+            </div>
             <div
                 v-for="card in cards"
                 :key="card.id"
@@ -105,20 +107,29 @@ onBeforeUnmount(() => {
                 :style="card.style"
                 @click="handleCardClick(card)"
             >
-              <!-- From Uiverse.io by Javierrocadev --> 
-<div class="group cursor-pointer group overflow-hidden relative text-gray-50 h-72 w-full  rounded-2xl hover:duration-700 duration-700">
-  <div class="w-full h-72 bg-lime-400 text-gray-800">
-     <img alt="..." src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" class="hfull w-auto align-middle rounded-t-lg">
-       
-  </div>
-  <div class="absolute bg-gray-50 -bottom-24 w-full p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500">
-    <span class="text-lime-400 font-bold text-xs">TAILWIND</span>
-    <span class="text-gray-800 font-bold text-3xl">Cheat Sheet</span>
-    <p class="text-neutral-800">{{ card.text }}</p>
-  </div>
-  
-
-</div>
+                <!-- From Uiverse.io by Javierrocadev -->
+                <div
+                    class="group cursor-pointer group overflow-hidden relative text-gray-50 h-72 w-full rounded-2xl hover:duration-700 duration-700"
+                >
+                    <div class="w-full h-72 bg-lime-400 text-gray-800">
+                        <img
+                            alt="..."
+                            src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80"
+                            class="hfull w-auto align-middle rounded-t-lg"
+                        />
+                    </div>
+                    <div
+                        class="absolute bg-gray-50 -bottom-24 w-full p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500"
+                    >
+                        <span class="text-lime-400 font-bold text-xs"
+                            >TAILWIND</span
+                        >
+                        <span class="text-gray-800 font-bold text-3xl"
+                            >Cheat Sheet</span
+                        >
+                        <p class="text-neutral-800">{{ card.text }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -127,14 +138,14 @@ onBeforeUnmount(() => {
 <style scoped>
 .contain {
     position: relative;
-    margin-top: -100px;
-    width: 560px;
-    height: 200px;
+    /* margin-top: -100px; */
+    width: 600px;
+    height: 600px;
 }
 
 .card {
-    width: 540px;
-     /*        height: 300px; */
+    width: 600px;
+    height: 400px;
     border: solid 1px #bebebe;
     background-color: #1f1f1f;
     position: absolute;
@@ -144,11 +155,7 @@ onBeforeUnmount(() => {
     box-shadow: 0px 8px 20px -10px #bbbbbb;
     text-shadow: 0px 0px 5px #fff;
     letter-spacing: 1px;
-    background-image: radial-gradient(
-        circle 160px at 50% 120%,
-        #353535,
-        #1f1f1f
-    );
+    
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     user-select: none;
@@ -205,11 +212,11 @@ onBeforeUnmount(() => {
 }
 
 .instructions {
-    position: absolute;
+    /* position: absolute;
     top: -60px;
-    left: 50%;
+    left: 50%; */
     transform: translateX(-50%);
-    color: white;
+
     font-size: 16px;
     text-align: center;
     background: rgba(255, 255, 255, 0.1);
