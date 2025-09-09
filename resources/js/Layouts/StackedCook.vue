@@ -7,8 +7,8 @@
 <div class="stack">
   <div class="card">
     <div class="image"> <img alt="..." src="images/kaptured-by-kasia-HpKkTi0ThKM.jpg" class="w-full h-full object-cover ">
-       </div><h4 class="text-4xl font-bold text-oynx dark:text-snow uppercase text-center">
-           Who’s Cooking for You?  
+       </div> <h4 class="text-3xl font-bold text-oynx dark:text-snow uppercase text-center mt-4">
+           How We Select and Approve Every Cook?  
           </h4> 
   </div>
 </div>
