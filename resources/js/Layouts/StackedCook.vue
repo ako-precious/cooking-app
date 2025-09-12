@@ -21,7 +21,7 @@ img {
 
 .stack {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   transition: 0.25s ease;
   &:hover {
     transform: rotate(5deg);

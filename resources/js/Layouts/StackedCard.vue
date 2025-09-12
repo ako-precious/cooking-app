@@ -5,18 +5,26 @@ const cards = ref([
     {
         id: 1,
         layer: 2,
-        text: "Card stacks are awesome and inspired by real card stacks at your table. This is the foundation card.",
+        step: "Step 3",
+        header: "Enjoy Your Meal",
+        text: "Sit back and relax — your fresh meal is delivered safely to your door, often by the next day. Every dish is cooked with care, packed securely, and tastes just like home.",
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
     },
     {
         id: 2,
         layer: 1,
-        text: "Card stacks are awesome and inspired by real card stacks at your table. Click me to see the magic!",
+        header: "Pick Your Plan",
+        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        step: "Step 2",
+        text: "One-time order or weekly plan starting at $54/week. Choose what fits your lifestyle. Flexible, affordable, and designed to take the stress out of mealtime.", 
     },
     {
         id: 3,
         layer: 0,
+        header: "Browse Meals Near You",
         image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        text: "Card stacks are awesome and inspired by real card stacks at your table. Interactive and smooth!",
+        step: "Step 1",
+        text: "Explore authentic dishes made by local cooks. See authentic home-style dishes prepared by trusted cooks in your community.",
     },
 ]);
 
@@ -92,12 +100,19 @@ onBeforeUnmount(() => {
 
 <template>
     <section
-        class="my-20 flex flex-col items-center justify-center container relative h-[550px]"
+        class="my-20 flex flex-col items-center justify-center container relative "
         >
-        <div class="instructions text-oynx dark:text-snow">
-            👆 Click any card to cycle through
-        </div>
-        <div class="contain relative max-w-7xl w-[700px]  flex flex-col items-center justify-center gap-20">
+      <div>
+        <h4 class="text-4xl  font-bold text-oynx dark:text-snow uppercase text-center mt-4 max-w-md">
+         3 Simple Steps to Enjoy Home-Cooked Comfort   
+          </h4> 
+        <h2></h2>
+      </div>
+
+      <div class="contain relative max-w-7xl w-[700px] h-[550px] flex flex-col items-center justify-center gap-20">
+            <div class="instructions absolute bottom-0 left-1/2 text-oynx dark:text-snow">
+                👆 Click any card to cycle through
+            </div>
             <div
                 v-for="card in cards"
                 :key="card.id"
@@ -111,7 +126,7 @@ onBeforeUnmount(() => {
                 <div
                     class="group cursor-pointer group overflow-hidden relative text-gray-50 h-full w-full rounded-2xl hover:duration-700 duration-700"
                 >
-                    <div class="w-full h-[90%] bg-lime-400 text-gray-800">
+                    <div class="w-full h-[90%] bg-persian text-gray-800">
                         <img
                             alt="..."
                             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80"
@@ -121,11 +136,11 @@ onBeforeUnmount(() => {
                     <div
                         class="absolute bg-gray-50 -bottom-24 w-full p-3 flex flex-col gap-1 group-hover:-bottom-0 group-hover:duration-600 duration-500"
                     >
-                        <span class="text-lime-400 font-bold text-xs"
-                            >TAILWIND</span
+                        <span class="text-persian font-bold text-sm"
+                            >{{ card.step }}</span
                         >
                         <span class="text-gray-800 font-bold text-3xl"
-                            >Cheat Sheet</span
+                            >{{ card.header }}</span
                         >
                         <p class="text-neutral-800">{{ card.text }}</p>
                     </div>
@@ -139,8 +154,8 @@ onBeforeUnmount(() => {
 
 
 .card {
-    width: 600px;
-    height: 400px;
+    /* width: 700px; */
+    height: 460px;
     border: solid 1px #bebebe;
     background-color: #1f1f1f;
     position: absolute;
