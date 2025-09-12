@@ -8,13 +8,13 @@ const cards = ref([
         step: "Step 3",
         header: "Enjoy Your Meal",
         text: "Sit back and relax — your fresh meal is delivered safely to your door, often by the next day. Every dish is cooked with care, packed securely, and tastes just like home.",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        image: "images/enjoymeal.jpg",
     },
     {
         id: 2,
         layer: 1,
         header: "Pick Your Plan",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        image: "images/mealplan.png",
         step: "Step 2",
         text: "One-time order or weekly plan starting at $54/week. Choose what fits your lifestyle. Flexible, affordable, and designed to take the stress out of mealtime.",
     },
@@ -22,7 +22,7 @@ const cards = ref([
         id: 3,
         layer: 0,
         header: "Browse Meals Near You",
-        image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        image: "images/browsemeal.jpg",
         step: "Step 1",
         text: "Explore authentic dishes made by local cooks. See authentic home-style dishes prepared by trusted cooks in your community.",
     },
@@ -99,7 +99,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="bg-lavender dark:bg-oynx -my-20 py-20">
+    <div class="bg-lavender dark:bg-oynx -my-20 py-10">
         <section
             class="my-20 flex flex-col items-center justify-center container relative"
         >
@@ -128,7 +128,7 @@ onBeforeUnmount(() => {
                     <div
                         class="group cursor-pointer group overflow-hidden relative text-oynx dark:text-snow h-full w-full rounded-2xl hover:duration-700 duration-700"
                     >
-                        <div class="w-full h-[90%] bg-persian">
+                        <div class="w-full h-[90%] object-cover bg-persian">
                             <img
                                 alt="..."
                                 :src="card.image"
