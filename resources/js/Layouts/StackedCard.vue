@@ -92,12 +92,12 @@ onBeforeUnmount(() => {
 
 <template>
     <section
-        class="my-20 flex items-center justify-center container relative h-[450px]"
-    >
-        <div class="contain flex flex-col items-center justify-center gap-10">
-            <div class="instructions absolute top-10 text-oynx dark:text-snow">
-                👆 Click any card to cycle through
-            </div>
+        class="my-20 flex flex-col items-center justify-center container relative h-[550px]"
+        >
+        <div class="instructions text-oynx dark:text-snow">
+            👆 Click any card to cycle through
+        </div>
+        <div class="contain relative max-w-7xl w-[700px]  flex flex-col items-center justify-center gap-20">
             <div
                 v-for="card in cards"
                 :key="card.id"
@@ -109,13 +109,13 @@ onBeforeUnmount(() => {
             >
                 <!-- From Uiverse.io by Javierrocadev -->
                 <div
-                    class="group cursor-pointer group overflow-hidden relative text-gray-50 h-72 w-full rounded-2xl hover:duration-700 duration-700"
+                    class="group cursor-pointer group overflow-hidden relative text-gray-50 h-full w-full rounded-2xl hover:duration-700 duration-700"
                 >
-                    <div class="w-full h-72 bg-lime-400 text-gray-800">
+                    <div class="w-full h-[90%] bg-lime-400 text-gray-800">
                         <img
                             alt="..."
                             src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80"
-                            class="hfull w-auto align-middle rounded-t-lg"
+                            class="h-full w-auto align-middle object-cover rounded-t-lg"
                         />
                     </div>
                     <div
@@ -136,12 +136,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-.contain {
-    position: relative;
-    /* margin-top: -100px; */
-    width: 600px;
-    height: 600px;
-}
+
 
 .card {
     width: 600px;

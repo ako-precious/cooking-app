@@ -1,9 +1,6 @@
 <template>
     <!-- From Uiverse.io by janisar-hyder --> 
-<p class="browser-warning">
-  If this looks wonky to you it's because this browser doesn't support the CSS
-  property 'aspect-ratio'.
-</p>
+
 <div class="stack">
   <div class="card">
     <div class="image"> <img alt="..." src="images/kaptured-by-kasia-HpKkTi0ThKM.jpg" class="w-full h-full object-cover ">
@@ -24,7 +21,7 @@ img {
 
 .stack {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   transition: 0.25s ease;
   &:hover {
     transform: rotate(5deg);
