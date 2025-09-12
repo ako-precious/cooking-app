@@ -23,7 +23,7 @@ defineProps({
     <Head title="Welcome" />
 
     <section
-        class="relative h-[45rem] flex flex-col items-center justify-center text-center text-white"
+        class="relative h-[45rem] flex flex-col items-center justify-center text-center text-snow"
     >
         <div
             class="video-docker absolute top-0 left-0 w-full h-full overflow-hidden"
@@ -95,8 +95,9 @@ defineProps({
            
           </div>
         </section>
-        <StackedCard></StackedCard>
+
         
+        <StackedCard></StackedCard>
     <section class="my-20 flex items-center justify-center container">
       <!-- <ScrollMask></ScrollMask> -->
     </section>
