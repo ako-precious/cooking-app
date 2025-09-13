@@ -11,7 +11,7 @@ import Header from "./Navbar.vue";
     <div class=" overflow-hidden pb-16"> 
 
         <div
-        class="relative sm:flex-col sm:justify-center sm:items-center min-h-screen bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-snow"
+        class="relative sm:flex-col sm:justify-center sm:items-center  bg-center bg-snow dark:bg-oynx selection:bg-red-500 selection:text-snow"
         >
          <!-- <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0 " viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#1B998B"><circle r="147" cx="26" cy="438"></circle><circle r="74" cx="825" cy="126"></circle><circle r="107" cx="468" cy="358"></circle><circle r="104" cx="208" cy="126"></circle></g></svg>
         <svg id="visual" class="absolute top-0 bottom-0 left-0 right-0" viewBox="0 0 900 600" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><g fill="#004E98"><circle r="147" cx="326" cy="574"></circle><circle r="65" cx="802" cy="55"></circle><circle r="76" cx="824" cy="541"></circle></g></svg> -->
@@ -22,7 +22,7 @@ import Header from "./Navbar.vue";
     <main class="py-16 md:py-24 conainer mx-auto">
         <div class="mx-auto max-w-7xl px-6 md:px-12 flex flex-col md:flex-row justify-around ">
             <!-- Left Content Block -->
-            <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0 z-10">
+            <div class="md:w-1/2 text-center md:text-left -mt-10 mb-10 md:mb-0 z-10">
                   <div class="z-10">
                             <h2
                     data-replace="Connect with students eager`
@@ -30,7 +30,7 @@ import Header from "./Navbar.vue";
                                     expertise to those seeking homemade delights.
                                     Join us and let your cooking skills shine!"
                                     role="heading"
-                                class="swap font-serif text-lg hover:font-mono font-bold leading-10 mb-6 md:text-2xl mt-4  text-oynx dark:text-snow transition-all delay-75"
+                                class="swap text-lg hover:font-mono font-bold leading-10 mb-6 md:text-2xl mt-4  text-oynx dark:text-snow transition-all delay-75"
                             > <span>
     
                                 Discover your culinary talents and share your
@@ -58,7 +58,7 @@ import Header from "./Navbar.vue";
 
             <!-- Right Image Block -->
             <div class="md:w-1/2 flex justify-center md:justify-end relative max-h-screen min-h-160 min-w-50  ">
-                <div class=" h-[70rem] min-w-60 w-[25rem] absolute rotate-[20deg] -top-160 bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
+                <div class=" h-[65rem] min-w-60 w-[27rem] absolute rotate-[20deg] -top-160 bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
 
                     <img src="/images/cook-removebg.png" alt="A smiling chef holding a tray of food" class="w-full max-w-lg h-auto rounded-lg  -rotate-[20deg] ">
                 </div>
@@ -66,19 +66,19 @@ import Header from "./Navbar.vue";
         </div>
 
         <!-- Lower Section with Small Chef and Stats -->
-        <div class="mx-auto max-w-7xl px-6 md:px-12 mt-16 md:-mt-12 flex flex-col md:flex-row md:items-start justify-between">
+        <div class="mx-auto max-w-7xl px-6 md:px-12 mt-16 lg:-mt-20 flex flex-col md:flex-row md:items-start justify-between gap-4">
             <!-- Small Chef Image -->
             <div class="md:w-1/3 flex justify-center mb-8 md:mb-0 relative">
-               <div class=" h-[30rem] min-w-60 w-[17rem] md:absolute -top-60  bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
+               <div class=" h-[30rem] min-w-60 lg:w-[17rem] md:absolute -top-60  bg-polynesian dark:bg-lighred  rounded-full flex items-end overflow-hidden   "> 
 
                     <img src="/images/emediong-umoh.png" alt="A smiling chef holding a tray of food" class="w-full max-w-lg h-auto rounded-lg  ">
                 </div>
             </div>
 
             <!-- Text and Stats -->
-            <div class="md:w-2/3 flex flex-col md:flex-row items-center justify-center p-12 bg-polynesian dark:bg-lighred  space-y-6 md:space-y-0 md:space-x-12 rounded-3xl">
+            <div class="md:w-2/3 flex flex-col md:flex-row items-center justify-center p-10 bg-polynesian dark:bg-lighred  space-y-6 md:space-y-0 md:space-x-10 rounded-3xl">
                 <div class="md:w-1/2 text-center md:text-left">
-                    <p class="text-lg text-snow">
+                    <p class=" text-sm  lg:text-lg text-snow">
                         Share your passion for cooking and turn your kitchen into a business
                     </p>
                 </div>
