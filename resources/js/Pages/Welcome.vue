@@ -7,6 +7,7 @@ import ScrollMask from "@/Layouts/ScrollMask.vue";
 import TestimonialCarousel from "@/Layouts/TestimonialCarousel.vue";
 import MeetCook from "@/Layouts/MeetCook.vue";
 import StackedCard from "@/Layouts/StackedCard.vue";
+import FAQ from "@/Layouts/FAQ.vue";
 
 defineProps({
     canLogin: Boolean,
@@ -124,14 +125,14 @@ defineProps({
                         meal, made just for you.
                     </p>
                       <!-- From Uiverse.io by SmookyDev --> 
-<button class="smky-btn3 relative font-bold  text-oynx dark:text-snow hover:text-snow py-2 px-6 after:absolute after:h-1 after:hover:h-[200%] transition-all duration-500 hover:transition-all hover:duration-500 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden z-20 after:z-[-20] after:bg-persian after:rounded-t-full after:w-full after:bottom-0 after:left-0 ">Check the cooks near you</button>
+<button class="smky-btn3 relative font-bold  text-oynx dark:text-snow hover:text-snow py-2 px-6 after:absolute after:h-1 after:hover:h-[200%] transition-all duration-500 hover:transition-all hover:duration-500 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden z-20 after:z-[-20] after:bg-persian after:rounded-t-full after:w-full after:bottom-0 after:left-0 capitalize ">Check the cooks near you</button>
                 </div>
             </div>
         </div>
     </section>
     <MeetCook></MeetCook>
     <TestimonialCarousel></TestimonialCarousel>
-
+     <FAQ></FAQ>
     <Footer></Footer>
 </template>
 
