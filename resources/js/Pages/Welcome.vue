@@ -42,7 +42,10 @@ defineProps({
                 Your personal <br />
                 chefs await
             </h2>
-            <h3 class="font-semibold text-xl ">A way to enjoy the taste of home <br> without the stress of cooking</h3>
+            <h3 class="font-semibold text-xl">
+                A way to enjoy the taste of home <br />
+                without the stress of cooking
+            </h3>
         </div>
 
         <!-- From Uiverse.io by andrei0x309 -->
@@ -90,20 +93,45 @@ defineProps({
             class="space-y-10 absolute bottom-0 w-full bg-polynesian dark:bg-lighred"
         >
             <ParallaxText :baseVelocity="-3">
-                We connect you with trusted local cooks who prepare authentic dishes from your culture — delivered straight to your door.
+                We connect you with trusted local cooks who prepare authentic
+                dishes from your culture — delivered straight to your door.
             </ParallaxText>
-           
-          </div>
-        </section>
+        </div>
+    </section>
 
-        
-        <StackedCard></StackedCard>
+    <StackedCard></StackedCard>
     <section class="my-20 flex items-center justify-center container">
-      <!-- <ScrollMask></ScrollMask> -->
+        <div class="w-full md:w-6/12 px-4">
+            <div class="relative flex flex-col mt-4">
+                <div
+                    class="px-4 py-5 flex flex-col items-center text-center justify-center"
+                >
+                    <div
+                        class="text-oynx dark:text-snow p-3 text-center inline-flex items-center justify-center w-28 h-28 rounded-full -rotate-12"
+                    >
+                        <img
+                            width="100"
+                            height="100"
+                            src="images/icons8-salt-bae-100.png"
+                            alt="salt-bae"
+                        />
+                    </div>
+                    <h6 class="text-4xl mb-1 font-bold">Know Your Cook</h6>
+                    <p class="mb-4 text-oynx dark:text-snow text-lg">
+                        Before you order, you'll see your cook's name, story,
+                        and specialty dishes, plus reviews from other customers.
+                        You can also chat directly with them to create a custom
+                        meal, made just for you.
+                    </p>
+                      <!-- From Uiverse.io by SmookyDev --> 
+<button class="smky-btn3 relative font-bold  text-oynx dark:text-snow hover:text-snow py-2 px-6 after:absolute after:h-1 after:hover:h-[200%] transition-all duration-500 hover:transition-all hover:duration-500 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden z-20 after:z-[-20] after:bg-persian after:rounded-t-full after:w-full after:bottom-0 after:left-0 ">Check the cooks near you</button>
+                </div>
+            </div>
+        </div>
     </section>
     <MeetCook></MeetCook>
     <TestimonialCarousel></TestimonialCarousel>
-    
+
     <Footer></Footer>
 </template>
 
